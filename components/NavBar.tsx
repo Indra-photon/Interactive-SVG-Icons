@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect, ReactNode } from "react"
 import { Menu, X } from "lucide-react"
 import { navlinks } from "@/constants/navlinks"
 import { useUserStore } from "@/lib/store"
@@ -11,6 +11,7 @@ import { LogOut, User as UserIcon } from "lucide-react"
 
 interface NavItem {
   label: string
+  icon: ReactNode
   href: string
 }
 
@@ -22,7 +23,7 @@ interface NavbarProps {
 export function NavBar({
   position = "sticky",
   items = [
-    ...navlinks.map(link => ({ label: link.label, href: link.url }))
+    ...navlinks.map(link => ({ label: link.label, href: link.url, icon: <link.icon size={16} /> })),
   ],
 }: NavbarProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -91,8 +92,9 @@ export function NavBar({
                 >
                   <Link
                     href={item.href}
-                    className="text-foreground/70 hover:text-foreground transition-colors duration-200 text-sm font-medium"
+                    className="text-foreground/70 hover:text-foreground transition-colors duration-200 text-sm font-medium flex items-center justify-center"
                   >
+                    <span className="inline-block mr-1">{item.icon}</span>
                     {item.label}
                   </Link>
 
