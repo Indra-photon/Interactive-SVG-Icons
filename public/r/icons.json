@@ -1,0 +1,32 @@
+{
+  "icons": [
+    {
+      "slug": "trash",
+      "name": "Trash Icon",
+      "category": "actions",
+      "tags": [
+        "delete",
+        "remove",
+        "bin",
+        "trash"
+      ],
+      "description": "Icon for delete and remove actions",
+      "createdAt": "2026-02-05T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Simple hover scale effect",
+          "animationType": "hover",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": []
+        }
+      ]
+    }
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-05T10:42:29.432Z"
+}
