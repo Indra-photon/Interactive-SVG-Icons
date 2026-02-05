@@ -20,7 +20,29 @@
           "description": "Simple hover scale effect",
           "animationType": "hover",
           "dependencies": [
-            "framer-motion"
+            "motion/react"
+          ],
+          "props": []
+        },
+        {
+          "name": "bounce",
+          "displayName": "Bounce",
+          "tier": "free",
+          "description": "Playful bounce animation on click",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": []
+        },
+        {
+          "name": "shake",
+          "displayName": "Shake",
+          "tier": "free",
+          "description": "Warning shake on hover",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
           ],
           "props": []
         }
@@ -28,5 +50,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-05T10:42:29.432Z"
+  "lastUpdated": "2026-02-05T16:56:41.011Z"
 }

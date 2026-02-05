@@ -1,5 +1,6 @@
 import { IconRegistry } from '@/types/icon';
 import { IconCard } from '@/components/icon-gallery/IconCard';
+import { Container } from '@/components/Container';
 
 async function getIcons() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
@@ -18,15 +19,7 @@ export default async function IconsGallery() {
   const data = await getIcons();
   
   return (
-    <div className="container mx-auto px-4 py-16">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Icon Library</h1>
-          <p className="text-lg text-gray-600">
-            {data.total} interactive icons available
-          </p>
-        </div>
+      <Container className="">
         
         {/* Icon Grid */}
         {data.total === 0 ? (
@@ -40,7 +33,6 @@ export default async function IconsGallery() {
             ))}
           </div>
         )}
-      </div>
-    </div>
+      </Container>
   );
 }
