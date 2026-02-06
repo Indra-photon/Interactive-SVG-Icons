@@ -75,7 +75,7 @@ export function LiveIconPreview({ iconSlug, variationName, animationType }: Live
   };
   
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center h-52">
       <div 
         className="mb-4 cursor-pointer"
         onClick={handleInteraction}

@@ -66,7 +66,7 @@ const cardVariants = {
 
 const sliderVariants = {
   initial: { y: '100%' },
-  hover: { y: 0 }
+  hover: { y: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 24, mass: 1 } }
 };
 
 export function IconCard({ icon }: IconCardProps) {

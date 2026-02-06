@@ -23,6 +23,6 @@
       "update",
       "sync"
     ],
-    "animationType": "hover"
+    "animationType": "click"
   }
 }

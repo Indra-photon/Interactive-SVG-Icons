@@ -1,0 +1,26 @@
+{
+  "name": "refresh-dash",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/icons/refresh/dash.tsx",
+      "content": "'use client';\n\nimport { useState, useRef, useEffect } from 'react';\n\nexport interface RefreshIconDashProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isAnimating?: boolean;\n}\n\nexport function IconRefreshDash({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isAnimating = false\n}: RefreshIconDashProps) {\n  const pathRef = useRef<SVGPathElement>(null);\n  const bottompath = useRef<SVGPathElement>(null);\n  const [pathLength, setPathLength] = useState(0);\n  const [bottompathLength, setbottompathLength] = useState(0);\n\n  useEffect(() => {\n    if (pathRef.current && bottompath.current) {\n      const length = pathRef.current.getTotalLength();\n      const bottomlength = bottompath.current.getTotalLength();\n      setPathLength(length);\n      setbottompathLength(bottomlength);\n    }\n  }, []);\n\n  const DASH_LENGTH = 10;\n\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth=\"2\"\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n    >\n      <style>\n        {`\n          @keyframes dash-travel-top {\n            from {\n              stroke-dashoffset: ${DASH_LENGTH};\n            }\n            to {\n              stroke-dashoffset: ${-pathLength};\n            }\n          }\n\n          @keyframes dash-travel-bottom {\n            from {\n              stroke-dashoffset: ${DASH_LENGTH};\n            }\n            to {\n              stroke-dashoffset: ${-bottompathLength};\n            }\n          }\n\n          .animate-dash-top {\n            animation: dash-travel-top 0.9s linear infinite;\n          }\n\n          .animate-dash-bottom {\n            animation: dash-travel-bottom 0.6s linear infinite;\n          }\n        `}\n      </style>\n\n      <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n\n      {/* Background paths */}\n      <path\n        d=\"M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4\"\n        opacity=\"0.2\"\n      />\n\n      <path\n        d=\"M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4\"\n        opacity=\"0.2\"\n      />\n\n      {/* Animated dashed paths */}\n      <path\n        ref={pathRef}\n        d=\"M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4\"\n        strokeDasharray={`${DASH_LENGTH} ${pathLength}`}\n        strokeDashoffset={DASH_LENGTH}\n        className={isAnimating ? \"animate-dash-top\" : \"\"}\n      />\n\n      <path\n        ref={bottompath}\n        d=\"M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4\"\n        strokeDasharray={`${DASH_LENGTH} ${bottompathLength}`}\n        strokeDashoffset={DASH_LENGTH}\n        className={isAnimating ? \"animate-dash-bottom\" : \"\"}\n      />\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Refresh Icon - Traveling Dash",
+    "description": "Dashed segments travel along the path",
+    "category": "actions",
+    "tags": [
+      "refresh",
+      "reload",
+      "update",
+      "sync"
+    ],
+    "animationType": "click"
+  }
+}

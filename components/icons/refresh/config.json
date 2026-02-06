@@ -22,6 +22,14 @@
             "animationType": "click",
             "dependencies": [],
             "designNote": "Arrow indicators excluded for cleaner circular animation path"
+        },
+        {
+            "name": "dash",
+            "displayName": "Traveling Dash",
+            "tier": "free",
+            "description": "Dashed segments travel along the path",
+            "animationType": "click",
+            "dependencies": []
         }
     ]
 }
