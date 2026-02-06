@@ -97,6 +97,7 @@
 
 import { notFound } from 'next/navigation';
 import { VariationCard } from '@/components/icon-gallery/VariationCard';
+import { VariationCardWithButton } from '@/components/icon-gallery/VariationCardWithButton';
 import fs from 'fs/promises';
 import path from 'path';
 import type { IconRegistry } from '@/types/icon';
@@ -133,12 +134,12 @@ export default async function IconVariationsPage({
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl text-stone-900 font-sans mb-2">{icon.name}</h1>
-          <p className="text-stone-600 font-sans mb-4">{icon.description}</p>
+          <p className="text-stone-600 font-sans mb-4 tracking-tighter">{icon.description}</p>
           <div className="flex gap-2">
             {icon.tags.map(tag => (
               <span
                 key={tag}
-                className="px-3 py-1 bg-stone-100 rounded-full text-sm font-sans text-stone-800"
+                className="px-3 py-1 bg-stone-100 rounded-full text-sm font-sans tracking-tighter text-stone-500"
               >
                 {tag}
               </span>
@@ -151,7 +152,7 @@ export default async function IconVariationsPage({
           
           <div className="grid md:grid-cols-2 gap-6">
             {icon.variations.map(variation => (
-              <VariationCard
+              <VariationCardWithButton
                 key={variation.name}
                 iconSlug={icon.slug}
                 variation={variation}

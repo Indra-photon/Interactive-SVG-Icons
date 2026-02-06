@@ -47,8 +47,52 @@
           "props": []
         }
       ]
+    },
+    {
+      "slug": "refresh",
+      "name": "Refresh Icon",
+      "category": "actions",
+      "tags": [
+        "refresh",
+        "reload",
+        "update",
+        "sync"
+      ],
+      "description": "Icon for refresh, reload, or sync actions",
+      "createdAt": "2026-02-05T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Click the button to see the refresh icon in action.",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": []
+        },
+        {
+          "name": "stroke",
+          "displayName": "Stroke Drawing",
+          "tier": "free",
+          "description": "Circular stroke drawing effect",
+          "animationType": "click",
+          "dependencies": [],
+          "props": []
+        },
+        {
+          "name": "dash",
+          "displayName": "Traveling Dash",
+          "tier": "free",
+          "description": "Dashed segments travel along the path",
+          "animationType": "click",
+          "dependencies": [],
+          "props": []
+        }
+      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-05T16:56:41.011Z"
+  "lastUpdated": "2026-02-06T15:18:55.943Z"
 }

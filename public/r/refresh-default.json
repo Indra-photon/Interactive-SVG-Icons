@@ -1,0 +1,28 @@
+{
+  "name": "refresh-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react"
+  ],
+  "files": [
+    {
+      "path": "components/icons/refresh/default.tsx",
+      "content": "// export interface RefreshIconProps {\n//   size?: number;\n//   color?: string;\n//   className?: string;\n// }\n\n\n// export const IconRefresh = (\n//     { size = 24, color = 'currentColor', className = '' }: RefreshIconProps\n// ) => {\n//   return (\n//     <svg xmlns=\"http://www.w3.org/2000/svg\" width={size} height={size} viewBox=\"0 0 24 24\" fill=\"none\" stroke={color} strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" \n//     className={`icon icon-tabler icons-tabler-outline icon-tabler-refresh ${className}`}>\n//         <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n//         <path d=\"M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4\" />\n//         <path d=\"M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4\" /></svg>\n//   );\n// };\n\n'use client';\n\nexport interface RefreshIconProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isAnimating?: boolean;\n}\n\nexport function IconRefresh({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isAnimating = false\n}: RefreshIconProps) {\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth=\"2\"\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={`transition-all duration-300 ${\n        isAnimating ? 'opacity-100 animate-spin' : 'opacity-30'\n      } ${className}`}\n    >\n      <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n      <path d=\"M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4\" />\n      <path d=\"M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4\" />\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Refresh Icon - Default",
+    "description": "Click the button to see the refresh icon in action.",
+    "category": "actions",
+    "tags": [
+      "refresh",
+      "reload",
+      "update",
+      "sync"
+    ],
+    "animationType": "click"
+  }
+}

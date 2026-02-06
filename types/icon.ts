@@ -16,6 +16,7 @@ export interface Variation {
   animationType: 'hover' | 'click' | 'loop';
   dependencies: string[];
   props?: PropDefinition[];
+  designNote?: string;
 }
 
 export interface PropDefinition {

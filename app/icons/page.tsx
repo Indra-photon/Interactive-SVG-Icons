@@ -27,7 +27,7 @@ export default async function IconsGallery() {
             <p className="text-gray-500">No icons yet. Run build:registry after adding icons.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1">
             {data.icons.map((icon: any) => (
               <IconCard key={icon.slug} icon={icon} />
             ))}
