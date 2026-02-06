@@ -5,7 +5,26 @@ import path from 'path';
 import type { IconRegistry } from '@/types/icon';
 import { CopyButton } from '@/components/icon-gallery/CopyButton';
 import { LiveIconPreview } from '@/components/icon-gallery/LiveIconPreview';
+import { ButtonCodeDisplay } from '@/components/icon-gallery/ButtonCodeDisplay';
 import { Container } from '@/components/Container';
+
+// async function getVariation(slug: string, variationName: string) {
+//   try {
+//     const registryPath = path.join(process.cwd(), 'public/r/icons.json');
+//     const content = await fs.readFile(registryPath, 'utf-8');
+//     const registry: IconRegistry = JSON.parse(content);
+    
+//     const icon = registry.icons.find(i => i.slug === slug);
+//     if (!icon) return null;
+    
+//     const variation = icon.variations.find(v => v.name === variationName);
+//     if (!variation) return null;
+    
+//     return { icon, variation };
+//   } catch (error) {
+//     return null;
+//   }
+// }
 
 async function getVariation(slug: string, variationName: string) {
   try {
@@ -19,7 +38,22 @@ async function getVariation(slug: string, variationName: string) {
     const variation = icon.variations.find(v => v.name === variationName);
     if (!variation) return null;
     
-    return { icon, variation };
+    // Try to read button example code
+    let buttonCode = '';
+    try {
+      const buttonPath = path.join(
+        process.cwd(), 
+        'components/icons', 
+        slug, 
+        'examples', 
+        `${variationName}-button.tsx`
+      );
+      buttonCode = await fs.readFile(buttonPath, 'utf-8');
+    } catch (error) {
+      buttonCode = '// Button example not available';
+    }
+    
+    return { icon, variation, buttonCode };
   } catch (error) {
     return null;
   }
@@ -37,7 +71,7 @@ export default async function VariationDetailPage({
     notFound();
   }
   
-  const { icon, variation } = data;
+  const { icon, variation, buttonCode } = data;
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const registryUrl = `${baseUrl}/r/${icon.slug}-${variation.name}.json`;
   const installCommand = `npx shadcn@latest add ${registryUrl}`;
@@ -83,7 +117,7 @@ export default async function VariationDetailPage({
             <CopyButton text={installCommand} />
           </div>
           
-          <div>
+          {/* <div>
             <h3 className="text-xl font-sans mb-4">Usage</h3>
             <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre">
             {`import { TrashIcon } from '@/components/icons/${icon.slug}/${variation.name}';
@@ -92,7 +126,7 @@ export default async function VariationDetailPage({
               return <TrashIcon size={32} />;
             }`}
             </div>
-          </div>
+          </div> */}
           
           {/* Props Documentation */}
           {/* <div>
@@ -126,6 +160,15 @@ export default async function VariationDetailPage({
               </table>
             </div>
           </div> */}
+
+          {data.buttonCode && data.buttonCode !== '// Button example not available' && (
+            <ButtonCodeDisplay
+              iconSlug={icon.slug}
+              variationName={variation.name}
+              buttonCode={data.buttonCode}
+            />
+          )}
+          
         </div>
       </div>
     </Container>

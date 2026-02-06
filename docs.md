@@ -29,3 +29,10 @@ This page now shows ALL variations in a grid. User clicks one variation card to 
 
 # /app/icons/[slug]/[variations]/page.tsx
 This is the final destination - users see the icon animated live, get the exact install command, and see usage examples. This is where the magic happens and users get what they came for!
+
+# /components/icon-gallery/VariationCardWithButton.tsx
+Shows both the icon AND the button example in the card. Users see real-world usage immediately on the variations list page.
+
+# /components/icon-gallery/ButtonCodeDisplay.tsx
+Client component that loads ANY button example dynamically and displays the actual code passed from server.
+

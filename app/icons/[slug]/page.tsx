@@ -97,6 +97,7 @@
 
 import { notFound } from 'next/navigation';
 import { VariationCard } from '@/components/icon-gallery/VariationCard';
+import { VariationCardWithButton } from '@/components/icon-gallery/VariationCardWithButton';
 import fs from 'fs/promises';
 import path from 'path';
 import type { IconRegistry } from '@/types/icon';
@@ -151,7 +152,7 @@ export default async function IconVariationsPage({
           
           <div className="grid md:grid-cols-2 gap-6">
             {icon.variations.map(variation => (
-              <VariationCard
+              <VariationCardWithButton
                 key={variation.name}
                 iconSlug={icon.slug}
                 variation={variation}
