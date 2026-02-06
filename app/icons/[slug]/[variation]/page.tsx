@@ -96,6 +96,13 @@ export default async function VariationDetailPage({
             {icon.name} - {variation.displayName}
           </h1>
           <p className="text-stone-600 font-sans">{variation.description}</p>
+          {variation.designNote && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <p className="text-sm text-blue-800">
+                <strong>Design Note:</strong> {variation.designNote}
+              </p>
+            </div>
+          )}
         </div>
         
         {/* Live Preview */}
@@ -168,6 +175,7 @@ export default async function VariationDetailPage({
               buttonCode={data.buttonCode}
             />
           )}
+          
           
         </div>
       </div>

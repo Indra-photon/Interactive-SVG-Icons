@@ -50,10 +50,7 @@ export function VariationCardWithButton({ iconSlug, variation }: VariationCardWi
   );
   
   return (
-    <Link
-      href={`/icons/${iconSlug}/${variation.name}`}
-      className="border rounded-lg p-6 transition-all group"
-    >
+    <div className="border rounded-lg p-6 transition-all group">
       {/* Icon Preview */}
       {/* <div className="aspect-square bg-gray-50 rounded-lg mb-4 flex items-center justify-center group-hover:bg-gray-100 transition-colors">
         <IconComponent size={64} />
@@ -70,22 +67,24 @@ export function VariationCardWithButton({ iconSlug, variation }: VariationCardWi
       {/* Variation Info */}
       <div className="flex items-end justify-between border-t border-stone-300 mt-12 pt-4">
         <div>
-          <h3 className="font-sans text-stone-900 text-lg mb-1">
+          <h3 className="font-sans text-stone-900 text-lg tracking-tighter">
             {variation.displayName}
           </h3>
-          <p className="text-sm font-sans text-stone-600">
+          <p className="text-sm font-sans text-stone-500 tracking-tighter">
             {variation.description}
           </p>
         </div>
-        <span className='pb-6'>
-          <IconExternalLink className="text-stone-400" />
-        </span>
+        <Link href={`/icons/${iconSlug}/${variation.name}`}>
+          <span className='pb-6'>
+            <IconExternalLink className="text-stone-400" />
+          </span>
+        </Link>
       </div>
       
       {/* Hover hint */}
       {/* <div className="text-sm text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
         See details →
       </div> */}
-    </Link>
+    </div>
   );
 }

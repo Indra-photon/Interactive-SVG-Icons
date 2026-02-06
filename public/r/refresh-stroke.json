@@ -1,0 +1,26 @@
+{
+  "name": "refresh-stroke",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/icons/refresh/stroke.tsx",
+      "content": "'use client';\n\nimport { useState, useRef, useEffect } from 'react';\n\nexport interface RefreshIconStrokeProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isAnimating?: boolean;\n}\n\nexport function IconRefreshStroke({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isAnimating = false\n}: RefreshIconStrokeProps) {\n  const pathRef = useRef<SVGPathElement>(null);\n  const bottompath = useRef<SVGPathElement>(null);\n  const [pathLength, setPathLength] = useState(0);\n  const [bottompathLength, setbottompathLength] = useState(0);\n\n  useEffect(() => {\n    if (pathRef.current && bottompath.current) {\n      const length = pathRef.current.getTotalLength();\n      const bottomlength = bottompath.current.getTotalLength();\n      setPathLength(length);\n      setbottompathLength(bottomlength);\n    }\n  }, []);\n\n  const totalLength = pathLength + bottompathLength;\n  const topDuration = pathLength / totalLength;\n  const bottomDuration = bottompathLength / totalLength;\n  const totalDuration = 1.9;\n\n  const topAnimDuration = topDuration * totalDuration;\n  const bottomAnimDuration = bottomDuration * totalDuration;\n\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth=\"2\"\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n    >\n      <style>\n        {`\n          @keyframes dash-top {\n            from {\n              stroke-dashoffset: ${pathLength};\n            }\n            to {\n              stroke-dashoffset: 0;\n            }\n          }\n\n          @keyframes dash-bottom {\n            from {\n              stroke-dashoffset: ${bottompathLength};\n            }\n            to {\n              stroke-dashoffset: 0;\n            }\n          }\n\n          .animate-top-infinite {\n            animation: dash-top ${topAnimDuration}s linear infinite;\n          }\n\n          .animate-bottom-infinite {\n            animation: dash-bottom ${bottomAnimDuration}s linear ${topAnimDuration}s infinite;\n          }\n        `}\n      </style>\n\n      <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n\n      {/* Background paths */}\n      <path\n        d=\"M20 11a8.1 8.1 0 0 0 -15.5 -2\"\n        stroke={color}\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n        fill=\"none\"\n        opacity=\"0.15\"\n      />\n\n      <path\n        d=\"M4 13a8.1 8.1 0 0 0 15.5 2\"\n        stroke={color}\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n        fill=\"none\"\n        opacity=\"0.15\"\n      />\n\n      {/* Animated paths */}\n      <path\n        ref={pathRef}\n        d=\"M20 11a8.1 8.1 0 0 0 -15.5 -2\"\n        stroke={color}\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n        fill=\"none\"\n        strokeDasharray={pathLength}\n        strokeDashoffset={pathLength}\n        className={isAnimating ? \"animate-top-infinite\" : \"\"}\n      />\n\n      <path\n        ref={bottompath}\n        d=\"M4 13a8.1 8.1 0 0 0 15.5 2\"\n        stroke={color}\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n        fill=\"none\"\n        strokeDasharray={bottompathLength}\n        strokeDashoffset={bottompathLength}\n        className={isAnimating ? \"animate-bottom-infinite\" : \"\"}\n      />\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Refresh Icon - Stroke Drawing",
+    "description": "Circular stroke drawing effect",
+    "category": "actions",
+    "tags": [
+      "refresh",
+      "reload",
+      "update",
+      "sync"
+    ],
+    "animationType": "click"
+  }
+}
