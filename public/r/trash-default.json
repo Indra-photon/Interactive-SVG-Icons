@@ -8,14 +8,14 @@
   "files": [
     {
       "path": "components/icons/trash/default.tsx",
-      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface TrashIconProps {\n  size?: number;\n  color?: string;\n  className?: string;\n}\n\nexport function TrashIcon({\n  size = 24,\n  color = 'currentColor',\n  className = ''\n}: TrashIconProps) {\n  return (\n    <motion.svg\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n      whileHover={{ scale: 1.1 }}\n      transition={{ type: \"spring\", stiffness: 400, damping: 10 }}\n    >\n      <path d=\"M4 7h16\" />\n      <path d=\"M10 11v6\" />\n      <path d=\"M14 11v6\" />\n      <path d=\"M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12\" />\n      <path d=\"M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3\" />\n    </motion.svg>\n  );\n}",
+      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface TrashIconProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isAnimating?: boolean;\n}\n\nexport function TrashIcon({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isAnimating = false\n}: TrashIconProps) {\n  return (\n    <motion.svg\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n      animate={isAnimating ? \"shake\" : \"idle\"}\n      variants={{\n        idle: {\n          x: 0,\n          transition: { duration: 0 }\n        },\n        shake: {\n          x: [0, -2, 2, -2, 2, -1, 1, 0],\n          transition: {\n            duration: 0.5,\n            repeat: Infinity,\n            repeatDelay: 0.1,\n            ease: \"easeInOut\"\n          }\n        }\n      }}\n    >\n      <path d=\"M4 7h16\" />\n      <path d=\"M10 11v6\" />\n      <path d=\"M14 11v6\" />\n      <path d=\"M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12\" />\n      <path d=\"M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3\" />\n    </motion.svg>\n  );\n}",
       "type": "registry:ui",
       "target": ""
     }
   ],
   "meta": {
     "displayName": "Trash Icon - Default",
-    "description": "Simple hover scale effect",
+    "description": "Shake animation during delete operation",
     "category": "actions",
     "tags": [
       "delete",
@@ -23,6 +23,6 @@
       "bin",
       "trash"
     ],
-    "animationType": "hover"
+    "animationType": "click"
   }
 }

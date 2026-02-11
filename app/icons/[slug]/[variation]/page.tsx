@@ -106,13 +106,13 @@ export default async function VariationDetailPage({
         </div>
         
         {/* Live Preview */}
-        <div className="bg-gray-50 rounded-lg p-16 mb-8">
+        {/* <div className="bg-gray-50 rounded-lg p-16 mb-8">
           <LiveIconPreview 
             iconSlug={icon.slug}
             variationName={variation.name}
             animationType={variation.animationType}
           />
-        </div>
+        </div> */}
         
         {/* Installation Section */}
         <div className="space-y-6">
@@ -136,37 +136,39 @@ export default async function VariationDetailPage({
           </div> */}
           
           {/* Props Documentation */}
-          {/* <div>
-            <h3 className="text-xl font-sans mb-4">Props</h3>
-            <div className="border rounded-lg overflow-hidden">
-              <table className="w-full">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-4 py-2 text-left">Prop</th>
-                    <th className="px-4 py-2 text-left">Type</th>
-                    <th className="px-4 py-2 text-left">Default</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-t">
-                    <td className="px-4 py-2 font-mono text-sm">size</td>
-                    <td className="px-4 py-2 text-sm text-gray-600">number</td>
-                    <td className="px-4 py-2 font-mono text-sm">24</td>
-                  </tr>
-                  <tr className="border-t">
-                    <td className="px-4 py-2 font-mono text-sm">color</td>
-                    <td className="px-4 py-2 text-sm text-gray-600">string</td>
-                    <td className="px-4 py-2 font-mono text-sm">currentColor</td>
-                  </tr>
-                  <tr className="border-t">
-                    <td className="px-4 py-2 font-mono text-sm">className</td>
-                    <td className="px-4 py-2 text-sm text-gray-600">string</td>
-                    <td className="px-4 py-2 font-mono text-sm">""</td>
-                  </tr>
-                </tbody>
-              </table>
+          {variation.props && variation.props.length > 0 ? (
+            <div>
+              <h3 className="text-xl font-sans mb-4">Props</h3>
+              <div className="border rounded-lg overflow-hidden">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-2 text-left">Prop</th>
+                      <th className="px-4 py-2 text-left">Type</th>
+                      <th className="px-4 py-2 text-left">Default</th>
+                      <th className="px-4 py-2 text-left">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {variation.props.map((prop) => (
+                      <tr key={prop.name} className="border-t">
+                        <td className="px-4 py-2 font-mono text-sm">{prop.name}</td>
+                        <td className="px-4 py-2 text-sm text-gray-600">{prop.type}</td>
+                        <td className="px-4 py-2 font-mono text-sm">
+                          {typeof prop.default === 'string' && prop.default !== '' 
+                            ? `"${prop.default}"` 
+                            : String(prop.default)}
+                        </td>
+                        <td className="px-4 py-2 text-sm text-gray-600">
+                          {prop.description || '-'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div> */}
+          ) : null}
 
           {data.buttonCode && data.buttonCode !== '// Button example not available' && (
             <ButtonCodeDisplay

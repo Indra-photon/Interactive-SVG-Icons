@@ -1,0 +1,28 @@
+{
+  "name": "trash-dissolve",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react"
+  ],
+  "files": [
+    {
+      "path": "components/icons/trash/dissolve.tsx",
+      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface TrashIconDissolveProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isAnimating?: boolean;\n}\n\nexport function TrashIconDissolve({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isAnimating = false\n}: TrashIconDissolveProps) {\n  const dissolveVariants = {\n    idle: {\n      y: 0,\n      opacity: 1,\n      transition: {\n        duration: 0.3\n      }\n    },\n    dissolving: {\n      y: -8,\n      opacity: 0,\n      transition: {\n        duration: 0.8,\n        ease: \"easeOut\" as const,\n        repeat: Infinity,\n        repeatDelay: 0.2\n      }\n    }\n  };\n\n  return (\n    <svg\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n    >\n      {/* Animated lid - dissolves last (delay: 0.45s) */}\n      <motion.path\n        d=\"M4 7h16\"\n        animate={isAnimating ? \"dissolving\" : \"idle\"}\n        variants={dissolveVariants}\n        transition={{\n          ...dissolveVariants.dissolving.transition,\n          delay: 0.45\n        }}\n      />\n\n      {/* Animated top handle - dissolves third (delay: 0.3s) */}\n      <motion.path\n        d=\"M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3\"\n        animate={isAnimating ? \"dissolving\" : \"idle\"}\n        variants={dissolveVariants}\n        transition={{\n          ...dissolveVariants.dissolving.transition,\n          delay: 0.3\n        }}\n      />\n\n      {/* Animated left vertical line - dissolves second (delay: 0.15s) */}\n      <motion.path\n        d=\"M10 11v6\"\n        animate={isAnimating ? \"dissolving\" : \"idle\"}\n        variants={dissolveVariants}\n        transition={{\n          ...dissolveVariants.dissolving.transition,\n          delay: 0.15\n        }}\n      />\n\n      {/* Animated right vertical line - dissolves second (delay: 0.15s) */}\n      <motion.path\n        d=\"M14 11v6\"\n        animate={isAnimating ? \"dissolving\" : \"idle\"}\n        variants={dissolveVariants}\n        transition={{\n          ...dissolveVariants.dissolving.transition,\n          delay: 0.15\n        }}\n      />\n\n      {/* Animated trash body - dissolves first (no delay) */}\n      <motion.path\n        d=\"M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12\"\n        animate={isAnimating ? \"dissolving\" : \"idle\"}\n        variants={dissolveVariants}\n        transition={{\n          ...dissolveVariants.dissolving.transition,\n          delay: 0\n        }}\n      />\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Trash Icon - Dissolve Up",
+    "description": "Paths dissolve upward sequentially like smoke during delete operation",
+    "category": "actions",
+    "tags": [
+      "delete",
+      "remove",
+      "bin",
+      "trash"
+    ],
+    "animationType": "click"
+  }
+}

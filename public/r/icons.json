@@ -17,34 +17,153 @@
           "name": "default",
           "displayName": "Default",
           "tier": "free",
-          "description": "Simple hover scale effect",
-          "animationType": "hover",
-          "dependencies": [
-            "motion/react"
-          ],
-          "props": []
-        },
-        {
-          "name": "bounce",
-          "displayName": "Bounce",
-          "tier": "free",
-          "description": "Playful bounce animation on click",
+          "description": "Shake animation during delete operation",
           "animationType": "click",
           "dependencies": [
             "motion/react"
           ],
-          "props": []
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the shake animation state. Set to true during delete operations."
+            }
+          ]
         },
         {
           "name": "shake",
-          "displayName": "Shake",
+          "displayName": "Lid Lift",
           "tier": "free",
-          "description": "Warning shake on hover",
-          "animationType": "hover",
+          "description": "Lid lifts and bounces during delete operation",
+          "animationType": "click",
           "dependencies": [
             "motion/react"
           ],
-          "props": []
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the lid lift animation state. Set to true during delete operations."
+            }
+          ]
+        },
+        {
+          "name": "bounce",
+          "displayName": "Fill & Crush",
+          "tier": "free",
+          "description": "Lines fill up and trash compresses during delete operation",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": false,
+              "description": "Controls the fill and crush animation state. Set to true during delete operations."
+            }
+          ]
+        },
+        {
+          "name": "dissolve",
+          "displayName": "Dissolve Up",
+          "tier": "free",
+          "description": "Paths dissolve upward sequentially like smoke during delete operation",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": false,
+              "description": "Controls the dissolve animation state. Set to true during delete operations."
+            }
+          ]
         }
       ]
     },
@@ -94,5 +213,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-06T15:18:55.943Z"
+  "lastUpdated": "2026-02-10T18:32:22.619Z"
 }

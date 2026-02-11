@@ -8,14 +8,14 @@
   "files": [
     {
       "path": "components/icons/trash/shake.tsx",
-      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\nexport interface TrashIconShakeProps {\n  size?: number;\n  color?: string;\n  className?: string;\n}\n\nexport function TrashIconShake({\n  size = 24,\n  color = 'currentColor',\n  className = ''\n}: TrashIconShakeProps) {\n  return (\n    <motion.svg\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n      whileHover={{\n        rotate: [0, -10, 10, -10, 10, 0],\n        transition: {\n          duration: 0.5,\n          ease: \"easeInOut\"\n        }\n      }}\n      style={{ cursor: 'pointer' }}\n    >\n      <path d=\"M4 7h16\" />\n      <path d=\"M10 11v6\" />\n      <path d=\"M14 11v6\" />\n      <path d=\"M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12\" />\n      <path d=\"M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3\" />\n    </motion.svg>\n  );\n}",
+      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface TrashIconShakeProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isAnimating?: boolean;\n}\n\nexport function TrashIconShake({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isAnimating = false\n}: TrashIconShakeProps) {\n  return (\n    <svg\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n    >\n      {/* Animated Lid - lifts up when deleting */}\n      <motion.g\n        style={{\n          transformBox: 'fill-box',\n          transformOrigin: 'center'\n        }}\n        animate={isAnimating ? \"open\" : \"closed\"}\n        variants={{\n          closed: {\n            y: 0,\n            transition: {\n              type: \"spring\",\n              stiffness: 300,\n              damping: 15\n            }\n          },\n          open: {\n            y: -4,\n            transition: {\n              type: \"spring\",\n              stiffness: 300,\n              damping: 15,\n              repeat: Infinity,\n              repeatType: \"reverse\",\n              repeatDelay: 0.1\n            }\n          }\n        }}\n      >\n        <path d=\"M4 7h16\" />\n      </motion.g>\n\n      {/* Static trash body */}\n      <path d=\"M10 11v6\" />\n      <path d=\"M14 11v6\" />\n      <path d=\"M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12\" />\n      <path d=\"M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3\" />\n    </svg>\n  );\n}",
       "type": "registry:ui",
       "target": ""
     }
   ],
   "meta": {
-    "displayName": "Trash Icon - Shake",
-    "description": "Warning shake on hover",
+    "displayName": "Trash Icon - Lid Lift",
+    "description": "Lid lifts and bounces during delete operation",
     "category": "actions",
     "tags": [
       "delete",
@@ -23,6 +23,6 @@
       "bin",
       "trash"
     ],
-    "animationType": "hover"
+    "animationType": "click"
   }
 }
