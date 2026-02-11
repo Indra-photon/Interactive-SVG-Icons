@@ -6,12 +6,14 @@ export interface TrashIconProps {
   size?: number;
   color?: string;
   className?: string;
+  isAnimating?: boolean;
 }
 
 export function TrashIcon({
   size = 24,
   color = 'currentColor',
-  className = ''
+  className = '',
+  isAnimating = false
 }: TrashIconProps) {
   return (
     <motion.svg
@@ -24,8 +26,22 @@ export function TrashIcon({
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
-      whileHover={{ scale: 1.1 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      animate={isAnimating ? "shake" : "idle"}
+      variants={{
+        idle: {
+          x: 0,
+          transition: { duration: 0 }
+        },
+        shake: {
+          x: [0, -2, 2, -2, 2, -1, 1, 0],
+          transition: {
+            duration: 0.5,
+            repeat: Infinity,
+            repeatDelay: 0.1,
+            ease: "easeInOut"
+          }
+        }
+      }}
     >
       <path d="M4 7h16" />
       <path d="M10 11v6" />
