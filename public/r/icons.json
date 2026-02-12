@@ -210,8 +210,216 @@
           "props": []
         }
       ]
+    },
+    {
+      "slug": "home",
+      "name": "Home Icon",
+      "category": "actions",
+      "tags": [
+        "home",
+        "house",
+        "main",
+        "dashboard"
+      ],
+      "description": "Icon for selecting the home page",
+      "createdAt": "2026-02-11T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
+          "animationType": "select",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isSelected",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the selected state of the icon."
+            }
+          ]
+        },
+        {
+          "name": "draw",
+          "displayName": "Sketch Reveal",
+          "tier": "free",
+          "description": "Stroke animation draws the house from foundation to roof during loading",
+          "animationType": "loading",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isLoading",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the sketch reveal animation state. Set to true during loading operations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "copy-check",
+      "name": "Copy Check Icon",
+      "category": "actions",
+      "tags": [
+        "copy",
+        "clipboard",
+        "check",
+        "success",
+        "duplicate"
+      ],
+      "description": "Icon for copy to clipboard with success feedback",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Box fills then checkmark draws in when copy succeeds",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke and fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isCopied",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the copy success animation. Set to true when copy operation completes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bulb",
+      "name": "Bulb Icon",
+      "category": "interface",
+      "tags": [
+        "bulb",
+        "idea",
+        "tip",
+        "suggestion",
+        "light",
+        "hint"
+      ],
+      "description": "Icon for tips, ideas, and helpful suggestions",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Fill and stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isActive",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the light-up animation. Set to true to show filled bulb with rays."
+            }
+          ]
+        }
+      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-10T18:32:22.619Z"
+  "lastUpdated": "2026-02-12T12:40:47.827Z"
 }
