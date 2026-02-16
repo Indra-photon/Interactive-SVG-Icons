@@ -212,6 +212,109 @@
       ]
     },
     {
+      "slug": "mail",
+      "name": "Mail Icon",
+      "category": "communication",
+      "tags": [
+        "mail",
+        "email",
+        "envelope",
+        "message",
+        "inbox"
+      ],
+      "description": "Icon for email and messaging actions",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Envelope flap opens on hover to reveal mail inside",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isOpen",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the envelope opening animation. Set to true to open the flap."
+            }
+          ]
+        },
+        {
+          "name": "notification",
+          "displayName": "Notification Badge",
+          "tier": "free",
+          "description": "Icon bounces and shows notification badge with count when new mail arrives",
+          "animationType": "notification",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "hasNotification",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Triggers the bounce animation when set to true. Typically set when new mail arrives."
+            },
+            {
+              "name": "count",
+              "type": "number",
+              "default": "0",
+              "required": false,
+              "description": "Number displayed in the notification badge. Shows '99+' for values over 99."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "home",
       "name": "Home Icon",
       "category": "actions",
@@ -421,5 +524,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-12T12:40:47.827Z"
+  "lastUpdated": "2026-02-15T17:01:30.384Z"
 }
