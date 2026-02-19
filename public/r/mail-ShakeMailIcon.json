@@ -1,0 +1,29 @@
+{
+  "name": "mail-ShakeMailIcon",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react"
+  ],
+  "files": [
+    {
+      "path": "components/icons/mail/ShakeMailIcon.tsx",
+      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface ShakeMailIconProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isOpen?: boolean;\n  unreadCount?: number;\n}\n\nexport function ShakeMailIcon({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isOpen = false,\n  unreadCount = 0\n}: ShakeMailIconProps) {\n  const shouldShake = unreadCount > 0 && !isOpen;\n\n  return (\n    <div\n      style={{\n        position: 'relative',\n        width: size,\n        height: size\n      }}\n    >\n      {/* Envelope + shake */}\n      <motion.svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width={size}\n        height={size}\n        viewBox=\"0 0 24 24\"\n        fill={color}\n        className={`icon icon-tabler ${className}`}\n        style={{ perspective: '2000px' }}\n        animate={shouldShake ? 'shake' : 'idle'}\n        variants={{\n          idle: { rotate: 0 },\n          shake: {\n            rotate: [0, -6, 6, -6, 6, 0],\n            transition: {\n              duration: 0.6,\n              ease: 'easeInOut'\n            }\n          }\n        }}\n      >\n        <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n\n        {/* Envelope body */}\n        <path d=\"M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z\" />\n\n        {/* Top flap */}\n        <motion.path\n          d=\"M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z\"\n          style={{\n            transformBox: 'fill-box',\n            transformOrigin: '50% 0%'\n          }}\n          animate={isOpen ? 'open' : 'closed'}\n          variants={{\n            closed: {\n              rotateX: 0,\n              y: 0\n            },\n            open: {\n              rotateX: -180,\n              y: -4\n            }\n          }}\n          transition={{\n            type: 'spring',\n            stiffness: 300,\n            damping: 20\n          }}\n        />\n      </motion.svg>\n\n      {/* Unread badge */}\n      {unreadCount > 0 && (\n        <motion.div\n          initial={{ scale: 0 }}\n          animate={{ scale: 1 }}\n          exit={{ scale: 0 }}\n          transition={{\n            type: 'spring',\n            stiffness: 500,\n            damping: 20\n          }}\n          style={{\n            position: 'absolute',\n            top: -4,\n            right: -4,\n            minWidth: 16,\n            height: 16,\n            padding: '0 4px',\n            borderRadius: 999,\n            background: '#ef4444',\n            color: 'white',\n            fontSize: 10,\n            fontWeight: 600,\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            lineHeight: 1,\n            pointerEvents: 'none'\n          }}\n        >\n          {unreadCount > 99 ? '99+' : unreadCount}\n        </motion.div>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Mail Icon - With Notification",
+    "description": "Envelope shakes and displays an unread count badge when new mail arrives. Flap opens on hover.",
+    "category": "communication",
+    "tags": [
+      "mail",
+      "email",
+      "envelope",
+      "message",
+      "inbox"
+    ],
+    "animationType": "state"
+  }
+}

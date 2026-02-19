@@ -168,6 +168,113 @@
       ]
     },
     {
+      "slug": "tab-open",
+      "name": "Tab Open Icon",
+      "category": "navigation",
+      "tags": [
+        "tab",
+        "open",
+        "new-tab",
+        "window",
+        "browser",
+        "navigate"
+      ],
+      "description": "Icon for opening in new tab or window with animated opening effect",
+      "createdAt": "2026-02-18T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isHovered",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "shopping-cart",
+      "name": "Shopping Cart Icon",
+      "category": "ecommerce",
+      "tags": [
+        "cart",
+        "shopping",
+        "ecommerce",
+        "buy",
+        "add",
+        "basket"
+      ],
+      "description": "Icon for shopping cart and add to cart actions",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Item falls into cart from above and cart shakes when adding to cart",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isAdding",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Triggers the add to cart animation. Set to true when item is being added to cart."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "refresh",
       "name": "Refresh Icon",
       "category": "actions",
@@ -210,8 +317,653 @@
           "props": []
         }
       ]
+    },
+    {
+      "slug": "mail",
+      "name": "Mail Icon",
+      "category": "communication",
+      "tags": [
+        "mail",
+        "email",
+        "envelope",
+        "message",
+        "inbox"
+      ],
+      "description": "Icon for email and messaging actions",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Envelope flap opens on hover to reveal mail inside",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isOpen",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the envelope opening animation. Set to true to open the flap."
+            }
+          ]
+        },
+        {
+          "name": "notification",
+          "displayName": "Notification Badge",
+          "tier": "free",
+          "description": "Icon bounces and shows glowing ping indicator when new mail arrives",
+          "animationType": "notification",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "hasNotification",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Triggers the bounce animation and shows the glowing ping indicator when set to true."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "lock-glass",
+      "name": "Lock Icon",
+      "category": "security",
+      "tags": [
+        "lock",
+        "security",
+        "password",
+        "protected",
+        "privacy",
+        "authentication",
+        "glass-icon"
+      ],
+      "description": "Lock icon with animated variations for password visibility and security states",
+      "createdAt": "2026-02-18T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Show Password",
+          "tier": "free",
+          "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isUnlocked",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the unlocked state animation. Set to true when password is visible, false when hidden."
+            }
+          ]
+        },
+        {
+          "name": "unlock",
+          "displayName": "Unlock",
+          "tier": "free",
+          "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isUnlocked",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the unlocked state. Set to true to show the dramatic unlock animation with 3D rotation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "layout",
+      "name": "Layout Dashboard Icon",
+      "category": "layout",
+      "tags": [
+        "dashboard",
+        "layout",
+        "grid",
+        "panels",
+        "interface"
+      ],
+      "description": "Icon for dashboard and layout views with an animated fill-swap effect on hover",
+      "createdAt": "2026-02-17T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "On hover, the two filled panels swap to the opposite two panels",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Stroke and fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isHovered",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the fill-swap animation. Manage this state in the parent and pass it down — e.g. via onMouseEnter/onMouseLeave on a button wrapper."
+            }
+          ]
+        },
+        {
+          "name": "swap",
+          "displayName": "Swap",
+          "tier": "free",
+          "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Stroke and fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isHovered",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the morph animation. Manage this state in the parent and pass it down — e.g. via onMouseEnter/onMouseLeave on a button wrapper."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "home",
+      "name": "Home Icon",
+      "category": "actions",
+      "tags": [
+        "home",
+        "house",
+        "main",
+        "dashboard"
+      ],
+      "description": "Icon for selecting the home page",
+      "createdAt": "2026-02-11T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
+          "animationType": "select",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isSelected",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the selected state of the icon."
+            }
+          ]
+        },
+        {
+          "name": "draw",
+          "displayName": "Sketch Reveal",
+          "tier": "free",
+          "description": "Stroke animation draws the house from foundation to roof during loading",
+          "animationType": "loading",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isLoading",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the sketch reveal animation state. Set to true during loading operations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "external-link",
+      "name": "External Link Icon",
+      "category": "navigation",
+      "tags": [
+        "link",
+        "external",
+        "open",
+        "url",
+        "redirect",
+        "navigate"
+      ],
+      "description": "Icon for external links and redirect actions with animated variations",
+      "createdAt": "2026-02-17T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Stroke and fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isHovered",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the fill and arrow animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "copy-check",
+      "name": "Copy Check Icon",
+      "category": "actions",
+      "tags": [
+        "copy",
+        "clipboard",
+        "check",
+        "success",
+        "duplicate"
+      ],
+      "description": "Icon for copy to clipboard with success feedback",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Box fills then checkmark draws in when copy succeeds",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Stroke and fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isCopied",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the copy success animation. Set to true when copy operation completes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bulb",
+      "name": "Bulb Icon",
+      "category": "interface",
+      "tags": [
+        "bulb",
+        "idea",
+        "tip",
+        "suggestion",
+        "light",
+        "hint"
+      ],
+      "description": "Icon for tips, ideas, and helpful suggestions",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": "24",
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "'currentColor'",
+              "required": false,
+              "description": "Fill and stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "''",
+              "required": false,
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isActive",
+              "type": "boolean",
+              "default": "false",
+              "required": false,
+              "description": "Controls the light-up animation. Set to true to show filled bulb with rays."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "alarm-clock",
+      "name": "Alarm Icon",
+      "category": "time",
+      "tags": [
+        "alarm",
+        "clock",
+        "time",
+        "alert",
+        "notification",
+        "schedule"
+      ],
+      "description": "Filled alarm clock icon with multiple animation variations",
+      "createdAt": "2026-02-17T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Ring",
+          "tier": "free",
+          "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isHovered",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Triggers the ring animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            }
+          ]
+        },
+        {
+          "name": "tick",
+          "displayName": "Tick",
+          "tier": "free",
+          "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Fill color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Triggers the hand sweep externally. The icon also fires the animation on direct click."
+            },
+            {
+              "name": "onAnimationComplete",
+              "type": "function",
+              "default": "undefined",
+              "required": false,
+              "description": "Callback fired after the hand completes its full sweep."
+            }
+          ]
+        }
+      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-10T18:32:22.619Z"
+  "lastUpdated": "2026-02-19T13:22:16.840Z"
 }

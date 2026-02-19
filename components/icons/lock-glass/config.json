@@ -1,0 +1,72 @@
+{
+  "slug": "lock",
+  "name": "Lock Icon",
+  "category": "security",
+  "tags": ["lock", "security", "password", "protected", "privacy", "authentication", "glass-icon"],
+  "description": "Lock icon with animated variations for password visibility and security states",
+  "createdAt": "2026-02-18T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Show Password",
+      "tier": "free",
+      "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
+      "animationType": "click",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isUnlocked",
+          "type": "boolean",
+          "default": false,
+          "required": false,
+          "description": "Controls the unlocked state animation. Set to true when password is visible, false when hidden."
+        }
+      ]
+    },
+    {
+      "name": "unlock",
+      "displayName": "Unlock",
+      "tier": "free",
+      "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
+      "animationType": "click",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isUnlocked",
+          "type": "boolean",
+          "default": false,
+          "required": false,
+          "description": "Controls the unlocked state. Set to true to show the dramatic unlock animation with 3D rotation."
+        }
+      ]
+    }
+  ]
+}
