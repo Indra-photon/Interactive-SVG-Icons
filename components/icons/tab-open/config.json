@@ -1,0 +1,41 @@
+{
+  "slug": "tab-open",
+  "name": "Tab Open Icon",
+  "category": "navigation",
+  "tags": ["tab", "open", "new-tab", "window", "browser", "navigate"],
+  "description": "Icon for opening in new tab or window with animated opening effect",
+  "createdAt": "2026-02-18T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "tier": "free",
+      "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
+      "animationType": "hover",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isHovered",
+          "type": "boolean",
+          "default": false,
+          "required": false,
+          "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+        }
+      ]
+    }
+  ]
+}

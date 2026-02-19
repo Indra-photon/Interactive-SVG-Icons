@@ -1,0 +1,30 @@
+{
+  "name": "external-link-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react"
+  ],
+  "files": [
+    {
+      "path": "components/icons/external-link/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface ExternalLinkDefaultProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isHovered?: boolean;\n}\n\n// Arrow diagonal goes from (11, 13) → (20, 4) = 9px right, 9px up\n// Translation moves it further along that 45° diagonal, then bounces back\nconst arrowTranslate = {\n  idle: { x: 0, y: 0 },\n  hover: { \n    x: [0, 4, 0],\n    y: [0, -4, 0],\n    transition: {\n      duration: 0.5,\n      ease: 'easeInOut' as const,\n      times: [0, 0.5, 1]\n    }\n  }\n};\n\nconst boxFill = {\n  idle: { opacity: 0 },\n  hover: { \n    opacity: 0.2,\n    transition: { duration: 0.3, ease: 'easeOut' as const }\n  }\n};\n\nexport function IconExternalLinkDefault({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isHovered = false,\n}: ExternalLinkDefaultProps) {\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n    >\n      <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n\n      {/* Box outline — always visible */}\n      <path d=\"M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6\" />\n\n      {/* Box fill — fades in on hover */}\n      <motion.path\n        d=\"M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6\"\n        fill={color}\n        stroke=\"none\"\n        animate={isHovered ? 'hover' : 'idle'}\n        variants={boxFill}\n      />\n\n      {/* Arrow (line + head) — translates diagonally up-right and back */}\n      <motion.g\n        animate={isHovered ? 'hover' : 'idle'}\n        variants={arrowTranslate}\n      >\n        <path d=\"M11 13l9 -9\" />\n        <path d=\"M15 4h5v5\" />\n      </motion.g>\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "External Link Icon - Default",
+    "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
+    "category": "navigation",
+    "tags": [
+      "link",
+      "external",
+      "open",
+      "url",
+      "redirect",
+      "navigate"
+    ],
+    "animationType": "hover"
+  }
+}

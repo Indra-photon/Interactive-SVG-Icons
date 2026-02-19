@@ -1,0 +1,29 @@
+{
+  "name": "layout-swap",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react"
+  ],
+  "files": [
+    {
+      "path": "components/icons/layout/swap.tsx",
+      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface LayoutDashboardSwapProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isHovered?: boolean;\n}\n\n// Idle state: top-left (tall) + bottom-right (tall) are filled\n// Hover state: filled boxes morph into bottom-left (short) + top-right (short)\n\nconst paths = {\n  topLeftTall:    'M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1',\n  bottomLeftShort:'M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1',\n  bottomRightTall:'M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1',\n  topRightShort:  'M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1',\n};\n\nconst transition = { duration: 0.4, ease: 'easeInOut' as const };\n\nexport function IconLayoutDashboardSwap({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isHovered = false,\n}: LayoutDashboardSwapProps) {\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n    >\n      <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n\n      {/* Static stroke outlines — always visible */}\n      <path d={paths.topLeftTall} />\n      <path d={paths.bottomLeftShort} />\n      <path d={paths.bottomRightTall} />\n      <path d={paths.topRightShort} />\n\n      {/* Filled box 1: morphs from top-left tall → bottom-left short */}\n      <motion.path\n        fill={color}\n        stroke=\"none\"\n        animate={{ d: isHovered ? paths.bottomLeftShort : paths.topLeftTall }}\n        transition={transition}\n      />\n\n      {/* Filled box 2: morphs from bottom-right tall → top-right short */}\n      <motion.path\n        fill={color}\n        stroke=\"none\"\n        animate={{ d: isHovered ? paths.topRightShort : paths.bottomRightTall }}\n        transition={transition}\n      />\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Layout Dashboard Icon - Swap",
+    "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
+    "category": "layout",
+    "tags": [
+      "dashboard",
+      "layout",
+      "grid",
+      "panels",
+      "interface"
+    ],
+    "animationType": "hover"
+  }
+}
