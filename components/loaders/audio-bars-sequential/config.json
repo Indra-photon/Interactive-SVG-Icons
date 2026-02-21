@@ -1,0 +1,55 @@
+{
+  "name": "Audio Bars Sequential",
+  "category": "loaders",
+  "tags": ["audio", "music", "sound", "wave", "sequential", "vertical", "bars"],
+  "description": "Six vertical bars creating a traveling wave animation",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Audio Bars Sequential",
+      "tier": "free",
+      "description": "Six vertical bars with sequential wave animation traveling from left to right",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 4,
+          "description": "Width of each individual bar in pixels"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 3,
+          "description": "Gap between bars in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

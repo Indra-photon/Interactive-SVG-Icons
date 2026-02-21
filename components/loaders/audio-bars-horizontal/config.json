@@ -1,0 +1,55 @@
+{
+  "name": "Audio Bars Sync",
+  "category": "loaders",
+  "tags": ["audio", "music", "sound", "sync", "vertical", "bars", "alternating"],
+  "description": "Six synchronized vertical bars with alternating animation pattern",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Audio Bars Sync",
+      "tier": "free",
+      "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 4,
+          "description": "Width of each individual bar in pixels"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 3,
+          "description": "Gap between bars in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

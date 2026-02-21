@@ -1,0 +1,103 @@
+{
+  "slug": "calendar",
+  "name": "Calendar Icon",
+  "category": "scheduling",
+  "tags": ["calendar", "date", "schedule", "event", "month", "day", "time"],
+  "description": "Calendar icon with multiple animation variations for scheduling and date-related interactions",
+  "createdAt": "2026-02-18T00:00:00Z",
+  "variations": [
+    {
+      "name": "page-flip",
+      "displayName": "Page Flip",
+      "tier": "free",
+      "description": "Calendar body rotates in 3D along the top edge like flipping a physical calendar page. Header with binding rings stays fixed. Perfect for month navigation.",
+      "animationType": "click",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isFlipping",
+          "type": "boolean",
+          "default": false,
+          "required": false,
+          "description": "Triggers the page flip animation. Set to true to flip the calendar page."
+        }
+      ]
+    },
+    {
+      "name": "picker-open",
+      "displayName": "Picker Open",
+      "tier": "free",
+      "description": "Calendar body splits and opens like a book on hover. Left half slides left, right half slides right. Perfect for date picker buttons that open calendars.",
+      "animationType": "hover",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isHovered",
+          "type": "boolean",
+          "default": false,
+          "required": false,
+          "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+        }
+      ]
+    },
+    {
+      "name": "slide-month",
+      "displayName": "Slide Month Change",
+      "tier": "free",
+      "description": "Date dots slide out to the left and new dots slide in from the right when month changes. Calendar body and header stay fixed.",
+      "animationType": "transition",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "monthKey",
+          "type": "string | number",
+          "default": 0,
+          "required": false,
+          "description": "Unique key for current month. Change this value to trigger the slide animation (e.g., month index or timestamp)."
+        }
+      ]
+    }
+  ]
+}

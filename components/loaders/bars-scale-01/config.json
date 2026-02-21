@@ -1,0 +1,49 @@
+{
+  "name": "Bars Scale",
+  "category": "loaders",
+  "tags": ["bars", "loading", "scale", "vertical"],
+  "description": "Three vertical bars scaling up and down",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "scale",
+      "displayName": "Bars Scale",
+      "tier": "free",
+      "description": "Three vertical bars scaling up and down with sequential animation",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 4,
+          "description": "Gap between bars in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

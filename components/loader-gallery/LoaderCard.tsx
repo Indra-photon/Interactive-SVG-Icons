@@ -1,16 +1,15 @@
-
-
-
 'use client';
 
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import {motion} from 'motion/react';
+import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import { IconExternalLink } from '@tabler/icons-react';
-interface IconCardProps {
-  icon: {
+
+interface LoaderCardProps {
+  loader: {
     slug: string;
     name: string;
+    description: string;
     variations: any[];
   };
 }
@@ -25,23 +24,22 @@ const sliderVariants = {
   hover: { y: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 24, mass: 1 } }
 };
 
-export function IconCard({ icon }: IconCardProps) {
-  const IconComponent = dynamic(
-    () => import(`@/components/icons/${icon.slug}/default.tsx`)
-      .then(mod => {
+export function LoaderCard({ loader }: LoaderCardProps) {
+  const [LoaderComponent, setLoaderComponent] = useState<any>(null);
+  const firstVariation = loader.variations[0];
+
+  useEffect(() => {
+    // Dynamically import the loader component
+    import(`@/components/loaders/${loader.slug}/${firstVariation.name}.tsx`)
+      .then((mod) => {
         const exportedComponent = mod[Object.keys(mod)[0]];
-        return { default: exportedComponent };
+        setLoaderComponent(() => exportedComponent);
       })
-      .catch(() => {
-        return { 
-          default: ({ size }: { size?: number }) => (
-            <div className="text-6xl">📦</div>
-          ) 
-        };
-      }),
-    { ssr: false }
-  );
-  
+      .catch((err) => {
+        console.error('Failed to load component:', err);
+      });
+  }, [loader.slug, firstVariation.name]);
+
   return (
     <motion.div
       variants={cardVariants}
@@ -50,11 +48,15 @@ export function IconCard({ icon }: IconCardProps) {
       className="w-40 h-48"
     >
       <Link
-        href={`/icons/${icon.slug}`}
+        href={`/loaders/${loader.slug}`}
         className="border rounded-lg hover:shadow-lg transition-shadow group w-full h-full flex items-center justify-center bg-white relative overflow-hidden block"
       >
         <div className="flex items-center justify-center mb-4">
-          <IconComponent size={64} />
+          {LoaderComponent ? (
+            <LoaderComponent size={64} />
+          ) : (
+            <div className="text-6xl">⏳</div>
+          )}
         </div>
 
         {/* Gradient overlay */}

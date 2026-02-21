@@ -1,0 +1,53 @@
+export interface LoaderRegistry {
+  loaders: Loader[];
+  version: string;
+  lastUpdated: string;
+}
+
+export interface Loader {
+  slug: string;
+  name: string;
+  category: string;
+  tags: string[];
+  description: string;
+  createdAt: string;
+  variations: LoaderVariation[];
+}
+
+export interface LoaderVariation {
+  name: string;
+  displayName: string;
+  tier: 'free' | 'premium';
+  description: string;
+  animationType: string;
+  dependencies: string[];
+  props: PropDefinition[];
+}
+
+export interface PropDefinition {
+  name: string;
+  type: 'string' | 'number' | 'boolean' | 'enum';
+  default: any;
+  options?: any[];
+  description: string;
+}
+
+export interface LoaderRegistryFile {
+  name: string;
+  type: string;
+  tier: 'free' | 'premium';
+  dependencies: string[];
+  files: {
+    path: string;
+    content: string;
+    type: string;
+    target: string;
+  }[];
+  meta: {
+    displayName: string;
+    description: string;
+    category: string;
+    tags: string[];
+    animationType: string;
+  };
+}

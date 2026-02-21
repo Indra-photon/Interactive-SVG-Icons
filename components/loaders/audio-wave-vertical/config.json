@@ -1,0 +1,61 @@
+{
+  "name": "Audio Wave Vertical",
+  "category": "loaders",
+  "tags": ["audio", "music", "sound", "wave", "vertical", "bars", "equalizer"],
+  "description": "Vertical bars creating an audio waveform pattern",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Audio Wave Vertical",
+      "tier": "free",
+      "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 3,
+          "description": "Width of each individual bar in pixels"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 3,
+          "description": "Gap between bars in pixels"
+        },
+        {
+          "name": "barCount",
+          "type": "number",
+          "default": 5,
+          "description": "Number of vertical bars to display"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

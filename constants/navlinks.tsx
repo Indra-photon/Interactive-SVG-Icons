@@ -21,6 +21,11 @@ export const navlinks = [
     icon: IconBinocularsFilled,
   },
   {
+    url:"/loaders",
+    label: "Explore Loaders",
+    icon: IconLayoutGridFilled,
+  },
+  {
     url: "/about",
     label: "About",
     icon: IconLayoutGridFilled,
