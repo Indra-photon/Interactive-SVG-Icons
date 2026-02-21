@@ -1,0 +1,29 @@
+{
+  "name": "bars-fade-01-fade",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/bars-fade-01/fade.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface BarsFadeProps {\n  size?: number;\n  color?: string;\n  gap?: number;\n}\n\nexport function BarsFade({ \n  size = 40, \n  color = \"currentColor\",\n  gap = 4\n}: BarsFadeProps) {\n  const barWidth = (size - gap * 2) / 3;\n  \n  return (\n    <svg\n      width={size}\n      height={size}\n      viewBox={`0 0 ${size} ${size}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n    >\n      {[0, 1, 2].map((index) => (\n        <motion.rect\n          key={index}\n          x={index * (barWidth + gap)}\n          y={size / 4}\n          width={barWidth}\n          height={size / 2}\n          fill={color}\n          animate={{\n            opacity: [1, 0.3, 1]\n          }}\n          transition={{\n            duration: 1.2,\n            repeat: Infinity,\n            ease: \"easeInOut\",\n            delay: index * 0.2\n          }}\n        />\n      ))}\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Bars Fade - Bars Fade",
+    "description": "Three vertical bars with smooth fade animation",
+    "category": "loaders",
+    "tags": [
+      "bars",
+      "loading",
+      "fade",
+      "vertical",
+      "opacity"
+    ],
+    "animationType": "loop"
+  }
+}

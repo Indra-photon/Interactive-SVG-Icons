@@ -1,0 +1,29 @@
+{
+  "name": "bars-scale-bottom-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/bars-scale-bottom/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface BarsScaleBottomProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  gap?: number;\n}\n\nexport function BarsScaleBottom({ \n  width = 40,\n  height = 40, \n  color = \"currentColor\",\n  gap = 4\n}: BarsScaleBottomProps) {\n  const barWidth = (width - gap * 2) / 3;\n  const baseHeight = height / 2;\n  const minHeight = height / 4;\n  \n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n    >\n      {[0, 1, 2].map((index) => (\n        <motion.rect\n          key={index}\n          x={index * (barWidth + gap)}\n          width={barWidth}\n          fill={color}\n          animate={{\n            height: [baseHeight, minHeight, baseHeight],\n            y: [height / 4, height - minHeight, height / 4]\n          }}\n          transition={{\n            duration: 1,\n            repeat: Infinity,\n            ease: \"easeInOut\",\n            delay: index * 0.15\n          }}\n        />\n      ))}\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Bars Scale Bottom - Bars Scale Bottom",
+    "description": "Three vertical bars scaling up and down with bottom fixed",
+    "category": "loaders",
+    "tags": [
+      "bars",
+      "loading",
+      "scale",
+      "vertical",
+      "bottom-fixed"
+    ],
+    "animationType": "loop"
+  }
+}

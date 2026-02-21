@@ -1,0 +1,49 @@
+{
+  "name": "Bars Scale Bottom",
+  "category": "loaders",
+  "tags": ["bars", "loading", "scale", "vertical", "bottom-fixed"],
+  "description": "Three vertical bars scaling from bottom anchor point",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Bars Scale Bottom",
+      "tier": "free",
+      "description": "Three vertical bars scaling up and down with bottom fixed",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 4,
+          "description": "Gap between bars in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

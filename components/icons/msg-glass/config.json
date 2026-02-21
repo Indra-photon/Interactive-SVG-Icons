@@ -1,0 +1,103 @@
+{
+  "slug": "messages",
+  "name": "Messages Icon",
+  "category": "communication",
+  "tags": ["messages", "chat", "conversation", "messaging", "communication", "typing", "glass-icon"],
+  "description": "Messages/chat icon with multiple animation variations for different messaging states",
+  "createdAt": "2026-02-18T00:00:00Z",
+  "variations": [
+    {
+      "name": "typing",
+      "displayName": "Typing Indicator",
+      "tier": "free",
+      "description": "Front bubble bounces gently up and down to indicate someone is typing. Perfect for real-time chat applications.",
+      "animationType": "loop",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isTyping",
+          "type": "boolean",
+          "default": false,
+          "required": false,
+          "description": "Controls the typing bounce animation. Set to true when someone is typing."
+        }
+      ]
+    },
+    {
+      "name": "wiggle",
+      "displayName": "Wiggle",
+      "tier": "free",
+      "description": "Entire icon rotates gently (±5°) on hover. Great for unread message indicators or clickable chat buttons.",
+      "animationType": "hover",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isHovered",
+          "type": "boolean",
+          "default": false,
+          "required": false,
+          "description": "Controls the wiggle animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+        }
+      ]
+    },
+    {
+      "name": "slideIn",
+      "displayName": "Slide In",
+      "tier": "free",
+      "description": "Bubbles slide in from opposite sides with spring bounce. Perfect for chat interface loading or conversation opening.",
+      "animationType": "mount",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "required": false,
+          "description": "Additional CSS classes to apply to the SVG element"
+        },
+        {
+          "name": "isVisible",
+          "type": "boolean",
+          "default": true,
+          "required": false,
+          "description": "Controls the slide-in animation. Set to true to show icon with animation, false to hide."
+        }
+      ]
+    }
+  ]
+}

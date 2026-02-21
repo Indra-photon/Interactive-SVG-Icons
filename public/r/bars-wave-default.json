@@ -1,0 +1,29 @@
+{
+  "name": "bars-wave-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/bars-wave/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface BarsWaveProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  barWidth?: number;\n}\n\nexport function BarsWave({ \n  width = 100,\n  height = 100, \n  color = \"currentColor\",\n  barWidth = 3\n}: BarsWaveProps) {\n  const bars = [\n    { x: 0, delay: 0 },\n    { x: 17, delay: 0.1 },\n    { x: 40, delay: 0.3 },\n    { x: 60, delay: 0.5 },\n    { x: 80, delay: 0.1 }\n  ];\n  \n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 100 100`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n    >\n      {bars.map((bar, index) => (\n        <motion.rect\n          key={index}\n          x={bar.x}\n          width={barWidth}\n          fill={color}\n          animate={{\n            height: [30, 100, 30],\n            y: [70, 0, 70]\n          }}\n          transition={{\n            duration: 1,\n            repeat: Infinity,\n            ease: \"easeInOut\",\n            delay: bar.delay\n          }}\n        />\n      ))}\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Bars Wave - Bars Wave",
+    "description": "Five vertical bars with staggered height animation creating a wave effect",
+    "category": "loaders",
+    "tags": [
+      "bars",
+      "loading",
+      "wave",
+      "vertical",
+      "five-bars"
+    ],
+    "animationType": "loop"
+  }
+}

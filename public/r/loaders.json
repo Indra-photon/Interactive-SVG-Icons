@@ -1,0 +1,513 @@
+{
+  "loaders": [
+    {
+      "slug": "bars-wave",
+      "name": "Bars Wave",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "wave",
+        "vertical",
+        "five-bars"
+      ],
+      "description": "Five vertical bars creating a wave animation pattern",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Wave",
+          "tier": "free",
+          "description": "Five vertical bars with staggered height animation creating a wave effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of each individual bar in pixels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-scale-bottom",
+      "name": "Bars Scale Bottom",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "scale",
+        "vertical",
+        "bottom-fixed"
+      ],
+      "description": "Three vertical bars scaling from bottom anchor point",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Scale Bottom",
+          "tier": "free",
+          "description": "Three vertical bars scaling up and down with bottom fixed",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 4,
+              "description": "Gap between bars in pixels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-fade-01",
+      "name": "Bars Fade",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "fade",
+        "vertical",
+        "opacity"
+      ],
+      "description": "Three vertical bars fading in and out sequentially",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "fade",
+          "displayName": "Bars Fade",
+          "tier": "free",
+          "description": "Three vertical bars with smooth fade animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 40,
+              "description": "Size of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 4,
+              "description": "Gap between bars in pixels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "audio-wave-vertical",
+      "name": "Audio Wave Vertical",
+      "category": "loaders",
+      "tags": [
+        "audio",
+        "music",
+        "sound",
+        "wave",
+        "vertical",
+        "bars",
+        "equalizer"
+      ],
+      "description": "Vertical bars creating an audio waveform pattern",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Audio Wave Vertical",
+          "tier": "free",
+          "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 3,
+              "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "barCount",
+              "type": "number",
+              "default": 5,
+              "description": "Number of vertical bars to display"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "audio-bars-sequential",
+      "name": "Audio Bars Sequential",
+      "category": "loaders",
+      "tags": [
+        "audio",
+        "music",
+        "sound",
+        "wave",
+        "sequential",
+        "vertical",
+        "bars"
+      ],
+      "description": "Six vertical bars creating a traveling wave animation",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Audio Bars Sequential",
+          "tier": "free",
+          "description": "Six vertical bars with sequential wave animation traveling from left to right",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 4,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 3,
+              "description": "Gap between bars in pixels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "audio-bars-opacity",
+      "name": "Audio Bars Opacity",
+      "category": "loaders",
+      "tags": [
+        "audio",
+        "music",
+        "sound",
+        "opacity",
+        "fade",
+        "vertical",
+        "bars"
+      ],
+      "description": "Six synchronized vertical bars with opacity fade animation",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Audio Bars Opacity",
+          "tier": "free",
+          "description": "Six vertical bars fading in and out as they grow and shrink, creating a ghosting wave effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 4,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 3,
+              "description": "Gap between bars in pixels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "audio-bars-horizontal",
+      "name": "Audio Bars Sync",
+      "category": "loaders",
+      "tags": [
+        "audio",
+        "music",
+        "sound",
+        "sync",
+        "vertical",
+        "bars",
+        "alternating"
+      ],
+      "description": "Six synchronized vertical bars with alternating animation pattern",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Audio Bars Sync",
+          "tier": "free",
+          "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 4,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 3,
+              "description": "Gap between bars in pixels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "audio-bars-glow",
+      "name": "Audio Bars Glow",
+      "category": "loaders",
+      "tags": [
+        "audio",
+        "music",
+        "sound",
+        "glow",
+        "gradient",
+        "vertical",
+        "bars"
+      ],
+      "description": "Six synchronized vertical bars with gradient and glow effect",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Audio Bars Glow",
+          "tier": "free",
+          "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#3b82f6",
+              "description": "Base color for the gradient (hex, rgb, or color name)"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 4,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 3,
+              "description": "Gap between bars in pixels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-scale-01",
+      "name": "Bars Scale",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "scale",
+        "vertical"
+      ],
+      "description": "Three vertical bars scaling up and down",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "scale",
+          "displayName": "Bars Scale",
+          "tier": "free",
+          "description": "Three vertical bars scaling up and down with sequential animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 4,
+              "description": "Gap between bars in pixels"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-21T11:13:06.236Z"
+}

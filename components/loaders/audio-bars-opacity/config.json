@@ -1,0 +1,55 @@
+{
+  "name": "Audio Bars Opacity",
+  "category": "loaders",
+  "tags": ["audio", "music", "sound", "opacity", "fade", "vertical", "bars"],
+  "description": "Six synchronized vertical bars with opacity fade animation",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Audio Bars Opacity",
+      "tier": "free",
+      "description": "Six vertical bars fading in and out as they grow and shrink, creating a ghosting wave effect",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 4,
+          "description": "Width of each individual bar in pixels"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 3,
+          "description": "Gap between bars in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

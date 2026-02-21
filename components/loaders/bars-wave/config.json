@@ -1,0 +1,49 @@
+{
+  "name": "Bars Wave",
+  "category": "loaders",
+  "tags": ["bars", "loading", "wave", "vertical", "five-bars"],
+  "description": "Five vertical bars creating a wave animation pattern",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Bars Wave",
+      "tier": "free",
+      "description": "Five vertical bars with staggered height animation creating a wave effect",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 100,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 100,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 3,
+          "description": "Width of each individual bar in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}
