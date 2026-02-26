@@ -39,4 +39,6 @@ Client component that loads ANY button example dynamically and displays the actu
 
 
 Glass Icons Source: https://nucleoapp.com/svg-glass-icons
+Loader resource: https://www.webinmotion.co/library/icons?section=loader-small
+Loader resource: https://css-loaders.com/dots-bars/
 

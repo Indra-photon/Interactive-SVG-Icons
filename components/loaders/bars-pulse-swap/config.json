@@ -1,0 +1,55 @@
+{
+  "name": "Bars Pulse Swap",
+  "category": "loaders",
+  "tags": ["bars", "loading", "pulse", "swap", "vertical", "animated"],
+  "description": "Six vertical bars in pairs that pulse and swap positions",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Bars Pulse Swap",
+      "tier": "free",
+      "description": "Six bars arranged in three pairs that continuously pulse while swapping between stacked and overlapped positions",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 45,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 45,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 9,
+          "description": "Width of each individual bar in pixels"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 9,
+          "description": "Gap between bar pairs in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}
