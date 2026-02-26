@@ -1,0 +1,30 @@
+{
+  "name": "bars-fill-sequential-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/bars-fill-sequential/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface BarsFillSequentialProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  barWidth?: number;\n  gap?: number;\n  isAnimating?: boolean;\n}\n\nexport function BarsFillSequential({ \n  width = 45,\n  height = 45, \n  color = \"currentColor\",\n  barWidth = 9,\n  gap = 9,\n  isAnimating = true\n}: BarsFillSequentialProps) {\n  const bars = [\n    { x: 0, delay: 0 },\n    { x: barWidth + gap, delay: 0.17 },\n    { x: (barWidth + gap) * 2, delay: 0.33 }\n  ];\n\n  // Custom easing - using ease-out-cubic for smooth deceleration\n  const easeOutCubic = [0.215, 0.61, 0.355, 1] as const;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n    >\n      {bars.map((bar, index) => {\n        return (\n          <motion.rect\n            key={index}\n            x={bar.x}\n            width={barWidth}\n            height={height}\n            fill={color}\n            initial={{ y: height }}\n            animate={{\n              y: [height, 0]\n            }}\n            transition={{\n              duration: 0.5,\n              delay: bar.delay,\n              repeat: isAnimating ? Infinity : 0,\n              repeatDelay: 0.5,\n              ease: easeOutCubic\n            }}\n          />\n        );\n      })}\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Bars Fill Sequential - Bars Fill Sequential",
+    "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
+    "category": "loaders",
+    "tags": [
+      "bars",
+      "loading",
+      "fill",
+      "sequential",
+      "vertical",
+      "rise"
+    ],
+    "animationType": "loop"
+  }
+}

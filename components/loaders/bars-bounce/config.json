@@ -1,0 +1,55 @@
+{
+  "name": "Bars Bounce",
+  "category": "loaders",
+  "tags": ["bars", "loading", "bounce", "vertical", "synchronized"],
+  "description": "Three vertical bars bouncing in synchronized wave pattern",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Bars Bounce",
+      "tier": "free",
+      "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 45,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 45,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 9,
+          "description": "Width of each individual bar in pixels"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": 9,
+          "description": "Gap between bars in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

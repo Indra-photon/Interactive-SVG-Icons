@@ -1,0 +1,43 @@
+{
+  "name": "Bars Cascade",
+  "category": "loaders",
+  "tags": ["bars", "loading", "cascade", "waterfall", "horizontal", "striped"],
+  "description": "Four horizontal striped bars cascading down sequentially",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Bars Cascade",
+      "tier": "free",
+      "description": "Four horizontal bars with stripe pattern that cascade down from top, stack up, then cascade out from bottom",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 45,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 45,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars and stripes"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Dots Rotate",
+  "category": "loaders",
+  "tags": ["dots", "loading", "rotate", "spin", "circular", "triangle"],
+  "description": "Three dots rotating in a triangular pattern",
+  "createdAt": "2026-02-20",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dots Rotate",
+      "tier": "free",
+      "description": "Three circular dots that continuously rotate 120 degrees around a center point",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 46,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the dots"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 14,
+          "description": "Diameter of each dot in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,117 @@
 {
   "loaders": [
     {
+      "slug": "dots-rotate",
+      "name": "Dots Rotate",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "loading",
+        "rotate",
+        "spin",
+        "circular",
+        "triangle"
+      ],
+      "description": "Three dots rotating in a triangular pattern",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dots Rotate",
+          "tier": "free",
+          "description": "Three circular dots that continuously rotate 120 degrees around a center point",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 46,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 14,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dots-compress",
+      "name": "Dots Compress",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "loading",
+        "compress",
+        "squeeze",
+        "morph"
+      ],
+      "description": "Three dots that compress from horizontal line to vertical stack",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dots Compress",
+          "tier": "free",
+          "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Initial width of the loader in horizontal state (pixels)"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "bars-wave",
       "name": "Bars Wave",
       "category": "loaders",
@@ -47,6 +158,12 @@
               "type": "number",
               "default": 3,
               "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -99,6 +216,199 @@
               "type": "number",
               "default": 4,
               "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-scale-01",
+      "name": "Bars Scale",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "scale",
+        "vertical"
+      ],
+      "description": "Three vertical bars scaling up and down",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "scale",
+          "displayName": "Bars Scale",
+          "tier": "free",
+          "description": "Three vertical bars scaling up and down with sequential animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 4,
+              "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-pulse-swap",
+      "name": "Bars Pulse Swap",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "pulse",
+        "swap",
+        "vertical",
+        "animated"
+      ],
+      "description": "Six vertical bars in pairs that pulse and swap positions",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Pulse Swap",
+          "tier": "free",
+          "description": "Six bars arranged in three pairs that continuously pulse while swapping between stacked and overlapped positions",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 45,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 9,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 9,
+              "description": "Gap between bar pairs in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-fill-sequential",
+      "name": "Bars Fill Sequential",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "fill",
+        "sequential",
+        "vertical",
+        "rise"
+      ],
+      "description": "Three vertical bars filling up sequentially from bottom to top",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Fill Sequential",
+          "tier": "free",
+          "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 45,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 9,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 9,
+              "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -145,6 +455,129 @@
               "type": "number",
               "default": 4,
               "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-cascade",
+      "name": "Bars Cascade",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "cascade",
+        "waterfall",
+        "horizontal",
+        "striped"
+      ],
+      "description": "Four horizontal striped bars cascading down sequentially",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Cascade",
+          "tier": "free",
+          "description": "Four horizontal bars with stripe pattern that cascade down from top, stack up, then cascade out from bottom",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 45,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars and stripes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-bounce",
+      "name": "Bars Bounce",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "bounce",
+        "vertical",
+        "synchronized"
+      ],
+      "description": "Three vertical bars bouncing in synchronized wave pattern",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Bounce",
+          "tier": "free",
+          "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 45,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 9,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 9,
+              "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -211,6 +644,12 @@
               "type": "number",
               "default": 5,
               "description": "Number of vertical bars to display"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -271,6 +710,12 @@
               "type": "number",
               "default": 3,
               "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -331,6 +776,12 @@
               "type": "number",
               "default": 3,
               "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -391,6 +842,12 @@
               "type": "number",
               "default": 3,
               "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -451,57 +908,12 @@
               "type": "number",
               "default": 3,
               "description": "Gap between bars in pixels"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "bars-scale-01",
-      "name": "Bars Scale",
-      "category": "loaders",
-      "tags": [
-        "bars",
-        "loading",
-        "scale",
-        "vertical"
-      ],
-      "description": "Three vertical bars scaling up and down",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "scale",
-          "displayName": "Bars Scale",
-          "tier": "free",
-          "description": "Three vertical bars scaling up and down with sequential animation",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 40,
-              "description": "Width of the loader in pixels"
             },
             {
-              "name": "height",
-              "type": "number",
-              "default": 40,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the bars"
-            },
-            {
-              "name": "gap",
-              "type": "number",
-              "default": 4,
-              "description": "Gap between bars in pixels"
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             }
           ]
         }
@@ -509,5 +921,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-21T11:13:06.236Z"
+  "lastUpdated": "2026-02-21T18:33:17.622Z"
 }
