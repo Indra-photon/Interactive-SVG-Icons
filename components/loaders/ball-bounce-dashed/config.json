@@ -1,0 +1,49 @@
+{
+  "name": "Ball Bounce Dashed",
+  "category": "loaders",
+  "tags": ["bounce", "ball", "simple", "continuous", "animated-line", "dash", "centered"],
+  "description": "A centered ball bounces while an animated dashed line scrolls beneath it",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Ball Bounce Dashed",
+      "tier": "free",
+      "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 90,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 45,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the ball"
+        },
+        {
+          "name": "lineColor",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the dashed ground line"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Ball Bounce Alternate",
+  "category": "loaders",
+  "tags": ["bounce", "slide", "ball", "simple", "alternating", "linear", "horizontal"],
+  "description": "A ball bounces along the ground while sliding back and forth in alternating directions",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Ball Bounce Alternate",
+      "tier": "free",
+      "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 90,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 45,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the ball"
+        },
+        {
+          "name": "lineColor",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the ground line"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Circle Spinner Wipe",
+  "category": "loaders",
+  "tags": ["spinner", "circle", "wipe", "rotate", "simple", "smooth", "progress", "ring"],
+  "description": "A circular ring that progressively reveals its stroke clockwise like a loading progress arc",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Circle Spinner Wipe",
+      "tier": "free",
+      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the animated wipe ring"
+        },
+        {
+          "name": "backgroundColor",
+          "type": "string",
+          "default": "#dddddd",
+          "description": "Color of the background track ring"
+        },
+        {
+          "name": "thickness",
+          "type": "number",
+          "default": 10,
+          "description": "Stroke width of the rings in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

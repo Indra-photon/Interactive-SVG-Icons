@@ -1,0 +1,55 @@
+{
+  "name": "Cross Expand",
+  "category": "loaders",
+  "tags": ["cross", "expand", "geometric", "multi", "pulse", "minimal", "plus", "rotate"],
+  "description": "A plus/cross shape with corner squares that expand outward, rotate 90 degrees, then contract back",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Cross Expand",
+      "tier": "free",
+      "description": "Static center cross with four corner squares that expand outward, rotate 90°, then retract in a pulsing geometric pattern",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "#25b09b",
+          "description": "Color of the cross and corner squares"
+        },
+        {
+          "name": "crossThickness",
+          "type": "number",
+          "default": 8,
+          "description": "Thickness of the center cross bars in pixels"
+        },
+        {
+          "name": "cornerSize",
+          "type": "number",
+          "default": 12,
+          "description": "Width and height of each corner square in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

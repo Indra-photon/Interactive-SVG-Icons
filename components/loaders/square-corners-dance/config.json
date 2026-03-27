@@ -1,0 +1,49 @@
+{
+  "name": "Square Corners Dance",
+  "category": "loaders",
+  "tags": ["square", "corners", "multi", "geometric", "minimal", "simple", "dance", "morph"],
+  "description": "Four corner squares rotate clockwise to the next corner position in a dancing pattern",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Square Corners Dance",
+      "tier": "free",
+      "description": "Four squares at the corners of a bounding box shift positions clockwise, creating a spinning dance animation",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the corner squares"
+        },
+        {
+          "name": "cornerSize",
+          "type": "number",
+          "default": 16,
+          "description": "Width and height of each corner square in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

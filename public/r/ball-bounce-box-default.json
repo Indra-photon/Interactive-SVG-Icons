@@ -1,0 +1,31 @@
+{
+  "name": "ball-bounce-box-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/ball-bounce-box/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface BallBounceBoxProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  boxColor?: string;\n  isAnimating?: boolean;\n}\n\nexport function BallBounceBox({\n  width = 60,\n  height = 60,\n  color = \"currentColor\",\n  boxColor = \"currentColor\",\n  isAnimating = true,\n}: BallBounceBoxProps) {\n  const strokeWidth = 3;\n  const ballRadius = width * 0.15;\n  const ballX = width * 0.35 + ballRadius;\n  const ballY = height - ballRadius - strokeWidth;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {/* Rotating box outline */}\n      <motion.rect\n        x={strokeWidth / 2}\n        y={strokeWidth / 2}\n        width={width - strokeWidth}\n        height={height - strokeWidth}\n        stroke={boxColor}\n        strokeWidth={strokeWidth}\n        fill=\"none\"\n        animate={{\n          rotate: [0, 0, 90, 90],\n        }}\n        transition={{\n          duration: 0.5,\n          repeat: isAnimating ? Infinity : 0,\n          times: [0, 0.3, 0.7, 1],\n          ease: 'easeInOut',\n        }}\n        style={{ originX: `${width / 2}px`, originY: `${height / 2}px` }}\n      />\n      {/* Bouncing ball */}\n      <motion.circle\n        cx={ballX}\n        cy={ballY}\n        r={ballRadius}\n        fill={color}\n        animate={{\n          y: [0, -height * 0.4, 0],\n        }}\n        transition={{\n          duration: 0.5,\n          repeat: isAnimating ? Infinity : 0,\n          times: [0, 0.08, 1],\n          ease: [0.455, 0.03, 0.515, 0.955],\n        }}\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Ball Bounce Box - Ball Bounce Box",
+    "description": "A square box outline rotates 90° in stepped intervals while a ball bounces rapidly inside it",
+    "category": "loaders",
+    "tags": [
+      "bounce",
+      "rotate",
+      "ball",
+      "square",
+      "multi",
+      "sequential",
+      "geometric"
+    ],
+    "animationType": "loop"
+  }
+}

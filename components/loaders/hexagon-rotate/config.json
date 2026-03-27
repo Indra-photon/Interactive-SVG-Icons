@@ -1,0 +1,55 @@
+{
+  "name": "Hexagon Rotate",
+  "category": "loaders",
+  "tags": ["hexagon", "rotate", "geometric", "spinner", "simple", "smooth", "polygon", "minimal"],
+  "description": "A regular hexagon spins continuously for a clean geometric loading animation",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Hexagon Rotate",
+      "tier": "free",
+      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 50,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 50,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the hexagon"
+        },
+        {
+          "name": "thickness",
+          "type": "number",
+          "default": 3,
+          "description": "Stroke width when not filled, in pixels"
+        },
+        {
+          "name": "filled",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to render the hexagon as filled or outline only"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

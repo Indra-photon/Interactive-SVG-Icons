@@ -1,0 +1,31 @@
+{
+  "name": "ball-bounce-slide-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/ball-bounce-slide/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface BallBounceSlideProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  lineColor?: string;\n  isAnimating?: boolean;\n}\n\nexport function BallBounceSlide({\n  width = 90,\n  height = 45,\n  color = \"currentColor\",\n  lineColor = \"currentColor\",\n  isAnimating = true,\n}: BallBounceSlideProps) {\n  const ballRadius = height * 0.15;\n  const ballCY = height - ballRadius - 1.5;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n      style={{ overflow: 'hidden' }}\n    >\n      <line\n        x1={0}\n        y1={height - 1.5}\n        x2={width}\n        y2={height - 1.5}\n        stroke={lineColor}\n        strokeWidth={3}\n      />\n      <motion.circle\n        cx={width * 0.425}\n        cy={ballCY}\n        r={ballRadius}\n        fill={color}\n        animate={{\n          x: [-width * 5, width * 5],\n          y: [0, -height * 0.15, 0],\n        }}\n        transition={{\n          x: {\n            duration: 2,\n            repeat: isAnimating ? Infinity : 0,\n            ease: 'linear',\n          },\n          y: {\n            duration: 0.5,\n            repeat: isAnimating ? Infinity : 0,\n            times: [0, 0.08, 1],\n            ease: [0.455, 0.03, 0.515, 0.955],\n          },\n        }}\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Ball Bounce Slide - Ball Bounce Slide",
+    "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
+    "category": "loaders",
+    "tags": [
+      "bounce",
+      "slide",
+      "ball",
+      "simple",
+      "continuous",
+      "linear",
+      "horizontal"
+    ],
+    "animationType": "loop"
+  }
+}

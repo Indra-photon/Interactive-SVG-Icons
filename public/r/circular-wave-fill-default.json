@@ -1,0 +1,32 @@
+{
+  "name": "circular-wave-fill-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/circular-wave-fill/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface CircularWaveFillProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  backgroundColor?: string;\n  isAnimating?: boolean;\n}\n\nexport function CircularWaveFill({\n  width = 60,\n  height = 60,\n  color = \"#269af2\",\n  backgroundColor = \"#cccccc\",\n  isAnimating = true,\n}: CircularWaveFillProps) {\n  const cx = width / 2;\n  const cy = height / 2;\n  const r = Math.min(width, height) / 2;\n  const amplitude = r * 0.12;\n  const waveWidth = width;\n\n  // Wave path: goes from left to right with a sine-like curve, then fills down\n  const getWavePath = (yOffset: number) => {\n    const y = cy + r - yOffset;\n    const cp1 = y - amplitude;\n    const cp2 = y + amplitude;\n    return `M ${-waveWidth},${y} Q ${cx / 2},${cp1} ${cx},${y} Q ${cx * 1.5},${cp2} ${waveWidth * 2},${y} L ${waveWidth * 2},${cy + r + 10} L ${-waveWidth},${cy + r + 10} Z`;\n  };\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <clipPath id={`circle-clip-${width}`}>\n          <circle cx={cx} cy={cy} r={r} />\n        </clipPath>\n      </defs>\n      {/* Background circle */}\n      <circle cx={cx} cy={cy} r={r} fill={backgroundColor} />\n      {/* Animated wave fill */}\n      <g clipPath={`url(#circle-clip-${width})`}>\n        <motion.path\n          fill={color}\n          animate={{\n            d: [\n              getWavePath(0),\n              getWavePath(r),\n              getWavePath(r * 2),\n            ],\n          }}\n          transition={{\n            duration: 2,\n            repeat: isAnimating ? Infinity : 0,\n            ease: 'linear',\n            times: [0, 0.5, 1],\n          }}\n        />\n      </g>\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Circular Wave Fill - Circular Wave Fill",
+    "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+    "category": "loaders",
+    "tags": [
+      "wave",
+      "fill",
+      "circle",
+      "gradient",
+      "radial",
+      "complex",
+      "smooth",
+      "water"
+    ],
+    "animationType": "loop"
+  }
+}

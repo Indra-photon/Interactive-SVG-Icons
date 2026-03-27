@@ -1,0 +1,43 @@
+{
+  "name": "Square Corners Rotate",
+  "category": "loaders",
+  "tags": ["square", "rotate", "corners", "multi", "geometric", "smooth", "morph", "pulse"],
+  "description": "Four corner arc segments pulse outward while spinning 360 degrees",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Square Corners Rotate",
+      "tier": "free",
+      "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the corner arcs"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

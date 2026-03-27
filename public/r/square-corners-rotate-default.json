@@ -1,0 +1,32 @@
+{
+  "name": "square-corners-rotate-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/square-corners-rotate/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface SquareCornersRotateProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  isAnimating?: boolean;\n}\n\nexport function SquareCornersRotate({\n  width = 40,\n  height = 40,\n  color = \"currentColor\",\n  isAnimating = true,\n}: SquareCornersRotateProps) {\n  const cx = width / 2;\n  const cy = height / 2;\n  \n  // Arc radius - positioned at 20px from edge for 40px container\n  // This scales proportionally: 50% of container size\n  const arcR = Math.min(width, height) * 0.5;\n  \n  // Distance from edge to arc center (scales with container)\n  const inset = Math.min(width, height) * 0.5;\n\n  // Four 90° arc paths positioned at the midpoint of each side\n  // Each arc opens AWAY from the center (outward)\n  \n  // Top arc: positioned at top-center [cx, inset], opens DOWNWARD\n  // Starts from left, sweeps right (clockwise 90°)\n  const topArc = `M ${cx - arcR * 0.707},${inset - arcR * 0.707} A ${arcR},${arcR} 0 0,1 ${cx + arcR * 0.707},${inset - arcR * 0.707}`;\n  \n  // Right arc: positioned at right-center [width - inset, cy], opens LEFTWARD\n  // Starts from top, sweeps down (clockwise 90°)\n  const rightArc = `M ${width - inset + arcR * 0.707},${cy - arcR * 0.707} A ${arcR},${arcR} 0 0,1 ${width - inset + arcR * 0.707},${cy + arcR * 0.707}`;\n  \n  // Bottom arc: positioned at bottom-center [cx, height - inset], opens UPWARD\n  // Starts from right, sweeps left (clockwise 90°)\n  const bottomArc = `M ${cx + arcR * 0.707},${height - inset + arcR * 0.707} A ${arcR},${arcR} 0 0,1 ${cx - arcR * 0.707},${height - inset + arcR * 0.707}`;\n  \n  // Left arc: positioned at left-center [inset, cy], opens RIGHTWARD\n  // Starts from bottom, sweeps up (clockwise 90°)\n  const leftArc = `M ${inset - arcR * 0.707},${cy + arcR * 0.707} A ${arcR},${arcR} 0 0,1 ${inset - arcR * 0.707},${cy - arcR * 0.707}`;\n\n  const arcs = [topArc, rightArc, bottomArc, leftArc];\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <motion.g\n        animate={{\n          scale: [1, 1.5, 1],\n          rotate: [0, 180, 360],\n        }}\n        transition={{\n          duration: 1.5,\n          repeat: isAnimating ? Infinity : 0,\n          ease: [0.3, 1, 0, 1],\n          times: [0, 0.5, 1],\n        }}\n        style={{ \n          originX: '50%', \n          originY: '50%' \n        }}\n      >\n        {arcs.map((d, i) => (\n          <path\n            key={i}\n            d={d}\n            stroke={color}\n            strokeWidth={3}\n            fill=\"none\"\n            strokeLinecap=\"round\"\n          />\n        ))}\n      </motion.g>\n    </svg>\n  );\n}",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Square Corners Rotate - Square Corners Rotate",
+    "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
+    "category": "loaders",
+    "tags": [
+      "square",
+      "rotate",
+      "corners",
+      "multi",
+      "geometric",
+      "smooth",
+      "morph",
+      "pulse"
+    ],
+    "animationType": "loop"
+  }
+}

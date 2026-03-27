@@ -1,0 +1,61 @@
+{
+  "name": "Infinity Loop",
+  "category": "loaders",
+  "tags": ["infinity", "loop", "smooth", "continuous", "path", "minimal", "symbol", "elegant"],
+  "description": "A dot travels continuously along an infinity symbol path in an elegant figure-eight motion",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Infinity Loop",
+      "tier": "free",
+      "description": "A dot traces the mathematical lemniscate (infinity symbol) path smoothly and continuously",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 80,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the traveling dot"
+        },
+        {
+          "name": "pathColor",
+          "type": "string",
+          "default": "#cccccc",
+          "description": "Color of the infinity path outline"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 6,
+          "description": "Diameter of the traveling dot in pixels"
+        },
+        {
+          "name": "showPath",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show the infinity symbol path outline"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Heart Fill",
+  "category": "loaders",
+  "tags": ["heart", "fill", "pulse", "simple", "smooth", "vertical", "gradient", "love"],
+  "description": "A heart shape fills suddenly from bottom to top in a dramatic heartbeat-style animation",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Heart Fill",
+      "tier": "free",
+      "description": "Heart shape waits nearly empty then rapidly fills with color in a dramatic pulse, looping like a heartbeat",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "#dc1818",
+          "description": "Fill color of the heart"
+        },
+        {
+          "name": "backgroundColor",
+          "type": "string",
+          "default": "#cccccc",
+          "description": "Background color of the heart shape"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "hexagon-rotate-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/hexagon-rotate/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface HexagonRotateProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  thickness?: number;\n  filled?: boolean;\n  isAnimating?: boolean;\n}\n\nexport function HexagonRotate({\n  width = 50,\n  height = 50,\n  color = \"currentColor\",\n  thickness = 3,\n  filled = false,\n  isAnimating = true,\n}: HexagonRotateProps) {\n  const centerX = width / 2;\n  const centerY = height / 2;\n  const radius = Math.min(width, height) * 0.4;\n\n  // Calculate hexagon points\n  const points = Array.from({ length: 6 }).map((_, i) => {\n    const angle = (60 * i - 30) * (Math.PI / 180);\n    return `${centerX + radius * Math.cos(angle)},${centerY + radius * Math.sin(angle)}`;\n  }).join(' ');\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <motion.polygon\n        points={points}\n        stroke={color}\n        strokeWidth={thickness}\n        fill={filled ? color : 'none'}\n        strokeLinejoin=\"round\"\n        animate={{ rotate: [0, 360] }}\n        transition={{\n          duration: 2,\n          repeat: isAnimating ? Infinity : 0,\n          ease: 'linear',\n        }}\n        style={{ originX: `${centerX}px`, originY: `${centerY}px` }}\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Hexagon Rotate - Hexagon Rotate",
+    "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+    "category": "loaders",
+    "tags": [
+      "hexagon",
+      "rotate",
+      "geometric",
+      "spinner",
+      "simple",
+      "smooth",
+      "polygon",
+      "minimal"
+    ],
+    "animationType": "loop"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "Square Flip",
+  "category": "loaders",
+  "tags": ["square", "flip", "3d", "rotate", "simple", "smooth", "minimal", "morph"],
+  "description": "A square flips on its vertical axis creating a 3D card-flip illusion",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Square Flip",
+      "tier": "free",
+      "description": "A rectangle collapses to a thin line then expands back, simulating a 3D Y-axis flip animation",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the square"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

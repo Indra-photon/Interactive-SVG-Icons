@@ -1,0 +1,32 @@
+{
+  "name": "conic-spinner-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/conic-spinner/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface ConicSpinnerProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  isAnimating?: boolean;\n}\n\nexport function ConicSpinner({\n  width = 60,\n  height = 60,\n  color = \"currentColor\",\n  isAnimating = true,\n}: ConicSpinnerProps) {\n  const centerX = width / 2;\n  const centerY = height / 2;\n  const radius = Math.min(width, height) / 2 - 2;\n  const circumference = 2 * Math.PI * radius;\n\n  // 8 steps, each 12.5% of duration fills 45deg more\n  const dashSteps = Array.from({ length: 9 }).map((_, i) => {\n    return (circumference * i) / 8;\n  });\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {/* Background circle */}\n      <circle cx={centerX} cy={centerY} r={radius} fill=\"none\" />\n      {/* Filling arc using strokeDasharray */}\n      <motion.circle\n        cx={centerX}\n        cy={centerY}\n        r={radius}\n        fill={color}\n        stroke=\"none\"\n        animate={{\n          clipPath: [\n            `polygon(50% 50%, 50% 0%, 50% 0%)`,\n            `polygon(50% 50%, 50% 0%, 100% 0%)`,\n            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%)`,\n            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%)`,\n            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%)`,\n            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%)`,\n          ],\n        }}\n        transition={{\n          duration: 2,\n          repeat: isAnimating ? Infinity : 0,\n          times: [0, 0.25, 0.5, 0.75, 0.875, 1],\n          ease: 'linear',\n        }}\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Conic Spinner - Conic Spinner",
+    "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+    "category": "loaders",
+    "tags": [
+      "spinner",
+      "rotate",
+      "circle",
+      "fill",
+      "conic",
+      "simple",
+      "smooth",
+      "progress"
+    ],
+    "animationType": "loop"
+  }
+}

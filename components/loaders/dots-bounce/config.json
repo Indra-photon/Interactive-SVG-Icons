@@ -1,0 +1,55 @@
+{
+  "name": "Dots Bounce",
+  "category": "loaders",
+  "tags": ["dots", "bounce", "horizontal", "simple", "smooth", "minimal", "three", "typing"],
+  "description": "Three dots bounce up and down with staggered timing like a typing indicator",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dots Bounce",
+      "tier": "free",
+      "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 30,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the dots"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 8,
+          "description": "Diameter of each dot in pixels"
+        },
+        {
+          "name": "dotCount",
+          "type": "number",
+          "default": 3,
+          "description": "Number of bouncing dots"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}
