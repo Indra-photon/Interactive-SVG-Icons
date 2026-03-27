@@ -1,0 +1,55 @@
+{
+  "name": "Bars Scale Wave",
+  "category": "loaders",
+  "tags": ["bars", "scale", "wave", "vertical", "multi", "smooth", "simple", "equalizer"],
+  "description": "Five vertical bars scale in height with staggered timing to create a wave equalizer effect",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Bars Scale Wave",
+      "tier": "free",
+      "description": "Vertical bars grow and shrink in a wave pattern with staggered delays, resembling an audio equalizer",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the bars"
+        },
+        {
+          "name": "barCount",
+          "type": "number",
+          "default": 5,
+          "description": "Number of bars"
+        },
+        {
+          "name": "barWidth",
+          "type": "number",
+          "default": 8,
+          "description": "Width of each bar in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

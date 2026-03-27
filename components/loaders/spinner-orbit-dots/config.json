@@ -1,0 +1,55 @@
+{
+  "name": "Spinner Orbit Dots",
+  "category": "loaders",
+  "tags": ["spinner", "dots", "orbit", "circle", "radial", "smooth", "minimal", "rotate"],
+  "description": "Multiple dots arranged in a circle orbit continuously with a fading tail effect",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Spinner Orbit Dots",
+      "tier": "free",
+      "description": "Dots arranged in a radial pattern rotate together as a group, with opacity gradient creating a comet-tail effect",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the dots"
+        },
+        {
+          "name": "dotCount",
+          "type": "number",
+          "default": 8,
+          "description": "Number of dots in the orbital ring"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 6,
+          "description": "Diameter of each individual dot in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

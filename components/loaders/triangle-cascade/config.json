@@ -1,0 +1,49 @@
+{
+  "name": "Triangle Cascade",
+  "category": "loaders",
+  "tags": ["triangle", "fill", "cascade", "sequential", "geometric", "complex", "vertical", "bars"],
+  "description": "A triangle shape fills with horizontal bars cascading down sequentially from top to bottom",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Triangle Cascade",
+      "tier": "free",
+      "description": "Five horizontal bars slide into position one after another, filling a triangle shape from bottom to top in a waterfall effect",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 80,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 69,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the cascading bars"
+        },
+        {
+          "name": "bars",
+          "type": "number",
+          "default": 5,
+          "description": "Number of horizontal bars"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

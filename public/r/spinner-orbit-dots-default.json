@@ -1,0 +1,32 @@
+{
+  "name": "spinner-orbit-dots-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/spinner-orbit-dots/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface SpinnerOrbitDotsProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotCount?: number;\n  dotSize?: number;\n  isAnimating?: boolean;\n}\n\nexport function SpinnerOrbitDots({\n  width = 60,\n  height = 60,\n  color = \"currentColor\",\n  dotCount = 8,\n  dotSize = 6,\n  isAnimating = true,\n}: SpinnerOrbitDotsProps) {\n  const centerX = width / 2;\n  const centerY = height / 2;\n  const radius = Math.min(width, height) * 0.35;\n\n  const dots = Array.from({ length: dotCount }).map((_, i) => {\n    const angle = (360 / dotCount) * i;\n    const rad = (angle * Math.PI) / 180;\n    const x = centerX + radius * Math.cos(rad);\n    const y = centerY + radius * Math.sin(rad);\n    const opacity = 0.2 + (0.8 * i) / (dotCount - 1);\n    return { x, y, opacity };\n  });\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <motion.g\n        animate={{ rotate: [0, 360] }}\n        transition={{\n          duration: 1.2,\n          repeat: isAnimating ? Infinity : 0,\n          ease: 'linear',\n        }}\n        style={{ originX: `${centerX}px`, originY: `${centerY}px` }}\n      >\n        {dots.map((dot, i) => (\n          <circle\n            key={i}\n            cx={dot.x}\n            cy={dot.y}\n            r={dotSize / 2}\n            fill={color}\n            opacity={dot.opacity}\n          />\n        ))}\n      </motion.g>\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Spinner Orbit Dots - Spinner Orbit Dots",
+    "description": "Dots arranged in a radial pattern rotate together as a group, with opacity gradient creating a comet-tail effect",
+    "category": "loaders",
+    "tags": [
+      "spinner",
+      "dots",
+      "orbit",
+      "circle",
+      "radial",
+      "smooth",
+      "minimal",
+      "rotate"
+    ],
+    "animationType": "loop"
+  }
+}

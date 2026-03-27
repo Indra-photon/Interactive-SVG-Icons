@@ -1,0 +1,55 @@
+{
+  "name": "Dot Circle Expand",
+  "category": "loaders",
+  "tags": ["dots", "circle", "radial", "expand", "pulse", "multi", "smooth", "rotate"],
+  "description": "A center dot surrounded by four corner dots that expand outward and contract back in a pulsing pattern",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dot Circle Expand",
+      "tier": "free",
+      "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 40,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 40,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of all dots"
+        },
+        {
+          "name": "centerDotSize",
+          "type": "number",
+          "default": 10,
+          "description": "Diameter of the center dot in pixels"
+        },
+        {
+          "name": "cornerDotSize",
+          "type": "number",
+          "default": 9,
+          "description": "Diameter of each corner dot in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

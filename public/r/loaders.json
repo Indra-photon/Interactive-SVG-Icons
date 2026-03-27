@@ -1,6 +1,366 @@
 {
   "loaders": [
     {
+      "slug": "square-corners-rotate",
+      "name": "Square Corners Rotate",
+      "category": "loaders",
+      "tags": [
+        "square",
+        "rotate",
+        "corners",
+        "multi",
+        "geometric",
+        "smooth",
+        "morph",
+        "pulse"
+      ],
+      "description": "Four corner arc segments pulse outward while spinning 360 degrees",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Square Corners Rotate",
+          "tier": "free",
+          "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the corner arcs"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "triangle-cascade",
+      "name": "Triangle Cascade",
+      "category": "loaders",
+      "tags": [
+        "triangle",
+        "fill",
+        "cascade",
+        "sequential",
+        "geometric",
+        "complex",
+        "vertical",
+        "bars"
+      ],
+      "description": "A triangle shape fills with horizontal bars cascading down sequentially from top to bottom",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Triangle Cascade",
+          "tier": "free",
+          "description": "Five horizontal bars slide into position one after another, filling a triangle shape from bottom to top in a waterfall effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 80,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 69,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the cascading bars"
+            },
+            {
+              "name": "bars",
+              "type": "number",
+              "default": 5,
+              "description": "Number of horizontal bars"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "square-flip",
+      "name": "Square Flip",
+      "category": "loaders",
+      "tags": [
+        "square",
+        "flip",
+        "3d",
+        "rotate",
+        "simple",
+        "smooth",
+        "minimal",
+        "morph"
+      ],
+      "description": "A square flips on its vertical axis creating a 3D card-flip illusion",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Square Flip",
+          "tier": "free",
+          "description": "A rectangle collapses to a thin line then expands back, simulating a 3D Y-axis flip animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the square"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "square-corners-dance",
+      "name": "Square Corners Dance",
+      "category": "loaders",
+      "tags": [
+        "square",
+        "corners",
+        "multi",
+        "geometric",
+        "minimal",
+        "simple",
+        "dance",
+        "morph"
+      ],
+      "description": "Four corner squares rotate clockwise to the next corner position in a dancing pattern",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Square Corners Dance",
+          "tier": "free",
+          "description": "Four squares at the corners of a bounding box shift positions clockwise, creating a spinning dance animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the corner squares"
+            },
+            {
+              "name": "cornerSize",
+              "type": "number",
+              "default": 16,
+              "description": "Width and height of each corner square in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "pulse-ring",
+      "name": "Pulse Ring",
+      "category": "loaders",
+      "tags": [
+        "pulse",
+        "ring",
+        "circle",
+        "simple",
+        "smooth",
+        "minimal",
+        "radial",
+        "ripple"
+      ],
+      "description": "Multiple concentric rings expand outward and fade away creating a ripple/pulse effect",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Pulse Ring",
+          "tier": "free",
+          "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the rings"
+            },
+            {
+              "name": "ringCount",
+              "type": "number",
+              "default": 3,
+              "description": "Number of concentric rings"
+            },
+            {
+              "name": "thickness",
+              "type": "number",
+              "default": 3,
+              "description": "Stroke width of each ring in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "heart-fill",
+      "name": "Heart Fill",
+      "category": "loaders",
+      "tags": [
+        "heart",
+        "fill",
+        "pulse",
+        "simple",
+        "smooth",
+        "vertical",
+        "gradient",
+        "love"
+      ],
+      "description": "A heart shape fills suddenly from bottom to top in a dramatic heartbeat-style animation",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Heart Fill",
+          "tier": "free",
+          "description": "Heart shape waits nearly empty then rapidly fills with color in a dramatic pulse, looping like a heartbeat",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#dc1818",
+              "description": "Fill color of the heart"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#cccccc",
+              "description": "Background color of the heart shape"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "dots-rotate",
       "name": "Dots Rotate",
       "category": "loaders",
@@ -48,6 +408,73 @@
               "type": "number",
               "default": 14,
               "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "spinner-orbit-dots",
+      "name": "Spinner Orbit Dots",
+      "category": "loaders",
+      "tags": [
+        "spinner",
+        "dots",
+        "orbit",
+        "circle",
+        "radial",
+        "smooth",
+        "minimal",
+        "rotate"
+      ],
+      "description": "Multiple dots arranged in a circle orbit continuously with a fading tail effect",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Spinner Orbit Dots",
+          "tier": "free",
+          "description": "Dots arranged in a radial pattern rotate together as a group, with opacity gradient creating a comet-tail effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotCount",
+              "type": "number",
+              "default": 8,
+              "description": "Number of dots in the orbital ring"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 6,
+              "description": "Diameter of each individual dot in pixels"
             },
             {
               "name": "isAnimating",
@@ -112,6 +539,341 @@
       ]
     },
     {
+      "slug": "dots-bounce",
+      "name": "Dots Bounce",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "bounce",
+        "horizontal",
+        "simple",
+        "smooth",
+        "minimal",
+        "three",
+        "typing"
+      ],
+      "description": "Three dots bounce up and down with staggered timing like a typing indicator",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dots Bounce",
+          "tier": "free",
+          "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 30,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 8,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "dotCount",
+              "type": "number",
+              "default": 3,
+              "description": "Number of bouncing dots"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cross-expand",
+      "name": "Cross Expand",
+      "category": "loaders",
+      "tags": [
+        "cross",
+        "expand",
+        "geometric",
+        "multi",
+        "pulse",
+        "minimal",
+        "plus",
+        "rotate"
+      ],
+      "description": "A plus/cross shape with corner squares that expand outward, rotate 90 degrees, then contract back",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Cross Expand",
+          "tier": "free",
+          "description": "Static center cross with four corner squares that expand outward, rotate 90°, then retract in a pulsing geometric pattern",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#25b09b",
+              "description": "Color of the cross and corner squares"
+            },
+            {
+              "name": "crossThickness",
+              "type": "number",
+              "default": 8,
+              "description": "Thickness of the center cross bars in pixels"
+            },
+            {
+              "name": "cornerSize",
+              "type": "number",
+              "default": 12,
+              "description": "Width and height of each corner square in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "infinity-loop",
+      "name": "Infinity Loop",
+      "category": "loaders",
+      "tags": [
+        "infinity",
+        "loop",
+        "smooth",
+        "continuous",
+        "path",
+        "minimal",
+        "symbol",
+        "elegant"
+      ],
+      "description": "A dot travels continuously along an infinity symbol path in an elegant figure-eight motion",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Infinity Loop",
+          "tier": "free",
+          "description": "A dot traces the mathematical lemniscate (infinity symbol) path smoothly and continuously",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 80,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the traveling dot"
+            },
+            {
+              "name": "pathColor",
+              "type": "string",
+              "default": "#cccccc",
+              "description": "Color of the infinity path outline"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 6,
+              "description": "Diameter of the traveling dot in pixels"
+            },
+            {
+              "name": "showPath",
+              "type": "boolean",
+              "default": true,
+              "description": "Whether to show the infinity symbol path outline"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "circular-wave-fill",
+      "name": "Circular Wave Fill",
+      "category": "loaders",
+      "tags": [
+        "wave",
+        "fill",
+        "circle",
+        "gradient",
+        "radial",
+        "complex",
+        "smooth",
+        "water"
+      ],
+      "description": "A circular container fills up with an animated wave pattern from bottom to top",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Circular Wave Fill",
+          "tier": "free",
+          "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#269af2",
+              "description": "Color of the wave fill"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#cccccc",
+              "description": "Background color of the circle"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "hexagon-rotate",
+      "name": "Hexagon Rotate",
+      "category": "loaders",
+      "tags": [
+        "hexagon",
+        "rotate",
+        "geometric",
+        "spinner",
+        "simple",
+        "smooth",
+        "polygon",
+        "minimal"
+      ],
+      "description": "A regular hexagon spins continuously for a clean geometric loading animation",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Hexagon Rotate",
+          "tier": "free",
+          "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 50,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 50,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the hexagon"
+            },
+            {
+              "name": "thickness",
+              "type": "number",
+              "default": 3,
+              "description": "Stroke width when not filled, in pixels"
+            },
+            {
+              "name": "filled",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to render the hexagon as filled or outline only"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "bars-wave",
       "name": "Bars Wave",
       "category": "loaders",
@@ -158,6 +920,73 @@
               "type": "number",
               "default": 3,
               "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-scale-wave",
+      "name": "Bars Scale Wave",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "scale",
+        "wave",
+        "vertical",
+        "multi",
+        "smooth",
+        "simple",
+        "equalizer"
+      ],
+      "description": "Five vertical bars scale in height with staggered timing to create a wave equalizer effect",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Scale Wave",
+          "tier": "free",
+          "description": "Vertical bars grow and shrink in a wave pattern with staggered delays, resembling an audio equalizer",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barCount",
+              "type": "number",
+              "default": 5,
+              "description": "Number of bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 8,
+              "description": "Width of each bar in pixels"
             },
             {
               "name": "isAnimating",
@@ -584,6 +1413,255 @@
       ]
     },
     {
+      "slug": "conic-spinner",
+      "name": "Conic Spinner",
+      "category": "loaders",
+      "tags": [
+        "spinner",
+        "rotate",
+        "circle",
+        "fill",
+        "conic",
+        "simple",
+        "smooth",
+        "progress"
+      ],
+      "description": "A circular spinner that fills like a pie chart, revealing color clockwise in 8 stepped increments",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Conic Spinner",
+          "tier": "free",
+          "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the spinner"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "circle-spinner-wipe",
+      "name": "Circle Spinner Wipe",
+      "category": "loaders",
+      "tags": [
+        "spinner",
+        "circle",
+        "wipe",
+        "rotate",
+        "simple",
+        "smooth",
+        "progress",
+        "ring"
+      ],
+      "description": "A circular ring that progressively reveals its stroke clockwise like a loading progress arc",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Circle Spinner Wipe",
+          "tier": "free",
+          "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the animated wipe ring"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#dddddd",
+              "description": "Color of the background track ring"
+            },
+            {
+              "name": "thickness",
+              "type": "number",
+              "default": 10,
+              "description": "Stroke width of the rings in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ball-bounce-box",
+      "name": "Ball Bounce Box",
+      "category": "loaders",
+      "tags": [
+        "bounce",
+        "rotate",
+        "ball",
+        "square",
+        "multi",
+        "sequential",
+        "geometric"
+      ],
+      "description": "A ball bounces inside a rotating square box that spins 90 degrees in steps",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Ball Bounce Box",
+          "tier": "free",
+          "description": "A square box outline rotates 90° in stepped intervals while a ball bounces rapidly inside it",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ball"
+            },
+            {
+              "name": "boxColor",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the rotating box outline"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dot-circle-expand",
+      "name": "Dot Circle Expand",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "circle",
+        "radial",
+        "expand",
+        "pulse",
+        "multi",
+        "smooth",
+        "rotate"
+      ],
+      "description": "A center dot surrounded by four corner dots that expand outward and contract back in a pulsing pattern",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Circle Expand",
+          "tier": "free",
+          "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of all dots"
+            },
+            {
+              "name": "centerDotSize",
+              "type": "number",
+              "default": 10,
+              "description": "Diameter of the center dot in pixels"
+            },
+            {
+              "name": "cornerDotSize",
+              "type": "number",
+              "default": 9,
+              "description": "Diameter of each corner dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "audio-wave-vertical",
       "name": "Audio Wave Vertical",
       "category": "loaders",
@@ -918,8 +1996,188 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "ball-bounce-slide",
+      "name": "Ball Bounce Slide",
+      "category": "loaders",
+      "tags": [
+        "bounce",
+        "slide",
+        "ball",
+        "simple",
+        "continuous",
+        "linear",
+        "horizontal"
+      ],
+      "description": "A ball bounces along the ground while sliding continuously from left to right",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Ball Bounce Slide",
+          "tier": "free",
+          "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 90,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ball"
+            },
+            {
+              "name": "lineColor",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ground line"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ball-bounce-dashed",
+      "name": "Ball Bounce Dashed",
+      "category": "loaders",
+      "tags": [
+        "bounce",
+        "ball",
+        "simple",
+        "continuous",
+        "animated-line",
+        "dash",
+        "centered"
+      ],
+      "description": "A centered ball bounces while an animated dashed line scrolls beneath it",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Ball Bounce Dashed",
+          "tier": "free",
+          "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 90,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ball"
+            },
+            {
+              "name": "lineColor",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dashed ground line"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ball-bounce-alternate",
+      "name": "Ball Bounce Alternate",
+      "category": "loaders",
+      "tags": [
+        "bounce",
+        "slide",
+        "ball",
+        "simple",
+        "alternating",
+        "linear",
+        "horizontal"
+      ],
+      "description": "A ball bounces along the ground while sliding back and forth in alternating directions",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Ball Bounce Alternate",
+          "tier": "free",
+          "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 90,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ball"
+            },
+            {
+              "name": "lineColor",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ground line"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-02-21T18:33:17.622Z"
+  "lastUpdated": "2026-03-06T08:21:59.779Z"
 }

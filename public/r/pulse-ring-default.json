@@ -1,0 +1,32 @@
+{
+  "name": "pulse-ring-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/pulse-ring/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface PulseRingProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  ringCount?: number;\n  thickness?: number;\n  isAnimating?: boolean;\n}\n\nexport function PulseRing({\n  width = 60,\n  height = 60,\n  color = \"currentColor\",\n  ringCount = 3,\n  thickness = 3,\n  isAnimating = true,\n}: PulseRingProps) {\n  const centerX = width / 2;\n  const centerY = height / 2;\n  const baseRadius = Math.min(width, height) * 0.15;\n  const duration = 1.5;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: ringCount }).map((_, i) => (\n        <motion.circle\n          key={i}\n          cx={centerX}\n          cy={centerY}\n          r={baseRadius}\n          stroke={color}\n          strokeWidth={thickness}\n          fill=\"none\"\n          animate={{\n            scale: [0.5, 1.5],\n            opacity: [1, 0],\n          }}\n          transition={{\n            duration,\n            repeat: isAnimating ? Infinity : 0,\n            delay: (duration / ringCount) * i,\n            ease: 'easeOut',\n          }}\n          style={{ originX: `${centerX}px`, originY: `${centerY}px` }}\n        />\n      ))}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Pulse Ring - Pulse Ring",
+    "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
+    "category": "loaders",
+    "tags": [
+      "pulse",
+      "ring",
+      "circle",
+      "simple",
+      "smooth",
+      "minimal",
+      "radial",
+      "ripple"
+    ],
+    "animationType": "loop"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Ball Bounce Box",
+  "category": "loaders",
+  "tags": ["bounce", "rotate", "ball", "square", "multi", "sequential", "geometric"],
+  "description": "A ball bounces inside a rotating square box that spins 90 degrees in steps",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Ball Bounce Box",
+      "tier": "free",
+      "description": "A square box outline rotates 90° in stepped intervals while a ball bounces rapidly inside it",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the ball"
+        },
+        {
+          "name": "boxColor",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the rotating box outline"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

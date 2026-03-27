@@ -1,0 +1,72 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
+interface TriangleCascadeProps {
+  width?: number;
+  height?: number;
+  color?: string;
+  bars?: number;
+  isAnimating?: boolean;
+}
+
+export function TriangleCascade({
+  width = 80,
+  height = 69,
+  color = "currentColor",
+  bars = 5,
+  isAnimating = true,
+}: TriangleCascadeProps) {
+  const barHeight = height / bars + 1;
+
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="Loading"
+      role="img"
+    >
+      <defs>
+        <clipPath id={`triangle-clip-${width}`}>
+          <polygon points={`${width / 2},0 ${width},${height} 0,${height}`} />
+        </clipPath>
+      </defs>
+      {/* Triangle outline */}
+      <polygon
+        points={`${width / 2},0 ${width},${height} 0,${height}`}
+        stroke={color}
+        strokeWidth={1}
+        fill="none"
+        opacity={0.2}
+      />
+      {/* Cascading bars clipped to triangle */}
+      <g clipPath={`url(#triangle-clip-${width})`}>
+        {Array.from({ length: bars }).map((_, i) => {
+          const barY = height - (i + 1) * barHeight;
+          return (
+            <motion.rect
+              key={i}
+              x={0}
+              width={width}
+              height={barHeight}
+              fill={color}
+              animate={{
+                y: [-barHeight, barY],
+              }}
+              transition={{
+                duration: 2,
+                repeat: isAnimating ? Infinity : 0,
+                delay: i * 0.4,
+                ease: 'easeInOut',
+                times: [0, 1],
+              }}
+            />
+          );
+        })}
+      </g>
+    </svg>
+  );
+}

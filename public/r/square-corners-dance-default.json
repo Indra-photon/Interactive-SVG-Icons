@@ -1,0 +1,32 @@
+{
+  "name": "square-corners-dance-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/square-corners-dance/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface SquareCornersDanceProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  cornerSize?: number;\n  isAnimating?: boolean;\n}\n\nexport function SquareCornersDance({\n  width = 40,\n  height = 40,\n  color = \"currentColor\",\n  cornerSize = 16,\n  isAnimating = true,\n}: SquareCornersDanceProps) {\n  const gap = Math.min(width, height) - cornerSize * 2;\n  // Corners: TL, TR, BR, BL - clockwise rotation positions\n  // Initial: TL, TR, BR, BL\n  // After rotate: TR, BR, BL, TL\n  const positions = [\n    { x: 0, y: 0 },                             // TL\n    { x: width - cornerSize, y: 0 },            // TR\n    { x: width - cornerSize, y: height - cornerSize }, // BR\n    { x: 0, y: height - cornerSize },           // BL\n  ];\n\n  // Rotated positions (clockwise)\n  const rotatedPositions = [\n    positions[1], // TL -> TR\n    positions[2], // TR -> BR\n    positions[3], // BR -> BL\n    positions[0], // BL -> TL\n  ];\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {positions.map((pos, i) => (\n        <motion.rect\n          key={i}\n          width={cornerSize}\n          height={cornerSize}\n          fill={color}\n          rx={2}\n          animate={{\n            x: [pos.x, pos.x, rotatedPositions[i].x, rotatedPositions[i].x],\n            y: [pos.y, pos.y, rotatedPositions[i].y, rotatedPositions[i].y],\n          }}\n          transition={{\n            duration: 1.5,\n            repeat: isAnimating ? Infinity : 0,\n            times: [0, 0.33, 0.66, 1],\n            ease: [0.3, 1, 0, 1],\n          }}\n        />\n      ))}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Square Corners Dance - Square Corners Dance",
+    "description": "Four squares at the corners of a bounding box shift positions clockwise, creating a spinning dance animation",
+    "category": "loaders",
+    "tags": [
+      "square",
+      "corners",
+      "multi",
+      "geometric",
+      "minimal",
+      "simple",
+      "dance",
+      "morph"
+    ],
+    "animationType": "loop"
+  }
+}

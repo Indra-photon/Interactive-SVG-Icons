@@ -1,0 +1,55 @@
+{
+  "name": "Pulse Ring",
+  "category": "loaders",
+  "tags": ["pulse", "ring", "circle", "simple", "smooth", "minimal", "radial", "ripple"],
+  "description": "Multiple concentric rings expand outward and fade away creating a ripple/pulse effect",
+  "createdAt": "2026-02-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Pulse Ring",
+      "tier": "free",
+      "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the rings"
+        },
+        {
+          "name": "ringCount",
+          "type": "number",
+          "default": 3,
+          "description": "Number of concentric rings"
+        },
+        {
+          "name": "thickness",
+          "type": "number",
+          "default": 3,
+          "description": "Stroke width of each ring in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}
