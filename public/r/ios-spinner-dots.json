@@ -1,0 +1,31 @@
+{
+  "name": "ios-spinner-dots",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/ios-spinner/dots.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface IosSpinnerDotsProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  isAnimating?: boolean;\n}\n\nexport function IosSpinnerDots({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  isAnimating = true,\n}: IosSpinnerDotsProps) {\n  const count = 12;\n  const orbitRadius = 22;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <motion.g\n        style={{ originX: '50px', originY: '50px' }}\n        animate={{ rotate: isAnimating ? 360 : 0 }}\n        transition={{ duration: 1, repeat: isAnimating ? Infinity : 0, ease: 'linear' }}\n      >\n        {Array.from({ length: count }).map((_, i) => {\n          const angle = (2 * Math.PI * i) / count - Math.PI / 2;\n          const cx = 50 + orbitRadius * Math.cos(angle);\n          const cy = 50 + orbitRadius * Math.sin(angle);\n          return (\n            <circle\n              key={i}\n              cx={cx}\n              cy={cy}\n              r={3.5}\n              fill={color}\n              opacity={1 - (i / count) * 0.88}\n            />\n          );\n        })}\n      </motion.g>\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "iOS Spinner - Dots",
+    "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
+    "category": "loaders",
+    "tags": [
+      "apple",
+      "ios",
+      "macos",
+      "spinner",
+      "spokes",
+      "radial",
+      "classic"
+    ],
+    "animationType": "loop"
+  }
+}

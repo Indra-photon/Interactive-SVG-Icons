@@ -1,61 +1,6 @@
 {
   "loaders": [
     {
-      "slug": "square-corners-rotate",
-      "name": "Square Corners Rotate",
-      "category": "loaders",
-      "tags": [
-        "square",
-        "rotate",
-        "corners",
-        "multi",
-        "geometric",
-        "smooth",
-        "morph",
-        "pulse"
-      ],
-      "description": "Four corner arc segments pulse outward while spinning 360 degrees",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Square Corners Rotate",
-          "tier": "free",
-          "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 40,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 40,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the corner arcs"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "triangle-cascade",
       "name": "Triangle Cascade",
       "category": "loaders",
@@ -160,6 +105,296 @@
               "type": "string",
               "default": "currentColor",
               "description": "Color of the square"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "square-corners-rotate",
+      "name": "Square Corners Rotate",
+      "category": "loaders",
+      "tags": [
+        "square",
+        "rotate",
+        "corners",
+        "multi",
+        "geometric",
+        "smooth",
+        "morph",
+        "pulse"
+      ],
+      "description": "Four corner arc segments pulse outward while spinning 360 degrees",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Square Corners Rotate",
+          "tier": "free",
+          "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the corner arcs"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "spotlight",
+      "name": "Spotlight",
+      "category": "loaders",
+      "tags": [
+        "spotlight",
+        "glow",
+        "ambient",
+        "radial",
+        "beam",
+        "drift",
+        "light"
+      ],
+      "description": "A soft radial gradient oval drifts from left to right like a light beam, then resets",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Spotlight",
+          "tier": "free",
+          "description": "An ambient spotlight beam drifts slowly across the container — bright at center, fading to nothing at the edges — then reappears from the left",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 200,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spotlight beam"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "spinner-orbit-dots",
+      "name": "Spinner Orbit Dots",
+      "category": "loaders",
+      "tags": [
+        "spinner",
+        "dots",
+        "orbit",
+        "circle",
+        "radial",
+        "smooth",
+        "minimal",
+        "rotate"
+      ],
+      "description": "Multiple dots arranged in a circle orbit continuously with a fading tail effect",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Spinner Orbit Dots",
+          "tier": "free",
+          "description": "Dots arranged in a radial pattern rotate together as a group, with opacity gradient creating a comet-tail effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotCount",
+              "type": "number",
+              "default": 8,
+              "description": "Number of dots in the orbital ring"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 6,
+              "description": "Diameter of each individual dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "siri-wave",
+      "name": "Siri Wave",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "siri",
+        "wave",
+        "bars",
+        "audio",
+        "voice",
+        "organic"
+      ],
+      "description": "Five vertical bars animate in an organic wave pattern inspired by Siri's audio visualization",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Siri Wave",
+          "tier": "free",
+          "description": "Center bar tallest, outer bars shortest — all oscillate with staggered delays creating a smooth symmetric wave that pulses outward from center",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the bars"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "scan-line",
+      "name": "Scan Line",
+      "category": "loaders",
+      "tags": [
+        "bar",
+        "scan",
+        "gradient",
+        "linear",
+        "progress",
+        "sweep",
+        "trail"
+      ],
+      "description": "A gradient sweep travels across a thin bar from left to right, then resets and repeats",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Scan Line",
+          "tier": "free",
+          "description": "A glowing gradient segment — bright at the leading edge, fading behind — sweeps across a faint track and resets",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 200,
+              "description": "Width of the bar in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 4,
+              "description": "Thickness of the bar in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the gradient sweep"
+            },
+            {
+              "name": "trailLength",
+              "type": "number",
+              "default": 80,
+              "description": "Length of the gradient segment in pixels"
             },
             {
               "name": "isAnimating",
@@ -300,6 +535,527 @@
       ]
     },
     {
+      "slug": "ios-spinner-trail",
+      "name": "iOS Spinner Trail",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "trail",
+        "comet",
+        "sharp",
+        "exponential"
+      ],
+      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, creating an intense laser comet",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Sharp Trail",
+          "tier": "free",
+          "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner-thick",
+      "name": "iOS Spinner Thick",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "thick",
+        "bold",
+        "pill",
+        "kiosk"
+      ],
+      "description": "8 wide pill-shaped spokes at 45° apart — bold and graphic, great for large-screen or kiosk UIs",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Thick",
+          "tier": "free",
+          "description": "8 wide pill-shaped spokes at 45° apart — bold and graphic, great for large-screen or kiosk UIs",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner-pulse",
+      "name": "iOS Spinner Pulse",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "pulse",
+        "flash",
+        "radial"
+      ],
+      "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Pulse",
+          "tier": "free",
+          "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner-grow",
+      "name": "iOS Spinner Grow",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "grow",
+        "bloom",
+        "radial",
+        "extend"
+      ],
+      "description": "Each spoke shoots outward radially as it activates — a blooming radial extension effect",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grow",
+          "tier": "free",
+          "description": "Each spoke shoots outward radially as it activates — a blooming radial extension effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner-dual",
+      "name": "iOS Spinner Dual",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "dual",
+        "gyroscope",
+        "counter-rotate"
+      ],
+      "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dual Ring",
+          "tier": "free",
+          "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner-dots",
+      "name": "iOS Spinner Dots",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "dots",
+        "orbit",
+        "radial"
+      ],
+      "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dots",
+          "tier": "free",
+          "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner",
+      "name": "iOS Spinner",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "spokes",
+        "radial",
+        "classic"
+      ],
+      "description": "The classic macOS/iOS radial spoke spinner — 12 rounded spokes with linear opacity comet tail",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Classic",
+          "tier": "free",
+          "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "infinity-loop",
+      "name": "Infinity Loop",
+      "category": "loaders",
+      "tags": [
+        "infinity",
+        "loop",
+        "smooth",
+        "continuous",
+        "path",
+        "minimal",
+        "symbol",
+        "elegant"
+      ],
+      "description": "A dot travels continuously along an infinity symbol path in an elegant figure-eight motion",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Infinity Loop",
+          "tier": "free",
+          "description": "A dot traces the mathematical lemniscate (infinity symbol) path smoothly and continuously",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 80,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the traveling dot"
+            },
+            {
+              "name": "pathColor",
+              "type": "string",
+              "default": "#cccccc",
+              "description": "Color of the infinity path outline"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 6,
+              "description": "Diameter of the traveling dot in pixels"
+            },
+            {
+              "name": "showPath",
+              "type": "boolean",
+              "default": true,
+              "description": "Whether to show the infinity symbol path outline"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "hexagon-rotate",
+      "name": "Hexagon Rotate",
+      "category": "loaders",
+      "tags": [
+        "hexagon",
+        "rotate",
+        "geometric",
+        "spinner",
+        "simple",
+        "smooth",
+        "polygon",
+        "minimal"
+      ],
+      "description": "A regular hexagon spins continuously for a clean geometric loading animation",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Hexagon Rotate",
+          "tier": "free",
+          "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 50,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 50,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the hexagon"
+            },
+            {
+              "name": "thickness",
+              "type": "number",
+              "default": 3,
+              "description": "Stroke width when not filled, in pixels"
+            },
+            {
+              "name": "filled",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to render the hexagon as filled or outline only"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "heart-fill",
       "name": "Heart Fill",
       "category": "loaders",
@@ -361,6 +1117,655 @@
       ]
     },
     {
+      "slug": "grid-wave-row",
+      "name": "Grid Wave Row",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "wave",
+        "row",
+        "dots",
+        "matrix",
+        "sequential"
+      ],
+      "description": "3×3 grid sweeps left to right row by row — top row first, bottom row last",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Wave Row",
+          "tier": "free",
+          "description": "Each row sweeps left to right in sequence, creating a horizontal wave that cascades downward",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-spiral",
+      "name": "Grid Spiral",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "spiral",
+        "dots",
+        "matrix",
+        "clockwise",
+        "sequential"
+      ],
+      "description": "3×3 grid lights up in a clockwise spiral from top-left corner to the center",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Spiral",
+          "tier": "free",
+          "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-snake",
+      "name": "Grid Snake",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "snake",
+        "dots",
+        "matrix",
+        "boustrophedon",
+        "sequential"
+      ],
+      "description": "3×3 grid lights up in a snake path — row 0 left to right, row 1 right to left, row 2 left to right",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Snake",
+          "tier": "free",
+          "description": "Dots activate in a boustrophedon (back-and-forth) path that slithers through all 9 positions",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-ripple",
+      "name": "Grid Ripple",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "ripple",
+        "dots",
+        "matrix",
+        "radial",
+        "expand"
+      ],
+      "description": "3×3 grid pulses outward from the center like a water drop ripple",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Ripple",
+          "tier": "free",
+          "description": "Center dot fires first, then the 4 adjacent edges, then the 4 corners — concentric expansion outward",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-random",
+      "name": "Grid Random",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "random",
+        "dots",
+        "matrix",
+        "scatter",
+        "noise"
+      ],
+      "description": "3×3 grid dots fire in a pre-seeded random order, creating an unpredictable scatter pattern",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Random",
+          "tier": "free",
+          "description": "Dots activate in a fixed but non-sequential order that reads as random — like a matrix initialising",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-pulse",
+      "name": "Grid Pulse",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "dots",
+        "pulse",
+        "wave",
+        "diagonal",
+        "matrix"
+      ],
+      "description": "A 3×3 grid of dots that pulse in a diagonal wave from top-left to bottom-right",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Pulse",
+          "tier": "free",
+          "description": "Nine dots arranged in a 3×3 grid light up and fade in a rolling diagonal wave, top-left to bottom-right",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels (within the 100×100 viewBox)"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-cross",
+      "name": "Grid Cross",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "cross",
+        "plus",
+        "dots",
+        "matrix",
+        "alternate"
+      ],
+      "description": "3×3 grid alternates between the cross shape (+ pattern) and the 4 corner dots",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Cross",
+          "tier": "free",
+          "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-corners-in",
+      "name": "Grid Corners In",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "corners",
+        "dots",
+        "matrix",
+        "inward",
+        "collapse"
+      ],
+      "description": "3×3 grid collapses inward — corners fire first, then edges, then center",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Corners In",
+          "tier": "free",
+          "description": "The 4 corner dots pulse first, then the 4 edge-center dots, then the center — an inward collapse opposite to ripple",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-column-scan",
+      "name": "Grid Column Scan",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "column",
+        "scan",
+        "dots",
+        "matrix",
+        "vertical"
+      ],
+      "description": "3×3 grid sweeps column by column left to right — all 3 dots in each column fire together",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Column Scan",
+          "tier": "free",
+          "description": "A full column of dots lights up simultaneously, sweeping left to right like a vertical scan bar",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-clock",
+      "name": "Grid Clock",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "clock",
+        "dots",
+        "matrix",
+        "clockwise",
+        "radial"
+      ],
+      "description": "3×3 grid dots light up clockwise starting from the 12 o'clock position, center dot last",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Clock",
+          "tier": "free",
+          "description": "Dots sweep clockwise from top-center (12 o'clock) through all 8 outer positions, then the center fires last",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-checker",
+      "name": "Grid Checker",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "checker",
+        "checkerboard",
+        "dots",
+        "matrix",
+        "alternate"
+      ],
+      "description": "3×3 grid alternates in a checkerboard pattern — odd and even positions pulse out of phase",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Checker",
+          "tier": "free",
+          "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "dots-rotate",
       "name": "Dots Rotate",
       "category": "loaders",
@@ -408,73 +1813,6 @@
               "type": "number",
               "default": 14,
               "description": "Diameter of each dot in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "spinner-orbit-dots",
-      "name": "Spinner Orbit Dots",
-      "category": "loaders",
-      "tags": [
-        "spinner",
-        "dots",
-        "orbit",
-        "circle",
-        "radial",
-        "smooth",
-        "minimal",
-        "rotate"
-      ],
-      "description": "Multiple dots arranged in a circle orbit continuously with a fading tail effect",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Spinner Orbit Dots",
-          "tier": "free",
-          "description": "Dots arranged in a radial pattern rotate together as a group, with opacity gradient creating a comet-tail effect",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the dots"
-            },
-            {
-              "name": "dotCount",
-              "type": "number",
-              "default": 8,
-              "description": "Number of dots in the orbital ring"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 6,
-              "description": "Diameter of each individual dot in pixels"
             },
             {
               "name": "isAnimating",
@@ -606,6 +1944,127 @@
       ]
     },
     {
+      "slug": "dot-circle-expand",
+      "name": "Dot Circle Expand",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "circle",
+        "radial",
+        "expand",
+        "pulse",
+        "multi",
+        "smooth",
+        "rotate"
+      ],
+      "description": "A center dot surrounded by four corner dots that expand outward and contract back in a pulsing pattern",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Circle Expand",
+          "tier": "free",
+          "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of all dots"
+            },
+            {
+              "name": "centerDotSize",
+              "type": "number",
+              "default": 10,
+              "description": "Diameter of the center dot in pixels"
+            },
+            {
+              "name": "cornerDotSize",
+              "type": "number",
+              "default": 9,
+              "description": "Diameter of each corner dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dock-bounce",
+      "name": "Dock Bounce",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "macos",
+        "dock",
+        "bounce",
+        "squash",
+        "stretch",
+        "icon"
+      ],
+      "description": "A rounded square app icon bounces with macOS dock physics — squash on landing, decaying secondary bounces",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dock Bounce",
+          "tier": "free",
+          "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the icon"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "cross-expand",
       "name": "Cross Expand",
       "category": "loaders",
@@ -673,27 +2132,27 @@
       ]
     },
     {
-      "slug": "infinity-loop",
-      "name": "Infinity Loop",
+      "slug": "conic-spinner",
+      "name": "Conic Spinner",
       "category": "loaders",
       "tags": [
-        "infinity",
-        "loop",
+        "spinner",
+        "rotate",
+        "circle",
+        "fill",
+        "conic",
+        "simple",
         "smooth",
-        "continuous",
-        "path",
-        "minimal",
-        "symbol",
-        "elegant"
+        "progress"
       ],
-      "description": "A dot travels continuously along an infinity symbol path in an elegant figure-eight motion",
+      "description": "A circular spinner that fills like a pie chart, revealing color clockwise in 8 stepped increments",
       "createdAt": "2026-02-26",
       "variations": [
         {
           "name": "default",
-          "displayName": "Infinity Loop",
+          "displayName": "Conic Spinner",
           "tier": "free",
-          "description": "A dot traces the mathematical lemniscate (infinity symbol) path smoothly and continuously",
+          "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -702,38 +2161,20 @@
             {
               "name": "width",
               "type": "number",
-              "default": 80,
+              "default": 60,
               "description": "Width of the loader container in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 40,
+              "default": 60,
               "description": "Height of the loader container in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of the traveling dot"
-            },
-            {
-              "name": "pathColor",
-              "type": "string",
-              "default": "#cccccc",
-              "description": "Color of the infinity path outline"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 6,
-              "description": "Diameter of the traveling dot in pixels"
-            },
-            {
-              "name": "showPath",
-              "type": "boolean",
-              "default": true,
-              "description": "Whether to show the infinity symbol path outline"
+              "description": "Fill color of the spinner"
             },
             {
               "name": "isAnimating",
@@ -807,27 +2248,27 @@
       ]
     },
     {
-      "slug": "hexagon-rotate",
-      "name": "Hexagon Rotate",
+      "slug": "circle-spinner-wipe",
+      "name": "Circle Spinner Wipe",
       "category": "loaders",
       "tags": [
-        "hexagon",
-        "rotate",
-        "geometric",
         "spinner",
+        "circle",
+        "wipe",
+        "rotate",
         "simple",
         "smooth",
-        "polygon",
-        "minimal"
+        "progress",
+        "ring"
       ],
-      "description": "A regular hexagon spins continuously for a clean geometric loading animation",
+      "description": "A circular ring that progressively reveals its stroke clockwise like a loading progress arc",
       "createdAt": "2026-02-26",
       "variations": [
         {
           "name": "default",
-          "displayName": "Hexagon Rotate",
+          "displayName": "Circle Spinner Wipe",
           "tier": "free",
-          "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+          "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -836,38 +2277,92 @@
             {
               "name": "width",
               "type": "number",
-              "default": 50,
+              "default": 60,
               "description": "Width of the loader container in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 50,
+              "default": 60,
               "description": "Height of the loader container in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of the hexagon"
+              "description": "Color of the animated wipe ring"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#dddddd",
+              "description": "Color of the background track ring"
             },
             {
               "name": "thickness",
               "type": "number",
-              "default": 3,
-              "description": "Stroke width when not filled, in pixels"
-            },
-            {
-              "name": "filled",
-              "type": "boolean",
-              "default": false,
-              "description": "Whether to render the hexagon as filled or outline only"
+              "default": 10,
+              "description": "Stroke width of the rings in pixels"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "breath",
+      "name": "Breath",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "breath",
+        "pulse",
+        "glow",
+        "ambient",
+        "macbook",
+        "minimal"
+      ],
+      "description": "A soft glowing circle that expands and contracts on a slow 4-second breathing rhythm",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Breath",
+          "tier": "free",
+          "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the breathing circle"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
             }
           ]
         }
@@ -1413,27 +2908,26 @@
       ]
     },
     {
-      "slug": "conic-spinner",
-      "name": "Conic Spinner",
+      "slug": "ball-bounce-slide",
+      "name": "Ball Bounce Slide",
       "category": "loaders",
       "tags": [
-        "spinner",
-        "rotate",
-        "circle",
-        "fill",
-        "conic",
+        "bounce",
+        "slide",
+        "ball",
         "simple",
-        "smooth",
-        "progress"
+        "continuous",
+        "linear",
+        "horizontal"
       ],
-      "description": "A circular spinner that fills like a pie chart, revealing color clockwise in 8 stepped increments",
+      "description": "A ball bounces along the ground while sliding continuously from left to right",
       "createdAt": "2026-02-26",
       "variations": [
         {
           "name": "default",
-          "displayName": "Conic Spinner",
+          "displayName": "Ball Bounce Slide",
           "tier": "free",
-          "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+          "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -1442,20 +2936,26 @@
             {
               "name": "width",
               "type": "number",
-              "default": 60,
+              "default": 90,
               "description": "Width of the loader container in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 60,
+              "default": 45,
               "description": "Height of the loader container in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Fill color of the spinner"
+              "description": "Color of the ball"
+            },
+            {
+              "name": "lineColor",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ground line"
             },
             {
               "name": "isAnimating",
@@ -1468,27 +2968,26 @@
       ]
     },
     {
-      "slug": "circle-spinner-wipe",
-      "name": "Circle Spinner Wipe",
+      "slug": "ball-bounce-dashed",
+      "name": "Ball Bounce Dashed",
       "category": "loaders",
       "tags": [
-        "spinner",
-        "circle",
-        "wipe",
-        "rotate",
+        "bounce",
+        "ball",
         "simple",
-        "smooth",
-        "progress",
-        "ring"
+        "continuous",
+        "animated-line",
+        "dash",
+        "centered"
       ],
-      "description": "A circular ring that progressively reveals its stroke clockwise like a loading progress arc",
+      "description": "A centered ball bounces while an animated dashed line scrolls beneath it",
       "createdAt": "2026-02-26",
       "variations": [
         {
           "name": "default",
-          "displayName": "Circle Spinner Wipe",
+          "displayName": "Ball Bounce Dashed",
           "tier": "free",
-          "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+          "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -1497,32 +2996,26 @@
             {
               "name": "width",
               "type": "number",
-              "default": 60,
+              "default": 90,
               "description": "Width of the loader container in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 60,
+              "default": 45,
               "description": "Height of the loader container in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of the animated wipe ring"
+              "description": "Color of the ball"
             },
             {
-              "name": "backgroundColor",
+              "name": "lineColor",
               "type": "string",
-              "default": "#dddddd",
-              "description": "Color of the background track ring"
-            },
-            {
-              "name": "thickness",
-              "type": "number",
-              "default": 10,
-              "description": "Stroke width of the rings in pixels"
+              "default": "currentColor",
+              "description": "Color of the dashed ground line"
             },
             {
               "name": "isAnimating",
@@ -1595,27 +3088,26 @@
       ]
     },
     {
-      "slug": "dot-circle-expand",
-      "name": "Dot Circle Expand",
+      "slug": "ball-bounce-alternate",
+      "name": "Ball Bounce Alternate",
       "category": "loaders",
       "tags": [
-        "dots",
-        "circle",
-        "radial",
-        "expand",
-        "pulse",
-        "multi",
-        "smooth",
-        "rotate"
+        "bounce",
+        "slide",
+        "ball",
+        "simple",
+        "alternating",
+        "linear",
+        "horizontal"
       ],
-      "description": "A center dot surrounded by four corner dots that expand outward and contract back in a pulsing pattern",
+      "description": "A ball bounces along the ground while sliding back and forth in alternating directions",
       "createdAt": "2026-02-26",
       "variations": [
         {
           "name": "default",
-          "displayName": "Dot Circle Expand",
+          "displayName": "Ball Bounce Alternate",
           "tier": "free",
-          "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
+          "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -1624,32 +3116,26 @@
             {
               "name": "width",
               "type": "number",
-              "default": 40,
+              "default": 90,
               "description": "Width of the loader container in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 40,
+              "default": 45,
               "description": "Height of the loader container in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of all dots"
+              "description": "Color of the ball"
             },
             {
-              "name": "centerDotSize",
-              "type": "number",
-              "default": 10,
-              "description": "Diameter of the center dot in pixels"
-            },
-            {
-              "name": "cornerDotSize",
-              "type": "number",
-              "default": 9,
-              "description": "Diameter of each corner dot in pixels"
+              "name": "lineColor",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ground line"
             },
             {
               "name": "isAnimating",
@@ -1998,26 +3484,25 @@
       ]
     },
     {
-      "slug": "ball-bounce-slide",
-      "name": "Ball Bounce Slide",
+      "slug": "app-download",
+      "name": "App Download",
       "category": "loaders",
       "tags": [
-        "bounce",
-        "slide",
-        "ball",
-        "simple",
-        "continuous",
-        "linear",
-        "horizontal"
+        "apple",
+        "download",
+        "arc",
+        "progress",
+        "stroke",
+        "appstore"
       ],
-      "description": "A ball bounces along the ground while sliding continuously from left to right",
-      "createdAt": "2026-02-26",
+      "description": "A single circular arc draws itself from 12 o'clock clockwise, then resets — like the App Store download ring",
+      "createdAt": "2026-05-14",
       "variations": [
         {
           "name": "default",
-          "displayName": "Ball Bounce Slide",
+          "displayName": "App Download",
           "tier": "free",
-          "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
+          "description": "A rounded arc sweeps around a faint track using strokeDashoffset animation, with a brief pause between each full rotation",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -2026,58 +3511,57 @@
             {
               "name": "width",
               "type": "number",
-              "default": 90,
-              "description": "Width of the loader container in pixels"
+              "default": 100,
+              "description": "Width of the loader in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 45,
-              "description": "Height of the loader container in pixels"
+              "default": 100,
+              "description": "Height of the loader in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of the ball"
+              "description": "Stroke color of the arc"
             },
             {
-              "name": "lineColor",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the ground line"
+              "name": "trackOpacity",
+              "type": "number",
+              "default": 0.12,
+              "description": "Opacity of the background track circle"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
               "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
+              "description": "Controls whether the animation runs"
             }
           ]
         }
       ]
     },
     {
-      "slug": "ball-bounce-dashed",
-      "name": "Ball Bounce Dashed",
+      "slug": "activity-rings",
+      "name": "Activity Rings",
       "category": "loaders",
       "tags": [
-        "bounce",
-        "ball",
-        "simple",
-        "continuous",
-        "animated-line",
-        "dash",
-        "centered"
+        "apple",
+        "watch",
+        "rings",
+        "arcs",
+        "concentric",
+        "progress"
       ],
-      "description": "A centered ball bounces while an animated dashed line scrolls beneath it",
-      "createdAt": "2026-02-26",
+      "description": "Three concentric arcs inspired by Apple Watch Activity rings, each spinning at a different speed",
+      "createdAt": "2026-05-14",
       "variations": [
         {
           "name": "default",
-          "displayName": "Ball Bounce Dashed",
+          "displayName": "Activity Rings",
           "tier": "free",
-          "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
+          "description": "Three nested arcs (75% visible) rotate at different speeds — outer slowest, inner fastest — with decreasing opacity inward",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -2086,92 +3570,26 @@
             {
               "name": "width",
               "type": "number",
-              "default": 90,
-              "description": "Width of the loader container in pixels"
+              "default": 100,
+              "description": "Width of the loader in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 45,
-              "description": "Height of the loader container in pixels"
+              "default": 100,
+              "description": "Height of the loader in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of the ball"
-            },
-            {
-              "name": "lineColor",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the dashed ground line"
+              "description": "Stroke color of the rings"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
               "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "ball-bounce-alternate",
-      "name": "Ball Bounce Alternate",
-      "category": "loaders",
-      "tags": [
-        "bounce",
-        "slide",
-        "ball",
-        "simple",
-        "alternating",
-        "linear",
-        "horizontal"
-      ],
-      "description": "A ball bounces along the ground while sliding back and forth in alternating directions",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Ball Bounce Alternate",
-          "tier": "free",
-          "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 90,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 45,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the ball"
-            },
-            {
-              "name": "lineColor",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the ground line"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
+              "description": "Controls whether the animation runs"
             }
           ]
         }
@@ -2179,5 +3597,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-03-06T08:21:59.779Z"
+  "lastUpdated": "2026-05-14T09:53:10.813Z"
 }

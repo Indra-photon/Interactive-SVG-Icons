@@ -1,0 +1,43 @@
+{
+  "name": "Spotlight",
+  "category": "loaders",
+  "tags": ["spotlight", "glow", "ambient", "radial", "beam", "drift", "light"],
+  "description": "A soft radial gradient oval drifts from left to right like a light beam, then resets",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Spotlight",
+      "tier": "free",
+      "description": "An ambient spotlight beam drifts slowly across the container — bright at center, fading to nothing at the edges — then reappears from the left",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 200,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the spotlight beam"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

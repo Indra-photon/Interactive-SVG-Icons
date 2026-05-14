@@ -1,0 +1,49 @@
+{
+  "name": "Scan Line",
+  "category": "loaders",
+  "tags": ["bar", "scan", "gradient", "linear", "progress", "sweep", "trail"],
+  "description": "A gradient sweep travels across a thin bar from left to right, then resets and repeats",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Scan Line",
+      "tier": "free",
+      "description": "A glowing gradient segment — bright at the leading edge, fading behind — sweeps across a faint track and resets",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 200,
+          "description": "Width of the bar in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 4,
+          "description": "Thickness of the bar in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Color of the gradient sweep"
+        },
+        {
+          "name": "trailLength",
+          "type": "number",
+          "default": 80,
+          "description": "Length of the gradient segment in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}

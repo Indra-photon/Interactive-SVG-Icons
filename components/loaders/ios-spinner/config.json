@@ -1,0 +1,23 @@
+{
+  "name": "iOS Spinner",
+  "category": "loaders",
+  "tags": ["apple", "ios", "macos", "spinner", "spokes", "radial", "classic"],
+  "description": "The classic macOS/iOS radial spoke spinner — 12 rounded spokes with linear opacity comet tail",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Classic",
+      "tier": "free",
+      "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Color of the spokes" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

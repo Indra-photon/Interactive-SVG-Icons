@@ -1,0 +1,23 @@
+{
+  "name": "iOS Spinner Grow",
+  "category": "loaders",
+  "tags": ["apple", "ios", "macos", "spinner", "grow", "bloom", "radial", "extend"],
+  "description": "Each spoke shoots outward radially as it activates — a blooming radial extension effect",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grow",
+      "tier": "free",
+      "description": "Each spoke shoots outward radially as it activates — a blooming radial extension effect",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Color of the spokes" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Grid Clock",
+  "category": "loaders",
+  "tags": ["grid", "clock", "dots", "matrix", "clockwise", "radial"],
+  "description": "3×3 grid dots light up clockwise starting from the 12 o'clock position, center dot last",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Clock",
+      "tier": "free",
+      "description": "Dots sweep clockwise from top-center (12 o'clock) through all 8 outer positions, then the center fires last",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
+        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

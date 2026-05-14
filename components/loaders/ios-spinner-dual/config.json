@@ -1,0 +1,23 @@
+{
+  "name": "iOS Spinner Dual",
+  "category": "loaders",
+  "tags": ["apple", "ios", "macos", "spinner", "dual", "gyroscope", "counter-rotate"],
+  "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dual Ring",
+      "tier": "free",
+      "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Color of the spokes" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

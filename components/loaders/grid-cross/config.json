@@ -1,0 +1,24 @@
+{
+  "name": "Grid Cross",
+  "category": "loaders",
+  "tags": ["grid", "cross", "plus", "dots", "matrix", "alternate"],
+  "description": "3×3 grid alternates between the cross shape (+ pattern) and the 4 corner dots",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Cross",
+      "tier": "free",
+      "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
+        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

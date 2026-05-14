@@ -1,0 +1,24 @@
+{
+  "name": "App Download",
+  "category": "loaders",
+  "tags": ["apple", "download", "arc", "progress", "stroke", "appstore"],
+  "description": "A single circular arc draws itself from 12 o'clock clockwise, then resets — like the App Store download ring",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "App Download",
+      "tier": "free",
+      "description": "A rounded arc sweeps around a faint track using strokeDashoffset animation, with a brief pause between each full rotation",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Stroke color of the arc" },
+        { "name": "trackOpacity", "type": "number", "default": 0.12, "description": "Opacity of the background track circle" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

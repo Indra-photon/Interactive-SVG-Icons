@@ -1,0 +1,23 @@
+{
+  "name": "Breath",
+  "category": "loaders",
+  "tags": ["apple", "breath", "pulse", "glow", "ambient", "macbook", "minimal"],
+  "description": "A soft glowing circle that expands and contracts on a slow 4-second breathing rhythm",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Breath",
+      "tier": "free",
+      "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Color of the breathing circle" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

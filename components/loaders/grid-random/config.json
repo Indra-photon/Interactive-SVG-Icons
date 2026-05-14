@@ -1,0 +1,24 @@
+{
+  "name": "Grid Random",
+  "category": "loaders",
+  "tags": ["grid", "random", "dots", "matrix", "scatter", "noise"],
+  "description": "3×3 grid dots fire in a pre-seeded random order, creating an unpredictable scatter pattern",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Random",
+      "tier": "free",
+      "description": "Dots activate in a fixed but non-sequential order that reads as random — like a matrix initialising",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
+        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

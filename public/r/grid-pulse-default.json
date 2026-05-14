@@ -1,0 +1,30 @@
+{
+  "name": "grid-pulse-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/grid-pulse/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface GridPulseProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotSize?: number;\n  isAnimating?: boolean;\n}\n\nexport function GridPulse({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  dotSize = 16,\n  isAnimating = true,\n}: GridPulseProps) {\n  const ROWS = 3;\n  const COLS = 3;\n\n  // Divide the 100×100 viewBox into 4 equal parts — dots sit at 25, 50, 75\n  const stride = 100 / 4;\n  const dotRadius = dotSize / 2;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: ROWS }).map((_, row) =>\n        Array.from({ length: COLS }).map((_, col) => {\n          const cx = stride + col * stride; // 25, 50, 75\n          const cy = stride + row * stride; // 25, 50, 75\n\n          // Diagonal index drives the wave: top-left (0) → bottom-right (4)\n          const diagonalDelay = (row + col) * 0.13;\n\n          return (\n            <motion.circle\n              key={`${row}-${col}`}\n              cx={cx}\n              cy={cy}\n              fill={color}\n              animate={{\n                r: [dotRadius * 0.4, dotRadius, dotRadius * 0.4],\n                opacity: [0.15, 1, 0.15],\n              }}\n              transition={{\n                duration: 1.6,\n                repeat: isAnimating ? Infinity : 0,\n                delay: diagonalDelay,\n                ease: 'easeInOut',\n                times: [0, 0.35, 1],\n              }}\n            />\n          );\n        })\n      )}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Grid Pulse - Grid Pulse",
+    "description": "Nine dots arranged in a 3×3 grid light up and fade in a rolling diagonal wave, top-left to bottom-right",
+    "category": "loaders",
+    "tags": [
+      "grid",
+      "dots",
+      "pulse",
+      "wave",
+      "diagonal",
+      "matrix"
+    ],
+    "animationType": "loop"
+  }
+}

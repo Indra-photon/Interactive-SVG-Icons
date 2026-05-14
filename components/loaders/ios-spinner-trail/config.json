@@ -1,0 +1,23 @@
+{
+  "name": "iOS Spinner Trail",
+  "category": "loaders",
+  "tags": ["apple", "ios", "macos", "spinner", "trail", "comet", "sharp", "exponential"],
+  "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, creating an intense laser comet",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Sharp Trail",
+      "tier": "free",
+      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Color of the spokes" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

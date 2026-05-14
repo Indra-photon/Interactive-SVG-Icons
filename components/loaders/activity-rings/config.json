@@ -1,0 +1,23 @@
+{
+  "name": "Activity Rings",
+  "category": "loaders",
+  "tags": ["apple", "watch", "rings", "arcs", "concentric", "progress"],
+  "description": "Three concentric arcs inspired by Apple Watch Activity rings, each spinning at a different speed",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Activity Rings",
+      "tier": "free",
+      "description": "Three nested arcs (75% visible) rotate at different speeds — outer slowest, inner fastest — with decreasing opacity inward",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Stroke color of the rings" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

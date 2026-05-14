@@ -1,0 +1,30 @@
+{
+  "name": "grid-cross-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/grid-cross/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface GridCrossProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotSize?: number;\n  isAnimating?: boolean;\n}\n\nexport function GridCross({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  dotSize = 16,\n  isAnimating = true,\n}: GridCrossProps) {\n  const stride = 100 / 4;\n  const dotRadius = dotSize / 2;\n\n  // Cross (center row + center col) fires first, corners fire second\n  const delays = [\n    0.4, 0,   0.4,\n    0,   0,   0,\n    0.4, 0,   0.4,\n  ];\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: 3 }).map((_, row) =>\n        Array.from({ length: 3 }).map((_, col) => (\n          <motion.circle\n            key={`${row}-${col}`}\n            cx={stride + col * stride}\n            cy={stride + row * stride}\n            fill={color}\n            animate={{\n              r: [dotRadius * 0.4, dotRadius, dotRadius * 0.4],\n              opacity: [0.15, 1, 0.15],\n            }}\n            transition={{\n              duration: 1.4,\n              repeat: isAnimating ? Infinity : 0,\n              delay: delays[row * 3 + col],\n              ease: 'easeInOut',\n              times: [0, 0.35, 1],\n            }}\n          />\n        ))\n      )}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Grid Cross - Grid Cross",
+    "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
+    "category": "loaders",
+    "tags": [
+      "grid",
+      "cross",
+      "plus",
+      "dots",
+      "matrix",
+      "alternate"
+    ],
+    "animationType": "loop"
+  }
+}

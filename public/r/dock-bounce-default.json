@@ -1,0 +1,31 @@
+{
+  "name": "dock-bounce-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/dock-bounce/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface DockBounceProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  isAnimating?: boolean;\n}\n\nexport function DockBounce({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  isAnimating = true,\n}: DockBounceProps) {\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {/* Shadow under the icon — squishes when icon lands */}\n      <motion.ellipse\n        cx={50}\n        cy={84}\n        fill={color}\n        opacity={0.15}\n        animate={{\n          rx: [10, 14, 10, 12, 10, 11, 10],\n          ry: [3, 4.5, 3, 3.8, 3, 3.3, 3],\n          opacity: [0.25, 0.1, 0.25, 0.15, 0.25, 0.2, 0.25],\n        }}\n        transition={{\n          duration: 1.4,\n          repeat: isAnimating ? Infinity : 0,\n          repeatDelay: 1,\n          times: [0, 0.25, 0.5, 0.65, 0.8, 0.9, 1],\n          ease: 'easeOut',\n        }}\n      />\n\n      {/* App icon — rounded square that bounces */}\n      <motion.rect\n        x={25}\n        y={25}\n        width={50}\n        height={50}\n        rx={12}\n        fill={color}\n        style={{ transformOrigin: '50px 75px' }}\n        animate={{\n          y: isAnimating ? [0, -38, 0, -14, 0, -5, 0] : 0,\n          scaleX: [1, 1, 1.14, 1, 1.06, 1, 1],\n          scaleY: [1, 1, 0.82, 1, 0.92, 1, 1],\n        }}\n        transition={{\n          duration: 1.4,\n          repeat: isAnimating ? Infinity : 0,\n          repeatDelay: 1,\n          times: [0, 0.25, 0.5, 0.65, 0.8, 0.9, 1],\n          ease: 'easeOut',\n        }}\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Dock Bounce - Dock Bounce",
+    "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
+    "category": "loaders",
+    "tags": [
+      "apple",
+      "macos",
+      "dock",
+      "bounce",
+      "squash",
+      "stretch",
+      "icon"
+    ],
+    "animationType": "loop"
+  }
+}

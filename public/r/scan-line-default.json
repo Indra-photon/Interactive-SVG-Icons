@@ -1,0 +1,31 @@
+{
+  "name": "scan-line-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/scan-line/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface ScanLineProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  trailLength?: number;\n  isAnimating?: boolean;\n}\n\nexport function ScanLine({\n  width = 200,\n  height = 4,\n  color = 'currentColor',\n  trailLength = 80,\n  isAnimating = true,\n}: ScanLineProps) {\n  const gradientId = `scan-gradient-${width}-${height}`;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <linearGradient id={gradientId} x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n          <stop offset=\"0%\" stopColor={color} stopOpacity=\"0\" />\n          <stop offset=\"60%\" stopColor={color} stopOpacity=\"0.5\" />\n          <stop offset=\"100%\" stopColor={color} stopOpacity=\"1\" />\n        </linearGradient>\n      </defs>\n\n      {/* Faint background track */}\n      <rect\n        x={0}\n        y={0}\n        width={width}\n        height={height}\n        fill={color}\n        opacity={0.12}\n        rx={height / 2}\n      />\n\n      {/* Gradient segment sweeping left to right */}\n      <motion.rect\n        y={0}\n        width={trailLength}\n        height={height}\n        rx={height / 2}\n        fill={`url(#${gradientId})`}\n        animate={{ x: isAnimating ? [-trailLength, width] : -trailLength }}\n        transition={{\n          duration: 1.4,\n          repeat: isAnimating ? Infinity : 0,\n          ease: 'linear',\n          repeatDelay: 0.4,\n        }}\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Scan Line - Scan Line",
+    "description": "A glowing gradient segment — bright at the leading edge, fading behind — sweeps across a faint track and resets",
+    "category": "loaders",
+    "tags": [
+      "bar",
+      "scan",
+      "gradient",
+      "linear",
+      "progress",
+      "sweep",
+      "trail"
+    ],
+    "animationType": "loop"
+  }
+}

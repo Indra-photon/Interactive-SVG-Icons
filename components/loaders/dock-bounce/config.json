@@ -1,0 +1,23 @@
+{
+  "name": "Dock Bounce",
+  "category": "loaders",
+  "tags": ["apple", "macos", "dock", "bounce", "squash", "stretch", "icon"],
+  "description": "A rounded square app icon bounces with macOS dock physics — squash on landing, decaying secondary bounces",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dock Bounce",
+      "tier": "free",
+      "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the icon" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

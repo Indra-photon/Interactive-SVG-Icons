@@ -1,0 +1,24 @@
+{
+  "name": "Grid Spiral",
+  "category": "loaders",
+  "tags": ["grid", "spiral", "dots", "matrix", "clockwise", "sequential"],
+  "description": "3×3 grid lights up in a clockwise spiral from top-left corner to the center",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Spiral",
+      "tier": "free",
+      "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
+        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

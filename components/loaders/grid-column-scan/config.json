@@ -1,0 +1,24 @@
+{
+  "name": "Grid Column Scan",
+  "category": "loaders",
+  "tags": ["grid", "column", "scan", "dots", "matrix", "vertical"],
+  "description": "3×3 grid sweeps column by column left to right — all 3 dots in each column fire together",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Column Scan",
+      "tier": "free",
+      "description": "A full column of dots lights up simultaneously, sweeping left to right like a vertical scan bar",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
+        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

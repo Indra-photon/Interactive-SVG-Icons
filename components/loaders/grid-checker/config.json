@@ -1,0 +1,24 @@
+{
+  "name": "Grid Checker",
+  "category": "loaders",
+  "tags": ["grid", "checker", "checkerboard", "dots", "matrix", "alternate"],
+  "description": "3×3 grid alternates in a checkerboard pattern — odd and even positions pulse out of phase",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Checker",
+      "tier": "free",
+      "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
+        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

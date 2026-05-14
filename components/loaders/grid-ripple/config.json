@@ -1,0 +1,24 @@
+{
+  "name": "Grid Ripple",
+  "category": "loaders",
+  "tags": ["grid", "ripple", "dots", "matrix", "radial", "expand"],
+  "description": "3×3 grid pulses outward from the center like a water drop ripple",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Ripple",
+      "tier": "free",
+      "description": "Center dot fires first, then the 4 adjacent edges, then the 4 corners — concentric expansion outward",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
+        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

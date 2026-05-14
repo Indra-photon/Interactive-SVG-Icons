@@ -1,0 +1,23 @@
+{
+  "name": "iOS Spinner Dots",
+  "category": "loaders",
+  "tags": ["apple", "ios", "macos", "spinner", "dots", "orbit", "radial"],
+  "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dots",
+      "tier": "free",
+      "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Color of the dots" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

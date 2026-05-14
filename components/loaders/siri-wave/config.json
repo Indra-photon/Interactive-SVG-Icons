@@ -1,0 +1,23 @@
+{
+  "name": "Siri Wave",
+  "category": "loaders",
+  "tags": ["apple", "siri", "wave", "bars", "audio", "voice", "organic"],
+  "description": "Five vertical bars animate in an organic wave pattern inspired by Siri's audio visualization",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Siri Wave",
+      "tier": "free",
+      "description": "Center bar tallest, outer bars shortest — all oscillate with staggered delays creating a smooth symmetric wave that pulses outward from center",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
+        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
+        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the bars" },
+        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
+      ]
+    }
+  ]
+}

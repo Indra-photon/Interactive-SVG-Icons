@@ -1,0 +1,31 @@
+{
+  "name": "ios-spinner-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "components/loaders/ios-spinner/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface IosSpinnerProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  isAnimating?: boolean;\n}\n\nexport function IosSpinner({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  isAnimating = true,\n}: IosSpinnerProps) {\n  const spokes = 12;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <motion.g\n        style={{ transformOrigin: '50px 50px' }}\n        animate={{ rotate: isAnimating ? 360 : 0 }}\n        transition={{\n          duration: 1,\n          repeat: isAnimating ? Infinity : 0,\n          ease: 'linear',\n        }}\n      >\n        {Array.from({ length: spokes }).map((_, i) => (\n          <rect\n            key={i}\n            x={48.5}\n            y={26}\n            width={3}\n            height={10}\n            rx={1.5}\n            fill={color}\n            opacity={1 - (i / spokes) * 0.85}\n            transform={`rotate(${(360 / spokes) * i}, 50, 50)`}\n          />\n        ))}\n      </motion.g>\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "iOS Spinner - Classic",
+    "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
+    "category": "loaders",
+    "tags": [
+      "apple",
+      "ios",
+      "macos",
+      "spinner",
+      "spokes",
+      "radial",
+      "classic"
+    ],
+    "animationType": "loop"
+  }
+}

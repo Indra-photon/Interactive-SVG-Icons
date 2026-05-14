@@ -1,0 +1,49 @@
+{
+  "name": "Grid Pulse",
+  "category": "loaders",
+  "tags": ["grid", "dots", "pulse", "wave", "diagonal", "matrix"],
+  "description": "A 3×3 grid of dots that pulse in a diagonal wave from top-left to bottom-right",
+  "createdAt": "2026-05-14",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Grid Pulse",
+      "tier": "free",
+      "description": "Nine dots arranged in a 3×3 grid light up and fade in a rolling diagonal wave, top-left to bottom-right",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 100,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 100,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Fill color of the dots"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 16,
+          "description": "Diameter of each dot in pixels (within the 100×100 viewBox)"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        }
+      ]
+    }
+  ]
+}
