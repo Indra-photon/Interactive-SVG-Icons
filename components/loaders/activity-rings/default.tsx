@@ -7,6 +7,10 @@ interface ActivityRingsProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  strokeWidth?: number;
+  strokeLinecap?: 'round' | 'butt' | 'square';
 }
 
 export function ActivityRings({
@@ -14,11 +18,15 @@ export function ActivityRings({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 2.4,
+  ease = 'linear',
+  strokeWidth = 5,
+  strokeLinecap = 'round',
 }: ActivityRingsProps) {
   const rings = [
-    { r: 38, speed: 2.4, opacity: 1 },
-    { r: 27, speed: 1.8, opacity: 0.7 },
-    { r: 16, speed: 1.2, opacity: 0.4 },
+    { r: 38, speed: duration, opacity: 1 },
+    { r: 27, speed: duration * 0.75, opacity: 0.7 },
+    { r: 16, speed: duration * 0.5, opacity: 0.4 },
   ];
 
   return (
@@ -44,7 +52,7 @@ export function ActivityRings({
               cy={50}
               r={r}
               stroke={color}
-              strokeWidth={5}
+              strokeWidth={strokeWidth}
               fill="none"
               opacity={0.1}
             />
@@ -56,7 +64,7 @@ export function ActivityRings({
               transition={{
                 duration: speed,
                 repeat: isAnimating ? Infinity : 0,
-                ease: 'linear',
+                ease: ease,
               }}
             >
               <circle
@@ -64,9 +72,9 @@ export function ActivityRings({
                 cy={50}
                 r={r}
                 stroke={color}
-                strokeWidth={5}
+                strokeWidth={strokeWidth}
                 strokeDasharray={dashArray}
-                strokeLinecap="round"
+                strokeLinecap={strokeLinecap}
                 fill="none"
                 opacity={opacity}
               />

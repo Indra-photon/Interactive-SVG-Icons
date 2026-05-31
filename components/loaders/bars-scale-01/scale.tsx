@@ -8,6 +8,9 @@ interface BarsScaleProps {
   color?: string;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  staggerDelay?: number;
 }
 
 export function BarsScale({
@@ -15,7 +18,10 @@ export function BarsScale({
   height = 40,
   color = "currentColor",
   gap = 4,
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.0,
+  ease = 'easeInOut',
+  staggerDelay = 0.15,
 }: BarsScaleProps) {
   const barWidth = (width - gap * 2) / 3;
   
@@ -42,8 +48,8 @@ export function BarsScale({
           transition={{
             duration: 1,
             repeat: isAnimating ? Infinity : 0,
-            ease: "easeInOut",
-            delay: index * 0.15
+            ease: ease,
+            delay: index * staggerDelay
           }}
         />
       ))}

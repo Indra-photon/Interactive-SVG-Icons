@@ -7,6 +7,8 @@ interface IosSpinnerProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function IosSpinner({
@@ -14,6 +16,8 @@ export function IosSpinner({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.0,
+  ease = 'linear',
 }: IosSpinnerProps) {
   const spokes = 12;
 
@@ -33,7 +37,7 @@ export function IosSpinner({
         transition={{
           duration: 1,
           repeat: isAnimating ? Infinity : 0,
-          ease: 'linear',
+          ease: ease,
         }}
       >
         {Array.from({ length: spokes }).map((_, i) => (

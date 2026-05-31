@@ -9,6 +9,8 @@ interface AudioBarsHorizontalProps {
   barWidth?: number;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function AudioBarsHorizontal({
@@ -17,7 +19,9 @@ export function AudioBarsHorizontal({
   color = "currentColor",
   barWidth = 4,
   gap = 3,
-  isAnimating = true
+  isAnimating = true,
+  duration = 0.8,
+  ease = 'easeInOut',
 }: AudioBarsHorizontalProps) {
   const barCount = 6;
   const totalWidth = (barCount * barWidth) + ((barCount - 1) * gap);
@@ -54,9 +58,9 @@ export function AudioBarsHorizontal({
                 : [(height - maxHeight) / 2, (height - minHeight) / 2, (height - maxHeight) / 2]
             }}
             transition={{
-              duration: 0.8,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              ease: "easeInOut"
+              ease: ease
             }}
           />
         );

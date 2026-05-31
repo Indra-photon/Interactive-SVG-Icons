@@ -7,6 +7,8 @@ interface IosSpinnerDotsProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function IosSpinnerDots({
@@ -14,6 +16,8 @@ export function IosSpinnerDots({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.0,
+  ease = 'linear',
 }: IosSpinnerDotsProps) {
   const count = 12;
   const orbitRadius = 22;
@@ -31,7 +35,7 @@ export function IosSpinnerDots({
       <motion.g
         style={{ transformOrigin: '50px 50px' }}
         animate={{ rotate: isAnimating ? 360 : 0 }}
-        transition={{ duration: 1, repeat: isAnimating ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: 1, repeat: isAnimating ? Infinity : 0, ease: ease }}
       >
         {Array.from({ length: count }).map((_, i) => {
           const angle = (2 * Math.PI * i) / count - Math.PI / 2;

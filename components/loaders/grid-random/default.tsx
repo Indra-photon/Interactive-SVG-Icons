@@ -8,6 +8,9 @@ interface GridRandomProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridRandom({
@@ -16,16 +19,28 @@ export function GridRandom({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridRandomProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Pre-seeded scatter order: (1,2)→(0,1)→(2,1)→(1,0)→(2,2)→(0,0)→(1,1)→(2,0)→(0,2)
-  const delays = [
-    0.60, 0.12, 0.96,
-    0.36, 0.72, 0,
-    0.84, 0.24, 0.48,
-  ];
+  // Seeded pseudo-random scatter for a consistent look
+  let seed = 42;
+  const rng = () => {
+    seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+    return (seed >>> 0) / 0x100000000;
+  };
+  const totalDots = n * n;
+  const step = totalDots > 1 ? (duration * 0.69) / (totalDots - 1) : 0;
+  const order = Array.from({ length: totalDots }, (_, i) => i);
+  for (let i = totalDots - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  const delays = order.map(pos => pos * step);
 
   return (
     <svg
@@ -37,8 +52,8 @@ export function GridRandom({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -49,10 +64,10 @@ export function GridRandom({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

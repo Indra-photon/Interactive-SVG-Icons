@@ -8,6 +8,9 @@ interface GridSnakeProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridSnake({
@@ -16,16 +19,23 @@ export function GridSnake({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridSnakeProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Boustrophedon: row 0 L→R, row 1 R→L, row 2 L→R
-  const delays = [
-    0,    0.12, 0.24,
-    0.60, 0.48, 0.36,
-    0.72, 0.84, 0.96,
-  ];
+  // Boustrophedon: even rows sweep L→R, odd rows R→L
+  const totalDots = n * n;
+  const snakeStep = totalDots > 1 ? (duration * 0.69) / (totalDots - 1) : 0;
+  const delays = Array.from({ length: n }, (_, row) =>
+    Array.from({ length: n }, (_, col) => {
+      const effectiveCol = row % 2 === 0 ? col : n - 1 - col;
+      return (row * n + effectiveCol) * snakeStep;
+    })
+  ).flat();
 
   return (
     <svg
@@ -37,8 +47,8 @@ export function GridSnake({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -49,10 +59,10 @@ export function GridSnake({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

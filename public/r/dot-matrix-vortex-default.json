@@ -1,0 +1,30 @@
+{
+  "name": "dot-matrix-vortex-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/loaders/dot-matrix-vortex/default.tsx",
+      "content": "'use client';\n\nimport { useEffect, useMemo, useState } from 'react';\n\ninterface DotMatrixVortexProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotSize?: number;\n  isAnimating?: boolean;\n  duration?: number;\n  gridSize?: number;\n}\n\nconst BASE_OPACITY = 0.07;\nconst VORTEX_TAIL = [1, 0.72, 0.48, 0.28, 0.14, 0.07] as const;\n\n/**\n * Build clockwise perimeter cells for each concentric ring.\n * Ring 0 = outermost, ring maxDepth = center.\n */\nfunction buildRings(n: number): number[][] {\n  const rings: number[][] = [];\n  const maxDepth = Math.floor((n - 1) / 2);\n\n  for (let depth = 0; depth <= maxDepth; depth++) {\n    const top = depth, bottom = n - 1 - depth;\n    const left = depth, right = n - 1 - depth;\n    const cells: number[] = [];\n\n    if (top === bottom && left === right) {\n      // Single center cell\n      cells.push(top * n + left);\n    } else if (top + 1 === bottom && left + 1 === right) {\n      // 2×2 center — treat as a mini ring\n      cells.push(top * n + left);\n      cells.push(top * n + right);\n      cells.push(bottom * n + right);\n      cells.push(bottom * n + left);\n    } else {\n      for (let c = left; c <= right; c++) cells.push(top * n + c);\n      for (let r = top + 1; r <= bottom; r++) cells.push(r * n + right);\n      for (let c = right - 1; c >= left; c--) cells.push(bottom * n + c);\n      for (let r = bottom - 1; r >= top + 1; r--) cells.push(r * n + left);\n    }\n\n    rings.push(cells);\n  }\n  return rings;\n}\n\nexport function DotMatrixVortex({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  dotSize = 12,\n  isAnimating = true,\n  duration = 2,\n  gridSize = 5,\n}: DotMatrixVortexProps) {\n  const n = Math.max(3, Math.min(6, gridSize));\n  const stride = 100 / (n + 1);\n  const r = Math.min(dotSize, stride * 0.82) / 2;\n\n  const rings = useMemo(() => buildRings(n), [n]);\n\n  // Outer ring completes one revolution in `duration` seconds.\n  // Each inner ring is 2× faster than the one outside it (gyroscope effect).\n  const outerPerimeter = rings[0]?.length ?? 1;\n  const stepMs = Math.max(16, (duration * 1000) / outerPerimeter);\n\n  const [tick, setTick] = useState(0);\n\n  useEffect(() => {\n    if (!isAnimating) { setTick(0); return; }\n    const id = setInterval(() => setTick(t => t + 1), stepMs);\n    return () => clearInterval(id);\n  }, [isAnimating, stepMs]);\n\n  const opacities = useMemo(() => {\n    const ops = new Array(n * n).fill(BASE_OPACITY);\n\n    rings.forEach((ring, depth) => {\n      const ringLen = ring.length;\n      // Speed doubles with each inner ring\n      const speed = 1 << depth; // 1, 2, 4, 8…\n\n      if (ringLen === 1) {\n        // Single center cell — pulse on/off at its speed\n        const pulseOn = Math.floor(tick * speed / 3) % 2 === 0;\n        ops[ring[0]!] = pulseOn ? 0.85 : BASE_OPACITY;\n        return;\n      }\n\n      const headPos = (tick * speed) % ringLen;\n      for (let d = 0; d < VORTEX_TAIL.length && d < ringLen; d++) {\n        const pos = (headPos - d + ringLen) % ringLen;\n        const idx = ring[pos]!;\n        ops[idx] = Math.max(ops[idx], VORTEX_TAIL[d]);\n      }\n    });\n\n    return ops;\n  }, [tick, rings, n]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: n * n }, (_, i) => (\n        <circle\n          key={i}\n          cx={stride + (i % n) * stride}\n          cy={stride + Math.floor(i / n) * stride}\n          r={r}\n          fill={color}\n          opacity={opacities[i]}\n          style={{ transition: 'opacity 50ms linear' }}\n        />\n      ))}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Dot Matrix Vortex - Dot Matrix Vortex",
+    "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
+    "category": "loaders",
+    "tags": [
+      "dots",
+      "matrix",
+      "vortex",
+      "rings",
+      "rotation",
+      "gyroscope",
+      "orbit",
+      "concentric"
+    ],
+    "animationType": "loop"
+  }
+}

@@ -7,6 +7,9 @@ interface SpotlightProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  repeatDelay?: number;
 }
 
 export function Spotlight({
@@ -14,6 +17,9 @@ export function Spotlight({
   height = 60,
   color = 'currentColor',
   isAnimating = true,
+  duration = 2.0,
+  ease = 'easeInOut',
+  repeatDelay = 0.6,
 }: SpotlightProps) {
   const gradientId = `spotlight-gradient-${width}-${height}`;
 
@@ -54,8 +60,8 @@ export function Spotlight({
         transition={{
           duration: 2,
           repeat: isAnimating ? Infinity : 0,
-          ease: 'easeInOut',
-          repeatDelay: 0.6,
+          ease: ease,
+          repeatDelay: repeatDelay,
         }}
       />
     </svg>

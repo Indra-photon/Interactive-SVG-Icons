@@ -9,6 +9,8 @@ interface CrossExpandProps {
   crossThickness?: number;
   cornerSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function CrossExpand({
@@ -18,6 +20,8 @@ export function CrossExpand({
   crossThickness = 8,
   cornerSize = 12,
   isAnimating = true,
+  duration = 2.0,
+  ease = 'easeInOut',
 }: CrossExpandProps) {
   const cx = width / 2;
   const cy = height / 2;
@@ -91,7 +95,7 @@ export function CrossExpand({
               duration: 2,
               repeat: Infinity,
               times,
-              ease: 'easeInOut',
+              ease: ease,
             }}
             style={{ transformOrigin: `${centerX}px ${centerY}px` }}
           />

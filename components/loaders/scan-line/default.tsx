@@ -8,6 +8,9 @@ interface ScanLineProps {
   color?: string;
   trailLength?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  repeatDelay?: number;
 }
 
 export function ScanLine({
@@ -16,6 +19,9 @@ export function ScanLine({
   color = 'currentColor',
   trailLength = 80,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'linear',
+  repeatDelay = 0.4,
 }: ScanLineProps) {
   const gradientId = `scan-gradient-${width}-${height}`;
 
@@ -57,10 +63,10 @@ export function ScanLine({
         fill={`url(#${gradientId})`}
         animate={{ x: isAnimating ? [-trailLength, width] : -trailLength }}
         transition={{
-          duration: 1.4,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
-          ease: 'linear',
-          repeatDelay: 0.4,
+          ease: ease,
+          repeatDelay: repeatDelay,
         }}
       />
     </svg>

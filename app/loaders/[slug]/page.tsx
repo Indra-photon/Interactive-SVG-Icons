@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import type { LoaderRegistry } from '@/types/loader';
 import { CopyButton } from '@/components/loader-gallery/CopyButton';
-import { LoaderPreview } from '@/components/loader-gallery/LoaderPreview';
+import { LoaderConfigurator } from '@/components/loader-gallery/LoaderConfigurator';
 import { Container } from '@/components/Container';
 
 async function getLoader(slug: string) {
@@ -12,41 +12,41 @@ async function getLoader(slug: string) {
     const registryPath = path.join(process.cwd(), 'public/r/loaders.json');
     const content = await fs.readFile(registryPath, 'utf-8');
     const registry: LoaderRegistry = JSON.parse(content);
-    
-    const loader = registry.loaders.find(l => l.slug === slug);
-    return loader;
-  } catch (error) {
+    return registry.loaders.find(l => l.slug === slug);
+  } catch {
     return null;
   }
 }
 
-export default async function LoaderDetailPage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export default async function LoaderDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const loader = await getLoader(slug);
-  
+
   if (!loader) notFound();
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
   return (
-    <Container className=" px-4 py-16">
+    <Container className="px-4 py-16">
       <div className="max-w-4xl mx-auto">
         {/* Breadcrumb */}
-        <div className="mb-8 flex items-center gap-2 text-sm text-gray-600">
-          <Link href="/loaders" className="hover:text-stone-900">Loaders</Link>
+        <div className="mb-8 flex items-center gap-2 text-sm text-stone-500">
+          <Link href="/loaders" className="hover:text-stone-900 transition-colors">
+            Loaders
+          </Link>
           <span>/</span>
           <span className="text-stone-900">{loader.name}</span>
         </div>
-        
+
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl text-stone-900 font-sans mb-2">{loader.name}</h1>
           <p className="text-stone-600 font-sans mb-4 tracking-tighter">{loader.description}</p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {loader.tags.map(tag => (
               <span
                 key={tag}
@@ -59,98 +59,88 @@ export default async function LoaderDetailPage({
         </div>
 
         {/* Variations */}
-        <div className="space-y-12">
+        <div className="space-y-16">
           {loader.variations.map((variation: any) => {
             const cliCommand = `npx shadcn@latest add ${baseUrl}/r/${loader.slug}-${variation.name}.json`;
-            const componentName = variation.displayName.replace(/\s+/g, '');
-            
-            // Generate usage example dynamically from props
-            const propsString = variation.props && variation.props.length > 0
-              ? '\n' + variation.props.map((prop: any) => {
-                  const value = typeof prop.default === 'string' && prop.default !== 'currentColor'
-                    ? `"${prop.default}"`
-                    : prop.default;
-                  return `  ${prop.name}={${value}}`;
-                }).join('\n') + '\n'
-              : '';
-            
-            const usageExample = `<${componentName}${propsString}/>`;
 
             return (
               <div key={variation.name} className="border-t pt-12 first:border-t-0 first:pt-0">
-                <div className="mb-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h2 className="text-2xl font-sans text-stone-900">
+                {/* Variation header */}
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-2xl font-sans text-stone-900 mb-1">
                       {variation.displayName}
                     </h2>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      variation.tier === 'free' 
-                        ? 'bg-green-100 text-green-700' 
-                        : 'bg-purple-100 text-purple-700'
-                    }`}>
-                      {variation.tier}
-                    </span>
+                    <p className="text-stone-500 font-sans tracking-tighter text-sm">
+                      {variation.description}
+                    </p>
                   </div>
-                  <p className="text-stone-600 font-sans tracking-tighter">
-                    {variation.description}
-                  </p>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-medium shrink-0 ${
+                      variation.tier === 'free'
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        : 'bg-violet-50 text-violet-700 border border-violet-200'
+                    }`}
+                  >
+                    {variation.tier}
+                  </span>
                 </div>
-                
-                {/* Live Preview */}
-                <div className="bg-stone-50 rounded-lg p-12 mb-6 flex items-center justify-center border">
-                  <LoaderPreview loaderSlug={loader.slug} variationName={variation.name} />
+
+                {/* Configurator — preview + config controls + code */}
+                <div className="mb-10">
+                  <LoaderConfigurator
+                    loaderSlug={loader.slug}
+                    variation={variation}
+                  />
                 </div>
 
                 {/* Installation */}
                 <div className="mb-8">
-                  <h3 className="text-lg font-sans text-stone-900 mb-3">Installation</h3>
-                  <div className="bg-stone-900 text-stone-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                  <h3 className="text-sm font-semibold uppercase tracking-widest text-stone-400 mb-3">
+                    Installation
+                  </h3>
+                  <div className="bg-stone-950 text-stone-100 px-4 py-3.5 rounded-lg font-mono text-sm overflow-x-auto">
                     {cliCommand}
                   </div>
                   <CopyButton text={cliCommand} />
                 </div>
 
-                {/* Usage */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-sans text-stone-900 mb-3">Usage</h3>
-                  <div className="bg-stone-900 text-stone-100 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre">
-                    {usageExample}
-                  </div>
-                  <CopyButton text={usageExample} />
-                </div>
-                
-                {/* Props Documentation */}
-                {variation.props && variation.props.length > 0 && (
-                  <div className="mb-8">
-                    <h3 className="text-lg font-sans text-stone-900 mb-3">Props</h3>
-                    <div className="border rounded-lg overflow-hidden">
-                      <table className="w-full">
-                        <thead className="bg-stone-50">
-                          <tr>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-stone-900">Name</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-stone-900">Type</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-stone-900">Default</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-stone-900">Description</th>
+                {/* Props table */}
+                {variation.props?.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-semibold uppercase tracking-widest text-stone-400 mb-3">
+                      Props
+                    </h3>
+                    <div className="border border-stone-200 rounded-xl overflow-hidden">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="bg-stone-50 border-b border-stone-200">
+                            <th className="px-4 py-3 text-left font-medium text-stone-700">Name</th>
+                            <th className="px-4 py-3 text-left font-medium text-stone-700">Type</th>
+                            <th className="px-4 py-3 text-left font-medium text-stone-700">Default</th>
+                            <th className="px-4 py-3 text-left font-medium text-stone-700">Description</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-stone-200">
+                        <tbody className="divide-y divide-stone-100">
                           {variation.props.map((prop: any) => (
-                            <tr key={prop.name} className="hover:bg-stone-50">
+                            <tr key={prop.name} className="hover:bg-stone-50 transition-colors">
                               <td className="px-4 py-3">
-                                <code className="text-sm font-mono text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                                <code className="text-xs font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
                                   {prop.name}
                                 </code>
                               </td>
-                              <td className="px-4 py-3 text-sm text-stone-600 font-mono">
-                                {prop.type}
+                              <td className="px-4 py-3 text-xs font-mono text-stone-500">
+                                {prop.type === 'ease' ? 'string | number[]' : prop.type}
                               </td>
-                              <td className="px-4 py-3 text-sm text-stone-600 font-mono">
-                                {typeof prop.default === 'string' && prop.default !== 'currentColor'
-                                  ? `"${prop.default}"` 
+                              <td className="px-4 py-3 text-xs font-mono text-stone-500">
+                                {Array.isArray(prop.default)
+                                  ? `[${(prop.default as number[]).join(', ')}]`
+                                  : typeof prop.default === 'string'
+                                  ? `"${prop.default}"`
                                   : String(prop.default)}
                               </td>
-                              <td className="px-4 py-3 text-sm text-stone-600">
-                                {prop.description || '-'}
+                              <td className="px-4 py-3 text-xs text-stone-500">
+                                {prop.description || '—'}
                               </td>
                             </tr>
                           ))}

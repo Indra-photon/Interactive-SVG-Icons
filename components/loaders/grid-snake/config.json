@@ -1,8 +1,15 @@
 {
   "name": "Grid Snake",
   "category": "loaders",
-  "tags": ["grid", "snake", "dots", "matrix", "boustrophedon", "sequential"],
-  "description": "3×3 grid lights up in a snake path — row 0 left to right, row 1 right to left, row 2 left to right",
+  "tags": [
+    "grid",
+    "snake",
+    "dots",
+    "matrix",
+    "boustrophedon",
+    "sequential"
+  ],
+  "description": "3\u00d73 grid lights up in a snake path \u2014 row 0 left to right, row 1 right to left, row 2 left to right",
   "createdAt": "2026-05-14",
   "variations": [
     {
@@ -11,14 +18,66 @@
       "tier": "free",
       "description": "Dots activate in a boustrophedon (back-and-forth) path that slithers through all 9 positions",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
-        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
-        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
-        { "name": "color", "type": "string", "default": "currentColor", "description": "Fill color of the dots" },
-        { "name": "dotSize", "type": "number", "default": 16, "description": "Diameter of each dot in pixels" },
-        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
-      ]
+        {
+          "name": "width",
+          "type": "number",
+          "default": 100,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 100,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Fill color of the dots"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 16,
+          "description": "Diameter of each dot in pixels"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.4,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeInOut",
+          "description": "Easing function"
+        },
+        {
+          "name": "gridSize",
+          "type": "number",
+          "default": 3,
+          "min": 2,
+          "max": 6,
+          "step": 1,
+          "description": "Number of dots per row and column (n \u00d7 n grid)"
+        }
+      ],
+      "componentName": "GridSnake"
     }
   ]
 }

@@ -1,7 +1,16 @@
 {
   "name": "Hexagon Rotate",
   "category": "loaders",
-  "tags": ["hexagon", "rotate", "geometric", "spinner", "simple", "smooth", "polygon", "minimal"],
+  "tags": [
+    "hexagon",
+    "rotate",
+    "geometric",
+    "spinner",
+    "simple",
+    "smooth",
+    "polygon",
+    "minimal"
+  ],
   "description": "A regular hexagon spins continuously for a clean geometric loading animation",
   "createdAt": "2026-02-26",
   "variations": [
@@ -9,9 +18,11 @@
       "name": "default",
       "displayName": "Hexagon Rotate",
       "tier": "free",
-      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+      "description": "A hexagon outline or filled shape rotates 360\u00b0 continuously with smooth linear motion",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -48,8 +59,29 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 2.0,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [
+            0.4,
+            0,
+            0.6,
+            1
+          ],
+          "description": "Easing function"
         }
-      ]
+      ],
+      "componentName": "HexagonRotate"
     }
   ]
 }

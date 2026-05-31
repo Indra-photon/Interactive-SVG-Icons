@@ -9,6 +9,8 @@ interface AudioBarsSequentialProps {
   barWidth?: number;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function AudioBarsSequential({
@@ -17,7 +19,9 @@ export function AudioBarsSequential({
   color = "currentColor",
   barWidth = 4,
   gap = 3,
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.2,
+  ease = 'easeInOut',
 }: AudioBarsSequentialProps) {
   const barCount = 6;
   const totalWidth = (barCount * barWidth) + ((barCount - 1) * gap);
@@ -25,7 +29,6 @@ export function AudioBarsSequential({
 
   const minHeight = height * 0.3;
   const maxHeight = height * 0.8;
-  const duration = 1.2; // Total cycle duration
   const delayPerBar = duration / barCount; // Each bar triggers sequentially
   
   return (
@@ -54,7 +57,7 @@ export function AudioBarsSequential({
             transition={{
               duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              ease: "easeInOut",
+              ease: ease,
               delay: index * delayPerBar
             }}
           />

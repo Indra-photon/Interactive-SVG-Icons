@@ -1,0 +1,30 @@
+{
+  "name": "dot-matrix-rain-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/loaders/dot-matrix-rain/default.tsx",
+      "content": "'use client';\n\nimport { useEffect, useMemo, useState } from 'react';\n\ninterface DotMatrixRainProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotSize?: number;\n  isAnimating?: boolean;\n  duration?: number;\n  gridSize?: number;\n}\n\nconst BASE_OPACITY = 0.06;\n// Opacity of drop head + trail: index 0 = head (brightest), trailing up\nconst RAIN_TAIL = [1, 0.65, 0.38, 0.18, 0.08] as const;\n// Ticks the drop \"rests\" invisible after reaching the bottom\nconst COOLDOWN = 5;\n\nexport function DotMatrixRain({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  dotSize = 12,\n  isAnimating = true,\n  duration = 1.8,\n  gridSize = 5,\n}: DotMatrixRainProps) {\n  const n = Math.max(2, Math.min(6, gridSize));\n  const stride = 100 / (n + 1);\n  const r = Math.min(dotSize, stride * 0.82) / 2;\n\n  // Each column cycles independently: fall (n ticks) + cooldown (COOLDOWN ticks)\n  const cycleTicks = n + COOLDOWN;\n  // Stagger columns so they don't all start together\n  const colOffsets = useMemo(\n    () => Array.from({ length: n }, (_, c) => Math.round((c / n) * cycleTicks * 0.85)),\n    [n, cycleTicks]\n  );\n\n  const stepMs = Math.max(16, (duration * 1000) / cycleTicks);\n\n  const [tick, setTick] = useState(0);\n\n  useEffect(() => {\n    if (!isAnimating) { setTick(0); return; }\n    const id = setInterval(() => setTick(t => t + 1), stepMs);\n    return () => clearInterval(id);\n  }, [isAnimating, stepMs]);\n\n  const opacities = useMemo(() => {\n    const ops = new Array(n * n).fill(BASE_OPACITY);\n    for (let col = 0; col < n; col++) {\n      const phase = (tick + colOffsets[col]) % cycleTicks;\n      if (phase >= n) continue; // in cooldown — no active drop\n      const dropRow = phase; // current head row (0 = top, n-1 = bottom)\n      for (let row = 0; row < n; row++) {\n        const dist = dropRow - row; // positive = row is above head\n        if (dist >= 0 && dist < RAIN_TAIL.length) {\n          const idx = row * n + col;\n          ops[idx] = Math.max(ops[idx], RAIN_TAIL[dist]);\n        }\n      }\n    }\n    return ops;\n  }, [tick, n, colOffsets, cycleTicks]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: n * n }, (_, i) => (\n        <circle\n          key={i}\n          cx={stride + (i % n) * stride}\n          cy={stride + Math.floor(i / n) * stride}\n          r={r}\n          fill={color}\n          opacity={opacities[i]}\n          style={{ transition: 'opacity 55ms linear' }}\n        />\n      ))}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Dot Matrix Rain - Dot Matrix Rain",
+    "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
+    "category": "loaders",
+    "tags": [
+      "dots",
+      "matrix",
+      "rain",
+      "gravity",
+      "column",
+      "fall",
+      "cascade",
+      "physics"
+    ],
+    "animationType": "loop"
+  }
+}

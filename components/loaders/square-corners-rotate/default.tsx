@@ -7,6 +7,10 @@ interface SquareCornersRotateProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  strokeWidth?: number;
+  strokeLinecap?: 'round' | 'butt' | 'square';
 }
 
 export function SquareCornersRotate({
@@ -14,6 +18,10 @@ export function SquareCornersRotate({
   height = 40,
   color = "currentColor",
   isAnimating = true,
+  duration = 1.5,
+  ease = [0.3, 1, 0, 1],
+  strokeWidth = 3,
+  strokeLinecap = 'round',
 }: SquareCornersRotateProps) {
   const cx = width / 2;
   const cy = height / 2;
@@ -62,9 +70,9 @@ export function SquareCornersRotate({
           rotate: [0, 180, 360],
         }}
         transition={{
-          duration: 1.5,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
-          ease: [0.3, 1, 0, 1],
+          ease: ease,
           times: [0, 0.5, 1],
         }}
         style={{ 
@@ -77,9 +85,9 @@ export function SquareCornersRotate({
             key={i}
             d={d}
             stroke={color}
-            strokeWidth={3}
+            strokeWidth={strokeWidth}
             fill="none"
-            strokeLinecap="round"
+            strokeLinecap={strokeLinecap}
           />
         ))}
       </motion.g>

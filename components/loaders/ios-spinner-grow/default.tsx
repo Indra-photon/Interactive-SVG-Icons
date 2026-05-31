@@ -7,6 +7,8 @@ interface IosSpinnerGrowProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function IosSpinnerGrow({
@@ -14,10 +16,10 @@ export function IosSpinnerGrow({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.0,
+  ease = 'easeInOut',
 }: IosSpinnerGrowProps) {
   const count = 12;
-  const duration = 1;
-
   return (
     <svg
       width={width}
@@ -44,7 +46,7 @@ export function IosSpinnerGrow({
               duration,
               repeat: isAnimating ? Infinity : 0,
               delay: i * (duration / count),
-              ease: 'easeInOut',
+              ease: ease,
               times: [0, 0.3, 1],
             }}
           />

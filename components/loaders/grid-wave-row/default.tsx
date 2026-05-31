@@ -8,6 +8,9 @@ interface GridWaveRowProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridWaveRow({
@@ -16,17 +19,18 @@ export function GridWaveRow({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridWaveRowProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Row-by-row wave: row 0 sweeps L→R first, then row 1, then row 2
-  // delay = row * 0.3 + col * 0.1
-  const delays = [
-    0,   0.1, 0.2,
-    0.3, 0.4, 0.5,
-    0.6, 0.7, 0.8,
-  ];
+  // Row-by-row left-to-right wave; flat traversal order
+  const totalCells = n * n;
+  const waveStep = totalCells > 1 ? (duration * 0.57) / (totalCells - 1) : 0;
+  const delays = Array.from({ length: n * n }, (_, i) => i * waveStep);
 
   return (
     <svg
@@ -38,8 +42,8 @@ export function GridWaveRow({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -50,10 +54,10 @@ export function GridWaveRow({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

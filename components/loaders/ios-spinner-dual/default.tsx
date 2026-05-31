@@ -7,6 +7,8 @@ interface IosSpinnerDualProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function IosSpinnerDual({
@@ -14,6 +16,8 @@ export function IosSpinnerDual({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.2,
+  ease = 'linear',
 }: IosSpinnerDualProps) {
   const outer = { count: 12, y: 26, height: 10, width: 3 };
   const inner = { count: 8,  y: 34, height: 6,  width: 2.5 };
@@ -31,7 +35,7 @@ export function IosSpinnerDual({
       <motion.g
         style={{ transformOrigin: '50px 50px' }}
         animate={{ rotate: isAnimating ? 360 : 0 }}
-        transition={{ duration: 1.2, repeat: isAnimating ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: duration, repeat: isAnimating ? Infinity : 0, ease: ease }}
       >
         {Array.from({ length: outer.count }).map((_, i) => (
           <rect
@@ -51,7 +55,7 @@ export function IosSpinnerDual({
       <motion.g
         style={{ transformOrigin: '50px 50px' }}
         animate={{ rotate: isAnimating ? -360 : 0 }}
-        transition={{ duration: 0.9, repeat: isAnimating ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: duration * 0.75, repeat: isAnimating ? Infinity : 0, ease: ease }}
       >
         {Array.from({ length: inner.count }).map((_, i) => (
           <rect

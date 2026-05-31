@@ -185,6 +185,7 @@ async function buildLoadersRegistry(config: BuildConfig) {
         loader.variations.push({
           name: variation.name,
           displayName: variation.displayName,
+          componentName: variation.componentName || '',
           tier: variation.tier,
           description: variation.description,
           animationType: variation.animationType,

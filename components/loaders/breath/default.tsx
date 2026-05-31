@@ -7,6 +7,8 @@ interface BreathProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function Breath({
@@ -14,6 +16,8 @@ export function Breath({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 4.0,
+  ease = 'easeInOut',
 }: BreathProps) {
   return (
     <svg
@@ -39,7 +43,7 @@ export function Breath({
         transition={{
           duration: 4,
           repeat: isAnimating ? Infinity : 0,
-          ease: 'easeInOut',
+          ease: ease,
           delay: 0.3,
           times: [0, 0.5, 1],
         }}
@@ -56,7 +60,7 @@ export function Breath({
         transition={{
           duration: 4,
           repeat: isAnimating ? Infinity : 0,
-          ease: 'easeInOut',
+          ease: ease,
           times: [0, 0.5, 1],
         }}
       />

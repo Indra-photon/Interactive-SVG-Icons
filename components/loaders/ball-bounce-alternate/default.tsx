@@ -8,6 +8,9 @@ interface BallBounceAlternateProps {
   color?: string;
   lineColor?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  strokeWidth?: number;
 }
 
 export function BallBounceAlternate({
@@ -16,6 +19,9 @@ export function BallBounceAlternate({
   color = "currentColor",
   lineColor = "currentColor",
   isAnimating = true,
+  duration = 2.0,
+  ease = 'linear',
+  strokeWidth = 3,
 }: BallBounceAlternateProps) {
   const ballRadius = height * 0.15;
   const ballCY = height - ballRadius - 1.5;
@@ -37,7 +43,7 @@ export function BallBounceAlternate({
         x2={width}
         y2={height - 1.5}
         stroke={lineColor}
-        strokeWidth={3}
+        strokeWidth={strokeWidth}
       />
       <motion.circle
         cx={width * 0.425}
@@ -53,7 +59,7 @@ export function BallBounceAlternate({
             duration: 2,
             repeat: isAnimating ? Infinity : 0,
             repeatType: 'reverse',
-            ease: 'linear',
+            ease: ease,
           },
           y: {
             duration: 0.5,

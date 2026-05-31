@@ -10,6 +10,10 @@ interface InfinityLoopProps {
   dotSize?: number;
   showPath?: boolean;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  strokeWidth?: number;
+  strokeLinecap?: 'round' | 'butt' | 'square';
 }
 
 export function InfinityLoop({
@@ -20,6 +24,10 @@ export function InfinityLoop({
   dotSize = 6,
   showPath = true,
   isAnimating = true,
+  duration = 2.5,
+  ease = 'linear',
+  strokeWidth = 2,
+  strokeLinecap = 'round',
 }: InfinityLoopProps) {
   const cx = width / 2;
   const cy = height / 2;
@@ -64,9 +72,9 @@ export function InfinityLoop({
         <path
           d={infinityPath}
           stroke={pathColor}
-          strokeWidth={2}
+          strokeWidth={strokeWidth}
           fill="none"
-          strokeLinecap="round"
+          strokeLinecap={strokeLinecap}
         />
       )}
       <motion.circle
@@ -77,9 +85,9 @@ export function InfinityLoop({
           cy: yKeyframes,
         }}
         transition={{
-          duration: 2.5,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
-          ease: 'linear',
+          ease: ease,
         }}
       />
     </svg>

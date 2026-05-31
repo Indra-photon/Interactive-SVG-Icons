@@ -8,6 +8,8 @@ interface CircularWaveFillProps {
   color?: string;
   backgroundColor?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function CircularWaveFill({
@@ -16,6 +18,8 @@ export function CircularWaveFill({
   color = "#269af2",
   backgroundColor = "#cccccc",
   isAnimating = true,
+  duration = 2.0,
+  ease = 'linear',
 }: CircularWaveFillProps) {
   const cx = width / 2;
   const cy = height / 2;
@@ -62,7 +66,7 @@ export function CircularWaveFill({
           transition={{
             duration: 2,
             repeat: isAnimating ? Infinity : 0,
-            ease: 'linear',
+            ease: ease,
             times: [0, 0.5, 1],
           }}
         />

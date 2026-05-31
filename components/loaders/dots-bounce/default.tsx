@@ -9,6 +9,9 @@ interface DotsBounceProps {
   dotSize?: number;
   dotCount?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  staggerDelay?: number;
 }
 
 export function DotsBounce({
@@ -18,6 +21,9 @@ export function DotsBounce({
   dotSize = 8,
   dotCount = 3,
   isAnimating = true,
+  duration = 0.8,
+  ease = 'easeInOut',
+  staggerDelay = 0.15,
 }: DotsBounceProps) {
   const dotRadius = dotSize / 2;
   const centerY = height / 2;
@@ -48,10 +54,10 @@ export function DotsBounce({
               y: [0, -bounceHeight, 0],
             }}
             transition={{
-              duration: 0.8,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: i * 0.15,
-              ease: 'easeInOut',
+              delay: i * staggerDelay,
+              ease: ease,
             }}
           />
         );

@@ -9,6 +9,9 @@ interface CircleSpinnerWipeProps {
   backgroundColor?: string;
   thickness?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  strokeLinecap?: 'round' | 'butt' | 'square';
 }
 
 export function CircleSpinnerWipe({
@@ -18,6 +21,9 @@ export function CircleSpinnerWipe({
   backgroundColor = "#dddddd",
   thickness = 10,
   isAnimating = true,
+  duration = 2.0,
+  ease = 'linear',
+  strokeLinecap = 'butt',
 }: CircleSpinnerWipeProps) {
   const centerX = width / 2;
   const centerY = height / 2;
@@ -51,7 +57,7 @@ export function CircleSpinnerWipe({
         stroke={color}
         strokeWidth={thickness}
         fill="none"
-        strokeLinecap="butt"
+        strokeLinecap={strokeLinecap}
         strokeDasharray={circumference}
         initial={{ strokeDashoffset: circumference }}
         animate={{
@@ -61,7 +67,7 @@ export function CircleSpinnerWipe({
           strokeDashoffset: {
             duration: 2,
             repeat: isAnimating ? Infinity : 0,
-            ease: 'linear',
+            ease: ease,
           },
         }}
         style={{ transformOrigin: `${centerX}px ${centerY}px`, rotate: -90 }}

@@ -7,6 +7,8 @@ interface SiriWaveProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function SiriWave({
@@ -14,6 +16,8 @@ export function SiriWave({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.2,
+  ease = 'easeInOut',
 }: SiriWaveProps) {
   const barWidth = 6;
   const barRx = 3;
@@ -51,10 +55,10 @@ export function SiriWave({
             y: [50 - minH / 2, 50 - maxH / 2, 50 - minH / 2],
           }}
           transition={{
-            duration: 1.2,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             delay,
-            ease: 'easeInOut',
+            ease: ease,
             times: [0, 0.5, 1],
           }}
         />

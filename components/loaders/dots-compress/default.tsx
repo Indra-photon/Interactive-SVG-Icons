@@ -7,15 +7,18 @@ interface DotsCompressProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function DotsCompress({ 
   width = 60,
   color = "currentColor",
   dotSize = 12,
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.0,
+  ease = [0.455, 0.03, 0.515, 0.955],
 }: DotsCompressProps) {
-  const easeInOutQuad = [0.455, 0.03, 0.515, 0.955] as const;
 
   // Start state: horizontal layout (aspect 4:1)
   const startHeight = width / 4;
@@ -59,7 +62,7 @@ export function DotsCompress({
         duration: 1,
         repeat: isAnimating ? Infinity : 0,
         repeatType: "reverse",
-        ease: easeInOutQuad
+        ease: ease
       }}
     >
       <motion.g
@@ -70,7 +73,7 @@ export function DotsCompress({
           duration: 1,
           repeat: isAnimating ? Infinity : 0,
           repeatType: "reverse",
-          ease: easeInOutQuad
+          ease: ease
         }}
       >
         {dots.map((dot) => (
@@ -86,7 +89,7 @@ export function DotsCompress({
               duration: 1,
               repeat: isAnimating ? Infinity : 0,
               repeatType: "reverse",
-              ease: easeInOutQuad
+              ease: ease
             }}
           />
         ))}

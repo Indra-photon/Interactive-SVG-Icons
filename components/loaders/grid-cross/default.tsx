@@ -8,6 +8,9 @@ interface GridCrossProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridCross({
@@ -16,16 +19,21 @@ export function GridCross({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridCrossProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Cross (center row + center col) fires first, corners fire second
-  const delays = [
-    0.4, 0,   0.4,
-    0,   0,   0,
-    0.4, 0,   0.4,
-  ];
+  // Center row + col fire first; corners delayed by distance from nearest axis
+  const mid = (n - 1) / 2;
+  const delays = Array.from({ length: n * n }, (_, i) => {
+    const row = Math.floor(i / n), col = i % n;
+    const axisDistance = Math.min(Math.abs(row - mid), Math.abs(col - mid));
+    return mid > 0 ? (axisDistance / mid) * duration * 0.4 : 0;
+  });
 
   return (
     <svg
@@ -37,8 +45,8 @@ export function GridCross({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -49,10 +57,10 @@ export function GridCross({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

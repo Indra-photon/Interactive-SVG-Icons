@@ -1,0 +1,80 @@
+{
+  "name": "Dot Matrix Chase",
+  "category": "loaders",
+  "tags": [
+    "dots",
+    "matrix",
+    "chase",
+    "predator",
+    "prey",
+    "snake",
+    "entity",
+    "tail"
+  ],
+  "description": "Two entities travel a spiral path \u2014 a bright leader and a dimmer chaser locked in pursuit, never catching, never escaping",
+  "createdAt": "2026-05-31",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dot Matrix Chase",
+      "componentName": "DotMatrixChase",
+      "tier": "free",
+      "description": "A bright leader and dimmer chaser travel the same spiral path 55% of its length apart. Their interlocking tails create a kinetic, predator-prey visual.",
+      "animationType": "loop",
+      "dependencies": [],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 100,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 100,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Fill color of the dots"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 12,
+          "description": "Diameter of each dot in pixels",
+          "min": 4,
+          "max": 24,
+          "step": 1
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 2.5,
+          "min": 0.5,
+          "max": 8,
+          "step": 0.1,
+          "description": "Time for one full spiral traversal in seconds"
+        },
+        {
+          "name": "gridSize",
+          "type": "number",
+          "default": 5,
+          "min": 3,
+          "max": 6,
+          "step": 1,
+          "description": "Number of dots per row and column (n \u00d7 n grid)"
+        }
+      ]
+    }
+  ]
+}

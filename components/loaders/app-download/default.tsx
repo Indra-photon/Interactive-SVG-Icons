@@ -8,6 +8,11 @@ interface AppDownloadProps {
   color?: string;
   trackOpacity?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  strokeWidth?: number;
+  strokeLinecap?: 'round' | 'butt' | 'square';
+  repeatDelay?: number;
 }
 
 export function AppDownload({
@@ -16,6 +21,11 @@ export function AppDownload({
   color = 'currentColor',
   trackOpacity = 0.12,
   isAnimating = true,
+  duration = 1.5,
+  ease = 'easeInOut',
+  strokeWidth = 5,
+  strokeLinecap = 'round',
+  repeatDelay = 0.4,
 }: AppDownloadProps) {
   const r = 38;
   const circumference = 2 * Math.PI * r;
@@ -36,7 +46,7 @@ export function AppDownload({
         cy={50}
         r={r}
         stroke={color}
-        strokeWidth={5}
+        strokeWidth={strokeWidth}
         fill="none"
         opacity={trackOpacity}
       />
@@ -47,8 +57,8 @@ export function AppDownload({
         cy={50}
         r={r}
         stroke={color}
-        strokeWidth={5}
-        strokeLinecap="round"
+        strokeWidth={strokeWidth}
+        strokeLinecap={strokeLinecap}
         fill="none"
         transform="rotate(-90, 50, 50)"
         strokeDasharray={circumference}
@@ -56,10 +66,10 @@ export function AppDownload({
           strokeDashoffset: isAnimating ? [circumference, 0] : circumference,
         }}
         transition={{
-          duration: 1.5,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
-          ease: 'easeInOut',
-          repeatDelay: 0.4,
+          ease: ease,
+          repeatDelay: repeatDelay,
         }}
       />
     </svg>

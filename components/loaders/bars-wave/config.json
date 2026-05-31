@@ -1,7 +1,13 @@
 {
   "name": "Bars Wave",
   "category": "loaders",
-  "tags": ["bars", "loading", "wave", "vertical", "five-bars"],
+  "tags": [
+    "bars",
+    "loading",
+    "wave",
+    "vertical",
+    "five-bars"
+  ],
   "description": "Five vertical bars creating a wave animation pattern",
   "createdAt": "2026-02-20",
   "variations": [
@@ -11,7 +17,9 @@
       "tier": "free",
       "description": "Five vertical bars with staggered height animation creating a wave effect",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -42,8 +50,24 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.0,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeInOut",
+          "description": "Easing function"
         }
-      ]
+      ],
+      "componentName": "BarsWave"
     }
   ]
 }

@@ -1,7 +1,14 @@
 {
   "name": "Activity Rings",
   "category": "loaders",
-  "tags": ["apple", "watch", "rings", "arcs", "concentric", "progress"],
+  "tags": [
+    "apple",
+    "watch",
+    "rings",
+    "arcs",
+    "concentric",
+    "progress"
+  ],
   "description": "Three concentric arcs inspired by Apple Watch Activity rings, each spinning at a different speed",
   "createdAt": "2026-05-14",
   "variations": [
@@ -9,15 +16,73 @@
       "name": "default",
       "displayName": "Activity Rings",
       "tier": "free",
-      "description": "Three nested arcs (75% visible) rotate at different speeds — outer slowest, inner fastest — with decreasing opacity inward",
+      "description": "Three nested arcs (75% visible) rotate at different speeds \u2014 outer slowest, inner fastest \u2014 with decreasing opacity inward",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
-        { "name": "width", "type": "number", "default": 100, "description": "Width of the loader in pixels" },
-        { "name": "height", "type": "number", "default": 100, "description": "Height of the loader in pixels" },
-        { "name": "color", "type": "string", "default": "currentColor", "description": "Stroke color of the rings" },
-        { "name": "isAnimating", "type": "boolean", "default": true, "description": "Controls whether the animation runs" }
-      ]
+        {
+          "name": "width",
+          "type": "number",
+          "default": 100,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 100,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Stroke color of the rings"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 2.4,
+          "description": "Outer ring animation duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "linear",
+          "description": "Easing function"
+        },
+        {
+          "name": "strokeWidth",
+          "type": "number",
+          "default": 5,
+          "description": "Stroke width of the rings",
+          "min": 1,
+          "max": 12,
+          "step": 0.5
+        },
+        {
+          "name": "strokeLinecap",
+          "type": "enum",
+          "default": "round",
+          "options": [
+            "round",
+            "butt",
+            "square"
+          ],
+          "description": "Stroke line cap style"
+        }
+      ],
+      "componentName": "ActivityRings"
     }
   ]
 }

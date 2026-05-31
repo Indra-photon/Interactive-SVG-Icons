@@ -8,6 +8,9 @@ interface GridRippleProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridRipple({
@@ -16,17 +19,22 @@ export function GridRipple({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridRippleProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Ripple from center outward using Manhattan distance from (1,1)
-  // Center = 0, adjacent edges = 0.2, corners = 0.4
-  const delays = [
-    0.4, 0.2, 0.4,
-    0.2, 0,   0.2,
-    0.4, 0.2, 0.4,
-  ];
+  // Ripple outward from center — delay ∝ squared Euclidean distance
+  const mid = (n - 1) / 2;
+  const maxSqDist = Math.max(1, 2 * mid * mid);
+  const delays = Array.from({ length: n * n }, (_, i) => {
+    const row = Math.floor(i / n), col = i % n;
+    const sqDist = Math.pow(row - mid, 2) + Math.pow(col - mid, 2);
+    return (sqDist / maxSqDist) * duration * 0.4;
+  });
 
   return (
     <svg
@@ -38,8 +46,8 @@ export function GridRipple({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -50,10 +58,10 @@ export function GridRipple({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

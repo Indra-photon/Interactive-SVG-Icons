@@ -9,6 +9,8 @@ interface AudioBarsGlowProps {
   barWidth?: number;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function AudioBarsGlow({
@@ -17,7 +19,9 @@ export function AudioBarsGlow({
   color = "#000000", // Default black for gradient
   barWidth = 4,
   gap = 3,
-  isAnimating = true
+  isAnimating = true,
+  duration = 0.8,
+  ease = 'easeInOut',
 }: AudioBarsGlowProps) {
   const barCount = 6;
   const totalWidth = (barCount * barWidth) + ((barCount - 1) * gap);
@@ -74,9 +78,9 @@ export function AudioBarsGlow({
                 : [1, 0.5, 1]
             }}
             transition={{
-              duration: 0.8,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              ease: "easeInOut"
+              ease: ease
             }}
           />
         );

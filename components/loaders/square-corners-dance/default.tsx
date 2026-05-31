@@ -8,6 +8,8 @@ interface SquareCornersDanceProps {
   color?: string;
   cornerSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function SquareCornersDance({
@@ -16,6 +18,8 @@ export function SquareCornersDance({
   color = "currentColor",
   cornerSize = 16,
   isAnimating = true,
+  duration = 1.5,
+  ease = [0.3, 1, 0, 1],
 }: SquareCornersDanceProps) {
   const gap = Math.min(width, height) - cornerSize * 2;
   // Corners: TL, TR, BR, BL - clockwise rotation positions
@@ -58,10 +62,10 @@ export function SquareCornersDance({
             y: [pos.y, pos.y, rotatedPositions[i].y, rotatedPositions[i].y],
           }}
           transition={{
-            duration: 1.5,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             times: [0, 0.33, 0.66, 1],
-            ease: [0.3, 1, 0, 1],
+            ease: ease,
           }}
         />
       ))}

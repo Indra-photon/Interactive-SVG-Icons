@@ -9,6 +9,7 @@ interface SpinnerOrbitDotsProps {
   dotCount?: number;
   dotSize?: number;
   isAnimating?: boolean;
+  speed?: number;
 }
 
 export function SpinnerOrbitDots({
@@ -17,6 +18,7 @@ export function SpinnerOrbitDots({
   dotCount = 8,
   dotSize = 6,
   isAnimating = true,
+  speed = 120,
 }: SpinnerOrbitDotsProps) {
   const centerX = width / 2;
   const centerY = height / 2;
@@ -35,7 +37,7 @@ export function SpinnerOrbitDots({
     if (!isAnimating) return;
     const interval = setInterval(() => {
       setActiveDot((prev) => (prev + 1) % dotCount);
-    }, 120);
+    }, speed);
     return () => clearInterval(interval);
   }, [isAnimating, dotCount]);
 

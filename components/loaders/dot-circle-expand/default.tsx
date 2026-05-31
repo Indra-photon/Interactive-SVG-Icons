@@ -9,6 +9,8 @@ interface DotCircleExpandProps {
   centerDotSize?: number;
   cornerDotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function DotCircleExpand({
@@ -18,6 +20,8 @@ export function DotCircleExpand({
   centerDotSize = 10,
   cornerDotSize = 9,
   isAnimating = true,
+  duration = 1.5,
+  ease = [0.3, 1, 0, 1],
 }: DotCircleExpandProps) {
   const cx = width / 2;
   const cy = height / 2;
@@ -67,10 +71,10 @@ export function DotCircleExpand({
             cy: [pos.y, expandedPositions[i].y, expandedPositions[i].y, pos.y],
           }}
           transition={{
-            duration: 1.5,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             times: [0, 0.33, 0.66, 1],
-            ease: [0.3, 1, 0, 1],
+            ease: ease,
           }}
         />
       ))}
