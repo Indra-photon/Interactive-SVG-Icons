@@ -1,7 +1,16 @@
 {
   "name": "Dot Circle Expand",
   "category": "loaders",
-  "tags": ["dots", "circle", "radial", "expand", "pulse", "multi", "smooth", "rotate"],
+  "tags": [
+    "dots",
+    "circle",
+    "radial",
+    "expand",
+    "pulse",
+    "multi",
+    "smooth",
+    "rotate"
+  ],
   "description": "A center dot surrounded by four corner dots that expand outward and contract back in a pulsing pattern",
   "createdAt": "2026-02-26",
   "variations": [
@@ -11,7 +20,9 @@
       "tier": "free",
       "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -48,8 +59,29 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.5,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [
+            0.3,
+            1,
+            0,
+            1
+          ],
+          "description": "Easing function"
         }
-      ]
+      ],
+      "componentName": "DotCircleExpand"
     }
   ]
 }

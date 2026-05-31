@@ -7,6 +7,8 @@ interface IosSpinnerTrailProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function IosSpinnerTrail({
@@ -14,6 +16,8 @@ export function IosSpinnerTrail({
   height = 100,
   color = "currentColor",
   isAnimating = true,
+  duration = 0.7,
+  ease = 'linear',
 }: IosSpinnerTrailProps) {
   const count = 12;
   const opacities = [
@@ -34,9 +38,9 @@ export function IosSpinnerTrail({
         style={{ transformOrigin: "50px 50px" }}
         animate={{ rotate: isAnimating ? 360 : 0 }}
         transition={{
-          duration: 0.7,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
-          ease: "linear",
+          ease: ease,
         }}
       >
         {Array.from({ length: count }).map((_, i) => (

@@ -7,6 +7,8 @@ interface ConicSpinnerProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function ConicSpinner({
@@ -14,6 +16,8 @@ export function ConicSpinner({
   height = 60,
   color = "currentColor",
   isAnimating = true,
+  duration = 2.0,
+  ease = 'linear',
 }: ConicSpinnerProps) {
   const centerX = width / 2;
   const centerY = height / 2;
@@ -58,7 +62,7 @@ export function ConicSpinner({
           duration: 2,
           repeat: isAnimating ? Infinity : 0,
           times: [0, 0.25, 0.5, 0.75, 0.875, 1],
-          ease: 'linear',
+          ease: ease,
         }}
       />
     </svg>

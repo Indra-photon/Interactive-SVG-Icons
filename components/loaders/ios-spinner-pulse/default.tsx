@@ -7,6 +7,8 @@ interface IosSpinnerPulseProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function IosSpinnerPulse({
@@ -14,10 +16,10 @@ export function IosSpinnerPulse({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.0,
+  ease = 'easeOut',
 }: IosSpinnerPulseProps) {
   const count = 12;
-  const duration = 1;
-
   return (
     <svg
       width={width}
@@ -43,7 +45,7 @@ export function IosSpinnerPulse({
             duration,
             repeat: isAnimating ? Infinity : 0,
             delay: i * (duration / count),
-            ease: 'easeOut',
+            ease: ease,
             times: [0, 0.08, 0.3, 1],
           }}
         />

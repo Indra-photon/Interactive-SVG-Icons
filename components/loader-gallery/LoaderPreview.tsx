@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 interface LoaderPreviewProps {
   loaderSlug: string;
   variationName: string;
+  propValues?: Record<string, any>;
 }
 
-export function LoaderPreview({ loaderSlug, variationName }: LoaderPreviewProps) {
+export function LoaderPreview({ loaderSlug, variationName, propValues = {} }: LoaderPreviewProps) {
   const [LoaderComponent, setLoaderComponent] = useState<any>(null);
 
   useEffect(() => {
@@ -22,8 +23,8 @@ export function LoaderPreview({ loaderSlug, variationName }: LoaderPreviewProps)
   }, [loaderSlug, variationName]);
 
   if (!LoaderComponent) {
-    return <div className="text-sm text-gray-500">Loading preview...</div>;
+    return <div className="text-sm text-stone-400">Loading…</div>;
   }
 
-  return <LoaderComponent />;
+  return <LoaderComponent {...propValues} />;
 }

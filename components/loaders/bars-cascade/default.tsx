@@ -7,15 +7,18 @@ interface BarsCascadeProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function BarsCascade({ 
   width = 45,
   height = 45, 
   color = "currentColor",
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.5,
+  ease = [0.455, 0.03, 0.515, 0.955],
 }: BarsCascadeProps) {
-  const easeInOutQuad = [0.455, 0.03, 0.515, 0.955] as const;
 
   const barHeight = height * 0.26; // 26% of container
   const stripeWidth = width * 0.2; // 20% for stripe pattern
@@ -60,9 +63,9 @@ export function BarsCascade({
             y: bar.ySequence
           }}
           transition={{
-            duration: 1.5,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
-            ease: easeInOutQuad,
+            ease: ease,
             times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
           }}
         />

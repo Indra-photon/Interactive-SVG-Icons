@@ -7,13 +7,19 @@ interface BarsFadeProps {
   color?: string;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  staggerDelay?: number;
 }
 
 export function BarsFade({
   size = 40,
   color = "currentColor",
   gap = 4,
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.2,
+  ease = 'easeInOut',
+  staggerDelay = 0.2,
 }: BarsFadeProps) {
   const barWidth = (size - gap * 2) / 3;
   
@@ -37,10 +43,10 @@ export function BarsFade({
             opacity: [1, 0.3, 1]
           }}
           transition={{
-            duration: 1.2,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
-            ease: "easeInOut",
-            delay: index * 0.2
+            ease: ease,
+            delay: index * staggerDelay
           }}
         />
       ))}

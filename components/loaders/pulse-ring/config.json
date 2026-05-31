@@ -1,7 +1,16 @@
 {
   "name": "Pulse Ring",
   "category": "loaders",
-  "tags": ["pulse", "ring", "circle", "simple", "smooth", "minimal", "radial", "ripple"],
+  "tags": [
+    "pulse",
+    "ring",
+    "circle",
+    "simple",
+    "smooth",
+    "minimal",
+    "radial",
+    "ripple"
+  ],
   "description": "Multiple concentric rings expand outward and fade away creating a ripple/pulse effect",
   "createdAt": "2026-02-26",
   "variations": [
@@ -11,7 +20,9 @@
       "tier": "free",
       "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -48,8 +59,24 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.5,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeOut",
+          "description": "Easing function"
         }
-      ]
+      ],
+      "componentName": "PulseRing"
     }
   ]
 }

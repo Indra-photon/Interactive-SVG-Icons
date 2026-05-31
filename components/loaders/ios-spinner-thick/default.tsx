@@ -7,6 +7,8 @@ interface IosSpinnerThickProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function IosSpinnerThick({
@@ -14,6 +16,8 @@ export function IosSpinnerThick({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.0,
+  ease = 'linear',
 }: IosSpinnerThickProps) {
   const count = 8;
 
@@ -30,7 +34,7 @@ export function IosSpinnerThick({
       <motion.g
         style={{ transformOrigin: '50px 50px' }}
         animate={{ rotate: isAnimating ? 360 : 0 }}
-        transition={{ duration: 1, repeat: isAnimating ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: 1, repeat: isAnimating ? Infinity : 0, ease: ease }}
       >
         {Array.from({ length: count }).map((_, i) => (
           <rect

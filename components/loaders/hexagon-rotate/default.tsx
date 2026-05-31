@@ -8,6 +8,8 @@ interface HexagonRotateProps {
   color?: string;
   thickness?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function HexagonRotate({
@@ -16,6 +18,8 @@ export function HexagonRotate({
   color = "currentColor",
   thickness = 3,
   isAnimating = true,
+  duration = 2.0,
+  ease = [0.4, 0, 0.6, 1],
 }: HexagonRotateProps) {
   const centerX = width / 2;
   const centerY = height / 2;
@@ -67,7 +71,7 @@ export function HexagonRotate({
         transition={{
           duration: 2,
           repeat: isAnimating ? Infinity : 0,
-          ease: [0.4, 0, 0.6, 1],
+          ease: ease,
           times: [0, 0.5, 1],
         }}
         style={{ originX: `${centerX}px`, originY: `${centerY}px` }}

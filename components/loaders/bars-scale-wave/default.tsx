@@ -9,6 +9,9 @@ interface BarsScaleWaveProps {
   barCount?: number;
   barWidth?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  staggerDelay?: number;
 }
 
 export function BarsScaleWave({
@@ -18,6 +21,9 @@ export function BarsScaleWave({
   barCount = 5,
   barWidth = 8,
   isAnimating = true,
+  duration = 1.0,
+  ease = 'easeInOut',
+  staggerDelay = 0.1,
 }: BarsScaleWaveProps) {
   const totalBarsWidth = barCount * barWidth;
   const spacing = (width - totalBarsWidth) / (barCount + 1);
@@ -54,8 +60,8 @@ export function BarsScaleWave({
             transition={{
               duration: 1,
               repeat: isAnimating ? Infinity : 0,
-              delay: i * 0.1,
-              ease: 'easeInOut',
+              delay: i * staggerDelay,
+              ease: ease,
             }}
             style={{ originY: 'center', transformOrigin: `${x + barWidth / 2}px ${height / 2}px` }}
           />

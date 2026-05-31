@@ -10,6 +10,9 @@ interface AudioWaveVerticalProps {
   gap?: number;
   barCount?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  staggerDelay?: number;
 }
 
 export function AudioWaveVertical({
@@ -19,7 +22,10 @@ export function AudioWaveVertical({
   barWidth = 3,
   gap = 3,
   barCount = 5,
-  isAnimating = true
+  isAnimating = true,
+  duration = 0.6,
+  ease = 'easeInOut',
+  staggerDelay = 0.1,
 }: AudioWaveVerticalProps) {
   const totalWidth = (barCount * barWidth) + ((barCount - 1) * gap);
   const startX = (width - totalWidth) / 2;
@@ -59,7 +65,7 @@ export function AudioWaveVertical({
           transition={{
             duration: bar.duration,
             repeat: isAnimating ? Infinity : 0,
-            ease: "easeInOut",
+            ease: ease,
             delay: bar.delay
           }}
         />

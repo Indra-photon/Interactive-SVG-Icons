@@ -1,7 +1,14 @@
 {
   "name": "Bars Fill Sequential",
   "category": "loaders",
-  "tags": ["bars", "loading", "fill", "sequential", "vertical", "rise"],
+  "tags": [
+    "bars",
+    "loading",
+    "fill",
+    "sequential",
+    "vertical",
+    "rise"
+  ],
   "description": "Three vertical bars filling up sequentially from bottom to top",
   "createdAt": "2026-02-20",
   "variations": [
@@ -11,7 +18,9 @@
       "tier": "free",
       "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -48,8 +57,38 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.5,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [
+            0.215,
+            0.61,
+            0.355,
+            1
+          ],
+          "description": "Easing function"
+        },
+        {
+          "name": "repeatDelay",
+          "type": "number",
+          "default": 0.5,
+          "description": "Pause between cycles in seconds",
+          "min": 0,
+          "max": 5,
+          "step": 0.1
         }
-      ]
+      ],
+      "componentName": "BarsFillSequential"
     }
   ]
 }

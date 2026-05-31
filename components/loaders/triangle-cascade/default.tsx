@@ -8,6 +8,10 @@ interface TriangleCascadeProps {
   color?: string;
   bars?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  strokeWidth?: number;
+  staggerDelay?: number;
 }
 
 export function TriangleCascade({
@@ -16,6 +20,10 @@ export function TriangleCascade({
   color = "currentColor",
   bars = 5,
   isAnimating = true,
+  duration = 2.0,
+  ease = 'easeInOut',
+  strokeWidth = 1,
+  staggerDelay = 0.4,
 }: TriangleCascadeProps) {
   const barHeight = height / bars + 1;
 
@@ -38,7 +46,7 @@ export function TriangleCascade({
       <polygon
         points={`${width / 2},0 ${width},${height} 0,${height}`}
         stroke={color}
-        strokeWidth={1}
+        strokeWidth={strokeWidth}
         fill="none"
         opacity={0.2}
       />
@@ -59,8 +67,8 @@ export function TriangleCascade({
               transition={{
                 duration: 2,
                 repeat: isAnimating ? Infinity : 0,
-                delay: i * 0.4,
-                ease: 'easeInOut',
+                delay: i * staggerDelay,
+                ease: ease,
                 times: [0, 1],
               }}
             />

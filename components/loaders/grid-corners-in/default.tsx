@@ -8,6 +8,9 @@ interface GridCornersInProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridCornersIn({
@@ -16,16 +19,23 @@ export function GridCornersIn({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridCornersInProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Inward collapse: corners first, edges second, center last
-  const delays = [
-    0,   0.3, 0,
-    0.3, 0.6, 0.3,
-    0,   0.3, 0,
-  ];
+  // Corners fire first; inward wave via Manhattan distance to nearest corner
+  const corners = [[0, 0], [0, n - 1], [n - 1, 0], [n - 1, n - 1]] as const;
+  const maxDist = Math.max(1, Math.floor((n - 1) / 2) * 2);
+  const step = (duration * 0.43) / maxDist;
+  const delays = Array.from({ length: n * n }, (_, i) => {
+    const row = Math.floor(i / n), col = i % n;
+    const dist = Math.min(...corners.map(([cr, cc]) => Math.abs(row - cr) + Math.abs(col - cc)));
+    return dist * step;
+  });
 
   return (
     <svg
@@ -37,8 +47,8 @@ export function GridCornersIn({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -49,10 +59,10 @@ export function GridCornersIn({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

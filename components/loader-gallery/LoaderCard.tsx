@@ -53,7 +53,9 @@ export function LoaderCard({ loader }: LoaderCardProps) {
       >
         <div className="flex items-center justify-center mb-4">
           {LoaderComponent ? (
-            <LoaderComponent size={64} />
+            <div className="w-24 h-24 flex items-center justify-center overflow-hidden">
+              <LoaderComponent />
+            </div>
           ) : (
             <div className="text-6xl">⏳</div>
           )}

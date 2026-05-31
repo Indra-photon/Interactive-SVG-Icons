@@ -8,6 +8,9 @@ interface GridCheckerProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridChecker({
@@ -16,17 +19,19 @@ export function GridChecker({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridCheckerProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Checkerboard: (row+col) even fires at 0, (row+col) odd fires at 0.7
-  // Half a 1.4s cycle apart — two sets alternate
-  const delays = [
-    0,   0.7, 0,
-    0.7, 0,   0.7,
-    0,   0.7, 0,
-  ];
+  // Checkerboard: alternating sets fire half a cycle apart
+  const delays = Array.from({ length: n * n }, (_, i) => {
+    const row = Math.floor(i / n), col = i % n;
+    return (row + col) % 2 === 0 ? 0 : duration * 0.5;
+  });
 
   return (
     <svg
@@ -38,8 +43,8 @@ export function GridChecker({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -50,10 +55,10 @@ export function GridChecker({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

@@ -1,0 +1,80 @@
+{
+  "name": "Dot Matrix Bits",
+  "category": "loaders",
+  "tags": [
+    "dots",
+    "matrix",
+    "binary",
+    "bits",
+    "counter",
+    "data",
+    "digital",
+    "computational"
+  ],
+  "description": "The grid is a bank of binary counters \u2014 each row counts at half the speed of the row below, producing a cascading binary waterfall",
+  "createdAt": "2026-05-31",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Dot Matrix Bits",
+      "componentName": "DotMatrixBits",
+      "tier": "free",
+      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+      "animationType": "loop",
+      "dependencies": [],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 100,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 100,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Fill color of the dots"
+        },
+        {
+          "name": "dotSize",
+          "type": "number",
+          "default": 12,
+          "description": "Diameter of each dot in pixels",
+          "min": 4,
+          "max": 24,
+          "step": 1
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 3,
+          "min": 0.5,
+          "max": 10,
+          "step": 0.5,
+          "description": "Time for the bottom (fastest) row to complete one full binary count cycle in seconds"
+        },
+        {
+          "name": "gridSize",
+          "type": "number",
+          "default": 5,
+          "min": 2,
+          "max": 6,
+          "step": 1,
+          "description": "Number of dots per row and column (n \u00d7 n grid)"
+        }
+      ]
+    }
+  ]
+}

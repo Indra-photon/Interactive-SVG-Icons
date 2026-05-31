@@ -8,6 +8,9 @@ interface GridSpiralProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridSpiral({
@@ -16,17 +19,28 @@ export function GridSpiral({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridSpiralProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Clockwise spiral from top-left:
-  // (0,0)→(0,1)→(0,2)→(1,2)→(2,2)→(2,1)→(2,0)→(1,0)→(1,1)
-  const delays = [
-    0,   0.1, 0.2,
-    0.7, 0.8, 0.3,
-    0.6, 0.5, 0.4,
-  ];
+  // Clockwise spiral from top-left corner
+  const spiralOrder = new Array(n * n).fill(0);
+  let top = 0, bottom = n - 1, left = 0, right = n - 1, seq = 0;
+  while (top <= bottom && left <= right) {
+    for (let c = left; c <= right; c++) spiralOrder[top * n + c] = seq++;
+    top++;
+    for (let r = top; r <= bottom; r++) spiralOrder[r * n + right] = seq++;
+    right--;
+    if (top <= bottom) { for (let c = right; c >= left; c--) spiralOrder[bottom * n + c] = seq++; bottom--; }
+    if (left <= right) { for (let r = bottom; r >= top; r--) spiralOrder[r * n + left] = seq++; left++; }
+  }
+  const spiralMax = n * n - 1;
+  const spiralStep = spiralMax > 0 ? (duration * 0.69) / spiralMax : 0;
+  const delays = spiralOrder.map(pos => pos * spiralStep);
 
   return (
     <svg
@@ -38,8 +52,8 @@ export function GridSpiral({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -50,10 +64,10 @@ export function GridSpiral({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />

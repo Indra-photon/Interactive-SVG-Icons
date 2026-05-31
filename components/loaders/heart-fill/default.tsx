@@ -8,6 +8,8 @@ interface HeartFillProps {
   color?: string;
   backgroundColor?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function HeartFill({
@@ -16,6 +18,8 @@ export function HeartFill({
   color = "#dc1818",
   backgroundColor = "#cccccc",
   isAnimating = true,
+  duration = 2.0,
+  ease = 'easeOut',
 }: HeartFillProps) {
   const scaleX = width / 60;
   const scaleY = height / 60;
@@ -54,7 +58,7 @@ export function HeartFill({
             duration: 2,
             repeat: isAnimating ? Infinity : 0,
             times: [0, 0.2, 1],
-            ease: 'easeOut',
+            ease: ease,
           }}
         />
       </g>

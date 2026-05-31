@@ -8,6 +8,9 @@ interface GridPulseProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridPulse({
@@ -16,13 +19,17 @@ export function GridPulse({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.6,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridPulseProps) {
-  const ROWS = 3;
-  const COLS = 3;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // Divide the 100×100 viewBox into 4 equal parts — dots sit at 25, 50, 75
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  // Diagonal wave: top-left fires first, bottom-right last
+  const maxDiag = (n - 1) * 2;
+  const diagStep = maxDiag > 0 ? (duration * 0.55) / maxDiag : 0;
 
   return (
     <svg
@@ -34,13 +41,11 @@ export function GridPulse({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: ROWS }).map((_, row) =>
-        Array.from({ length: COLS }).map((_, col) => {
-          const cx = stride + col * stride; // 25, 50, 75
-          const cy = stride + row * stride; // 25, 50, 75
-
-          // Diagonal index drives the wave: top-left (0) → bottom-right (4)
-          const diagonalDelay = (row + col) * 0.13;
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => {
+          const cx = stride + col * stride;
+          const cy = stride + row * stride;
+          const diagonalDelay = (row + col) * diagStep;
 
           return (
             <motion.circle
@@ -53,10 +58,10 @@ export function GridPulse({
                 opacity: [0.15, 1, 0.15],
               }}
               transition={{
-                duration: 1.6,
+                duration: duration,
                 repeat: isAnimating ? Infinity : 0,
                 delay: diagonalDelay,
-                ease: 'easeInOut',
+                ease: ease,
                 times: [0, 0.35, 1],
               }}
             />

@@ -1,7 +1,13 @@
 {
   "name": "Dots Compress",
   "category": "loaders",
-  "tags": ["dots", "loading", "compress", "squeeze", "morph"],
+  "tags": [
+    "dots",
+    "loading",
+    "compress",
+    "squeeze",
+    "morph"
+  ],
   "description": "Three dots that compress from horizontal line to vertical stack",
   "createdAt": "2026-02-20",
   "variations": [
@@ -11,7 +17,9 @@
       "tier": "free",
       "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -36,8 +44,29 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.0,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [
+            0.455,
+            0.03,
+            0.515,
+            0.955
+          ],
+          "description": "Easing function"
         }
-      ]
+      ],
+      "componentName": "DotsCompress"
     }
   ]
 }

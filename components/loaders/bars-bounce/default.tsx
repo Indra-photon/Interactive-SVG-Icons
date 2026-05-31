@@ -9,6 +9,8 @@ interface BarsBounceProps {
   barWidth?: number;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function BarsBounce({ 
@@ -17,7 +19,9 @@ export function BarsBounce({
   color = "currentColor",
   barWidth = 9,
   gap = 9,
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.0,
+  ease = 'easeInOut',
 }: BarsBounceProps) {
   const bars = [
     { x: 0 },
@@ -58,7 +62,7 @@ export function BarsBounce({
             transition={{
               duration: 1,
               repeat: isAnimating ? Infinity : 0,
-              ease: "easeInOut",
+              ease: ease,
               times: [0, 0.5, 1] // Keyframe timing: 0%, 50%, 100%
             }}
           />

@@ -17,6 +17,7 @@ export interface Loader {
 export interface LoaderVariation {
   name: string;
   displayName: string;
+  componentName: string;
   tier: 'free' | 'premium';
   description: string;
   animationType: string;
@@ -26,9 +27,12 @@ export interface LoaderVariation {
 
 export interface PropDefinition {
   name: string;
-  type: 'string' | 'number' | 'boolean' | 'enum';
+  type: 'string' | 'number' | 'boolean' | 'enum' | 'ease' | 'strokeLinecap';
   default: any;
   options?: any[];
+  min?: number;
+  max?: number;
+  step?: number;
   description: string;
 }
 

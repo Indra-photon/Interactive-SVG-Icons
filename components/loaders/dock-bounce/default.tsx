@@ -7,6 +7,9 @@ interface DockBounceProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  repeatDelay?: number;
 }
 
 export function DockBounce({
@@ -14,6 +17,9 @@ export function DockBounce({
   height = 100,
   color = 'currentColor',
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeOut',
+  repeatDelay = 1.0,
 }: DockBounceProps) {
   return (
     <svg
@@ -37,11 +43,11 @@ export function DockBounce({
           opacity: [0.25, 0.1, 0.25, 0.15, 0.25, 0.2, 0.25],
         }}
         transition={{
-          duration: 1.4,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           repeatDelay: 1,
           times: [0, 0.25, 0.5, 0.65, 0.8, 0.9, 1],
-          ease: 'easeOut',
+          ease: ease,
         }}
       />
 
@@ -60,11 +66,11 @@ export function DockBounce({
           scaleY: [1, 1, 0.82, 1, 0.92, 1, 1],
         }}
         transition={{
-          duration: 1.4,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           repeatDelay: 1,
           times: [0, 0.25, 0.5, 0.65, 0.8, 0.9, 1],
-          ease: 'easeOut',
+          ease: ease,
         }}
       />
     </svg>

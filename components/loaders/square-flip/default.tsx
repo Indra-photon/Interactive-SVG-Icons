@@ -7,6 +7,8 @@ interface SquareFlipProps {
   height?: number;
   color?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function SquareFlip({
@@ -14,6 +16,8 @@ export function SquareFlip({
   height = 40,
   color = "currentColor",
   isAnimating = true,
+  duration = 1.2,
+  ease = 'easeInOut',
 }: SquareFlipProps) {
   const size = Math.min(width, height) * 0.6;
   const x = (width - size) / 2;
@@ -30,7 +34,7 @@ export function SquareFlip({
     position: 'relative',
   }}
   animate={{ rotateY: [0, 180, 360] }}
-  transition={{ duration: 1.2, repeat: isAnimating ? Infinity : 0, ease: 'easeInOut' }}
+  transition={{ duration: duration, repeat: isAnimating ? Infinity : 0, ease: ease }}
 >
   {/* Front face */}
   <div style={{ position: 'absolute', inset: 0, borderRadius: 2, backgroundColor: color, backfaceVisibility: 'hidden' }} />

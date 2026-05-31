@@ -20,6 +20,7 @@
         {
           "name": "default",
           "displayName": "Triangle Cascade",
+          "componentName": "TriangleCascade",
           "tier": "free",
           "description": "Five horizontal bars slide into position one after another, filling a triangle shape from bottom to top in a waterfall effect",
           "animationType": "loop",
@@ -56,6 +57,39 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 1,
+              "description": "Stroke width of the triangle outline",
+              "min": 0.5,
+              "max": 5,
+              "step": 0.5
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.4,
+              "description": "Delay offset per bar in seconds",
+              "min": 0,
+              "max": 1,
+              "step": 0.05
             }
           ]
         }
@@ -81,6 +115,7 @@
         {
           "name": "default",
           "displayName": "Square Flip",
+          "componentName": "SquareFlip",
           "tier": "free",
           "description": "A rectangle collapses to a thin line then expands back, simulating a 3D Y-axis flip animation",
           "animationType": "loop",
@@ -111,6 +146,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -136,6 +186,7 @@
         {
           "name": "default",
           "displayName": "Square Corners Rotate",
+          "componentName": "SquareCornersRotate",
           "tier": "free",
           "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
           "animationType": "loop",
@@ -166,6 +217,128 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.3,
+                1,
+                0,
+                1
+              ],
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Stroke width of the corner arcs",
+              "min": 1,
+              "max": 10,
+              "step": 0.5
+            },
+            {
+              "name": "strokeLinecap",
+              "type": "enum",
+              "default": "round",
+              "options": [
+                "round",
+                "butt",
+                "square"
+              ],
+              "description": "Stroke line cap style"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "square-corners-dance",
+      "name": "Square Corners Dance",
+      "category": "loaders",
+      "tags": [
+        "square",
+        "corners",
+        "multi",
+        "geometric",
+        "minimal",
+        "simple",
+        "dance",
+        "morph"
+      ],
+      "description": "Four corner squares rotate clockwise to the next corner position in a dancing pattern",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Square Corners Dance",
+          "componentName": "SquareCornersDance",
+          "tier": "free",
+          "description": "Four squares at the corners of a bounding box shift positions clockwise, creating a spinning dance animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 40,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the corner squares"
+            },
+            {
+              "name": "cornerSize",
+              "type": "number",
+              "default": 16,
+              "description": "Width and height of each corner square in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.3,
+                1,
+                0,
+                1
+              ],
+              "description": "Easing function"
             }
           ]
         }
@@ -190,6 +363,7 @@
         {
           "name": "default",
           "displayName": "Spotlight",
+          "componentName": "Spotlight",
           "tier": "free",
           "description": "An ambient spotlight beam drifts slowly across the container — bright at center, fading to nothing at the edges — then reappears from the left",
           "animationType": "loop",
@@ -220,6 +394,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "repeatDelay",
+              "type": "number",
+              "default": 0.6,
+              "description": "Pause between cycles in seconds",
+              "min": 0,
+              "max": 5,
+              "step": 0.1
             }
           ]
         }
@@ -245,6 +443,7 @@
         {
           "name": "default",
           "displayName": "Spinner Orbit Dots",
+          "componentName": "SpinnerOrbitDots",
           "tier": "free",
           "description": "Dots arranged in a radial pattern rotate together as a group, with opacity gradient creating a comet-tail effect",
           "animationType": "loop",
@@ -287,6 +486,15 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "default": 120,
+              "description": "Milliseconds between dot activations",
+              "min": 30,
+              "max": 500,
+              "step": 10
             }
           ]
         }
@@ -311,6 +519,7 @@
         {
           "name": "default",
           "displayName": "Siri Wave",
+          "componentName": "SiriWave",
           "tier": "free",
           "description": "Center bar tallest, outer bars shortest — all oscillate with staggered delays creating a smooth symmetric wave that pulses outward from center",
           "animationType": "loop",
@@ -341,6 +550,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -365,6 +589,7 @@
         {
           "name": "default",
           "displayName": "Scan Line",
+          "componentName": "ScanLine",
           "tier": "free",
           "description": "A glowing gradient segment — bright at the leading edge, fading behind — sweeps across a faint track and resets",
           "animationType": "loop",
@@ -401,67 +626,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "square-corners-dance",
-      "name": "Square Corners Dance",
-      "category": "loaders",
-      "tags": [
-        "square",
-        "corners",
-        "multi",
-        "geometric",
-        "minimal",
-        "simple",
-        "dance",
-        "morph"
-      ],
-      "description": "Four corner squares rotate clockwise to the next corner position in a dancing pattern",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Square Corners Dance",
-          "tier": "free",
-          "description": "Four squares at the corners of a bounding box shift positions clockwise, creating a spinning dance animation",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
+            },
             {
-              "name": "width",
+              "name": "duration",
               "type": "number",
-              "default": 40,
-              "description": "Width of the loader container in pixels"
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
             },
             {
-              "name": "height",
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "repeatDelay",
               "type": "number",
-              "default": 40,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the corner squares"
-            },
-            {
-              "name": "cornerSize",
-              "type": "number",
-              "default": 16,
-              "description": "Width and height of each corner square in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
+              "default": 0.4,
+              "description": "Pause between cycles in seconds",
+              "min": 0,
+              "max": 5,
+              "step": 0.1
             }
           ]
         }
@@ -487,6 +675,7 @@
         {
           "name": "default",
           "displayName": "Pulse Ring",
+          "componentName": "PulseRing",
           "tier": "free",
           "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
           "animationType": "loop",
@@ -529,6 +718,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -554,6 +758,7 @@
         {
           "name": "default",
           "displayName": "Sharp Trail",
+          "componentName": "IosSpinnerTrail",
           "tier": "free",
           "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
           "animationType": "loop",
@@ -584,6 +789,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.7,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
             }
           ]
         }
@@ -609,6 +829,7 @@
         {
           "name": "default",
           "displayName": "Thick",
+          "componentName": "IosSpinnerThick",
           "tier": "free",
           "description": "8 wide pill-shaped spokes at 45° apart — bold and graphic, great for large-screen or kiosk UIs",
           "animationType": "loop",
@@ -639,6 +860,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
             }
           ]
         }
@@ -663,6 +899,7 @@
         {
           "name": "default",
           "displayName": "Pulse",
+          "componentName": "IosSpinnerPulse",
           "tier": "free",
           "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
           "animationType": "loop",
@@ -693,6 +930,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -718,6 +970,7 @@
         {
           "name": "default",
           "displayName": "Grow",
+          "componentName": "IosSpinnerGrow",
           "tier": "free",
           "description": "Each spoke shoots outward radially as it activates — a blooming radial extension effect",
           "animationType": "loop",
@@ -748,6 +1001,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -772,6 +1040,7 @@
         {
           "name": "default",
           "displayName": "Dual Ring",
+          "componentName": "IosSpinnerDual",
           "tier": "free",
           "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
           "animationType": "loop",
@@ -802,6 +1071,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
             }
           ]
         }
@@ -826,6 +1110,7 @@
         {
           "name": "default",
           "displayName": "Dots",
+          "componentName": "IosSpinnerDots",
           "tier": "free",
           "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
           "animationType": "loop",
@@ -856,6 +1141,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
             }
           ]
         }
@@ -880,6 +1180,7 @@
         {
           "name": "default",
           "displayName": "Classic",
+          "componentName": "IosSpinner",
           "tier": "free",
           "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
           "animationType": "loop",
@@ -910,6 +1211,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
             }
           ]
         }
@@ -935,6 +1251,7 @@
         {
           "name": "default",
           "displayName": "Infinity Loop",
+          "componentName": "InfinityLoop",
           "tier": "free",
           "description": "A dot traces the mathematical lemniscate (infinity symbol) path smoothly and continuously",
           "animationType": "loop",
@@ -983,6 +1300,41 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 2,
+              "description": "Stroke width of the path",
+              "min": 1,
+              "max": 8,
+              "step": 0.5
+            },
+            {
+              "name": "strokeLinecap",
+              "type": "enum",
+              "default": "round",
+              "options": [
+                "round",
+                "butt",
+                "square"
+              ],
+              "description": "Stroke line cap style"
             }
           ]
         }
@@ -1008,6 +1360,7 @@
         {
           "name": "default",
           "displayName": "Hexagon Rotate",
+          "componentName": "HexagonRotate",
           "tier": "free",
           "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
           "animationType": "loop",
@@ -1050,6 +1403,26 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.4,
+                0,
+                0.6,
+                1
+              ],
+              "description": "Easing function"
             }
           ]
         }
@@ -1075,6 +1448,7 @@
         {
           "name": "default",
           "displayName": "Heart Fill",
+          "componentName": "HeartFill",
           "tier": "free",
           "description": "Heart shape waits nearly empty then rapidly fills with color in a dramatic pulse, looping like a heartbeat",
           "animationType": "loop",
@@ -1111,6 +1485,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -1134,6 +1523,7 @@
         {
           "name": "default",
           "displayName": "Grid Wave Row",
+          "componentName": "GridWaveRow",
           "tier": "free",
           "description": "Each row sweeps left to right in sequence, creating a horizontal wave that cascades downward",
           "animationType": "loop",
@@ -1170,6 +1560,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1193,6 +1607,7 @@
         {
           "name": "default",
           "displayName": "Grid Spiral",
+          "componentName": "GridSpiral",
           "tier": "free",
           "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
           "animationType": "loop",
@@ -1229,6 +1644,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1252,6 +1691,7 @@
         {
           "name": "default",
           "displayName": "Grid Snake",
+          "componentName": "GridSnake",
           "tier": "free",
           "description": "Dots activate in a boustrophedon (back-and-forth) path that slithers through all 9 positions",
           "animationType": "loop",
@@ -1288,6 +1728,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1311,6 +1775,7 @@
         {
           "name": "default",
           "displayName": "Grid Ripple",
+          "componentName": "GridRipple",
           "tier": "free",
           "description": "Center dot fires first, then the 4 adjacent edges, then the 4 corners — concentric expansion outward",
           "animationType": "loop",
@@ -1347,6 +1812,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1370,6 +1859,7 @@
         {
           "name": "default",
           "displayName": "Grid Random",
+          "componentName": "GridRandom",
           "tier": "free",
           "description": "Dots activate in a fixed but non-sequential order that reads as random — like a matrix initialising",
           "animationType": "loop",
@@ -1406,6 +1896,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1429,6 +1943,7 @@
         {
           "name": "default",
           "displayName": "Grid Pulse",
+          "componentName": "GridPulse",
           "tier": "free",
           "description": "Nine dots arranged in a 3×3 grid light up and fade in a rolling diagonal wave, top-left to bottom-right",
           "animationType": "loop",
@@ -1465,6 +1980,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.6,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1488,6 +2027,7 @@
         {
           "name": "default",
           "displayName": "Grid Cross",
+          "componentName": "GridCross",
           "tier": "free",
           "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
           "animationType": "loop",
@@ -1524,6 +2064,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1547,6 +2111,7 @@
         {
           "name": "default",
           "displayName": "Grid Corners In",
+          "componentName": "GridCornersIn",
           "tier": "free",
           "description": "The 4 corner dots pulse first, then the 4 edge-center dots, then the center — an inward collapse opposite to ripple",
           "animationType": "loop",
@@ -1583,6 +2148,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1606,6 +2195,7 @@
         {
           "name": "default",
           "displayName": "Grid Column Scan",
+          "componentName": "GridColumnScan",
           "tier": "free",
           "description": "A full column of dots lights up simultaneously, sweeping left to right like a vertical scan bar",
           "animationType": "loop",
@@ -1642,6 +2232,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1665,6 +2279,7 @@
         {
           "name": "default",
           "displayName": "Grid Clock",
+          "componentName": "GridClock",
           "tier": "free",
           "description": "Dots sweep clockwise from top-center (12 o'clock) through all 8 outer positions, then the center fires last",
           "animationType": "loop",
@@ -1701,6 +2316,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1724,6 +2363,7 @@
         {
           "name": "default",
           "displayName": "Grid Checker",
+          "componentName": "GridChecker",
           "tier": "free",
           "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
           "animationType": "loop",
@@ -1760,6 +2400,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1783,6 +2447,7 @@
         {
           "name": "default",
           "displayName": "Dots Rotate",
+          "componentName": "DotsRotate",
           "tier": "free",
           "description": "Three circular dots that continuously rotate 120 degrees around a center point",
           "animationType": "loop",
@@ -1819,6 +2484,26 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.645,
+                0.045,
+                0.355,
+                1
+              ],
+              "description": "Easing function"
             }
           ]
         }
@@ -1841,6 +2526,7 @@
         {
           "name": "default",
           "displayName": "Dots Compress",
+          "componentName": "DotsCompress",
           "tier": "free",
           "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
           "animationType": "loop",
@@ -1871,6 +2557,26 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.455,
+                0.03,
+                0.515,
+                0.955
+              ],
+              "description": "Easing function"
             }
           ]
         }
@@ -1896,6 +2602,7 @@
         {
           "name": "default",
           "displayName": "Dots Bounce",
+          "componentName": "DotsBounce",
           "tier": "free",
           "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
           "animationType": "loop",
@@ -1938,6 +2645,435 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.8,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.15,
+              "description": "Delay offset per dot in seconds",
+              "min": 0,
+              "max": 0.5,
+              "step": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dot-matrix-vortex",
+      "name": "Dot Matrix Vortex",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "vortex",
+        "rings",
+        "rotation",
+        "gyroscope",
+        "orbit",
+        "concentric"
+      ],
+      "description": "Concentric rings of dots each spin at double the speed of the ring outside them — a gyroscopic vortex where the centre spins fastest",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Vortex",
+          "componentName": "DotMatrixVortex",
+          "tier": "free",
+          "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "min": 0.5,
+              "max": 8,
+              "step": 0.1,
+              "description": "Time for the outer ring to complete one full revolution in seconds"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 3,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dot-matrix-rain",
+      "name": "Dot Matrix Rain",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "rain",
+        "gravity",
+        "column",
+        "fall",
+        "cascade",
+        "physics"
+      ],
+      "description": "Bright drops fall column by column like digital rain — each column offset in time, leaving a fading trail as they descend",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Rain",
+          "componentName": "DotMatrixRain",
+          "tier": "free",
+          "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.8,
+              "min": 0.3,
+              "max": 6,
+              "step": 0.1,
+              "description": "Time for one complete drop cycle per column in seconds"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 3,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dot-matrix-life",
+      "name": "Dot Matrix Life",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "life",
+        "cellular",
+        "automaton",
+        "organic",
+        "emergent",
+        "conway"
+      ],
+      "description": "Conway's Game of Life plays out in the dot grid — dots live and die by their neighbours, producing organic oscillating patterns from simple rules",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Life",
+          "componentName": "DotMatrixLife",
+          "tier": "free",
+          "description": "Each generation, every dot lives or dies based on its 8 neighbours following Conway's rules. Seeded with multiple blinker oscillators that interact across the toroidal grid.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "min": 0.08,
+              "max": 2,
+              "step": 0.05,
+              "description": "Duration of each generation step in seconds (lower = faster evolution)"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 3,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dot-matrix-chase",
+      "name": "Dot Matrix Chase",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "chase",
+        "predator",
+        "prey",
+        "snake",
+        "entity",
+        "tail"
+      ],
+      "description": "Two entities travel a spiral path — a bright leader and a dimmer chaser locked in pursuit, never catching, never escaping",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Chase",
+          "componentName": "DotMatrixChase",
+          "tier": "free",
+          "description": "A bright leader and dimmer chaser travel the same spiral path 55% of its length apart. Their interlocking tails create a kinetic, predator-prey visual.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.5,
+              "min": 0.5,
+              "max": 8,
+              "step": 0.1,
+              "description": "Time for one full spiral traversal in seconds"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 3,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dot-matrix-bits",
+      "name": "Dot Matrix Bits",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "binary",
+        "bits",
+        "counter",
+        "data",
+        "digital",
+        "computational"
+      ],
+      "description": "The grid is a bank of binary counters — each row counts at half the speed of the row below, producing a cascading binary waterfall",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Bits",
+          "componentName": "DotMatrixBits",
+          "tier": "free",
+          "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 3,
+              "min": 0.5,
+              "max": 10,
+              "step": 0.5,
+              "description": "Time for the bottom (fastest) row to complete one full binary count cycle in seconds"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
             }
           ]
         }
@@ -1963,6 +3099,7 @@
         {
           "name": "default",
           "displayName": "Dot Circle Expand",
+          "componentName": "DotCircleExpand",
           "tier": "free",
           "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
           "animationType": "loop",
@@ -2005,6 +3142,26 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.3,
+                1,
+                0,
+                1
+              ],
+              "description": "Easing function"
             }
           ]
         }
@@ -2029,6 +3186,7 @@
         {
           "name": "default",
           "displayName": "Dock Bounce",
+          "componentName": "DockBounce",
           "tier": "free",
           "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
           "animationType": "loop",
@@ -2059,6 +3217,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "repeatDelay",
+              "type": "number",
+              "default": 1,
+              "description": "Pause between animation cycles in seconds",
+              "min": 0,
+              "max": 5,
+              "step": 0.1
             }
           ]
         }
@@ -2084,6 +3266,7 @@
         {
           "name": "default",
           "displayName": "Cross Expand",
+          "componentName": "CrossExpand",
           "tier": "free",
           "description": "Static center cross with four corner squares that expand outward, rotate 90°, then retract in a pulsing geometric pattern",
           "animationType": "loop",
@@ -2126,6 +3309,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -2151,6 +3349,7 @@
         {
           "name": "default",
           "displayName": "Conic Spinner",
+          "componentName": "ConicSpinner",
           "tier": "free",
           "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
           "animationType": "loop",
@@ -2181,6 +3380,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
             }
           ]
         }
@@ -2206,6 +3420,7 @@
         {
           "name": "default",
           "displayName": "Circular Wave Fill",
+          "componentName": "CircularWaveFill",
           "tier": "free",
           "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
           "animationType": "loop",
@@ -2242,6 +3457,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
             }
           ]
         }
@@ -2267,6 +3497,7 @@
         {
           "name": "default",
           "displayName": "Circle Spinner Wipe",
+          "componentName": "CircleSpinnerWipe",
           "tier": "free",
           "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
           "animationType": "loop",
@@ -2309,6 +3540,32 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeLinecap",
+              "type": "enum",
+              "default": "butt",
+              "options": [
+                "round",
+                "butt",
+                "square"
+              ],
+              "description": "Stroke line cap style"
             }
           ]
         }
@@ -2333,6 +3590,7 @@
         {
           "name": "default",
           "displayName": "Breath",
+          "componentName": "Breath",
           "tier": "free",
           "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
           "animationType": "loop",
@@ -2363,6 +3621,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.5,
+              "max": 10,
+              "step": 0.5
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -2385,6 +3658,7 @@
         {
           "name": "default",
           "displayName": "Bars Wave",
+          "componentName": "BarsWave",
           "tier": "free",
           "description": "Five vertical bars with staggered height animation creating a wave effect",
           "animationType": "loop",
@@ -2421,6 +3695,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -2446,6 +3735,7 @@
         {
           "name": "default",
           "displayName": "Bars Scale Wave",
+          "componentName": "BarsScaleWave",
           "tier": "free",
           "description": "Vertical bars grow and shrink in a wave pattern with staggered delays, resembling an audio equalizer",
           "animationType": "loop",
@@ -2488,6 +3778,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.1,
+              "description": "Delay offset per bar in seconds",
+              "min": 0,
+              "max": 0.5,
+              "step": 0.01
             }
           ]
         }
@@ -2510,6 +3824,7 @@
         {
           "name": "default",
           "displayName": "Bars Scale Bottom",
+          "componentName": "BarsScaleBottom",
           "tier": "free",
           "description": "Three vertical bars scaling up and down with bottom fixed",
           "animationType": "loop",
@@ -2546,6 +3861,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.15,
+              "description": "Delay offset per bar in seconds",
+              "min": 0,
+              "max": 0.5,
+              "step": 0.01
             }
           ]
         }
@@ -2567,6 +3906,7 @@
         {
           "name": "scale",
           "displayName": "Bars Scale",
+          "componentName": "BarsScale",
           "tier": "free",
           "description": "Three vertical bars scaling up and down with sequential animation",
           "animationType": "loop",
@@ -2603,6 +3943,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.15,
+              "description": "Delay offset per bar in seconds",
+              "min": 0,
+              "max": 0.5,
+              "step": 0.01
             }
           ]
         }
@@ -2626,6 +3990,7 @@
         {
           "name": "default",
           "displayName": "Bars Pulse Swap",
+          "componentName": "BarsPulseSwap",
           "tier": "free",
           "description": "Six bars arranged in three pairs that continuously pulse while swapping between stacked and overlapped positions",
           "animationType": "loop",
@@ -2668,6 +4033,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -2691,6 +4071,7 @@
         {
           "name": "default",
           "displayName": "Bars Fill Sequential",
+          "componentName": "BarsFillSequential",
           "tier": "free",
           "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
           "animationType": "loop",
@@ -2733,6 +4114,35 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.215,
+                0.61,
+                0.355,
+                1
+              ],
+              "description": "Easing function"
+            },
+            {
+              "name": "repeatDelay",
+              "type": "number",
+              "default": 0.5,
+              "description": "Pause between cycles in seconds",
+              "min": 0,
+              "max": 5,
+              "step": 0.1
             }
           ]
         }
@@ -2755,6 +4165,7 @@
         {
           "name": "fade",
           "displayName": "Bars Fade",
+          "componentName": "BarsFade",
           "tier": "free",
           "description": "Three vertical bars with smooth fade animation",
           "animationType": "loop",
@@ -2785,6 +4196,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.2,
+              "description": "Delay offset per element in seconds",
+              "min": 0,
+              "max": 0.5,
+              "step": 0.01
             }
           ]
         }
@@ -2808,6 +4243,7 @@
         {
           "name": "default",
           "displayName": "Bars Cascade",
+          "componentName": "BarsCascade",
           "tier": "free",
           "description": "Four horizontal bars with stripe pattern that cascade down from top, stack up, then cascade out from bottom",
           "animationType": "loop",
@@ -2838,6 +4274,26 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.455,
+                0.03,
+                0.515,
+                0.955
+              ],
+              "description": "Easing function"
             }
           ]
         }
@@ -2860,6 +4316,7 @@
         {
           "name": "default",
           "displayName": "Bars Bounce",
+          "componentName": "BarsBounce",
           "tier": "free",
           "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
           "animationType": "loop",
@@ -2902,6 +4359,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -2926,6 +4398,7 @@
         {
           "name": "default",
           "displayName": "Ball Bounce Slide",
+          "componentName": "BallBounceSlide",
           "tier": "free",
           "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
           "animationType": "loop",
@@ -2962,6 +4435,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of the slide line stroke",
+              "min": 1,
+              "max": 10,
+              "step": 0.5
             }
           ]
         }
@@ -2986,6 +4483,7 @@
         {
           "name": "default",
           "displayName": "Ball Bounce Dashed",
+          "componentName": "BallBounceDashed",
           "tier": "free",
           "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
           "animationType": "loop",
@@ -3022,6 +4520,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.75,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of the dashed line stroke",
+              "min": 1,
+              "max": 10,
+              "step": 0.5
             }
           ]
         }
@@ -3046,6 +4568,7 @@
         {
           "name": "default",
           "displayName": "Ball Bounce Box",
+          "componentName": "BallBounceBox",
           "tier": "free",
           "description": "A square box outline rotates 90° in stepped intervals while a ball bounces rapidly inside it",
           "animationType": "loop",
@@ -3082,6 +4605,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of the box stroke",
+              "min": 1,
+              "max": 10,
+              "step": 0.5
             }
           ]
         }
@@ -3106,6 +4653,7 @@
         {
           "name": "default",
           "displayName": "Ball Bounce Alternate",
+          "componentName": "BallBounceAlternate",
           "tier": "free",
           "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
           "animationType": "loop",
@@ -3142,6 +4690,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of the bounce line stroke",
+              "min": 1,
+              "max": 10,
+              "step": 0.5
             }
           ]
         }
@@ -3166,6 +4738,7 @@
         {
           "name": "default",
           "displayName": "Audio Wave Vertical",
+          "componentName": "AudioWaveVertical",
           "tier": "free",
           "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
           "animationType": "loop",
@@ -3214,6 +4787,30 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.1,
+              "description": "Delay offset per bar in seconds",
+              "min": 0,
+              "max": 0.5,
+              "step": 0.01
             }
           ]
         }
@@ -3238,6 +4835,7 @@
         {
           "name": "default",
           "displayName": "Audio Bars Sequential",
+          "componentName": "AudioBarsSequential",
           "tier": "free",
           "description": "Six vertical bars with sequential wave animation traveling from left to right",
           "animationType": "loop",
@@ -3280,6 +4878,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -3304,6 +4917,7 @@
         {
           "name": "default",
           "displayName": "Audio Bars Opacity",
+          "componentName": "AudioBarsOpacity",
           "tier": "free",
           "description": "Six vertical bars fading in and out as they grow and shrink, creating a ghosting wave effect",
           "animationType": "loop",
@@ -3346,6 +4960,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.8,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -3370,6 +4999,7 @@
         {
           "name": "default",
           "displayName": "Audio Bars Sync",
+          "componentName": "AudioBarsHorizontal",
           "tier": "free",
           "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
           "animationType": "loop",
@@ -3412,6 +5042,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.8,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -3436,6 +5081,7 @@
         {
           "name": "default",
           "displayName": "Audio Bars Glow",
+          "componentName": "AudioBarsGlow",
           "tier": "free",
           "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
           "animationType": "loop",
@@ -3478,6 +5124,21 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.8,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
             }
           ]
         }
@@ -3501,6 +5162,7 @@
         {
           "name": "default",
           "displayName": "App Download",
+          "componentName": "AppDownload",
           "tier": "free",
           "description": "A rounded arc sweeps around a faint track using strokeDashoffset animation, with a brief pause between each full rotation",
           "animationType": "loop",
@@ -3537,6 +5199,50 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 5,
+              "description": "Stroke width of the arc",
+              "min": 1,
+              "max": 12,
+              "step": 0.5
+            },
+            {
+              "name": "strokeLinecap",
+              "type": "enum",
+              "default": "round",
+              "options": [
+                "round",
+                "butt",
+                "square"
+              ],
+              "description": "Stroke line cap style"
+            },
+            {
+              "name": "repeatDelay",
+              "type": "number",
+              "default": 0.4,
+              "description": "Pause between cycles in seconds",
+              "min": 0,
+              "max": 5,
+              "step": 0.1
             }
           ]
         }
@@ -3560,6 +5266,7 @@
         {
           "name": "default",
           "displayName": "Activity Rings",
+          "componentName": "ActivityRings",
           "tier": "free",
           "description": "Three nested arcs (75% visible) rotate at different speeds — outer slowest, inner fastest — with decreasing opacity inward",
           "animationType": "loop",
@@ -3590,6 +5297,41 @@
               "type": "boolean",
               "default": true,
               "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.4,
+              "description": "Outer ring animation duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 5,
+              "description": "Stroke width of the rings",
+              "min": 1,
+              "max": 12,
+              "step": 0.5
+            },
+            {
+              "name": "strokeLinecap",
+              "type": "enum",
+              "default": "round",
+              "options": [
+                "round",
+                "butt",
+                "square"
+              ],
+              "description": "Stroke line cap style"
             }
           ]
         }
@@ -3597,5 +5339,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-05-14T09:53:10.813Z"
+  "lastUpdated": "2026-05-31T13:46:23.808Z"
 }

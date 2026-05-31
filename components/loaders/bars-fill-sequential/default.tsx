@@ -9,6 +9,9 @@ interface BarsFillSequentialProps {
   barWidth?: number;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  repeatDelay?: number;
 }
 
 export function BarsFillSequential({ 
@@ -17,7 +20,10 @@ export function BarsFillSequential({
   color = "currentColor",
   barWidth = 9,
   gap = 9,
-  isAnimating = true
+  isAnimating = true,
+  duration = 0.5,
+  ease = [0.215, 0.61, 0.355, 1],
+  repeatDelay = 0.5,
 }: BarsFillSequentialProps) {
   const bars = [
     { x: 0, delay: 0 },
@@ -26,7 +32,6 @@ export function BarsFillSequential({
   ];
 
   // Custom easing - using ease-out-cubic for smooth deceleration
-  const easeOutCubic = [0.215, 0.61, 0.355, 1] as const;
 
   return (
     <svg
@@ -49,11 +54,11 @@ export function BarsFillSequential({
               y: [height, 0]
             }}
             transition={{
-              duration: 0.5,
+              duration: duration,
               delay: bar.delay,
               repeat: isAnimating ? Infinity : 0,
-              repeatDelay: 0.5,
-              ease: easeOutCubic
+              repeatDelay: repeatDelay,
+              ease: ease
             }}
           />
         );

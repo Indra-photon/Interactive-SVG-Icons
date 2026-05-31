@@ -8,6 +8,8 @@ interface BarsWaveProps {
   color?: string;
   barWidth?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function BarsWave({
@@ -15,7 +17,9 @@ export function BarsWave({
   height = 100,
   color = "currentColor",
   barWidth = 3,
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.0,
+  ease = 'easeInOut',
 }: BarsWaveProps) {
   const bars = [
     { x: 0, delay: 0 },
@@ -46,7 +50,7 @@ export function BarsWave({
           transition={{
             duration: 1,
             repeat: isAnimating ? Infinity : 0,
-            ease: "easeInOut",
+            ease: ease,
             delay: bar.delay
           }}
         />

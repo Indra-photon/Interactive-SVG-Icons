@@ -9,6 +9,8 @@ interface AudioBarsOpacityProps {
   barWidth?: number;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function AudioBarsOpacity({
@@ -17,7 +19,9 @@ export function AudioBarsOpacity({
   color = "currentColor",
   barWidth = 4,
   gap = 3,
-  isAnimating = true
+  isAnimating = true,
+  duration = 0.8,
+  ease = 'easeInOut',
 }: AudioBarsOpacityProps) {
   const barCount = 6;
   const totalWidth = (barCount * barWidth) + ((barCount - 1) * gap);
@@ -55,9 +59,9 @@ export function AudioBarsOpacity({
                 : [1, 0.3, 1]
             }}
             transition={{
-              duration: 0.8,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              ease: "easeInOut"
+              ease: ease
             }}
           />
         );

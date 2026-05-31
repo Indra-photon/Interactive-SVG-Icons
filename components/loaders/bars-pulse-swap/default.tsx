@@ -9,6 +9,8 @@ interface BarsPulseSwapProps {
   barWidth?: number;
   gap?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function BarsPulseSwap({ 
@@ -17,7 +19,9 @@ export function BarsPulseSwap({
   color = "currentColor",
   barWidth = 9,
   gap = 9,
-  isAnimating = true
+  isAnimating = true,
+  duration = 0.5,
+  ease = 'easeInOut',
 }: BarsPulseSwapProps) {
   const easeInOutQuad = [.785, .135, .15, .86] as const;
 
@@ -76,7 +80,7 @@ export function BarsPulseSwap({
             }}
             transition={{
               height: {
-                duration: 0.5,
+                duration: duration,
                 repeat: isAnimating ? Infinity : 0,
                 repeatType: "reverse",
                 ease: easeInOutQuad

@@ -9,6 +9,8 @@ interface PulseRingProps {
   ringCount?: number;
   thickness?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function PulseRing({
@@ -18,13 +20,13 @@ export function PulseRing({
   ringCount = 3,
   thickness = 3,
   isAnimating = true,
+  duration = 1.5,
+  ease = 'easeOut',
 }: PulseRingProps) {
   const centerX = width / 2;
   const centerY = height / 2;
   const baseRadius = Math.min(width, height) * 0.15;
   const maxRadius = Math.min(width, height) * 0.45;
-  const duration = 1.5;
-
   return (
     <svg
       width={width}
@@ -51,7 +53,7 @@ export function PulseRing({
             duration,
             repeat: isAnimating ? Infinity : 0,
             delay: (duration / ringCount) * i,
-            ease: 'easeOut',
+            ease: ease,
           }}
         />
       ))}

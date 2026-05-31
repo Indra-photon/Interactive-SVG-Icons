@@ -1,7 +1,16 @@
 {
   "name": "Infinity Loop",
   "category": "loaders",
-  "tags": ["infinity", "loop", "smooth", "continuous", "path", "minimal", "symbol", "elegant"],
+  "tags": [
+    "infinity",
+    "loop",
+    "smooth",
+    "continuous",
+    "path",
+    "minimal",
+    "symbol",
+    "elegant"
+  ],
   "description": "A dot travels continuously along an infinity symbol path in an elegant figure-eight motion",
   "createdAt": "2026-02-26",
   "variations": [
@@ -11,7 +20,9 @@
       "tier": "free",
       "description": "A dot traces the mathematical lemniscate (infinity symbol) path smoothly and continuously",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -54,8 +65,44 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 2.5,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "linear",
+          "description": "Easing function"
+        },
+        {
+          "name": "strokeWidth",
+          "type": "number",
+          "default": 2,
+          "description": "Stroke width of the path",
+          "min": 1,
+          "max": 8,
+          "step": 0.5
+        },
+        {
+          "name": "strokeLinecap",
+          "type": "enum",
+          "default": "round",
+          "options": [
+            "round",
+            "butt",
+            "square"
+          ],
+          "description": "Stroke line cap style"
         }
-      ]
+      ],
+      "componentName": "InfinityLoop"
     }
   ]
 }

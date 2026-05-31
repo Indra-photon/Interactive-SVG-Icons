@@ -1,7 +1,15 @@
 {
   "name": "Scan Line",
   "category": "loaders",
-  "tags": ["bar", "scan", "gradient", "linear", "progress", "sweep", "trail"],
+  "tags": [
+    "bar",
+    "scan",
+    "gradient",
+    "linear",
+    "progress",
+    "sweep",
+    "trail"
+  ],
   "description": "A gradient sweep travels across a thin bar from left to right, then resets and repeats",
   "createdAt": "2026-05-14",
   "variations": [
@@ -9,9 +17,11 @@
       "name": "default",
       "displayName": "Scan Line",
       "tier": "free",
-      "description": "A glowing gradient segment — bright at the leading edge, fading behind — sweeps across a faint track and resets",
+      "description": "A glowing gradient segment \u2014 bright at the leading edge, fading behind \u2014 sweeps across a faint track and resets",
       "animationType": "loop",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "props": [
         {
           "name": "width",
@@ -42,8 +52,33 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.4,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "linear",
+          "description": "Easing function"
+        },
+        {
+          "name": "repeatDelay",
+          "type": "number",
+          "default": 0.4,
+          "description": "Pause between cycles in seconds",
+          "min": 0,
+          "max": 5,
+          "step": 0.1
         }
-      ]
+      ],
+      "componentName": "ScanLine"
     }
   ]
 }

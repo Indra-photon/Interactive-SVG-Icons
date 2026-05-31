@@ -1,0 +1,30 @@
+{
+  "name": "dot-matrix-chase-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/loaders/dot-matrix-chase/default.tsx",
+      "content": "'use client';\n\nimport { useEffect, useMemo, useState } from 'react';\n\ninterface DotMatrixChaseProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotSize?: number;\n  isAnimating?: boolean;\n  duration?: number;\n  gridSize?: number;\n}\n\nconst BASE_OPACITY = 0.07;\nconst LEADER_TAIL = [1, 0.80, 0.62, 0.46, 0.32, 0.20, 0.12, 0.06] as const;\nconst CHASER_TAIL = [0.55, 0.40, 0.27, 0.17, 0.09] as const;\n\nfunction buildSpiralPath(n: number): number[] {\n  const path: number[] = [];\n  let top = 0, bottom = n - 1, left = 0, right = n - 1;\n  while (top <= bottom && left <= right) {\n    for (let c = left; c <= right; c++) path.push(top * n + c);\n    top++;\n    for (let r = top; r <= bottom; r++) path.push(r * n + right);\n    right--;\n    if (top <= bottom) { for (let c = right; c >= left; c--) path.push(bottom * n + c); bottom--; }\n    if (left <= right) { for (let r = bottom; r >= top; r--) path.push(r * n + left); left++; }\n  }\n  return path;\n}\n\nexport function DotMatrixChase({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  dotSize = 12,\n  isAnimating = true,\n  duration = 2.5,\n  gridSize = 5,\n}: DotMatrixChaseProps) {\n  const n = Math.max(3, Math.min(6, gridSize));\n  const stride = 100 / (n + 1);\n  const r = Math.min(dotSize, stride * 0.82) / 2;\n\n  const path = useMemo(() => buildSpiralPath(n), [n]);\n  const pathLen = path.length;\n  const stepMs = Math.max(16, (duration * 1000) / pathLen);\n\n  const [tick, setTick] = useState(0);\n\n  useEffect(() => {\n    if (!isAnimating) { setTick(0); return; }\n    const id = setInterval(() => setTick(t => t + 1), stepMs);\n    return () => clearInterval(id);\n  }, [isAnimating, stepMs]);\n\n  // Leader runs ahead; chaser is ~55% of path behind, always pursuing\n  const leaderHead = tick % pathLen;\n  const chaserHead = (tick + Math.floor(pathLen * 0.55)) % pathLen;\n\n  const opacities = useMemo(() => {\n    const ops = new Array(n * n).fill(BASE_OPACITY);\n    for (let d = 0; d < LEADER_TAIL.length; d++) {\n      const idx = path[(leaderHead - d + pathLen) % pathLen]!;\n      ops[idx] = Math.max(ops[idx], LEADER_TAIL[d]);\n    }\n    for (let d = 0; d < CHASER_TAIL.length; d++) {\n      const idx = path[(chaserHead - d + pathLen) % pathLen]!;\n      ops[idx] = Math.max(ops[idx], CHASER_TAIL[d]);\n    }\n    return ops;\n  }, [leaderHead, chaserHead, path, pathLen, n]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: n * n }, (_, i) => (\n        <circle\n          key={i}\n          cx={stride + (i % n) * stride}\n          cy={stride + Math.floor(i / n) * stride}\n          r={r}\n          fill={color}\n          opacity={opacities[i]}\n          style={{ transition: 'opacity 60ms linear' }}\n        />\n      ))}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "meta": {
+    "displayName": "Dot Matrix Chase - Dot Matrix Chase",
+    "description": "A bright leader and dimmer chaser travel the same spiral path 55% of its length apart. Their interlocking tails create a kinetic, predator-prey visual.",
+    "category": "loaders",
+    "tags": [
+      "dots",
+      "matrix",
+      "chase",
+      "predator",
+      "prey",
+      "snake",
+      "entity",
+      "tail"
+    ],
+    "animationType": "loop"
+  }
+}

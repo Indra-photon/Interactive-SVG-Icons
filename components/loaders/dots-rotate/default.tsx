@@ -8,6 +8,8 @@ interface DotsRotateProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
 }
 
 export function DotsRotate({ 
@@ -15,9 +17,10 @@ export function DotsRotate({
   height = 46, // aspect-ratio 1.154 (40 * 1.154 ≈ 46)
   color = "currentColor",
   dotSize = 14, // 35% of 40px
-  isAnimating = true
+  isAnimating = true,
+  duration = 1.0,
+  ease = [0.645, 0.045, 0.355, 1],
 }: DotsRotateProps) {
-  const easeInOutCubic = [0.645, 0.045, 0.355, 1] as const;
 
   // Dot positions forming a triangle
   const positions = [
@@ -56,7 +59,7 @@ export function DotsRotate({
             transition={{
               duration: 1,
               repeat: isAnimating ? Infinity : 0,
-              ease: easeInOutCubic,
+              ease: ease,
               times: [0, 1]
             }}
           />

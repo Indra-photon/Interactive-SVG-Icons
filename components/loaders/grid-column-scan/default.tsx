@@ -8,6 +8,9 @@ interface GridColumnScanProps {
   color?: string;
   dotSize?: number;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: any;
+  gridSize?: number;
 }
 
 export function GridColumnScan({
@@ -16,17 +19,17 @@ export function GridColumnScan({
   color = 'currentColor',
   dotSize = 16,
   isAnimating = true,
+  duration = 1.4,
+  ease = 'easeInOut',
+  gridSize = 3,
 }: GridColumnScanProps) {
-  const stride = 100 / 4;
-  const dotRadius = dotSize / 2;
+  const n = Math.max(2, Math.min(6, gridSize));
+  const stride = 100 / (n + 1);
+  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
 
-  // All 3 dots in a column fire together, columns sweep left → right
-  // delay = col * 0.3
-  const delays = [
-    0, 0.3, 0.6,
-    0, 0.3, 0.6,
-    0, 0.3, 0.6,
-  ];
+  // Columns sweep left → right; all rows in a column fire together
+  const colStep = n > 1 ? (duration * 0.43) / (n - 1) : 0;
+  const delays = Array.from({ length: n * n }, (_, i) => (i % n) * colStep);
 
   return (
     <svg
@@ -38,8 +41,8 @@ export function GridColumnScan({
       aria-label="Loading"
       role="img"
     >
-      {Array.from({ length: 3 }).map((_, row) =>
-        Array.from({ length: 3 }).map((_, col) => (
+      {Array.from({ length: n }).map((_, row) =>
+        Array.from({ length: n }).map((_, col) => (
           <motion.circle
             key={`${row}-${col}`}
             cx={stride + col * stride}
@@ -50,10 +53,10 @@ export function GridColumnScan({
               opacity: [0.15, 1, 0.15],
             }}
             transition={{
-              duration: 1.4,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * 3 + col],
-              ease: 'easeInOut',
+              delay: delays[row * n + col],
+              ease: ease,
               times: [0, 0.35, 1],
             }}
           />
