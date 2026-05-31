@@ -1,23 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from '@next/third-parties/google'
 import { Toaster } from "@/components/ui/sonner"
 import { NavBar } from "@/components/NavBar";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
-import { UserSync } from "@/components/UserSync";
+// import {
+//   ClerkProvider,
+//   SignInButton,
+//   SignUpButton,
+//   SignedIn,
+//   SignedOut,
+//   UserButton,
+// } from '@clerk/nextjs'
+// import { UserSync } from "@/components/UserSync";
 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
 const geistMono = Geist_Mono({
@@ -92,18 +99,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    // <ClerkProvider>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
         <NavBar />
-        <UserSync />
+        {/* <UserSync /> */}
         {children}
         <GoogleTagManager gtmId="Your GTM ID" />
         <Toaster position="top-right" />
       </body>
     </html>
-    </ClerkProvider>
+    // </ClerkProvider>
   );
 }

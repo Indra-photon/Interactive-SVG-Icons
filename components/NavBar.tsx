@@ -2,12 +2,13 @@
 
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
-import { useRef, useState, useEffect, ReactNode } from "react"
+import { useState, ReactNode } from "react"
+// import { useRef, useEffect } from "react" // re-enable with sign-in
 import { Menu, X } from "lucide-react"
 import { navlinks } from "@/constants/navlinks"
-import { useUserStore } from "@/lib/store"
-import { useClerk } from "@clerk/nextjs"
-import { LogOut, User as UserIcon } from "lucide-react"
+// import { useUserStore } from "@/lib/store"
+// import { useClerk } from "@clerk/nextjs"
+// import { LogOut, User as UserIcon } from "lucide-react"
 
 interface NavItem {
   label: string
@@ -28,9 +29,9 @@ export function NavBar({
 }: NavbarProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-  const userMenuRef = useRef<HTMLDivElement>(null)
-  const { signOut } = useClerk()
+  // const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  // const userMenuRef = useRef<HTMLDivElement>(null)
+  // const { signOut } = useClerk()
 
   const positionClasses = {
     sticky: "sticky top-0",
@@ -38,24 +39,21 @@ export function NavBar({
     relative: "relative",
   }
 
-  useEffect(() => {
-  const handleClickOutside = (event: MouseEvent) => {
-    if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
-      setIsUserMenuOpen(false)
-    }
-  }
-  
-  if (isUserMenuOpen) {
-    document.addEventListener("mousedown", handleClickOutside)
-  }
-  
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside)
-  }
-}, [isUserMenuOpen])
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+  //       setIsUserMenuOpen(false)
+  //     }
+  //   }
+  //   if (isUserMenuOpen) {
+  //     document.addEventListener("mousedown", handleClickOutside)
+  //   }
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside)
+  //   }
+  // }, [isUserMenuOpen])
 
-  // user store data
-  const user = useUserStore((state) => state.user);
+  // const user = useUserStore((state) => state.user);
   
 
   return (
@@ -124,6 +122,7 @@ export function NavBar({
               className="hidden md:block"
             >
 
+              {/* Sign-in / user menu disabled
               {user !== null ? (
                 <div className="relative" ref={userMenuRef}>
                   <button
@@ -132,8 +131,6 @@ export function NavBar({
                   >
                     {user?.name}
                   </button>
-
-                  {/* Dropdown Modal */}
                   <AnimatePresence>
                     {isUserMenuOpen && (
                       <motion.div
@@ -151,9 +148,7 @@ export function NavBar({
                           <UserIcon size={16} />
                           Profile
                         </Link>
-                        
                         <div className="border-t border-neutral-200 my-1" />
-                        
                         <button
                           onClick={() => {
                             signOut()
@@ -175,6 +170,7 @@ export function NavBar({
                   </button>
                 </Link>
               )}
+              */}
 
             </motion.div>
 

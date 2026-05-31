@@ -332,13 +332,12 @@ export default function Home() {
         >
           <Badge text="35+ Animated SVG Components" href="/loaders" />
 
-          <Heading className="text-foreground text-4xl sm:text-5xl md:text-6xl leading-[1.08]">
-            Beautiful animated SVG
-            <br />
-            for your apps
+          <Heading className="text-foreground text-4xl sm:text-5xl md:text-6xl leading-[1.15]">
+            <span className=" block">Beautiful animated SVG</span>
+            <span className=" font-normal italic block">for your apps</span>
           </Heading>
 
-          <Paragraph className="max-w-md text-neutral-500 text-base md:text-lg">
+          <Paragraph className="max-w-xl font-sans tracking-tighter text-neutral-700 text-base md:text-lg">
             A growing library of free, copy-paste SVG loaders and animated
             icons. Built with Framer Motion. Works with any React project.
           </Paragraph>
