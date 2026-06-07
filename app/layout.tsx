@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from '@next/third-parties/google'
 import { Toaster } from "@/components/ui/sonner"
 import { NavBar } from "@/components/NavBar";
+import { ThemeProvider } from "next-themes";
+import { cn } from "@/lib/utils";
+
+const geistHeading = Geist({subsets:['latin'],variable:'--font-heading'});
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+
+
 // import {
 //   ClerkProvider,
 //   SignInButton,
@@ -100,15 +108,17 @@ export default function RootLayout({
 }>) {
   return (
     // <ClerkProvider>
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", inter.variable, geistHeading.variable)}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
-        <NavBar />
-        {/* <UserSync /> */}
-        {children}
-        <GoogleTagManager gtmId="Your GTM ID" />
-        <Toaster position="top-right" />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <NavBar />
+          {/* <UserSync /> */}
+          {children}
+          <GoogleTagManager gtmId="Your GTM ID" />
+          <Toaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
     // </ClerkProvider>

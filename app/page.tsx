@@ -17,28 +17,28 @@ import {
 } from "@tabler/icons-react";
 
 // Loaders
-import { BarsBounce } from "@/components/loaders/bars-bounce/default";
-import { AudioBarsGlow } from "@/components/loaders/audio-bars-glow/default";
-import { BarsWave } from "@/components/loaders/bars-wave/default";
-import { DotsRotate } from "@/components/loaders/dots-rotate/default";
-import { BarsCascade } from "@/components/loaders/bars-cascade/default";
-import { DotsCompress } from "@/components/loaders/dots-compress/default";
-import { PulseRing } from "@/components/loaders/pulse-ring/default";
-import { InfinityLoop } from "@/components/loaders/infinity-loop/default";
-import { HeartFill } from "@/components/loaders/heart-fill/default";
-import { ConicSpinner } from "@/components/loaders/conic-spinner/default";
-import { DotsBounce } from "@/components/loaders/dots-bounce/default";
-import { HexagonRotate } from "@/components/loaders/hexagon-rotate/default";
+import { BarsBounce } from "@/components/craftui/loaders/bars-bounce/default";
+import { AudioBarsGlow } from "@/components/craftui/loaders/audio-bars-glow/default";
+import { BarsWave } from "@/components/craftui/loaders/bars-wave/default";
+import { DotsRotate } from "@/components/craftui/loaders/dots-rotate/default";
+import { BarsCascade } from "@/components/craftui/loaders/bars-cascade/default";
+import { DotsCompress } from "@/components/craftui/loaders/dots-compress/default";
+import { PulseRing } from "@/components/craftui/loaders/pulse-ring/default";
+import { InfinityLoop } from "@/components/craftui/loaders/infinity-loop/default";
+import { HeartFill } from "@/components/craftui/loaders/heart-fill/default";
+import { ConicSpinner } from "@/components/craftui/loaders/conic-spinner/default";
+import { DotsBounce } from "@/components/craftui/loaders/dots-bounce/default";
+import { HexagonRotate } from "@/components/craftui/loaders/hexagon-rotate/default";
 
 // Icons
-import { TrashIcon } from "@/components/icons/trash/default";
-import { IconHome } from "@/components/icons/home/default";
-import { IconRefresh } from "@/components/icons/refresh/default";
-import { IconMail } from "@/components/icons/mail/default";
-import { IconAlarmRing } from "@/components/icons/alarm-clock/default";
-import { IconBulb } from "@/components/icons/bulb/default";
-import { IconLayoutDashboard } from "@/components/icons/layout/default";
-import { IconShoppingCart } from "@/components/icons/shopping-cart/default";
+import { TrashIcon } from "@/components/craftui/icons/trash/default";
+import { IconHome } from "@/components/craftui/icons/home/default";
+import { IconRefresh } from "@/components/craftui/icons/refresh/default";
+import { IconMail } from "@/components/craftui/icons/mail/default";
+import { IconAlarmRing } from "@/components/craftui/icons/alarm-clock/default";
+import { IconBulb } from "@/components/craftui/icons/bulb/default";
+import { IconLayoutDashboard } from "@/components/craftui/icons/layout/default";
+import { IconShoppingCart } from "@/components/craftui/icons/shopping-cart/default";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -227,7 +227,7 @@ function PatternSection({
 
       {/* ── Corner diamonds: top-left, top-right, bottom-left, bottom-right ── */}
       <div className="col-start-1 row-start-1 relative z-20">
-        <div className="absolute size-2.5 rotate-45 -translate-y-1/2 translate-x-1/2  right-0 top-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
+        <div className="absolute size-2.5 rotate-45 -translate-y-1/2 translate-x-1/2  right-0 top-0 border border-(--pattern-fg) bg-[#fd551d] dark:bg-gray-950" />
       </div>
       <div className="col-start-3 row-start-1 relative z-20">
         <div className="absolute size-2.5 rotate-45 -translate-y-1/2 -translate-x-1/2 left-0  top-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
@@ -343,17 +343,12 @@ export default function Home() {
           </Paragraph>
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
-            <Button asChild size="lg" className="rounded-full px-6">
+            <Button asChild size="lg" variant="outline" className="px-6">
               <Link href="/loaders">
                 Browse Loaders <IconArrowRight size={15} className="ml-1" />
               </Link>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full px-6"
-            >
+            <Button asChild size="lg" variant="outline" className="">
               <Link href="/icons">Browse Icons</Link>
             </Button>
             <Button
@@ -601,7 +596,7 @@ export default function Home() {
               <span className="w-3 h-3 rounded-full bg-yellow-400" />
               <span className="w-3 h-3 rounded-full bg-green-400" />
             </div>
-            <pre className="text-neutral-300 leading-7 whitespace-pre-wrap">{`import { BarsBounce } from '@/components/loaders/bars-bounce/default';
+            <pre className="text-neutral-300 leading-7 whitespace-pre-wrap">{`import { BarsBounce } from '@/components/craftui/loaders/bars-bounce/default';
 
 export default function Page() {
   return (

@@ -5,12 +5,15 @@
   "dependencies": [
     "framer-motion"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/loaders/heart-fill/default.tsx",
+      "path": "components/craftui/loaders/heart-fill/default.tsx",
       "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface HeartFillProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  backgroundColor?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n}\n\nexport function HeartFill({\n  width = 60,\n  height = 60,\n  color = \"#dc1818\",\n  backgroundColor = \"#cccccc\",\n  isAnimating = true,\n  duration = 2.0,\n  ease = 'easeOut',\n}: HeartFillProps) {\n  const scaleX = width / 60;\n  const scaleY = height / 60;\n\n  // Heart path scaled to 60x60 viewbox\n  const heartPath = \"M30,50 C10,35 5,25 5,18 C5,10 12,5 20,5 C24,5 28,7 30,10 C32,7 36,5 40,5 C48,5 55,10 55,18 C55,25 50,35 30,50 Z\";\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 60 60\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <clipPath id={`heart-clip-${width}`}>\n          <path d={heartPath} />\n        </clipPath>\n      </defs>\n      {/* Background heart */}\n      <path d={heartPath} fill={backgroundColor} />\n      {/* Animated fill rect clipped to heart shape */}\n      <g clipPath={`url(#heart-clip-${width})`}>\n        <motion.rect\n          x={0}\n          width={60}\n          height={60}\n          fill={color}\n          animate={{\n            y: [60, 60, 0],\n          }}\n          transition={{\n            duration: 2,\n            repeat: isAnimating ? Infinity : 0,\n            times: [0, 0.2, 1],\n            ease: ease,\n          }}\n        />\n      </g>\n    </svg>\n  );\n}\n",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/loaders/heart-fill/default.tsx"
     }
   ],
   "meta": {

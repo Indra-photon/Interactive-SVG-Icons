@@ -5,12 +5,15 @@
   "dependencies": [
     "framer-motion"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/loaders/grid-spiral/default.tsx",
+      "path": "components/craftui/loaders/grid-spiral/default.tsx",
       "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface GridSpiralProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotSize?: number;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n  gridSize?: number;\n}\n\nexport function GridSpiral({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  dotSize = 16,\n  isAnimating = true,\n  duration = 1.4,\n  ease = 'easeInOut',\n  gridSize = 3,\n}: GridSpiralProps) {\n  const n = Math.max(2, Math.min(6, gridSize));\n  const stride = 100 / (n + 1);\n  const dotRadius = Math.min(dotSize, stride * 0.85) / 2;\n\n  // Clockwise spiral from top-left corner\n  const spiralOrder = new Array(n * n).fill(0);\n  let top = 0, bottom = n - 1, left = 0, right = n - 1, seq = 0;\n  while (top <= bottom && left <= right) {\n    for (let c = left; c <= right; c++) spiralOrder[top * n + c] = seq++;\n    top++;\n    for (let r = top; r <= bottom; r++) spiralOrder[r * n + right] = seq++;\n    right--;\n    if (top <= bottom) { for (let c = right; c >= left; c--) spiralOrder[bottom * n + c] = seq++; bottom--; }\n    if (left <= right) { for (let r = bottom; r >= top; r--) spiralOrder[r * n + left] = seq++; left++; }\n  }\n  const spiralMax = n * n - 1;\n  const spiralStep = spiralMax > 0 ? (duration * 0.69) / spiralMax : 0;\n  const delays = spiralOrder.map(pos => pos * spiralStep);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: n }).map((_, row) =>\n        Array.from({ length: n }).map((_, col) => (\n          <motion.circle\n            key={`${row}-${col}`}\n            cx={stride + col * stride}\n            cy={stride + row * stride}\n            fill={color}\n            animate={{\n              r: [dotRadius * 0.4, dotRadius, dotRadius * 0.4],\n              opacity: [0.15, 1, 0.15],\n            }}\n            transition={{\n              duration: duration,\n              repeat: isAnimating ? Infinity : 0,\n              delay: delays[row * n + col],\n              ease: ease,\n              times: [0, 0.35, 1],\n            }}\n          />\n        ))\n      )}\n    </svg>\n  );\n}\n",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/loaders/grid-spiral/default.tsx"
     }
   ],
   "meta": {

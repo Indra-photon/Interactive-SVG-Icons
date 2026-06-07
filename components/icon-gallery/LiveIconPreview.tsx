@@ -10,7 +10,7 @@
 
 // export function LiveIconPreview({ iconSlug, variationName, animationType }: LiveIconPreviewProps) {
 //   const IconComponent = dynamic(
-//     () => import(`@/components/icons/${iconSlug}/${variationName}.tsx`)
+//     () => import(`@/components/craftui/icons/${iconSlug}/${variationName}.tsx`)
 //       .then(mod => {
 //         const exportedComponent = mod[Object.keys(mod)[0]];
 //         return { default: exportedComponent };
@@ -52,7 +52,7 @@ export function LiveIconPreview({ iconSlug, variationName, animationType }: Live
   const [isAnimating, setIsAnimating] = useState(false);
 
   const IconComponent = dynamic(
-    () => import(`@/components/icons/${iconSlug}/${variationName}.tsx`)
+    () => import(`@/components/craftui/icons/${iconSlug}/${variationName}.tsx`)
       .then(mod => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         return { default: exportedComponent };

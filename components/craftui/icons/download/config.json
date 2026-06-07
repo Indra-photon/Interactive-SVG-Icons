@@ -1,0 +1,53 @@
+{
+  "name": "Download Icon",
+  "category": "actions",
+  "tags": ["download", "save", "export", "arrow", "file"],
+  "description": "Arrow bounces into the tray on click — click-triggered download feedback icon",
+  "createdAt": "2026-06-01",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Bounce",
+      "tier": "free",
+      "description": "Arrow translates down into the tray and snaps back on click",
+      "animationType": "click",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Stroke color of the icon"
+        },
+        {
+          "name": "strokeWidth",
+          "type": "number",
+          "default": 1.5,
+          "min": 0.5,
+          "max": 3,
+          "step": 0.25,
+          "description": "Stroke width of the icon paths"
+        },
+        {
+          "name": "strokeLinecap",
+          "type": "enum",
+          "default": "round",
+          "options": ["round", "butt", "square"],
+          "description": "Stroke line cap style"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": false,
+          "description": "Triggers the arrow bounce. Set true on click, reset after 200ms."
+        }
+      ]
+    }
+  ]
+}

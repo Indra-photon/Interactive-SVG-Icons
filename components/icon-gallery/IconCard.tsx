@@ -27,7 +27,7 @@ const sliderVariants = {
 
 export function IconCard({ icon }: IconCardProps) {
   const IconComponent = dynamic(
-    () => import(`@/components/icons/${icon.slug}/default.tsx`)
+    () => import(`@/components/craftui/icons/${icon.slug}/default.tsx`)
       .then(mod => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         return { default: exportedComponent };

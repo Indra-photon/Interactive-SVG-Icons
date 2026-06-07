@@ -3,12 +3,15 @@
   "type": "registry:ui",
   "tier": "free",
   "dependencies": [],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/loaders/dot-matrix-bits/default.tsx",
+      "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
       "content": "'use client';\n\nimport { useEffect, useMemo, useState } from 'react';\n\ninterface DotMatrixBitsProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  dotSize?: number;\n  isAnimating?: boolean;\n  duration?: number;\n  gridSize?: number;\n}\n\nconst BASE_OPACITY = 0.06;\nconst ACTIVE_OPACITY = 0.96;\n\nexport function DotMatrixBits({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  dotSize = 12,\n  isAnimating = true,\n  duration = 3,\n  gridSize = 5,\n}: DotMatrixBitsProps) {\n  const n = Math.max(2, Math.min(6, gridSize));\n  const stride = 100 / (n + 1);\n  const r = Math.min(dotSize, stride * 0.82) / 2;\n\n  // Row r counts at speed 2^(n-1-r): row 0 is slowest (MSB), row n-1 is fastest (LSB)\n  // This gives a \"waterfall\" where the bottom row flickers fastest.\n  // Full cycle of the bottom row = 2^n ticks.\n  const stepMs = Math.max(16, (duration * 1000) / (1 << n));\n\n  const [tick, setTick] = useState(0);\n\n  useEffect(() => {\n    if (!isAnimating) { setTick(0); return; }\n    const id = setInterval(() => setTick(t => t + 1), stepMs);\n    return () => clearInterval(id);\n  }, [isAnimating, stepMs]);\n\n  const opacities = useMemo(() => {\n    return Array.from({ length: n * n }, (_, i) => {\n      const row = Math.floor(i / n);\n      const col = i % n;\n      // Row r sees a counter that increments every 2^r ticks\n      // (row n-1 = fastest, row 0 = slowest — reversed from natural order)\n      const speed = 1 << (n - 1 - row); // row 0 has speed 2^(n-1), row n-1 has speed 1\n      const counter = Math.floor(tick / speed);\n      // Column c shows bit (n-1-c) of this counter: leftmost col = MSB\n      const bit = (counter >> (n - 1 - col)) & 1;\n      return bit === 1 ? ACTIVE_OPACITY : BASE_OPACITY;\n    });\n  }, [tick, n]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {Array.from({ length: n * n }, (_, i) => (\n        <circle\n          key={i}\n          cx={stride + (i % n) * stride}\n          cy={stride + Math.floor(i / n) * stride}\n          r={r}\n          fill={color}\n          opacity={opacities[i]}\n        />\n      ))}\n    </svg>\n  );\n}\n",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
     }
   ],
   "meta": {

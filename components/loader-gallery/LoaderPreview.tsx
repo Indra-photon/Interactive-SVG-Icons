@@ -12,7 +12,7 @@ export function LoaderPreview({ loaderSlug, variationName, propValues = {} }: Lo
   const [LoaderComponent, setLoaderComponent] = useState<any>(null);
 
   useEffect(() => {
-    import(`@/components/loaders/${loaderSlug}/${variationName}.tsx`)
+    import(`@/components/craftui/loaders/${loaderSlug}/${variationName}.tsx`)
       .then((mod) => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         setLoaderComponent(() => exportedComponent);

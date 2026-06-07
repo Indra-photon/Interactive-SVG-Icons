@@ -2,9 +2,12 @@
 
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
-import { useState, ReactNode } from "react"
+import { useState, useEffect, ReactNode } from "react"
 // import { useRef, useEffect } from "react" // re-enable with sign-in
 import { Menu, X } from "lucide-react"
+import { useTheme } from "next-themes"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Sun01Icon, Moon02Icon } from "@hugeicons/core-free-icons"
 import { navlinks } from "@/constants/navlinks"
 // import { useUserStore } from "@/lib/store"
 // import { useClerk } from "@clerk/nextjs"
@@ -19,6 +22,50 @@ interface NavItem {
 interface NavbarProps {
   position?: "sticky" | "fixed" | "relative"
   items?: NavItem[]
+}
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted) return <div className="w-9 h-9" />
+
+  const isDark = theme === "dark"
+
+  return (
+    <motion.button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="relative flex items-center justify-center w-9 h-9 rounded-md text-foreground/70 hover:text-foreground hover:bg-muted transition-colors"
+      aria-label="Toggle theme"
+      whileTap={{ scale: 0.9 }}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {isDark ? (
+          <motion.span
+            key="sun"
+            initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <HugeiconsIcon icon={Sun01Icon} size={18} strokeWidth={1.5} />
+          </motion.span>
+        ) : (
+          <motion.span
+            key="moon"
+            initial={{ opacity: 0, rotate: 90, scale: 0.5 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <HugeiconsIcon icon={Moon02Icon} size={18} strokeWidth={1.5} />
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  )
 }
 
 export function NavBar({
@@ -62,7 +109,7 @@ export function NavBar({
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`${positionClasses[position]} bg-neutral-200 shadow-4xl z-50 w-full backdrop-blur-5xl border-b border-border/40`}
+        className={`${positionClasses[position]} bg-background/80 backdrop-blur-md shadow-sm z-50 w-full border-b border-border/40`}
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -119,8 +166,9 @@ export function NavBar({
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="hidden md:block"
+              className="hidden md:flex items-center gap-2"
             >
+              <ThemeToggle />
 
               {/* Sign-in / user menu disabled
               {user !== null ? (
@@ -174,16 +222,21 @@ export function NavBar({
 
             </motion.div>
 
-            <motion.button
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-foreground"
-              aria-label="Toggle menu"
+              className="md:hidden flex items-center gap-1"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
+              <ThemeToggle />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-foreground"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </motion.div>
           </div>
         </div>
       </motion.nav>

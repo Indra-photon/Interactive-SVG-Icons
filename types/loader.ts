@@ -41,6 +41,7 @@ export interface LoaderRegistryFile {
   type: string;
   tier: 'free' | 'premium';
   dependencies: string[];
+  registryDependencies?: string[];
   files: {
     path: string;
     content: string;

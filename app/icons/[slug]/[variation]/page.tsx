@@ -43,7 +43,7 @@ async function getVariation(slug: string, variationName: string) {
     try {
       const buttonPath = path.join(
         process.cwd(), 
-        'components/icons', 
+        'components/craftui/icons', 
         slug, 
         'examples', 
         `${variationName}-button.tsx`
@@ -127,7 +127,7 @@ export default async function VariationDetailPage({
           {/* <div>
             <h3 className="text-xl font-sans mb-4">Usage</h3>
             <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre">
-            {`import { TrashIcon } from '@/components/icons/${icon.slug}/${variation.name}';
+            {`import { TrashIcon } from '@/components/craftui/icons/${icon.slug}/${variation.name}';
 
             export default function App() {
               return <TrashIcon size={32} />;

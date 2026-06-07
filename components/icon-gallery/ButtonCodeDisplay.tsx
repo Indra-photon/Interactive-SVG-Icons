@@ -12,7 +12,7 @@ interface ButtonCodeDisplayProps {
 export function ButtonCodeDisplay({ iconSlug, variationName, buttonCode }: ButtonCodeDisplayProps) {
   // Dynamically load button example
   const ButtonExample = dynamic(
-    () => import(`@/components/icons/${iconSlug}/examples/${variationName}-button.tsx`)
+    () => import(`@/components/craftui/icons/${iconSlug}/examples/${variationName}-button.tsx`)
       .then(mod => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         return { default: exportedComponent };

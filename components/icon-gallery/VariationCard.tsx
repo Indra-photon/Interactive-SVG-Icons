@@ -15,7 +15,7 @@ interface VariationCardProps {
 
 export function VariationCard({ iconSlug, variation }: VariationCardProps) {
   const VariationComponent = dynamic(
-    () => import(`@/components/icons/${iconSlug}/${variation.name}.tsx`)
+    () => import(`@/components/craftui/icons/${iconSlug}/${variation.name}.tsx`)
       .then(mod => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         return { default: exportedComponent };

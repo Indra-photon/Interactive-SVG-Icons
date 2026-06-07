@@ -1,0 +1,68 @@
+{
+  "name": "Download Bounce",
+  "category": "loaders",
+  "tags": ["download", "arrow", "bounce", "loop", "transfer"],
+  "description": "Arrow repeatedly bounces into the tray — looping download progress indicator",
+  "createdAt": "2026-06-01",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Download Bounce",
+      "componentName": "DownloadBounce",
+      "tier": "free",
+      "description": "Arrow continuously bounces down into the tray while download is in progress",
+      "animationType": "loop",
+      "dependencies": ["framer-motion"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 48,
+          "description": "Width of the loader in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 48,
+          "description": "Height of the loader in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Stroke color of the arrow and tray"
+        },
+        {
+          "name": "strokeWidth",
+          "type": "number",
+          "default": 1.5,
+          "min": 0.5,
+          "max": 3,
+          "step": 0.25,
+          "description": "Stroke width of the SVG paths"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the bounce animation loops"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.0,
+          "min": 0.1,
+          "max": 5,
+          "step": 0.1,
+          "description": "Duration of one bounce cycle in seconds"
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeInOut",
+          "description": "Easing function for the bounce"
+        }
+      ]
+    }
+  ]
+}
