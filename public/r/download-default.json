@@ -1,0 +1,32 @@
+{
+  "name": "download-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/icons/download/default.tsx",
+      "content": "'use client';\n\nimport { motion } from 'motion/react';\n\ninterface IconDownloadProps {\n  size?: number;\n  color?: string;\n  strokeWidth?: number;\n  strokeLinecap?: 'round' | 'butt' | 'square';\n  isAnimating?: boolean;\n  className?: string;\n}\n\nexport function IconDownload({\n  size = 24,\n  color = 'currentColor',\n  strokeWidth = 1.5,\n  strokeLinecap = 'round',\n  isAnimating = false,\n  className = '',\n}: IconDownloadProps) {\n  return (\n    <svg\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={strokeWidth}\n      strokeLinecap={strokeLinecap}\n      strokeLinejoin=\"round\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      className={className}\n    >\n      <motion.g\n        animate={isAnimating ? 'bounce' : 'idle'}\n        variants={{\n          idle: { y: 0, transition: { duration: 0 } },\n          bounce: {\n            y: [0, 5, 0],\n            transition: { duration: 0.2, times: [0, 0.5, 1], ease: 'linear' },\n          },\n        }}\n      >\n        <line x1=\"12\" y1=\"14\" x2=\"12\" y2=\"4\" />\n        <polyline points=\"9,11 12,14 15,11\" />\n      </motion.g>\n      <motion.polyline\n        points=\"5,15 5,19 19,19 19,15\"\n        animate={isAnimating ? 'hit' : 'idle'}\n        variants={{\n          idle: { y: 0, transition: { duration: 0 } },\n          hit: {\n            y: [0, 0, 1.5, -0.4, 0],\n            transition: {\n              duration: 0.45,\n              times: [0, 0.22, 0.44, 0.7, 1],\n              ease: 'easeOut',\n            },\n          },\n        }}\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/icons/download/default.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Download Icon - Bounce",
+    "description": "Arrow translates down into the tray and snaps back on click",
+    "category": "actions",
+    "tags": [
+      "download",
+      "save",
+      "export",
+      "arrow",
+      "file"
+    ],
+    "animationType": "click"
+  }
+}

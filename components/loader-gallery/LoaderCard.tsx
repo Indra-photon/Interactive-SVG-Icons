@@ -30,7 +30,7 @@ export function LoaderCard({ loader }: LoaderCardProps) {
 
   useEffect(() => {
     // Dynamically import the loader component
-    import(`@/components/loaders/${loader.slug}/${firstVariation.name}.tsx`)
+    import(`@/components/craftui/loaders/${loader.slug}/${firstVariation.name}.tsx`)
       .then((mod) => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         setLoaderComponent(() => exportedComponent);

@@ -5,12 +5,15 @@
   "dependencies": [
     "framer-motion"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/loaders/app-download/default.tsx",
+      "path": "components/craftui/loaders/app-download/default.tsx",
       "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface AppDownloadProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  trackOpacity?: number;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n  strokeWidth?: number;\n  strokeLinecap?: 'round' | 'butt' | 'square';\n  repeatDelay?: number;\n}\n\nexport function AppDownload({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  trackOpacity = 0.12,\n  isAnimating = true,\n  duration = 1.5,\n  ease = 'easeInOut',\n  strokeWidth = 5,\n  strokeLinecap = 'round',\n  repeatDelay = 0.4,\n}: AppDownloadProps) {\n  const r = 38;\n  const circumference = 2 * Math.PI * r;\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {/* Faint background track */}\n      <circle\n        cx={50}\n        cy={50}\n        r={r}\n        stroke={color}\n        strokeWidth={strokeWidth}\n        fill=\"none\"\n        opacity={trackOpacity}\n      />\n\n      {/* Arc draws itself from 12 o'clock clockwise */}\n      <motion.circle\n        cx={50}\n        cy={50}\n        r={r}\n        stroke={color}\n        strokeWidth={strokeWidth}\n        strokeLinecap={strokeLinecap}\n        fill=\"none\"\n        transform=\"rotate(-90, 50, 50)\"\n        strokeDasharray={circumference}\n        animate={{\n          strokeDashoffset: isAnimating ? [circumference, 0] : circumference,\n        }}\n        transition={{\n          duration: duration,\n          repeat: isAnimating ? Infinity : 0,\n          ease: ease,\n          repeatDelay: repeatDelay,\n        }}\n      />\n    </svg>\n  );\n}\n",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/loaders/app-download/default.tsx"
     }
   ],
   "meta": {

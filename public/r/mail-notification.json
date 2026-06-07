@@ -5,12 +5,15 @@
   "dependencies": [
     "motion/react"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/icons/mail/notification.tsx",
+      "path": "components/craftui/icons/mail/notification.tsx",
       "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface MailNotificationIconProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  hasNotification?: boolean;\n}\n\nexport function IconMail({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  hasNotification = false\n}: MailNotificationIconProps) {\n  return (\n    <div className=\"relative inline-block\" style={{ width: size, height: size }}>\n      <svg \n        xmlns=\"http://www.w3.org/2000/svg\" \n        width={size} \n        height={size} \n        viewBox=\"0 0 24 24\" \n        fill={color}\n        className={`icon icon-tabler ${className}`}\n      >\n        <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n        \n        {/* Envelope body - bounces when notification arrives */}\n        <motion.path \n          d=\"M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z\"\n          animate={hasNotification ? \"bounce\" : \"idle\"}\n          variants={{\n            idle: { y: 0 },\n            bounce: {\n              y: [0, -3, 0, -2, 0],\n              transition: {\n                duration: 0.6,\n                times: [0, 0.2, 0.4, 0.6, 0.8],\n                ease: \"easeOut\"\n              }\n            }\n          }}\n        />\n        \n        {/* Top flap - bounces when notification arrives */}\n        <motion.path \n          d=\"M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z\"\n          animate={hasNotification ? \"bounce\" : \"idle\"}\n          variants={{\n            idle: { y: 0 },\n            bounce: {\n              y: [0, -3, 0, -2, 0],\n              transition: {\n                duration: 0.6,\n                times: [0, 0.2, 0.4, 0.6, 0.8],\n                ease: \"easeOut\"\n              }\n            }\n          }}\n        />\n      </svg>\n    </div>\n  );\n}",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/icons/mail/notification.tsx"
     }
   ],
   "meta": {

@@ -17,7 +17,7 @@ interface VariationCardWithButtonProps {
 export function VariationCardWithButton({ iconSlug, variation }: VariationCardWithButtonProps) {
   // Load icon component
   const IconComponent = dynamic(
-    () => import(`@/components/icons/${iconSlug}/${variation.name}.tsx`)
+    () => import(`@/components/craftui/icons/${iconSlug}/${variation.name}.tsx`)
       .then(mod => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         return { default: exportedComponent };
@@ -34,7 +34,7 @@ export function VariationCardWithButton({ iconSlug, variation }: VariationCardWi
 
   // Load button example component
   const ButtonExample = dynamic(
-    () => import(`@/components/icons/${iconSlug}/examples/${variation.name}-button.tsx`)
+    () => import(`@/components/craftui/icons/${iconSlug}/examples/${variation.name}-button.tsx`)
       .then(mod => {
         const exportedComponent = mod[Object.keys(mod)[0]];
         return { default: exportedComponent };

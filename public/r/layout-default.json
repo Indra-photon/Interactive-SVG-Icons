@@ -5,12 +5,15 @@
   "dependencies": [
     "motion/react"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/icons/layout/default.tsx",
+      "path": "components/craftui/icons/layout/default.tsx",
       "content": "'use client';\n\nimport { motion } from 'motion/react';\n\nexport interface LayoutDashboardIconProps {\n  size?: number;\n  color?: string;\n  className?: string;\n  isHovered?: boolean;\n}\n\nexport function IconLayoutDashboard({\n  size = 24,\n  color = 'currentColor',\n  className = '',\n  isHovered = false,\n}: LayoutDashboardIconProps) {\n  // Default (idle): top-left + bottom-right filled\n  // Hover:          top-right + bottom-left filled\n  const filledOpacity = 1;\n  const emptyOpacity = 0;\n\n  const transition = { duration: 0.3, ease: 'easeInOut' as const };\n\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke={color}\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={className}\n    >\n      <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n\n      {/* Top-left — tall panel: filled on idle, empty on hover */}\n      <motion.path\n        d=\"M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1\"\n        fill={color}\n        animate={{ fillOpacity: isHovered ? emptyOpacity : filledOpacity }}\n        transition={transition}\n      />\n\n      {/* Bottom-left — short panel: empty on idle, filled on hover */}\n      <motion.path\n        d=\"M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1\"\n        fill={color}\n        animate={{ fillOpacity: isHovered ? filledOpacity : emptyOpacity }}\n        transition={transition}\n      />\n\n      {/* Bottom-right — tall panel: filled on idle, empty on hover */}\n      <motion.path\n        d=\"M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1\"\n        fill={color}\n        animate={{ fillOpacity: isHovered ? emptyOpacity : filledOpacity }}\n        transition={transition}\n      />\n\n      {/* Top-right — short panel: empty on idle, filled on hover */}\n      <motion.path\n        d=\"M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1\"\n        fill={color}\n        animate={{ fillOpacity: isHovered ? filledOpacity : emptyOpacity }}\n        transition={transition}\n      />\n    </svg>\n  );\n}",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/icons/layout/default.tsx"
     }
   ],
   "meta": {

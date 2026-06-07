@@ -1,0 +1,8 @@
+{
+  "name": "craftui-base",
+  "type": "registry:lib",
+  "title": "CraftUI Base",
+  "description": "Core dependencies for CraftUI — framer-motion and motion.",
+  "dependencies": ["framer-motion", "motion"],
+  "files": []
+}

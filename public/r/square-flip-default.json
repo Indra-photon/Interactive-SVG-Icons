@@ -5,12 +5,15 @@
   "dependencies": [
     "framer-motion"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/loaders/square-flip/default.tsx",
+      "path": "components/craftui/loaders/square-flip/default.tsx",
       "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface SquareFlipProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n}\n\nexport function SquareFlip({\n  width = 40,\n  height = 40,\n  color = \"currentColor\",\n  isAnimating = true,\n  duration = 1.2,\n  ease = 'easeInOut',\n}: SquareFlipProps) {\n  const size = Math.min(width, height) * 0.6;\n  const x = (width - size) / 2;\n  const y = (height - size) / 2;\n\n  return (\n    <div style={{ width, height, perspective: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>\n      <motion.div\n  style={{\n    width: size,\n    height: size,\n    borderRadius: 2,\n    transformStyle: 'preserve-3d',\n    position: 'relative',\n  }}\n  animate={{ rotateY: [0, 180, 360] }}\n  transition={{ duration: duration, repeat: isAnimating ? Infinity : 0, ease: ease }}\n>\n  {/* Front face */}\n  <div style={{ position: 'absolute', inset: 0, borderRadius: 2, backgroundColor: color, backfaceVisibility: 'hidden' }} />\n  \n  {/* Back face */}\n  <div style={{ position: 'absolute', inset: 0, borderRadius: 2, border: `2.5px solid ${color}`, backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }} />\n</motion.div>\n    </div>\n  );\n}\n",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/loaders/square-flip/default.tsx"
     }
   ],
   "meta": {

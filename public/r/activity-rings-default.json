@@ -5,12 +5,15 @@
   "dependencies": [
     "framer-motion"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
   "files": [
     {
-      "path": "components/loaders/activity-rings/default.tsx",
+      "path": "components/craftui/loaders/activity-rings/default.tsx",
       "content": "'use client';\n\nimport { motion } from 'framer-motion';\n\ninterface ActivityRingsProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n  strokeWidth?: number;\n  strokeLinecap?: 'round' | 'butt' | 'square';\n}\n\nexport function ActivityRings({\n  width = 100,\n  height = 100,\n  color = 'currentColor',\n  isAnimating = true,\n  duration = 2.4,\n  ease = 'linear',\n  strokeWidth = 5,\n  strokeLinecap = 'round',\n}: ActivityRingsProps) {\n  const rings = [\n    { r: 38, speed: duration, opacity: 1 },\n    { r: 27, speed: duration * 0.75, opacity: 0.7 },\n    { r: 16, speed: duration * 0.5, opacity: 0.4 },\n  ];\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      {rings.map(({ r, speed, opacity }, i) => {\n        const circumference = 2 * Math.PI * r;\n        // Show 75% of the arc, hide 25%\n        const dashArray = `${circumference * 0.75} ${circumference * 0.25}`;\n\n        return (\n          <g key={i}>\n            {/* Faint track */}\n            <circle\n              cx={50}\n              cy={50}\n              r={r}\n              stroke={color}\n              strokeWidth={strokeWidth}\n              fill=\"none\"\n              opacity={0.1}\n            />\n            {/* Animated arc — rotates continuously */}\n            <motion.g\n              style={{ transformOrigin: 'center' }}\n              initial={{ rotate: -90 }}\n              animate={{ rotate: isAnimating ? 270 : -90 }}\n              transition={{\n                duration: speed,\n                repeat: isAnimating ? Infinity : 0,\n                ease: ease,\n              }}\n            >\n              <circle\n                cx={50}\n                cy={50}\n                r={r}\n                stroke={color}\n                strokeWidth={strokeWidth}\n                strokeDasharray={dashArray}\n                strokeLinecap={strokeLinecap}\n                fill=\"none\"\n                opacity={opacity}\n              />\n            </motion.g>\n          </g>\n        );\n      })}\n    </svg>\n  );\n}\n",
       "type": "registry:ui",
-      "target": ""
+      "target": "~/components/craftui/loaders/activity-rings/default.tsx"
     }
   ],
   "meta": {

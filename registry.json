@@ -1,0 +1,1790 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "craftui",
+  "homepage": "https://github.com/Indra-photon/Interactive-SVG-Icons",
+  "items": [
+    {
+      "name": "craftui-base",
+      "type": "registry:lib",
+      "title": "CraftUI Base",
+      "description": "Core dependencies for CraftUI — framer-motion and motion.",
+      "dependencies": [
+        "framer-motion",
+        "motion"
+      ],
+      "files": []
+    },
+    {
+      "name": "trash-default",
+      "type": "registry:ui",
+      "title": "Trash Icon - Default",
+      "description": "Shake animation during delete operation",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/trash/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/trash/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "trash-shake",
+      "type": "registry:ui",
+      "title": "Trash Icon - Lid Lift",
+      "description": "Lid lifts and bounces during delete operation",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/trash/shake.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/trash/shake.tsx"
+        }
+      ]
+    },
+    {
+      "name": "trash-bounce",
+      "type": "registry:ui",
+      "title": "Trash Icon - Fill & Crush",
+      "description": "Lines fill up and trash compresses during delete operation",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/trash/bounce.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/trash/bounce.tsx"
+        }
+      ]
+    },
+    {
+      "name": "trash-dissolve",
+      "type": "registry:ui",
+      "title": "Trash Icon - Dissolve Up",
+      "description": "Paths dissolve upward sequentially like smoke during delete operation",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/trash/dissolve.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/trash/dissolve.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tab-open-default",
+      "type": "registry:ui",
+      "title": "Tab Open Icon - Default",
+      "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/tab-open/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/tab-open/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shopping-cart-default",
+      "type": "registry:ui",
+      "title": "Shopping Cart Icon - Default",
+      "description": "Item falls into cart from above and cart shakes when adding to cart",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/shopping-cart/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-default",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Default",
+      "description": "Click the button to see the refresh icon in action.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-stroke",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Stroke Drawing",
+      "description": "Circular stroke drawing effect",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/stroke.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/stroke.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-dash",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Traveling Dash",
+      "description": "Dashed segments travel along the path",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/dash.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/dash.tsx"
+        }
+      ]
+    },
+    {
+      "name": "msg-glass-typing",
+      "type": "registry:ui",
+      "title": "Messages Icon - Typing Indicator",
+      "description": "Front bubble bounces gently up and down to indicate someone is typing. Perfect for real-time chat applications.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/msg-glass/typing.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/msg-glass/typing.tsx"
+        }
+      ]
+    },
+    {
+      "name": "msg-glass-wiggle",
+      "type": "registry:ui",
+      "title": "Messages Icon - Wiggle",
+      "description": "Entire icon rotates gently (±5°) on hover. Great for unread message indicators or clickable chat buttons.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/msg-glass/wiggle.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/msg-glass/wiggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "msg-glass-slideIn",
+      "type": "registry:ui",
+      "title": "Messages Icon - Slide In",
+      "description": "Bubbles slide in from opposite sides with spring bounce. Perfect for chat interface loading or conversation opening.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/msg-glass/slideIn.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/msg-glass/slideIn.tsx"
+        }
+      ]
+    },
+    {
+      "name": "mail-default",
+      "type": "registry:ui",
+      "title": "Mail Icon - Default",
+      "description": "Envelope flap opens on hover to reveal mail inside",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/mail/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/mail/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "mail-notification",
+      "type": "registry:ui",
+      "title": "Mail Icon - Notification Badge",
+      "description": "Icon bounces and shows glowing ping indicator when new mail arrives",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/mail/notification.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/mail/notification.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lock-glass-default",
+      "type": "registry:ui",
+      "title": "Lock Icon - Show Password",
+      "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/lock-glass/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/lock-glass/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lock-glass-unlock",
+      "type": "registry:ui",
+      "title": "Lock Icon - Unlock",
+      "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/lock-glass/unlock.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/lock-glass/unlock.tsx"
+        }
+      ]
+    },
+    {
+      "name": "layout-default",
+      "type": "registry:ui",
+      "title": "Layout Dashboard Icon - Default",
+      "description": "On hover, the two filled panels swap to the opposite two panels",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/layout/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/layout/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "layout-swap",
+      "type": "registry:ui",
+      "title": "Layout Dashboard Icon - Swap",
+      "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/layout/swap.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/layout/swap.tsx"
+        }
+      ]
+    },
+    {
+      "name": "home-default",
+      "type": "registry:ui",
+      "title": "Home Icon - Default",
+      "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/home/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/home/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "home-draw",
+      "type": "registry:ui",
+      "title": "Home Icon - Sketch Reveal",
+      "description": "Stroke animation draws the house from foundation to roof during loading",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/home/draw.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/home/draw.tsx"
+        }
+      ]
+    },
+    {
+      "name": "external-link-default",
+      "type": "registry:ui",
+      "title": "External Link Icon - Default",
+      "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/external-link/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/external-link/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "download-default",
+      "type": "registry:ui",
+      "title": "Download Icon - Bounce",
+      "description": "Arrow translates down into the tray and snaps back on click",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/download/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/download/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar-page-flip",
+      "type": "registry:ui",
+      "title": "Calendar Icon - Page Flip",
+      "description": "Calendar body rotates in 3D along the top edge like flipping a physical calendar page. Header with binding rings stays fixed. Perfect for month navigation.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/calendar/page-flip.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/calendar/page-flip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar-picker-open",
+      "type": "registry:ui",
+      "title": "Calendar Icon - Picker Open",
+      "description": "Calendar body splits and opens like a book on hover. Left half slides left, right half slides right. Perfect for date picker buttons that open calendars.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/calendar/picker-open.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/calendar/picker-open.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar-slide-month",
+      "type": "registry:ui",
+      "title": "Calendar Icon - Slide Month Change",
+      "description": "Date dots slide out to the left and new dots slide in from the right when month changes. Calendar body and header stay fixed.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/calendar/slide-month.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/calendar/slide-month.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bulb-default",
+      "type": "registry:ui",
+      "title": "Bulb Icon - Default",
+      "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/bulb/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/bulb/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alarm-clock-default",
+      "type": "registry:ui",
+      "title": "Alarm Icon - Ring",
+      "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/alarm-clock/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/alarm-clock/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alarm-clock-tick",
+      "type": "registry:ui",
+      "title": "Alarm Icon - Tick",
+      "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/alarm-clock/tick.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/alarm-clock/tick.tsx"
+        }
+      ]
+    },
+    {
+      "name": "triangle-cascade-default",
+      "type": "registry:ui",
+      "title": "Triangle Cascade - Triangle Cascade",
+      "description": "Five horizontal bars slide into position one after another, filling a triangle shape from bottom to top in a waterfall effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/triangle-cascade/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/triangle-cascade/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "square-flip-default",
+      "type": "registry:ui",
+      "title": "Square Flip - Square Flip",
+      "description": "A rectangle collapses to a thin line then expands back, simulating a 3D Y-axis flip animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/square-flip/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/square-flip/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "square-corners-rotate-default",
+      "type": "registry:ui",
+      "title": "Square Corners Rotate - Square Corners Rotate",
+      "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/square-corners-rotate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/square-corners-rotate/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "square-corners-dance-default",
+      "type": "registry:ui",
+      "title": "Square Corners Dance - Square Corners Dance",
+      "description": "Four squares at the corners of a bounding box shift positions clockwise, creating a spinning dance animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/square-corners-dance/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/square-corners-dance/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spotlight-default",
+      "type": "registry:ui",
+      "title": "Spotlight - Spotlight",
+      "description": "An ambient spotlight beam drifts slowly across the container — bright at center, fading to nothing at the edges — then reappears from the left",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/spotlight/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/spotlight/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner-orbit-dots-default",
+      "type": "registry:ui",
+      "title": "Spinner Orbit Dots - Spinner Orbit Dots",
+      "description": "Dots arranged in a radial pattern rotate together as a group, with opacity gradient creating a comet-tail effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/spinner-orbit-dots/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/spinner-orbit-dots/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "siri-wave-default",
+      "type": "registry:ui",
+      "title": "Siri Wave - Siri Wave",
+      "description": "Center bar tallest, outer bars shortest — all oscillate with staggered delays creating a smooth symmetric wave that pulses outward from center",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/siri-wave/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/siri-wave/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scan-line-default",
+      "type": "registry:ui",
+      "title": "Scan Line - Scan Line",
+      "description": "A glowing gradient segment — bright at the leading edge, fading behind — sweeps across a faint track and resets",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/scan-line/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/scan-line/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pulse-ring-default",
+      "type": "registry:ui",
+      "title": "Pulse Ring - Pulse Ring",
+      "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/pulse-ring/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/pulse-ring/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-trail-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner Trail - Sharp Trail",
+      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner-trail/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner-trail/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-thick-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner Thick - Thick",
+      "description": "8 wide pill-shaped spokes at 45° apart — bold and graphic, great for large-screen or kiosk UIs",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner-thick/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner-thick/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-pulse-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner Pulse - Pulse",
+      "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner-pulse/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner-pulse/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-grow-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner Grow - Grow",
+      "description": "Each spoke shoots outward radially as it activates — a blooming radial extension effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner-grow/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner-grow/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-dual-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner Dual - Dual Ring",
+      "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner-dual/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner-dual/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-dots-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner Dots - Dots",
+      "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner-dots/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner-dots/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner - Classic",
+      "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "infinity-loop-default",
+      "type": "registry:ui",
+      "title": "Infinity Loop - Infinity Loop",
+      "description": "A dot traces the mathematical lemniscate (infinity symbol) path smoothly and continuously",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/infinity-loop/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/infinity-loop/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hexagon-rotate-default",
+      "type": "registry:ui",
+      "title": "Hexagon Rotate - Hexagon Rotate",
+      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/hexagon-rotate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/hexagon-rotate/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "heart-fill-default",
+      "type": "registry:ui",
+      "title": "Heart Fill - Heart Fill",
+      "description": "Heart shape waits nearly empty then rapidly fills with color in a dramatic pulse, looping like a heartbeat",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/heart-fill/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/heart-fill/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-wave-row-default",
+      "type": "registry:ui",
+      "title": "Grid Wave Row - Grid Wave Row",
+      "description": "Each row sweeps left to right in sequence, creating a horizontal wave that cascades downward",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-wave-row/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-wave-row/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-spiral-default",
+      "type": "registry:ui",
+      "title": "Grid Spiral - Grid Spiral",
+      "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-spiral/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-spiral/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-snake-default",
+      "type": "registry:ui",
+      "title": "Grid Snake - Grid Snake",
+      "description": "Dots activate in a boustrophedon (back-and-forth) path that slithers through all 9 positions",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-snake/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-snake/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-ripple-default",
+      "type": "registry:ui",
+      "title": "Grid Ripple - Grid Ripple",
+      "description": "Center dot fires first, then the 4 adjacent edges, then the 4 corners — concentric expansion outward",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-ripple/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-ripple/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-random-default",
+      "type": "registry:ui",
+      "title": "Grid Random - Grid Random",
+      "description": "Dots activate in a fixed but non-sequential order that reads as random — like a matrix initialising",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-random/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-random/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-pulse-default",
+      "type": "registry:ui",
+      "title": "Grid Pulse - Grid Pulse",
+      "description": "Nine dots arranged in a 3×3 grid light up and fade in a rolling diagonal wave, top-left to bottom-right",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-pulse/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-pulse/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-cross-default",
+      "type": "registry:ui",
+      "title": "Grid Cross - Grid Cross",
+      "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-cross/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-cross/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-corners-in-default",
+      "type": "registry:ui",
+      "title": "Grid Corners In - Grid Corners In",
+      "description": "The 4 corner dots pulse first, then the 4 edge-center dots, then the center — an inward collapse opposite to ripple",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-corners-in/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-corners-in/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-column-scan-default",
+      "type": "registry:ui",
+      "title": "Grid Column Scan - Grid Column Scan",
+      "description": "A full column of dots lights up simultaneously, sweeping left to right like a vertical scan bar",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-column-scan/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-column-scan/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-clock-default",
+      "type": "registry:ui",
+      "title": "Grid Clock - Grid Clock",
+      "description": "Dots sweep clockwise from top-center (12 o'clock) through all 8 outer positions, then the center fires last",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-clock/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-clock/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-checker-default",
+      "type": "registry:ui",
+      "title": "Grid Checker - Grid Checker",
+      "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-checker/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-checker/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "download-bounce-default",
+      "type": "registry:ui",
+      "title": "Download Bounce - Download Bounce",
+      "description": "Arrow continuously bounces down into the tray while download is in progress",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/download-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/download-bounce/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dots-rotate-default",
+      "type": "registry:ui",
+      "title": "Dots Rotate - Dots Rotate",
+      "description": "Three circular dots that continuously rotate 120 degrees around a center point",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-rotate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-rotate/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dots-compress-default",
+      "type": "registry:ui",
+      "title": "Dots Compress - Dots Compress",
+      "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-compress/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-compress/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dots-bounce-default",
+      "type": "registry:ui",
+      "title": "Dots Bounce - Dots Bounce",
+      "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-bounce/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-vortex-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Vortex - Dot Matrix Vortex",
+      "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-vortex/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-vortex/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-rain-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Rain - Dot Matrix Rain",
+      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-life-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Life - Dot Matrix Life",
+      "description": "Each generation, every dot lives or dies based on its 8 neighbours following Conway's rules. Seeded with multiple blinker oscillators that interact across the toroidal grid.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-life/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-life/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-chase-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Chase - Dot Matrix Chase",
+      "description": "A bright leader and dimmer chaser travel the same spiral path 55% of its length apart. Their interlocking tails create a kinetic, predator-prey visual.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-chase/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-chase/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-bits-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Bits - Dot Matrix Bits",
+      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-circle-expand-default",
+      "type": "registry:ui",
+      "title": "Dot Circle Expand - Dot Circle Expand",
+      "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dock-bounce-default",
+      "type": "registry:ui",
+      "title": "Dock Bounce - Dock Bounce",
+      "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dock-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dock-bounce/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cross-expand-default",
+      "type": "registry:ui",
+      "title": "Cross Expand - Cross Expand",
+      "description": "Static center cross with four corner squares that expand outward, rotate 90°, then retract in a pulsing geometric pattern",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/cross-expand/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/cross-expand/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "conic-spinner-default",
+      "type": "registry:ui",
+      "title": "Conic Spinner - Conic Spinner",
+      "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/conic-spinner/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/conic-spinner/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circular-wave-fill-default",
+      "type": "registry:ui",
+      "title": "Circular Wave Fill - Circular Wave Fill",
+      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circle-spinner-wipe-default",
+      "type": "registry:ui",
+      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
+      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "breath-default",
+      "type": "registry:ui",
+      "title": "Breath - Breath",
+      "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/breath/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/breath/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-wave-default",
+      "type": "registry:ui",
+      "title": "Bars Wave - Bars Wave",
+      "description": "Five vertical bars with staggered height animation creating a wave effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-wave/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-wave/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-scale-wave-default",
+      "type": "registry:ui",
+      "title": "Bars Scale Wave - Bars Scale Wave",
+      "description": "Vertical bars grow and shrink in a wave pattern with staggered delays, resembling an audio equalizer",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-scale-wave/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-scale-wave/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-scale-bottom-default",
+      "type": "registry:ui",
+      "title": "Bars Scale Bottom - Bars Scale Bottom",
+      "description": "Three vertical bars scaling up and down with bottom fixed",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-scale-01-scale",
+      "type": "registry:ui",
+      "title": "Bars Scale - Bars Scale",
+      "description": "Three vertical bars scaling up and down with sequential animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-scale-01/scale.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-scale-01/scale.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-pulse-swap-default",
+      "type": "registry:ui",
+      "title": "Bars Pulse Swap - Bars Pulse Swap",
+      "description": "Six bars arranged in three pairs that continuously pulse while swapping between stacked and overlapped positions",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-pulse-swap/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-pulse-swap/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-fill-sequential-default",
+      "type": "registry:ui",
+      "title": "Bars Fill Sequential - Bars Fill Sequential",
+      "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-fill-sequential/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-fill-sequential/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-fade-01-fade",
+      "type": "registry:ui",
+      "title": "Bars Fade - Bars Fade",
+      "description": "Three vertical bars with smooth fade animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-fade-01/fade.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-fade-01/fade.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-cascade-default",
+      "type": "registry:ui",
+      "title": "Bars Cascade - Bars Cascade",
+      "description": "Four horizontal bars with stripe pattern that cascade down from top, stack up, then cascade out from bottom",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-cascade/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-cascade/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-bounce-default",
+      "type": "registry:ui",
+      "title": "Bars Bounce - Bars Bounce",
+      "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-bounce/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ball-bounce-slide-default",
+      "type": "registry:ui",
+      "title": "Ball Bounce Slide - Ball Bounce Slide",
+      "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ball-bounce-slide/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ball-bounce-slide/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ball-bounce-dashed-default",
+      "type": "registry:ui",
+      "title": "Ball Bounce Dashed - Ball Bounce Dashed",
+      "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ball-bounce-dashed/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ball-bounce-dashed/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ball-bounce-box-default",
+      "type": "registry:ui",
+      "title": "Ball Bounce Box - Ball Bounce Box",
+      "description": "A square box outline rotates 90° in stepped intervals while a ball bounces rapidly inside it",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ball-bounce-box/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ball-bounce-box/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ball-bounce-alternate-default",
+      "type": "registry:ui",
+      "title": "Ball Bounce Alternate - Ball Bounce Alternate",
+      "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ball-bounce-alternate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ball-bounce-alternate/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-wave-vertical-default",
+      "type": "registry:ui",
+      "title": "Audio Wave Vertical - Audio Wave Vertical",
+      "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-wave-vertical/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-wave-vertical/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-sequential-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Sequential - Audio Bars Sequential",
+      "description": "Six vertical bars with sequential wave animation traveling from left to right",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-sequential/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-sequential/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-opacity-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Opacity - Audio Bars Opacity",
+      "description": "Six vertical bars fading in and out as they grow and shrink, creating a ghosting wave effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-opacity/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-opacity/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-horizontal-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Sync - Audio Bars Sync",
+      "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-horizontal/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-horizontal/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-glow-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Glow - Audio Bars Glow",
+      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "app-download-default",
+      "type": "registry:ui",
+      "title": "App Download - App Download",
+      "description": "A rounded arc sweeps around a faint track using strokeDashoffset animation, with a brief pause between each full rotation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/app-download/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/app-download/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "activity-rings-default",
+      "type": "registry:ui",
+      "title": "Activity Rings - Activity Rings",
+      "description": "Three nested arcs (75% visible) rotate at different speeds — outer slowest, inner fastest — with decreasing opacity inward",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/activity-rings/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/activity-rings/default.tsx"
+        }
+      ]
+    }
+  ]
+}

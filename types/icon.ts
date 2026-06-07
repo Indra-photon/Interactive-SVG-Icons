@@ -38,6 +38,7 @@ export interface RegistryFile {
   type: string;
   tier: 'free' | 'premium';
   dependencies: string[];
+  registryDependencies?: string[];
   files: RegistryFileEntry[];
   meta: {
     displayName: string;
