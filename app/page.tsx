@@ -15,6 +15,7 @@ import {
   IconArrowRight,
   IconBrandGithub,
 } from "@tabler/icons-react";
+import { MorphArrow } from "@/components/ui/morph-arrow";
 
 // Loaders
 import { BarsBounce } from "@/components/craftui/loaders/bars-bounce/default";
@@ -318,77 +319,197 @@ function IconCard({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  const [iconsHovered, setIconsHovered] = useState(false);
+
   return (
-    <div className="bg-white text-foreground">
+    <div className="bg-background">
       {/* ════════════════════════════════════════════════════════════════════
           HERO  —  5-column centred pattern
       ════════════════════════════════════════════════════════════════════ */}
-      <HeroPattern>
+      {/* <HeroPattern> */}
+      <motion.div className="flex flex-col items-center gap-6 min-h-screen justify-center text-center">
+        {/* <Badge text="35+ Animated SVG Components" href="/loaders" /> */}
+
+        <Heading className="">
+          {/* overflow-hidden on each wrapper clips the text below the baseline, creating the reveal mask */}
+          <span className="block overflow-hidden">
+            <motion.span
+              initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
+              animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+              transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
+              className="block"
+            >
+              Components to craft
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden">
+            <motion.span
+              initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
+              animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+              transition={{
+                duration: 0.8,
+                ease: [0.19, 1, 0.22, 1],
+                delay: 0.1,
+              }}
+              className="font-sans font-normal text-primary dark:text-primary block"
+            >
+              Interfaces
+            </motion.span>
+          </span>
+        </Heading>
+
+        {/* <Paragraph className="max-w-2xl font-medium">
+          A growing library of free, loaders, animated icons, components, blocks
+          and illustrations. Designed for developers who care about the small
+          details and want to add a touch of delight.
+        </Paragraph> */}
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-6"
+          className="flex flex-wrap items-center justify-center gap-3 pt-1"
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0.09, delayChildren: 0.22 },
+            },
+          }}
+          initial="hidden"
+          animate="show"
         >
-          <Badge text="35+ Animated SVG Components" href="/loaders" />
-
-          <Heading className="text-foreground text-4xl sm:text-5xl md:text-6xl leading-[1.15]">
-            <span className=" block">Beautiful animated SVG</span>
-            <span className=" font-normal italic block">for your apps</span>
-          </Heading>
-
-          <Paragraph className="max-w-xl font-sans tracking-tighter text-neutral-700 text-base md:text-lg">
-            A growing library of free, copy-paste SVG loaders and animated
-            icons. Built with Framer Motion. Works with any React project.
-          </Paragraph>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
-            <Button asChild size="lg" variant="outline" className="px-6">
-              <Link href="/loaders">
-                Browse Loaders <IconArrowRight size={15} className="ml-1" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="">
-              <Link href="/icons">Browse Icons</Link>
-            </Button>
+          <motion.div
+            variants={{
+              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+              show: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+              },
+            }}
+          >
             <Button
               asChild
               size="lg"
-              variant="ghost"
-              className="rounded-full px-5 text-neutral-500"
+              variant="outline"
+              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
             >
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <IconBrandGithub size={17} className="mr-1.5" /> GitHub
-              </a>
+              <Link href="/loaders">
+                Browse Loaders
+                <span className="ml-2">
+                  <DotsRotate
+                    dotSize={6}
+                    width={22}
+                    height={24}
+                    color="var(--background)"
+                    isAnimating
+                  />
+                </span>
+              </Link>
             </Button>
-          </div>
+          </motion.div>
 
-          {/* Live loader strip */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.35, duration: 0.5 }}
-            className="mt-4 flex items-center gap-3 overflow-hidden"
-            style={{
-              maskImage:
-                "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            variants={{
+              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+              show: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+              },
+            }}
+            onMouseEnter={() => setIconsHovered(true)}
+            onMouseLeave={() => setIconsHovered(false)}
+          >
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
+            >
+              <Link href="/icons">
+                Browse Icons
+                <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                  <MorphArrow isHovered={iconsHovered} size={15} />
+                </span>
+              </Link>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            variants={{
+              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+              show: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+              },
             }}
           >
-            {LOADER_PREVIEWS.slice(0, 8).map(({ name, component: Loader }) => (
-              <div
-                key={name}
-                className="flex-shrink-0 flex items-center justify-center border rounded-lg bg-white w-14 h-14"
-              >
-                <Loader width={28} height={28} isAnimating />
-              </div>
-            ))}
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
+            >
+              <Link href="/illustrations">
+                Browse Illustrations
+                <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                  <MorphArrow isHovered={iconsHovered} size={15} />
+                </span>
+              </Link>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            variants={{
+              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+              show: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+              },
+            }}
+          >
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
+            >
+              <Link href="/blocks">
+                Browse Blocks
+                <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                  <MorphArrow isHovered={iconsHovered} size={15} />
+                </span>
+              </Link>
+            </Button>
           </motion.div>
         </motion.div>
-      </HeroPattern>
+
+        {/* Live loader strip */}
+        {/* <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.35, duration: 0.5 }}
+          className="mt-4 flex items-center gap-3 overflow-hidden"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          }}
+        >
+          {LOADER_PREVIEWS.slice(0, 8).map(({ name, component: Loader }) => (
+            <div
+              key={name}
+              className="flex-shrink-0 flex items-center justify-center border rounded-lg bg-white w-14 h-14"
+            >
+              <Loader width={28} height={28} isAnimating />
+            </div>
+          ))}
+        </motion.div> */}
+      </motion.div>
+      {/* </HeroPattern> */}
 
       {/* ════════════════════════════════════════════════════════════════════
           STATS

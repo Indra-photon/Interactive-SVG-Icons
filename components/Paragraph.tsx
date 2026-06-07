@@ -28,7 +28,6 @@
 //   );
 // };
 
-
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -46,21 +45,17 @@ export const Paragraph = <T extends React.ElementType = "p">({
   variant = "default",
 }: ParagraphProps<T>) => {
   const Tag = as || "p";
-  
+
   const variants = {
-    default: "text-sm sm:text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300",
-    muted: "text-xs sm:text-sm md:text-base leading-relaxed text-gray-500 dark:text-gray-400",
-    small: "text-xs sm:text-sm leading-relaxed text-gray-600 dark:text-gray-300",
+    default:
+      "font-sans tracking-tighter text-muted-foreground text-secondary-foreground text-base md:text-lg text-pretty",
+    muted:
+      "text-xs sm:text-sm md:text-base leading-relaxed text-gray-500 dark:text-gray-400",
+    small:
+      "text-xs sm:text-sm leading-relaxed text-gray-600 dark:text-gray-300",
   };
-  
+
   return (
-    <Tag
-      className={twMerge(
-        variants[variant],
-        className
-      )}
-    >
-      {children}
-    </Tag>
+    <Tag className={twMerge(variants[variant], className)}>{children}</Tag>
   );
 };
