@@ -1,0 +1,55 @@
+export interface BlockRegistry {
+  blocks: Block[];
+  version: string;
+  lastUpdated: string;
+}
+
+export interface Block {
+  slug: string;
+  name: string;
+  category: string;
+  tags: string[];
+  description: string;
+  createdAt: string;
+  variations: BlockVariation[];
+}
+
+export interface BlockVariation {
+  name: string;
+  displayName: string;
+  tier: 'free' | 'premium';
+  description: string;
+  animationType: string;
+  dependencies: string[];
+  registryDependencies: string[];
+  props: BlockPropDefinition[];
+}
+
+export interface BlockPropDefinition {
+  name: string;
+  type: string;
+  default?: string;
+  required?: boolean;
+  description: string;
+}
+
+export interface BlockRegistryFile {
+  name: string;
+  type: string;
+  tier: 'free' | 'premium';
+  dependencies: string[];
+  registryDependencies: string[];
+  files: {
+    path: string;
+    content: string;
+    type: string;
+    target: string;
+  }[];
+  meta: {
+    displayName: string;
+    description: string;
+    category: string;
+    tags: string[];
+    animationType: string;
+  };
+}

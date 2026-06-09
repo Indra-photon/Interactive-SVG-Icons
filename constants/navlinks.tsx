@@ -6,7 +6,8 @@ import {
   IconMessage2,
   IconHomeEdit,
   IconBinocularsFilled,
-  IconLayoutGridFilled
+  IconLayoutGridFilled,
+  IconStack2
 } from "@tabler/icons-react";
 
 export const navlinks = [
@@ -21,9 +22,14 @@ export const navlinks = [
     icon: IconBinocularsFilled,
   },
   {
-    url:"/loaders",
+    url: "/loaders",
     label: "Explore Loaders",
     icon: IconLayoutGridFilled,
+  },
+  {
+    url: "/blocks",
+    label: "Blocks",
+    icon: IconStack2,
   },
   {
     url: "/about",

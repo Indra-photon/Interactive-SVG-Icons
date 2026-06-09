@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@toolwind/corner-shape";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -25,6 +26,12 @@
   --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
   --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
   --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --shadow-border:
+    0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+  --shadow-border-hover:
+    0px 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.06);
 }
 
 @layer base {
@@ -76,6 +83,61 @@
     scrollbar-color: rgb(203 213 225) rgb(241 245 249);
     @apply border-border outline-ring/50;
   }
+}
+
+/* ─── Loader quadrant split ──────────────────────────────────────────────── */
+
+@keyframes quad-split-tl {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-28px, -28px);
+  }
+}
+@keyframes quad-split-tr {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(28px, -28px);
+  }
+}
+@keyframes quad-split-bl {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-28px, 28px);
+  }
+}
+@keyframes quad-split-br {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(28px, 28px);
+  }
+}
+
+.quad-tl,
+.quad-tr,
+.quad-bl,
+.quad-br {
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.loader-canvas:hover .quad-tl {
+  animation: quad-split-tl 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+.loader-canvas:hover .quad-tr {
+  animation: quad-split-tr 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+.loader-canvas:hover .quad-bl {
+  animation: quad-split-bl 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+.loader-canvas:hover .quad-br {
+  animation: quad-split-br 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 @layer utilities {
@@ -178,6 +240,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
+  --card-shadow: var(--shadow-border);
+  --card-shadow-hover: var(--shadow-border-hover);
 }
 
 :root {
