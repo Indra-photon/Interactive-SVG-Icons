@@ -110,25 +110,6 @@
       ]
     },
     {
-      "name": "shopping-cart-default",
-      "type": "registry:ui",
-      "title": "Shopping Cart Icon - Default",
-      "description": "Item falls into cart from above and cart shakes when adding to cart",
-      "dependencies": [
-        "motion/react"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/shopping-cart/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "refresh-default",
       "type": "registry:ui",
       "title": "Refresh Icon - Default",
@@ -178,6 +159,25 @@
           "path": "components/craftui/icons/refresh/dash.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/icons/refresh/dash.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shopping-cart-default",
+      "type": "registry:ui",
+      "title": "Shopping Cart Icon - Default",
+      "description": "Item falls into cart from above and cart shakes when adding to cart",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/shopping-cart/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
         }
       ]
     },
@@ -1783,6 +1783,28 @@
           "path": "components/craftui/loaders/activity-rings/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/activity-rings/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tourism-hero-default",
+      "type": "registry:block",
+      "title": "Tourism Hero - Default",
+      "description": "Glass navbar, staggered hero copy entrance, bottom stats bar over a full-bleed background image.",
+      "dependencies": [
+        "framer-motion",
+        "next",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/tourism-hero/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/tourism-hero/default.tsx"
         }
       ]
     }

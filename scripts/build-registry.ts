@@ -3,6 +3,7 @@ import path from 'path';
 import { glob } from 'glob';
 import type { Icon, IconRegistry, RegistryFile } from '@/types/icon';
 import type { Loader, LoaderRegistry, LoaderRegistryFile } from '@/types/loader';
+import type { Block, BlockRegistry, BlockRegistryFile } from '@/types/block';
 
 interface BuildConfig {
   iconsDir: string;
@@ -251,6 +252,129 @@ async function buildLoadersRegistry(config: BuildConfig): Promise<GithubRegistry
   return githubItems;
 }
 
+async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryItem[]> {
+  console.log('🧱 Building blocks registry...\n');
+
+  const blocks: Block[] = [];
+  const githubItems: GithubRegistryItem[] = [];
+  const configFiles = await glob('components/craftui/blocks/*/config.json');
+
+  console.log(`📁 Found ${configFiles.length} block(s)\n`);
+
+  for (const configPath of configFiles) {
+    const configData = JSON.parse(await fs.readFile(configPath, 'utf-8'));
+    const blockSlug = path.dirname(configPath).split('/').pop()!;
+
+    console.log(`  ⚙️  Processing: ${configData.name}`);
+
+    const block: Block = {
+      slug: blockSlug,
+      name: configData.name,
+      category: configData.category,
+      tags: configData.tags,
+      description: configData.description,
+      createdAt: configData.createdAt,
+      variations: []
+    };
+
+    for (const variation of configData.variations) {
+      const variationSlug = `${blockSlug}-${variation.name}`;
+      const componentPath = `components/craftui/blocks/${blockSlug}/${variation.name}.tsx`;
+
+      try {
+        const componentCode = await fs.readFile(componentPath, 'utf-8');
+        const deps = variation.dependencies || ['framer-motion'];
+        const registryDeps = variation.registryDependencies || [];
+
+        const registryEntry: BlockRegistryFile = {
+          name: variationSlug,
+          type: 'registry:block',
+          tier: variation.tier,
+          dependencies: deps,
+          registryDependencies: [
+            `${config.baseUrl}/r/craftui-base.json`,
+            ...registryDeps.map((d: string) => d.startsWith('http') ? d : d)
+          ],
+          files: [
+            {
+              path: componentPath,
+              content: componentCode,
+              type: 'registry:component',
+              target: `~/components/craftui/blocks/${blockSlug}/${variation.name}.tsx`
+            }
+          ],
+          meta: {
+            displayName: `${configData.name} - ${variation.displayName}`,
+            description: variation.description,
+            category: configData.category,
+            tags: configData.tags,
+            animationType: variation.animationType
+          }
+        };
+
+        await fs.mkdir(config.outputDir, { recursive: true });
+        await fs.writeFile(
+          path.join(config.outputDir, `${variationSlug}.json`),
+          JSON.stringify(registryEntry, null, 2)
+        );
+
+        githubItems.push({
+          name: variationSlug,
+          type: 'registry:block',
+          title: `${configData.name} - ${variation.displayName}`,
+          description: variation.description,
+          dependencies: deps,
+          registryDependencies: ['craftui-base', ...registryDeps],
+          files: [
+            {
+              path: componentPath,
+              type: 'registry:component',
+              target: `~/components/craftui/blocks/${blockSlug}/${variation.name}.tsx`
+            }
+          ]
+        });
+
+        block.variations.push({
+          name: variation.name,
+          displayName: variation.displayName,
+          tier: variation.tier,
+          description: variation.description,
+          animationType: variation.animationType,
+          dependencies: deps,
+          registryDependencies: registryDeps,
+          props: variation.props || []
+        });
+
+        console.log(`    ✓ ${variation.displayName} (${variation.tier})`);
+      } catch (error) {
+        console.error(`    ✗ Failed to process ${variation.name}:`, error);
+      }
+    }
+
+    blocks.push(block);
+    console.log('');
+  }
+
+  const masterRegistry: BlockRegistry = {
+    blocks,
+    version: '1.0.0',
+    lastUpdated: new Date().toISOString()
+  };
+
+  await fs.mkdir(config.outputDir, { recursive: true });
+  await fs.writeFile(
+    path.join(config.outputDir, 'blocks.json'),
+    JSON.stringify(masterRegistry, null, 2)
+  );
+
+  console.log(`✅ Blocks registry built successfully!`);
+  console.log(`   Blocks: ${blocks.length}`);
+  console.log(`   Variations: ${blocks.reduce((sum, b) => sum + b.variations.length, 0)}`);
+  console.log(`   Output: ${config.outputDir}\n`);
+
+  return githubItems;
+}
+
 async function buildGithubRegistry(allItems: GithubRegistryItem[]) {
   const craftUIBase = {
     name: 'craftui-base',
@@ -280,7 +404,8 @@ const config: BuildConfig = {
 
 Promise.all([
   buildRegistry(config),
-  buildLoadersRegistry(config)
-]).then(([iconItems, loaderItems]) => {
-  return buildGithubRegistry([...iconItems, ...loaderItems]);
+  buildLoadersRegistry(config),
+  buildBlocksRegistry(config)
+]).then(([iconItems, loaderItems, blockItems]) => {
+  return buildGithubRegistry([...iconItems, ...loaderItems, ...blockItems]);
 }).catch(console.error);

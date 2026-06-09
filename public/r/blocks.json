@@ -1,0 +1,103 @@
+{
+  "blocks": [
+    {
+      "slug": "tourism-hero",
+      "name": "Tourism Hero",
+      "category": "hero",
+      "tags": [
+        "hero",
+        "tourism",
+        "landing",
+        "image",
+        "navbar",
+        "stats",
+        "fullscreen"
+      ],
+      "description": "Full-screen hero section with glass navbar, animated entrance, and stats bar. Background image is a required prop.",
+      "createdAt": "2026-06-07T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Glass navbar, staggered hero copy entrance, bottom stats bar over a full-bleed background image.",
+          "animationType": "entrance",
+          "dependencies": [
+            "framer-motion",
+            "next",
+            "@heroicons/react"
+          ],
+          "registryDependencies": [
+            "button"
+          ],
+          "props": [
+            {
+              "name": "imageSrc",
+              "type": "string",
+              "required": true,
+              "description": "Path or URL for the full-bleed background image"
+            },
+            {
+              "name": "imageAlt",
+              "type": "string",
+              "default": "Mountain landscape",
+              "required": false,
+              "description": "Alt text for the background image"
+            },
+            {
+              "name": "heading",
+              "type": "string",
+              "default": "Where the Path\\nLeads Up",
+              "required": false,
+              "description": "Hero headline. Use \\n for line breaks."
+            },
+            {
+              "name": "subheading",
+              "type": "string",
+              "default": "Discover alpine trails, mountain refuges, and guided expeditions across the Dolomites.",
+              "required": false,
+              "description": "Supporting body text below the headline"
+            },
+            {
+              "name": "primaryCtaLabel",
+              "type": "string",
+              "default": "Plan Your Trek",
+              "required": false,
+              "description": "Label for the primary CTA button"
+            },
+            {
+              "name": "secondaryCtaLabel",
+              "type": "string",
+              "default": "Book Now",
+              "required": false,
+              "description": "Label for the ghost/outline CTA button"
+            },
+            {
+              "name": "stats",
+              "type": "string",
+              "default": "[{ value: '240+', label: 'Trails Mapped' }, { value: '48', label: 'Mountain Huts' }, { value: '12K+', label: 'Trekkers Joined Us' }]",
+              "required": false,
+              "description": "Array of { value, label } objects rendered in the stats bar"
+            },
+            {
+              "name": "navbarProps",
+              "type": "string",
+              "default": "{}",
+              "required": false,
+              "description": "Optional overrides for the glass navbar: logoText, logoIcon, navLinks, ctaLabel, onCtaClick"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes on the root wrapper"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2026-06-07T15:33:19.409Z"
+}

@@ -48,11 +48,11 @@ export const Paragraph = <T extends React.ElementType = "p">({
 
   const variants = {
     default:
-      "font-sans tracking-tighter text-muted-foreground text-secondary-foreground text-base md:text-lg text-pretty",
+      "font-sans tracking-tighter text-muted-foreground text-secondary-foreground text-base md:text-xl text-pretty",
     muted:
-      "text-xs sm:text-sm md:text-base leading-relaxed text-gray-500 dark:text-gray-400",
+      "font-sans font-medium tracking-tighter text-[14px] md:text-[16px] text-pretty",
     small:
-      "text-xs sm:text-sm leading-relaxed text-gray-600 dark:text-gray-300",
+      "text-xs sm:text-sm leading-relaxed text-gray-600 dark:text-gray-300 text-pretty",
   };
 
   return (

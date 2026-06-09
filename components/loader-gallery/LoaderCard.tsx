@@ -49,7 +49,7 @@ export function LoaderCard({ loader }: LoaderCardProps) {
     >
       <Link
         href={`/loaders/${loader.slug}`}
-        className="border rounded-lg hover:shadow-lg transition-shadow group w-full h-full flex items-center justify-center bg-white relative overflow-hidden block"
+        className="border rounded-lg hover:shadow-lg transition-[box-shadow,transform,scale] active:scale-[0.96] group w-full h-full flex items-center justify-center bg-white relative overflow-hidden block"
       >
         <div className="flex items-center justify-center mb-4">
           {LoaderComponent ? (

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
-import { Badge } from "@/components/Badge";
 import { Button } from "@/components/ui/button";
 import {
   IconBolt,
@@ -16,58 +15,12 @@ import {
   IconBrandGithub,
 } from "@tabler/icons-react";
 import { MorphArrow } from "@/components/ui/morph-arrow";
-
-// Loaders
-import { BarsBounce } from "@/components/craftui/loaders/bars-bounce/default";
-import { AudioBarsGlow } from "@/components/craftui/loaders/audio-bars-glow/default";
-import { BarsWave } from "@/components/craftui/loaders/bars-wave/default";
 import { DotsRotate } from "@/components/craftui/loaders/dots-rotate/default";
-import { BarsCascade } from "@/components/craftui/loaders/bars-cascade/default";
-import { DotsCompress } from "@/components/craftui/loaders/dots-compress/default";
-import { PulseRing } from "@/components/craftui/loaders/pulse-ring/default";
-import { InfinityLoop } from "@/components/craftui/loaders/infinity-loop/default";
-import { HeartFill } from "@/components/craftui/loaders/heart-fill/default";
-import { ConicSpinner } from "@/components/craftui/loaders/conic-spinner/default";
-import { DotsBounce } from "@/components/craftui/loaders/dots-bounce/default";
-import { HexagonRotate } from "@/components/craftui/loaders/hexagon-rotate/default";
-
-// Icons
-import { TrashIcon } from "@/components/craftui/icons/trash/default";
-import { IconHome } from "@/components/craftui/icons/home/default";
-import { IconRefresh } from "@/components/craftui/icons/refresh/default";
-import { IconMail } from "@/components/craftui/icons/mail/default";
-import { IconAlarmRing } from "@/components/craftui/icons/alarm-clock/default";
-import { IconBulb } from "@/components/craftui/icons/bulb/default";
-import { IconLayoutDashboard } from "@/components/craftui/icons/layout/default";
-import { IconShoppingCart } from "@/components/craftui/icons/shopping-cart/default";
+import { LoaderSection } from "@/components/Homepage/LoaderSection";
+import { IconSection } from "@/components/Homepage/IconSection";
+import { IllustrationSection } from "@/components/Homepage/IllustrationSection";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-
-const LOADER_PREVIEWS = [
-  { name: "Bars Bounce", component: BarsBounce },
-  { name: "Audio Bars", component: AudioBarsGlow },
-  { name: "Bars Wave", component: BarsWave },
-  { name: "Dots Rotate", component: DotsRotate },
-  { name: "Bars Cascade", component: BarsCascade },
-  { name: "Dots Compress", component: DotsCompress },
-  { name: "Pulse Ring", component: PulseRing },
-  { name: "Infinity Loop", component: InfinityLoop },
-  { name: "Heart Fill", component: HeartFill },
-  { name: "Conic Spinner", component: ConicSpinner },
-  { name: "Dots Bounce", component: DotsBounce },
-  { name: "Hexagon Rotate", component: HexagonRotate },
-];
-
-const ICON_PREVIEWS = [
-  { name: "Trash", Component: TrashIcon, animProp: "isAnimating" },
-  { name: "Home", Component: IconHome, animProp: "isSelected" },
-  { name: "Refresh", Component: IconRefresh, animProp: "isAnimating" },
-  { name: "Mail", Component: IconMail, animProp: "isOpen" },
-  { name: "Alarm", Component: IconAlarmRing, animProp: "isHovered" },
-  { name: "Bulb", Component: IconBulb, animProp: "isActive" },
-  { name: "Dashboard", Component: IconLayoutDashboard, animProp: "isHovered" },
-  { name: "Cart", Component: IconShoppingCart, animProp: "isAdding" },
-];
 
 const FEATURES = [
   {
@@ -129,190 +82,54 @@ const STATS = [
 const HATCH =
   "bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed";
 
-/** Diamond marker rendered at the intersection of a line-row and a gutter-col */
-function CornerDiamond({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
-  const translate = {
-    tl: "-translate-y-1/2  translate-x-1/2  right-0 top-0",
-    tr: "-translate-y-1/2 -translate-x-1/2  left-0  top-0",
-    bl: "translate-y-1/2  translate-x-1/2  right-0 bottom-0",
-    br: "translate-y-1/2 -translate-x-1/2  left-0  bottom-0",
-  }[position];
-
-  return (
-    <div className="absolute size-2.5 rotate-45 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-  );
-}
-
-/**
- * Hero section — 5-column centred layout (matches the shared pattern exactly).
- * Content is vertically + horizontally centred inside the grid.
- */
-function HeroPattern({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="relative max-w-5xl mx-auto grid min-h-[calc(100vh-4rem)] grid-cols-[2.5rem_1fr_2.5rem] grid-rows-[1fr_1px_auto_1px_1fr] bg-white [--pattern-fg:var(--color-gray-950)]/10 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10">
-      {/* ── Content ── */}
-      <div className="col-start-2 row-start-3 flex flex-col items-center justify-center gap-6 py-20 px-6 text-center">
-        {children}
-      </div>
-
-      {/* ── Left gutter ── */}
-      <div
-        className={`relative col-start-1 row-span-full row-start-1 border-r border-(--pattern-fg) ${HATCH}`}
-      />
-
-      {/* ── Right gutter (match left exactly) ── */}
-      <div
-        className={`relative col-start-3 row-span-full row-start-1 border-l border-(--pattern-fg) ${HATCH}`}
-      />
-
-      {/* ── Horizontal dividers ── */}
-      {/* <div className="col-span-full row-start-2 h-px bg-(--pattern-fg)" />
-      <div className="col-span-full row-start-4 h-px bg-(--pattern-fg)" /> */}
-
-      {/* ── Diamonds ── */}
-
-      {/* Top-left */}
-      {/* <div className="col-start-1 row-start-2 relative">
-        <div className="absolute size-2.5 rotate-45 -translate-y-1/2 translate-x-1/2 right-0 bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-      </div> */}
-
-      {/* Top-right (FIX: use right-0 like left) */}
-      {/* <div className="col-start-3 row-start-2 relative">
-        <div className="absolute size-2.5 rotate-45 -translate-y-1/2 -translate-x-1/2 right-0 bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-      </div> */}
-
-      {/* Bottom-left */}
-      {/* <div className="col-start-1 row-start-4 relative">
-        <div className="absolute size-2.5 rotate-45 translate-y-1/2 translate-x-1/2 right-0 top-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-      </div> */}
-
-      {/* Bottom-right (FIX: use right-0 like left) */}
-      {/* <div className="col-start-3 row-start-4 relative">
-        <div className="absolute size-2.5 rotate-45 translate-y-1/2 -translate-x-1/2 right-0 top-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-      </div> */}
-    </div>
-  );
-}
-
-/**
- * Generic section — 3-column layout with hatched gutters on each side.
- * Every section is fully separated by the decorative top + bottom rules.
- */
 function PatternSection({
   children,
   contentClassName = "",
+  hideTopBar = false,
+  hideBottomBar = false,
 }: {
   children: React.ReactNode;
   contentClassName?: string;
+  hideTopBar?: boolean;
+  hideBottomBar?: boolean;
 }) {
   return (
-    <div className="relative max-w-5xl mx-auto grid grid-cols-[2.5rem_1fr_2.5rem] grid-rows-[1px_auto_1px] bg-white [--pattern-fg:var(--color-gray-950)]/10 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10">
-      {/* ── Content ── */}
+    <div className="relative grid grid-cols-[2.5rem_1fr_2.5rem] grid-rows-[1px_auto_1px] bg-white [--pattern-fg:var(--color-gray-950)]/10 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10">
       <div className={`col-start-2 row-start-2 ${contentClassName}`}>
         {children}
       </div>
 
-      {/* ── Left hatch gutter ── */}
       <div
         className={`col-start-1 row-span-full row-start-1 border-r border-r-(--pattern-fg) ${HATCH}`}
       />
-
-      {/* ── Right hatch gutter ── */}
       <div
         className={`col-start-3 row-span-full row-start-1 border-l border-l-(--pattern-fg) ${HATCH}`}
       />
 
-      {/* ── Horizontal rules ── */}
-      <div className="col-span-full col-start-1 row-start-1 h-px bg-(--pattern-fg)" />
-      <div className="col-span-full col-start-1 row-start-3 h-px bg-(--pattern-fg)" />
+      {!hideTopBar && <div className="col-span-full col-start-1 row-start-1 h-px bg-[#fd551d]" />}
+      {!hideBottomBar && <div className="col-span-full col-start-1 row-start-3 h-px bg-[#fd551d]" />}
 
-      {/* ── Corner diamonds: top-left, top-right, bottom-left, bottom-right ── */}
-      <div className="col-start-1 row-start-1 relative z-20">
-        <div className="absolute size-2.5 rotate-45 -translate-y-1/2 translate-x-1/2  right-0 top-0 border border-(--pattern-fg) bg-[#fd551d] dark:bg-gray-950" />
-      </div>
-      <div className="col-start-3 row-start-1 relative z-20">
-        <div className="absolute size-2.5 rotate-45 -translate-y-1/2 -translate-x-1/2 left-0  top-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-      </div>
-      <div className="col-start-1 row-start-3 relative z-20">
-        <div className="absolute size-2.5 rotate-45  translate-y-1/2  translate-x-1/2  right-0 bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-      </div>
-      <div className="col-start-3 row-start-3 relative z-20">
-        <div className="absolute size-2.5 rotate-45  translate-y-1/2 -translate-x-1/2  left-0  bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-      </div>
+      {!hideTopBar && (
+        <div className="col-start-1 row-start-1 relative z-20">
+          <div className="absolute size-2.5 rotate-45 -translate-y-1/2 translate-x-1/2  right-0 top-0 border border-(--pattern-fg) bg-[#fd551d] dark:bg-gray-950" />
+        </div>
+      )}
+      {!hideTopBar && (
+        <div className="col-start-3 row-start-1 relative z-20">
+          <div className="absolute size-2.5 rotate-45 -translate-y-1/2 -translate-x-1/2 left-0  top-0 border border-(--pattern-fg) bg-[#fd551d] dark:bg-gray-950" />
+        </div>
+      )}
+      {!hideBottomBar && (
+        <div className="col-start-1 row-start-3 relative z-20">
+          <div className="absolute size-2.5 rotate-45  translate-y-1/2  translate-x-1/2  right-0 bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
+        </div>
+      )}
+      {!hideBottomBar && (
+        <div className="col-start-3 row-start-3 relative z-20">
+          <div className="absolute size-2.5 rotate-45  translate-y-1/2 -translate-x-1/2  left-0  bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
+        </div>
+      )}
     </div>
-  );
-}
-
-// ─── Gallery cards ────────────────────────────────────────────────────────────
-
-function LoaderCard({
-  name,
-  component: Loader,
-}: (typeof LOADER_PREVIEWS)[number]) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.35 }}
-    >
-      <Link
-        href={`/loaders/${name.toLowerCase().replace(/\s+/g, "-")}`}
-        className="border rounded-lg hover:shadow-lg transition-shadow group w-full h-40 flex flex-col items-center justify-center gap-3 bg-white relative overflow-hidden block"
-      >
-        <Loader width={44} height={44} isAnimating />
-        <span className="text-xs text-neutral-500">{name}</span>
-        <motion.div
-          initial={{ y: "100%" }}
-          whileHover={{ y: 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 24 }}
-          className="absolute bottom-0 left-0 right-0 bg-black/80 text-white py-2 px-3 text-center text-xs font-medium backdrop-blur-sm"
-        >
-          See in action{" "}
-          <IconArrowRight className="inline-block mb-0.5" size={12} />
-        </motion.div>
-      </Link>
-    </motion.div>
-  );
-}
-
-function IconCard({
-  name,
-  Component,
-  animProp,
-}: (typeof ICON_PREVIEWS)[number]) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.35 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <Link
-        href={`/icons/${name.toLowerCase()}`}
-        className="border rounded-lg hover:shadow-lg transition-shadow group w-full h-40 flex flex-col items-center justify-center gap-3 bg-white relative overflow-hidden block"
-      >
-        <Component
-          size={32}
-          color="currentColor"
-          {...{ [animProp]: hovered }}
-        />
-        <span className="text-xs text-neutral-500">{name}</span>
-        <motion.div
-          initial={{ y: "100%" }}
-          whileHover={{ y: 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 24 }}
-          className="absolute bottom-0 left-0 right-0 bg-black/80 text-white py-2 px-3 text-center text-xs font-medium backdrop-blur-sm"
-        >
-          See in action{" "}
-          <IconArrowRight className="inline-block mb-0.5" size={12} />
-        </motion.div>
-      </Link>
-    </motion.div>
   );
 }
 
@@ -323,198 +140,187 @@ export default function Home() {
 
   return (
     <div className="bg-background">
-      {/* ════════════════════════════════════════════════════════════════════
-          HERO  —  5-column centred pattern
-      ════════════════════════════════════════════════════════════════════ */}
-      {/* <HeroPattern> */}
-      <motion.div className="flex flex-col items-center gap-6 min-h-screen justify-center text-center">
-        {/* <Badge text="35+ Animated SVG Components" href="/loaders" /> */}
+      {/* ── Hero ── */}
+      <div className="max-w-7xl mx-auto">
+      <PatternSection hideTopBar>
+        <motion.div className="flex flex-col items-center gap-6 min-h-screen justify-center text-center">
+          <Heading className="">
+            <span className="block overflow-hidden">
+              <motion.span
+                initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
+                animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+                transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
+                className="block"
+              >
+                Components to craft
+              </motion.span>
+            </span>
+            <span className="block overflow-hidden">
+              <motion.span
+                initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
+                animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.19, 1, 0.22, 1],
+                  delay: 0.1,
+                }}
+                className="font-sans font-normal text-primary dark:text-primary block"
+              >
+                Interfaces
+              </motion.span>
+            </span>
+          </Heading>
 
-        <Heading className="">
-          {/* overflow-hidden on each wrapper clips the text below the baseline, creating the reveal mask */}
-          <span className="block overflow-hidden">
-            <motion.span
-              initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
-              animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
-              transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-              className="block"
-            >
-              Components to craft
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
-              animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
-              transition={{
-                duration: 0.8,
-                ease: [0.19, 1, 0.22, 1],
-                delay: 0.1,
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-3 pt-1"
+            variants={{
+              hidden: {},
+              show: {
+                transition: { staggerChildren: 0.09, delayChildren: 0.22 },
+              },
+            }}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.div
+              variants={{
+                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                show: {
+                  y: 0,
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                },
               }}
-              className="font-sans font-normal text-primary dark:text-primary block"
             >
-              Interfaces
-            </motion.span>
-          </span>
-        </Heading>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+              >
+                <Link href="/loaders">
+                  Browse Loaders
+                  <span className="ml-2">
+                    <DotsRotate
+                      dotSize={6}
+                      width={22}
+                      height={24}
+                      color="var(--background)"
+                      isAnimating
+                    />
+                  </span>
+                </Link>
+              </Button>
+            </motion.div>
 
-        {/* <Paragraph className="max-w-2xl font-medium">
-          A growing library of free, loaders, animated icons, components, blocks
-          and illustrations. Designed for developers who care about the small
-          details and want to add a touch of delight.
-        </Paragraph> */}
-
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-3 pt-1"
-          variants={{
-            hidden: {},
-            show: {
-              transition: { staggerChildren: 0.09, delayChildren: 0.22 },
-            },
-          }}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.div
-            variants={{
-              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-              show: {
-                y: 0,
-                opacity: 1,
-                filter: "blur(0px)",
-                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-              },
-            }}
-          >
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
+            <motion.div
+              variants={{
+                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                show: {
+                  y: 0,
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                },
+              }}
+              onMouseEnter={() => setIconsHovered(true)}
+              onMouseLeave={() => setIconsHovered(false)}
             >
-              <Link href="/loaders">
-                Browse Loaders
-                <span className="ml-2">
-                  <DotsRotate
-                    dotSize={6}
-                    width={22}
-                    height={24}
-                    color="var(--background)"
-                    isAnimating
-                  />
-                </span>
-              </Link>
-            </Button>
-          </motion.div>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+              >
+                <Link href="/icons">
+                  Browse Icons
+                  <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                    <MorphArrow isHovered={iconsHovered} size={15} />
+                  </span>
+                </Link>
+              </Button>
+            </motion.div>
 
-          <motion.div
-            variants={{
-              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-              show: {
-                y: 0,
-                opacity: 1,
-                filter: "blur(0px)",
-                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-              },
-            }}
-            onMouseEnter={() => setIconsHovered(true)}
-            onMouseLeave={() => setIconsHovered(false)}
-          >
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
+            <motion.div
+              variants={{
+                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                show: {
+                  y: 0,
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                },
+              }}
+              onMouseEnter={() => setIconsHovered(true)}
+              onMouseLeave={() => setIconsHovered(false)}
             >
-              <Link href="/icons">
-                Browse Icons
-                <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                  <MorphArrow isHovered={iconsHovered} size={15} />
-                </span>
-              </Link>
-            </Button>
-          </motion.div>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+              >
+                <Link href="/illustrations">
+                  Browse Illustrations
+                  <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                    <MorphArrow isHovered={iconsHovered} size={15} />
+                  </span>
+                </Link>
+              </Button>
+            </motion.div>
 
-          <motion.div
-            variants={{
-              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-              show: {
-                y: 0,
-                opacity: 1,
-                filter: "blur(0px)",
-                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-              },
-            }}
-          >
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
+            <motion.div
+              variants={{
+                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                show: {
+                  y: 0,
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                },
+              }}
+              onMouseEnter={() => setIconsHovered(true)}
+              onMouseLeave={() => setIconsHovered(false)}
             >
-              <Link href="/illustrations">
-                Browse Illustrations
-                <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                  <MorphArrow isHovered={iconsHovered} size={15} />
-                </span>
-              </Link>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            variants={{
-              hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-              show: {
-                y: 0,
-                opacity: 1,
-                filter: "blur(0px)",
-                transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-              },
-            }}
-          >
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="corner-bevel rounded-[10px] font-mono tracking-tighter"
-            >
-              <Link href="/blocks">
-                Browse Blocks
-                <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                  <MorphArrow isHovered={iconsHovered} size={15} />
-                </span>
-              </Link>
-            </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+              >
+                <Link href="/blocks">
+                  Browse Blocks
+                  <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                    <MorphArrow isHovered={iconsHovered} size={15} />
+                  </span>
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
+      </PatternSection>
+      </div>
 
-        {/* Live loader strip */}
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.5 }}
-          className="mt-4 flex items-center gap-3 overflow-hidden"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          }}
-        >
-          {LOADER_PREVIEWS.slice(0, 8).map(({ name, component: Loader }) => (
-            <div
-              key={name}
-              className="flex-shrink-0 flex items-center justify-center border rounded-lg bg-white w-14 h-14"
-            >
-              <Loader width={28} height={28} isAnimating />
-            </div>
-          ))}
-        </motion.div> */}
-      </motion.div>
-      {/* </HeroPattern> */}
+      <div className="max-w-7xl mx-auto">
+        {/* ── Loaders showcase ── */}
+        <PatternSection>
+          <LoaderSection />
+        </PatternSection>
 
-      {/* ════════════════════════════════════════════════════════════════════
-          STATS
-      ════════════════════════════════════════════════════════════════════ */}
-      <PatternSection contentClassName="bg-neutral-100">
+        {/* ── Icons showcase ── */}
+        <PatternSection>
+          <IconSection />
+        </PatternSection>
+
+        {/* ── Illustrations showcase ── */}
+        <PatternSection hideBottomBar>
+          <IllustrationSection />
+        </PatternSection>
+      </div>
+
+      {/* ── Stats ── */}
+      {/* <PatternSection contentClassName="bg-neutral-100">
         <div className="mx-auto max-w-5xl px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {STATS.map(({ value, label }) => (
             <div key={label} className="flex flex-col gap-1">
@@ -525,12 +331,10 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </PatternSection>
+      </PatternSection> */}
 
-      {/* ════════════════════════════════════════════════════════════════════
-          FEATURES
-      ════════════════════════════════════════════════════════════════════ */}
-      <PatternSection>
+      {/* ── Features ── */}
+      {/* <PatternSection>
         <div className="mx-auto max-w-5xl px-6 py-24">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -555,7 +359,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: i * 0.07 }}
-                className="rounded-lg border border-neutral-200 bg-neutral-50 p-6 hover:shadow-md transition-shadow"
+                className="rounded-lg border border-neutral-200 bg-neutral-50 p-6 hover:shadow-md transition-[box-shadow]"
               >
                 <div className="mb-3 inline-flex items-center justify-center rounded-md border border-neutral-200 bg-white p-2 text-foreground">
                   {icon}
@@ -573,90 +377,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </PatternSection>
+      </PatternSection> */}
 
-      {/* ════════════════════════════════════════════════════════════════════
-          LOADERS SHOWCASE
-      ════════════════════════════════════════════════════════════════════ */}
-      <PatternSection contentClassName="bg-neutral-100">
-        <div className="mx-auto max-w-5xl px-6 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
-          >
-            <div>
-              <Heading as="h2" className="text-foreground text-3xl md:text-4xl">
-                Loaders
-              </Heading>
-              <Paragraph className="mt-2 text-neutral-500">
-                Smooth, looping animations for every loading state.
-              </Paragraph>
-            </div>
-            <Button
-              asChild
-              variant="outline"
-              className="self-start sm:self-auto rounded-full shrink-0"
-            >
-              <Link href="/loaders">
-                View all loaders <IconArrowRight size={14} className="ml-1" />
-              </Link>
-            </Button>
-          </motion.div>
-
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            {LOADER_PREVIEWS.map((item) => (
-              <LoaderCard key={item.name} {...item} />
-            ))}
-          </div>
-        </div>
-      </PatternSection>
-
-      {/* ════════════════════════════════════════════════════════════════════
-          ICONS SHOWCASE
-      ════════════════════════════════════════════════════════════════════ */}
-      <PatternSection>
-        <div className="mx-auto max-w-5xl px-6 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
-          >
-            <div>
-              <Heading as="h2" className="text-foreground text-3xl md:text-4xl">
-                Icons
-              </Heading>
-              <Paragraph className="mt-2 text-neutral-500">
-                Hover over any icon to see it come alive.
-              </Paragraph>
-            </div>
-            <Button
-              asChild
-              variant="outline"
-              className="self-start sm:self-auto rounded-full shrink-0"
-            >
-              <Link href="/icons">
-                View all icons <IconArrowRight size={14} className="ml-1" />
-              </Link>
-            </Button>
-          </motion.div>
-
-          <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
-            {ICON_PREVIEWS.map((item) => (
-              <IconCard key={item.name} {...item} />
-            ))}
-          </div>
-        </div>
-      </PatternSection>
-
-      {/* ════════════════════════════════════════════════════════════════════
-          HOW IT WORKS
-      ════════════════════════════════════════════════════════════════════ */}
-      <PatternSection contentClassName="bg-neutral-100">
+      {/* ── How it works ── */}
+      {/* <PatternSection contentClassName="bg-neutral-100">
         <div className="mx-auto max-w-5xl px-6 py-24">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -681,18 +405,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: i * 0.08 }}
-                className="relative rounded-lg border border-neutral-200 bg-white p-6 hover:shadow-md transition-shadow"
+                className="relative rounded-lg border border-neutral-200 bg-white p-6 hover:shadow-md transition-[box-shadow]"
               >
                 <span className="text-5xl font-bold text-neutral-100 select-none leading-none">
                   {step}
                 </span>
-                <h3 className="mt-2 text-sm font-semibold text-foreground">
-                  {title}
-                </h3>
-                <Paragraph
-                  variant="muted"
-                  className="mt-1.5 text-neutral-500 text-sm leading-relaxed"
-                >
+                <h3 className="mt-2 text-sm font-semibold text-foreground">{title}</h3>
+                <Paragraph variant="muted" className="mt-1.5 text-neutral-500 text-sm leading-relaxed">
                   {description}
                 </Paragraph>
                 {i < STEPS.length - 1 && (
@@ -704,7 +423,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Code snippet */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -731,13 +449,11 @@ export default function Page() {
 }`}</pre>
           </motion.div>
         </div>
-      </PatternSection>
+      </PatternSection> */}
 
-      {/* ════════════════════════════════════════════════════════════════════
-          FINAL CTA
-      ════════════════════════════════════════════════════════════════════ */}
+      {/* ── Final CTA ── */}
       <PatternSection>
-        <div className="mx-auto max-w-xl px-6 py-28 flex flex-col items-center text-center gap-6">
+        <div className="mx-auto max-w-9xl px-6 py-28 flex flex-col items-center text-center gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -778,9 +494,7 @@ export default function Page() {
         </div>
       </PatternSection>
 
-      {/* ════════════════════════════════════════════════════════════════════
-          FOOTER
-      ════════════════════════════════════════════════════════════════════ */}
+      {/* ── Footer ── */}
       <PatternSection contentClassName="bg-neutral-50">
         <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Paragraph variant="muted" className="text-neutral-400 text-xs">

@@ -37,9 +37,9 @@ function ThemeToggle() {
   return (
     <motion.button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative flex items-center justify-center w-9 h-9 rounded-md text-foreground/70 hover:text-foreground hover:bg-muted transition-colors"
+      className="relative flex items-center justify-center w-10 h-10 rounded-md text-foreground/70 hover:text-foreground hover:bg-muted transition-colors"
       aria-label="Toggle theme"
-      whileTap={{ scale: 0.9 }}
+      whileTap={{ scale: 0.96 }}
     >
       <AnimatePresence mode="wait" initial={false}>
         {isDark ? (
@@ -295,7 +295,7 @@ export function NavBar({
                         <Link
                           href={item.href}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block px-4 py-3 text-foreground/70 hover:text-foreground hover:bg-muted rounded-lg transition-all duration-200 text-base font-medium"
+                          className="block px-4 py-3 text-foreground/70 hover:text-foreground hover:bg-muted rounded-lg transition-colors duration-200 text-base font-medium"
                         >
                           {item.label}
                         </Link>
@@ -310,7 +310,7 @@ export function NavBar({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.4 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.96 }}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="w-full px-4 py-3 bg-primary text-primary-foreground rounded-lg text-base font-medium"
                   >
