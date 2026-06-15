@@ -58,7 +58,7 @@ export function BarsScaleWave({
               y: [height * (1 - minHeightRatio) / 2, 0, height * (1 - minHeightRatio) / 2],
             }}
             transition={{
-              duration: 1,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
               delay: i * staggerDelay,
               ease: ease,

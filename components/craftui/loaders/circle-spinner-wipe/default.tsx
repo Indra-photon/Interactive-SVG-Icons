@@ -65,7 +65,7 @@ export function CircleSpinnerWipe({
         }}
         transition={{
           strokeDashoffset: {
-            duration: 2,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             ease: ease,
           },

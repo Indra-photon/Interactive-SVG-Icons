@@ -59,7 +59,7 @@ export function DotsCompress({
         height: [startHeight, endHeight]
       }}
       transition={{
-        duration: 1,
+        duration: duration,
         repeat: isAnimating ? Infinity : 0,
         repeatType: "reverse",
         ease: ease
@@ -70,7 +70,7 @@ export function DotsCompress({
           viewBox: [`0 0 ${width} ${startHeight}`, `0 0 ${endWidth} ${endHeight}`]
         }}
         transition={{
-          duration: 1,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           repeatType: "reverse",
           ease: ease
@@ -86,7 +86,7 @@ export function DotsCompress({
               cy: [dot.startY, dot.endY]
             }}
             transition={{
-              duration: 1,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
               repeatType: "reverse",
               ease: ease

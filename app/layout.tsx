@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import { DialRoot } from "dialkit";
+import "dialkit/styles.css";
 import { GoogleTagManager } from '@next/third-parties/google'
 import { Toaster } from "@/components/ui/sonner"
 import { NavBar } from "@/components/NavBar";
@@ -118,6 +120,7 @@ export default function RootLayout({
           {children}
           <GoogleTagManager gtmId="Your GTM ID" />
           <Toaster position="top-right" />
+          <DialRoot productionEnabled position="bottom-right" theme="light" defaultOpen={false} />
         </ThemeProvider>
       </body>
     </html>

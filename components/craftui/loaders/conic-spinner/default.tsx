@@ -59,7 +59,7 @@ export function ConicSpinner({
           ],
         }}
         transition={{
-          duration: 2,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           times: [0, 0.25, 0.5, 0.75, 0.875, 1],
           ease: ease,

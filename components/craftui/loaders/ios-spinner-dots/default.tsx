@@ -35,7 +35,7 @@ export function IosSpinnerDots({
       <motion.g
         style={{ transformOrigin: '50px 50px' }}
         animate={{ rotate: isAnimating ? 360 : 0 }}
-        transition={{ duration: 1, repeat: isAnimating ? Infinity : 0, ease: ease }}
+        transition={{ duration: duration, repeat: isAnimating ? Infinity : 0, ease: ease }}
       >
         {Array.from({ length: count }).map((_, i) => {
           const angle = (2 * Math.PI * i) / count - Math.PI / 2;

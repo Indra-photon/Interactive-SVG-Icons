@@ -57,7 +57,7 @@ export function DotsRotate({
               cy: [positions[dot.startPos].y, positions[nextPos].y]
             }}
             transition={{
-              duration: 1,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
               ease: ease,
               times: [0, 1]

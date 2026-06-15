@@ -65,7 +65,7 @@ export function TriangleCascade({
                 y: [-barHeight, barY],
               }}
               transition={{
-                duration: 2,
+                duration: duration,
                 repeat: isAnimating ? Infinity : 0,
                 delay: i * staggerDelay,
                 ease: ease,

@@ -60,7 +60,7 @@ export function BarsBounce({
                 : [height - tallHeight, 0, height - tallHeight]
             }}
             transition={{
-              duration: 1,
+              duration: duration,
               repeat: isAnimating ? Infinity : 0,
               ease: ease,
               times: [0, 0.5, 1] // Keyframe timing: 0%, 50%, 100%

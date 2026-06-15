@@ -55,7 +55,7 @@ export function HeartFill({
             y: [60, 60, 0],
           }}
           transition={{
-            duration: 2,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             times: [0, 0.2, 1],
             ease: ease,
