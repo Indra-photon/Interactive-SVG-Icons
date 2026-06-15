@@ -56,13 +56,13 @@ export function BallBounceAlternate({
         }}
         transition={{
           x: {
-            duration: 2,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             repeatType: 'reverse',
             ease: ease,
           },
           y: {
-            duration: 0.5,
+            duration: duration * 0.25,
             repeat: isAnimating ? Infinity : 0,
             times: [0, 0.08, 1],
             ease: [0.455, 0.03, 0.515, 0.955],

@@ -92,7 +92,7 @@ export function CrossExpand({
               scale: [0.3, 0.3, 1, 1, 0.3, 0.3],
             } : { opacity: 0, scale: 0.3 }}
             transition={{
-              duration: 2,
+              duration: duration,
               repeat: Infinity,
               times,
               ease: ease,

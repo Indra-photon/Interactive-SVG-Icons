@@ -48,7 +48,7 @@ export function BarsWave({
             y: [70, 0, 70]
           }}
           transition={{
-            duration: 1,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             ease: ease,
             delay: bar.delay

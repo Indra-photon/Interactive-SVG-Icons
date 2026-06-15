@@ -41,7 +41,7 @@ export function Breath({
           opacity: [0, 0.25, 0],
         }}
         transition={{
-          duration: 4,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           ease: ease,
           delay: 0.3,
@@ -58,7 +58,7 @@ export function Breath({
           opacity: [0.25, 1, 0.25],
         }}
         transition={{
-          duration: 4,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           ease: ease,
           times: [0, 0.5, 1],

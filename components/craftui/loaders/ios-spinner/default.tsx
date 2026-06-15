@@ -35,7 +35,7 @@ export function IosSpinner({
         style={{ transformOrigin: '50px 50px' }}
         animate={{ rotate: isAnimating ? 360 : 0 }}
         transition={{
-          duration: 1,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           ease: ease,
         }}

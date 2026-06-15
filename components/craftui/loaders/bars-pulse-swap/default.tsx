@@ -86,7 +86,7 @@ export function BarsPulseSwap({
                 ease: easeInOutQuad
               },
               y: {
-                duration: 2,
+                duration: duration,
                 repeat: isAnimating ? Infinity : 0,
                 ease: easeInOutQuad,
                 times: [0, 0.5, 1]

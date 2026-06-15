@@ -46,7 +46,7 @@ export function BarsScaleBottom({
             y: [height / 4, height - minHeight, height / 4]
           }}
           transition={{
-            duration: 1,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             ease: ease,
             delay: index * staggerDelay

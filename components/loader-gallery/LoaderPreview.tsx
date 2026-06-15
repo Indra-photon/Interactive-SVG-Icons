@@ -6,9 +6,10 @@ interface LoaderPreviewProps {
   loaderSlug: string;
   variationName: string;
   propValues?: Record<string, any>;
+  animationKey?: string;
 }
 
-export function LoaderPreview({ loaderSlug, variationName, propValues = {} }: LoaderPreviewProps) {
+export function LoaderPreview({ loaderSlug, variationName, propValues = {}, animationKey }: LoaderPreviewProps) {
   const [LoaderComponent, setLoaderComponent] = useState<any>(null);
 
   useEffect(() => {
@@ -26,5 +27,5 @@ export function LoaderPreview({ loaderSlug, variationName, propValues = {} }: Lo
     return <div className="text-sm text-stone-400">Loading…</div>;
   }
 
-  return <LoaderComponent {...propValues} />;
+  return <LoaderComponent key={animationKey} {...propValues} />;
 }

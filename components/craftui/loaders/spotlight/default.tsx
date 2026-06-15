@@ -58,7 +58,7 @@ export function Spotlight({
             : -spotW / 2,
         }}
         transition={{
-          duration: 2,
+          duration: duration,
           repeat: isAnimating ? Infinity : 0,
           ease: ease,
           repeatDelay: repeatDelay,

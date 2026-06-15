@@ -64,7 +64,7 @@ export function CircularWaveFill({
             ],
           }}
           transition={{
-            duration: 2,
+            duration: duration,
             repeat: isAnimating ? Infinity : 0,
             ease: ease,
             times: [0, 0.5, 1],
