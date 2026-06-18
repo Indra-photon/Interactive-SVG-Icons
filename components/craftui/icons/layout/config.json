@@ -2,7 +2,13 @@
   "slug": "layout-dashboard",
   "name": "Layout Dashboard Icon",
   "category": "layout",
-  "tags": ["dashboard", "layout", "grid", "panels", "interface"],
+  "tags": [
+    "dashboard",
+    "layout",
+    "grid",
+    "panels",
+    "interface"
+  ],
   "description": "Icon for dashboard and layout views with an animated fill-swap effect on hover",
   "createdAt": "2026-02-17T00:00:00Z",
   "variations": [
@@ -12,14 +18,19 @@
       "tier": "free",
       "description": "On hover, the two filled panels swap to the opposite two panels",
       "animationType": "hover",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "color",
@@ -40,7 +51,7 @@
           "type": "boolean",
           "default": false,
           "required": false,
-          "description": "Controls the fill-swap animation. Manage this state in the parent and pass it down — e.g. via onMouseEnter/onMouseLeave on a button wrapper."
+          "description": "Controls the fill-swap animation. Manage this state in the parent and pass it down \u2014 e.g. via onMouseEnter/onMouseLeave on a button wrapper."
         }
       ]
     },
@@ -50,14 +61,19 @@
       "tier": "free",
       "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
       "animationType": "hover",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "color",
@@ -78,7 +94,7 @@
           "type": "boolean",
           "default": false,
           "required": false,
-          "description": "Controls the morph animation. Manage this state in the parent and pass it down — e.g. via onMouseEnter/onMouseLeave on a button wrapper."
+          "description": "Controls the morph animation. Manage this state in the parent and pass it down \u2014 e.g. via onMouseEnter/onMouseLeave on a button wrapper."
         }
       ]
     }

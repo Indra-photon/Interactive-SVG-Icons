@@ -17,70 +17,68 @@
         {
           "name": "size",
           "type": "number",
-          "default": "24",
-          "required": false,
+          "default": 24,
+          "min": 8,
+          "max": 256,
+          "step": 1,
           "description": "Width and height of the icon in pixels"
         },
         {
           "name": "color",
           "type": "string",
-          "default": "'currentColor'",
-          "required": false,
+          "default": "currentColor",
           "description": "Stroke color of the icon (CSS color value)"
         },
         {
           "name": "className",
           "type": "string",
-          "default": "''",
-          "required": false,
+          "default": "",
           "description": "Additional CSS classes to apply"
         },
         {
           "name": "isSelected",
           "type": "boolean",
-          "default": "false",
-          "required": false,
+          "default": false,
           "description": "Controls the selected state of the icon."
         }
       ]
     },
     {
-  "name": "draw",
-  "displayName": "Sketch Reveal",
-  "tier": "free",
-  "description": "Stroke animation draws the house from foundation to roof during loading",
-  "animationType": "loading",
-  "dependencies": ["motion/react"],
-  "props": [
-    {
-      "name": "size",
-      "type": "number",
-      "default": "24",
-      "required": false,
-      "description": "Width and height of the icon in pixels"
-    },
-    {
-      "name": "color",
-      "type": "string",
-      "default": "'currentColor'",
-      "required": false,
-      "description": "Stroke color of the icon (CSS color value)"
-    },
-    {
-      "name": "className",
-      "type": "string",
-      "default": "''",
-      "required": false,
-      "description": "Additional CSS classes to apply"
-    },
-    {
-      "name": "isLoading",
-      "type": "boolean",
-      "default": "false",
-      "required": false,
-      "description": "Controls the sketch reveal animation state. Set to true during loading operations."
+      "name": "draw",
+      "displayName": "Sketch Reveal",
+      "tier": "free",
+      "description": "Stroke animation draws the house from foundation to roof during loading",
+      "animationType": "loading",
+      "dependencies": ["motion/react"],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "min": 8,
+          "max": 256,
+          "step": 1,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "description": "Stroke color of the icon (CSS color value)"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "description": "Additional CSS classes to apply"
+        },
+        {
+          "name": "isLoading",
+          "type": "boolean",
+          "default": false,
+          "description": "Controls the sketch reveal animation state. Set to true during loading operations."
+        }
+      ]
     }
-  ]
-}
   ]
 }

@@ -1,32 +1,33 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useDialKit } from "dialkit";
-import { LoaderPreview } from "./LoaderPreview";
+import { IconPreview } from "./IconPreview";
 import {
-  buildDialKitConfig,
-  buildNormalizedDefaults,
-  unpackDialKitValues,
-  detectSpringMode,
-} from "@/lib/dialkit-config";
-import type { PropDefinition } from "@/types/loader";
+  buildIconDialKitConfig,
+  buildIconNormalizedDefaults,
+  unpackIconDialKitValues,
+  iconSlugToComponentName,
+} from "@/lib/icon-dialkit-config";
+import type { PropDefinition } from "@/types/icon";
 import { Button } from "../ui/button";
 
-interface Variation {
+interface IconVariation {
   name: string;
   displayName: string;
-  componentName: string;
   tier: string;
   description: string;
+  animationType: string;
   props: PropDefinition[];
 }
 
-interface LoaderConfiguratorProps {
-  loaderSlug: string;
-  variation: Variation;
+interface IconConfiguratorProps {
+  iconSlug: string;
+  iconName: string;
+  variation: IconVariation;
 }
 
-// ── Source modification ───────────────────────────────────────────────────────
+// ── Source substitution ───────────────────────────────────────────────────────
 
 function substituteSource(
   source: string,
@@ -41,22 +42,9 @@ function substituteSource(
         new RegExp(`(${name}\\s*=\\s*)["'][^"']*["'](?=,)`, "g"),
         `$1"${value}"`,
       );
-    } else if (Array.isArray(value)) {
-      result = result.replace(
-        new RegExp(
-          `(${name}\\s*=\\s*)(?:["'][^'"]*["']|\\[[^\\]]*\\])(?=,)`,
-          "g",
-        ),
-        `$1${JSON.stringify(value)}`,
-      );
     } else if (typeof value === "number") {
       result = result.replace(
         new RegExp(`(${name}\\s*=\\s*)[\\d.]+(?=,)`, "g"),
-        `$1${value}`,
-      );
-    } else if (typeof value === "boolean") {
-      result = result.replace(
-        new RegExp(`(${name}\\s*=\\s*)(?:true|false)(?=,)`, "g"),
         `$1${value}`,
       );
     }
@@ -64,7 +52,7 @@ function substituteSource(
   return result;
 }
 
-// ── Code snippet generation ───────────────────────────────────────────────────
+// ── Usage snippet ─────────────────────────────────────────────────────────────
 
 function buildUsageSnippet(
   componentName: string,
@@ -77,7 +65,6 @@ function buildUsageSnippet(
   if (!changed.length) return `<${componentName} />`;
   const attrs = changed.map(([k, v]) => {
     if (typeof v === "string") return `  ${k}="${v}"`;
-    if (Array.isArray(v)) return `  ${k}={${JSON.stringify(v)}}`;
     return `  ${k}={${v}}`;
   });
   return `<${componentName}\n${attrs.join("\n")}\n/>`;
@@ -91,65 +78,40 @@ function isChanged(values: Record<string, any>, defaults: Record<string, any>) {
   return false;
 }
 
-// ── Inner component (holds useDialKit; remounts on reset via key) ─────────────
+// ── Inner (holds useDialKit; remounts on reset via key) ───────────────────────
 
-interface InnerProps extends LoaderConfiguratorProps {
+interface InnerProps extends IconConfiguratorProps {
   onReset: () => void;
 }
 
-function LoaderConfiguratorInner({
-  loaderSlug,
+function IconConfiguratorInner({
+  iconSlug,
+  iconName,
   variation,
   onReset,
 }: InnerProps) {
   const [copied, setCopied] = useState<"usage" | "source" | null>(null);
 
+  const componentName = iconSlugToComponentName(iconSlug);
+  const panelName = `${iconName} — ${variation.displayName}`;
+
   const dialKitConfig = useMemo(
-    () => buildDialKitConfig(variation.props),
+    () => buildIconDialKitConfig(variation.props),
     [variation.props],
   );
   const defaults = useMemo(
-    () => buildNormalizedDefaults(variation.props),
+    () => buildIconNormalizedDefaults(variation.props),
     [variation.props],
   );
 
-  const params = useDialKit(variation.displayName, dialKitConfig);
-
-  const rawParams = params as Record<string, any>;
-
-  const isSpringMode = useMemo(
-    () => detectSpringMode(rawParams, variation.props),
-    [rawParams, variation.props],
-  );
-
+  const rawParams = useDialKit(panelName, dialKitConfig) as Record<string, any>;
   const propValues = useMemo(
-    () => unpackDialKitValues(rawParams, variation.props),
-    [rawParams, variation.props],
+    () => unpackIconDialKitValues(rawParams),
+    [rawParams],
   );
 
-  // Changes to ease/duration don't interrupt a running Framer Motion repeat loop —
-  // they only apply at the next cycle. Keying on all ease+duration values remounts
-  // the loader immediately so the new transition takes effect right away.
-  // In spring mode all ease values fall back to defaults, so no spurious remount occurs.
-  const animationKey = useMemo(() => {
-    const keys: string[] = [];
-    for (const p of variation.props) {
-      if (p.type === "ease") {
-        keys.push(p.name);
-        const durName =
-          p.name === "ease" ? "duration" : p.name.replace(/Ease$/, "Duration");
-        if (variation.props.some((x) => x.name === durName)) keys.push(durName);
-      }
-    }
-    return keys.map((k) => JSON.stringify(propValues[k])).join("-");
-  }, [variation.props, propValues]);
-
-  const changed = !isSpringMode && isChanged(propValues, defaults);
-  const snippet = buildUsageSnippet(
-    variation.componentName,
-    propValues,
-    defaults,
-  );
+  const changed = isChanged(propValues, defaults);
+  const snippet = buildUsageSnippet(componentName, propValues, defaults);
 
   const copyUsage = async () => {
     await navigator.clipboard.writeText(snippet);
@@ -159,7 +121,7 @@ function LoaderConfiguratorInner({
 
   const copySource = async () => {
     try {
-      const res = await fetch(`/r/${loaderSlug}-${variation.name}.json`);
+      const res = await fetch(`/r/${iconSlug}-${variation.name}.json`);
       const data = await res.json();
       const original = data.files[0].content as string;
       const modified = substituteSource(original, propValues, defaults);
@@ -173,34 +135,30 @@ function LoaderConfiguratorInner({
 
   return (
     <div className="corner-squircle rounded-[10px] border border-border overflow-hidden">
-      {/* Preview — full width now that controls live in the DialKit panel */}
-      <div className="bg-stone-50 border-b border-stone-200 flex items-center justify-center py-20 min-h-[300px]">
-        <LoaderPreview
-          loaderSlug={loaderSlug}
+      {/* Preview */}
+      <div className="bg-stone-50 border-b border-stone-200 flex items-center justify-center py-10">
+        <IconPreview
+          iconSlug={iconSlug}
           variationName={variation.name}
+          animationType={variation.animationType}
+          props={variation.props}
           propValues={propValues}
-          animationKey={animationKey}
         />
       </div>
 
       {/* Hint + reset bar */}
-      <div className="flex items-center justify-end gap-2 px-5 py-3 bg-white border-b border-stone-100">
-        {isSpringMode ? (
-          <span className="text-[11px] font-mono text-amber-600">
-            Switch to <strong>Easing</strong> mode in the DialKit panel — spring
-            is not yet supported
-          </span>
-        ) : (
+      <div className="flex items-center justify-end px-5 py-3 bg-white border-b border-stone-100">
+        <span className="text-[11px] font-mono text-stone-400">
           <Button
             asChild
             size="lg"
             variant="outline"
-            className="corner-squircle rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
+            className="corner-squircle w-full min-w-0 rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
           >
             <span>Open in DialKit</span>
           </Button>
-        )}
-        {changed && !isSpringMode && (
+        </span>
+        {changed && (
           <Button
             asChild
             size="lg"
@@ -216,7 +174,7 @@ function LoaderConfiguratorInner({
         )}
       </div>
 
-      {/* Code panel — only visible when at least one value has changed */}
+      {/* Code panel — only when something changed */}
       {changed && (
         <div className="p-5 flex flex-col gap-3">
           <div className="flex items-center justify-between">
@@ -264,17 +222,19 @@ function LoaderConfiguratorInner({
   );
 }
 
-// ── Shell — owns reset key so Inner remounts cleanly on reset ─────────────────
+// ── Shell — owns reset key ────────────────────────────────────────────────────
 
-export function LoaderConfigurator({
-  loaderSlug,
+export function IconConfigurator({
+  iconSlug,
+  iconName,
   variation,
-}: LoaderConfiguratorProps) {
+}: IconConfiguratorProps) {
   const [resetKey, setResetKey] = useState(0);
   return (
-    <LoaderConfiguratorInner
+    <IconConfiguratorInner
       key={resetKey}
-      loaderSlug={loaderSlug}
+      iconSlug={iconSlug}
+      iconName={iconName}
       variation={variation}
       onReset={() => setResetKey((k) => k + 1)}
     />

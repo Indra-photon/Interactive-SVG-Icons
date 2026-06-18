@@ -26,29 +26,28 @@
             {
               "name": "size",
               "type": "number",
-              "default": "24",
-              "required": false,
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "'currentColor'",
-              "required": false,
+              "default": "currentColor",
               "description": "Stroke color of the icon (CSS color value)"
             },
             {
               "name": "className",
               "type": "string",
-              "default": "''",
-              "required": false,
+              "default": "",
               "description": "Additional CSS classes to apply"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
-              "default": "false",
-              "required": false,
+              "default": false,
               "description": "Controls the shake animation state. Set to true during delete operations."
             }
           ]
@@ -66,29 +65,28 @@
             {
               "name": "size",
               "type": "number",
-              "default": "24",
-              "required": false,
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "'currentColor'",
-              "required": false,
+              "default": "currentColor",
               "description": "Stroke color of the icon (CSS color value)"
             },
             {
               "name": "className",
               "type": "string",
-              "default": "''",
-              "required": false,
+              "default": "",
               "description": "Additional CSS classes to apply"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
-              "default": "false",
-              "required": false,
+              "default": false,
               "description": "Controls the lid lift animation state. Set to true during delete operations."
             }
           ]
@@ -107,6 +105,9 @@
               "name": "size",
               "type": "number",
               "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
@@ -127,6 +128,23 @@
               "default": false,
               "description": "Controls the fill and crush animation state. Set to true during delete operations."
             }
+          ],
+          "inspiration": [
+            {
+              "label": "Stripe's delete micro-interaction",
+              "url": "https://stripe.com",
+              "type": "website"
+            },
+            {
+              "label": "@emilkowalski_ on X",
+              "url": "https://x.com/emilkowalski_",
+              "type": "twitter"
+            },
+            {
+              "label": "Animated icons on Dribbble",
+              "url": "https://dribbble.com/tags/animated-icon",
+              "type": "dribbble"
+            }
           ]
         },
         {
@@ -143,6 +161,9 @@
               "name": "size",
               "type": "number",
               "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
@@ -197,7 +218,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -212,6 +236,62 @@
               "default": false,
               "required": false,
               "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "shopping-cart",
+      "name": "Shopping Cart Icon",
+      "category": "ecommerce",
+      "tags": [
+        "cart",
+        "shopping",
+        "ecommerce",
+        "buy",
+        "add",
+        "basket"
+      ],
+      "description": "Icon for shopping cart and add to cart actions",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Item falls into cart from above and cart shakes when adding to cart",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isAdding",
+              "type": "boolean",
+              "default": false,
+              "description": "Triggers the add to cart animation. Set to true when item is being added to cart."
             }
           ]
         }
@@ -248,7 +328,8 @@
           "description": "Circular stroke drawing effect",
           "animationType": "click",
           "dependencies": [],
-          "props": []
+          "props": [],
+          "designNote": "Arrow indicators excluded for cleaner circular animation path"
         },
         {
           "name": "dash",
@@ -258,63 +339,6 @@
           "animationType": "click",
           "dependencies": [],
           "props": []
-        }
-      ]
-    },
-    {
-      "slug": "shopping-cart",
-      "name": "Shopping Cart Icon",
-      "category": "ecommerce",
-      "tags": [
-        "cart",
-        "shopping",
-        "ecommerce",
-        "buy",
-        "add",
-        "basket"
-      ],
-      "description": "Icon for shopping cart and add to cart actions",
-      "createdAt": "2026-02-12T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Default",
-          "tier": "free",
-          "description": "Item falls into cart from above and cart shakes when adding to cart",
-          "animationType": "click",
-          "dependencies": [
-            "motion/react"
-          ],
-          "props": [
-            {
-              "name": "size",
-              "type": "number",
-              "default": "24",
-              "required": false,
-              "description": "Width and height of the icon in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "'currentColor'",
-              "required": false,
-              "description": "Stroke color of the icon (CSS color value)"
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "default": "''",
-              "required": false,
-              "description": "Additional CSS classes to apply"
-            },
-            {
-              "name": "isAdding",
-              "type": "boolean",
-              "default": "false",
-              "required": false,
-              "description": "Triggers the add to cart animation. Set to true when item is being added to cart."
-            }
-          ]
         }
       ]
     },
@@ -349,7 +373,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -382,7 +409,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -415,7 +445,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -462,29 +495,28 @@
             {
               "name": "size",
               "type": "number",
-              "default": "24",
-              "required": false,
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "'currentColor'",
-              "required": false,
+              "default": "currentColor",
               "description": "Fill color of the icon (CSS color value)"
             },
             {
               "name": "className",
               "type": "string",
-              "default": "''",
-              "required": false,
+              "default": "",
               "description": "Additional CSS classes to apply"
             },
             {
               "name": "isOpen",
               "type": "boolean",
-              "default": "false",
-              "required": false,
+              "default": false,
               "description": "Controls the envelope opening animation. Set to true to open the flap."
             }
           ]
@@ -502,29 +534,28 @@
             {
               "name": "size",
               "type": "number",
-              "default": "24",
-              "required": false,
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "'currentColor'",
-              "required": false,
+              "default": "currentColor",
               "description": "Fill color of the icon (CSS color value)"
             },
             {
               "name": "className",
               "type": "string",
-              "default": "''",
-              "required": false,
+              "default": "",
               "description": "Additional CSS classes to apply"
             },
             {
               "name": "hasNotification",
               "type": "boolean",
-              "default": "false",
-              "required": false,
+              "default": false,
               "description": "Triggers the bounce animation and shows the glowing ping indicator when set to true."
             }
           ]
@@ -562,7 +593,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -595,7 +629,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -644,7 +681,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "color",
@@ -684,7 +724,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "color",
@@ -737,29 +780,28 @@
             {
               "name": "size",
               "type": "number",
-              "default": "24",
-              "required": false,
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "'currentColor'",
-              "required": false,
+              "default": "currentColor",
               "description": "Stroke color of the icon (CSS color value)"
             },
             {
               "name": "className",
               "type": "string",
-              "default": "''",
-              "required": false,
+              "default": "",
               "description": "Additional CSS classes to apply"
             },
             {
               "name": "isSelected",
               "type": "boolean",
-              "default": "false",
-              "required": false,
+              "default": false,
               "description": "Controls the selected state of the icon."
             }
           ]
@@ -777,29 +819,28 @@
             {
               "name": "size",
               "type": "number",
-              "default": "24",
-              "required": false,
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "'currentColor'",
-              "required": false,
+              "default": "currentColor",
               "description": "Stroke color of the icon (CSS color value)"
             },
             {
               "name": "className",
               "type": "string",
-              "default": "''",
-              "required": false,
+              "default": "",
               "description": "Additional CSS classes to apply"
             },
             {
               "name": "isLoading",
               "type": "boolean",
-              "default": "false",
-              "required": false,
+              "default": false,
               "description": "Controls the sketch reveal animation state. Set to true during loading operations."
             }
           ]
@@ -836,7 +877,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "color",
@@ -891,7 +935,10 @@
               "name": "size",
               "type": "number",
               "default": 24,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "color",
@@ -960,7 +1007,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -993,7 +1043,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -1026,7 +1079,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "className",
@@ -1074,29 +1130,28 @@
             {
               "name": "size",
               "type": "number",
-              "default": "24",
-              "required": false,
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
               "description": "Width and height of the icon in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "'currentColor'",
-              "required": false,
+              "default": "currentColor",
               "description": "Fill and stroke color of the icon (CSS color value)"
             },
             {
               "name": "className",
               "type": "string",
-              "default": "''",
-              "required": false,
+              "default": "",
               "description": "Additional CSS classes to apply"
             },
             {
               "name": "isActive",
               "type": "boolean",
-              "default": "false",
-              "required": false,
+              "default": false,
               "description": "Controls the light-up animation. Set to true to show filled bulb with rays."
             }
           ]
@@ -1133,7 +1188,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "color",
@@ -1173,7 +1231,10 @@
               "type": "number",
               "default": 24,
               "required": false,
-              "description": "Width and height of the icon in pixels"
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
             },
             {
               "name": "color",
@@ -1209,5 +1270,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-06-07T15:33:19.418Z"
+  "lastUpdated": "2026-06-18T08:53:37.419Z"
 }

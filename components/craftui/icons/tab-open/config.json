@@ -2,7 +2,14 @@
   "slug": "tab-open",
   "name": "Tab Open Icon",
   "category": "navigation",
-  "tags": ["tab", "open", "new-tab", "window", "browser", "navigate"],
+  "tags": [
+    "tab",
+    "open",
+    "new-tab",
+    "window",
+    "browser",
+    "navigate"
+  ],
   "description": "Icon for opening in new tab or window with animated opening effect",
   "createdAt": "2026-02-18T00:00:00Z",
   "variations": [
@@ -12,14 +19,19 @@
       "tier": "free",
       "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
       "animationType": "hover",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "className",

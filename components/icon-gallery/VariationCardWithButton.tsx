@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { IconExternalLink } from '@tabler/icons-react';
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import { IconExternalLink } from "@tabler/icons-react";
 
 interface VariationCardWithButtonProps {
   iconSlug: string;
@@ -14,48 +14,55 @@ interface VariationCardWithButtonProps {
   };
 }
 
-export function VariationCardWithButton({ iconSlug, variation }: VariationCardWithButtonProps) {
+export function VariationCardWithButton({
+  iconSlug,
+  variation,
+}: VariationCardWithButtonProps) {
   // Load icon component
   const IconComponent = dynamic(
-    () => import(`@/components/craftui/icons/${iconSlug}/${variation.name}.tsx`)
-      .then(mod => {
-        const exportedComponent = mod[Object.keys(mod)[0]];
-        return { default: exportedComponent };
-      })
-      .catch(() => {
-        return { 
-          default: ({ size }: { size?: number }) => (
-            <div className="text-6xl">📦</div>
-          ) 
-        };
-      }),
-    { ssr: false }
+    () =>
+      import(`@/components/craftui/icons/${iconSlug}/${variation.name}.tsx`)
+        .then((mod) => {
+          const exportedComponent = mod[Object.keys(mod)[0]];
+          return { default: exportedComponent };
+        })
+        .catch(() => {
+          return {
+            default: ({ size }: { size?: number }) => (
+              <div className="text-6xl">📦</div>
+            ),
+          };
+        }),
+    { ssr: false },
   );
 
   // Load button example component
   const ButtonExample = dynamic(
-    () => import(`@/components/craftui/icons/${iconSlug}/examples/${variation.name}-button.tsx`)
-      .then(mod => {
-        const exportedComponent = mod[Object.keys(mod)[0]];
-        return { default: exportedComponent };
-      })
-      .catch(() => {
-        return { 
-          default: () => (
-            <div className="text-sm text-gray-500">No example available</div>
-          ) 
-        };
-      }),
-    { ssr: false }
+    () =>
+      import(
+        `@/components/craftui/icons/${iconSlug}/examples/${variation.name}-button.tsx`
+      )
+        .then((mod) => {
+          const exportedComponent = mod[Object.keys(mod)[0]];
+          return { default: exportedComponent };
+        })
+        .catch(() => {
+          return {
+            default: () => (
+              <div className="text-sm text-gray-500">No example available</div>
+            ),
+          };
+        }),
+    { ssr: false },
   );
-  
+
   return (
     <div className="border rounded-lg p-6 transition-all group">
       {/* Icon Preview */}
       {/* <div className="aspect-square bg-gray-50 rounded-lg mb-4 flex items-center justify-center group-hover:bg-gray-100 transition-colors">
         <IconComponent size={64} />
       </div> */}
-      
+
       {/* Button Example */}
       <div className="mb-4 flex items-center justify-center py-10  relative overflow-hidden">
         <ButtonExample />
@@ -63,7 +70,7 @@ export function VariationCardWithButton({ iconSlug, variation }: VariationCardWi
           {variation.tier}
         </span>
       </div>
-      
+
       {/* Variation Info */}
       <div className="flex items-end justify-between border-t border-stone-300 mt-12 pt-4">
         <div>
@@ -75,16 +82,11 @@ export function VariationCardWithButton({ iconSlug, variation }: VariationCardWi
           </p>
         </div>
         <Link href={`/icons/${iconSlug}/${variation.name}`}>
-          <span className='pb-6'>
+          <span className="pb-6">
             <IconExternalLink className="text-stone-400" />
           </span>
         </Link>
       </div>
-      
-      {/* Hover hint */}
-      {/* <div className="text-sm text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-        See details →
-      </div> */}
     </div>
   );
 }

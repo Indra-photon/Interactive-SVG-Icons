@@ -4,8 +4,8 @@ import fs from 'fs/promises';
 import path from 'path';
 import type { IconRegistry } from '@/types/icon';
 import { CopyButton } from '@/components/icon-gallery/CopyButton';
-import { LiveIconPreview } from '@/components/icon-gallery/LiveIconPreview';
 import { ButtonCodeDisplay } from '@/components/icon-gallery/ButtonCodeDisplay';
+import { IconConfigurator } from '@/components/icon-gallery/IconConfigurator';
 import { Container } from '@/components/Container';
 
 // async function getVariation(slug: string, variationName: string) {
@@ -114,6 +114,24 @@ export default async function VariationDetailPage({
           />
         </div> */}
         
+        {/* Configurator */}
+        {variation.props && variation.props.length > 0 && (
+          <div className="mb-10">
+            <IconConfigurator
+              iconSlug={icon.slug}
+              iconName={icon.name}
+              variation={{
+                name: variation.name,
+                displayName: variation.displayName,
+                tier: variation.tier,
+                description: variation.description,
+                animationType: variation.animationType,
+                props: variation.props,
+              }}
+            />
+          </div>
+        )}
+
         {/* Installation Section */}
         <div className="space-y-6">
           <div>

@@ -106,7 +106,9 @@ async function buildRegistry(config: BuildConfig): Promise<GithubRegistryItem[]>
           description: variation.description,
           animationType: variation.animationType,
           dependencies: deps,
-          props: variation.props || []
+          props: variation.props || [],
+          ...(variation.designNote && { designNote: variation.designNote }),
+          ...(variation.inspiration?.length && { inspiration: variation.inspiration }),
         });
 
         console.log(`    ✓ ${variation.displayName} (${variation.tier})`);
@@ -223,7 +225,9 @@ async function buildLoadersRegistry(config: BuildConfig): Promise<GithubRegistry
           description: variation.description,
           animationType: variation.animationType,
           dependencies: deps,
-          props: variation.props || []
+          props: variation.props || [],
+          ...(variation.designNote && { designNote: variation.designNote }),
+          ...(variation.inspiration?.length && { inspiration: variation.inspiration }),
         });
 
         console.log(`    ✓ ${variation.displayName} (${variation.tier})`);

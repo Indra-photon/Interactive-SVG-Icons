@@ -110,6 +110,25 @@
       ]
     },
     {
+      "name": "shopping-cart-default",
+      "type": "registry:ui",
+      "title": "Shopping Cart Icon - Default",
+      "description": "Item falls into cart from above and cart shakes when adding to cart",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/shopping-cart/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "refresh-default",
       "type": "registry:ui",
       "title": "Refresh Icon - Default",
@@ -159,25 +178,6 @@
           "path": "components/craftui/icons/refresh/dash.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/icons/refresh/dash.tsx"
-        }
-      ]
-    },
-    {
-      "name": "shopping-cart-default",
-      "type": "registry:ui",
-      "title": "Shopping Cart Icon - Default",
-      "description": "Item falls into cart from above and cart shakes when adding to cart",
-      "dependencies": [
-        "motion/react"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/shopping-cart/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
         }
       ]
     },
