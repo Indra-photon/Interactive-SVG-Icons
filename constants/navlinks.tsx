@@ -1,39 +1,41 @@
 import {
-  IconArticle,
-  IconBolt,
-  IconBriefcase2,
-  IconMail,
-  IconMessage2,
-  IconHomeEdit,
-  IconBinocularsFilled,
-  IconLayoutGridFilled,
-  IconStack2
-} from "@tabler/icons-react";
+  Home01Icon,
+  BounceRightIcon,
+  LoaderPinwheelIcon,
+  CellsIcon,
+  InformationCircleIcon,
+  BirdhouseIcon,
+} from "@hugeicons/core-free-icons";
+import type { IconSvgElement } from "@hugeicons/react";
 
-export const navlinks = [
+export const navlinks: {
+  url: string;
+  label: string;
+  icon: IconSvgElement;
+}[] = [
   {
     url: "/",
     label: "Home",
-    icon: IconHomeEdit,
+    icon: BirdhouseIcon,
   },
   {
     url: "/icons",
     label: "Explore Icons",
-    icon: IconBinocularsFilled,
+    icon: BounceRightIcon,
   },
   {
     url: "/loaders",
     label: "Explore Loaders",
-    icon: IconLayoutGridFilled,
+    icon: LoaderPinwheelIcon,
   },
   {
     url: "/blocks",
     label: "Blocks",
-    icon: IconStack2,
+    icon: CellsIcon,
   },
   {
     url: "/about",
     label: "About",
-    icon: IconLayoutGridFilled,
-  }
+    icon: InformationCircleIcon,
+  },
 ];
