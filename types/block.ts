@@ -14,6 +14,12 @@ export interface Block {
   variations: BlockVariation[];
 }
 
+export interface BlockInspirationLink {
+  label: string;
+  url: string;
+  type: 'twitter' | 'pinterest' | 'dribbble' | 'website';
+}
+
 export interface BlockVariation {
   name: string;
   displayName: string;
@@ -23,6 +29,10 @@ export interface BlockVariation {
   dependencies: string[];
   registryDependencies: string[];
   props: BlockPropDefinition[];
+  features?: string[];
+  inspiration?: BlockInspirationLink[];
+  componentName?: string;
+  previewHint?: string;
 }
 
 export interface BlockPropDefinition {

@@ -1669,6 +1669,23 @@
               "step": 1,
               "description": "Number of dots per row and column (n × n grid)"
             }
+          ],
+          "inspiration": [
+            {
+              "label": "Basement Studio — loading states",
+              "url": "https://basement.studio",
+              "type": "website"
+            },
+            {
+              "label": "@rauno on X",
+              "url": "https://x.com/raunofreiberg",
+              "type": "twitter"
+            },
+            {
+              "label": "Loading animations on Dribbble",
+              "url": "https://dribbble.com/tags/loading-animation",
+              "type": "dribbble"
+            }
           ]
         }
       ]
@@ -5416,5 +5433,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-06-07T15:33:19.429Z"
+  "lastUpdated": "2026-06-23T15:50:01.735Z"
 }

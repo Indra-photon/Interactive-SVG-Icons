@@ -19,6 +19,14 @@ import { DotsRotate } from "@/components/craftui/loaders/dots-rotate/default";
 import { LoaderSection } from "@/components/Homepage/LoaderSection";
 import { IconSection } from "@/components/Homepage/IconSection";
 import { IllustrationSection } from "@/components/Homepage/IllustrationSection";
+import { PatternSection } from "@/components/PatternSection";
+import { HeroLoaderGrid } from "@/components/Homepage/HeroLoaderGrid";
+import { HeroIconGrid } from "@/components/Homepage/HeroIconGrid";
+import { HeroNetworkDiagram } from "@/components/Homepage/HeroNetworkDiagram";
+import { HeroComponentTicker } from "@/components/Homepage/HeroComponentTicker";
+import { HeroToolConnector } from "@/components/Homepage/HeroToolConnector";
+import HeroFolderSVG from "@/components/Homepage/HeroFolderSVG";
+import HeroSocialLinks from "@/components/Homepage/HeroSocialLinks";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -77,62 +85,6 @@ const STATS = [
   { value: "0", label: "Config needed" },
 ];
 
-// ─── Pattern primitives ───────────────────────────────────────────────────────
-
-const HATCH =
-  "bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed";
-
-function PatternSection({
-  children,
-  contentClassName = "",
-  hideTopBar = false,
-  hideBottomBar = false,
-}: {
-  children: React.ReactNode;
-  contentClassName?: string;
-  hideTopBar?: boolean;
-  hideBottomBar?: boolean;
-}) {
-  return (
-    <div className="relative grid grid-cols-[2.5rem_1fr_2.5rem] grid-rows-[1px_auto_1px] bg-white [--pattern-fg:var(--color-gray-950)]/10 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10">
-      <div className={`col-start-2 row-start-2 ${contentClassName}`}>
-        {children}
-      </div>
-
-      <div
-        className={`col-start-1 row-span-full row-start-1 border-r border-r-(--pattern-fg) ${HATCH}`}
-      />
-      <div
-        className={`col-start-3 row-span-full row-start-1 border-l border-l-(--pattern-fg) ${HATCH}`}
-      />
-
-      {!hideTopBar && <div className="col-span-full col-start-1 row-start-1 h-px bg-[#fd551d]" />}
-      {!hideBottomBar && <div className="col-span-full col-start-1 row-start-3 h-px bg-[#fd551d]" />}
-
-      {!hideTopBar && (
-        <div className="col-start-1 row-start-1 relative z-20">
-          <div className="absolute size-2.5 rotate-45 -translate-y-1/2 translate-x-1/2  right-0 top-0 border border-(--pattern-fg) bg-[#fd551d] dark:bg-gray-950" />
-        </div>
-      )}
-      {!hideTopBar && (
-        <div className="col-start-3 row-start-1 relative z-20">
-          <div className="absolute size-2.5 rotate-45 -translate-y-1/2 -translate-x-1/2 left-0  top-0 border border-(--pattern-fg) bg-[#fd551d] dark:bg-gray-950" />
-        </div>
-      )}
-      {!hideBottomBar && (
-        <div className="col-start-1 row-start-3 relative z-20">
-          <div className="absolute size-2.5 rotate-45  translate-y-1/2  translate-x-1/2  right-0 bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-        </div>
-      )}
-      {!hideBottomBar && (
-        <div className="col-start-3 row-start-3 relative z-20">
-          <div className="absolute size-2.5 rotate-45  translate-y-1/2 -translate-x-1/2  left-0  bottom-0 border border-(--pattern-fg) bg-white dark:bg-gray-950" />
-        </div>
-      )}
-    </div>
-  );
-}
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -142,182 +94,185 @@ export default function Home() {
     <div className="bg-background">
       {/* ── Hero ── */}
       <div className="max-w-7xl mx-auto">
-      <PatternSection hideTopBar>
-        <motion.div className="flex flex-col items-center gap-6 min-h-screen justify-center text-center">
-          <Heading className="">
-            <span className="block overflow-hidden">
-              <motion.span
-                initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
-                animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
-                transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-                className="block"
-              >
-                Components to craft
-              </motion.span>
-            </span>
-            <span className="block overflow-hidden">
-              <motion.span
-                initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
-                animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.19, 1, 0.22, 1],
-                  delay: 0.1,
+        <PatternSection hideTopBar>
+          <motion.div className="relative flex flex-col items-center gap-6 min-h-screen justify-center text-center">
+            <HeroLoaderGrid />
+            <HeroIconGrid />
+            <HeroNetworkDiagram />
+            <HeroToolConnector />
+            <HeroSocialLinks />
+            <HeroComponentTicker />
+            <Heading className="">
+              <span className="block overflow-hidden">
+                <motion.span
+                  initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
+                  animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+                  transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
+                  className="block"
+                >
+                  Components to craft
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden">
+                <motion.span
+                  initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
+                  animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.19, 1, 0.22, 1],
+                    delay: 0.1,
+                  }}
+                  className="font-sans font-normal text-primary dark:text-primary block"
+                >
+                  Interfaces
+                </motion.span>
+              </span>
+            </Heading>
+
+            <motion.div
+              className="flex flex-wrap items-center justify-center gap-3 pt-1"
+              variants={{
+                hidden: {},
+                show: {
+                  transition: { staggerChildren: 0.09, delayChildren: 0.22 },
+                },
+              }}
+              initial="hidden"
+              animate="show"
+            >
+              <motion.div
+                variants={{
+                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                  show: {
+                    y: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                  },
                 }}
-                className="font-sans font-normal text-primary dark:text-primary block"
               >
-                Interfaces
-              </motion.span>
-            </span>
-          </Heading>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+                >
+                  <Link href="/loaders">
+                    Browse Loaders
+                    <span className="ml-2">
+                      <DotsRotate
+                        dotSize={6}
+                        width={22}
+                        height={24}
+                        color="var(--background)"
+                        isAnimating
+                      />
+                    </span>
+                  </Link>
+                </Button>
+              </motion.div>
 
-          <motion.div
-            className="flex flex-wrap items-center justify-center gap-3 pt-1"
-            variants={{
-              hidden: {},
-              show: {
-                transition: { staggerChildren: 0.09, delayChildren: 0.22 },
-              },
-            }}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.div
-              variants={{
-                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                show: {
-                  y: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                },
-              }}
-            >
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+              <motion.div
+                variants={{
+                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                  show: {
+                    y: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                  },
+                }}
+                onMouseEnter={() => setIconsHovered(true)}
+                onMouseLeave={() => setIconsHovered(false)}
               >
-                <Link href="/loaders">
-                  Browse Loaders
-                  <span className="ml-2">
-                    <DotsRotate
-                      dotSize={6}
-                      width={22}
-                      height={24}
-                      color="var(--background)"
-                      isAnimating
-                    />
-                  </span>
-                </Link>
-              </Button>
-            </motion.div>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+                >
+                  <Link href="/icons">
+                    Browse Icons
+                    <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                      <MorphArrow isHovered={iconsHovered} size={15} />
+                    </span>
+                  </Link>
+                </Button>
+              </motion.div>
 
-            <motion.div
-              variants={{
-                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                show: {
-                  y: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                },
-              }}
-              onMouseEnter={() => setIconsHovered(true)}
-              onMouseLeave={() => setIconsHovered(false)}
-            >
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+              <motion.div
+                variants={{
+                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                  show: {
+                    y: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                  },
+                }}
+                onMouseEnter={() => setIconsHovered(true)}
+                onMouseLeave={() => setIconsHovered(false)}
               >
-                <Link href="/icons">
-                  Browse Icons
-                  <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                    <MorphArrow isHovered={iconsHovered} size={15} />
-                  </span>
-                </Link>
-              </Button>
-            </motion.div>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+                >
+                  <Link href="/illustrations">
+                    Browse Illustrations
+                    <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                      <MorphArrow isHovered={iconsHovered} size={15} />
+                    </span>
+                  </Link>
+                </Button>
+              </motion.div>
 
-            <motion.div
-              variants={{
-                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                show: {
-                  y: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                },
-              }}
-              onMouseEnter={() => setIconsHovered(true)}
-              onMouseLeave={() => setIconsHovered(false)}
-            >
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+              <motion.div
+                variants={{
+                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+                  show: {
+                    y: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
+                  },
+                }}
+                onMouseEnter={() => setIconsHovered(true)}
+                onMouseLeave={() => setIconsHovered(false)}
               >
-                <Link href="/illustrations">
-                  Browse Illustrations
-                  <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                    <MorphArrow isHovered={iconsHovered} size={15} />
-                  </span>
-                </Link>
-              </Button>
-            </motion.div>
-
-            <motion.div
-              variants={{
-                hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                show: {
-                  y: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                },
-              }}
-              onMouseEnter={() => setIconsHovered(true)}
-              onMouseLeave={() => setIconsHovered(false)}
-            >
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="corner-squircle rounded-[10px] font-mono tracking-tighter"
-              >
-                <Link href="/blocks">
-                  Browse Blocks
-                  <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                    <MorphArrow isHovered={iconsHovered} size={15} />
-                  </span>
-                </Link>
-              </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
+                >
+                  <Link href="/blocks">
+                    Browse Blocks
+                    <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
+                      <MorphArrow isHovered={iconsHovered} size={15} />
+                    </span>
+                  </Link>
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
-      </PatternSection>
+        </PatternSection>
       </div>
 
-      <div className="max-w-7xl mx-auto">
-        {/* ── Loaders showcase ── */}
+      {/* <div className="max-w-7xl mx-auto">
         <PatternSection>
           <LoaderSection />
         </PatternSection>
 
-        {/* ── Icons showcase ── */}
         <PatternSection>
           <IconSection />
         </PatternSection>
 
-        {/* ── Illustrations showcase ── */}
         <PatternSection hideBottomBar>
           <IllustrationSection />
         </PatternSection>
-      </div>
+      </div> */}
 
       {/* ── Stats ── */}
       {/* <PatternSection contentClassName="bg-neutral-100">
@@ -452,7 +407,7 @@ export default function Page() {
       </PatternSection> */}
 
       {/* ── Final CTA ── */}
-      <PatternSection>
+      {/* <PatternSection>
         <div className="mx-auto max-w-9xl px-6 py-28 flex flex-col items-center text-center gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -492,10 +447,10 @@ export default function Page() {
             </div>
           </motion.div>
         </div>
-      </PatternSection>
+      </PatternSection> */}
 
       {/* ── Footer ── */}
-      <PatternSection contentClassName="bg-neutral-50">
+      {/* <PatternSection contentClassName="bg-neutral-50">
         <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Paragraph variant="muted" className="text-neutral-400 text-xs">
             © {new Date().getFullYear()} SVG Components Library. Free for
@@ -524,7 +479,7 @@ export default function Page() {
             </a>
           </div>
         </div>
-      </PatternSection>
+      </PatternSection> */}
     </div>
   );
 }

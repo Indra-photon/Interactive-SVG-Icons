@@ -2,7 +2,15 @@
   "slug": "calendar",
   "name": "Calendar Icon",
   "category": "scheduling",
-  "tags": ["calendar", "date", "schedule", "event", "month", "day", "time"],
+  "tags": [
+    "calendar",
+    "date",
+    "schedule",
+    "event",
+    "month",
+    "day",
+    "time"
+  ],
   "description": "Calendar icon with multiple animation variations for scheduling and date-related interactions",
   "createdAt": "2026-02-18T00:00:00Z",
   "variations": [
@@ -12,14 +20,19 @@
       "tier": "free",
       "description": "Calendar body rotates in 3D along the top edge like flipping a physical calendar page. Header with binding rings stays fixed. Perfect for month navigation.",
       "animationType": "click",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "className",
@@ -43,14 +56,19 @@
       "tier": "free",
       "description": "Calendar body splits and opens like a book on hover. Left half slides left, right half slides right. Perfect for date picker buttons that open calendars.",
       "animationType": "hover",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "className",
@@ -74,14 +92,19 @@
       "tier": "free",
       "description": "Date dots slide out to the left and new dots slide in from the right when month changes. Calendar body and header stay fixed.",
       "animationType": "transition",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "className",

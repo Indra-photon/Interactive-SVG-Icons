@@ -14,6 +14,12 @@ export interface Loader {
   variations: LoaderVariation[];
 }
 
+export interface InspirationLink {
+  label: string;
+  url: string;
+  type: 'twitter' | 'pinterest' | 'dribbble' | 'website';
+}
+
 export interface LoaderVariation {
   name: string;
   displayName: string;
@@ -23,6 +29,8 @@ export interface LoaderVariation {
   animationType: string;
   dependencies: string[];
   props: PropDefinition[];
+  designNote?: string;
+  inspiration?: InspirationLink[];
 }
 
 export interface PropDefinition {

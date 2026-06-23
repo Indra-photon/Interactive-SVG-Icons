@@ -2,7 +2,14 @@
   "slug": "alarm",
   "name": "Alarm Icon",
   "category": "time",
-  "tags": ["alarm", "clock", "time", "alert", "notification", "schedule"],
+  "tags": [
+    "alarm",
+    "clock",
+    "time",
+    "alert",
+    "notification",
+    "schedule"
+  ],
   "description": "Filled alarm clock icon with multiple animation variations",
   "createdAt": "2026-02-17T00:00:00Z",
   "variations": [
@@ -12,14 +19,19 @@
       "tier": "free",
       "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
       "animationType": "hover",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "color",
@@ -50,14 +62,19 @@
       "tier": "free",
       "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
       "animationType": "click",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "color",

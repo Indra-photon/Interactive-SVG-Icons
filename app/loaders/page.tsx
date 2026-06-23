@@ -1,29 +1,33 @@
-import { Container } from '@/components/Container';
-import { LoaderCard } from '@/components/loader-gallery/LoaderCard';
+import fs from 'fs';
+import path from 'path';
+import { Suspense } from 'react';
+import type { LoaderRegistry } from '@/types/loader';
+import { buildLoaderSidebarNodes } from '@/lib/sidebar-data';
+import { LoadersPageShell } from '@/components/loader-gallery/LoadersPageShell';
 
-async function getLoaders() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/loaders`, {
-    cache: 'no-store'
-  });
-  
-  if (!res.ok) {
-    throw new Error('Failed to fetch loaders');
-  }
-  
-  return res.json();
+function loadLoaderData() {
+  const registryPath = path.join(process.cwd(), 'public/r/loaders.json');
+  const registry: LoaderRegistry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
+  return registry.loaders;
 }
 
-export default async function LoadersPage() {
-  const { loaders } = await getLoaders();
+export default function LoadersPage() {
+  const loaders = loadLoaderData();
+  const sidebarNodes = buildLoaderSidebarNodes(loaders);
+
+  const sidebarSections = [
+    { id: 'loaders', label: 'Loaders', nodes: sidebarNodes },
+  ];
+
+  const firstSlug = loaders[0]?.slug ?? '';
 
   return (
-    <Container className="container mx-auto px-4 py-12">
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
-        {loaders.map((loader: any) => (
-          <LoaderCard key={loader.slug} loader={loader} />
-        ))}
-      </div>
-    </Container>
+    <Suspense>
+      <LoadersPageShell
+        loaders={loaders}
+        sidebarSections={sidebarSections}
+        firstSlug={firstSlug}
+      />
+    </Suspense>
   );
 }

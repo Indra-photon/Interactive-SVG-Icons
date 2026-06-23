@@ -1,38 +1,54 @@
-import { IconRegistry } from '@/types/icon';
-import { IconCard } from '@/components/icon-gallery/IconCard';
-import { Container } from '@/components/Container';
+import fs from 'fs';
+import path from 'path';
+import { Suspense } from 'react';
+import type { IconRegistry } from '@/types/icon';
+import { buildIconSidebarNodes } from '@/lib/sidebar-data';
+import { IconsPageShell } from '@/components/icon-gallery/IconsPageShell';
 
-async function getIcons() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const res = await fetch(`${baseUrl}/api/icons`, {
-    cache: 'no-store'
-  });
-  
-  if (!res.ok) {
-    return { icons: [], total: 0 };
+function loadIconData() {
+  const registryPath = path.join(process.cwd(), 'public/r/icons.json');
+  const registry: IconRegistry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
+
+  const buttonCodes: Record<string, string> = {};
+  for (const icon of registry.icons) {
+    for (const variation of icon.variations) {
+      const buttonPath = path.join(
+        process.cwd(),
+        'components/craftui/icons',
+        icon.slug,
+        'examples',
+        `${variation.name}-button.tsx`
+      );
+      try {
+        buttonCodes[`${icon.slug}-${variation.name}`] = fs.readFileSync(buttonPath, 'utf-8');
+      } catch {
+        // no button example for this variation
+      }
+    }
   }
-  
-  return res.json();
+
+  return { icons: registry.icons, buttonCodes };
 }
 
-export default async function IconsGallery() {
-  const data = await getIcons();
-  
+export default function IconsPage() {
+  const { icons, buttonCodes } = loadIconData();
+  const sidebarNodes = buildIconSidebarNodes(icons);
+
+  const sidebarSections = [
+    { id: 'icons', label: 'Icons', nodes: sidebarNodes },
+    // When loaders are ready: { id: 'loaders', label: 'Loaders', nodes: loaderNodes },
+  ];
+
+  const firstSlug = icons[0]?.slug ?? '';
+
   return (
-      <Container className="">
-        
-        {/* Icon Grid */}
-        {data.total === 0 ? (
-          <div className="text-center py-16">
-            <p className="text-gray-500">No icons yet. Run build:registry after adding icons.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1">
-            {data.icons.map((icon: any) => (
-              <IconCard key={icon.slug} icon={icon} />
-            ))}
-          </div>
-        )}
-      </Container>
+    <Suspense>
+      <IconsPageShell
+        icons={icons}
+        buttonCodes={buttonCodes}
+        sidebarSections={sidebarSections}
+        firstSlug={firstSlug}
+      />
+    </Suspense>
   );
 }

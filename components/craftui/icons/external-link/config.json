@@ -2,7 +2,14 @@
   "slug": "external-link",
   "name": "External Link Icon",
   "category": "navigation",
-  "tags": ["link", "external", "open", "url", "redirect", "navigate"],
+  "tags": [
+    "link",
+    "external",
+    "open",
+    "url",
+    "redirect",
+    "navigate"
+  ],
   "description": "Icon for external links and redirect actions with animated variations",
   "createdAt": "2026-02-17T00:00:00Z",
   "variations": [
@@ -12,14 +19,19 @@
       "tier": "free",
       "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
       "animationType": "hover",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "color",

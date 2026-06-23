@@ -77,7 +77,24 @@
           "description": "Number of dots per row and column (n \u00d7 n grid)"
         }
       ],
-      "componentName": "GridSpiral"
+      "componentName": "GridSpiral",
+      "inspiration": [
+        {
+          "label": "Basement Studio — loading states",
+          "url": "https://basement.studio",
+          "type": "website"
+        },
+        {
+          "label": "@rauno on X",
+          "url": "https://x.com/raunofreiberg",
+          "type": "twitter"
+        },
+        {
+          "label": "Loading animations on Dribbble",
+          "url": "https://dribbble.com/tags/loading-animation",
+          "type": "dribbble"
+        }
+      ]
     }
   ]
 }

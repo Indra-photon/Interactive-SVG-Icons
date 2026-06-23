@@ -8,6 +8,12 @@ export interface Icon {
   variations: Variation[];
 }
 
+export interface InspirationLink {
+  label: string;
+  url: string;
+  type: 'twitter' | 'pinterest' | 'dribbble' | 'website';
+}
+
 export interface Variation {
   name: string;
   displayName: string;
@@ -17,13 +23,17 @@ export interface Variation {
   dependencies: string[];
   props?: PropDefinition[];
   designNote?: string;
+  inspiration?: InspirationLink[];
 }
 
 export interface PropDefinition {
   name: string;
-  type: 'string' | 'number' | 'boolean' | 'enum';
+  type: 'string' | 'number' | 'boolean' | 'enum' | 'function' | string;
   default: any;
   options?: any[];
+  min?: number;
+  max?: number;
+  step?: number;
   description?: string;
 }
 

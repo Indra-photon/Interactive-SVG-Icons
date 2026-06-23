@@ -110,6 +110,25 @@
       ]
     },
     {
+      "name": "shopping-cart-default",
+      "type": "registry:ui",
+      "title": "Shopping Cart Icon - Default",
+      "description": "Item falls into cart from above and cart shakes when adding to cart",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/shopping-cart/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "refresh-default",
       "type": "registry:ui",
       "title": "Refresh Icon - Default",
@@ -159,25 +178,6 @@
           "path": "components/craftui/icons/refresh/dash.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/icons/refresh/dash.tsx"
-        }
-      ]
-    },
-    {
-      "name": "shopping-cart-default",
-      "type": "registry:ui",
-      "title": "Shopping Cart Icon - Default",
-      "description": "Item falls into cart from above and cart shakes when adding to cart",
-      "dependencies": [
-        "motion/react"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/shopping-cart/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
         }
       ]
     },
@@ -1805,6 +1805,69 @@
           "path": "components/craftui/blocks/tourism-hero/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/tourism-hero/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "profile-card-avatar-dropdown",
+      "type": "registry:block",
+      "title": "Profile Card - Avatar Dropdown",
+      "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
+      "dependencies": [
+        "motion/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/profile-card/avatar-dropdown.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/profile-card/avatar-dropdown.tsx"
+        }
+      ]
+    },
+    {
+      "name": "category-ticker-vertical-marquee",
+      "type": "registry:block",
+      "title": "Category Ticker - Vertical Marquee",
+      "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
+      "dependencies": [
+        "motion/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/category-ticker/vertical-marquee.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/category-ticker/vertical-marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "category-ticker-onboarding-steps",
+      "type": "registry:block",
+      "title": "Category Ticker - Onboarding Steps",
+      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
+      "dependencies": [
+        "motion/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/category-ticker/onboarding-steps.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/category-ticker/onboarding-steps.tsx"
         }
       ]
     }

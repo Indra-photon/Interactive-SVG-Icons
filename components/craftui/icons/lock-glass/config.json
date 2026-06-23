@@ -2,7 +2,15 @@
   "slug": "lock",
   "name": "Lock Icon",
   "category": "security",
-  "tags": ["lock", "security", "password", "protected", "privacy", "authentication", "glass-icon"],
+  "tags": [
+    "lock",
+    "security",
+    "password",
+    "protected",
+    "privacy",
+    "authentication",
+    "glass-icon"
+  ],
   "description": "Lock icon with animated variations for password visibility and security states",
   "createdAt": "2026-02-18T00:00:00Z",
   "variations": [
@@ -12,14 +20,19 @@
       "tier": "free",
       "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
       "animationType": "click",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "className",
@@ -41,16 +54,21 @@
       "name": "unlock",
       "displayName": "Unlock",
       "tier": "free",
-      "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
+      "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90\u00b0 in 3D with right side as hinge, body scales slightly",
       "animationType": "click",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
           "type": "number",
           "default": 24,
           "required": false,
-          "description": "Width and height of the icon in pixels"
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
           "name": "className",

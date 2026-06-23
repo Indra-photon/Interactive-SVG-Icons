@@ -1,7 +1,10 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import { CopyButton } from './CopyButton';
+import { useState, useRef, useMemo } from "react";
+import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/button";
+import { CopyButton } from "./CopyButton";
+import { CodeBottomPanel } from "./CodeBottomPanel";
 
 interface ButtonCodeDisplayProps {
   iconSlug: string;
@@ -9,41 +12,84 @@ interface ButtonCodeDisplayProps {
   buttonCode: string;
 }
 
-export function ButtonCodeDisplay({ iconSlug, variationName, buttonCode }: ButtonCodeDisplayProps) {
-  // Dynamically load button example
-  const ButtonExample = dynamic(
-    () => import(`@/components/craftui/icons/${iconSlug}/examples/${variationName}-button.tsx`)
-      .then(mod => {
-        const exportedComponent = mod[Object.keys(mod)[0]];
-        return { default: exportedComponent };
-      })
-      .catch(() => {
-        return { 
-          default: () => (
-            <div className="text-sm text-gray-500">Button example not available</div>
-          ) 
-        };
-      }),
-    { ssr: false }
+export function ButtonCodeDisplay({
+  iconSlug,
+  variationName,
+  buttonCode,
+}: ButtonCodeDisplayProps) {
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [panelRect, setPanelRect] = useState<{
+    left: number;
+    width: number;
+  } | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const handleGetCode = () => {
+    if (wrapperRef.current) {
+      const rect = wrapperRef.current.getBoundingClientRect();
+      setPanelRect({ left: rect.left, width: rect.width });
+    }
+    setPanelOpen(true);
+  };
+
+  // Memoized so state changes (panelOpen, panelRect) don't recreate the dynamic import
+  const ButtonExample = useMemo(
+    () =>
+      dynamic(
+        () =>
+          import(
+            `@/components/craftui/icons/${iconSlug}/examples/${variationName}-button.tsx`
+          )
+            .then((mod) => {
+              const exportedComponent = mod[Object.keys(mod)[0]];
+              return { default: exportedComponent };
+            })
+            .catch(() => ({
+              default: () => (
+                <div className="text-sm text-gray-500">
+                  Button example not available
+                </div>
+              ),
+            })),
+        { ssr: false },
+      ),
+    [iconSlug, variationName],
   );
 
   return (
-    <div>
-      <h3 className="text-xl font-sans text-stone-900">Example Component</h3>
-      <p className="text-stone-600 font-sans mb-4">
-        Ready-to-use button component with the icon
-      </p>
-      
+    <div ref={wrapperRef}>
+      <div className="flex items-start justify-between gap-4 mb-2">
+        <div className="flex-1">
+          <h3 className="text-2xl font-sans text-foreground text-wrap-balance">
+            Example Component
+          </h3>
+          <p className="text-foreground/80 font-sans tracking-tighter text-wrap-pretty">
+            Ready-to-use button component with the icon
+          </p>
+        </div>
+        <Button
+          size="lg"
+          variant="outline"
+          onClick={handleGetCode}
+          className="corner-squircle rounded-[10px] font-mono text-xs tracking-tighter :active:scale-95 transition-transform duration-100 ease-out"
+        >
+          Get Code
+        </Button>
+      </div>
+
       {/* Live Button Preview */}
-      <div className="bg-gray-50 rounded-lg p-8 mb-4 flex items-center justify-center">
+      <div className="bg-gray-50 corner-squircle rounded-[10px] border border-border p-8 mb-4 flex items-center justify-center">
         <ButtonExample />
       </div>
-      
-      {/* Button Code */}
-      <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre">
-        {buttonCode}
-      </div>
-      <CopyButton text={buttonCode} />
+
+      <CodeBottomPanel
+        open={panelOpen}
+        onClose={() => setPanelOpen(false)}
+        code={buttonCode}
+        title={`${variationName} — Button Example`}
+        left={panelRect?.left}
+        width={panelRect?.width}
+      />
     </div>
   );
 }
