@@ -1,0 +1,115 @@
+{
+  "slug": "category-ticker",
+  "name": "Category Ticker",
+  "category": "ticker",
+  "tags": ["ticker", "marquee", "animation", "typography", "scroll", "loop"],
+  "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
+  "createdAt": "2026-06-23T00:00:00Z",
+  "variations": [
+    {
+      "name": "vertical-marquee",
+      "displayName": "Vertical Marquee",
+      "componentName": "CategoryTickerVerticalMarquee",
+      "previewHint": "Watch the ticker cycle automatically — it loops seamlessly on a timed interval",
+      "tier": "free",
+      "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
+      "animationType": "loop",
+      "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "items",
+          "type": "string[]",
+          "default": "['Garden','Toys','Antiques',...]",
+          "required": false,
+          "description": "Array of strings to cycle through in the ticker"
+        },
+        {
+          "name": "backgroundColor",
+          "type": "string",
+          "default": "#F5C518",
+          "required": false,
+          "description": "Background color of the entire section"
+        },
+        {
+          "name": "activeColor",
+          "type": "string",
+          "default": "#1a0f00",
+          "required": false,
+          "description": "Color of the active (highlighted) word and arrow"
+        },
+        {
+          "name": "inactiveColor",
+          "type": "string",
+          "default": "#b38a00",
+          "required": false,
+          "description": "Color of the surrounding inactive words"
+        },
+        {
+          "name": "intervalMs",
+          "type": "number",
+          "default": "1800",
+          "required": false,
+          "description": "Milliseconds between each word advance"
+        },
+        {
+          "name": "rowHeight",
+          "type": "number",
+          "default": "110",
+          "required": false,
+          "description": "Pixel height of each row; font sizes scale proportionally"
+        }
+      ],
+      "features": [
+        "Seamless infinite loop — snaps back to start with zero-duration transition so the jump is invisible",
+        "Active word slides right to clear the fixed arrow, then scales up in size and weight",
+        "Font sizes derive from rowHeight so the layout never breaks when the row size changes",
+        "Respects prefers-reduced-motion — all transitions collapse to duration 0",
+        "Fully prop-driven — swap items, colors, speed, and row height without touching source"
+      ],
+      "inspiration": [
+        {
+          "label": "Pinterest",
+          "url": "https://pin.it/2tbQQfDoq",
+          "type": "website"
+        }
+      ]
+    },
+    {
+      "name": "onboarding-steps",
+      "displayName": "Onboarding Steps",
+      "componentName": "OnboardingSteps",
+      "previewHint": "Select an answer, then click the arrow to advance through each step",
+      "tier": "free",
+      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
+      "animationType": "click",
+      "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "steps",
+          "type": "Step[]",
+          "default": "DEFAULT_STEPS",
+          "required": false,
+          "description": "Array of { label, question, options[] } objects defining each step"
+        },
+        {
+          "name": "onComplete",
+          "type": "function",
+          "required": false,
+          "description": "Callback fired when the user submits the final step, receives answers keyed by step index"
+        }
+      ],
+      "features": [
+        "Vertical ticker syncs with the active step — same scroll mechanic as the Vertical Marquee variation",
+        "Question panel slides in/out with direction-aware animation (forward vs back)",
+        "Next button is disabled until an option is selected — no accidental skips",
+        "Arrow icon swaps to a checkmark on the final step with a spring micro-animation",
+        "Completion screen fades in after the last step is submitted",
+        "Fully driven by the steps prop — swap questions without touching source",
+        "Respects prefers-reduced-motion — all transitions collapse to duration 0"
+      ],
+      "inspiration": []
+    }
+  ]
+}

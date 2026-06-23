@@ -1,0 +1,35 @@
+{
+  "name": "category-ticker-vertical-marquee",
+  "type": "registry:block",
+  "tier": "free",
+  "dependencies": [
+    "motion/react",
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/blocks/category-ticker/vertical-marquee.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { motion, useReducedMotion } from \"motion/react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport { ArrowRight01Icon } from \"@hugeicons/core-free-icons\";\n\nconst DEFAULT_ITEMS = [\n  \"Garden\",\n  \"Toys\",\n  \"Antiques\",\n  \"Comics\",\n  \"Sports\",\n  \"Electronics\",\n  \"Fashion\",\n  \"Motors\",\n  \"Collectibles\",\n  \"Home & Garden\",\n  \"Business & Industrial\",\n  \"Health & Beauty\",\n];\n\nconst ACTIVE_ROW = 2;\nconst ARROW_OFFSET = 88;\n\ninterface CategoryTickerProps {\n  items?: string[];\n  backgroundColor?: string;\n  activeColor?: string;\n  inactiveColor?: string;\n  intervalMs?: number;\n  rowHeight?: number;\n}\n\nexport default function CategoryTickerVerticalMarquee({\n  items = DEFAULT_ITEMS,\n  backgroundColor = \"#F5C518\",\n  activeColor = \"#1a0f00\",\n  inactiveColor = \"#b38a00\",\n  intervalMs = 1800,\n  rowHeight = 110,\n}: CategoryTickerProps) {\n  const shouldReduceMotion = useReducedMotion();\n  const [activeIndex, setActiveIndex] = useState(ACTIVE_ROW);\n  const isResetting = useRef(false);\n\n  const extended = [...items, ...items.slice(0, ACTIVE_ROW + 2)];\n  const totalItems = items.length;\n\n  useEffect(() => {\n    const id = setInterval(() => {\n      setActiveIndex((prev) => {\n        const next = prev + 1;\n        if (next >= totalItems + ACTIVE_ROW) {\n          isResetting.current = true;\n          return ACTIVE_ROW;\n        }\n        isResetting.current = false;\n        return next;\n      });\n    }, intervalMs);\n    return () => clearInterval(id);\n  }, [totalItems, intervalMs]);\n\n  const yOffset = -(activeIndex - ACTIVE_ROW) * rowHeight;\n\n  const scrollTransition =\n    shouldReduceMotion || isResetting.current\n      ? { duration: 0 }\n      : {\n          type: \"tween\" as const,\n          ease: [0.645, 0.045, 0.355, 1] as const,\n          duration: 0.55,\n        };\n\n  const wordTransition = shouldReduceMotion\n    ? { duration: 0 }\n    : {\n        type: \"tween\" as const,\n        ease: [0.645, 0.045, 0.355, 1] as const,\n        duration: 0.55,\n      };\n\n  const activeFontSize = Math.round(rowHeight * 0.655);\n  const inactiveFontSize = Math.round(rowHeight * 0.582);\n\n  return (\n    <div\n      className=\"box-border flex min-h-screen w-full flex-col overflow-hidden px-8 py-6 font-sans\"\n      style={{ backgroundColor }}\n    >\n      <div className=\"flex flex-1 gap-8 overflow-hidden\">\n        <div\n          className=\"relative flex-1 overflow-hidden\"\n          style={{ height: rowHeight * 5 }}\n        >\n          {/* Arrow — fixed at the active row, never moves */}\n          <div\n            className=\"pointer-events-none absolute left-0 z-10 flex items-center\"\n            style={{\n              top: ACTIVE_ROW * rowHeight,\n              height: rowHeight,\n              width: ARROW_OFFSET,\n            }}\n          >\n            <HugeiconsIcon\n              icon={ArrowRight01Icon}\n              size={64}\n              color={activeColor}\n              strokeWidth={2}\n            />\n          </div>\n\n          {/* Scrolling word list */}\n          <motion.div\n            animate={{ y: yOffset }}\n            transition={scrollTransition}\n            className=\"absolute top-0 left-0 w-full\"\n            aria-live=\"polite\"\n            aria-atomic=\"true\"\n          >\n            {extended.map((item, i) => {\n              const isActive = i === activeIndex;\n              return (\n                <div\n                  key={`${item}-${i}`}\n                  className=\"flex items-center overflow-visible\"\n                  style={{ height: rowHeight }}\n                  aria-hidden={!isActive}\n                >\n                  <motion.span\n                    animate={{\n                      x: isActive ? ARROW_OFFSET : 0,\n                      color: isActive ? activeColor : inactiveColor,\n                      opacity: isActive ? 1 : 0.58,\n                      fontSize: isActive ? activeFontSize : inactiveFontSize,\n                      fontWeight: isActive ? 800 : 500,\n                    }}\n                    transition={wordTransition}\n                    className=\"block leading-none tracking-tight whitespace-nowrap\"\n                  >\n                    {item}\n                  </motion.span>\n                </div>\n              );\n            })}\n          </motion.div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/components/craftui/blocks/category-ticker/vertical-marquee.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Category Ticker - Vertical Marquee",
+    "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
+    "category": "ticker",
+    "tags": [
+      "ticker",
+      "marquee",
+      "animation",
+      "typography",
+      "scroll",
+      "loop"
+    ],
+    "animationType": "loop"
+  }
+}

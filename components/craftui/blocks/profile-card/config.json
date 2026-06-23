@@ -1,0 +1,30 @@
+{
+  "slug": "profile-card",
+  "name": "Profile Card",
+  "category": "profile",
+  "tags": ["profile", "menu", "avatar", "dropdown", "animation", "shared-layout"],
+  "description": "An avatar that morphs into a full profile card using shared layout animation. Click the avatar to expand; click anywhere to dismiss.",
+  "createdAt": "2026-06-23T00:00:00Z",
+  "variations": [
+    {
+      "name": "avatar-dropdown",
+      "displayName": "Avatar Dropdown",
+      "componentName": "ProfileCard",
+      "previewHint": "Tap the avatar in the top-right to expand the profile card",
+      "tier": "free",
+      "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
+      "animationType": "click",
+      "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [],
+      "props": [],
+      "features": [
+        "Shared layout animation (layoutId) morphs the avatar from 40px to a 310px card — no clone, one continuous motion",
+        "Avatar is a separate layoutId child so it independently transitions size and position",
+        "Menu items stagger in with a blur + translate-y entrance, two groups with different delays",
+        "Dismiss overlay is scoped inside the phone frame so clicks outside the card close it",
+        "PRO badge, community badge, and active row highlight are all composable per menu item"
+      ],
+      "inspiration": []
+    }
+  ]
+}

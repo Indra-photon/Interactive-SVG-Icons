@@ -346,7 +346,11 @@ async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryI
           animationType: variation.animationType,
           dependencies: deps,
           registryDependencies: registryDeps,
-          props: variation.props || []
+          props: variation.props || [],
+          ...(variation.componentName && { componentName: variation.componentName }),
+          ...(variation.previewHint && { previewHint: variation.previewHint }),
+          ...(variation.features?.length && { features: variation.features }),
+          ...(variation.inspiration?.length && { inspiration: variation.inspiration }),
         });
 
         console.log(`    ✓ ${variation.displayName} (${variation.tier})`);

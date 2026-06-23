@@ -1,5 +1,6 @@
 import type { Icon } from '@/types/icon';
 import type { Loader } from '@/types/loader';
+import type { Block } from '@/types/block';
 
 export type SidebarNode = {
   id: string;
@@ -77,5 +78,63 @@ export function buildLoaderSidebarNodes(loaders: Loader[]): SidebarNode[] {
   return nodes;
 }
 
-// When blocks are wired up, add:
-// export function buildBlockSidebarNodes(blocks: Block[]): SidebarNode[] { ... }
+export function buildBlockSidebarNodes(blocks: Block[]): SidebarNode[] {
+  const categoryMap = new Map<string, Block[]>();
+  for (const block of blocks) {
+    const cat = block.category;
+    if (!categoryMap.has(cat)) categoryMap.set(cat, []);
+    categoryMap.get(cat)!.push(block);
+  }
+
+  // For a block with one variation: variation displayName is the folder,
+  // block name is the leaf child.
+  // For a block with multiple variations: block name is the folder,
+  // variation displayNames are the leaves (the usual icon pattern).
+  function blockToNode(block: Block): SidebarNode {
+    if (block.variations.length === 1) {
+      const v = block.variations[0];
+      return {
+        id: block.slug,
+        label: v.displayName,
+        slug: block.slug,
+        children: [
+          {
+            id: `${block.slug}--${v.name}`,
+            label: block.name,
+            slug: block.slug,
+            variation: v.name,
+          },
+        ],
+      };
+    }
+    return {
+      id: block.slug,
+      label: block.name,
+      slug: block.slug,
+      children: block.variations.map((v) => ({
+        id: `${block.slug}--${v.name}`,
+        label: v.displayName,
+        slug: block.slug,
+        variation: v.name,
+      })),
+    };
+  }
+
+  const nodes: SidebarNode[] = [];
+  for (const [category, members] of categoryMap) {
+    if (members.length === 1) {
+      nodes.push(blockToNode(members[0]));
+    } else {
+      // Multiple blocks in the same category — wrap in a group
+      nodes.push({
+        id: `group--${category}`,
+        label: category.charAt(0).toUpperCase() + category.slice(1),
+        slug: `group--${category}`,
+        isGroup: true,
+        children: members.map(blockToNode),
+      });
+    }
+  }
+
+  return nodes;
+}

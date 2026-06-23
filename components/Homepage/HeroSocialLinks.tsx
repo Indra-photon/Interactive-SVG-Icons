@@ -54,7 +54,7 @@ function MagneticIcon({
         icon={icon}
         size={16}
         strokeWidth={1.9}
-        className="text-primary/60 hover:text-primary dark:text-neutral-300"
+        className="text-primary dark:text-neutral-300"
       />
     </motion.a>
   );
