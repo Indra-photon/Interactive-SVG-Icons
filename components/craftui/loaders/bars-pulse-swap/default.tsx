@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BarsPulseSwapProps {
   width?: number;
@@ -13,9 +14,9 @@ interface BarsPulseSwapProps {
   ease?: any;
 }
 
-export function BarsPulseSwap({ 
+export function BarsPulseSwap({
   width = 45,
-  height = 45, 
+  height = 45,
   color = "currentColor",
   barWidth = 9,
   gap = 9,
@@ -38,6 +39,50 @@ export function BarsPulseSwap({
   const tallHeight = height;
   const shortHeight = height * 0.2;
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => {
+        const { pairIndex, barInPair } = bars[i];
+        let yPositions: number[];
+        if (pairIndex === 0) {
+          yPositions = barInPair === 0
+            ? [0, height / 2, 0]
+            : [height - shortHeight, height / 2, height - shortHeight];
+        } else if (pairIndex === 1) {
+          yPositions = barInPair === 0
+            ? [height / 2, 0, height / 2]
+            : [height / 2, height - shortHeight, height / 2];
+        } else {
+          yPositions = barInPair === 0
+            ? [0, height / 2, 0]
+            : [height - shortHeight, height / 2, height - shortHeight];
+        }
+        return {
+          height: [tallHeight, shortHeight],
+          y: yPositions,
+          transition: {
+            height: { duration, repeat: Infinity, repeatType: 'reverse', ease: easeInOutQuad },
+            y: { duration, repeat: Infinity, ease: easeInOutQuad, times: [0, 0.5, 1] },
+          },
+        };
+      });
+    } else {
+      controls.stop();
+      controls.set((i) => {
+        const { pairIndex, barInPair } = bars[i];
+        let y: number;
+        if (pairIndex === 0 || pairIndex === 2) {
+          y = barInPair === 0 ? 0 : height - shortHeight;
+        } else {
+          y = height / 2;
+        }
+        return { height: tallHeight, y };
+      });
+    }
+  }, [isAnimating, duration, height, shortHeight, tallHeight, controls]);
+
   return (
     <svg
       width={width}
@@ -48,50 +93,21 @@ export function BarsPulseSwap({
     >
       {bars.map((bar, index) => {
         const { pairIndex, barInPair } = bar;
-        
-        // Position animation pattern based on pair and time
-        // Phase 1 (0-50%): Left=spread, Center=together, Right=spread
-        // Phase 2 (50-100%): Left=together, Center=spread, Right=together
-        
-        let yPositions;
-        if (pairIndex === 0) { // Left pair
-          yPositions = barInPair === 0 
-            ? [0, height / 2, 0]           // top -> middle -> top
-            : [height - shortHeight, height / 2, height - shortHeight]; // bottom -> middle -> bottom
-        } else if (pairIndex === 1) { // Center pair
-          yPositions = barInPair === 0
-            ? [height / 2, 0, height / 2]  // middle -> top -> middle
-            : [height / 2, height - shortHeight, height / 2]; // middle -> bottom -> middle
-        } else { // Right pair
-          yPositions = barInPair === 0
-            ? [0, height / 2, 0]           // top -> middle -> top
-            : [height - shortHeight, height / 2, height - shortHeight]; // bottom -> middle -> bottom
+        let initialY: number;
+        if (pairIndex === 0 || pairIndex === 2) {
+          initialY = barInPair === 0 ? 0 : height - shortHeight;
+        } else {
+          initialY = height / 2;
         }
-
         return (
           <motion.rect
             key={index}
             x={bar.x}
             width={barWidth}
             fill={color}
-            animate={{
-              height: isAnimating ? [tallHeight, shortHeight] : tallHeight,
-              y: yPositions
-            }}
-            transition={{
-              height: {
-                duration: duration,
-                repeat: isAnimating ? Infinity : 0,
-                repeatType: "reverse",
-                ease: easeInOutQuad
-              },
-              y: {
-                duration: duration,
-                repeat: isAnimating ? Infinity : 0,
-                ease: easeInOutQuad,
-                times: [0, 0.5, 1]
-              }
-            }}
+            custom={index}
+            initial={{ height: tallHeight, y: initialY }}
+            animate={controls}
           />
         );
       })}

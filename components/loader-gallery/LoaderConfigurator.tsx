@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useDialKit } from "dialkit";
 import { LoaderPreview } from "./LoaderPreview";
+import { LoaderPropsContext } from "./LoaderPropsContext";
 import {
   buildDialKitConfig,
   buildNormalizedDefaults,
@@ -127,23 +128,6 @@ function LoaderConfiguratorInner({
     [rawParams, variation.props],
   );
 
-  // Changes to ease/duration don't interrupt a running Framer Motion repeat loop —
-  // they only apply at the next cycle. Keying on all ease+duration values remounts
-  // the loader immediately so the new transition takes effect right away.
-  // In spring mode all ease values fall back to defaults, so no spurious remount occurs.
-  const animationKey = useMemo(() => {
-    const keys: string[] = [];
-    for (const p of variation.props) {
-      if (p.type === "ease") {
-        keys.push(p.name);
-        const durName =
-          p.name === "ease" ? "duration" : p.name.replace(/Ease$/, "Duration");
-        if (variation.props.some((x) => x.name === durName)) keys.push(durName);
-      }
-    }
-    return keys.map((k) => JSON.stringify(propValues[k])).join("-");
-  }, [variation.props, propValues]);
-
   const changed = !isSpringMode && isChanged(propValues, defaults);
   const snippet = buildUsageSnippet(
     variation.componentName,
@@ -175,12 +159,12 @@ function LoaderConfiguratorInner({
     <div className="corner-squircle rounded-[10px] border border-border overflow-hidden">
       {/* Preview — full width now that controls live in the DialKit panel */}
       <div className="bg-stone-50 border-b border-stone-200 flex items-center justify-center py-20 min-h-[300px]">
-        <LoaderPreview
-          loaderSlug={loaderSlug}
-          variationName={variation.name}
-          propValues={propValues}
-          animationKey={animationKey}
-        />
+        <LoaderPropsContext.Provider value={propValues}>
+          <LoaderPreview
+            loaderSlug={loaderSlug}
+            variationName={variation.name}
+          />
+        </LoaderPropsContext.Provider>
       </div>
 
       {/* Hint + reset bar */}

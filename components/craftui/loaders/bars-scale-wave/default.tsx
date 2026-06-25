@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BarsScaleWaveProps {
   width?: number;
@@ -29,6 +30,21 @@ export function BarsScaleWave({
   const spacing = (width - totalBarsWidth) / (barCount + 1);
   const minHeightRatio = 0.3;
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => ({
+        scaleY: [minHeightRatio, 1, minHeightRatio],
+        y: [height * (1 - minHeightRatio) / 2, 0, height * (1 - minHeightRatio) / 2],
+        transition: { duration, repeat: Infinity, delay: i * staggerDelay, ease },
+      }));
+    } else {
+      controls.stop();
+      controls.set({ scaleY: minHeightRatio, y: height * (1 - minHeightRatio) / 2 });
+    }
+  }, [isAnimating, duration, ease, staggerDelay, height, minHeightRatio, controls]);
+
   return (
     <svg
       width={width}
@@ -41,8 +57,6 @@ export function BarsScaleWave({
     >
       {Array.from({ length: barCount }).map((_, i) => {
         const x = spacing * (i + 1) + barWidth * i;
-        const barHeight = height * (1 - minHeightRatio);
-        const minH = height * minHeightRatio;
 
         return (
           <motion.rect
@@ -53,16 +67,9 @@ export function BarsScaleWave({
             height={height}
             fill={color}
             rx={barWidth / 2}
-            animate={{
-              scaleY: [minHeightRatio, 1, minHeightRatio],
-              y: [height * (1 - minHeightRatio) / 2, 0, height * (1 - minHeightRatio) / 2],
-            }}
-            transition={{
-              duration: duration,
-              repeat: isAnimating ? Infinity : 0,
-              delay: i * staggerDelay,
-              ease: ease,
-            }}
+            custom={i}
+            initial={{ scaleY: minHeightRatio, y: height * (1 - minHeightRatio) / 2 }}
+            animate={controls}
             style={{ originY: 'center', transformOrigin: `${x + barWidth / 2}px ${height / 2}px` }}
           />
         );

@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BarsFillSequentialProps {
   width?: number;
@@ -14,9 +15,9 @@ interface BarsFillSequentialProps {
   repeatDelay?: number;
 }
 
-export function BarsFillSequential({ 
+export function BarsFillSequential({
   width = 45,
-  height = 45, 
+  height = 45,
   color = "currentColor",
   barWidth = 9,
   gap = 9,
@@ -31,7 +32,19 @@ export function BarsFillSequential({
     { x: (barWidth + gap) * 2, delay: 0.33 }
   ];
 
-  // Custom easing - using ease-out-cubic for smooth deceleration
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => ({
+        y: [height, 0],
+        transition: { duration, delay: bars[i].delay, repeat: Infinity, repeatDelay, ease },
+      }));
+    } else {
+      controls.stop();
+      controls.set({ y: height });
+    }
+  }, [isAnimating, duration, ease, repeatDelay, height, controls]);
 
   return (
     <svg
@@ -49,17 +62,9 @@ export function BarsFillSequential({
             width={barWidth}
             height={height}
             fill={color}
+            custom={index}
             initial={{ y: height }}
-            animate={{
-              y: [height, 0]
-            }}
-            transition={{
-              duration: duration,
-              delay: bar.delay,
-              repeat: isAnimating ? Infinity : 0,
-              repeatDelay: repeatDelay,
-              ease: ease
-            }}
+            animate={controls}
           />
         );
       })}

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 interface ActivityRingsProps {
   width?: number;
@@ -39,14 +39,12 @@ export function ActivityRings({
       aria-label="Loading"
       role="img"
     >
-      {rings.map(({ r, speed, opacity }, i) => {
+      {rings.map(({ r, opacity, speed }, i) => {
         const circumference = 2 * Math.PI * r;
-        // Show 75% of the arc, hide 25%
         const dashArray = `${circumference * 0.75} ${circumference * 0.25}`;
 
         return (
           <g key={i}>
-            {/* Faint track */}
             <circle
               cx={50}
               cy={50}
@@ -56,16 +54,11 @@ export function ActivityRings({
               fill="none"
               opacity={0.1}
             />
-            {/* Animated arc — rotates continuously */}
             <motion.g
               style={{ transformOrigin: 'center' }}
               initial={{ rotate: -90 }}
-              animate={{ rotate: isAnimating ? 270 : -90 }}
-              transition={{
-                duration: speed,
-                repeat: isAnimating ? Infinity : 0,
-                ease: ease,
-              }}
+              animate={isAnimating ? { rotate: 270 } : { rotate: -90 }}
+              transition={{ duration: speed, repeat: isAnimating ? Infinity : 0, ease, repeatType: 'loop' }}
             >
               <circle
                 cx={50}

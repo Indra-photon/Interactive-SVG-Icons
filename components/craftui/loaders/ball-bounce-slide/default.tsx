@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BallBounceSlideProps {
   width?: number;
@@ -26,6 +27,27 @@ export function BallBounceSlide({
   const ballRadius = height * 0.15;
   const ballCY = height - ballRadius - 1.5;
 
+  const controlsX = useAnimation();
+  const controlsY = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controlsX.start({
+        x: [-width * 5, width * 5],
+        transition: { duration, repeat: Infinity, ease },
+      });
+      controlsY.start({
+        y: [0, -height * 0.15, 0],
+        transition: { duration: duration * 0.25, repeat: Infinity, times: [0, 0.08, 1], ease: [0.455, 0.03, 0.515, 0.955] },
+      });
+    } else {
+      controlsX.stop();
+      controlsX.set({ x: 0 });
+      controlsY.stop();
+      controlsY.set({ y: 0 });
+    }
+  }, [isAnimating, duration, ease, width, height, controlsX, controlsY]);
+
   return (
     <svg
       width={width}
@@ -45,29 +67,17 @@ export function BallBounceSlide({
         stroke={lineColor}
         strokeWidth={strokeWidth}
       />
-      <motion.circle
-        cx={width * 0.425}
-        cy={ballCY}
-        r={ballRadius}
-        fill={color}
-        animate={{
-          x: [-width * 5, width * 5],
-          y: [0, -height * 0.15, 0],
-        }}
-        transition={{
-          x: {
-            duration: duration,
-            repeat: isAnimating ? Infinity : 0,
-            ease: ease,
-          },
-          y: {
-            duration: duration * 0.25,
-            repeat: isAnimating ? Infinity : 0,
-            times: [0, 0.08, 1],
-            ease: [0.455, 0.03, 0.515, 0.955],
-          },
-        }}
-      />
+      {/* Outer motion element handles x translation */}
+      <motion.g animate={controlsX}>
+        {/* Inner motion element handles y (bounce) */}
+        <motion.circle
+          cx={width * 0.425}
+          cy={ballCY}
+          r={ballRadius}
+          fill={color}
+          animate={controlsY}
+        />
+      </motion.g>
     </svg>
   );
 }

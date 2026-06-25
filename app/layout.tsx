@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { NavBar } from "@/components/NavBar";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
+import { MotionProvider } from "@/components/providers/MotionProvider";
 
 const geistHeading = Geist({subsets:['latin'],variable:'--font-heading'});
 
@@ -115,12 +116,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <NavBar />
-          {/* <UserSync /> */}
-          {children}
-          <GoogleTagManager gtmId="Your GTM ID" />
-          <Toaster position="top-right" />
-          <DialRoot productionEnabled position="bottom-right" theme="light" defaultOpen={false} />
+          <MotionProvider>
+            <NavBar />
+            {/* <UserSync /> */}
+            {children}
+            <GoogleTagManager gtmId="Your GTM ID" />
+            <Toaster position="top-right" />
+            <DialRoot productionEnabled position="bottom-right" theme="light" defaultOpen={false} />
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

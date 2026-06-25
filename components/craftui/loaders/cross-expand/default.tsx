@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface CrossExpandProps {
   width?: number;
@@ -34,12 +35,30 @@ export function CrossExpand({
   ];
 
   // Total cycle = 2s
-  // Each box fills in over 0.2s, staggered 0.25s apart
-  // All visible from ~1s, hold until 1.5s, disappear together by 1.7s, gap to 2s
   const stagger = 0.125; // 0.25s / 2s cycle
   const fillDuration = 0.1; // 0.2s / 2s cycle
   const holdEnd = 0.75;    // 1.5s / 2s
   const fadeEnd = 0.85;    // 1.7s / 2s
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => {
+        const start = i * stagger;
+        const end = start + fillDuration;
+        const times = [0, start, end, holdEnd, fadeEnd, 1];
+        return {
+          opacity: [0, 0, 1, 1, 0, 0],
+          scale: [0.3, 0.3, 1, 1, 0.3, 0.3],
+          transition: { duration, repeat: Infinity, times, ease },
+        };
+      });
+    } else {
+      controls.stop();
+      controls.set({ opacity: 0, scale: 0.3 });
+    }
+  }, [isAnimating, duration, ease, controls]);
 
   return (
     <svg
@@ -71,9 +90,6 @@ export function CrossExpand({
 
       {/* Corner squares — fill in one by one, all disappear together */}
       {cornerPositions.map((pos, i) => {
-        const start = i * stagger;
-        const end = start + fillDuration;
-        const times = [0, start, end, holdEnd, fadeEnd, 1];
         const centerX = pos.x + cornerSize / 2;
         const centerY = pos.y + cornerSize / 2;
 
@@ -86,17 +102,9 @@ export function CrossExpand({
             height={cornerSize}
             fill={color}
             rx={2}
+            custom={i}
             initial={{ opacity: 0, scale: 0.3 }}
-            animate={isAnimating ? {
-              opacity: [0, 0, 1, 1, 0, 0],
-              scale: [0.3, 0.3, 1, 1, 0.3, 0.3],
-            } : { opacity: 0, scale: 0.3 }}
-            transition={{
-              duration: duration,
-              repeat: Infinity,
-              times,
-              ease: ease,
-            }}
+            animate={controls}
             style={{ transformOrigin: `${centerX}px ${centerY}px` }}
           />
         );

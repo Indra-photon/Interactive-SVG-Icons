@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 interface GridWaveRowProps {
   width?: number;
@@ -26,11 +26,8 @@ export function GridWaveRow({
   const n = Math.max(2, Math.min(6, gridSize));
   const stride = 100 / (n + 1);
   const dotRadius = Math.min(dotSize, stride * 0.85) / 2;
-
-  // Row-by-row left-to-right wave; flat traversal order
   const totalCells = n * n;
   const waveStep = totalCells > 1 ? (duration * 0.57) / (totalCells - 1) : 0;
-  const delays = Array.from({ length: n * n }, (_, i) => i * waveStep);
 
   return (
     <svg
@@ -43,25 +40,25 @@ export function GridWaveRow({
       role="img"
     >
       {Array.from({ length: n }).map((_, row) =>
-        Array.from({ length: n }).map((_, col) => (
-          <motion.circle
-            key={`${row}-${col}`}
-            cx={stride + col * stride}
-            cy={stride + row * stride}
-            fill={color}
-            animate={{
-              r: [dotRadius * 0.4, dotRadius, dotRadius * 0.4],
-              opacity: [0.15, 1, 0.15],
-            }}
-            transition={{
-              duration: duration,
-              repeat: isAnimating ? Infinity : 0,
-              delay: delays[row * n + col],
-              ease: ease,
-              times: [0, 0.35, 1],
-            }}
-          />
-        ))
+        Array.from({ length: n }).map((_, col) => {
+          const idx = row * n + col;
+          const delay = idx * waveStep;
+          return (
+            <motion.circle
+              key={`${row}-${col}`}
+              cx={stride + col * stride}
+              cy={stride + row * stride}
+              fill={color}
+              initial={{ r: dotRadius * 0.4, opacity: 0.15 }}
+              animate={
+                isAnimating
+                  ? { r: [dotRadius * 0.4, dotRadius, dotRadius * 0.4], opacity: [0.15, 1, 0.15] }
+                  : { r: dotRadius * 0.4, opacity: 0.15 }
+              }
+              transition={{ duration, repeat: isAnimating ? Infinity : 0, delay, ease, times: [0, 0.35, 1] }}
+            />
+          );
+        })
       )}
     </svg>
   );

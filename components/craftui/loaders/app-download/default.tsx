@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface AppDownloadProps {
   width?: number;
@@ -29,6 +30,20 @@ export function AppDownload({
 }: AppDownloadProps) {
   const r = 38;
   const circumference = 2 * Math.PI * r;
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start({
+        strokeDashoffset: [circumference, 0],
+        transition: { duration, repeat: Infinity, ease, repeatDelay },
+      });
+    } else {
+      controls.stop();
+      controls.set({ strokeDashoffset: circumference });
+    }
+  }, [isAnimating, duration, ease, repeatDelay, circumference, controls]);
 
   return (
     <svg
@@ -62,15 +77,8 @@ export function AppDownload({
         fill="none"
         transform="rotate(-90, 50, 50)"
         strokeDasharray={circumference}
-        animate={{
-          strokeDashoffset: isAnimating ? [circumference, 0] : circumference,
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          ease: ease,
-          repeatDelay: repeatDelay,
-        }}
+        initial={{ strokeDashoffset: circumference }}
+        animate={controls}
       />
     </svg>
   );

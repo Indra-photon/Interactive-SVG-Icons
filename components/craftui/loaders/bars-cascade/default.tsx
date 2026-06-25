@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BarsCascadeProps {
   width?: number;
@@ -11,9 +12,9 @@ interface BarsCascadeProps {
   ease?: any;
 }
 
-export function BarsCascade({ 
+export function BarsCascade({
   width = 45,
-  height = 45, 
+  height = 45,
   color = "currentColor",
   isAnimating = true,
   duration = 1.5,
@@ -31,6 +32,20 @@ export function BarsCascade({
     { id: 3, ySequence: [-20, height, height, height, height, 50, 50, 50, 50] }
   ];
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => ({
+        y: bars[i].ySequence,
+        transition: { duration, repeat: Infinity, ease, times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1] },
+      }));
+    } else {
+      controls.stop();
+      controls.set({ y: -20 });
+    }
+  }, [isAnimating, duration, ease, controls]);
+
   return (
     <svg
       width={width}
@@ -41,10 +56,10 @@ export function BarsCascade({
     >
       <defs>
         {/* Striped pattern */}
-        <pattern 
-          id="stripePattern" 
-          patternUnits="userSpaceOnUse" 
-          width={stripeWidth * 2} 
+        <pattern
+          id="stripePattern"
+          patternUnits="userSpaceOnUse"
+          width={stripeWidth * 2}
           height={barHeight}
         >
           <rect x="0" y="0" width={stripeWidth} height={barHeight} fill={color} />
@@ -52,22 +67,16 @@ export function BarsCascade({
         </pattern>
       </defs>
 
-      {bars.map((bar) => (
+      {bars.map((bar, i) => (
         <motion.rect
           key={bar.id}
           x={0}
           width={width}
           height={barHeight}
           fill="url(#stripePattern)"
-          animate={{
-            y: bar.ySequence
-          }}
-          transition={{
-            duration: duration,
-            repeat: isAnimating ? Infinity : 0,
-            ease: ease,
-            times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
-          }}
+          custom={i}
+          initial={{ y: -20 }}
+          animate={controls}
         />
       ))}
     </svg>

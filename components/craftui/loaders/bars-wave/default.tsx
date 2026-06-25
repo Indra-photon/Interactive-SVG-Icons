@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 interface BarsWaveProps {
   width?: number;
@@ -28,7 +28,7 @@ export function BarsWave({
     { x: 30, delay: 0.5 },
     { x: 40, delay: 0.1 }
   ];
-  
+
   return (
     <svg
       width={width}
@@ -43,16 +43,9 @@ export function BarsWave({
           x={bar.x}
           width={barWidth}
           fill={color}
-          animate={{
-            height: [30, 100, 30],
-            y: [70, 0, 70]
-          }}
-          transition={{
-            duration: duration,
-            repeat: isAnimating ? Infinity : 0,
-            ease: ease,
-            delay: bar.delay
-          }}
+          initial={{ height: 30, y: 70 }}
+          animate={isAnimating ? { height: [30, 100, 30], y: [70, 0, 70] } : { height: 30, y: 70 }}
+          transition={{ duration, repeat: isAnimating ? Infinity : 0, ease, delay: bar.delay }}
         />
       ))}
     </svg>

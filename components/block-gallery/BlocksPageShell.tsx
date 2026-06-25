@@ -50,12 +50,13 @@ export function BlocksPageShell({
   };
 
   return (
-    <div className="h-[calc(100vh-65px)] overflow-hidden max-w-9xl mx-auto">
+    <div className="h-[calc(100vh-65px)] max-w-9xl mx-auto">
       <PatternSection
         hideTopBar={true}
-        hideBottomBar={true}
+        hideBottomBar={false}
+        fillHeight
         className="h-full"
-        contentClassName="flex h-full"
+        contentClassName="flex h-full overflow-hidden"
       >
         <Sidebar
           sections={sidebarSections}

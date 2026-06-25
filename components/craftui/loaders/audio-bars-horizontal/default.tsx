@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface AudioBarsHorizontalProps {
   width?: number;
@@ -29,7 +30,33 @@ export function AudioBarsHorizontal({
 
   const minHeight = height * 0.3; // 30% min
   const maxHeight = height * 0.8; // 80% max
-  
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => {
+        const isOdd = i % 2 === 0;
+        return {
+          height: isOdd ? [minHeight, maxHeight, minHeight] : [maxHeight, minHeight, maxHeight],
+          y: isOdd
+            ? [(height - minHeight) / 2, (height - maxHeight) / 2, (height - minHeight) / 2]
+            : [(height - maxHeight) / 2, (height - minHeight) / 2, (height - maxHeight) / 2],
+          transition: { duration, repeat: Infinity, ease },
+        };
+      });
+    } else {
+      controls.stop();
+      controls.set((i) => {
+        const isOdd = i % 2 === 0;
+        return {
+          height: isOdd ? minHeight : maxHeight,
+          y: isOdd ? (height - minHeight) / 2 : (height - maxHeight) / 2,
+        };
+      });
+    }
+  }, [isAnimating, duration, ease, minHeight, maxHeight, height, controls]);
+
   return (
     <svg
       width={width}
@@ -42,26 +69,18 @@ export function AudioBarsHorizontal({
         // Odd positions (0, 2, 4) go short->tall
         // Even positions (1, 3, 5) go tall->short
         const isOdd = index % 2 === 0;
-        
         return (
           <motion.rect
             key={index}
             x={startX + (index * (barWidth + gap))}
             width={barWidth}
             fill={color}
-            animate={{
-              height: isOdd 
-                ? [minHeight, maxHeight, minHeight]
-                : [maxHeight, minHeight, maxHeight],
-              y: isOdd
-                ? [(height - minHeight) / 2, (height - maxHeight) / 2, (height - minHeight) / 2]
-                : [(height - maxHeight) / 2, (height - minHeight) / 2, (height - maxHeight) / 2]
+            custom={index}
+            initial={{
+              height: isOdd ? minHeight : maxHeight,
+              y: isOdd ? (height - minHeight) / 2 : (height - maxHeight) / 2,
             }}
-            transition={{
-              duration: duration,
-              repeat: isAnimating ? Infinity : 0,
-              ease: ease
-            }}
+            animate={controls}
           />
         );
       })}

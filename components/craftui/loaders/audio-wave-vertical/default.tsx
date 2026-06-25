@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useMemo } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface AudioWaveVerticalProps {
   width?: number;
@@ -31,19 +32,38 @@ export function AudioWaveVertical({
   const startX = (width - totalWidth) / 2;
 
   // Define different height ranges for each bar (center is tallest)
-  const bars = Array.from({ length: barCount }, (_, i) => {
+  // Use useMemo to stabilize bars across renders
+  const bars = useMemo(() => Array.from({ length: barCount }, (_, i) => {
     const distanceFromCenter = Math.abs(i - Math.floor(barCount / 2));
     const minHeight = height * 0.2; // 20% min
     const maxHeight = height * (0.9 - distanceFromCenter * 0.15); // Center is tallest
-    
+
     return {
       minHeight,
       maxHeight,
-      duration: 0.6 + Math.random() * 0.4, // 0.6-1.0s
-      delay: i * 0.1 // Staggered
+      duration: 0.6 + (i * 0.08), // deterministic per-bar duration
+      delay: i * 0.1, // Staggered
     };
-  });
-  
+  }), [barCount, height]);
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => ({
+        height: [bars[i].minHeight, bars[i].maxHeight, bars[i].minHeight],
+        y: [(height - bars[i].minHeight) / 2, (height - bars[i].maxHeight) / 2, (height - bars[i].minHeight) / 2],
+        transition: { duration: bars[i].duration, repeat: Infinity, ease, delay: bars[i].delay },
+      }));
+    } else {
+      controls.stop();
+      controls.set((i) => ({
+        height: bars[i].minHeight,
+        y: (height - bars[i].minHeight) / 2,
+      }));
+    }
+  }, [isAnimating, ease, height, bars, controls]);
+
   return (
     <svg
       width={width}
@@ -58,16 +78,9 @@ export function AudioWaveVertical({
           x={startX + (index * (barWidth + gap))}
           width={barWidth}
           fill={color}
-          animate={{
-            height: [bar.minHeight, bar.maxHeight, bar.minHeight],
-            y: [(height - bar.minHeight) / 2, (height - bar.maxHeight) / 2, (height - bar.minHeight) / 2]
-          }}
-          transition={{
-            duration: bar.duration,
-            repeat: isAnimating ? Infinity : 0,
-            ease: ease,
-            delay: bar.delay
-          }}
+          custom={index}
+          initial={{ height: bar.minHeight, y: (height - bar.minHeight) / 2 }}
+          animate={controls}
         />
       ))}
     </svg>

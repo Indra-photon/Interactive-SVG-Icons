@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BallBounceBoxProps {
   width?: number;
@@ -32,6 +33,27 @@ export function BallBounceBox({
   const viewBoxSize = width + (viewBoxPadding * 2);
   const offset = viewBoxPadding;
 
+  const controlsBox = useAnimation();
+  const controlsBall = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controlsBox.start({
+        rotate: [0, 0, 90, 90],
+        transition: { duration, repeat: Infinity, times: [0, 0.2, 0.8, 1], ease },
+      });
+      controlsBall.start({
+        y: [0, -height * 0.4, 0],
+        transition: { duration, repeat: Infinity, times: [0, 0.08, 1], ease },
+      });
+    } else {
+      controlsBox.stop();
+      controlsBox.set({ rotate: 0 });
+      controlsBall.stop();
+      controlsBall.set({ y: 0 });
+    }
+  }, [isAnimating, duration, ease, height, controlsBox, controlsBall]);
+
   return (
     <svg
       width={width}
@@ -51,15 +73,8 @@ export function BallBounceBox({
         stroke={boxColor}
         strokeWidth={strokeWidth}
         fill="none"
-        animate={{
-          rotate: [0, 0, 90, 90],
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          times: [0, 0.2, 0.8, 1],
-          ease: ease,
-        }}
+        initial={{ rotate: 0 }}
+        animate={controlsBox}
         style={{ originX: `${width / 2}px`, originY: `${height / 2}px` }}
       />
       {/* Bouncing ball */}
@@ -68,15 +83,8 @@ export function BallBounceBox({
         cy={ballY}
         r={ballRadius}
         fill={color}
-        animate={{
-          y: [0, -height * 0.4, 0],
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          times: [0, 0.08, 1],
-          ease: ease,
-        }}
+        initial={{ y: 0 }}
+        animate={controlsBall}
       />
     </svg>
   );
