@@ -10,6 +10,7 @@ import {
   unpackDialKitValues,
   detectSpringMode,
 } from "@/lib/dialkit-config";
+import { useDialKitPanel } from "@/lib/useDialKitPanel";
 import type { PropDefinition } from "@/types/loader";
 import { Button } from "../ui/button";
 
@@ -104,6 +105,7 @@ function LoaderConfiguratorInner({
   onReset,
 }: InnerProps) {
   const [copied, setCopied] = useState<"usage" | "source" | null>(null);
+  const { isOpen: dialKitOpen, toggle: toggleDialKit } = useDialKitPanel();
 
   const dialKitConfig = useMemo(
     () => buildDialKitConfig(variation.props),
@@ -176,12 +178,12 @@ function LoaderConfiguratorInner({
           </span>
         ) : (
           <Button
-            asChild
             size="lg"
-            variant="outline"
+            variant={dialKitOpen ? "default" : "outline"}
             className="corner-squircle rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
+            onClick={toggleDialKit}
           >
-            <span>Open in DialKit</span>
+            {dialKitOpen ? "Close DialKit" : "Open in DialKit"}
           </Button>
         )}
         {changed && !isSpringMode && (

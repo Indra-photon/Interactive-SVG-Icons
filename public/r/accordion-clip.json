@@ -1,0 +1,38 @@
+{
+  "name": "accordion-clip",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json",
+    "accordion"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/accordion/clip.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Accordion as AccordionPrimitive } from \"radix-ui\";\nimport { motion, useReducedMotion } from \"motion/react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport {\n  AddIcon,\n  ArrowLeft01Icon,\n  ArrowUp01Icon,\n} from \"@hugeicons/core-free-icons\";\nimport { cn } from \"@/lib/utils\";\nimport { Accordion, AccordionItem } from \"@/components/ui/accordion\";\n\n// ── Types ─────────────────────────────────────────────────────────────────────\n\nexport interface AccordionItemData {\n  value: string;\n  trigger: React.ReactNode;\n  content: React.ReactNode;\n}\n\nexport type ClipDirection = \"horizontal\" | \"vertical\";\n\nexport interface ClipAccordionProps {\n  items: AccordionItemData[];\n  direction?: ClipDirection;\n  duration?: number;\n  ease?: number[];\n  className?: string;\n}\n\n// ── Clip-path constants ───────────────────────────────────────────────────────\n// Question layer starts fully visible and clips away in the chosen direction.\n// \"horizontal\" → wipes right-to-left  +  slight x shift for momentum.\n// \"vertical\"   → wipes bottom-to-top  +  slight y shift for momentum.\n\nconst PEEK = \"20px\";\n\nconst CLIP = {\n  horizontal: {\n    closed: { clipPath: \"inset(0 0px 0 0px)\", x: \"0%\" },\n    open: { clipPath: `inset(0 calc(100% - ${PEEK}) 0 0px)`, x: \"0%\" },\n  },\n  vertical: {\n    closed: { clipPath: \"inset(0px 0 0px 0)\", y: \"0%\" },\n    open: { clipPath: `inset(0px 0 calc(100% - ${PEEK}) 0)`, y: \"0%\" },\n  },\n} as const;\n\n// ── Icons ─────────────────────────────────────────────────────────────────────\n\nfunction PlusIcon() {\n  return <HugeiconsIcon icon={AddIcon} size={16} strokeWidth={2} />;\n}\n\nfunction BackIcon({ direction }: { direction: ClipDirection }) {\n  return (\n    <HugeiconsIcon\n      icon={direction === \"horizontal\" ? ArrowLeft01Icon : ArrowUp01Icon}\n      size={16}\n      strokeWidth={2}\n    />\n  );\n}\n\n// ── Per-item clip card ────────────────────────────────────────────────────────\n//\n// Layout:\n//   Container  — relative, overflow:hidden, rounded card\n//   └─ Answer  — in normal flow → sets the card's height\n//   └─ Question — position:absolute, inset:0, bg-card → covers the answer\n//                 clips away via clip-path to reveal the answer beneath.\n//\n// Clicking the question triggers Radix which sets openValue → isOpen = true.\n// Clicking the answer calls onClose → openValue = \"\" → isOpen = false.\n\nfunction ClipCard({\n  item,\n  isOpen,\n  onClose,\n  direction,\n  duration,\n  ease,\n}: {\n  item: AccordionItemData;\n  isOpen: boolean;\n  onClose: () => void;\n  direction: ClipDirection;\n  duration: number;\n  ease: number[];\n}) {\n  const prefersReduced = useReducedMotion();\n  const clip = CLIP[direction];\n\n  // Question exits fast (clip away should feel decisive).\n  // Question re-enters at full duration (return is deliberate).\n  const exitT = prefersReduced\n    ? { duration: 0 }\n    : { duration: duration * 0.6, ease: ease as any };\n  const enterT = prefersReduced\n    ? { duration: 0 }\n    : { duration, ease: ease as any };\n\n  return (\n    <div className=\"relative overflow-hidden border-b border-border\">\n      {/* ── Answer layer ──────────────────────────────────────────────────────\n          Stays in normal flow — its rendered height sets the card height.\n          Fades in after the question has started to exit (delay).               */}\n      <motion.div\n        aria-hidden={!isOpen}\n        initial={false}\n        animate={{ opacity: isOpen ? 1 : 0 }}\n        transition={\n          prefersReduced\n            ? { duration: 0 }\n            : isOpen\n              ? { delay: duration * 0.3, duration: duration * 0.5 }\n              : { duration: 0.08 }\n        }\n        style={{ pointerEvents: isOpen ? \"auto\" : \"none\" }}\n        onClick={isOpen ? onClose : undefined}\n        className=\"flex w-full cursor-pointer select-none items-start justify-between gap-4 p-6 text-left\"\n      >\n        <p className=\"text-md text-foreground leading-relaxed text-pretty antialiased\">\n          {item.content}\n        </p>\n        <span className=\"mt-0.5 shrink-0 text-foreground\">\n          <BackIcon direction={direction} />\n        </span>\n      </motion.div>\n\n      {/* ── Question layer ─────────────────────────────────────────────────────\n          Absolute overlay, same bg as card — completely covers the answer.\n          Clips away in the chosen direction when isOpen becomes true.            */}\n      <motion.div\n        className=\"absolute inset-0\"\n        initial={false}\n        animate={{\n          ...(isOpen ? clip.open : clip.closed),\n          backgroundColor: isOpen ? \"var(--color-muted)\" : \"var(--color-card)\",\n        }}\n        transition={isOpen ? exitT : enterT}\n        style={{ pointerEvents: isOpen ? \"none\" : \"auto\" }}\n      >\n        <AccordionPrimitive.Header className=\"flex h-full\">\n          <AccordionPrimitive.Trigger\n            className={cn(\n              \"flex h-full w-full cursor-pointer items-start justify-between gap-4 p-6 text-left\",\n              \"outline-none focus-visible:ring-3 focus-visible:ring-ring/50\",\n              \"disabled:pointer-events-none disabled:opacity-50\",\n              \"active:scale-[0.96] transition-transform\",\n            )}\n          >\n            <span className=\"text-md text-balance antialiased\">\n              {item.trigger}\n            </span>\n            <span className=\"mt-0.5 shrink-0 text-foreground\">\n              <PlusIcon />\n            </span>\n          </AccordionPrimitive.Trigger>\n        </AccordionPrimitive.Header>\n      </motion.div>\n    </div>\n  );\n}\n\n// ── Root component ─────────────────────────────────────────────────────────────\n\nexport function ClipAccordion({\n  items,\n  direction = \"horizontal\",\n  duration = 0.3,\n  ease = [0.33, 0.55, 0.17, 0.9],\n  className,\n}: ClipAccordionProps) {\n  const [openValue, setOpenValue] = React.useState<string>(\"\");\n\n  return (\n    <Accordion\n      type=\"single\"\n      collapsible\n      value={openValue}\n      onValueChange={setOpenValue}\n      className={cn(\"w-full border-t border-border\", className)}\n    >\n      {items.map((item) => (\n        <AccordionItem\n          key={item.value}\n          value={item.value}\n          className=\"border-none\"\n        >\n          <ClipCard\n            item={item}\n            isOpen={openValue === item.value}\n            onClose={() => setOpenValue(\"\")}\n            direction={direction}\n            duration={duration}\n            ease={ease}\n          />\n        </AccordionItem>\n      ))}\n    </Accordion>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/accordion/clip.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Accordion - Clip",
+    "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
+    "category": "disclosure",
+    "tags": [
+      "accordion",
+      "disclosure",
+      "animation",
+      "ease",
+      "spring",
+      "drawer",
+      "clip-path",
+      "reveal",
+      "faq"
+    ],
+    "animationType": "ease"
+  }
+}

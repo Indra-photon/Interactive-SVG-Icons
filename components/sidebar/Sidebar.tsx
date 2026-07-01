@@ -5,6 +5,7 @@ import {
   Image01Icon,
   Loading03Icon,
   GridViewIcon,
+  LayoutGridIcon,
 } from "@hugeicons/core-free-icons";
 import { SidebarItem } from "./SidebarItem";
 import type { SidebarNode, SectionId } from "@/lib/sidebar-data";
@@ -14,6 +15,7 @@ const SECTION_ICON: Record<string, IconSvgElement> = {
   icons: Image01Icon,
   loaders: Loading03Icon,
   blocks: GridViewIcon,
+  ui: LayoutGridIcon,
 };
 
 export interface SidebarSectionConfig {

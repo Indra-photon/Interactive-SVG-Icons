@@ -1,6 +1,103 @@
 {
   "blocks": [
     {
+      "slug": "tourism-hero",
+      "name": "Tourism Hero",
+      "category": "hero",
+      "tags": [
+        "hero",
+        "tourism",
+        "landing",
+        "image",
+        "navbar",
+        "stats",
+        "fullscreen"
+      ],
+      "description": "Full-screen hero section with glass navbar, animated entrance, and stats bar. Background image is a required prop.",
+      "createdAt": "2026-06-07T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "Glass navbar, staggered hero copy entrance, bottom stats bar over a full-bleed background image.",
+          "animationType": "entrance",
+          "dependencies": [
+            "framer-motion",
+            "next",
+            "@heroicons/react"
+          ],
+          "registryDependencies": [
+            "button"
+          ],
+          "props": [
+            {
+              "name": "imageSrc",
+              "type": "string",
+              "required": true,
+              "description": "Path or URL for the full-bleed background image"
+            },
+            {
+              "name": "imageAlt",
+              "type": "string",
+              "default": "Mountain landscape",
+              "required": false,
+              "description": "Alt text for the background image"
+            },
+            {
+              "name": "heading",
+              "type": "string",
+              "default": "Where the Path\\nLeads Up",
+              "required": false,
+              "description": "Hero headline. Use \\n for line breaks."
+            },
+            {
+              "name": "subheading",
+              "type": "string",
+              "default": "Discover alpine trails, mountain refuges, and guided expeditions across the Dolomites.",
+              "required": false,
+              "description": "Supporting body text below the headline"
+            },
+            {
+              "name": "primaryCtaLabel",
+              "type": "string",
+              "default": "Plan Your Trek",
+              "required": false,
+              "description": "Label for the primary CTA button"
+            },
+            {
+              "name": "secondaryCtaLabel",
+              "type": "string",
+              "default": "Book Now",
+              "required": false,
+              "description": "Label for the ghost/outline CTA button"
+            },
+            {
+              "name": "stats",
+              "type": "string",
+              "default": "[{ value: '240+', label: 'Trails Mapped' }, { value: '48', label: 'Mountain Huts' }, { value: '12K+', label: 'Trekkers Joined Us' }]",
+              "required": false,
+              "description": "Array of { value, label } objects rendered in the stats bar"
+            },
+            {
+              "name": "navbarProps",
+              "type": "string",
+              "default": "{}",
+              "required": false,
+              "description": "Optional overrides for the glass navbar: logoText, logoIcon, navLinks, ctaLabel, onCtaClick"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes on the root wrapper"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "profile-card",
       "name": "Profile Card",
       "category": "profile",
@@ -31,7 +128,7 @@
           "componentName": "ProfileCard",
           "previewHint": "Tap the avatar in the top-right to expand the profile card",
           "features": [
-            "Shared layout animation (layoutId) morphs the avatar from 40px to a 310px card \u2014 no clone, one continuous motion",
+            "Shared layout animation (layoutId) morphs the avatar from 40px to a 310px card — no clone, one continuous motion",
             "Avatar is a separate layoutId child so it independently transitions size and position",
             "Menu items stagger in with a blur + translate-y entrance, two groups with different delays",
             "Dismiss overlay is scoped inside the phone frame so clicks outside the card close it",
@@ -112,13 +209,13 @@
             }
           ],
           "componentName": "CategoryTickerVerticalMarquee",
-          "previewHint": "Watch the ticker cycle automatically \u2014 it loops seamlessly on a timed interval",
+          "previewHint": "Watch the ticker cycle automatically — it loops seamlessly on a timed interval",
           "features": [
-            "Seamless infinite loop \u2014 snaps back to start with zero-duration transition so the jump is invisible",
+            "Seamless infinite loop — snaps back to start with zero-duration transition so the jump is invisible",
             "Active word slides right to clear the fixed arrow, then scales up in size and weight",
             "Font sizes derive from rowHeight so the layout never breaks when the row size changes",
-            "Respects prefers-reduced-motion \u2014 all transitions collapse to duration 0",
-            "Fully prop-driven \u2014 swap items, colors, speed, and row height without touching source"
+            "Respects prefers-reduced-motion — all transitions collapse to duration 0",
+            "Fully prop-driven — swap items, colors, speed, and row height without touching source"
           ],
           "inspiration": [
             {
@@ -158,18 +255,18 @@
           "componentName": "OnboardingSteps",
           "previewHint": "Select an answer, then click the arrow to advance through each step",
           "features": [
-            "Vertical ticker syncs with the active step \u2014 same scroll mechanic as the Vertical Marquee variation",
+            "Vertical ticker syncs with the active step — same scroll mechanic as the Vertical Marquee variation",
             "Question panel slides in/out with direction-aware animation (forward vs back)",
-            "Next button is disabled until an option is selected \u2014 no accidental skips",
+            "Next button is disabled until an option is selected — no accidental skips",
             "Arrow icon swaps to a checkmark on the final step with a spring micro-animation",
             "Completion screen fades in after the last step is submitted",
-            "Fully driven by the steps prop \u2014 swap questions without touching source",
-            "Respects prefers-reduced-motion \u2014 all transitions collapse to duration 0"
+            "Fully driven by the steps prop — swap questions without touching source",
+            "Respects prefers-reduced-motion — all transitions collapse to duration 0"
           ]
         }
       ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-06-23T15:50:01.708Z"
+  "lastUpdated": "2026-07-01T10:23:16.177Z"
 }

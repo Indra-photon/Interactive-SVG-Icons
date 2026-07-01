@@ -35,7 +35,7 @@ export interface LoaderVariation {
 
 export interface PropDefinition {
   name: string;
-  type: 'string' | 'number' | 'boolean' | 'enum' | 'ease' | 'strokeLinecap';
+  type: 'string' | 'number' | 'boolean' | 'enum' | 'select' | 'ease' | 'strokeLinecap';
   default: any;
   options?: any[];
   min?: number;

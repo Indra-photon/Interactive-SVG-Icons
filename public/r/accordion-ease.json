@@ -1,0 +1,38 @@
+{
+  "name": "accordion-ease",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json",
+    "accordion"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/accordion/ease.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Accordion as AccordionPrimitive } from \"radix-ui\";\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\";\nimport { cn } from \"@/lib/utils\";\nimport { Accordion, AccordionItem } from \"@/components/ui/accordion\";\n\n// ── Path constants ─────────────────────────────────────────────────────────────\n\nconst PATHS = {\n  closed: {\n    left: \"M 4 9 L 12 17\",\n    right: \"M 20 9 L 12 17\",\n  },\n  open: {\n    left: \"M 4 4 L 20 20\",\n    right: \"M 20 4 L 4 20\",\n  },\n};\n\n// Icon uses ease-in-out: it's morphing in place (not entering/exiting the screen).\n// Content uses the user-controlled ease-out curve: it's entering/exiting.\nconst ICON_EASE = [0.645, 0.045, 0.355, 1];\n\n// ── Types ─────────────────────────────────────────────────────────────────────\n\nexport interface AccordionItemData {\n  value: string;\n  trigger: React.ReactNode;\n  content: React.ReactNode;\n}\n\nexport interface EaseAccordionProps {\n  items: AccordionItemData[];\n  duration?: number;\n  ease?: number[];\n  className?: string;\n}\n\n// ── Morphing icon ─────────────────────────────────────────────────────────────\n\nfunction MorphIcon({\n  isOpen,\n  duration,\n}: {\n  isOpen: boolean;\n  duration: number;\n  ease: number[];\n}) {\n  const prefersReduced = useReducedMotion();\n  const transition = prefersReduced\n    ? { duration: 0 }\n    : { duration, ease: ICON_EASE as any };\n\n  return (\n    <svg\n      viewBox=\"0 0 24 24\"\n      width={16}\n      height={16}\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      className=\"shrink-0 text-muted-foreground\"\n    >\n      <motion.path\n        animate={{ d: isOpen ? PATHS.open.left : PATHS.closed.left }}\n        transition={transition}\n      />\n      <motion.path\n        animate={{ d: isOpen ? PATHS.open.right : PATHS.closed.right }}\n        transition={transition}\n      />\n    </svg>\n  );\n}\n\n// ── Custom trigger ────────────────────────────────────────────────────────────\n\nfunction EaseTrigger({\n  children,\n  isOpen,\n  duration,\n  ease,\n  className,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Trigger> & {\n  isOpen: boolean;\n  duration: number;\n  ease: number[];\n}) {\n  return (\n    <AccordionPrimitive.Header className=\"flex\">\n      <AccordionPrimitive.Trigger\n        className={cn(\n          \"group/accordion-trigger relative flex flex-1 items-center justify-between\",\n          \"rounded-md border border-transparent py-4 text-left text-sm font-medium\",\n          \"cursor-pointer outline-none transition-[color,box-shadow,border-color] active:scale-[0.96] transition-transform\",\n          \"hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50\",\n          \"disabled:pointer-events-none disabled:opacity-50\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <MorphIcon isOpen={isOpen} duration={duration} ease={ease} />\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  );\n}\n\n// ── Motion content ─────────────────────────────────────────────────────────────\n\nfunction MotionContent({\n  children,\n  className,\n  duration,\n  ease,\n  \"data-state\": dataState,\n  ...rest\n}: {\n  children: React.ReactNode;\n  className?: string;\n  duration: number;\n  ease: number[];\n  \"data-state\"?: string;\n  [key: string]: unknown;\n}) {\n  const isOpen = dataState === \"open\";\n  const prefersReduced = useReducedMotion();\n\n  const EXIT_DURATION = 0.12;\n\n  // Open: two beats — height snaps first, content fades in after.\n  // Opacity starts at 180ms (after height has mostly landed) and completes at 300ms.\n  // Close: reverse — content vanishes instantly, then space collapses.\n  const variants = prefersReduced\n    ? {\n        open: {\n          height: \"auto\" as const,\n          opacity: 1,\n          transition: { duration: 0 },\n        },\n        closed: { height: 0, opacity: 0, transition: { duration: 0 } },\n      }\n    : {\n        open: {\n          height: \"auto\" as const,\n          opacity: 1,\n          transition: {\n            height: { duration, ease: ease as any },\n            opacity: { duration: duration * 0.45, delay: 0.1, ease: \"linear\" as any },\n          },\n        },\n        closed: {\n          height: 0,\n          opacity: 0,\n          transition: {\n            height: { duration: EXIT_DURATION, ease: ease as any },\n            opacity: { duration: EXIT_DURATION * 0.2, ease: \"linear\" as any },\n          },\n        },\n      };\n\n  return (\n    <AnimatePresence initial={false}>\n      {isOpen && (\n        <motion.div\n          key=\"content\"\n          initial=\"closed\"\n          animate=\"open\"\n          exit=\"closed\"\n          variants={variants}\n          style={{ overflow: \"hidden\" }}\n          className={cn(\"text-sm text-muted-foreground\", className)}\n          {...rest}\n        >\n          <div className=\"pb-4 pt-0\">{children}</div>\n        </motion.div>\n      )}\n    </AnimatePresence>\n  );\n}\n\nfunction EaseAccordionContent({\n  children,\n  className,\n  duration,\n  ease,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Content> & {\n  duration: number;\n  ease: number[];\n}) {\n  return (\n    <AccordionPrimitive.Content forceMount asChild {...props}>\n      <MotionContent duration={duration} ease={ease} className={className}>\n        {children}\n      </MotionContent>\n    </AccordionPrimitive.Content>\n  );\n}\n\n// ── Root component ─────────────────────────────────────────────────────────────\n\nexport function EaseAccordion({\n  items,\n  duration = 0.26,\n  ease = [0.215, 0.61, 0.355, 1],\n  className,\n}: EaseAccordionProps) {\n  const [openValue, setOpenValue] = React.useState<string>(\"\");\n\n  return (\n    <Accordion\n      type=\"single\"\n      collapsible\n      value={openValue}\n      onValueChange={setOpenValue}\n      className={cn(\"w-full\", className)}\n    >\n      {items.map((item) => (\n        <AccordionItem key={item.value} value={item.value}>\n          <EaseTrigger\n            isOpen={openValue === item.value}\n            duration={duration}\n            ease={ease}\n          >\n            {item.trigger}\n          </EaseTrigger>\n          <EaseAccordionContent duration={duration} ease={ease}>\n            {item.content}\n          </EaseAccordionContent>\n        </AccordionItem>\n      ))}\n    </Accordion>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/accordion/ease.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Accordion - Ease",
+    "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
+    "category": "disclosure",
+    "tags": [
+      "accordion",
+      "disclosure",
+      "animation",
+      "ease",
+      "spring",
+      "drawer",
+      "clip-path",
+      "reveal",
+      "faq"
+    ],
+    "animationType": "ease"
+  }
+}

@@ -1,6 +1,7 @@
 import type { Icon } from '@/types/icon';
 import type { Loader } from '@/types/loader';
 import type { Block } from '@/types/block';
+import type { UIComponent } from '@/types/ui-component';
 
 export type SidebarNode = {
   id: string;
@@ -11,7 +12,7 @@ export type SidebarNode = {
   children?: SidebarNode[];
 };
 
-export type SectionId = 'icons' | 'loaders' | 'blocks';
+export type SectionId = 'icons' | 'loaders' | 'blocks' | 'ui';
 
 export function buildIconSidebarNodes(icons: Icon[]): SidebarNode[] {
   return icons.map(icon => ({
@@ -132,6 +133,48 @@ export function buildBlockSidebarNodes(blocks: Block[]): SidebarNode[] {
         slug: `group--${category}`,
         isGroup: true,
         children: members.map(blockToNode),
+      });
+    }
+  }
+
+  return nodes;
+}
+
+// ── UI Components grouping ────────────────────────────────────────────────────
+
+export function buildUISidebarNodes(components: UIComponent[]): SidebarNode[] {
+  const categoryMap = new Map<string, UIComponent[]>();
+  for (const component of components) {
+    const cat = component.category;
+    if (!categoryMap.has(cat)) categoryMap.set(cat, []);
+    categoryMap.get(cat)!.push(component);
+  }
+
+  function componentToNode(component: UIComponent): SidebarNode {
+    return {
+      id: component.slug,
+      label: component.name,
+      slug: component.slug,
+      children: component.variations.map((v) => ({
+        id: `${component.slug}--${v.name}`,
+        label: v.displayName,
+        slug: component.slug,
+        variation: v.name,
+      })),
+    };
+  }
+
+  const nodes: SidebarNode[] = [];
+  for (const [category, members] of categoryMap) {
+    if (members.length === 1) {
+      nodes.push(componentToNode(members[0]));
+    } else {
+      nodes.push({
+        id: `group--${category}`,
+        label: category.charAt(0).toUpperCase() + category.slice(1),
+        slug: `group--${category}`,
+        isGroup: true,
+        children: members.map(componentToNode),
       });
     }
   }

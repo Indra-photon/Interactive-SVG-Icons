@@ -1870,6 +1870,69 @@
           "target": "~/components/craftui/blocks/category-ticker/onboarding-steps.tsx"
         }
       ]
+    },
+    {
+      "name": "accordion-clip",
+      "type": "registry:ui",
+      "title": "Accordion - Clip",
+      "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
+      "dependencies": [
+        "motion/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/clip.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/clip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-drawer",
+      "type": "registry:ui",
+      "title": "Accordion - Drawer",
+      "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
+      "dependencies": [
+        "motion/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/drawer.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-ease",
+      "type": "registry:ui",
+      "title": "Accordion - Ease",
+      "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
+      "dependencies": [
+        "motion/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/ease.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/ease.tsx"
+        }
+      ]
     }
   ]
 }
