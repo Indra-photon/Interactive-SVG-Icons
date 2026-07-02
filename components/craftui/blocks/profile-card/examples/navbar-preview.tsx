@@ -1,8 +1,8 @@
 "use client";
 
-import ProfileCard from "../avatar-dropdown";
+import ProfileCard from "../navbar";
 
-export default function AvatarDropdownPreview() {
+export default function NavbarPreview() {
   return (
     <div className="flex h-full w-full items-center justify-center bg-white">
       <div className="relative h-[640px] w-[360px] overflow-hidden rounded-[32px] border border-black/10 bg-[#f2f2f7]">

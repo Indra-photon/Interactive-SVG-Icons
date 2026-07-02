@@ -1,14 +1,14 @@
 {
   "slug": "profile-card",
   "name": "Profile Card",
-  "category": "profile",
-  "tags": ["profile", "menu", "avatar", "dropdown", "animation", "shared-layout"],
+  "category": "navbar",
+  "tags": ["navbar", "profile", "menu", "avatar", "animation", "shared-layout"],
   "description": "An avatar that morphs into a full profile card using shared layout animation. Click the avatar to expand; click anywhere to dismiss.",
   "createdAt": "2026-06-23T00:00:00Z",
   "variations": [
     {
-      "name": "avatar-dropdown",
-      "displayName": "Avatar Dropdown",
+      "name": "navbar",
+      "displayName": "Navbar",
       "componentName": "ProfileCard",
       "previewHint": "Tap the avatar in the top-right to expand the profile card",
       "tier": "free",

@@ -132,7 +132,18 @@ export function buildBlockSidebarNodes(blocks: Block[]): SidebarNode[] {
         label: category.charAt(0).toUpperCase() + category.slice(1),
         slug: `group--${category}`,
         isGroup: true,
-        children: members.map(blockToNode),
+        children: members.map((block) => {
+          if (block.variations.length === 1) {
+            const v = block.variations[0];
+            return {
+              id: `${block.slug}--${v.name}`,
+              label: block.name,
+              slug: block.slug,
+              variation: v.name,
+            };
+          }
+          return blockToNode(block);
+        }),
       });
     }
   }

@@ -33,7 +33,11 @@ function VariationThumbCard({
       className="group border border-stone-200 dark:border-stone-700 rounded-xl text-left hover:border-stone-400 dark:hover:border-stone-500 hover:shadow-sm transition-[border-color,box-shadow] duration-150 overflow-hidden"
     >
       <div className="bg-stone-50 dark:bg-stone-800 group-hover:bg-stone-100 dark:group-hover:bg-stone-700/60 transition-colors duration-150">
-        <BlockPreview blockSlug={block.slug} variationName={variation.name} animationType={variation.animationType} />
+        <BlockPreview
+          blockSlug={block.slug}
+          variationName={variation.name}
+          animationType={variation.animationType}
+        />
       </div>
       <div className="p-4 flex items-start justify-between gap-2">
         <div>
@@ -160,31 +164,101 @@ function VariationDetail({
   return (
     <>
       {/* ── Middle: header + preview + how to use ── */}
-      <div className="overflow-y-auto py-10 px-8">
+      <div className="min-h-0 overflow-y-auto py-10 px-8">
         <motion.div
           key={panelKey}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <p className="text-xs font-mono text-foreground/80 uppercase tracking-widest mb-2">
-            {block.name}
-          </p>
-          <h1 className="text-2xl font-sans text-foreground text-wrap-balance mb-1">
-            {variation.displayName}
-          </h1>
-          <p className="text-foreground/80 font-sans tracking-tighter mb-8 text-wrap-pretty">
-            {variation.description}
-          </p>
-
           {/* Preview */}
-          <BlockPreview blockSlug={block.slug} variationName={variation.name} animationType={variation.animationType} />
+          <BlockPreview
+            blockSlug={block.slug}
+            variationName={variation.name}
+            animationType={variation.animationType}
+          />
 
           {/* Preview hint */}
           {variation.previewHint && (
             <p className="mt-3 text-center text-xs text-stone-400 font-mono tracking-tight">
               ↑ {variation.previewHint}
             </p>
+          )}
+
+          {/* Installation */}
+          <div className="mt-10">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+              Installation
+            </h2>
+            <CopyButton text={installCommand} />
+          </div>
+
+          {/* Props table */}
+          {variation.props?.length > 0 && (
+            <div className="mt-10">
+              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+                Props
+              </h2>
+              <div className="overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="bg-linear-to-b from-primary/50 to-primary/90 dark:bg-stone-800">
+                      <th className="text-left text-xs font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-4 py-2.5">
+                        Prop
+                      </th>
+                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2.5">
+                        Description
+                      </th>
+                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2.5">
+                        Type
+                      </th>
+                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2.5">
+                        Required
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
+                    {variation.props.map((prop) => {
+                      const depth = (prop.name.match(/\[\]\./g) ?? []).length;
+                      return (
+                        <tr
+                          key={prop.name}
+                          className="bg-white dark:bg-stone-900/40"
+                        >
+                          <td
+                            className="py-3 pr-3 align-top whitespace-nowrap"
+                            style={{ paddingLeft: `${16 + depth * 16}px` }}
+                          >
+                            <code className="font-mono font-semibold text-[12px] text-foreground dark:text-stone-200">
+                              {prop.name}
+                            </code>
+                          </td>
+                          <td className="px-3 py-3 align-top font-mono text-[11px] leading-relaxed text-foreground/60">
+                            {prop.description ?? "—"}
+                          </td>
+                          <td className="px-3 py-3 align-top whitespace-nowrap">
+                            <span className="inline-block rounded-md bg-stone-100 dark:bg-stone-800 px-1.5 py-0.5 font-mono text-[11px] text-stone-600 dark:text-stone-300">
+                              {prop.type}
+                            </span>
+                          </td>
+                          <td className="px-3 py-3 align-top whitespace-nowrap">
+                            {prop.required ? (
+                              <span className="inline-block rounded-md bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 font-mono text-[11px] font-medium text-red-500 dark:text-red-400">
+                                required
+                              </span>
+                            ) : (
+                              <span className="inline-block rounded-md bg-stone-50 dark:bg-stone-800 px-1.5 py-0.5 font-mono text-[11px] text-stone-400">
+                                optional
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
         </motion.div>
       </div>
@@ -198,93 +272,17 @@ function VariationDetail({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          {/* Installation */}
+          {/* Name + description */}
           <div>
-            <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-              Installation
+            <p className="text-xs font-mono text-foreground/50 uppercase tracking-widest mb-2">
+              {block.name}
+            </p>
+            <h2 className="text-xl font-mono text-primary/80 text-wrap-balance mb-2">
+              {variation.displayName}
             </h2>
-            <CopyButton text={installCommand} />
-          </div>
-
-          {/* Dependencies */}
-          {variation.dependencies?.length > 0 && (
-            <div>
-              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-                Dependencies
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {variation.dependencies.map((dep) => (
-                  <code
-                    key={dep}
-                    className="text-xs text-foreground font-mono font-regular tracking-tight text-[12px] text-wrap-pretty px-2.5 py-1 rounded border border-border"
-                  >
-                    {dep}
-                  </code>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Props table */}
-          {variation.props?.length > 0 && (
-            <div>
-              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-                Props
-              </h2>
-              <div className="overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="bg-linear-to-b from-primary/50 to-primary/90 dark:bg-stone-800">
-                      <th className="text-left text-xs font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2">
-                        Prop
-                      </th>
-                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2">
-                        Type
-                      </th>
-                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2">
-                        Req
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
-                    {variation.props.map((prop) => (
-                      <tr
-                        key={prop.name}
-                        className="bg-white dark:bg-stone-900/40"
-                      >
-                        <td className="px-3 py-2 align-top">
-                          <code className="font-mono font-semibold text-foreground dark:text-stone-200">
-                            {prop.name}
-                          </code>
-                        </td>
-                        <td className="px-3 py-2 align-top font-mono text-foreground/80 whitespace-nowrap">
-                          {prop.type}
-                        </td>
-                        <td className="px-3 py-2 align-top text-foreground/80 whitespace-nowrap">
-                          {prop.required ? (
-                            <span className="text-red-500 font-medium">
-                              yes
-                            </span>
-                          ) : (
-                            <span className="text-muted-foreground">no</span>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-
-          {/* How to use */}
-          <div>
-            <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-              How to use
-            </h2>
-            <pre className="bg-stone-50 dark:bg-stone-900 corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)] px-4 py-4 text-[12px] font-mono text-stone-700 dark:text-stone-300 overflow-x-auto leading-relaxed">
-              {usageSnippet}
-            </pre>
+            <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
+              {variation.description}
+            </p>
           </div>
 
           {/* Features */}
@@ -351,19 +349,21 @@ function VariationDetail({
 
           {variation.features && variation.features.length > 0 && (
             <div>
-              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+              <h2 className="text-xl font-mono  tracking-wide text-primary/80 mb-3">
                 Features
               </h2>
               <ul className="flex flex-col gap-2">
                 {variation.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2">
-                    <HugeiconsIcon
-                      icon={Tick01Icon}
-                      size={18}
-                      strokeWidth={2}
-                      className="shrink-0 mt-0.5 text-emerald-500"
-                    />
-                    <p className="text-foreground font-mono font-regular tracking-tight text-[12px] text-wrap-pretty">
+                    <span className="corner-squircle shrink-0 mt-0.5 flex items-center justify-center rounded-[4px] size-4 bg-linear-to-b from-primary/50 to-primary/90">
+                      <HugeiconsIcon
+                        icon={Tick01Icon}
+                        size={10}
+                        strokeWidth={2.5}
+                        className="text-white"
+                      />
+                    </span>
+                    <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
                       {feature}
                     </p>
                   </li>

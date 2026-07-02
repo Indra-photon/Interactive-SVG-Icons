@@ -49,6 +49,12 @@ export interface BlockRegistryFile {
   tier: 'free' | 'premium';
   dependencies: string[];
   registryDependencies: string[];
+  cssVars?: {
+    theme?: Record<string, string>;
+    light?: Record<string, string>;
+    dark?: Record<string, string>;
+  };
+  css?: string;
   files: {
     path: string;
     content: string;

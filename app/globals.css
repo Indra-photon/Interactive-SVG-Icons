@@ -26,6 +26,7 @@
   --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
   --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
   --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --resize-dur: 650ms;
   --shadow-border:
     0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06),
     0px 2px 4px 0px rgba(0, 0, 0, 0.04);
@@ -141,6 +142,14 @@
 }
 
 @layer utilities {
+  /* transitions-dev: card-resize — morphing-image-effect */
+  .t-resize {
+    transition:
+      width  var(--resize-dur) var(--ease-in-out-quart),
+      height var(--resize-dur) var(--ease-in-out-quart);
+    will-change: width, height;
+  }
+
   /* Animation utilities */
   .animate-shimmer {
     animation: shimmer 2s infinite;
@@ -181,6 +190,10 @@
   .animate-pulse-dot,
   .animate-pulse {
     animation: none;
+  }
+
+  .t-resize {
+    transition: none !important;
   }
 
   * {
