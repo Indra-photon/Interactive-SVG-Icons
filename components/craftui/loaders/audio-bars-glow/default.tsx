@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface AudioBarsGlowProps {
   width?: number;
@@ -29,7 +30,35 @@ export function AudioBarsGlow({
 
   const minHeight = height * 0.3;
   const maxHeight = height * 0.8;
-  
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => {
+        const isOdd = i % 2 === 0;
+        return {
+          height: isOdd ? [minHeight, maxHeight, minHeight] : [maxHeight, minHeight, maxHeight],
+          y: isOdd
+            ? [(height - minHeight) / 2, (height - maxHeight) / 2, (height - minHeight) / 2]
+            : [(height - maxHeight) / 2, (height - minHeight) / 2, (height - maxHeight) / 2],
+          opacity: isOdd ? [0.5, 1, 0.5] : [1, 0.5, 1],
+          transition: { duration, repeat: Infinity, ease },
+        };
+      });
+    } else {
+      controls.stop();
+      controls.set((i) => {
+        const isOdd = i % 2 === 0;
+        return {
+          height: isOdd ? minHeight : maxHeight,
+          y: isOdd ? (height - minHeight) / 2 : (height - maxHeight) / 2,
+          opacity: isOdd ? 0.5 : 1,
+        };
+      });
+    }
+  }, [isAnimating, duration, ease, minHeight, maxHeight, height, controls]);
+
   return (
     <svg
       width={width}
@@ -45,7 +74,7 @@ export function AudioBarsGlow({
           <stop offset="50%" stopColor={color} stopOpacity="0.8" />
           <stop offset="100%" stopColor={color} stopOpacity="1" />
         </linearGradient>
-        
+
         {/* Glow filter */}
         <filter id="glow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -58,7 +87,6 @@ export function AudioBarsGlow({
 
       {Array.from({ length: barCount }).map((_, index) => {
         const isOdd = index % 2 === 0;
-        
         return (
           <motion.rect
             key={index}
@@ -66,22 +94,13 @@ export function AudioBarsGlow({
             width={barWidth}
             fill="url(#barGradient)"
             filter="url(#glow)"
-            animate={{
-              height: isOdd 
-                ? [minHeight, maxHeight, minHeight]
-                : [maxHeight, minHeight, maxHeight],
-              y: isOdd
-                ? [(height - minHeight) / 2, (height - maxHeight) / 2, (height - minHeight) / 2]
-                : [(height - maxHeight) / 2, (height - minHeight) / 2, (height - maxHeight) / 2],
-              opacity: isOdd
-                ? [0.5, 1, 0.5]
-                : [1, 0.5, 1]
+            custom={index}
+            initial={{
+              height: isOdd ? minHeight : maxHeight,
+              y: isOdd ? (height - minHeight) / 2 : (height - maxHeight) / 2,
+              opacity: isOdd ? 0.5 : 1,
             }}
-            transition={{
-              duration: duration,
-              repeat: isAnimating ? Infinity : 0,
-              ease: ease
-            }}
+            animate={controls}
           />
         );
       })}

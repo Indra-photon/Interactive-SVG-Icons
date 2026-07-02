@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface CircleSpinnerWipeProps {
   width?: number;
@@ -29,6 +30,20 @@ export function CircleSpinnerWipe({
   const centerY = height / 2;
   const radius = Math.min(width, height) / 2 - thickness / 2;
   const circumference = 2 * Math.PI * radius;
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start({
+        strokeDashoffset: [circumference, 0],
+        transition: { duration, repeat: Infinity, ease },
+      });
+    } else {
+      controls.stop();
+      controls.set({ strokeDashoffset: circumference });
+    }
+  }, [isAnimating, duration, ease, circumference, controls]);
 
   return (
     <svg
@@ -60,16 +75,7 @@ export function CircleSpinnerWipe({
         strokeLinecap={strokeLinecap}
         strokeDasharray={circumference}
         initial={{ strokeDashoffset: circumference }}
-        animate={{
-          strokeDashoffset: isAnimating ? [circumference, 0] : circumference,
-        }}
-        transition={{
-          strokeDashoffset: {
-            duration: duration,
-            repeat: isAnimating ? Infinity : 0,
-            ease: ease,
-          },
-        }}
+        animate={controls}
         style={{ transformOrigin: `${centerX}px ${centerY}px`, rotate: -90 }}
       />
     </svg>

@@ -98,14 +98,144 @@
       ]
     },
     {
+      "slug": "subitem-navbar",
+      "name": "SubItem Navbar",
+      "category": "navbar",
+      "tags": [
+        "navbar",
+        "navigation",
+        "bottom",
+        "pill",
+        "submenu",
+        "filter",
+        "animation",
+        "morphing"
+      ],
+      "description": "A morphing pill navbar anchored at the bottom. Each tab expands into either a chip filter row or any custom ReactNode panel — pass a login form, a settings menu, or anything else.",
+      "createdAt": "2026-07-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "subitem-navbar",
+          "displayName": "SubItem Navbar",
+          "tier": "free",
+          "description": "Tabs expand a panel above the bar via a spring-driven height animation. Panels are either a chip filter list (subs) or any React node (panel). LoginPanel is a named export for use as a panel slot.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons",
+            "react-use-measure"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "items",
+              "type": "NavItem[]",
+              "required": true,
+              "description": "Array of nav items passed to the bar."
+            },
+            {
+              "name": "items[].label",
+              "type": "string",
+              "required": true,
+              "description": "Tab label shown below the icon."
+            },
+            {
+              "name": "items[].icon",
+              "type": "HugeIcon",
+              "required": true,
+              "description": "HugeIcons icon component rendered in the tab button."
+            },
+            {
+              "name": "items[].subs",
+              "type": "SubItem[]",
+              "required": false,
+              "description": "Chip filter list. Mutually exclusive with panel."
+            },
+            {
+              "name": "items[].subs[].label",
+              "type": "string",
+              "required": true,
+              "description": "Chip label text."
+            },
+            {
+              "name": "items[].subs[].icon",
+              "type": "HugeIcon",
+              "required": true,
+              "description": "Chip icon."
+            },
+            {
+              "name": "items[].panel",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Custom panel rendered when the tab is active. Mutually exclusive with subs. Pass <LoginPanel /> or any component."
+            }
+          ],
+          "componentName": "BottomNavbar",
+          "previewHint": "Tap any tab to expand its panel — Work/About/Journal show chip filters, Login shows a form",
+          "features": [
+            "Discriminated union props: each NavItem has either subs (chip list) or panel (any ReactNode)",
+            "LoginPanel is a named export with self-contained email/password/showPassword state",
+            "Blur overlay rendered inside the component — just place BottomNavbar inside a relative container",
+            "useMeasure drives submenu height so the pill expands to exactly fit any panel",
+            "prefers-reduced-motion: all spring and blur transitions collapse to instant"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "scroll-gallery",
+      "name": "Scroll Gallery",
+      "category": "gallery",
+      "tags": [
+        "scroll",
+        "gallery",
+        "parallax",
+        "image",
+        "animation",
+        "lenis",
+        "travel",
+        "showcase"
+      ],
+      "description": "A sticky scroll-driven gallery with a parallax image strip on the right and animated destination info on the left, connected by a flight-path arc divider.",
+      "createdAt": "2026-07-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "parallax-strip",
+          "displayName": "Parallax Strip",
+          "tier": "free",
+          "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+          "animationType": "scroll-driven",
+          "dependencies": [
+            "motion",
+            "lenis",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons",
+            "next"
+          ],
+          "registryDependencies": [],
+          "props": [],
+          "componentName": "ScrollGallery",
+          "previewHint": "Scroll down to navigate through destinations",
+          "features": [
+            "Lenis smooth scroll drives the entire layout via a single useScroll hook",
+            "Image strip uses scale + Y + rotate transforms so each image slots into a weighted parallax stack",
+            "Arc SVG divider renders a dashed flight path; a plane icon follows via offset-path and flips direction based on scroll velocity",
+            "Left panel text slots use AnimatePresence mode='wait' spring transitions — no layout shift",
+            "Stat values animate with useSpring so numbers count up smoothly on each destination change"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "profile-card",
       "name": "Profile Card",
-      "category": "profile",
+      "category": "navbar",
       "tags": [
+        "navbar",
         "profile",
         "menu",
         "avatar",
-        "dropdown",
         "animation",
         "shared-layout"
       ],
@@ -113,8 +243,8 @@
       "createdAt": "2026-06-23T00:00:00Z",
       "variations": [
         {
-          "name": "avatar-dropdown",
-          "displayName": "Avatar Dropdown",
+          "name": "navbar",
+          "displayName": "Navbar",
           "tier": "free",
           "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
           "animationType": "click",
@@ -133,6 +263,45 @@
             "Menu items stagger in with a blur + translate-y entrance, two groups with different delays",
             "Dismiss overlay is scoped inside the phone frame so clicks outside the card close it",
             "PRO badge, community badge, and active row highlight are all composable per menu item"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "morphing-image-effect",
+      "name": "Morphing Image Effect",
+      "category": "creative",
+      "tags": [
+        "morph",
+        "image",
+        "typography",
+        "interactive",
+        "click",
+        "animation",
+        "layout"
+      ],
+      "description": "A click-driven 3-stage animation where a typographic split ('P' | image | 'ST') morphs between states — the image pill reshapes and the text scales on each click.",
+      "createdAt": "2026-07-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Image Morph",
+          "tier": "free",
+          "description": "Three-stage morph: thumbnail pill → landscape card → portrait card. Text scales inversely as the image grows.",
+          "animationType": "click-driven",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [],
+          "componentName": "MorphingImageEffect",
+          "previewHint": "Click anywhere to advance through the 3 stages",
+          "features": [
+            "CSS t-resize class owns width/height transitions so layout reflow stays on the compositor thread",
+            "Framer Motion animate handles borderRadius and rotate — no layout thrashing",
+            "Stage label uses AnimatePresence mode='wait' with blur cross-fade",
+            "prefers-reduced-motion: t-resize transition is disabled via media query",
+            "Single Image element reused across all stages — no clone, no re-mount"
           ]
         }
       ]
@@ -268,5 +437,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-06-23T15:50:01.708Z"
+  "lastUpdated": "2026-07-02T12:44:17.075Z"
 }

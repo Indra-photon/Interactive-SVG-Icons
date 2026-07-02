@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BarsScaleBottomProps {
   width?: number;
@@ -26,7 +27,22 @@ export function BarsScaleBottom({
   const barWidth = (width - gap * 2) / 3;
   const baseHeight = height / 2;
   const minHeight = height / 4;
-  
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => ({
+        height: [baseHeight, minHeight, baseHeight],
+        y: [height / 4, height - minHeight, height / 4],
+        transition: { duration, repeat: Infinity, ease, delay: i * staggerDelay },
+      }));
+    } else {
+      controls.stop();
+      controls.set({ height: baseHeight, y: height / 4 });
+    }
+  }, [isAnimating, duration, ease, staggerDelay, baseHeight, minHeight, height, controls]);
+
   return (
     <svg
       width={width}
@@ -41,16 +57,9 @@ export function BarsScaleBottom({
           x={index * (barWidth + gap)}
           width={barWidth}
           fill={color}
-          animate={{
-            height: [baseHeight, minHeight, baseHeight],
-            y: [height / 4, height - minHeight, height / 4]
-          }}
-          transition={{
-            duration: duration,
-            repeat: isAnimating ? Infinity : 0,
-            ease: ease,
-            delay: index * staggerDelay
-          }}
+          custom={index}
+          initial={{ height: baseHeight, y: height / 4 }}
+          animate={controls}
         />
       ))}
     </svg>

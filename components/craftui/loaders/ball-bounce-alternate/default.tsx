@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BallBounceAlternateProps {
   width?: number;
@@ -26,6 +27,46 @@ export function BallBounceAlternate({
   const ballRadius = height * 0.15;
   const ballCY = height - ballRadius - 1.5;
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      // x and y have different durations — animate them independently via separate sequences
+      // We use a combined animate call; motion handles each property's transition separately
+      controls.start({
+        x: [-width * 5, width * 5],
+        transition: {
+          duration,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          ease,
+        },
+      });
+    } else {
+      controls.stop();
+      controls.set({ x: 0, y: 0 });
+    }
+  }, [isAnimating, duration, ease, width, height, controls]);
+
+  const controlsY = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controlsY.start({
+        y: [0, -height * 0.15, 0],
+        transition: {
+          duration: duration * 0.25,
+          repeat: Infinity,
+          times: [0, 0.08, 1],
+          ease: [0.455, 0.03, 0.515, 0.955],
+        },
+      });
+    } else {
+      controlsY.stop();
+      controlsY.set({ y: 0 });
+    }
+  }, [isAnimating, duration, height, controlsY]);
+
   return (
     <svg
       width={width}
@@ -45,30 +86,17 @@ export function BallBounceAlternate({
         stroke={lineColor}
         strokeWidth={strokeWidth}
       />
-      <motion.circle
-        cx={width * 0.425}
-        cy={ballCY}
-        r={ballRadius}
-        fill={color}
-        animate={{
-          x: [-width * 5, width * 5],
-          y: [0, -height * 0.15, 0],
-        }}
-        transition={{
-          x: {
-            duration: duration,
-            repeat: isAnimating ? Infinity : 0,
-            repeatType: 'reverse',
-            ease: ease,
-          },
-          y: {
-            duration: duration * 0.25,
-            repeat: isAnimating ? Infinity : 0,
-            times: [0, 0.08, 1],
-            ease: [0.455, 0.03, 0.515, 0.955],
-          },
-        }}
-      />
+      {/* Outer motion element handles x translation */}
+      <motion.g animate={controls}>
+        {/* Inner motion element handles y (bounce) */}
+        <motion.circle
+          cx={width * 0.425}
+          cy={ballCY}
+          r={ballRadius}
+          fill={color}
+          animate={controlsY}
+        />
+      </motion.g>
     </svg>
   );
 }

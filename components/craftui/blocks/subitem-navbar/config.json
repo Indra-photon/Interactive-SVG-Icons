@@ -1,0 +1,73 @@
+{
+  "slug": "subitem-navbar",
+  "name": "SubItem Navbar",
+  "category": "navbar",
+  "tags": ["navbar", "navigation", "bottom", "pill", "submenu", "filter", "animation", "morphing"],
+  "description": "A morphing pill navbar anchored at the bottom. Each tab expands into either a chip filter row or any custom ReactNode panel — pass a login form, a settings menu, or anything else.",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "variations": [
+    {
+      "name": "subitem-navbar",
+      "displayName": "SubItem Navbar",
+      "componentName": "BottomNavbar",
+      "tier": "free",
+      "previewHint": "Tap any tab to expand its panel — Work/About/Journal show chip filters, Login shows a form",
+      "description": "Tabs expand a panel above the bar via a spring-driven height animation. Panels are either a chip filter list (subs) or any React node (panel). LoginPanel is a named export for use as a panel slot.",
+      "animationType": "click",
+      "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons", "react-use-measure"],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "items",
+          "type": "NavItem[]",
+          "required": true,
+          "description": "Array of nav items passed to the bar."
+        },
+        {
+          "name": "items[].label",
+          "type": "string",
+          "required": true,
+          "description": "Tab label shown below the icon."
+        },
+        {
+          "name": "items[].icon",
+          "type": "HugeIcon",
+          "required": true,
+          "description": "HugeIcons icon component rendered in the tab button."
+        },
+        {
+          "name": "items[].subs",
+          "type": "SubItem[]",
+          "required": false,
+          "description": "Chip filter list. Mutually exclusive with panel."
+        },
+        {
+          "name": "items[].subs[].label",
+          "type": "string",
+          "required": true,
+          "description": "Chip label text."
+        },
+        {
+          "name": "items[].subs[].icon",
+          "type": "HugeIcon",
+          "required": true,
+          "description": "Chip icon."
+        },
+        {
+          "name": "items[].panel",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Custom panel rendered when the tab is active. Mutually exclusive with subs. Pass <LoginPanel /> or any component."
+        }
+      ],
+      "features": [
+        "Discriminated union props: each NavItem has either subs (chip list) or panel (any ReactNode)",
+        "LoginPanel is a named export with self-contained email/password/showPassword state",
+        "Blur overlay rendered inside the component — just place BottomNavbar inside a relative container",
+        "useMeasure drives submenu height so the pill expands to exactly fit any panel",
+        "prefers-reduced-motion: all spring and blur transitions collapse to instant"
+      ],
+      "inspiration": []
+    }
+  ]
+}

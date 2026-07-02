@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BallBounceDashedProps {
   width?: number;
@@ -27,6 +28,27 @@ export function BallBounceDashed({
   const ballCY = height - ballRadius - 1.5;
   const dashLength = width * 0.5;
 
+  const controlsLine = useAnimation();
+  const controlsBall = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controlsLine.start({
+        strokeDashoffset: [0, -width],
+        transition: { duration, repeat: Infinity, ease },
+      });
+      controlsBall.start({
+        y: [0, -height * 0.15, 0],
+        transition: { duration, repeat: Infinity, times: [0, 0.08, 1], ease: [0.455, 0.03, 0.515, 0.955] },
+      });
+    } else {
+      controlsLine.stop();
+      controlsLine.set({ strokeDashoffset: 0 });
+      controlsBall.stop();
+      controlsBall.set({ y: 0 });
+    }
+  }, [isAnimating, duration, ease, width, height, controlsLine, controlsBall]);
+
   return (
     <svg
       width={width}
@@ -46,14 +68,8 @@ export function BallBounceDashed({
         stroke={lineColor}
         strokeWidth={strokeWidth}
         strokeDasharray={`${dashLength} ${dashLength}`}
-        animate={{
-          strokeDashoffset: [0, -width],
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          ease: ease,
-        }}
+        initial={{ strokeDashoffset: 0 }}
+        animate={controlsLine}
       />
       {/* Ball bounces in place */}
       <motion.circle
@@ -61,15 +77,8 @@ export function BallBounceDashed({
         cy={ballCY}
         r={ballRadius}
         fill={color}
-        animate={{
-          y: [0, -height * 0.15, 0],
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          times: [0, 0.08, 1],
-          ease: [0.455, 0.03, 0.515, 0.955],
-        }}
+        initial={{ y: 0 }}
+        animate={controlsBall}
       />
     </svg>
   );

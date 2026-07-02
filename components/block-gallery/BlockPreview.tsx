@@ -49,7 +49,7 @@ export function BlockPreview({
     return () => observer.disconnect();
   }, [isInteractive]);
 
-  const outerHeight = 680;
+  const outerHeight = 660;
   const innerHeight = scale > 0 ? outerHeight / scale : 640;
 
   return (

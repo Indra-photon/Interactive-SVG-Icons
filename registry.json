@@ -1809,9 +1809,54 @@
       ]
     },
     {
-      "name": "profile-card-avatar-dropdown",
+      "name": "subitem-navbar-subitem-navbar",
       "type": "registry:block",
-      "title": "Profile Card - Avatar Dropdown",
+      "title": "SubItem Navbar - SubItem Navbar",
+      "description": "Tabs expand a panel above the bar via a spring-driven height animation. Panels are either a chip filter list (subs) or any React node (panel). LoginPanel is a named export for use as a panel slot.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "react-use-measure"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/subitem-navbar/subitem-navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/subitem-navbar/subitem-navbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-gallery-parallax-strip",
+      "type": "registry:block",
+      "title": "Scroll Gallery - Parallax Strip",
+      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+      "dependencies": [
+        "motion",
+        "lenis",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "next"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/scroll-gallery/parallax-strip.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/scroll-gallery/parallax-strip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "profile-card-navbar",
+      "type": "registry:block",
+      "title": "Profile Card - Navbar",
       "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
       "dependencies": [
         "motion/react",
@@ -1823,9 +1868,28 @@
       ],
       "files": [
         {
-          "path": "components/craftui/blocks/profile-card/avatar-dropdown.tsx",
+          "path": "components/craftui/blocks/profile-card/navbar.tsx",
           "type": "registry:component",
-          "target": "~/components/craftui/blocks/profile-card/avatar-dropdown.tsx"
+          "target": "~/components/craftui/blocks/profile-card/navbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "morphing-image-effect-default",
+      "type": "registry:block",
+      "title": "Morphing Image Effect - Image Morph",
+      "description": "Three-stage morph: thumbnail pill → landscape card → portrait card. Text scales inversely as the image grows.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/morphing-image-effect/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/morphing-image-effect/default.tsx"
         }
       ]
     },
@@ -1868,6 +1932,69 @@
           "path": "components/craftui/blocks/category-ticker/onboarding-steps.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/category-ticker/onboarding-steps.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-clip",
+      "type": "registry:ui",
+      "title": "Accordion - Clip",
+      "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
+      "dependencies": [
+        "motion/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/clip.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/clip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-drawer",
+      "type": "registry:ui",
+      "title": "Accordion - Drawer",
+      "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
+      "dependencies": [
+        "motion/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/drawer.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-ease",
+      "type": "registry:ui",
+      "title": "Accordion - Ease",
+      "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
+      "dependencies": [
+        "motion/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/ease.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/ease.tsx"
         }
       ]
     }

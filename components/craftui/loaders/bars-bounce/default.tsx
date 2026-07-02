@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BarsBounceProps {
   width?: number;
@@ -13,9 +14,9 @@ interface BarsBounceProps {
   ease?: any;
 }
 
-export function BarsBounce({ 
+export function BarsBounce({
   width = 45,
-  height = 45, 
+  height = 45,
   color = "currentColor",
   barWidth = 9,
   gap = 9,
@@ -33,6 +34,32 @@ export function BarsBounce({
   const tallHeight = height;
   const shortHeight = height * 0.4;
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => {
+        const isFirstOrLast = i === 0 || i === 2;
+        return {
+          height: [tallHeight, shortHeight, tallHeight],
+          y: isFirstOrLast
+            ? [0, height - shortHeight, height - tallHeight]
+            : [height - tallHeight, 0, height - tallHeight],
+          transition: { duration, repeat: Infinity, ease, times: [0, 0.5, 1] },
+        };
+      });
+    } else {
+      controls.stop();
+      controls.set((i) => {
+        const isFirstOrLast = i === 0 || i === 2;
+        return {
+          height: tallHeight,
+          y: isFirstOrLast ? 0 : height - tallHeight,
+        };
+      });
+    }
+  }, [isAnimating, duration, ease, tallHeight, shortHeight, height, controls]);
+
   return (
     <svg
       width={width}
@@ -42,29 +69,19 @@ export function BarsBounce({
       xmlns="http://www.w3.org/2000/svg"
     >
       {bars.map((bar, index) => {
-        // Position pattern: [top, bottom, top] -> [bottom, top, bottom]
         const isFirstOrLast = index === 0 || index === 2;
-        
         return (
           <motion.rect
             key={index}
             x={bar.x}
             width={barWidth}
             fill={color}
-            animate={{
-              // All bars: tall -> short -> tall (synchronized)
-              height: [tallHeight, shortHeight, tallHeight],
-              // Bars 0,2: top->bottom | Bar 1: bottom->top
-              y: isFirstOrLast 
-                ? [0, height - shortHeight, height - tallHeight]
-                : [height - tallHeight, 0, height - tallHeight]
+            custom={index}
+            initial={{
+              height: tallHeight,
+              y: isFirstOrLast ? 0 : height - tallHeight,
             }}
-            transition={{
-              duration: duration,
-              repeat: isAnimating ? Infinity : 0,
-              ease: ease,
-              times: [0, 0.5, 1] // Keyframe timing: 0%, 50%, 100%
-            }}
+            animate={controls}
           />
         );
       })}

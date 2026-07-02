@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface ConicSpinnerProps {
   width?: number;
@@ -29,6 +30,27 @@ export function ConicSpinner({
     return (circumference * i) / 8;
   });
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start({
+        clipPath: [
+          `polygon(50% 50%, 50% 0%, 50% 0%)`,
+          `polygon(50% 50%, 50% 0%, 100% 0%)`,
+          `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%)`,
+          `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%)`,
+          `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%)`,
+          `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%)`,
+        ],
+        transition: { duration, repeat: Infinity, times: [0, 0.25, 0.5, 0.75, 0.875, 1], ease },
+      });
+    } else {
+      controls.stop();
+      controls.set({ clipPath: `polygon(50% 50%, 50% 0%, 50% 0%)` });
+    }
+  }, [isAnimating, duration, ease, controls]);
+
   return (
     <svg
       width={width}
@@ -48,22 +70,8 @@ export function ConicSpinner({
         r={radius}
         fill={color}
         stroke="none"
-        animate={{
-          clipPath: [
-            `polygon(50% 50%, 50% 0%, 50% 0%)`,
-            `polygon(50% 50%, 50% 0%, 100% 0%)`,
-            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%)`,
-            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%)`,
-            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%)`,
-            `polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%)`,
-          ],
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          times: [0, 0.25, 0.5, 0.75, 0.875, 1],
-          ease: ease,
-        }}
+        initial={{ clipPath: `polygon(50% 50%, 50% 0%, 50% 0%)` }}
+        animate={controls}
       />
     </svg>
   );

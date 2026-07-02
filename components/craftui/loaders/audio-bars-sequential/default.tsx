@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface AudioBarsSequentialProps {
   width?: number;
@@ -29,8 +30,23 @@ export function AudioBarsSequential({
 
   const minHeight = height * 0.3;
   const maxHeight = height * 0.8;
-  const delayPerBar = duration / barCount; // Each bar triggers sequentially
-  
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const delayPerBar = duration / barCount;
+    if (isAnimating) {
+      controls.start((i) => ({
+        height: [minHeight, maxHeight, minHeight],
+        y: [(height - minHeight) / 2, (height - maxHeight) / 2, (height - minHeight) / 2],
+        transition: { duration, repeat: Infinity, ease, delay: i * delayPerBar },
+      }));
+    } else {
+      controls.stop();
+      controls.set({ height: minHeight, y: (height - minHeight) / 2 });
+    }
+  }, [isAnimating, duration, ease, minHeight, maxHeight, height, controls]);
+
   return (
     <svg
       width={width}
@@ -46,20 +62,9 @@ export function AudioBarsSequential({
             x={startX + (index * (barWidth + gap))}
             width={barWidth}
             fill={color}
-            animate={{
-              height: [minHeight, maxHeight, minHeight],
-              y: [
-                (height - minHeight) / 2, 
-                (height - maxHeight) / 2, 
-                (height - minHeight) / 2
-              ]
-            }}
-            transition={{
-              duration: duration,
-              repeat: isAnimating ? Infinity : 0,
-              ease: ease,
-              delay: index * delayPerBar
-            }}
+            custom={index}
+            initial={{ height: minHeight, y: (height - minHeight) / 2 }}
+            animate={controls}
           />
         );
       })}

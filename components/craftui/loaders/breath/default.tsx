@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface BreathProps {
   width?: number;
@@ -19,6 +20,29 @@ export function Breath({
   duration = 4.0,
   ease = 'easeInOut',
 }: BreathProps) {
+  const controlsGlow = useAnimation();
+  const controlsCore = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controlsGlow.start({
+        r: [14, 28, 14],
+        opacity: [0, 0.25, 0],
+        transition: { duration, repeat: Infinity, ease, delay: 0.3, times: [0, 0.5, 1] },
+      });
+      controlsCore.start({
+        r: [8, 20, 8],
+        opacity: [0.25, 1, 0.25],
+        transition: { duration, repeat: Infinity, ease, times: [0, 0.5, 1] },
+      });
+    } else {
+      controlsGlow.stop();
+      controlsGlow.set({ r: 14, opacity: 0 });
+      controlsCore.stop();
+      controlsCore.set({ r: 8, opacity: 0.25 });
+    }
+  }, [isAnimating, duration, ease, controlsGlow, controlsCore]);
+
   return (
     <svg
       width={width}
@@ -36,33 +60,16 @@ export function Breath({
         stroke={color}
         strokeWidth={1}
         fill="none"
-        animate={{
-          r: [14, 28, 14],
-          opacity: [0, 0.25, 0],
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          ease: ease,
-          delay: 0.3,
-          times: [0, 0.5, 1],
-        }}
+        initial={{ r: 14, opacity: 0 }}
+        animate={controlsGlow}
       />
       {/* Core breathing circle */}
       <motion.circle
         cx={50}
         cy={50}
         fill={color}
-        animate={{
-          r: [8, 20, 8],
-          opacity: [0.25, 1, 0.25],
-        }}
-        transition={{
-          duration: duration,
-          repeat: isAnimating ? Infinity : 0,
-          ease: ease,
-          times: [0, 0.5, 1],
-        }}
+        initial={{ r: 8, opacity: 0.25 }}
+        animate={controlsCore}
       />
     </svg>
   );

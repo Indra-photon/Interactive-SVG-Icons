@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface CircularWaveFillProps {
   width?: number;
@@ -35,6 +36,20 @@ export function CircularWaveFill({
     return `M ${-waveWidth},${y} Q ${cx / 2},${cp1} ${cx},${y} Q ${cx * 1.5},${cp2} ${waveWidth * 2},${y} L ${waveWidth * 2},${cy + r + 10} L ${-waveWidth},${cy + r + 10} Z`;
   };
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start({
+        d: [getWavePath(0), getWavePath(r), getWavePath(r * 2)],
+        transition: { duration, repeat: Infinity, ease, times: [0, 0.5, 1] },
+      });
+    } else {
+      controls.stop();
+      controls.set({ d: getWavePath(0) });
+    }
+  }, [isAnimating, duration, ease, controls]);
+
   return (
     <svg
       width={width}
@@ -56,19 +71,8 @@ export function CircularWaveFill({
       <g clipPath={`url(#circle-clip-${width})`}>
         <motion.path
           fill={color}
-          animate={{
-            d: [
-              getWavePath(0),
-              getWavePath(r),
-              getWavePath(r * 2),
-            ],
-          }}
-          transition={{
-            duration: duration,
-            repeat: isAnimating ? Infinity : 0,
-            ease: ease,
-            times: [0, 0.5, 1],
-          }}
+          initial={{ d: getWavePath(0) }}
+          animate={controls}
         />
       </g>
     </svg>

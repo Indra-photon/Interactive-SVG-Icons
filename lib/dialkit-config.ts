@@ -76,6 +76,7 @@ export function buildDialKitConfig(props: PropDefinition[]): DialConfig {
         config[p.name] = p.default as boolean;
         break;
 
+      case 'select':
       case 'enum':
       case 'strokeLinecap':
         config[p.name] = {

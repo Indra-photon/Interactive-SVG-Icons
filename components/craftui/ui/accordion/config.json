@@ -1,0 +1,140 @@
+{
+  "slug": "accordion",
+  "name": "Accordion",
+  "category": "disclosure",
+  "shadcnBase": "accordion",
+  "tags": [
+    "accordion",
+    "disclosure",
+    "animation",
+    "ease",
+    "spring",
+    "drawer",
+    "clip-path",
+    "reveal",
+    "faq"
+  ],
+  "description": "Animated accordion built on top of shadcn/ui. Replaces the CSS height transition with Framer Motion easing — fully accessible, keyboard navigable, drop-in ready.",
+  "createdAt": "2026-06-29T00:00:00Z",
+  "variations": [
+    {
+      "name": "clip",
+      "displayName": "Clip",
+      "componentName": "ClipAccordion",
+      "tier": "free",
+      "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
+      "animationType": "ease",
+      "dependencies": ["motion/react", "radix-ui"],
+      "registryDependencies": ["accordion"],
+      "previewHint": "Click a question to see it clip away and reveal the answer. Click the answer to return. Toggle between horizontal and vertical with the direction prop.",
+      "features": [
+        "Two-layer card: question sits as an absolute overlay on top of the answer — no height measurement needed, answer's rendered height sets the card size",
+        "Exit is faster than enter — question clips away at 60% of the open duration so returning feels deliberate, not rushed",
+        "Direction is a single prop: horizontal wipes right-to-left, vertical wipes bottom-to-top — same constants object, no conditional logic in the animation",
+        "Pointer-events swap atomically: question layer is pointer-events:none when clipped, answer layer is pointer-events:none when covered",
+        "Respects prefers-reduced-motion — all clip-path and translate animations disabled instantly",
+        "Fully accessible: AccordionPrimitive.Trigger handles aria-expanded and keyboard navigation"
+      ],
+      "props": [
+        {
+          "name": "direction",
+          "type": "select",
+          "options": ["horizontal", "vertical"],
+          "default": "horizontal",
+          "description": "Direction the question clips away — horizontal (left) or vertical (up)"
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [0.32, 0.72, 0, 1],
+          "description": "Cubic-bezier easing curve for the clip animation"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.45,
+          "min": 0.1,
+          "max": 1.5,
+          "step": 0.01,
+          "description": "Duration of the open animation in seconds (close runs at 60%)"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "displayName": "Drawer",
+      "componentName": "DrawerAccordion",
+      "tier": "free",
+      "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
+      "animationType": "spring",
+      "dependencies": ["motion/react", "radix-ui"],
+      "registryDependencies": ["accordion"],
+      "previewHint": "To adjust the spring feel, use the DialKit panel to change stiffness (snappier vs. looser) and damping (bouncy vs. settled).",
+      "features": [
+        "Trigger lifts with a 3D perspective tilt when open — rotateX + y offset combine to create a physical card-lifting effect",
+        "Content slides from y: -24 with the same spring as the trigger, so both feel coupled and intentional",
+        "Exit is a fast ease-in snap — closing should feel decisive, not linger",
+        "Chevron rotates 180° on open with a separate duration transition — icon state change is simpler than a spring",
+        "whileHover lifts the card slightly even when closed — affordance that this is interactive",
+        "Respects prefers-reduced-motion — all springs and transforms disabled instantly",
+        "Fully accessible: keyboard navigation and ARIA attributes come from Radix unchanged"
+      ],
+      "props": [
+        {
+          "name": "stiffness",
+          "type": "number",
+          "default": 220,
+          "min": 40,
+          "max": 600,
+          "step": 10,
+          "description": "Spring stiffness — higher values snap faster"
+        },
+        {
+          "name": "damping",
+          "type": "number",
+          "default": 22,
+          "min": 5,
+          "max": 60,
+          "step": 1,
+          "description": "Spring damping — lower values add bounce, higher values settle immediately"
+        }
+      ]
+    },
+    {
+      "name": "ease",
+      "displayName": "Ease",
+      "componentName": "EaseAccordion",
+      "tier": "free",
+      "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
+      "animationType": "ease",
+      "dependencies": ["motion/react", "radix-ui"],
+      "registryDependencies": ["accordion"],
+      "previewHint": "To change the easing curve, open the DialKit easing editor and drag the handles to shape the cubic-bezier curve.",
+      "features": [
+        "Exit is faster than enter — closing should always feel decisive, users want content gone, not lingering",
+        "Open plays as two beats: height snaps first, content fades in after a fixed gap — prevents text appearing while space is still forming",
+        "Icon morphs with ease-in-out, content opens with ease-out — different curves for different roles: one is transforming in place, the other is entering the screen",
+        "Opacity uses linear easing — at short durations easing curves on opacity are imperceptible, linear is honest",
+        "Respects prefers-reduced-motion — all animations are disabled instantly when the user has reduced motion enabled in their OS",
+        "Fully accessible: keyboard navigation and ARIA attributes come from Radix unchanged"
+      ],
+      "props": [
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [0.215, 0.61, 0.355, 1],
+          "description": "Cubic-bezier easing curve for the height animation"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.26,
+          "min": 0.1,
+          "max": 1.5,
+          "step": 0.01,
+          "description": "Animation duration in seconds"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'motion/react';
 
 interface AudioBarsOpacityProps {
   width?: number;
@@ -29,7 +30,35 @@ export function AudioBarsOpacity({
 
   const minHeight = height * 0.3;
   const maxHeight = height * 0.8;
-  
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isAnimating) {
+      controls.start((i) => {
+        const isOdd = i % 2 === 0;
+        return {
+          height: isOdd ? [minHeight, maxHeight, minHeight] : [maxHeight, minHeight, maxHeight],
+          y: isOdd
+            ? [(height - minHeight) / 2, (height - maxHeight) / 2, (height - minHeight) / 2]
+            : [(height - maxHeight) / 2, (height - minHeight) / 2, (height - maxHeight) / 2],
+          opacity: isOdd ? [0.3, 1, 0.3] : [1, 0.3, 1],
+          transition: { duration, repeat: Infinity, ease },
+        };
+      });
+    } else {
+      controls.stop();
+      controls.set((i) => {
+        const isOdd = i % 2 === 0;
+        return {
+          height: isOdd ? minHeight : maxHeight,
+          y: isOdd ? (height - minHeight) / 2 : (height - maxHeight) / 2,
+          opacity: isOdd ? 0.3 : 1,
+        };
+      });
+    }
+  }, [isAnimating, duration, ease, minHeight, maxHeight, height, controls]);
+
   return (
     <svg
       width={width}
@@ -40,29 +69,19 @@ export function AudioBarsOpacity({
     >
       {Array.from({ length: barCount }).map((_, index) => {
         const isOdd = index % 2 === 0;
-        
         return (
           <motion.rect
             key={index}
             x={startX + (index * (barWidth + gap))}
             width={barWidth}
             fill={color}
-            animate={{
-              height: isOdd 
-                ? [minHeight, maxHeight, minHeight]
-                : [maxHeight, minHeight, maxHeight],
-              y: isOdd
-                ? [(height - minHeight) / 2, (height - maxHeight) / 2, (height - minHeight) / 2]
-                : [(height - maxHeight) / 2, (height - minHeight) / 2, (height - maxHeight) / 2],
-              opacity: isOdd
-                ? [0.3, 1, 0.3]
-                : [1, 0.3, 1]
+            custom={index}
+            initial={{
+              height: isOdd ? minHeight : maxHeight,
+              y: isOdd ? (height - minHeight) / 2 : (height - maxHeight) / 2,
+              opacity: isOdd ? 0.3 : 1,
             }}
-            transition={{
-              duration: duration,
-              repeat: isAnimating ? Infinity : 0,
-              ease: ease
-            }}
+            animate={controls}
           />
         );
       })}

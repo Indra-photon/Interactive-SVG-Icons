@@ -1,0 +1,30 @@
+{
+  "slug": "morphing-image-effect",
+  "name": "Morphing Image Effect",
+  "category": "creative",
+  "tags": ["morph", "image", "typography", "interactive", "click", "animation", "layout"],
+  "description": "A click-driven 3-stage animation where a typographic split ('P' | image | 'ST') morphs between states — the image pill reshapes and the text scales on each click.",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Image Morph",
+      "componentName": "MorphingImageEffect",
+      "tier": "free",
+      "previewHint": "Click anywhere to advance through the 3 stages",
+      "description": "Three-stage morph: thumbnail pill → landscape card → portrait card. Text scales inversely as the image grows.",
+      "animationType": "click-driven",
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "props": [],
+      "features": [
+        "CSS t-resize class owns width/height transitions so layout reflow stays on the compositor thread",
+        "Framer Motion animate handles borderRadius and rotate — no layout thrashing",
+        "Stage label uses AnimatePresence mode='wait' with blur cross-fade",
+        "prefers-reduced-motion: t-resize transition is disabled via media query",
+        "Single Image element reused across all stages — no clone, no re-mount"
+      ],
+      "inspiration": []
+    }
+  ]
+}
