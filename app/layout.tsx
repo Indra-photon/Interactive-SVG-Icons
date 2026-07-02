@@ -3,17 +3,18 @@ import { Geist, Geist_Mono, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { DialRoot } from "dialkit";
 import "dialkit/styles.css";
-import { GoogleTagManager } from '@next/third-parties/google'
-import { Toaster } from "@/components/ui/sonner"
+import { GoogleTagManager } from "@next/third-parties/google";
+import { Toaster } from "@/components/ui/sonner";
 import { NavBar } from "@/components/NavBar";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 import { MotionProvider } from "@/components/providers/MotionProvider";
+import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
-const geistHeading = Geist({subsets:['latin'],variable:'--font-heading'});
+const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" });
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
-
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 // import {
 //   ClerkProvider,
@@ -24,7 +25,6 @@ const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 //   UserButton,
 // } from '@clerk/nextjs'
 // import { UserSync } from "@/components/UserSync";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,65 +43,125 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// JSON-LD Structured Data for the Organization and Website
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.craftui.space/#organization",
+      name: "CraftUI",
+      url: "https://www.craftui.space",
+      logo: "https://www.craftui.space/logo.png",
+      // TODO: Add your logo file at: /public/logo.png (preferably SVG or PNG, 1200x630px for og:image)
+      sameAs: [],
+      description: "A modern, accessible UI component library with interactive SVG icons, loaders, and UI blocks for building beautiful web applications.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.craftui.space/#website",
+      url: "https://www.craftui.space",
+      name: "CraftUI - Interactive SVG Icons & UI Components Library",
+      description: "Explore interactive SVG icons, loaders, and UI components for modern web design. Free, customizable, and built with React and Tailwind CSS.",
+      publisher: {
+        "@id": "https://www.craftui.space/#organization",
+      },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "https://www.craftui.space/search?q={search_term_string}",
+        },
+        query_input: "required name=search_term_string",
+      },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.indrabuildswebsites.com/"),
-  title: "Indranil Maiti | Full Stack & GenAI Developer",
-  description: "I am a Full Stack Developer and Gen AI specialist with expertise in React, Next.js, Node.js, and AI integration for scalable web applications. I build modern, responsive, and fast websites that drive results. I focus on microinteractions, animations , and user-centric design to create engaging digital experiences. I integrate AI technologies, Google Search Console, Google Analytics, Google Tag Manager, and SEO best practices to enhance website performance and user engagement.",
+  metadataBase: new URL("https://www.craftui.space"),
+  title: "CraftUI - Interactive SVG Icons & UI Components Library",
+  description:
+    "CraftUI is a modern, accessible UI component library featuring interactive SVG icons, animated loaders, and reusable UI blocks. Build beautiful, responsive web applications with customizable components. Explore icons, loaders, and blocks designed for developers.",
   keywords: [
-    "GenAI developer",
-    "Full stack web developer",
-    "Google Analytics",
-    "Google Tag Manager",
-    "Google Search Console",
-    "SEO specialist",
-    "React developer",
-    "Next.js developer",
-    "Node.js developer",
-    "AI integration",
-    "Scalable web applications",
-    "Modern web technologies",
-    "Freelance developer",
-    "Responsive web design",
-    "Web development services",
-    "Digital experiences",
-    "User-centric design",
-    "Microinteractions",
-    "Web animations"
+    "UI components",
+    "Component library",
+    "SVG icons",
+    "Icon library",
+    "Loaders",
+    "Loading animations",
+    "UI blocks",
+    "React components",
+    "Next.js components",
+    "Tailwind CSS",
+    "Web design",
+    "Design system",
+    "Interactive components",
+    "Animated loaders",
+    "Customizable icons",
+    "Frontend development",
+    "Web development",
+    "Design resources",
+    "Component showcase",
+    "Modern UI",
   ],
   openGraph: {
-    title: "Indranil Maiti | Full Stack & GenAI Developer",
-    description: "I am a Full Stack Developer and Gen AI specialist with expertise in React, Next.js, Node.js, and AI integration for scalable web applications. I build modern, responsive, and fast websites that drive results. I focus on microinteractions, animations , and user-centric design to create engaging digital experiences.",
+    title: "CraftUI - Interactive SVG Icons & UI Components Library",
+    description:
+      "Discover interactive SVG icons, animated loaders, and reusable UI components for your next project. Customizable, accessible, and built for modern web development.",
+    url: "https://www.craftui.space",
+    siteName: "CraftUI",
     images: [
       {
-        url: "/images/profileOG.jpeg",
+        url: "https://www.craftui.space/og-image.png",
+        // TODO: Add your OG image at: /public/og-image.png (1200x630px recommended)
         width: 1200,
         height: 630,
-        alt: "Indranil Maiti - Full Stack Developer and GenAI Specialist"
-      }
+        alt: "CraftUI - Interactive SVG Icons & UI Components Library",
+        type: "image/png",
+      },
     ],
     type: "website",
-    locale: "en_US"
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Indranil Maiti | Full Stack & GenAI Developer",
-    description: "Building scalable web applications and AI-driven solutions with modern technologies.",
-    images: ["/images/profileOG.jpeg"],
-    creator: "@Nil_phy_dreamer"
+    title: "CraftUI - Interactive SVG Icons & UI Components Library",
+    description:
+      "Explore interactive SVG icons, animated loaders, and customizable UI components for modern web applications.",
+    images: ["https://www.craftui.space/og-image.png"],
+    // TODO: Add Twitter creator handle if you have one
+    // creator: "@yourTwitterHandle",
+    site: "@craftui",
   },
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-  authors: [
-    {
-      name: "Indranil Maiti",
-      url: "https://github.com/Indra-photon"
-    }
-  ],
-  verification: {
-    google: "nRI3uI23PmnAb9gJVCWJI0_OKTObahkZIlcSwnhmqJo"
-  }
+  alternates: {
+    canonical: "https://www.craftui.space",
+  },
+  applicationName: "CraftUI",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "CraftUI",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({
@@ -111,19 +171,47 @@ export default function RootLayout({
 }>) {
   return (
     // <ClerkProvider>
-    <html lang="en" suppressHydrationWarning className={cn("font-sans", inter.variable, geistHeading.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("font-sans", inter.variable, geistHeading.variable)}
+    >
+      <head>
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* Favicon - TODO: Add your favicon at /public/favicon.ico */}
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <MotionProvider>
             <NavBar />
             {/* <UserSync /> */}
             {children}
             <GoogleTagManager gtmId="Your GTM ID" />
             <Toaster position="top-right" />
-            <DialRoot productionEnabled position="bottom-right" theme="light" defaultOpen={false} />
+            <DialRoot
+              productionEnabled
+              position="bottom-right"
+              theme="light"
+              defaultOpen={false}
+            />
           </MotionProvider>
+          <Analytics />
+          <Script
+            src="https://cloud.umami.is/script.js"
+            data-website-id="12be97c1-8b62-4f75-9793-a78ef4aa27e4"
+          />
         </ThemeProvider>
       </body>
     </html>
