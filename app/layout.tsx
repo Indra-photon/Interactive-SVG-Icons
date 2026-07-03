@@ -55,14 +55,16 @@ const jsonLd = {
       logo: "https://www.craftui.space/logo.png",
       // TODO: Add your logo file at: /public/logo.png (preferably SVG or PNG, 1200x630px for og:image)
       sameAs: [],
-      description: "A modern, accessible UI component library with interactive SVG icons, loaders, and UI blocks for building beautiful web applications.",
+      description:
+        "A modern, accessible UI component library with interactive SVG icons, loaders, and UI blocks for building beautiful web applications.",
     },
     {
       "@type": "WebSite",
       "@id": "https://www.craftui.space/#website",
       url: "https://www.craftui.space",
       name: "CraftUI - Interactive SVG Icons & UI Components Library",
-      description: "Explore interactive SVG icons, loaders, and UI components for modern web design. Free, customizable, and built with React and Tailwind CSS.",
+      description:
+        "Explore interactive SVG icons, loaders, and UI components for modern web design. Free, customizable, and built with React and Tailwind CSS.",
       publisher: {
         "@id": "https://www.craftui.space/#organization",
       },
@@ -70,7 +72,8 @@ const jsonLd = {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: "https://www.craftui.space/search?q={search_term_string}",
+          urlTemplate:
+            "https://www.craftui.space/search?q={search_term_string}",
         },
         query_input: "required name=search_term_string",
       },
@@ -188,31 +191,31 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
-          <MotionProvider>
-            <NavBar />
-            {/* <UserSync /> */}
-            {children}
-            <GoogleTagManager gtmId="Your GTM ID" />
-            <Toaster position="top-right" />
-            <DialRoot
-              productionEnabled
-              position="bottom-right"
-              theme="light"
-              defaultOpen={false}
-            />
-          </MotionProvider>
-          <Analytics />
-          <Script
-            src="https://cloud.umami.is/script.js"
-            data-website-id="12be97c1-8b62-4f75-9793-a78ef4aa27e4"
+        > */}
+        <MotionProvider>
+          <NavBar />
+          {/* <UserSync /> */}
+          {children}
+          <GoogleTagManager gtmId="Your GTM ID" />
+          <Toaster position="top-right" />
+          <DialRoot
+            productionEnabled
+            position="bottom-right"
+            theme="light"
+            defaultOpen={false}
           />
-        </ThemeProvider>
+        </MotionProvider>
+        <Analytics />
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="12be97c1-8b62-4f75-9793-a78ef4aa27e4"
+        />
+        {/* </ThemeProvider> */}
       </body>
     </html>
     // </ClerkProvider>
