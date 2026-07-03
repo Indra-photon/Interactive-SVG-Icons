@@ -8,7 +8,7 @@
     "@heroicons/react"
   ],
   "registryDependencies": [
-    "http://localhost:3000/r/craftui-base.json",
+    "https://www.craftui.space/r/craftui-base.json",
     "button"
   ],
   "files": [
