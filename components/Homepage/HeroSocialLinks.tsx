@@ -11,10 +11,22 @@ import {
 } from "@hugeicons/core-free-icons";
 
 const SOCIAL_LINKS = [
-  { icon: NewTwitterIcon, href: "https://x.com", label: "X" },
-  { icon: PinterestIcon, href: "https://pinterest.com", label: "Pinterest" },
-  { icon: YoutubeIcon, href: "https://youtube.com", label: "YouTube" },
-  { icon: GlobeIcon, href: "https://craftui.design", label: "Website" },
+  { icon: NewTwitterIcon, href: "https://x.com/Nil_phy_dreamer", label: "X" },
+  {
+    icon: PinterestIcon,
+    href: "https://pl.pinterest.com/nildev022/",
+    label: "Pinterest",
+  },
+  {
+    icon: YoutubeIcon,
+    href: "https://www.youtube.com/@indranilmaiti842",
+    label: "YouTube",
+  },
+  {
+    icon: GlobeIcon,
+    href: "https://www.indrabuildswebsites.com/",
+    label: "Website",
+  },
 ];
 
 function MagneticIcon({
