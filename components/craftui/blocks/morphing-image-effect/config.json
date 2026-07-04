@@ -24,7 +24,13 @@
         "prefers-reduced-motion: t-resize transition is disabled via media query",
         "Single Image element reused across all stages — no clone, no re-mount"
       ],
-      "inspiration": []
+      "inspiration": [
+        {
+          "label": "Pinterest",
+          "url": "https://pin.it/6u9g0OGHu",
+          "type": "website"
+        }
+      ]
     }
   ]
 }

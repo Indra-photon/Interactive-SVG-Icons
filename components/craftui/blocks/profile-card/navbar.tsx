@@ -13,10 +13,33 @@ import {
   FlashIcon,
 } from "@hugeicons/core-free-icons";
 
-// ── Constants ─────────────────────────────────────────────────────────────────
+// ── Types ─────────────────────────────────────────────────────────────────────
 
-const MENU_GROUP_1 = [
-  { label: "Profile", icon: CheckmarkBadge01Icon, badge: null, active: true },
+type HugeIcon = React.ComponentProps<typeof HugeiconsIcon>["icon"];
+
+export type MenuItem = {
+  label: string;
+  icon: HugeIcon;
+  badge?: React.ReactNode;
+  active?: boolean;
+  onClick?: () => void;
+  /** Renders a divider below this item — used to visually group rows. */
+  dividerAfter?: boolean;
+};
+
+export interface ProfileCardProps {
+  name?: string;
+  email?: string;
+  /** Avatar slot — defaults to DefaultAvatar. Pass an <img>, next/image, or any node. */
+  avatar?: React.ReactNode;
+  menuItems?: MenuItem[];
+  className?: string;
+}
+
+// ── Default content ──────────────────────────────────────────────────────────
+
+const DEFAULT_MENU_ITEMS: MenuItem[] = [
+  { label: "Profile", icon: CheckmarkBadge01Icon, active: true },
   {
     label: "Community",
     icon: UserGroupIcon,
@@ -25,7 +48,6 @@ const MENU_GROUP_1 = [
         +
       </span>
     ),
-    active: false,
   },
   {
     label: "Subscription",
@@ -41,21 +63,27 @@ const MENU_GROUP_1 = [
         PRO
       </span>
     ),
-    active: false,
   },
-  { label: "Settings", icon: Settings01Icon, badge: null, active: false },
-];
-
-const MENU_GROUP_2 = [
-  { label: "Help center", icon: HelpCircleIcon, badge: null, active: false },
-  { label: "Sign out", icon: Logout01Icon, badge: null, active: false },
+  { label: "Settings", icon: Settings01Icon, dividerAfter: true },
+  { label: "Help center", icon: HelpCircleIcon },
+  { label: "Sign out", icon: Logout01Icon },
 ];
 
 const SPRING = { type: "spring", duration: 0.5, bounce: 0.25 } as const;
 
+/** Splits a flat item list into groups, breaking after each `dividerAfter` item. */
+function splitIntoSegments(items: MenuItem[]): MenuItem[][] {
+  const segments: MenuItem[][] = [[]];
+  for (const item of items) {
+    segments[segments.length - 1].push(item);
+    if (item.dividerAfter) segments.push([]);
+  }
+  return segments.filter((segment) => segment.length > 0);
+}
+
 // ── Avatar ────────────────────────────────────────────────────────────────────
 
-function Avatar({ size }: { size: number }) {
+export function DefaultAvatar({ size }: { size: number }) {
   return (
     <div
       style={{ width: size, height: size, borderRadius: size / 2 }}
@@ -76,14 +104,11 @@ function Avatar({ size }: { size: number }) {
 
 // ── MenuRow ───────────────────────────────────────────────────────────────────
 
-function MenuRow({
-  item,
-}: {
-  item: (typeof MENU_GROUP_1)[0] | (typeof MENU_GROUP_2)[0];
-}) {
+function MenuRow({ item }: { item: MenuItem }) {
   return (
     <motion.button
       whileTap={{ scale: 0.98 }}
+      onClick={item.onClick}
       className={`flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors select-none ${
         item.active ? "bg-black/[0.06]" : "hover:bg-black/[0.04]"
       }`}
@@ -106,19 +131,31 @@ function MenuRow({
 
 // ── Root ──────────────────────────────────────────────────────────────────────
 
-export default function ProfileCard() {
+export default function ProfileCard({
+  name = "Sophie Bennett",
+  email = "sophie@ui.live",
+  avatar,
+  menuItems = DEFAULT_MENU_ITEMS,
+  className,
+}: ProfileCardProps = {}) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [menuReady, setMenuReady] = React.useState(false);
 
   React.useEffect(() => {
-    if (!isOpen) { setMenuReady(false); return; }
+    if (!isOpen) {
+      setMenuReady(false);
+      return;
+    }
     // delay + duration of the fade wrapper animation (0.18 + 0.2 = 0.38s)
     const id = setTimeout(() => setMenuReady(true), 400);
     return () => clearTimeout(id);
   }, [isOpen]);
 
+  const collapsedAvatar = avatar ?? <DefaultAvatar size={36} />;
+  const expandedAvatar = avatar ?? <DefaultAvatar size={42} />;
+
   return (
-    <div className="relative h-full w-full">
+    <div className={`relative h-full w-full ${className ?? ""}`}>
       {/* Dismiss overlay — scoped to whatever container this is placed in */}
       <AnimatePresence>
         {isOpen && (
@@ -148,7 +185,7 @@ export default function ProfileCard() {
               transition={SPRING}
               className="absolute inset-[2px] overflow-hidden rounded-full"
             >
-              <Avatar size={36} />
+              {collapsedAvatar}
             </motion.div>
           </div>
         </motion.div>
@@ -175,7 +212,7 @@ export default function ProfileCard() {
                 transition={SPRING}
                 className="absolute inset-[3px] overflow-hidden rounded-full"
               >
-                <Avatar size={42} />
+                {expandedAvatar}
               </motion.div>
             </div>
 
@@ -188,29 +225,26 @@ export default function ProfileCard() {
             >
               <div className="px-4 pt-4 pr-16 pb-3">
                 <p className="text-[16px] font-bold tracking-tight text-black antialiased">
-                  Sophie Bennett
+                  {name}
                 </p>
                 <p className="mt-0.5 text-xs text-black/40 antialiased">
-                  sophie@ui.live
+                  {email}
                 </p>
               </div>
 
               <div className="mx-1 h-px bg-black/[0.06]" />
 
               <div className={menuReady ? undefined : "pointer-events-none"}>
-                <div className="flex flex-col p-2">
-                  {MENU_GROUP_1.map((item) => (
-                    <MenuRow key={item.label} item={item} />
-                  ))}
-                </div>
-
-                <div className="mx-1 h-px bg-black/[0.06]" />
-
-                <div className="flex flex-col p-2">
-                  {MENU_GROUP_2.map((item) => (
-                    <MenuRow key={item.label} item={item} />
-                  ))}
-                </div>
+                {splitIntoSegments(menuItems).map((segment, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && <div className="mx-1 h-px bg-black/[0.06]" />}
+                    <div className="flex flex-col p-2">
+                      {segment.map((item) => (
+                        <MenuRow key={item.label} item={item} />
+                      ))}
+                    </div>
+                  </React.Fragment>
+                ))}
               </div>
             </motion.div>
           </motion.div>
