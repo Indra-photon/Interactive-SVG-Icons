@@ -33,8 +33,8 @@ export default function ClipPreview() {
 
   return (
     <div className="flex min-h-full w-full items-center justify-center bg-background p-10 antialiased">
-      <div className="w-full max-w-lg">
-        <h2 className="mb-6 text-xl font-regular text-foreground text-balance">
+      <div className="w-full border border-border rounded-lg bg-card">
+        <h2 className="mb-6 text-xl font-regular text-black font-bold text-balance p-3">
           Frequently asked questions
         </h2>
         <ClipAccordion

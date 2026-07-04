@@ -26,8 +26,8 @@ export function DefaultButton() {
           damping: 17
         }}
       >
-        <IconBulb 
-          size={20} 
+        <IconBulb
+          size={20}
           isActive={isHovered}
           color="#f59e0b"
         />

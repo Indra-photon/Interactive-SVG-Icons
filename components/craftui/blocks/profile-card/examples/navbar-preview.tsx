@@ -1,6 +1,31 @@
 "use client";
 
-import ProfileCard from "../navbar";
+import {
+  CheckmarkBadge01Icon,
+  Notification01Icon,
+  PaintBoardIcon,
+  Logout01Icon,
+} from "@hugeicons/core-free-icons";
+import ProfileCard, { type MenuItem } from "../navbar";
+
+const MENU_ITEMS: MenuItem[] = [
+  { label: "Profile", icon: CheckmarkBadge01Icon, active: true },
+  {
+    label: "Notifications",
+    icon: Notification01Icon,
+    badge: (
+      <span className="flex size-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+        3
+      </span>
+    ),
+  },
+  { label: "Appearance", icon: PaintBoardIcon, dividerAfter: true },
+  {
+    label: "Sign out",
+    icon: Logout01Icon,
+    onClick: () => console.log("Sign out clicked"),
+  },
+];
 
 export default function NavbarPreview() {
   return (
@@ -30,7 +55,11 @@ export default function NavbarPreview() {
         </div>
 
         {/* Pure component — fills the frame, positions avatar in its top-right */}
-        <ProfileCard />
+        <ProfileCard
+          name="Sophie Bennett"
+          email="sophie@ui.live"
+          menuItems={MENU_ITEMS}
+        />
       </div>
     </div>
   );

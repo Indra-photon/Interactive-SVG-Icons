@@ -4,7 +4,7 @@
   "tier": "free",
   "dependencies": [],
   "registryDependencies": [
-    "https://www.craftui.space/r/craftui-base.json"
+    "http://localhost:3000/r/craftui-base.json"
   ],
   "files": [
     {

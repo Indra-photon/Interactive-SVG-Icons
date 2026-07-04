@@ -1,46 +1,74 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { TrashIcon } from '../default';
-import {motion} from 'motion/react';
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { TrashIcon } from "../default";
+
+const buttonCopy = {
+  idle: "Delete",
+  loading: "Deleting...",
+  success: "Deleted!",
+};
 
 export function DefaultDeleteButton() {
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [buttonState, setButtonState] =
+    useState<keyof typeof buttonCopy>("idle");
 
   const handleDelete = () => {
-    setIsAnimating(true);
-    
+    if (buttonState === "success") return;
+
+    setButtonState("loading");
+
     // ⚠️ DEMO ONLY: Using setTimeout to simulate backend API call
     // In your real application, replace this with your actual backend logic:
-    // 
+    //
     // Example with fetch:
     // const response = await fetch('/api/delete', { method: 'DELETE' });
-    // setIsAnimating(false);
+    // setButtonState('success');
     //
     // Example with React Query:
     // const { mutate, isPending } = useMutation({ ... });
     // <TrashIcon isAnimating={isPending} />
     //
     setTimeout(() => {
-      setIsAnimating(false);
-      // Your success/error handling here
-    }, 2000);
+      setButtonState("success");
+    }, 1750);
+
+    setTimeout(() => {
+      setButtonState("idle");
+    }, 3500);
   };
 
   return (
-    <motion.button 
+    <motion.button
       onClick={handleDelete}
-      disabled={isAnimating}
-      transition={{duration: 0.3, type: 'spring', stiffness: 300, damping: 25 }}
+      disabled={buttonState === "loading"}
       layout
-      className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-75 disabled:cursor-not-allowed"
+      className="flex w-32 items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-75 disabled:cursor-not-allowed"
     >
-      <TrashIcon size={20} isAnimating={isAnimating} />
-      <motion.span layoutId='delete-text'
-      animate={{ opacity: isAnimating ? 0.5 : 1 }}
-      transition={{ duration: 0.1, type: 'spring', stiffness: 300, damping: 25 }}>
-        {isAnimating ? 'Deleting...' : 'Delete'}
-      </motion.span>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+          initial={{ opacity: 0, y: -25 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 25 }}
+          key={`icon-${buttonState}`}
+          className="inline-flex"
+        >
+          <TrashIcon size={20} isAnimating={buttonState === "loading"} />
+        </motion.span>
+      </AnimatePresence>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+          initial={{ opacity: 0, y: -25 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 25 }}
+          key={buttonState}
+        >
+          {buttonCopy[buttonState]}
+        </motion.span>
+      </AnimatePresence>
     </motion.button>
   );
 }

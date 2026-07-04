@@ -16,11 +16,79 @@
       "animationType": "click",
       "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
       "registryDependencies": [],
-      "props": [],
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Display name shown in the expanded card header."
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "required": false,
+          "description": "Email shown below the name in the expanded card header."
+        },
+        {
+          "name": "avatar",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Avatar slot rendered both collapsed (36px) and expanded (42px). Defaults to DefaultAvatar. Pass an <img>, next/image, or any node."
+        },
+        {
+          "name": "menuItems",
+          "type": "MenuItem[]",
+          "required": false,
+          "description": "Flat list of menu rows. Defaults to the built-in Profile/Community/Subscription/Settings/Help/Sign out set."
+        },
+        {
+          "name": "menuItems[].label",
+          "type": "string",
+          "required": true,
+          "description": "Row label text."
+        },
+        {
+          "name": "menuItems[].icon",
+          "type": "HugeIcon",
+          "required": true,
+          "description": "HugeIcons icon component rendered in the row."
+        },
+        {
+          "name": "menuItems[].badge",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Trailing slot — pass a count pill, a PRO badge, or any node."
+        },
+        {
+          "name": "menuItems[].active",
+          "type": "boolean",
+          "required": false,
+          "description": "Highlights the row background."
+        },
+        {
+          "name": "menuItems[].onClick",
+          "type": "() => void",
+          "required": false,
+          "description": "Click handler for the row."
+        },
+        {
+          "name": "menuItems[].dividerAfter",
+          "type": "boolean",
+          "required": false,
+          "description": "Renders a full-width divider below this row — used to group rows without needing a nested array."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the root wrapper."
+        }
+      ],
       "features": [
         "Shared layout animation (layoutId) morphs the avatar from 40px to a 310px card — no clone, one continuous motion",
         "Avatar is a separate layoutId child so it independently transitions size and position",
-        "Menu items stagger in with a blur + translate-y entrance, two groups with different delays",
+        "Flat menuItems array with a per-row dividerAfter flag — grouping without a nested array shape",
+        "Avatar, badges, and click handlers are all composable slots per menu item, same pattern as SubItem Navbar's panel slot",
         "Dismiss overlay is scoped inside the phone frame so clicks outside the card close it",
         "PRO badge, community badge, and active row highlight are all composable per menu item"
       ],
