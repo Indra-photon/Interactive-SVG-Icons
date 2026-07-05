@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { Suspense } from 'react';
 import type { LoaderRegistry } from '@/types/loader';
 import { buildLoaderSidebarNodes } from '@/lib/sidebar-data';
-import { LoadersPageShell } from '@/components/loader-gallery/LoadersPageShell';
+import { LoaderGalleryShell } from '@/components/loader-gallery/LoaderGalleryShell';
 
 function loadLoaderData() {
   const registryPath = path.join(process.cwd(), 'public/r/loaders.json');
@@ -11,7 +10,7 @@ function loadLoaderData() {
   return registry.loaders;
 }
 
-export default function LoadersPage() {
+export default function LoaderGalleryPage() {
   const loaders = loadLoaderData();
   const sidebarNodes = buildLoaderSidebarNodes(loaders);
 
@@ -24,15 +23,7 @@ export default function LoadersPage() {
     },
   ];
 
-  const firstSlug = loaders[0]?.slug ?? '';
-
   return (
-    <Suspense>
-      <LoadersPageShell
-        loaders={loaders}
-        sidebarSections={sidebarSections}
-        firstSlug={firstSlug}
-      />
-    </Suspense>
+    <LoaderGalleryShell loaders={loaders} sidebarSections={sidebarSections} />
   );
 }

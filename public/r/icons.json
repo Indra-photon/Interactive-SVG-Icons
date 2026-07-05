@@ -1,6 +1,59 @@
 {
   "icons": [
     {
+      "slug": "tab-open",
+      "name": "Tab Open Icon",
+      "category": "navigation",
+      "tags": [
+        "tab",
+        "open",
+        "new-tab",
+        "window",
+        "browser",
+        "navigate"
+      ],
+      "description": "Icon for opening in new tab or window with animated opening effect",
+      "createdAt": "2026-02-18T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "tier": "free",
+          "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isHovered",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "trash",
       "name": "Trash Icon",
       "category": "actions",
@@ -183,59 +236,6 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the dissolve animation state. Set to true during delete operations."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "tab-open",
-      "name": "Tab Open Icon",
-      "category": "navigation",
-      "tags": [
-        "tab",
-        "open",
-        "new-tab",
-        "window",
-        "browser",
-        "navigate"
-      ],
-      "description": "Icon for opening in new tab or window with animated opening effect",
-      "createdAt": "2026-02-18T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Default",
-          "tier": "free",
-          "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
-          "animationType": "hover",
-          "dependencies": [
-            "motion/react"
-          ],
-          "props": [
-            {
-              "name": "size",
-              "type": "number",
-              "default": 24,
-              "required": false,
-              "description": "Width and height of the icon in pixels",
-              "min": 8,
-              "max": 256,
-              "step": 1
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "default": "",
-              "required": false,
-              "description": "Additional CSS classes to apply to the SVG element"
-            },
-            {
-              "name": "isHovered",
-              "type": "boolean",
-              "default": false,
-              "required": false,
-              "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
             }
           ]
         }
@@ -1270,5 +1270,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-04T09:55:59.717Z"
+  "lastUpdated": "2026-07-05T06:38:36.412Z"
 }

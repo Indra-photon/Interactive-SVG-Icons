@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -12,6 +13,7 @@ import {
 import { IconConfigurator } from "./IconConfigurator";
 import { ButtonCodeDisplay } from "./ButtonCodeDisplay";
 import { CopyButton } from "./CopyButton";
+import { MorphArrow } from "@/components/ui/morph-arrow";
 import type { Icon, InspirationLink } from "@/types/icon";
 
 // ── Right panel shadow (inset from left edge, shadows over border) ─────────────
@@ -29,6 +31,8 @@ function VariationPreviewCard({
   variation: Icon["variations"][number];
   onSelect: () => void;
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   const VariationComponent = dynamic(
     () =>
       import(`@/components/craftui/icons/${iconSlug}/${variation.name}.tsx`)
@@ -46,26 +50,29 @@ function VariationPreviewCard({
   return (
     <button
       onClick={onSelect}
-      className="group border border-stone-200 dark:border-stone-700 rounded-xl p-5 text-left hover:border-stone-400 dark:hover:border-stone-500 hover:shadow-sm transition-[border-color,box-shadow] duration-150"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group corner-squircle rounded-[10px] border border-stone-200 dark:border-stone-700 p-3 text-left hover:border-stone-400 dark:hover:border-stone-500 hover:shadow-sm transition-[border-color,box-shadow] duration-150"
     >
-      <div className="aspect-square bg-stone-50 dark:bg-stone-800 rounded-lg mb-4 flex items-center justify-center group-hover:bg-stone-100 dark:group-hover:bg-stone-700/60 transition-colors duration-150">
-        <VariationComponent size={52} />
+      <div className="aspect-square bg-stone-50 dark:bg-stone-800 corner-squircle rounded-[8px] mb-2.5 flex items-center justify-center group-hover:bg-stone-100 dark:group-hover:bg-stone-700/60 transition-colors duration-150">
+        <VariationComponent size={32} />
       </div>
-      <div className="flex items-start justify-between gap-2">
-        <div>
-          <p className="font-medium text-stone-900 dark:text-stone-100 text-sm">
+      <div className="flex items-start justify-between gap-1.5">
+        <div className="min-w-0">
+          <p className="font-sans font-medium text-foreground text-xs truncate">
             {variation.displayName}
           </p>
-          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5 line-clamp-2">
+          <p className="text-[11px] text-foreground/60 tracking-tighter mt-0.5 line-clamp-2">
             {variation.description}
           </p>
         </div>
-        <span className="shrink-0 px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 rounded text-[10px] font-medium">
+        <span className="shrink-0 px-1 py-0.5 bg-primary/10 text-primary rounded-[4px] text-[9px] font-mono uppercase tracking-wide">
           {variation.tier}
         </span>
       </div>
-      <p className="mt-3 text-xs text-stone-400 group-hover:text-stone-600 dark:group-hover:text-stone-300 transition-colors duration-150">
-        Configure →
+      <p className="mt-2 flex items-center gap-1 text-[11px] font-mono uppercase tracking-widest text-foreground/50 group-hover:text-foreground transition-colors duration-150">
+        Configure
+        <MorphArrow isHovered={isHovered} size={11} />
       </p>
     </button>
   );
@@ -82,14 +89,14 @@ function IconOverview({
 }) {
   return (
     <div className="overflow-y-auto py-10 px-8">
-      <div className="max-w-2xl">
-        <p className="text-xs font-mono text-stone-400 uppercase tracking-widest mb-2">
+      <div className="max-w-4xl">
+        <p className="text-xs font-mono text-foreground/80 uppercase tracking-widest mb-2">
           {icon.category}
         </p>
-        <h1 className="text-3xl font-semibold text-stone-900 dark:text-stone-100 mb-2 text-wrap-balance">
+        <h1 className="text-2xl font-sans text-foreground text-wrap-balance">
           {icon.name.replace(/ Icon$/i, "")}
         </h1>
-        <p className="text-stone-500 dark:text-stone-400 mb-8 text-wrap-pretty">
+        <p className="text-foreground/80 font-sans tracking-tighter mb-8 text-wrap-pretty">
           {icon.description}
         </p>
 
@@ -106,10 +113,10 @@ function IconOverview({
           </div>
         )}
 
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-4">
+        <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
           Variations
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-4 w-full gap-3">
           {icon.variations.map((v) => (
             <VariationPreviewCard
               key={v.name}

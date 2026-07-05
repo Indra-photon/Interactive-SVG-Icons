@@ -35,7 +35,12 @@ export default function IconsPage() {
   const sidebarNodes = buildIconSidebarNodes(icons);
 
   const sidebarSections = [
-    { id: 'icons', label: 'Icons', nodes: sidebarNodes },
+    {
+      id: 'icons',
+      label: 'Icons',
+      nodes: sidebarNodes,
+      topLink: { label: 'Gallery', href: '/icon-gallery' },
+    },
     // When loaders are ready: { id: 'loaders', label: 'Loaders', nodes: loaderNodes },
   ];
 
