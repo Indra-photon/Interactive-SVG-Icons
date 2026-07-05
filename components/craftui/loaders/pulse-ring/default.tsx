@@ -45,6 +45,7 @@ export function PulseRing({
           stroke={color}
           strokeWidth={thickness}
           fill="none"
+          initial={{ r: baseRadius, opacity: 1 }}
           animate={{
             r: [baseRadius, maxRadius],
             opacity: [1, 0],

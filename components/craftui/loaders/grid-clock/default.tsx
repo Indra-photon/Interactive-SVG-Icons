@@ -55,6 +55,7 @@ export function GridClock({
             cx={stride + col * stride}
             cy={stride + row * stride}
             fill={color}
+            initial={{ r: dotRadius * 0.4, opacity: 0.15 }}
             animate={{
               r: [dotRadius * 0.4, dotRadius, dotRadius * 0.4],
               opacity: [0.15, 1, 0.15],

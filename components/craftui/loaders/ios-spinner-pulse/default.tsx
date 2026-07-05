@@ -40,6 +40,7 @@ export function IosSpinnerPulse({
           rx={1.5}
           fill={color}
           transform={`rotate(${(360 / count) * i}, 50, 50)`}
+          initial={{ opacity: 0.1 }}
           animate={{ opacity: [0.1, 1, 0.35, 0.1] }}
           transition={{
             duration,

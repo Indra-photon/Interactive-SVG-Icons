@@ -50,6 +50,7 @@ export function SiriWave({
           rx={barRx}
           width={barWidth}
           fill={color}
+          initial={{ height: minH, y: 50 - minH / 2 }}
           animate={{
             height: [minH, maxH, minH],
             y: [50 - minH / 2, 50 - maxH / 2, 50 - minH / 2],

@@ -61,6 +61,7 @@ export function TriangleCascade({
               width={width}
               height={barHeight}
               fill={color}
+              initial={{ y: -barHeight }}
               animate={{
                 y: [-barHeight, barY],
               }}

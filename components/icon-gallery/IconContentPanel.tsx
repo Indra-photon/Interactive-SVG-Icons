@@ -89,7 +89,7 @@ function IconOverview({
 }) {
   return (
     <div className="overflow-y-auto py-10 px-8">
-      <div className="max-w-4xl">
+      <div className="w-full">
         <p className="text-xs font-mono text-foreground/80 uppercase tracking-widest mb-2">
           {icon.category}
         </p>

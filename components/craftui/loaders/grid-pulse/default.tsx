@@ -53,6 +53,7 @@ export function GridPulse({
               cx={cx}
               cy={cy}
               fill={color}
+              initial={{ r: dotRadius * 0.4, opacity: 0.15 }}
               animate={{
                 r: [dotRadius * 0.4, dotRadius, dotRadius * 0.4],
                 opacity: [0.15, 1, 0.15],

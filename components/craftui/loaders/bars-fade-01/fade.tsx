@@ -39,6 +39,7 @@ export function BarsFade({
           width={barWidth}
           height={size / 2}
           fill={color}
+          initial={{ opacity: 1 }}
           animate={{
             opacity: [1, 0.3, 1]
           }}
