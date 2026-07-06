@@ -103,6 +103,7 @@ async function buildRegistry(config: BuildConfig): Promise<GithubRegistryItem[]>
         icon.variations.push({
           name: variation.name,
           displayName: variation.displayName,
+          ...(variation.componentName && { componentName: variation.componentName }),
           tier: variation.tier,
           description: variation.description,
           animationType: variation.animationType,

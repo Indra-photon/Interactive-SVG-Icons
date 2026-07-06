@@ -37,6 +37,7 @@ export function IosSpinnerGrow({
             width={3}
             rx={1.5}
             fill={color}
+            initial={{ y: 34, height: 4, opacity: 0.1 }}
             animate={{
               y: [34, 26, 34],
               height: [4, 12, 4],

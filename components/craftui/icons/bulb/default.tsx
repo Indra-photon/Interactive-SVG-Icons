@@ -7,14 +7,20 @@ export interface BulbIconProps {
   color?: string;
   className?: string;
   isActive?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconBulb({
   size = 24,
   color = 'currentColor',
   className = '',
-  isActive = false
+  isActive = false,
+  duration = 0.3,
+  ease = 'easeOut',
 }: BulbIconProps) {
+  // Rays fire in sequence; stagger scales with duration (1/6 of it per step)
+  const step = duration / 6;
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
@@ -40,7 +46,7 @@ export function IconBulb({
           idle: { opacity: 0, scale: 0.5 },
           active: { opacity: 1, scale: 1 }
         }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration, ease: ease as any }}
         style={{ transformOrigin: "center", transformBox: "fill-box" }}
       />
       
@@ -54,7 +60,7 @@ export function IconBulb({
           idle: { opacity: 0, scale: 0.5 },
           active: { opacity: 1, scale: 1 }
         }}
-        transition={{ duration: 0.3, delay: 0.05, ease: "easeOut" }}
+        transition={{ duration, delay: step, ease: ease as any }}
         style={{ transformOrigin: "center", transformBox: "fill-box" }}
       />
       
@@ -68,7 +74,7 @@ export function IconBulb({
           idle: { opacity: 0, scale: 0.5 },
           active: { opacity: 1, scale: 1 }
         }}
-        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+        transition={{ duration, delay: step * 2, ease: ease as any }}
         style={{ transformOrigin: "center", transformBox: "fill-box" }}
       />
       
@@ -82,7 +88,7 @@ export function IconBulb({
           idle: { opacity: 0, scale: 0.5 },
           active: { opacity: 1, scale: 1 }
         }}
-        transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
+        transition={{ duration, delay: step * 3, ease: ease as any }}
         style={{ transformOrigin: "center", transformBox: "fill-box" }}
       />
       
@@ -96,7 +102,7 @@ export function IconBulb({
           idle: { opacity: 0, scale: 0.5 },
           active: { opacity: 1, scale: 1 }
         }}
-        transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration, delay: step * 4, ease: ease as any }}
         style={{ transformOrigin: "center", transformBox: "fill-box" }}
       />
       
@@ -108,7 +114,7 @@ export function IconBulb({
           idle: { fill: "none" },
           active: { fill: color }
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ duration, ease: ease as any }}
       />
       
       {/* Base/socket - always filled */}

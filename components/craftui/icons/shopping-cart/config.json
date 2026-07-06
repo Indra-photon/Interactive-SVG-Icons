@@ -2,7 +2,14 @@
   "slug": "shopping-cart",
   "name": "Shopping Cart Icon",
   "category": "ecommerce",
-  "tags": ["cart", "shopping", "ecommerce", "buy", "add", "basket"],
+  "tags": [
+    "cart",
+    "shopping",
+    "ecommerce",
+    "buy",
+    "add",
+    "basket"
+  ],
   "description": "Icon for shopping cart and add to cart actions",
   "createdAt": "2026-02-12T00:00:00Z",
   "variations": [
@@ -12,7 +19,9 @@
       "tier": "free",
       "description": "Item falls into cart from above and cart shakes when adding to cart",
       "animationType": "click",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
@@ -40,8 +49,31 @@
           "type": "boolean",
           "default": false,
           "description": "Triggers the add to cart animation. Set to true when item is being added to cart."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.6,
+          "required": false,
+          "description": "Duration of the handle drop in seconds; the cart shake scales with it",
+          "min": 0.1,
+          "max": 3,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [
+            0.34,
+            1.56,
+            0.64,
+            1
+          ],
+          "required": false,
+          "description": "Easing of the handle drop. Accepts a named ease or a cubic-bezier array."
         }
-      ]
+      ],
+      "componentName": "IconShoppingCart"
     }
   ]
 }

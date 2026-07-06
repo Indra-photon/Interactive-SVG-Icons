@@ -54,6 +54,7 @@ export function DotsCompress({
     <motion.svg
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      initial={{ width, height: startHeight }}
       animate={{
         width: [width, endWidth],
         height: [startHeight, endHeight]
@@ -66,6 +67,7 @@ export function DotsCompress({
       }}
     >
       <motion.g
+        initial={{ viewBox: `0 0 ${width} ${startHeight}` }}
         animate={{
           viewBox: [`0 0 ${width} ${startHeight}`, `0 0 ${endWidth} ${endHeight}`]
         }}
@@ -81,6 +83,7 @@ export function DotsCompress({
             key={dot.id}
             r={dotSize / 2}
             fill={color}
+            initial={{ cx: dot.startX, cy: dot.startY }}
             animate={{
               cx: [dot.startX, dot.endX],
               cy: [dot.startY, dot.endY]

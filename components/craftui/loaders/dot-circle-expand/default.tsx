@@ -66,6 +66,7 @@ export function DotCircleExpand({
           key={i}
           r={cornerR}
           fill={color}
+          initial={{ cx: pos.x, cy: pos.y }}
           animate={{
             cx: [pos.x, expandedPositions[i].x, expandedPositions[i].x, pos.x],
             cy: [pos.y, expandedPositions[i].y, expandedPositions[i].y, pos.y],

@@ -6,12 +6,16 @@ export interface ShoppingCartIconProps {
   size?: number;
   className?: string;
   isAdding?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconShoppingCart({
   size = 24,
   className = '',
-  isAdding = false
+  isAdding = false,
+  duration = 0.6,
+  ease = [0.34, 1.56, 0.64, 1],
 }: ShoppingCartIconProps) {
   return (
     <div className="relative inline-block" style={{ width: size, height: size }}>
@@ -37,9 +41,10 @@ export function IconShoppingCart({
                 x: [0, -1, 1, -1, 1, 0],
                 rotate: [0, -1, 1, -1, 1, 0],
                 transition: {
-                  duration: 0.4,
+                  // Shake keeps its ratio to the handle drop and starts as it lands
+                  duration: duration * (2 / 3),
                   times: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                  delay: 0.5, // Shake starts when handle lands
+                  delay: duration * (5 / 6),
                   ease: "easeInOut"
                 }
               }
@@ -66,9 +71,9 @@ export function IconShoppingCart({
                 ],
                 opacity: 1,
                 transition: {
-                  duration: 0.6,
+                  duration,
                   times: [0, 0.7, 1],
-                  ease: [0.34, 1.56, 0.64, 1], // Spring bounce
+                  ease: ease as any,
                 }
               }
             }}

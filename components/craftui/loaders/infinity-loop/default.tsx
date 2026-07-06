@@ -80,6 +80,7 @@ export function InfinityLoop({
       <motion.circle
         r={dotR}
         fill={color}
+        initial={{ cx: xKeyframes[0], cy: yKeyframes[0] }}
         animate={{
           cx: xKeyframes,
           cy: yKeyframes,

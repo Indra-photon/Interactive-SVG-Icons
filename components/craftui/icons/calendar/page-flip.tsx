@@ -6,29 +6,33 @@ export interface CalendarPageFlipProps {
   size?: number;
   className?: string;
   isFlipping?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
-
-// Body rotates in 3D along top edge (y-axis rotation with top as anchor)
-const bodyVariants = {
-  idle: { 
-    rotateX: 0,
-    transition: { duration: 0.3, ease: 'easeOut' as const }
-  },
-  flipping: {
-    rotateX: [0, -90, -180],
-    transition: {
-      duration: 0.6,
-      ease: [0.4, 0, 0.2, 1] as const,
-      times: [0, 0.5, 1]
-    }
-  }
-};
 
 export function IconCalendarPageFlip({
   size = 24,
   className = '',
   isFlipping = false,
+  duration = 0.6,
+  ease = [0.4, 0, 0.2, 1],
 }: CalendarPageFlipProps) {
+  // Body rotates in 3D along top edge (y-axis rotation with top as anchor)
+  const bodyVariants = {
+    idle: {
+      rotateX: 0,
+      transition: { duration: duration * 0.5, ease: 'easeOut' as const },
+    },
+    flipping: {
+      rotateX: [0, -90, -180],
+      transition: {
+        duration,
+        ease: ease as any,
+        times: [0, 0.5, 1],
+      },
+    },
+  };
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

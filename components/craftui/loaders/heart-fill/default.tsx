@@ -51,6 +51,7 @@ export function HeartFill({
           width={60}
           height={60}
           fill={color}
+          initial={{ y: 60 }}
           animate={{
             y: [60, 60, 0],
           }}

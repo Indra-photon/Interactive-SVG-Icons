@@ -20,12 +20,12 @@ export const navlinks: {
     icon: BirdhouseIcon,
   },
   {
-    url: "/icons",
+    url: "/icon-gallery",
     label: "Explore Icons",
     icon: BounceRightIcon,
   },
   {
-    url: "/loaders",
+    url: "/loader-gallery",
     label: "Explore Loaders",
     icon: LoaderPinwheelIcon,
   },

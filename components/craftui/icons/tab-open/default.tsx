@@ -6,29 +6,34 @@ export interface TabOpenDefaultProps {
   size?: number;
   className?: string;
   isHovered?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
-
-// Animation variants for the three parts
-const darkTabVariants = {
-  idle: { y: 0 },
-  hover: { y: -4, transition: { duration: 0.3, ease: 'easeOut' as const } }
-};
-
-const baseVariants = {
-  idle: { y: 0 },
-  hover: { y: 2, transition: { duration: 0.3, ease: 'easeOut' as const } }
-};
-
-const triangleVariants = {
-  idle: { y: 0 },
-  hover: { y: -6, transition: { duration: 0.3, ease: [0.34, 1.56, 0.64, 1] as const } } // Spring bounce
-};
 
 export function IconTabOpenDefault({
   size = 24,
   className = '',
   isHovered = false,
+  duration = 0.3,
+  ease = 'easeOut',
 }: TabOpenDefaultProps) {
+  // Animation variants for the three parts; the triangle keeps its
+  // spring-bounce bezier so the pop survives ease changes
+  const darkTabVariants = {
+    idle: { y: 0 },
+    hover: { y: -4, transition: { duration, ease: ease as any } },
+  };
+
+  const baseVariants = {
+    idle: { y: 0 },
+    hover: { y: 2, transition: { duration, ease: ease as any } },
+  };
+
+  const triangleVariants = {
+    idle: { y: 0 },
+    hover: { y: -6, transition: { duration, ease: [0.34, 1.56, 0.64, 1] as const } },
+  };
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

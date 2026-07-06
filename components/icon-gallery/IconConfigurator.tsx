@@ -4,17 +4,28 @@ import { useMemo, useState } from "react";
 import { useDialKit } from "dialkit";
 import { IconPreview } from "./IconPreview";
 import {
-  buildIconDialKitConfig,
-  buildIconNormalizedDefaults,
-  unpackIconDialKitValues,
+  buildDialKitConfig,
+  buildNormalizedDefaults,
+  unpackDialKitValues,
+  detectSpringMode,
   iconSlugToComponentName,
-} from "@/lib/icon-dialkit-config";
+  type DialKitBuildOptions,
+} from "@/lib/dialkit-config";
+import { useDialKitPanel } from "@/lib/useDialKitPanel";
 import type { PropDefinition } from "@/types/icon";
 import { Button } from "../ui/button";
+
+// Icon booleans are animation triggers managed by the preview; className is a
+// developer utility. Neither belongs in the DialKit panel.
+const ICON_DIALKIT_OPTS: DialKitBuildOptions = {
+  excludeBooleans: true,
+  excludeNames: ["className"],
+};
 
 interface IconVariation {
   name: string;
   displayName: string;
+  componentName?: string;
   tier: string;
   description: string;
   animationType: string;
@@ -42,9 +53,22 @@ function substituteSource(
         new RegExp(`(${name}\\s*=\\s*)["'][^"']*["'](?=,)`, "g"),
         `$1"${value}"`,
       );
+    } else if (Array.isArray(value)) {
+      result = result.replace(
+        new RegExp(
+          `(${name}\\s*=\\s*)(?:["'][^'"]*["']|\\[[^\\]]*\\])(?=,)`,
+          "g",
+        ),
+        `$1${JSON.stringify(value)}`,
+      );
     } else if (typeof value === "number") {
       result = result.replace(
         new RegExp(`(${name}\\s*=\\s*)[\\d.]+(?=,)`, "g"),
+        `$1${value}`,
+      );
+    } else if (typeof value === "boolean") {
+      result = result.replace(
+        new RegExp(`(${name}\\s*=\\s*)(?:true|false)(?=,)`, "g"),
         `$1${value}`,
       );
     }
@@ -65,6 +89,7 @@ function buildUsageSnippet(
   if (!changed.length) return `<${componentName} />`;
   const attrs = changed.map(([k, v]) => {
     if (typeof v === "string") return `  ${k}="${v}"`;
+    if (Array.isArray(v)) return `  ${k}={${JSON.stringify(v)}}`;
     return `  ${k}={${v}}`;
   });
   return `<${componentName}\n${attrs.join("\n")}\n/>`;
@@ -91,26 +116,34 @@ function IconConfiguratorInner({
   onReset,
 }: InnerProps) {
   const [copied, setCopied] = useState<"usage" | "source" | null>(null);
+  const { isOpen: dialKitOpen, toggle: toggleDialKit } = useDialKitPanel();
 
-  const componentName = iconSlugToComponentName(iconSlug);
+  const componentName =
+    variation.componentName || iconSlugToComponentName(iconSlug);
   const panelName = `${iconName} — ${variation.displayName}`;
 
   const dialKitConfig = useMemo(
-    () => buildIconDialKitConfig(variation.props),
+    () => buildDialKitConfig(variation.props, ICON_DIALKIT_OPTS),
     [variation.props],
   );
   const defaults = useMemo(
-    () => buildIconNormalizedDefaults(variation.props),
+    () => buildNormalizedDefaults(variation.props, ICON_DIALKIT_OPTS),
     [variation.props],
   );
 
   const rawParams = useDialKit(panelName, dialKitConfig) as Record<string, any>;
-  const propValues = useMemo(
-    () => unpackIconDialKitValues(rawParams),
-    [rawParams],
+
+  const isSpringMode = useMemo(
+    () => detectSpringMode(rawParams, variation.props),
+    [rawParams, variation.props],
   );
 
-  const changed = isChanged(propValues, defaults);
+  const propValues = useMemo(
+    () => unpackDialKitValues(rawParams, variation.props),
+    [rawParams, variation.props],
+  );
+
+  const changed = !isSpringMode && isChanged(propValues, defaults);
   const snippet = buildUsageSnippet(componentName, propValues, defaults);
 
   const copyUsage = async () => {
@@ -147,18 +180,23 @@ function IconConfiguratorInner({
       </div>
 
       {/* Hint + reset bar */}
-      <div className="flex items-center justify-end px-5 py-3 bg-white border-b border-stone-100">
-        <span className="text-[11px] font-mono text-stone-400">
+      <div className="flex items-center justify-end gap-2 px-5 py-3 bg-white border-b border-stone-100">
+        {isSpringMode ? (
+          <span className="text-[11px] font-mono text-amber-600">
+            Switch to <strong>Easing</strong> mode in the DialKit panel — spring
+            is not yet supported
+          </span>
+        ) : (
           <Button
-            asChild
             size="lg"
-            variant="outline"
-            className="corner-squircle w-full min-w-0 rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
+            variant={dialKitOpen ? "default" : "outline"}
+            className="corner-squircle rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
+            onClick={toggleDialKit}
           >
-            <span>Open in DialKit</span>
+            {dialKitOpen ? "Close DialKit" : "Open in DialKit"}
           </Button>
-        </span>
-        {changed && (
+        )}
+        {changed && !isSpringMode && (
           <Button
             asChild
             size="lg"

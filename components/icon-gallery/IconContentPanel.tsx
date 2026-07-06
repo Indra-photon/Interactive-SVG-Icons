@@ -89,7 +89,7 @@ function IconOverview({
 }) {
   return (
     <div className="overflow-y-auto py-10 px-8">
-      <div className="max-w-4xl">
+      <div className="w-full">
         <p className="text-xs font-mono text-foreground/80 uppercase tracking-widest mb-2">
           {icon.category}
         </p>
@@ -188,6 +188,7 @@ function VariationDetail({
             variation={{
               name: variation.name,
               displayName: variation.displayName,
+              componentName: variation.componentName,
               tier: variation.tier,
               description: variation.description,
               animationType: variation.animationType,
@@ -261,12 +262,13 @@ function VariationDetail({
                           )} */}
                         </td>
                         <td className="px-3 py-2 align-top font-mono text-foreground/80 whitespace-nowrap">
-                          {prop.type}
+                          {prop.type === "ease"
+                            ? "string | number[]"
+                            : prop.type}
                         </td>
                         <td className="px-3 py-2 align-top font-mono text-foreground/80 whitespace-nowrap">
-                          {typeof prop.default === "string" &&
-                          prop.default !== ""
-                            ? `${prop.default}`
+                          {Array.isArray(prop.default)
+                            ? JSON.stringify(prop.default)
                             : String(prop.default)}
                         </td>
                       </tr>

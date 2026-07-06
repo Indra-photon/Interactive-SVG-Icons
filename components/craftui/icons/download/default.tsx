@@ -9,6 +9,8 @@ interface IconDownloadProps {
   strokeLinecap?: 'round' | 'butt' | 'square';
   isAnimating?: boolean;
   className?: string;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconDownload({
@@ -18,6 +20,8 @@ export function IconDownload({
   strokeLinecap = 'round',
   isAnimating = false,
   className = '',
+  duration = 0.2,
+  ease = 'linear',
 }: IconDownloadProps) {
   return (
     <svg
@@ -38,7 +42,7 @@ export function IconDownload({
           idle: { y: 0, transition: { duration: 0 } },
           bounce: {
             y: [0, 5, 0],
-            transition: { duration: 0.2, times: [0, 0.5, 1], ease: 'linear' },
+            transition: { duration, times: [0, 0.5, 1], ease: ease as any },
           },
         }}
       >
@@ -53,7 +57,8 @@ export function IconDownload({
           hit: {
             y: [0, 0, 1.5, -0.4, 0],
             transition: {
-              duration: 0.45,
+              // Tray reacts after the arrow lands; keeps its ratio to the drop
+              duration: duration * 2.25,
               times: [0, 0.22, 0.44, 0.7, 1],
               ease: 'easeOut',
             },

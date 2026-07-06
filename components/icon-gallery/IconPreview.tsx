@@ -72,6 +72,10 @@ export function IconPreview({
   if (hasProp('isUnlocked')) triggerProps.isUnlocked = isAnimating;
   if (hasProp('isTyping')) triggerProps.isTyping = isAnimating;
 
+  // Key-driven icons (e.g. calendar slide-month) re-animate when the key changes
+  const keyProps: Record<string, number> = {};
+  if (hasProp('monthKey')) keyProps.monthKey = isAnimating ? 1 : 0;
+
   const hint =
     animationType === 'hover'
       ? 'hover to animate'
@@ -91,6 +95,7 @@ export function IconPreview({
       <IconComponent
         {...propValues}
         {...triggerProps}
+        {...keyProps}
         className=""
       />
       {hint && (

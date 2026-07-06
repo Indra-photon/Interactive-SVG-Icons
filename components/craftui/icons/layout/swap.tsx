@@ -7,6 +7,8 @@ export interface LayoutDashboardSwapProps {
   color?: string;
   className?: string;
   isHovered?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 // Idle state: top-left (tall) + bottom-right (tall) are filled
@@ -19,14 +21,15 @@ const paths = {
   topRightShort:  'M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1',
 };
 
-const transition = { duration: 0.4, ease: 'easeInOut' as const };
-
 export function IconLayoutDashboardSwap({
   size = 24,
   color = 'currentColor',
   className = '',
   isHovered = false,
+  duration = 0.4,
+  ease = 'easeInOut',
 }: LayoutDashboardSwapProps) {
+  const transition = { duration, ease: ease as any };
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

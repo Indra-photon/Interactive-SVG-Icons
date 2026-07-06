@@ -33,6 +33,10 @@
   --shadow-border-hover:
     0px 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px -1px rgba(0, 0, 0, 0.08),
     0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+  --input-shadow: var(--shadow-border);
+  --input-shadow-hover: var(--shadow-border-hover);
+  --input-shadow-focus:
+    0px 0px 0px 1px rgba(0, 0, 0, 0.16), 0px 0px 0px 4px rgba(0, 0, 0, 0.06);
 }
 
 @layer base {
@@ -324,6 +328,10 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --input-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --input-shadow-hover: 0 0 0 1px rgba(255, 255, 255, 0.13);
+  --input-shadow-focus:
+    0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 0 4px rgba(255, 255, 255, 0.1);
 }
 
 @layer base {

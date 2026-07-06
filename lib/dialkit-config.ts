@@ -1,5 +1,17 @@
-import type { PropDefinition } from '@/types/loader';
 import type { DialConfig, EasingConfig, TransitionConfig } from 'dialkit';
+
+// Structural superset of the icon / loader / ui PropDefinition types so this
+// module can serve all three families (icon descriptions are optional).
+export interface PropDefinition {
+  name: string;
+  type: string;
+  default: any;
+  options?: any[];
+  min?: number;
+  max?: number;
+  step?: number;
+  description?: string;
+}
 
 const NAMED_EASE_TO_BEZIER: Record<string, [number, number, number, number]> = {
   linear:    [0, 0, 1, 1],
@@ -9,8 +21,32 @@ const NAMED_EASE_TO_BEZIER: Record<string, [number, number, number, number]> = {
 };
 
 function normalizeColor(value: any): string {
-  if (typeof value === 'string' && value !== 'currentColor') return value;
+  // Strip surrounding single quotes from stringified defaults (legacy config.json format).
+  const raw = typeof value === 'string' ? value.replace(/^'|'$/g, '') : value;
+  if (typeof raw === 'string' && raw !== '' && raw !== 'currentColor') return raw;
   return '#000000';
+}
+
+/**
+ * Per-family tuning for the config/defaults builders.
+ * Icons pass { excludeBooleans: true, excludeNames: ['className'] } because
+ * their booleans are animation triggers (isHovered, isAnimating, …) managed
+ * by the preview, and className is a developer utility, not a dial.
+ */
+export interface DialKitBuildOptions {
+  excludeBooleans?: boolean;
+  excludeNames?: string[];
+}
+
+const HANDLED_TYPES = ['number', 'string', 'boolean', 'select', 'enum', 'strokeLinecap', 'ease'];
+
+function isExcluded(p: PropDefinition, opts?: DialKitBuildOptions): boolean {
+  if (p.name === 'width' || p.name === 'height') return true;
+  if (opts?.excludeNames?.includes(p.name)) return true;
+  if (opts?.excludeBooleans && p.type === 'boolean') return true;
+  // Skips types with no DialKit control (e.g. 'function' callbacks on icons).
+  if (!HANDLED_TYPES.includes(p.type)) return true;
+  return false;
 }
 
 function normalizeEase(value: any): [number, number, number, number] {
@@ -41,7 +77,10 @@ function findPairedDurationProp(
  * bundled into a single DialKit easing editor. Paired duration props are
  * excluded from the standalone slider list.
  */
-export function buildDialKitConfig(props: PropDefinition[]): DialConfig {
+export function buildDialKitConfig(
+  props: PropDefinition[],
+  opts?: DialKitBuildOptions,
+): DialConfig {
   const config: Record<string, any> = {};
 
   // Collect all duration prop names that are bundled into an ease control
@@ -55,7 +94,7 @@ export function buildDialKitConfig(props: PropDefinition[]): DialConfig {
   }
 
   for (const p of props) {
-    if (p.name === 'width' || p.name === 'height') continue;
+    if (isExcluded(p, opts)) continue;
     if (bundledDurationNames.has(p.name)) continue;
 
     switch (p.type) {
@@ -107,10 +146,13 @@ export function buildDialKitConfig(props: PropDefinition[]): DialConfig {
  * Ease values are normalized to cubic-bezier arrays so they match
  * what DialKit always returns (DialKit never returns named strings like 'easeOut').
  */
-export function buildNormalizedDefaults(props: PropDefinition[]): Record<string, any> {
+export function buildNormalizedDefaults(
+  props: PropDefinition[],
+  opts?: DialKitBuildOptions,
+): Record<string, any> {
   const defaults: Record<string, any> = {};
   for (const p of props) {
-    if (p.name === 'width' || p.name === 'height') continue;
+    if (isExcluded(p, opts)) continue;
     if (p.type === 'ease') defaults[p.name] = normalizeEase(p.default);
     else if (p.type === 'string') defaults[p.name] = normalizeColor(p.default);
     else defaults[p.name] = p.default;
@@ -148,6 +190,18 @@ export function detectSpringMode(
  * prop's own defaults so the preview keeps showing a valid animation.
  * The configurator reads detectSpringMode() and shows a warning in that case.
  */
+// Derives a component name from an icon slug for copy-usage snippets when the
+// variation's config.json does not declare an explicit componentName.
+// "alarm-clock" → "AlarmClockIcon", "trash" → "TrashIcon"
+export function iconSlugToComponentName(slug: string): string {
+  return (
+    slug
+      .split('-')
+      .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+      .join('') + 'Icon'
+  );
+}
+
 export function unpackDialKitValues(
   params: Record<string, any>,
   props: PropDefinition[]

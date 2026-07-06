@@ -7,37 +7,43 @@ export interface ExternalLinkDefaultProps {
   color?: string;
   className?: string;
   isHovered?: boolean;
+  duration?: number;
+  ease?: string | number[];
+  fillOpacity?: number;
 }
-
-// Arrow diagonal goes from (11, 13) → (20, 4) = 9px right, 9px up
-// Translation moves it further along that 45° diagonal, then bounces back
-const arrowTranslate = {
-  idle: { x: 0, y: 0 },
-  hover: { 
-    x: [0, 4, 0],
-    y: [0, -4, 0],
-    transition: {
-      duration: 0.5,
-      ease: 'easeInOut' as const,
-      times: [0, 0.5, 1]
-    }
-  }
-};
-
-const boxFill = {
-  idle: { opacity: 0 },
-  hover: { 
-    opacity: 0.2,
-    transition: { duration: 0.3, ease: 'easeOut' as const }
-  }
-};
 
 export function IconExternalLinkDefault({
   size = 24,
   color = 'currentColor',
   className = '',
   isHovered = false,
+  duration = 0.5,
+  ease = 'easeInOut',
+  fillOpacity = 0.2,
 }: ExternalLinkDefaultProps) {
+  // Arrow diagonal goes from (11, 13) → (20, 4) = 9px right, 9px up
+  // Translation moves it further along that 45° diagonal, then bounces back
+  const arrowTranslate = {
+    idle: { x: 0, y: 0 },
+    hover: {
+      x: [0, 4, 0],
+      y: [0, -4, 0],
+      transition: {
+        duration,
+        ease: ease as any,
+        times: [0, 0.5, 1],
+      },
+    },
+  };
+
+  const boxFill = {
+    idle: { opacity: 0 },
+    hover: {
+      opacity: fillOpacity,
+      transition: { duration: duration * 0.6, ease: 'easeOut' as const },
+    },
+  };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

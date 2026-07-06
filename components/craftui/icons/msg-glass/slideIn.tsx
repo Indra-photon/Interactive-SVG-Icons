@@ -6,40 +6,44 @@ export interface MessagesSlideInProps {
   size?: number;
   className?: string;
   isVisible?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
-
-// Left bubble slides from left
-const leftBubbleVariants = {
-  hidden: { x: -30, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.34, 1.56, 0.64, 1] as const // Spring bounce
-    }
-  }
-};
-
-// Right bubble slides from right with slight delay
-const rightBubbleVariants = {
-  hidden: { x: 30, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      delay: 0.1,
-      ease: [0.34, 1.56, 0.64, 1] as const // Spring bounce
-    }
-  }
-};
 
 export function IconMessagesSlideIn({
   size = 24,
   className = '',
   isVisible = true,
+  duration = 0.5,
+  ease = [0.34, 1.56, 0.64, 1],
 }: MessagesSlideInProps) {
+  // Left bubble slides from left
+  const leftBubbleVariants = {
+    hidden: { x: -30, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration,
+        ease: ease as any,
+      },
+    },
+  };
+
+  // Right bubble slides from right with slight delay
+  const rightBubbleVariants = {
+    hidden: { x: 30, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration,
+        delay: duration * 0.2,
+        ease: ease as any,
+      },
+    },
+  };
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

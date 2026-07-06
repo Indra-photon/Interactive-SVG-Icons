@@ -52,6 +52,7 @@ export function DotsRotate({
             key={dot.id}
             r={dotSize / 2}
             fill={color}
+            initial={{ cx: positions[dot.startPos].x, cy: positions[dot.startPos].y }}
             animate={{
               cx: [positions[dot.startPos].x, positions[nextPos].x],
               cy: [positions[dot.startPos].y, positions[nextPos].y]

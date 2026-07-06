@@ -2,7 +2,12 @@
   "slug": "home",
   "name": "Home Icon",
   "category": "actions",
-  "tags": ["home", "house", "main", "dashboard"],
+  "tags": [
+    "home",
+    "house",
+    "main",
+    "dashboard"
+  ],
   "description": "Icon for selecting the home page",
   "createdAt": "2026-02-11T00:00:00Z",
   "variations": [
@@ -12,7 +17,9 @@
       "tier": "free",
       "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
       "animationType": "select",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
@@ -40,8 +47,26 @@
           "type": "boolean",
           "default": false,
           "description": "Controls the selected state of the icon."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.1,
+          "required": false,
+          "description": "Duration of the outline/fill crossfade in seconds",
+          "min": 0.05,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeOut",
+          "required": false,
+          "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
         }
-      ]
+      ],
+      "componentName": "IconHome"
     },
     {
       "name": "draw",
@@ -49,7 +74,9 @@
       "tier": "free",
       "description": "Stroke animation draws the house from foundation to roof during loading",
       "animationType": "loading",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
@@ -73,12 +100,30 @@
           "description": "Additional CSS classes to apply"
         },
         {
-          "name": "isLoading",
+          "name": "isHovered",
           "type": "boolean",
           "default": false,
-          "description": "Controls the sketch reveal animation state. Set to true during loading operations."
+          "description": "Triggers the draw animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.5,
+          "required": false,
+          "description": "Duration of each stroke draw in seconds; the stagger scales with it",
+          "min": 0.1,
+          "max": 3,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "linear",
+          "required": false,
+          "description": "Easing of the stroke draw. Accepts a named ease or a cubic-bezier array."
         }
-      ]
+      ],
+      "componentName": "IconHome"
     }
   ]
 }

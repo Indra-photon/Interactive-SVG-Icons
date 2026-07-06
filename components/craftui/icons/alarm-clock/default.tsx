@@ -8,6 +8,8 @@ export interface AlarmRingProps {
   color?: string;
   className?: string;
   isHovered?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconAlarmRing({
@@ -15,6 +17,8 @@ export function IconAlarmRing({
   color = 'currentColor',
   className = '',
   isHovered = false,
+  duration = 0.9,
+  ease = 'easeInOut',
 }: AlarmRingProps) {
   const bodyControls = useAnimation();
   const leftEarControls = useAnimation();
@@ -26,8 +30,8 @@ export function IconAlarmRing({
       bodyControls.start({
         rotate: [0, -14, 14, -10, 10, -6, 6, -2, 2, 0],
         transition: {
-          duration: 0.9,
-          ease: 'easeInOut',
+          duration,
+          ease: ease as any,
           times: [0, 0.1, 0.25, 0.38, 0.51, 0.62, 0.73, 0.82, 0.91, 1],
         },
       });
@@ -35,8 +39,8 @@ export function IconAlarmRing({
       leftEarControls.start({
         rotate: [0, 6, -6, 4, -4, 2, -2, 0],
         transition: {
-          duration: 0.9,
-          ease: 'easeInOut',
+          duration,
+          ease: ease as any,
           times: [0, 0.1, 0.25, 0.38, 0.51, 0.62, 0.73, 1],
         },
       });
@@ -44,8 +48,8 @@ export function IconAlarmRing({
       rightEarControls.start({
         rotate: [0, -6, 6, -4, 4, -2, 2, 0],
         transition: {
-          duration: 0.9,
-          ease: 'easeInOut',
+          duration,
+          ease: ease as any,
           times: [0, 0.1, 0.25, 0.38, 0.51, 0.62, 0.73, 1],
         },
       });

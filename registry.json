@@ -15,25 +15,6 @@
       "files": []
     },
     {
-      "name": "tab-open-default",
-      "type": "registry:ui",
-      "title": "Tab Open Icon - Default",
-      "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
-      "dependencies": [
-        "motion/react"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/tab-open/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/tab-open/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "trash-default",
       "type": "registry:ui",
       "title": "Trash Icon - Default",
@@ -106,6 +87,25 @@
           "path": "components/craftui/icons/trash/dissolve.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/icons/trash/dissolve.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tab-open-default",
+      "type": "registry:ui",
+      "title": "Tab Open Icon - Default",
+      "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/tab-open/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/tab-open/default.tsx"
         }
       ]
     },
@@ -923,6 +923,25 @@
       ]
     },
     {
+      "name": "grid-snake-default",
+      "type": "registry:ui",
+      "title": "Grid Snake - Grid Snake",
+      "description": "Dots activate in a boustrophedon (back-and-forth) path that slithers through all 9 positions",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-snake/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-snake/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "grid-ripple-default",
       "type": "registry:ui",
       "title": "Grid Ripple - Grid Ripple",
@@ -1540,10 +1559,10 @@
       ]
     },
     {
-      "name": "grid-snake-default",
+      "name": "ball-bounce-slide-default",
       "type": "registry:ui",
-      "title": "Grid Snake - Grid Snake",
-      "description": "Dots activate in a boustrophedon (back-and-forth) path that slithers through all 9 positions",
+      "title": "Ball Bounce Slide - Ball Bounce Slide",
+      "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
       "dependencies": [
         "framer-motion"
       ],
@@ -1552,9 +1571,28 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/grid-snake/default.tsx",
+          "path": "components/craftui/loaders/ball-bounce-slide/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/grid-snake/default.tsx"
+          "target": "~/components/craftui/loaders/ball-bounce-slide/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ball-bounce-dashed-default",
+      "type": "registry:ui",
+      "title": "Ball Bounce Dashed - Ball Bounce Dashed",
+      "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ball-bounce-dashed/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ball-bounce-dashed/default.tsx"
         }
       ]
     },
@@ -1574,25 +1612,6 @@
           "path": "components/craftui/loaders/ball-bounce-box/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/ball-bounce-box/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "ball-bounce-slide-default",
-      "type": "registry:ui",
-      "title": "Ball Bounce Slide - Ball Bounce Slide",
-      "description": "A ball with extreme bounce easing slides horizontally across a ground line, creating a dynamic rolling/bouncing motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/ball-bounce-slide/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/ball-bounce-slide/default.tsx"
         }
       ]
     },
@@ -1631,25 +1650,6 @@
           "path": "components/craftui/loaders/audio-wave-vertical/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/audio-wave-vertical/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "ball-bounce-dashed-default",
-      "type": "registry:ui",
-      "title": "Ball Bounce Dashed - Ball Bounce Dashed",
-      "description": "Ball stays centered and bounces in place while a dashed ground line scrolls underneath, creating the illusion of motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/ball-bounce-dashed/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/ball-bounce-dashed/default.tsx"
         }
       ]
     },
@@ -1768,6 +1768,28 @@
       ]
     },
     {
+      "name": "subitem-navbar-subitem-navbar",
+      "type": "registry:block",
+      "title": "SubItem Navbar - SubItem Navbar",
+      "description": "Tabs expand a panel above the bar via a spring-driven height animation. Panels are either a chip filter list (subs) or any React node (panel). LoginPanel is a named export for use as a panel slot.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "react-use-measure"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/subitem-navbar/subitem-navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/subitem-navbar/subitem-navbar.tsx"
+        }
+      ]
+    },
+    {
       "name": "scroll-gallery-parallax-strip",
       "type": "registry:block",
       "title": "Scroll Gallery - Parallax Strip",
@@ -1787,28 +1809,6 @@
           "path": "components/craftui/blocks/scroll-gallery/parallax-strip.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/scroll-gallery/parallax-strip.tsx"
-        }
-      ]
-    },
-    {
-      "name": "subitem-navbar-subitem-navbar",
-      "type": "registry:block",
-      "title": "SubItem Navbar - SubItem Navbar",
-      "description": "Tabs expand a panel above the bar via a spring-driven height animation. Panels are either a chip filter list (subs) or any React node (panel). LoginPanel is a named export for use as a panel slot.",
-      "dependencies": [
-        "motion",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons",
-        "react-use-measure"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/subitem-navbar/subitem-navbar.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/subitem-navbar/subitem-navbar.tsx"
         }
       ]
     },

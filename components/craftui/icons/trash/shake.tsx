@@ -8,13 +8,17 @@ export interface TrashIconShakeProps {
   color?: string;
   className?: string;
   isAnimating?: boolean;
+  stiffness?: number;
+  damping?: number;
 }
 
 export function TrashIconShake({
-  size = 5,
+  size = 24,
   color = "currentColor",
   className = "",
   isAnimating = false,
+  stiffness = 300,
+  damping = 35,
 }: TrashIconShakeProps) {
   return (
     <svg
@@ -35,8 +39,8 @@ export function TrashIconShake({
           closed: {
             transition: {
               type: "spring",
-              stiffness: 300,
-              damping: 15,
+              stiffness,
+              damping: damping * (15 / 35),
             },
           },
           open: {
@@ -45,8 +49,8 @@ export function TrashIconShake({
             scale: 0.85,
             transition: {
               type: "spring",
-              stiffness: 300,
-              damping: 35,
+              stiffness,
+              damping,
             },
           },
         }}

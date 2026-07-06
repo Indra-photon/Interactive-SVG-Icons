@@ -62,6 +62,7 @@ export function HexagonRotate({
         stroke={color}
         strokeWidth={thickness}
         fill={color}
+        initial={{ points: pointsA, fillOpacity: 0.15, strokeOpacity: 1, scale: 1 }}
         animate={{
           points: [pointsA, pointsB, pointsA],
           fillOpacity: [0.15, 0.6, 0.15],
