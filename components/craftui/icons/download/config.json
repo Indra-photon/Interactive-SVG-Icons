@@ -61,8 +61,26 @@
           "type": "boolean",
           "default": false,
           "description": "Triggers the arrow bounce. Set true on click, reset after 200ms."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.2,
+          "required": false,
+          "description": "Duration of the arrow drop in seconds; the tray reaction scales with it",
+          "min": 0.05,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "linear",
+          "required": false,
+          "description": "Easing of the arrow drop. Accepts a named ease or a cubic-bezier array."
         }
-      ]
+      ],
+      "componentName": "IconDownload"
     }
   ]
 }

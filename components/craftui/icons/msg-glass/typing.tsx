@@ -6,26 +6,30 @@ export interface MessagesTypingProps {
   size?: number;
   className?: string;
   isTyping?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
-
-// Front bubble (right/light one) bounces when typing
-const frontBubbleVariants = {
-  idle: { y: 0 },
-  typing: {
-    y: [0, -3, 0],
-    transition: {
-      duration: 0.6,
-      repeat: Infinity,
-      ease: 'easeInOut' as const,
-    }
-  }
-};
 
 export function IconMessagesTyping({
   size = 24,
   className = '',
   isTyping = false,
+  duration = 0.6,
+  ease = 'easeInOut',
 }: MessagesTypingProps) {
+  // Front bubble (right/light one) bounces when typing
+  const frontBubbleVariants = {
+    idle: { y: 0 },
+    typing: {
+      y: [0, -3, 0],
+      transition: {
+        duration,
+        repeat: Infinity,
+        ease: ease as any,
+      },
+    },
+  };
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

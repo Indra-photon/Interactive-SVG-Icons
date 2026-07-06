@@ -188,6 +188,7 @@ function VariationDetail({
             variation={{
               name: variation.name,
               displayName: variation.displayName,
+              componentName: variation.componentName,
               tier: variation.tier,
               description: variation.description,
               animationType: variation.animationType,
@@ -261,12 +262,13 @@ function VariationDetail({
                           )} */}
                         </td>
                         <td className="px-3 py-2 align-top font-mono text-foreground/80 whitespace-nowrap">
-                          {prop.type}
+                          {prop.type === "ease"
+                            ? "string | number[]"
+                            : prop.type}
                         </td>
                         <td className="px-3 py-2 align-top font-mono text-foreground/80 whitespace-nowrap">
-                          {typeof prop.default === "string" &&
-                          prop.default !== ""
-                            ? `${prop.default}`
+                          {Array.isArray(prop.default)
+                            ? JSON.stringify(prop.default)
                             : String(prop.default)}
                         </td>
                       </tr>

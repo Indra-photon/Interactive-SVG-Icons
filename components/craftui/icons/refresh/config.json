@@ -1,35 +1,142 @@
 {
-    "slug": "refresh",
-    "name": "Refresh Icon",
-    "category": "actions",
-    "tags": ["refresh", "reload", "update", "sync"],
-    "description": "Icon for refresh, reload, or sync actions",
-    "createdAt": "2026-02-05T00:00:00Z",
-    "variations": [
+  "slug": "refresh",
+  "name": "Refresh Icon",
+  "category": "actions",
+  "tags": [
+    "refresh",
+    "reload",
+    "update",
+    "sync"
+  ],
+  "description": "Icon for refresh, reload, or sync actions",
+  "createdAt": "2026-02-05T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "tier": "free",
+      "description": "Click the button to see the refresh icon in action.",
+      "animationType": "click",
+      "dependencies": [
+        "motion/react"
+      ],
+      "componentName": "IconRefresh",
+      "props": [
         {
-            "name": "default",
-            "displayName": "Default",
-            "tier": "free",
-            "description": "Click the button to see the refresh icon in action.",
-            "animationType": "click",
-            "dependencies": ["motion/react"]
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
         },
         {
-            "name": "stroke",
-            "displayName": "Stroke Drawing",
-            "tier": "free",
-            "description": "Circular stroke drawing effect",
-            "animationType": "click",
-            "dependencies": [],
-            "designNote": "Arrow indicators excluded for cleaner circular animation path"
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "required": false,
+          "description": "Stroke color of the icon (CSS color value)"
         },
         {
-            "name": "dash",
-            "displayName": "Traveling Dash",
-            "tier": "free",
-            "description": "Dashed segments travel along the path",
-            "animationType": "click",
-            "dependencies": []
+          "name": "duration",
+          "type": "number",
+          "default": 1,
+          "required": false,
+          "description": "Duration of one full spin in seconds",
+          "min": 0.2,
+          "max": 5,
+          "step": 0.05
         }
-    ]
+      ]
+    },
+    {
+      "name": "stroke",
+      "displayName": "Stroke Drawing",
+      "tier": "free",
+      "description": "Circular stroke drawing effect",
+      "animationType": "click",
+      "dependencies": [],
+      "designNote": "Arrow indicators excluded for cleaner circular animation path",
+      "componentName": "IconRefreshStroke",
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "required": false,
+          "description": "Stroke color of the icon (CSS color value)"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.7,
+          "required": false,
+          "description": "Duration of the top stroke draw in seconds; the other phases scale with it",
+          "min": 0.2,
+          "max": 3,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "name": "dash",
+      "displayName": "Traveling Dash",
+      "tier": "free",
+      "description": "Dashed segments travel along the path",
+      "animationType": "click",
+      "dependencies": [],
+      "componentName": "IconRefreshDash",
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "required": false,
+          "description": "Width and height of the icon in pixels",
+          "min": 8,
+          "max": 256,
+          "step": 1
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "currentColor",
+          "required": false,
+          "description": "Stroke color of the icon (CSS color value)"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.9,
+          "required": false,
+          "description": "Duration of the top dash lap in seconds; the bottom lap scales with it",
+          "min": 0.2,
+          "max": 3,
+          "step": 0.05
+        },
+        {
+          "name": "dashLength",
+          "type": "number",
+          "default": 10,
+          "required": false,
+          "description": "Length of the travelling dash segment",
+          "min": 2,
+          "max": 30,
+          "step": 1
+        }
+      ]
+    }
+  ]
 }

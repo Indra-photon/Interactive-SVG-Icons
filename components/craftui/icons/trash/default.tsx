@@ -7,13 +7,17 @@ export interface TrashIconProps {
   color?: string;
   className?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function TrashIcon({
   size = 24,
   color = 'currentColor',
   className = '',
-  isAnimating = false
+  isAnimating = false,
+  duration = 0.5,
+  ease = 'easeInOut',
 }: TrashIconProps) {
   return (
     <motion.svg
@@ -35,10 +39,10 @@ export function TrashIcon({
         shake: {
           x: [0, -2, 2, -2, 2, -1, 1, 0],
           transition: {
-            duration: 0.5,
+            duration,
             repeat: Infinity,
             repeatDelay: 0.1,
-            ease: "easeInOut"
+            ease: ease as any
           }
         }
       }}

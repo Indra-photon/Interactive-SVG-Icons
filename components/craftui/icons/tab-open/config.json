@@ -46,8 +46,26 @@
           "default": false,
           "required": false,
           "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.3,
+          "required": false,
+          "description": "Duration of the tab/tray slide in seconds",
+          "min": 0.1,
+          "max": 3,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeOut",
+          "required": false,
+          "description": "Easing of the tab and tray slide (the triangle keeps its bounce). Accepts a named ease or a cubic-bezier array."
         }
-      ]
+      ],
+      "componentName": "IconTabOpenDefault"
     }
   ]
 }

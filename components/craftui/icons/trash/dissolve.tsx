@@ -7,14 +7,21 @@ export interface TrashIconDissolveProps {
   color?: string;
   className?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function TrashIconDissolve({
   size = 24,
   color = 'currentColor',
   className = '',
-  isAnimating = false
+  isAnimating = false,
+  duration = 0.8,
+  ease = 'easeOut',
 }: TrashIconDissolveProps) {
+  // Parts dissolve bottom-up; the stagger scales with duration
+  const step = duration * 0.1875;
+
   const dissolveVariants = {
     idle: {
       y: 0,
@@ -27,8 +34,8 @@ export function TrashIconDissolve({
       y: -8,
       opacity: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut" as const,
+        duration,
+        ease: ease as any,
         repeat: Infinity,
         repeatDelay: 0.2
       }
@@ -54,7 +61,7 @@ export function TrashIconDissolve({
         variants={dissolveVariants}
         transition={{
           ...dissolveVariants.dissolving.transition,
-          delay: 0.45
+          delay: step * 3
         }}
       />
 
@@ -65,7 +72,7 @@ export function TrashIconDissolve({
         variants={dissolveVariants}
         transition={{
           ...dissolveVariants.dissolving.transition,
-          delay: 0.3
+          delay: step * 2
         }}
       />
 
@@ -76,7 +83,7 @@ export function TrashIconDissolve({
         variants={dissolveVariants}
         transition={{
           ...dissolveVariants.dissolving.transition,
-          delay: 0.15
+          delay: step
         }}
       />
 
@@ -87,7 +94,7 @@ export function TrashIconDissolve({
         variants={dissolveVariants}
         transition={{
           ...dissolveVariants.dissolving.transition,
-          delay: 0.15
+          delay: step
         }}
       />
 

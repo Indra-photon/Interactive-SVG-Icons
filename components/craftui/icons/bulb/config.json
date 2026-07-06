@@ -2,7 +2,14 @@
   "slug": "bulb",
   "name": "Bulb Icon",
   "category": "interface",
-  "tags": ["bulb", "idea", "tip", "suggestion", "light", "hint"],
+  "tags": [
+    "bulb",
+    "idea",
+    "tip",
+    "suggestion",
+    "light",
+    "hint"
+  ],
   "description": "Icon for tips, ideas, and helpful suggestions",
   "createdAt": "2026-02-12T00:00:00Z",
   "variations": [
@@ -12,7 +19,9 @@
       "tier": "free",
       "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
       "animationType": "hover",
-      "dependencies": ["motion/react"],
+      "dependencies": [
+        "motion/react"
+      ],
       "props": [
         {
           "name": "size",
@@ -40,8 +49,26 @@
           "type": "boolean",
           "default": false,
           "description": "Controls the light-up animation. Set to true to show filled bulb with rays."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.3,
+          "required": false,
+          "description": "Duration of each ray/fill animation in seconds; ray stagger scales with it",
+          "min": 0.1,
+          "max": 3,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeOut",
+          "required": false,
+          "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
         }
-      ]
+      ],
+      "componentName": "IconBulb"
     }
   ]
 }

@@ -5,13 +5,15 @@ export interface RefreshIconProps {
   color?: string;
   className?: string;
   isAnimating?: boolean;
+  duration?: number;
 }
 
 export function IconRefresh({
   size = 24,
   color = 'currentColor',
   className = '',
-  isAnimating = false
+  isAnimating = false,
+  duration = 1,
 }: RefreshIconProps) {
   return (
     <svg
@@ -24,6 +26,7 @@ export function IconRefresh({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      style={{ animationDuration: `${duration}s` }}
       className={`transition-all duration-300 ${
         isAnimating ? 'opacity-100 animate-spin' : 'opacity-30'
       } ${className}`}

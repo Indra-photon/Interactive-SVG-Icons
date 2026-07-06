@@ -8,6 +8,8 @@ export interface AlarmTickProps {
   className?: string;
   isAnimating?: boolean;
   onAnimationComplete?: () => void;
+  duration?: number;
+  ease?: string | number[];
 }
 
 const LONG_ARM  = 'M11 13 L11 10 A1 1 0 0 1 13 10 L13 13 Z';
@@ -18,16 +20,34 @@ const PIVOT_Y = 13;
 
 const randomDelta = () => Math.floor(Math.random() * 280) + 40;
 
+// SMIL keySplines wants a bezier as "x1 y1 x2 y2".
+const NAMED_EASE_TO_SPLINE: Record<string, string> = {
+  linear:    '0 0 1 1',
+  easeIn:    '0.42 0 1 1',
+  easeOut:   '0 0 0.58 1',
+  easeInOut: '0.42 0 0.58 1',
+};
+
+function toKeySplines(ease: string | number[]): string {
+  if (Array.isArray(ease) && ease.length === 4) return ease.join(' ');
+  if (typeof ease === 'string' && NAMED_EASE_TO_SPLINE[ease]) {
+    return NAMED_EASE_TO_SPLINE[ease];
+  }
+  return '0.4 0 0.2 1';
+}
+
 export function IconAlarmTick({
   size = 24,
   color = 'currentColor',
   className = '',
   isAnimating = false,
   onAnimationComplete,
+  duration = 0.6,
+  ease = [0.4, 0, 0.2, 1],
 }: AlarmTickProps) {
   const animRef    = useRef<SVGAnimateTransformElement>(null);
   const totalAngle = useRef(0);
-  const duration   = useRef(0.7);
+  const sweepTime  = useRef(0.7);
 
   useEffect(() => {
     if (!isAnimating || !animRef.current) return;
@@ -35,17 +55,18 @@ export function IconAlarmTick({
     const delta = randomDelta();
     const from  = totalAngle.current;
     totalAngle.current += delta;
-    duration.current = 0.6 + delta / 600;
+    // Base duration plus a little extra for longer random sweeps.
+    sweepTime.current = duration + delta / 600;
 
     const el = animRef.current;
     el.setAttribute('from', `${from} ${PIVOT_X} ${PIVOT_Y}`);
     el.setAttribute('to',   `${totalAngle.current} ${PIVOT_X} ${PIVOT_Y}`);
-    el.setAttribute('dur',  `${duration.current}s`);
+    el.setAttribute('dur',  `${sweepTime.current}s`);
     el.beginElement();
 
     const timeout = setTimeout(() => {
       onAnimationComplete?.();
-    }, duration.current * 1000);
+    }, sweepTime.current * 1000);
 
     return () => clearTimeout(timeout);
   }, [isAnimating]);
@@ -83,7 +104,7 @@ export function IconAlarmTick({
               fill="freeze"
               calcMode="spline"
               keyTimes="0;1"
-              keySplines="0.4 0 0.2 1"
+              keySplines={toKeySplines(ease)}
             />
           </path>
 

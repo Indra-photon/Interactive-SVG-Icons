@@ -6,26 +6,32 @@ export interface MessagesWiggleProps {
   size?: number;
   className?: string;
   isHovered?: boolean;
+  duration?: number;
+  ease?: string | number[];
+  angle?: number;
 }
-
-// Gentle rotation oscillation ±5° on hover
-const wiggleVariants = {
-  idle: { rotate: 0 },
-  hover: {
-    rotate: [-5, 5, -5, 5, 0],
-    transition: {
-      duration: 0.5,
-      ease: 'easeInOut' as const,
-      times: [0, 0.25, 0.5, 0.75, 1]
-    }
-  }
-};
 
 export function IconMessagesWiggle({
   size = 24,
   className = '',
   isHovered = false,
+  duration = 0.5,
+  ease = 'easeInOut',
+  angle = 5,
 }: MessagesWiggleProps) {
+  // Gentle rotation oscillation ±angle° on hover
+  const wiggleVariants = {
+    idle: { rotate: 0 },
+    hover: {
+      rotate: [-angle, angle, -angle, angle, 0],
+      transition: {
+        duration,
+        ease: ease as any,
+        times: [0, 0.25, 0.5, 0.75, 1],
+      },
+    },
+  };
+
   return (
     <motion.svg 
       xmlns="http://www.w3.org/2000/svg" 

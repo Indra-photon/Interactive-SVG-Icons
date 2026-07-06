@@ -1,59 +1,6 @@
 {
   "icons": [
     {
-      "slug": "tab-open",
-      "name": "Tab Open Icon",
-      "category": "navigation",
-      "tags": [
-        "tab",
-        "open",
-        "new-tab",
-        "window",
-        "browser",
-        "navigate"
-      ],
-      "description": "Icon for opening in new tab or window with animated opening effect",
-      "createdAt": "2026-02-18T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Default",
-          "tier": "free",
-          "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
-          "animationType": "hover",
-          "dependencies": [
-            "motion/react"
-          ],
-          "props": [
-            {
-              "name": "size",
-              "type": "number",
-              "default": 24,
-              "required": false,
-              "description": "Width and height of the icon in pixels",
-              "min": 8,
-              "max": 256,
-              "step": 1
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "default": "",
-              "required": false,
-              "description": "Additional CSS classes to apply to the SVG element"
-            },
-            {
-              "name": "isHovered",
-              "type": "boolean",
-              "default": false,
-              "required": false,
-              "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "trash",
       "name": "Trash Icon",
       "category": "actions",
@@ -69,6 +16,7 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "TrashIcon",
           "tier": "free",
           "description": "Shake animation during delete operation",
           "animationType": "click",
@@ -102,12 +50,30 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the shake animation state. Set to true during delete operations."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "required": false,
+              "description": "Duration of one shake cycle in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         },
         {
           "name": "shake",
           "displayName": "Lid Lift",
+          "componentName": "TrashIconShake",
           "tier": "free",
           "description": "Lid lifts and bounces during delete operation",
           "animationType": "click",
@@ -141,12 +107,33 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the lid lift animation state. Set to true during delete operations."
+            },
+            {
+              "name": "stiffness",
+              "type": "number",
+              "default": 300,
+              "required": false,
+              "description": "Spring stiffness of the lid — higher snaps faster",
+              "min": 50,
+              "max": 1000,
+              "step": 10
+            },
+            {
+              "name": "damping",
+              "type": "number",
+              "default": 35,
+              "required": false,
+              "description": "Spring damping of the lid — lower bounces more",
+              "min": 1,
+              "max": 100,
+              "step": 1
             }
           ]
         },
         {
           "name": "bounce",
           "displayName": "Fill & Crush",
+          "componentName": "TrashIconBounce",
           "tier": "free",
           "description": "Lines fill up and trash compresses during delete operation",
           "animationType": "click",
@@ -180,6 +167,33 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the fill and crush animation state. Set to true during delete operations."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "required": false,
+              "description": "Duration of one press cycle in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
+            },
+            {
+              "name": "repeatDelay",
+              "type": "number",
+              "default": 0.5,
+              "required": false,
+              "description": "Pause between press cycles in seconds",
+              "min": 0,
+              "max": 2,
+              "step": 0.05
             }
           ],
           "inspiration": [
@@ -203,6 +217,7 @@
         {
           "name": "dissolve",
           "displayName": "Dissolve Up",
+          "componentName": "TrashIconDissolve",
           "tier": "free",
           "description": "Paths dissolve upward sequentially like smoke during delete operation",
           "animationType": "click",
@@ -236,6 +251,94 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the dissolve animation state. Set to true during delete operations."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.8,
+              "required": false,
+              "description": "Duration of each part's dissolve in seconds; the stagger scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "tab-open",
+      "name": "Tab Open Icon",
+      "category": "navigation",
+      "tags": [
+        "tab",
+        "open",
+        "new-tab",
+        "window",
+        "browser",
+        "navigate"
+      ],
+      "description": "Icon for opening in new tab or window with animated opening effect",
+      "createdAt": "2026-02-18T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "componentName": "IconTabOpenDefault",
+          "tier": "free",
+          "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
+          "animationType": "hover",
+          "dependencies": [
+            "motion/react"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Additional CSS classes to apply to the SVG element"
+            },
+            {
+              "name": "isHovered",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.3,
+              "required": false,
+              "description": "Duration of the tab/tray slide in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "required": false,
+              "description": "Easing of the tab and tray slide (the triangle keeps its bounce). Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -259,6 +362,7 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "IconShoppingCart",
           "tier": "free",
           "description": "Item falls into cart from above and cart shakes when adding to cart",
           "animationType": "click",
@@ -292,6 +396,28 @@
               "type": "boolean",
               "default": false,
               "description": "Triggers the add to cart animation. Set to true when item is being added to cart."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "required": false,
+              "description": "Duration of the handle drop in seconds; the cart shake scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.34,
+                1.56,
+                0.64,
+                1
+              ],
+              "required": false,
+              "description": "Easing of the handle drop. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -313,32 +439,129 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "IconRefresh",
           "tier": "free",
           "description": "Click the button to see the refresh icon in action.",
           "animationType": "click",
           "dependencies": [
             "motion/react"
           ],
-          "props": []
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "required": false,
+              "description": "Duration of one full spin in seconds",
+              "min": 0.2,
+              "max": 5,
+              "step": 0.05
+            }
+          ]
         },
         {
           "name": "stroke",
           "displayName": "Stroke Drawing",
+          "componentName": "IconRefreshStroke",
           "tier": "free",
           "description": "Circular stroke drawing effect",
           "animationType": "click",
           "dependencies": [],
-          "props": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.7,
+              "required": false,
+              "description": "Duration of the top stroke draw in seconds; the other phases scale with it",
+              "min": 0.2,
+              "max": 3,
+              "step": 0.05
+            }
+          ],
           "designNote": "Arrow indicators excluded for cleaner circular animation path"
         },
         {
           "name": "dash",
           "displayName": "Traveling Dash",
+          "componentName": "IconRefreshDash",
           "tier": "free",
           "description": "Dashed segments travel along the path",
           "animationType": "click",
           "dependencies": [],
-          "props": []
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "required": false,
+              "description": "Width and height of the icon in pixels",
+              "min": 8,
+              "max": 256,
+              "step": 1
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "required": false,
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.9,
+              "required": false,
+              "description": "Duration of the top dash lap in seconds; the bottom lap scales with it",
+              "min": 0.2,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "dashLength",
+              "type": "number",
+              "default": 10,
+              "required": false,
+              "description": "Length of the travelling dash segment",
+              "min": 2,
+              "max": 30,
+              "step": 1
+            }
+          ]
         }
       ]
     },
@@ -361,6 +584,7 @@
         {
           "name": "typing",
           "displayName": "Typing Indicator",
+          "componentName": "IconMessagesTyping",
           "tier": "free",
           "description": "Front bubble bounces gently up and down to indicate someone is typing. Perfect for real-time chat applications.",
           "animationType": "loop",
@@ -391,12 +615,30 @@
               "default": false,
               "required": false,
               "description": "Controls the typing bounce animation. Set to true when someone is typing."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "required": false,
+              "description": "Duration of one typing bounce in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         },
         {
           "name": "wiggle",
           "displayName": "Wiggle",
+          "componentName": "IconMessagesWiggle",
           "tier": "free",
           "description": "Entire icon rotates gently (±5°) on hover. Great for unread message indicators or clickable chat buttons.",
           "animationType": "hover",
@@ -427,12 +669,40 @@
               "default": false,
               "required": false,
               "description": "Controls the wiggle animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "required": false,
+              "description": "Duration of the wiggle in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
+            },
+            {
+              "name": "angle",
+              "type": "number",
+              "default": 5,
+              "required": false,
+              "description": "Wiggle rotation amplitude in degrees",
+              "min": 1,
+              "max": 20,
+              "step": 1
             }
           ]
         },
         {
           "name": "slideIn",
           "displayName": "Slide In",
+          "componentName": "IconMessagesSlideIn",
           "tier": "free",
           "description": "Bubbles slide in from opposite sides with spring bounce. Perfect for chat interface loading or conversation opening.",
           "animationType": "mount",
@@ -463,6 +733,28 @@
               "default": true,
               "required": false,
               "description": "Controls the slide-in animation. Set to true to show icon with animation, false to hide."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "required": false,
+              "description": "Duration of each bubble slide in seconds; the second bubble's delay scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.34,
+                1.56,
+                0.64,
+                1
+              ],
+              "required": false,
+              "description": "Easing of the bubble slide. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -485,6 +777,7 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "IconMail",
           "tier": "free",
           "description": "Envelope flap opens on hover to reveal mail inside",
           "animationType": "hover",
@@ -518,12 +811,33 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the envelope opening animation. Set to true to open the flap."
+            },
+            {
+              "name": "stiffness",
+              "type": "number",
+              "default": 300,
+              "required": false,
+              "description": "Spring stiffness of the flap — higher snaps faster",
+              "min": 50,
+              "max": 1000,
+              "step": 10
+            },
+            {
+              "name": "damping",
+              "type": "number",
+              "default": 20,
+              "required": false,
+              "description": "Spring damping of the flap — lower bounces more",
+              "min": 1,
+              "max": 100,
+              "step": 1
             }
           ]
         },
         {
           "name": "notification",
           "displayName": "Notification Badge",
+          "componentName": "IconMail",
           "tier": "free",
           "description": "Icon bounces and shows glowing ping indicator when new mail arrives",
           "animationType": "notification",
@@ -557,6 +871,23 @@
               "type": "boolean",
               "default": false,
               "description": "Triggers the bounce animation and shows the glowing ping indicator when set to true."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "required": false,
+              "description": "Duration of the notification bounce in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -581,6 +912,7 @@
         {
           "name": "default",
           "displayName": "Show Password",
+          "componentName": "IconLockShowPassword",
           "tier": "free",
           "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
           "animationType": "click",
@@ -611,12 +943,40 @@
               "default": false,
               "required": false,
               "description": "Controls the unlocked state animation. Set to true when password is visible, false when hidden."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.3,
+              "required": false,
+              "description": "Duration of the shackle/body slide in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
+            },
+            {
+              "name": "distance",
+              "type": "number",
+              "default": 3,
+              "required": false,
+              "description": "How far the shackle and body slide apart, in viewBox units",
+              "min": 0,
+              "max": 8,
+              "step": 0.5
             }
           ]
         },
         {
           "name": "unlock",
           "displayName": "Unlock",
+          "componentName": "IconLockUnlock",
           "tier": "free",
           "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
           "animationType": "click",
@@ -647,6 +1007,28 @@
               "default": false,
               "required": false,
               "description": "Controls the unlocked state. Set to true to show the dramatic unlock animation with 3D rotation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "required": false,
+              "description": "Duration of the shackle swing in seconds; lock-back and body pulse scale with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.34,
+                1.56,
+                0.64,
+                1
+              ],
+              "required": false,
+              "description": "Easing of the shackle swing. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -669,6 +1051,7 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "IconLayoutDashboard",
           "tier": "free",
           "description": "On hover, the two filled panels swap to the opposite two panels",
           "animationType": "hover",
@@ -706,12 +1089,30 @@
               "default": false,
               "required": false,
               "description": "Controls the fill-swap animation. Manage this state in the parent and pass it down — e.g. via onMouseEnter/onMouseLeave on a button wrapper."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.3,
+              "required": false,
+              "description": "Duration of the panel fill swap in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         },
         {
           "name": "swap",
           "displayName": "Swap",
+          "componentName": "IconLayoutDashboardSwap",
           "tier": "free",
           "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
           "animationType": "hover",
@@ -749,6 +1150,23 @@
               "default": false,
               "required": false,
               "description": "Controls the morph animation. Manage this state in the parent and pass it down — e.g. via onMouseEnter/onMouseLeave on a button wrapper."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.4,
+              "required": false,
+              "description": "Duration of the panel morph in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -770,6 +1188,7 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "IconHome",
           "tier": "free",
           "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
           "animationType": "select",
@@ -803,12 +1222,30 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the selected state of the icon."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.1,
+              "required": false,
+              "description": "Duration of the outline/fill crossfade in seconds",
+              "min": 0.05,
+              "max": 1,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         },
         {
           "name": "draw",
           "displayName": "Sketch Reveal",
+          "componentName": "IconHome",
           "tier": "free",
           "description": "Stroke animation draws the house from foundation to roof during loading",
           "animationType": "loading",
@@ -838,10 +1275,27 @@
               "description": "Additional CSS classes to apply"
             },
             {
-              "name": "isLoading",
+              "name": "isHovered",
               "type": "boolean",
               "default": false,
-              "description": "Controls the sketch reveal animation state. Set to true during loading operations."
+              "description": "Triggers the draw animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "required": false,
+              "description": "Duration of each stroke draw in seconds; the stagger scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "required": false,
+              "description": "Easing of the stroke draw. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -865,6 +1319,7 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "IconExternalLinkDefault",
           "tier": "free",
           "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
           "animationType": "hover",
@@ -902,6 +1357,33 @@
               "default": false,
               "required": false,
               "description": "Controls the fill and arrow animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.5,
+              "required": false,
+              "description": "Duration of the arrow nudge in seconds; the box fill scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
+            },
+            {
+              "name": "fillOpacity",
+              "type": "number",
+              "default": 0.2,
+              "required": false,
+              "description": "Opacity of the box fill on hover",
+              "min": 0,
+              "max": 1,
+              "step": 0.05
             }
           ]
         }
@@ -924,6 +1406,7 @@
         {
           "name": "default",
           "displayName": "Bounce",
+          "componentName": "IconDownload",
           "tier": "free",
           "description": "Arrow translates down into the tray and snaps back on click",
           "animationType": "click",
@@ -971,6 +1454,23 @@
               "type": "boolean",
               "default": false,
               "description": "Triggers the arrow bounce. Set true on click, reset after 200ms."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.2,
+              "required": false,
+              "description": "Duration of the arrow drop in seconds; the tray reaction scales with it",
+              "min": 0.05,
+              "max": 2,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "required": false,
+              "description": "Easing of the arrow drop. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -995,6 +1495,7 @@
         {
           "name": "page-flip",
           "displayName": "Page Flip",
+          "componentName": "IconCalendarPageFlip",
           "tier": "free",
           "description": "Calendar body rotates in 3D along the top edge like flipping a physical calendar page. Header with binding rings stays fixed. Perfect for month navigation.",
           "animationType": "click",
@@ -1025,12 +1526,35 @@
               "default": false,
               "required": false,
               "description": "Triggers the page flip animation. Set to true to flip the calendar page."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "required": false,
+              "description": "Duration of the page flip in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.4,
+                0,
+                0.2,
+                1
+              ],
+              "required": false,
+              "description": "Easing of the page flip. Accepts a named ease or a cubic-bezier array."
             }
           ]
         },
         {
           "name": "picker-open",
           "displayName": "Picker Open",
+          "componentName": "IconCalendarOpen",
           "tier": "free",
           "description": "Calendar body splits and opens like a book on hover. Left half slides left, right half slides right. Perfect for date picker buttons that open calendars.",
           "animationType": "hover",
@@ -1061,12 +1585,30 @@
               "default": false,
               "required": false,
               "description": "Controls the opening animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.3,
+              "required": false,
+              "description": "Duration of the glass/solid crossfade in seconds",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         },
         {
           "name": "slide-month",
           "displayName": "Slide Month Change",
+          "componentName": "IconCalendarSlideMonth",
           "tier": "free",
           "description": "Date dots slide out to the left and new dots slide in from the right when month changes. Calendar body and header stay fixed.",
           "animationType": "transition",
@@ -1097,6 +1639,23 @@
               "default": 0,
               "required": false,
               "description": "Unique key for current month. Change this value to trigger the slide animation (e.g., month index or timestamp)."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.3,
+              "required": false,
+              "description": "Duration of the dot slide in seconds; the enter delay scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "required": false,
+              "description": "Easing of the dots sliding in. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -1120,6 +1679,7 @@
         {
           "name": "default",
           "displayName": "Default",
+          "componentName": "IconBulb",
           "tier": "free",
           "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
           "animationType": "hover",
@@ -1153,6 +1713,23 @@
               "type": "boolean",
               "default": false,
               "description": "Controls the light-up animation. Set to true to show filled bulb with rays."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.3,
+              "required": false,
+              "description": "Duration of each ray/fill animation in seconds; ray stagger scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "required": false,
+              "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -1176,6 +1753,7 @@
         {
           "name": "default",
           "displayName": "Ring",
+          "componentName": "IconAlarmRing",
           "tier": "free",
           "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
           "animationType": "hover",
@@ -1213,12 +1791,30 @@
               "default": false,
               "required": false,
               "description": "Triggers the ring animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.9,
+              "required": false,
+              "description": "Duration of the full rocking oscillation in seconds",
+              "min": 0.2,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "required": false,
+              "description": "Easing applied between each rock keyframe. Accepts a named ease or a cubic-bezier array."
             }
           ]
         },
         {
           "name": "tick",
           "displayName": "Tick",
+          "componentName": "IconAlarmTick",
           "tier": "free",
           "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
           "animationType": "click",
@@ -1263,6 +1859,28 @@
               "default": "undefined",
               "required": false,
               "description": "Callback fired after the hand completes its full sweep."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "required": false,
+              "description": "Base sweep duration in seconds; a random amount (up to ~0.5s) is added per spin",
+              "min": 0.2,
+              "max": 2,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.4,
+                0,
+                0.2,
+                1
+              ],
+              "required": false,
+              "description": "Easing of the hand sweep. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -1270,5 +1888,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-05T06:38:36.412Z"
+  "lastUpdated": "2026-07-05T19:20:59.702Z"
 }

@@ -7,6 +7,8 @@ export interface LayoutDashboardIconProps {
   color?: string;
   className?: string;
   isHovered?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconLayoutDashboard({
@@ -14,13 +16,15 @@ export function IconLayoutDashboard({
   color = 'currentColor',
   className = '',
   isHovered = false,
+  duration = 0.3,
+  ease = 'easeInOut',
 }: LayoutDashboardIconProps) {
   // Default (idle): top-left + bottom-right filled
   // Hover:          top-right + bottom-left filled
   const filledOpacity = 1;
   const emptyOpacity = 0;
 
-  const transition = { duration: 0.3, ease: 'easeInOut' as const };
+  const transition = { duration, ease: ease as any };
 
   return (
     <svg

@@ -7,13 +7,17 @@ export interface RefreshIconDashProps {
   color?: string;
   className?: string;
   isAnimating?: boolean;
+  duration?: number;
+  dashLength?: number;
 }
 
 export function IconRefreshDash({
   size = 24,
   color = 'currentColor',
   className = '',
-  isAnimating = false
+  isAnimating = false,
+  duration = 0.9,
+  dashLength = 10,
 }: RefreshIconDashProps) {
   const pathRef = useRef<SVGPathElement>(null);
   const bottompath = useRef<SVGPathElement>(null);
@@ -29,7 +33,7 @@ export function IconRefreshDash({
     }
   }, []);
 
-  const DASH_LENGTH = 10;
+  const DASH_LENGTH = dashLength;
 
   return (
     <svg
@@ -65,11 +69,11 @@ export function IconRefreshDash({
           }
 
           .animate-dash-top {
-            animation: dash-travel-top 0.9s linear infinite;
+            animation: dash-travel-top ${duration}s linear infinite;
           }
 
           .animate-dash-bottom {
-            animation: dash-travel-bottom 0.6s linear infinite;
+            animation: dash-travel-bottom ${duration * (2 / 3)}s linear infinite;
           }
         `}
       </style>

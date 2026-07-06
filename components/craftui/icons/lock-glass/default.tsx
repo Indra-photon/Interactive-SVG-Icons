@@ -6,30 +6,36 @@ export interface LockShowPasswordProps {
   size?: number;
   className?: string;
   isUnlocked?: boolean;
+  duration?: number;
+  ease?: string | number[];
+  distance?: number;
 }
-
-// When unlocked: shackle slides up-right, body slides down-left
-const shackleVariants = {
-  locked: { y: 0 },
-  unlocked: { 
-    y: -3,
-    transition: { duration: 0.3, ease: 'easeInOut' as const }
-  }
-};
-
-const bodyVariants = {
-  locked: { y: 0 },
-  unlocked: { 
-    y: 3,
-    transition: { duration: 0.3, ease: 'easeInOut' as const }
-  }
-};
 
 export function IconLockShowPassword({
   size = 24,
   className = '',
   isUnlocked = false,
+  duration = 0.3,
+  ease = 'easeInOut',
+  distance = 3,
 }: LockShowPasswordProps) {
+  // When unlocked: shackle slides up, body slides down
+  const shackleVariants = {
+    locked: { y: 0 },
+    unlocked: {
+      y: -distance,
+      transition: { duration, ease: ease as any },
+    },
+  };
+
+  const bodyVariants = {
+    locked: { y: 0 },
+    unlocked: {
+      y: distance,
+      transition: { duration, ease: ease as any },
+    },
+  };
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

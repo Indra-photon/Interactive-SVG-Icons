@@ -7,13 +7,17 @@ export interface HomeIconDrawProps {
   color?: string;
   className?: string;
   isHovered?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconHome({
   size = 24,
   color = 'currentColor',
   className = '',
-  isHovered = false
+  isHovered = false,
+  duration = 0.5,
+  ease = 'linear',
 }: HomeIconDrawProps) {
   return (
     <svg 
@@ -38,7 +42,7 @@ export function IconHome({
           idle: { opacity: 0.3, strokeDasharray: "100 100", strokeDashoffset: 100 },
           hover: { opacity: 1, strokeDashoffset: 0 }
         }}
-        transition={{ duration: 0.5, ease: "linear" }}
+        transition={{ duration, ease: ease as any }}
       />
 
       {/* House body */}
@@ -49,7 +53,7 @@ export function IconHome({
           idle: { opacity: 0.9, strokeDasharray: "100", strokeDashoffset: 0 },
           hover: { opacity: 1, strokeDashoffset: 0 }
         }}
-        transition={{ duration: 0.5, delay: 0.1, ease: "linear" }}
+        transition={{ duration, delay: duration * 0.2, ease: ease as any }}
       />
 
       {/* Roof */}
@@ -60,7 +64,7 @@ export function IconHome({
           idle: { opacity: 0.9, strokeDasharray: "100", strokeDashoffset: 0 },
           hover: { opacity: 1, strokeDashoffset: 0 }
         }}
-        transition={{ duration: 0.5, delay: 0.2, ease: "linear" }}
+        transition={{ duration, delay: duration * 0.4, ease: ease as any }}
       />
     </svg>
   );

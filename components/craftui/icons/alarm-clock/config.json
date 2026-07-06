@@ -16,6 +16,7 @@
     {
       "name": "default",
       "displayName": "Ring",
+      "componentName": "IconAlarmRing",
       "tier": "free",
       "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
       "animationType": "hover",
@@ -53,12 +54,30 @@
           "default": false,
           "required": false,
           "description": "Triggers the ring animation. Manage this state in the parent via onMouseEnter/onMouseLeave."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.9,
+          "required": false,
+          "description": "Duration of the full rocking oscillation in seconds",
+          "min": 0.2,
+          "max": 3,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeInOut",
+          "required": false,
+          "description": "Easing applied between each rock keyframe. Accepts a named ease or a cubic-bezier array."
         }
       ]
     },
     {
       "name": "tick",
       "displayName": "Tick",
+      "componentName": "IconAlarmTick",
       "tier": "free",
       "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
       "animationType": "click",
@@ -103,6 +122,23 @@
           "default": "undefined",
           "required": false,
           "description": "Callback fired after the hand completes its full sweep."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.6,
+          "required": false,
+          "description": "Base sweep duration in seconds; a random amount (up to ~0.5s) is added per spin",
+          "min": 0.2,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": [0.4, 0, 0.2, 1],
+          "required": false,
+          "description": "Easing of the hand sweep. Accepts a named ease or a cubic-bezier array."
         }
       ]
     }

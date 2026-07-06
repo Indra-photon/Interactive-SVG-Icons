@@ -116,14 +116,19 @@ export interface RefreshIconStrokeProps {
   color?: string;
   className?: string;
   isAnimating?: boolean;
+  duration?: number;
 }
 
 export function IconRefreshStroke({
   size = 24,
   color = 'currentColor',
   className = '',
-  isAnimating = false
+  isAnimating = false,
+  duration = 0.7,
 }: RefreshIconStrokeProps) {
+  // All phases keep their original ratios to the 0.7s top-stroke draw
+  const bottomDur = duration * (0.8 / 0.7);
+  const fadeDur = duration * (1.5 / 0.7);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -157,13 +162,13 @@ export function IconRefreshStroke({
           .animate-stroke-top {
             stroke-dasharray: 50;
             stroke-dashoffset: 50;
-            animation: dash-top 0.7s linear forwards, fade 1.5s ease-in-out forwards;
+            animation: dash-top ${duration}s linear forwards, fade ${fadeDur}s ease-in-out forwards;
           }
 
           .animate-stroke-bottom {
             stroke-dasharray: 50;
             stroke-dashoffset: 50;
-            animation: dash-bottom 0.8s linear 0.7s forwards, fade 1.5s ease-in-out forwards;
+            animation: dash-bottom ${bottomDur}s linear ${duration}s forwards, fade ${fadeDur}s ease-in-out forwards;
           }
         `}
       </style>

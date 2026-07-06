@@ -6,39 +6,43 @@ export interface LockUnlockProps {
   size?: number;
   className?: string;
   isUnlocked?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
-
-// 3D rotation along Y-axis with right side as hinge
-// transformOrigin is set to right edge of shackle (x=18 in viewBox)
-const shackleVariants = {
-  locked: { 
-    y: 0, 
-    rotateY: 0,
-    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }
-  },
-  unlocked: { 
-    y: -4,
-    rotateY: -45, // Rotates away from viewer (left side swings back)
-    transition: { 
-      duration: 0.5, 
-      ease: [0.34, 1.56, 0.64, 1] as const // Spring bounce
-    }
-  }
-};
-
-const bodyVariants = {
-  locked: { scale: 1 },
-  unlocked: { 
-    scale: 1.15,
-    transition: { duration: 0.3, ease: 'easeOut' as const }
-  }
-};
 
 export function IconLockUnlock({
   size = 24,
   className = '',
   isUnlocked = false,
+  duration = 0.5,
+  ease = [0.34, 1.56, 0.64, 1],
 }: LockUnlockProps) {
+  // 3D rotation along Y-axis with right side as hinge
+  // transformOrigin is set to right edge of shackle (x=18 in viewBox)
+  const shackleVariants = {
+    locked: {
+      y: 0,
+      rotateY: 0,
+      transition: { duration: duration * 0.8, ease: [0.4, 0, 0.2, 1] as const },
+    },
+    unlocked: {
+      y: -4,
+      rotateY: -45, // Rotates away from viewer (left side swings back)
+      transition: {
+        duration,
+        ease: ease as any,
+      },
+    },
+  };
+
+  const bodyVariants = {
+    locked: { scale: 1 },
+    unlocked: {
+      scale: 1.15,
+      transition: { duration: duration * 0.6, ease: 'easeOut' as const },
+    },
+  };
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

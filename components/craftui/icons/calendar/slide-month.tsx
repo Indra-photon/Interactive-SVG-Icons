@@ -6,32 +6,9 @@ export interface CalendarSlideMonthProps {
   size?: number;
   className?: string;
   monthKey?: string | number; // Change this to trigger animation
+  duration?: number;
+  ease?: string | number[];
 }
-
-// Dots slide out left, then new dots slide in from right
-const exitVariants = {
-  exit: {
-    x: -20,
-    opacity: 0,
-    transition: {
-      duration: 0.3,
-      ease: 'easeIn' as const
-    }
-  }
-};
-
-const enterVariants = {
-  initial: { x: 20, opacity: 0 },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      delay: 0.2,
-      ease: 'easeOut' as const
-    }
-  }
-};
 
 // Individual dot positions (6 dots in 2 rows x 3 columns)
 const dotPositions = [
@@ -47,7 +24,31 @@ export function IconCalendarSlideMonth({
   size = 24,
   className = '',
   monthKey = 0,
+  duration = 0.3,
+  ease = 'easeOut',
 }: CalendarSlideMonthProps) {
+  // Dots slide out left, then new dots slide in from right
+  const dotVariants = {
+    initial: { x: 20, opacity: 0 },
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration,
+        delay: duration * (2 / 3),
+        ease: ease as any,
+      },
+    },
+    exit: {
+      x: -20,
+      opacity: 0,
+      transition: {
+        duration,
+        ease: 'easeIn' as const,
+      },
+    },
+  };
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
@@ -89,7 +90,7 @@ export function IconCalendarSlideMonth({
         <AnimatePresence mode="wait">
           <motion.g
             key={monthKey}
-            variants={exitVariants}
+            variants={dotVariants}
             initial="initial"
             animate="animate"
             exit="exit"

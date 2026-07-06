@@ -7,13 +7,19 @@ export interface TrashIconBounceProps {
   color?: string;
   className?: string;
   isAnimating?: boolean;
+  duration?: number;
+  ease?: string | number[];
+  repeatDelay?: number;
 }
 
 export function TrashIconBounce({
   size = 24,
   color = 'currentColor',
   className = '',
-  isAnimating = false
+  isAnimating = false,
+  duration = 0.6,
+  ease = 'easeInOut',
+  repeatDelay = 0.5,
 }: TrashIconBounceProps) {
   return (
     <svg
@@ -32,10 +38,10 @@ export function TrashIconBounce({
       <motion.g
         animate={isAnimating ? { y: [0, 12, 0] } : { y: 0 }}
         transition={{
-          duration: 0.6,
+          duration,
           repeat: isAnimating ? Infinity : 0,
-          repeatDelay: 0.5,
-          ease: "easeInOut",
+          repeatDelay,
+          ease: ease as any,
         }}
       >
         <path d="M4 7h16" />
@@ -51,9 +57,9 @@ export function TrashIconBounce({
         }
         style={{ transformOrigin: "bottom" }}
         transition={{
-          duration: 0.6,
+          duration,
           repeat: isAnimating ? Infinity : 0,
-          repeatDelay: 0.5,
+          repeatDelay,
           times: [0, 0.4, 1],
         }}
       >
@@ -77,10 +83,10 @@ export function TrashIconBounce({
           transformBox: "fill-box",
         }}
         transition={{
-          duration: 0.6,
+          duration,
           repeat: isAnimating ? Infinity : 0,
-          repeatDelay: 0.5,
-          ease: "easeInOut",
+          repeatDelay,
+          ease: ease as any,
         }}
       />
     </svg>

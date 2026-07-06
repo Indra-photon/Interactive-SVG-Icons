@@ -7,13 +7,17 @@ export interface HomeIconProps {
   color?: string;
   className?: string;
   isSelected?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconHome({
   size = 24,
   color = 'currentColor',
   className = '',
-  isSelected = false
+  isSelected = false,
+  duration = 0.1,
+  ease = 'easeOut',
 }: HomeIconProps) {
   return (
     <svg 
@@ -37,15 +41,15 @@ export function IconHome({
           default: {
             opacity: 1,
             transition: {
-              duration: 0.1,
-              ease: "easeOut"
+              duration,
+              ease: ease as any
             }
           },
           selected: {
             opacity: 0,
             transition: {
-              duration: 0.1,
-              ease: "easeOut"
+              duration,
+              ease: ease as any
             }
           }
         }}
@@ -62,15 +66,15 @@ export function IconHome({
           default: {
             opacity: 0,
             transition: {
-              duration: 0.1,
-              ease: "easeOut"
+              duration,
+              ease: ease as any
             }
           },
           selected: {
             opacity: 1,
             transition: {
-              duration: 0.1,
-              ease: "easeOut"
+              duration,
+              ease: ease as any
             }
           }
         }}

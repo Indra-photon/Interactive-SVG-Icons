@@ -1,50 +1,6 @@
 {
   "blocks": [
     {
-      "slug": "scroll-gallery",
-      "name": "Scroll Gallery",
-      "category": "gallery",
-      "tags": [
-        "scroll",
-        "gallery",
-        "parallax",
-        "image",
-        "animation",
-        "lenis",
-        "travel",
-        "showcase"
-      ],
-      "description": "A sticky scroll-driven gallery with a parallax image strip on the right and animated destination info on the left, connected by a flight-path arc divider.",
-      "createdAt": "2026-07-02T00:00:00Z",
-      "variations": [
-        {
-          "name": "parallax-strip",
-          "displayName": "Parallax Strip",
-          "tier": "free",
-          "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
-          "animationType": "scroll-driven",
-          "dependencies": [
-            "motion",
-            "lenis",
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons",
-            "next"
-          ],
-          "registryDependencies": [],
-          "props": [],
-          "componentName": "ScrollGallery",
-          "previewHint": "Scroll down to navigate through destinations",
-          "features": [
-            "Lenis smooth scroll drives the entire layout via a single useScroll hook",
-            "Image strip uses scale + Y + rotate transforms so each image slots into a weighted parallax stack",
-            "Arc SVG divider renders a dashed flight path; a plane icon follows via offset-path and flips direction based on scroll velocity",
-            "Left panel text slots use AnimatePresence mode='wait' spring transitions — no layout shift",
-            "Stat values animate with useSpring so numbers count up smoothly on each destination change"
-          ]
-        }
-      ]
-    },
-    {
       "slug": "subitem-navbar",
       "name": "SubItem Navbar",
       "category": "navbar",
@@ -126,6 +82,50 @@
             "Blur overlay rendered inside the component — just place BottomNavbar inside a relative container",
             "useMeasure drives submenu height so the pill expands to exactly fit any panel",
             "prefers-reduced-motion: all spring and blur transitions collapse to instant"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "scroll-gallery",
+      "name": "Scroll Gallery",
+      "category": "gallery",
+      "tags": [
+        "scroll",
+        "gallery",
+        "parallax",
+        "image",
+        "animation",
+        "lenis",
+        "travel",
+        "showcase"
+      ],
+      "description": "A sticky scroll-driven gallery with a parallax image strip on the right and animated destination info on the left, connected by a flight-path arc divider.",
+      "createdAt": "2026-07-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "parallax-strip",
+          "displayName": "Parallax Strip",
+          "tier": "free",
+          "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+          "animationType": "scroll-driven",
+          "dependencies": [
+            "motion",
+            "lenis",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons",
+            "next"
+          ],
+          "registryDependencies": [],
+          "props": [],
+          "componentName": "ScrollGallery",
+          "previewHint": "Scroll down to navigate through destinations",
+          "features": [
+            "Lenis smooth scroll drives the entire layout via a single useScroll hook",
+            "Image strip uses scale + Y + rotate transforms so each image slots into a weighted parallax stack",
+            "Arc SVG divider renders a dashed flight path; a plane icon follows via offset-path and flips direction based on scroll velocity",
+            "Left panel text slots use AnimatePresence mode='wait' spring transitions — no layout shift",
+            "Stat values animate with useSpring so numbers count up smoothly on each destination change"
           ]
         }
       ]
@@ -420,5 +420,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-05T06:38:36.399Z"
+  "lastUpdated": "2026-07-05T19:20:59.691Z"
 }

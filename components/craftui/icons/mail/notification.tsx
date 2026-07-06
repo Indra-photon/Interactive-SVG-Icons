@@ -7,13 +7,17 @@ export interface MailNotificationIconProps {
   color?: string;
   className?: string;
   hasNotification?: boolean;
+  duration?: number;
+  ease?: string | number[];
 }
 
 export function IconMail({
   size = 24,
   color = 'currentColor',
   className = '',
-  hasNotification = false
+  hasNotification = false,
+  duration = 0.6,
+  ease = 'easeOut',
 }: MailNotificationIconProps) {
   return (
     <div className="relative inline-block" style={{ width: size, height: size }}>
@@ -36,9 +40,9 @@ export function IconMail({
             bounce: {
               y: [0, -3, 0, -2, 0],
               transition: {
-                duration: 0.6,
+                duration,
                 times: [0, 0.2, 0.4, 0.6, 0.8],
-                ease: "easeOut"
+                ease: ease as any
               }
             }
           }}
@@ -53,9 +57,9 @@ export function IconMail({
             bounce: {
               y: [0, -3, 0, -2, 0],
               transition: {
-                duration: 0.6,
+                duration,
                 times: [0, 0.2, 0.4, 0.6, 0.8],
-                ease: "easeOut"
+                ease: ease as any
               }
             }
           }}

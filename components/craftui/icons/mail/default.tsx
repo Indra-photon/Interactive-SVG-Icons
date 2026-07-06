@@ -7,13 +7,17 @@ export interface MailIconProps {
   color?: string;
   className?: string;
   isOpen?: boolean;
+  stiffness?: number;
+  damping?: number;
 }
 
 export function IconMail({
   size = 24,
   color = 'currentColor',
   className = '',
-  isOpen = false
+  isOpen = false,
+  stiffness = 300,
+  damping = 20,
 }: MailIconProps) {
   return (
     <svg 
@@ -44,8 +48,8 @@ export function IconMail({
             y: 0,
             transition: {
               type: "spring",
-              stiffness: 300,
-              damping: 20
+              stiffness,
+              damping
             }
           },
           open: {
@@ -53,8 +57,8 @@ export function IconMail({
             y: -4,
             transition: {
               type: "spring",
-              stiffness: 300,
-              damping: 20
+              stiffness,
+              damping
             }
           }
         }}

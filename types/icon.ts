@@ -17,6 +17,7 @@ export interface InspirationLink {
 export interface Variation {
   name: string;
   displayName: string;
+  componentName?: string;
   tier: 'free' | 'premium';
   description: string;
   animationType: 'hover' | 'click' | 'loop';
