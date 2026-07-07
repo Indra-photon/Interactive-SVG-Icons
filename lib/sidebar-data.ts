@@ -161,7 +161,18 @@ export function buildUISidebarNodes(components: UIComponent[]): SidebarNode[] {
     categoryMap.get(cat)!.push(component);
   }
 
+  // A component with a single variation collapses to one leaf labelled with
+  // the component name (Input → OTP Input, no variation level).
   function componentToNode(component: UIComponent): SidebarNode {
+    if (component.variations.length === 1) {
+      const v = component.variations[0];
+      return {
+        id: component.slug,
+        label: component.name,
+        slug: component.slug,
+        variation: v.name,
+      };
+    }
     return {
       id: component.slug,
       label: component.name,
@@ -178,7 +189,22 @@ export function buildUISidebarNodes(components: UIComponent[]): SidebarNode[] {
   const nodes: SidebarNode[] = [];
   for (const [category, members] of categoryMap) {
     if (members.length === 1) {
-      nodes.push(componentToNode(members[0]));
+      const node = componentToNode(members[0]);
+      if (node.children) {
+        // Multi-variation single component (e.g. Accordion) — the component
+        // itself is the top-level folder, no category wrapper.
+        nodes.push(node);
+      } else {
+        // Single-variation single component — wrap the leaf in its category
+        // folder so it still reads Input → OTP Input.
+        nodes.push({
+          id: `group--${category}`,
+          label: category.charAt(0).toUpperCase() + category.slice(1),
+          slug: `group--${category}`,
+          isGroup: true,
+          children: [node],
+        });
+      }
     } else {
       nodes.push({
         id: `group--${category}`,

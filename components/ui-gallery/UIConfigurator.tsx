@@ -27,23 +27,43 @@ interface UIConfiguratorProps {
   onSnippetChange?: (snippet: string) => void;
 }
 
+// Documented in the props table but not dialable — state/a11y wiring, not motion.
+const DIAL_OPTS = {
+  excludeNames: ["value", "defaultValue", "label", "disabled", "autoFocus", "className"],
+};
+
 // ── Code generation ───────────────────────────────────────────────────────────
 
+// Static (non-dial) attrs each component's snippet always carries, keyed by slug.
+const STATIC_SNIPPET_ATTRS: Record<string, string[]> = {
+  accordion: ["items={items}"],
+  "otp-input": ["validate={(code) => verify(code)}", "onSuccess={handleVerified}"],
+};
+
 function buildUsageSnippet(
+  componentSlug: string,
   componentName: string,
   propValues: Record<string, any>,
   defaults: Record<string, any>,
 ) {
+  const staticAttrs = STATIC_SNIPPET_ATTRS[componentSlug] ?? [];
   const changed = Object.entries(propValues).filter(
     ([k, v]) => JSON.stringify(v) !== JSON.stringify(defaults[k]),
   );
-  if (!changed.length) return `<${componentName} items={items} />`;
-  const attrs = changed.map(([k, v]) => {
-    if (typeof v === "string") return `  ${k}="${v}"`;
-    if (Array.isArray(v)) return `  ${k}={${JSON.stringify(v)}}`;
-    return `  ${k}={${v}}`;
-  });
-  return `<${componentName}\n  items={items}\n${attrs.join("\n")}\n/>`;
+  if (!changed.length && staticAttrs.length <= 1) {
+    return staticAttrs.length
+      ? `<${componentName} ${staticAttrs[0]} />`
+      : `<${componentName} />`;
+  }
+  const attrs = [
+    ...staticAttrs.map((a) => `  ${a}`),
+    ...changed.map(([k, v]) => {
+      if (typeof v === "string") return `  ${k}="${v}"`;
+      if (Array.isArray(v)) return `  ${k}={${JSON.stringify(v)}}`;
+      return `  ${k}={${v}}`;
+    }),
+  ];
+  return `<${componentName}\n${attrs.join("\n")}\n/>`;
 }
 
 
@@ -70,11 +90,11 @@ function UIConfiguratorInner({
   const { isOpen: dialKitOpen, toggle: toggleDialKit } = useDialKitPanel();
 
   const dialKitConfig = useMemo(
-    () => buildDialKitConfig(variation.props),
+    () => buildDialKitConfig(variation.props, DIAL_OPTS),
     [variation.props],
   );
   const defaults = useMemo(
-    () => buildNormalizedDefaults(variation.props),
+    () => buildNormalizedDefaults(variation.props, DIAL_OPTS),
     [variation.props],
   );
 
@@ -87,7 +107,12 @@ function UIConfiguratorInner({
   );
 
   const changed = isChanged(propValues, defaults);
-  const snippet = buildUsageSnippet(variation.componentName, propValues, defaults);
+  const snippet = buildUsageSnippet(
+    componentSlug,
+    variation.componentName,
+    propValues,
+    defaults,
+  );
 
   useEffect(() => {
     onSnippetChange?.(snippet);
