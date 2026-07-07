@@ -342,3 +342,73 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ─── OTP Input (otp-input/ripple) ───────────────────────────────────────── */
+/* Mirrors the css payload in components/craftui/ui/otp-input/config.json —
+   consumers get this injected into their globals.css by the shadcn CLI. */
+
+:root {
+  --success: oklch(0.723 0.219 149.579);
+}
+
+.dark {
+  --success: oklch(0.696 0.17 162.48);
+}
+
+.ri-field {
+  --shake-distance: 6px;
+  --shake-overshoot: 4px;
+  --shake-dur-a: 80ms;
+  --shake-dur-b: 60ms;
+  --shake-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ri-field.is-shaking {
+  animation: ri-shake calc(var(--shake-dur-a) * 2 + var(--shake-dur-b) * 2)
+    linear;
+}
+
+@keyframes ri-shake {
+  0%     { transform: translateX(0);                                animation-timing-function: var(--shake-ease); }
+  28.57% { transform: translateX(var(--shake-distance));            animation-timing-function: var(--shake-ease); }
+  57.14% { transform: translateX(calc(var(--shake-distance) * -1)); animation-timing-function: var(--shake-ease); }
+  78.57% { transform: translateX(var(--shake-overshoot));           animation-timing-function: var(--shake-ease); }
+  100%   { transform: translateX(0); }
+}
+
+.ri-caret {
+  position: absolute;
+  pointer-events: none;
+  background: var(--ri-caret-color, #3b82f6);
+  animation: ri-caret-blink 1.1s steps(2, jump-none) infinite;
+}
+
+.ri-caret-block {
+  --ri-caret-max: 0.25;
+  inset: 4px;
+}
+
+.ri-caret-underscore {
+  --ri-caret-max: 1;
+  left: 22%;
+  right: 22%;
+  bottom: 7px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+@keyframes ri-caret-blink {
+  0%, 49%   { opacity: var(--ri-caret-max, 1); }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ri-field {
+    animation: none !important;
+    transform: none !important;
+  }
+  .ri-caret {
+    animation: none;
+    opacity: var(--ri-caret-max, 1);
+  }
+}

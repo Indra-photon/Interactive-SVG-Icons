@@ -44,6 +44,9 @@ export interface UIComponentRegistryFile {
     type: string;
     target: string;
   }[];
+  /** shadcn v4 registry CSS — merged into the consumer's globals.css on install. */
+  css?: Record<string, unknown>;
+  cssVars?: Record<string, Record<string, string>>;
   meta: {
     displayName: string;
     description: string;

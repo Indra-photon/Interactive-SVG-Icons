@@ -12,6 +12,11 @@ import {
 } from "@hugeicons/core-free-icons";
 import { UIConfigurator } from "./UIConfigurator";
 import { CopyButton } from "@/components/loader-gallery/CopyButton";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import type { UIComponent } from "@/types/ui-component";
 
 const RIGHT_PANEL_SHADOW =
@@ -107,9 +112,34 @@ function UIVariationDetail({
                         className="bg-white dark:bg-stone-900/40"
                       >
                         <td className="px-4 py-3 align-top whitespace-nowrap">
-                          <code className="font-mono font-semibold text-[12px] text-foreground dark:text-stone-200">
-                            {prop.name}
-                          </code>
+                          <span className="inline-flex items-center gap-1.5">
+                            <code className="font-mono font-semibold text-[12px] text-foreground dark:text-stone-200">
+                              {prop.name}
+                            </code>
+                            {prop.description && (
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <button
+                                    type="button"
+                                    aria-label={`What does ${prop.name} do?`}
+                                    className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800 text-[10px] font-semibold text-stone-400 dark:text-stone-500 transition-colors hover:bg-stone-200 hover:text-stone-600 dark:hover:bg-stone-700 dark:hover:text-stone-300"
+                                  >
+                                    ?
+                                  </button>
+                                </PopoverTrigger>
+                                <PopoverContent
+                                  side="right"
+                                  align="start"
+                                  className="max-w-72 px-3.5 py-3 text-xs leading-relaxed text-foreground/80"
+                                >
+                                  <code className="mb-1.5 block font-mono text-[11px] font-semibold text-foreground">
+                                    {prop.name}
+                                  </code>
+                                  {prop.description}
+                                </PopoverContent>
+                              </Popover>
+                            )}
+                          </span>
                         </td>
                         <td className="px-3 py-3 align-top whitespace-nowrap">
                           <span className="inline-block rounded-md bg-stone-100 dark:bg-stone-800 px-1.5 py-0.5 font-mono text-[11px] text-stone-600 dark:text-stone-300">

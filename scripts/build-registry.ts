@@ -20,6 +20,8 @@ interface GithubRegistryItem {
   dependencies: string[];
   registryDependencies: string[];
   files: Array<{ path: string; type: string; target: string }>;
+  css?: Record<string, unknown>;
+  cssVars?: Record<string, Record<string, string>>;
 }
 
 async function buildRegistry(config: BuildConfig): Promise<GithubRegistryItem[]> {
@@ -420,6 +422,21 @@ async function buildUIComponentsRegistry(config: BuildConfig): Promise<GithubReg
         const deps = variation.dependencies || ['motion/react'];
         const registryDeps = variation.registryDependencies || [];
 
+        // Sibling files (shared engines, sub-components) shipped alongside the
+        // variation file. Paths are relative to the component directory.
+        const extraFiles: string[] = variation.extraFiles || [];
+        const extraFileEntries = await Promise.all(
+          extraFiles.map(async (rel: string) => {
+            const filePath = `components/craftui/ui/${componentSlug}/${rel}`;
+            return {
+              path: filePath,
+              content: await fs.readFile(filePath, 'utf-8'),
+              type: 'registry:ui',
+              target: `~/components/craftui/ui/${componentSlug}/${rel}`,
+            };
+          }),
+        );
+
         const registryEntry: UIComponentRegistryFile = {
           name: variationSlug,
           type: 'registry:ui',
@@ -436,7 +453,11 @@ async function buildUIComponentsRegistry(config: BuildConfig): Promise<GithubReg
               type: 'registry:ui',
               target: `~/components/craftui/ui/${componentSlug}/${variation.name}.tsx`,
             },
+            ...extraFileEntries,
           ],
+          // The shadcn CLI merges these into the consumer's globals.css on install.
+          ...(variation.css && { css: variation.css }),
+          ...(variation.cssVars && { cssVars: variation.cssVars }),
           meta: {
             displayName: `${configData.name} - ${variation.displayName}`,
             description: variation.description,
@@ -465,7 +486,14 @@ async function buildUIComponentsRegistry(config: BuildConfig): Promise<GithubReg
               type: 'registry:ui',
               target: `~/components/craftui/ui/${componentSlug}/${variation.name}.tsx`,
             },
+            ...extraFileEntries.map(({ path: p, type, target }) => ({
+              path: p,
+              type,
+              target,
+            })),
           ],
+          ...(variation.css && { css: variation.css }),
+          ...(variation.cssVars && { cssVars: variation.cssVars }),
         });
 
         component.variations.push({

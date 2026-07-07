@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -8,10 +9,25 @@ import {
   PinterestIcon,
   GlobeIcon,
   Tick01Icon,
+  Cancel01Icon,
+  ArrowLeft01Icon,
 } from "@hugeicons/core-free-icons";
 import { BlockPreview } from "./BlockPreview";
 import { CopyButton } from "@/components/icon-gallery/CopyButton";
 import type { Block } from "@/types/block";
+
+// Expanded width of the morphing right panel — content is laid out at this
+// fixed width so it never rewraps while the panel width animates.
+const PANEL_OPEN_WIDTH = 320;
+const PANEL_STRIP_WIDTH = 44;
+
+// Timing tokens — the sequencing below is arithmetic on these values, so
+// retuning one keeps the choreography in sync.
+const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const PANEL_OPEN_DUR = 0.25; // width morph, opening
+const PANEL_CLOSE_DUR = 0.2; // width morph, closing (faster than open)
+const CONTENT_ENTER_DUR = 0.15; // strip/content appearing
+const CONTENT_EXIT_DUR = 0.1; // strip/content vanishing
 
 const RIGHT_PANEL_SHADOW =
   "shadow-[inset_1px_0_0_rgba(0,0,0,0.06),inset_4px_0_12px_rgba(0,0,0,0.03)] dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.06)]";
@@ -152,11 +168,15 @@ function VariationDetail({
   variation,
   panelKey,
   baseUrl,
+  isPanelOpen,
+  onTogglePanel,
 }: {
   block: Block;
   variation: Block["variations"][number];
   panelKey: string;
   baseUrl: string;
+  isPanelOpen: boolean;
+  onTogglePanel: () => void;
 }) {
   const installCommand = `npx shadcn@latest add ${baseUrl}/r/${block.slug}-${variation.name}.json`;
   const usageSnippet = buildUsageSnippet(block, variation, baseUrl);
@@ -169,7 +189,7 @@ function VariationDetail({
           key={panelKey}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
+          transition={{ duration: 0.2, ease: EASE_OUT }}
         >
           {/* Preview */}
           <BlockPreview
@@ -263,30 +283,119 @@ function VariationDetail({
         </motion.div>
       </div>
 
-      {/* ── Right: installation + deps + props ── */}
-      <div className={`overflow-y-auto py-10 px-6 ${RIGHT_PANEL_SHADOW}`}>
-        <motion.div
-          key={panelKey}
-          className="space-y-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
-        >
-          {/* Name + description */}
-          <div>
-            <p className="text-xs font-mono text-foreground/50 uppercase tracking-widest mb-2">
-              {block.name}
-            </p>
-            <h2 className="text-xl font-mono text-primary/80 text-wrap-balance mb-2">
-              {variation.displayName}
-            </h2>
-            <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
-              {variation.description}
-            </p>
-          </div>
+      {/* ── Right: spacer — the morphing panel sits over this track when collapsed ── */}
+      <div aria-hidden />
 
-          {/* Features */}
-          {/* {variation.features && variation.features.length > 0 && (
+      {/* ── Right: morphing panel (strip ⇄ full overlay) ── */}
+      <motion.div
+        initial={false}
+        animate={{
+          width: isPanelOpen ? PANEL_OPEN_WIDTH : PANEL_STRIP_WIDTH,
+        }}
+        transition={
+          isPanelOpen
+            ? // Opening: width opens first, content waits for it
+              { duration: PANEL_OPEN_DUR, ease: EASE_OUT }
+            : // Closing: waits for content to vanish, then shuts faster
+              {
+                duration: PANEL_CLOSE_DUR,
+                ease: EASE_OUT,
+                delay: CONTENT_EXIT_DUR,
+              }
+        }
+        className={`absolute top-0 right-0 bottom-0 z-20 overflow-hidden bg-white dark:bg-gray-950 ${RIGHT_PANEL_SHADOW}`}
+      >
+        <AnimatePresence mode="popLayout" initial={false}>
+          {!isPanelOpen ? (
+            <motion.button
+              key="strip"
+              onClick={onTogglePanel}
+              aria-expanded={isPanelOpen}
+              initial={{ opacity: 0, filter: "blur(2px)" }}
+              animate={{
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: {
+                  // Wait for content exit + width collapse to finish
+                  // delay: CONTENT_EXIT_DUR + PANEL_CLOSE_DUR,
+                  duration: CONTENT_ENTER_DUR,
+                  ease: EASE_OUT,
+                },
+              }}
+              exit={{
+                opacity: 0,
+                filter: "blur(2px)",
+                transition: { duration: CONTENT_EXIT_DUR, ease: EASE_OUT },
+              }}
+              className="group h-full w-[44px] flex flex-col items-center justify-center gap-2 cursor-pointer dark:hover:bg-stone-800/50 transition-colors duration-150"
+            >
+              <HugeiconsIcon
+                icon={ArrowLeft01Icon}
+                size={13}
+                strokeWidth={2}
+                className="shrink-0 text-stone-400 group-hover:text-stone-600 dark:group-hover:text-stone-300 transition-colors duration-150"
+              />
+              <span
+                className="text-[11px] font-mono uppercase tracking-widest text-stone-400 group-hover:text-stone-600 dark:group-hover:text-stone-300 transition-colors duration-150"
+                style={{ writingMode: "vertical-rl" }}
+              >
+                Know more about this block
+              </span>
+            </motion.button>
+          ) : (
+            <motion.div
+              key="content"
+              initial={{ opacity: 0, x: 8, filter: "blur(2px)" }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                filter: "blur(0px)",
+                transition: {
+                  // Appears the moment the width finishes opening
+                  // delay: PANEL_OPEN_DUR,
+                  duration: CONTENT_ENTER_DUR,
+                  ease: EASE_OUT,
+                },
+              }}
+              exit={{
+                opacity: 0,
+                filter: "blur(2px)",
+                transition: { duration: CONTENT_EXIT_DUR, ease: EASE_OUT },
+              }}
+              className="absolute inset-y-0 right-0"
+              style={{ width: PANEL_OPEN_WIDTH }}
+            >
+              <button
+                onClick={onTogglePanel}
+                aria-label="Close panel"
+                className="absolute top-4 right-4 z-10 p-1.5 rounded-md text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors duration-150"
+              >
+                <HugeiconsIcon icon={Cancel01Icon} size={16} strokeWidth={2} />
+              </button>
+
+              <div className="h-full overflow-y-auto py-10 px-6">
+                <motion.div
+                  key={panelKey}
+                  className="space-y-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, ease: EASE_OUT }}
+                >
+                  {/* Name + description */}
+                  <div>
+                    <p className="text-xs font-mono text-foreground/50 uppercase tracking-widest mb-2">
+                      {block.name}
+                    </p>
+                    <h2 className="text-xl font-mono text-primary/80 text-wrap-balance mb-2">
+                      {variation.displayName}
+                    </h2>
+                    <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
+                      {variation.description}
+                    </p>
+                  </div>
+
+                  {/* Features */}
+                  {/* {variation.features && variation.features.length > 0 && (
             <div>
               <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
                 Features
@@ -309,70 +418,75 @@ function VariationDetail({
             </div>
           )} */}
 
-          {/* Inspiration */}
-          {variation.inspiration && variation.inspiration.length > 0 && (
-            <div>
-              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-                Inspiration
-              </h2>
-              <div className="flex flex-col gap-1">
-                {variation.inspiration.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-xs text-foreground/70 hover:text-foreground transition-colors duration-150 group py-1"
-                  >
-                    <HugeiconsIcon
-                      icon={
-                        link.type === "twitter"
-                          ? NewTwitterIcon
-                          : link.type === "dribbble"
-                            ? DribbbleIcon
-                            : link.type === "pinterest"
-                              ? PinterestIcon
-                              : GlobeIcon
-                      }
-                      size={13}
-                      strokeWidth={1.5}
-                      className="shrink-0 text-foreground/40 group-hover:text-foreground/70 transition-colors duration-150"
-                    />
-                    <span className="group-hover:underline underline-offset-2 text-foreground font-mono font-regular tracking-tight text-[12px] text-wrap-pretty">
-                      {link.label}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
+                  {/* Inspiration */}
+                  {variation.inspiration &&
+                    variation.inspiration.length > 0 && (
+                      <div>
+                        <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+                          Inspiration
+                        </h2>
+                        <div className="flex flex-col gap-1">
+                          {variation.inspiration.map((link) => (
+                            <a
+                              key={link.url}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 text-xs text-foreground/70 hover:text-foreground transition-colors duration-150 group py-1"
+                            >
+                              <HugeiconsIcon
+                                icon={
+                                  link.type === "twitter"
+                                    ? NewTwitterIcon
+                                    : link.type === "dribbble"
+                                      ? DribbbleIcon
+                                      : link.type === "pinterest"
+                                        ? PinterestIcon
+                                        : GlobeIcon
+                                }
+                                size={13}
+                                strokeWidth={1.5}
+                                className="shrink-0 text-foreground/40 group-hover:text-foreground/70 transition-colors duration-150"
+                              />
+                              <span className="group-hover:underline underline-offset-2 text-foreground font-mono font-regular tracking-tight text-[12px] text-wrap-pretty">
+                                {link.label}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
-          {variation.features && variation.features.length > 0 && (
-            <div>
-              <h2 className="text-xl font-mono  tracking-wide text-primary/80 mb-3">
-                Features
-              </h2>
-              <ul className="flex flex-col gap-2">
-                {variation.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <span className="corner-squircle shrink-0 mt-0.5 flex items-center justify-center rounded-[4px] size-4 bg-linear-to-b from-primary/50 to-primary/90">
-                      <HugeiconsIcon
-                        icon={Tick01Icon}
-                        size={10}
-                        strokeWidth={2.5}
-                        className="text-white"
-                      />
-                    </span>
-                    <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
-                      {feature}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                  {variation.features && variation.features.length > 0 && (
+                    <div>
+                      <h2 className="text-xl font-mono  tracking-wide text-primary/80 mb-3">
+                        Features
+                      </h2>
+                      <ul className="flex flex-col gap-2">
+                        {variation.features.map((feature) => (
+                          <li key={feature} className="flex items-start gap-2">
+                            <span className="corner-squircle shrink-0 mt-0.5 flex items-center justify-center rounded-[4px] size-4 bg-linear-to-b from-primary/50 to-primary/90">
+                              <HugeiconsIcon
+                                icon={Tick01Icon}
+                                size={10}
+                                strokeWidth={2.5}
+                                className="text-white"
+                              />
+                            </span>
+                            <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
+                              {feature}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </motion.div>
+              </div>
+            </motion.div>
           )}
-        </motion.div>
-      </div>
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 }
@@ -392,6 +506,8 @@ export function BlockContentPanel({
   activeVariation,
   onVariationSelect,
 }: BlockContentPanelProps) {
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+
   const activeBlock = blocks.find((b) => b.slug === activeSlug);
   const activeVariationData = activeBlock?.variations.find(
     (v) => v.name === activeVariation,
@@ -405,18 +521,19 @@ export function BlockContentPanel({
       : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
 
   return (
-    <div className="flex-1 overflow-hidden">
+    <div className="relative flex-1 overflow-hidden">
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={modeKey}
           className="grid h-full"
           style={{
-            gridTemplateColumns: activeVariationData ? "1fr 490px" : "1fr",
+            gridTemplateColumns: activeVariationData ? "1fr 44px" : "1fr",
+            gridTemplateRows: "minmax(0, 1fr)",
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
+          transition={{ duration: 0.2, ease: EASE_OUT }}
         >
           {!activeBlock ? null : activeVariationData ? (
             <VariationDetail
@@ -424,6 +541,8 @@ export function BlockContentPanel({
               variation={activeVariationData}
               panelKey={panelKey}
               baseUrl={baseUrl}
+              isPanelOpen={isPanelOpen}
+              onTogglePanel={() => setIsPanelOpen((prev) => !prev)}
             />
           ) : (
             <BlockOverview
