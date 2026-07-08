@@ -1,0 +1,35 @@
+{
+  "name": "fill-water-drop-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/loaders/fill-water-drop/default.tsx",
+      "content": "'use client';\n\nimport { useEffect } from 'react';\nimport { motion, useAnimation } from 'motion/react';\n\ninterface FillWaterDropProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  strokeColor?: string;\n  backgroundColor?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n}\n\n// Fixed 100x100 viewBox; width/height scale the svg.\nconst DROP_PATH = 'M 50 12 C 50 12 26 44 26 61 C 26 74.7 36.7 86 50 86 C 63.3 86 74 74.7 74 61 C 74 44 50 12 50 12 Z';\nconst BOTTOM = 86;\nconst RISE = 74; // full rise: from the drop's bottom past its tip\nconst AMPLITUDE = 6;\n\n// Wave surface at (BOTTOM - yOffset), filled down past the drop's bottom.\nconst getWavePath = (yOffset: number) => {\n  const y = BOTTOM - yOffset;\n  return `M -100,${y} Q 25,${y - AMPLITUDE} 50,${y} Q 75,${y + AMPLITUDE} 200,${y} L 200,${BOTTOM + 10} L -100,${BOTTOM + 10} Z`;\n};\n\nexport function FillWaterDrop({\n  width = 60,\n  height = 60,\n  color = \"#38bdf8\",\n  strokeColor = \"#1f1f1f\",\n  backgroundColor = \"#ffffff\",\n  isAnimating = true,\n  duration = 2.5,\n  ease = 'linear',\n}: FillWaterDropProps) {\n  const controls = useAnimation();\n\n  useEffect(() => {\n    if (isAnimating) {\n      // Rise to full over ~85% of the cycle, then hold the level while the\n      // water fades out so the loop restarts at empty without a visible snap.\n      controls.start({\n        d: [getWavePath(0), getWavePath(RISE / 2), getWavePath(RISE), getWavePath(RISE)],\n        opacity: [1, 1, 1, 0],\n        transition: { duration, repeat: Infinity, ease, times: [0, 0.425, 0.85, 1] },\n      });\n    } else {\n      controls.stop();\n      controls.set({ d: getWavePath(0), opacity: 1 });\n    }\n  }, [isAnimating, duration, ease, controls]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <clipPath id={`fill-water-drop-clip-${width}`}>\n          <path d={DROP_PATH} />\n        </clipPath>\n      </defs>\n      {/* Drop interior */}\n      <path d={DROP_PATH} fill={backgroundColor} />\n      {/* Rising water */}\n      <g clipPath={`url(#fill-water-drop-clip-${width})`}>\n        <motion.path fill={color} initial={{ d: getWavePath(0) }} animate={controls} />\n      </g>\n      {/* Drop outline */}\n      <path\n        d={DROP_PATH}\n        stroke={strokeColor}\n        strokeWidth={5}\n        strokeLinejoin=\"round\"\n        fill=\"none\"\n      />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/loaders/fill-water-drop/default.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Water Drop - Water Drop",
+    "description": "An outlined droplet fills bottom to top with an undulating water wave",
+    "category": "loaders",
+    "tags": [
+      "water",
+      "drop",
+      "droplet",
+      "wave",
+      "fill",
+      "weather",
+      "hydration",
+      "rain"
+    ],
+    "animationType": "loop"
+  }
+}

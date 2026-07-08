@@ -21,18 +21,13 @@ export default function LoadersPage() {
       label: 'Loaders',
       nodes: sidebarNodes,
       topLink: { label: 'Gallery', href: '/loader-gallery' },
+      selectableGroups: true,
     },
   ];
 
-  const firstSlug = loaders[0]?.slug ?? '';
-
   return (
     <Suspense>
-      <LoadersPageShell
-        loaders={loaders}
-        sidebarSections={sidebarSections}
-        firstSlug={firstSlug}
-      />
+      <LoadersPageShell loaders={loaders} sidebarSections={sidebarSections} />
     </Suspense>
   );
 }

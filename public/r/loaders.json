@@ -2368,6 +2368,693 @@
       ]
     },
     {
+      "slug": "fill-water-drop",
+      "name": "Water Drop",
+      "category": "loaders",
+      "tags": [
+        "water",
+        "drop",
+        "droplet",
+        "wave",
+        "fill",
+        "weather",
+        "hydration",
+        "rain"
+      ],
+      "description": "A water droplet outline that fills with a rising wave, fits weather and hydration apps",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Water Drop",
+          "componentName": "FillWaterDrop",
+          "tier": "free",
+          "description": "An outlined droplet fills bottom to top with an undulating water wave",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#38bdf8",
+              "description": "Color of the water"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the droplet outline"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the droplet interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-thermometer",
+      "name": "Thermometer",
+      "category": "loaders",
+      "tags": [
+        "thermometer",
+        "temperature",
+        "mercury",
+        "level",
+        "fill",
+        "rising",
+        "progress",
+        "health"
+      ],
+      "description": "A thermometer whose mercury column rises from the bulb to the top, fits progress-style loading",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Thermometer",
+          "componentName": "FillThermometer",
+          "tier": "free",
+          "description": "An outlined thermometer with a mercury column that rises from the bulb to the top in a loop",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#ef4444",
+              "description": "Color of the mercury"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the thermometer outline and tick marks"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the stem and bulb interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-paint-bucket",
+      "name": "Paint Bucket",
+      "category": "loaders",
+      "tags": [
+        "paint",
+        "bucket",
+        "pouring",
+        "design",
+        "color",
+        "fill",
+        "creative",
+        "art"
+      ],
+      "description": "A paint bucket being filled by a pouring stream, fits design and creative tools",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Paint Bucket",
+          "componentName": "FillPaintBucket",
+          "tier": "free",
+          "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#8b5cf6",
+              "description": "Color of the paint and pouring stream"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the bucket outline and rim"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the bucket interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 3,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-hourglass",
+      "name": "Hourglass",
+      "category": "loaders",
+      "tags": [
+        "hourglass",
+        "sand",
+        "timer",
+        "time",
+        "fill",
+        "flip",
+        "waiting"
+      ],
+      "description": "An hourglass where sand drains from top to bottom, then the glass flips to restart",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Hourglass",
+          "componentName": "FillHourglass",
+          "tier": "free",
+          "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#e8a33d",
+              "description": "Color of the sand"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the glass outline and frame bars"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the glass interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-flask",
+      "name": "Flask",
+      "category": "loaders",
+      "tags": [
+        "flask",
+        "science",
+        "lab",
+        "chemistry",
+        "bubbles",
+        "liquid",
+        "fill",
+        "experiment"
+      ],
+      "description": "An Erlenmeyer flask with liquid that bubbles continuously, fits science and lab apps",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Flask",
+          "componentName": "FillFlask",
+          "tier": "free",
+          "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#57c785",
+              "description": "Color of the liquid"
+            },
+            {
+              "name": "secondaryColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Color of the rising bubbles"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the flask outline and rim"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the flask interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-coffee-cup",
+      "name": "Coffee Cup",
+      "category": "loaders",
+      "tags": [
+        "coffee",
+        "cup",
+        "liquid",
+        "wave",
+        "fill",
+        "drink",
+        "cafe",
+        "playful"
+      ],
+      "description": "A coffee cup with liquid that sloshes in gentle waves while loading",
+      "createdAt": "2026-07-07",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Coffee Cup",
+          "componentName": "FillCoffeeCup",
+          "tier": "free",
+          "description": "An outlined coffee cup where two layered waves of liquid slosh continuously at a constant level",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#e8a33d",
+              "description": "Color of the front liquid wave"
+            },
+            {
+              "name": "secondaryColor",
+              "type": "string",
+              "default": "#f0d9aa",
+              "description": "Color of the lighter back wave"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the cup outline, handle and saucer"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the cup interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ],
+          "inspiration": [
+            {
+              "label": "Pinterest",
+              "url": "https://pin.it/5OjenEe4w",
+              "type": "website"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-beer-glass",
+      "name": "Beer Glass",
+      "category": "loaders",
+      "tags": [
+        "beer",
+        "mug",
+        "glass",
+        "liquid",
+        "foam",
+        "fill",
+        "drink",
+        "playful"
+      ],
+      "description": "A beer mug that fills from the bottom with a foam layer riding on top of the liquid",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Beer Glass",
+          "componentName": "FillBeerGlass",
+          "tier": "free",
+          "description": "An outlined beer mug fills with amber liquid while a bubbly foam cap rises on top",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#f2a93b",
+              "description": "Color of the beer liquid"
+            },
+            {
+              "name": "secondaryColor",
+              "type": "string",
+              "default": "#fdf3d8",
+              "description": "Color of the foam layer"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the mug outline, handle and base line"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the mug interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 3,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-battery",
+      "name": "Battery",
+      "category": "loaders",
+      "tags": [
+        "battery",
+        "charging",
+        "power",
+        "energy",
+        "fill",
+        "level",
+        "progress"
+      ],
+      "description": "A battery outline that fills from left to right, ideal for charging states",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Battery",
+          "componentName": "FillBattery",
+          "tier": "free",
+          "description": "An outlined battery charges up as the level sweeps from empty to full in a loop",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#4ade80",
+              "description": "Color of the charge level"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the battery outline and terminal"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the battery interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "download-bounce",
       "name": "Download Bounce",
       "category": "loaders",
@@ -5354,5 +6041,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-07T09:53:23.936Z"
+  "lastUpdated": "2026-07-08T13:33:46.366Z"
 }

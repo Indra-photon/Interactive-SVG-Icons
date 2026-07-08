@@ -15,6 +15,7 @@ interface SidebarItemProps {
   activeSlug?: string;
   activeVariation?: string;
   onSelect: (slug: string, variation?: string) => void;
+  selectableGroups?: boolean;
 }
 
 export function SidebarItem({
@@ -22,6 +23,7 @@ export function SidebarItem({
   activeSlug,
   activeVariation,
   onSelect,
+  selectableGroups,
 }: SidebarItemProps) {
   const hasChildren = Boolean(node.children && node.children.length > 0);
   const isLeaf = !hasChildren;
@@ -35,14 +37,24 @@ export function SidebarItem({
     if (isChildActive) setIsOpen(true);
   }, [isChildActive]);
 
+  const isGroupSelectable = Boolean(selectableGroups && node.isGroup);
+
   const isActive =
-    isLeaf &&
-    node.slug === activeSlug &&
-    node.variation === activeVariation;
+    (isLeaf &&
+      node.slug === activeSlug &&
+      node.variation === activeVariation) ||
+    (isGroupSelectable && node.slug === activeSlug && !activeVariation);
 
   const handleClick = () => {
     if (hasChildren) {
-      setIsOpen(prev => !prev);
+      if (isGroupSelectable) {
+        // First click selects the group (and expands it); clicking the
+        // already-active group toggles expand like a normal folder.
+        setIsOpen(prev => (node.slug === activeSlug ? !prev : true));
+        onSelect(node.slug);
+      } else {
+        setIsOpen(prev => !prev);
+      }
     } else {
       onSelect(node.slug, node.variation);
     }
@@ -105,6 +117,7 @@ export function SidebarItem({
                 activeSlug={activeSlug}
                 activeVariation={activeVariation}
                 onSelect={onSelect}
+                selectableGroups={selectableGroups}
               />
             ))}
           </motion.ul>

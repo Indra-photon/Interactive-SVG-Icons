@@ -1094,6 +1094,158 @@
       ]
     },
     {
+      "name": "fill-water-drop-default",
+      "type": "registry:ui",
+      "title": "Water Drop - Water Drop",
+      "description": "An outlined droplet fills bottom to top with an undulating water wave",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-water-drop/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-water-drop/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-thermometer-default",
+      "type": "registry:ui",
+      "title": "Thermometer - Thermometer",
+      "description": "An outlined thermometer with a mercury column that rises from the bulb to the top in a loop",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-thermometer/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-thermometer/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-paint-bucket-default",
+      "type": "registry:ui",
+      "title": "Paint Bucket - Paint Bucket",
+      "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-hourglass-default",
+      "type": "registry:ui",
+      "title": "Hourglass - Hourglass",
+      "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-hourglass/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-hourglass/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-flask-default",
+      "type": "registry:ui",
+      "title": "Flask - Flask",
+      "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-flask/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-flask/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-coffee-cup-default",
+      "type": "registry:ui",
+      "title": "Coffee Cup - Coffee Cup",
+      "description": "An outlined coffee cup where two layered waves of liquid slosh continuously at a constant level",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-coffee-cup/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-coffee-cup/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-beer-glass-default",
+      "type": "registry:ui",
+      "title": "Beer Glass - Beer Glass",
+      "description": "An outlined beer mug fills with amber liquid while a bubbly foam cap rises on top",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-beer-glass/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-beer-glass/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-battery-default",
+      "type": "registry:ui",
+      "title": "Battery - Battery",
+      "description": "An outlined battery charges up as the level sweeps from empty to full in a loop",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-battery/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-battery/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "download-bounce-default",
       "type": "registry:ui",
       "title": "Download Bounce - Download Bounce",

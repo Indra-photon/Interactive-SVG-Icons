@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -9,16 +10,108 @@ import {
   GlobeIcon,
 } from "@hugeicons/core-free-icons";
 import { LoaderConfigurator } from "./LoaderConfigurator";
+import { LoaderPreview } from "./LoaderPreview";
 import { CopyButton } from "./CopyButton";
+import { MorphArrow } from "@/components/ui/morph-arrow";
+import { resolveLoaderGroup } from "@/lib/sidebar-data";
 import type { Loader } from "@/types/loader";
 
 // ── Right panel shadow (inset from left edge, shadows over border) ────────────
 const RIGHT_PANEL_SHADOW =
   "shadow-[inset_1px_0_0_rgba(0,0,0,0.06),inset_4px_0_12px_rgba(0,0,0,0.03)] dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.06)]";
 
+// ── Loader preview card (group overview grid) ─────────────────────────────────
+
+function LoaderPreviewCard({
+  loader,
+  onSelect,
+}: {
+  loader: Loader;
+  onSelect: () => void;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+  const variation = loader.variations[0];
+
+  return (
+    <button
+      onClick={onSelect}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group corner-squircle rounded-[10px] border border-stone-200 dark:border-stone-700 p-3 text-left hover:border-stone-400 dark:hover:border-stone-500 hover:shadow-sm transition-[border-color,box-shadow] duration-150"
+    >
+      <div className="aspect-square bg-stone-50 dark:bg-stone-800 corner-squircle rounded-[8px] mb-2.5 flex items-center justify-center group-hover:bg-stone-100 dark:group-hover:bg-stone-700/60 transition-colors duration-150">
+        <div className="scale-[0.65]">
+          <LoaderPreview
+            loaderSlug={loader.slug}
+            variationName={variation.name}
+          />
+        </div>
+      </div>
+      <div className="flex items-start justify-between gap-1.5">
+        <div className="min-w-0">
+          <p className="text-[18px] font-sans text-foreground text-wrap-balance truncate">
+            {loader.name}
+          </p>
+          <p className="text-[14px] text-foreground/80 font-sans tracking-tighter text-wrap-pretty mt-0.5 line-clamp-2">
+            {loader.description}
+          </p>
+        </div>
+        <span className="shrink-0 px-1 py-0.5 bg-primary/10 text-primary rounded-[4px] text-[9px] font-mono uppercase tracking-wide">
+          {variation.tier}
+        </span>
+      </div>
+      <p className="mt-2 flex items-center gap-1 text-[11px] font-mono uppercase tracking-widest text-foreground/50 group-hover:text-foreground transition-colors duration-150">
+        Configure
+        <MorphArrow isHovered={isHovered} size={11} />
+      </p>
+    </button>
+  );
+}
+
+// ── Group overview (full width — no right panel) ──────────────────────────────
+
+function LoaderGroupOverview({
+  label,
+  loaders,
+  onSelect,
+}: {
+  label: string;
+  loaders: Loader[];
+  onSelect: (slug: string) => void;
+}) {
+  return (
+    <div className="overflow-y-auto py-10 px-8">
+      <div className="w-full">
+        <h1 className="text-2xl font-sans text-foreground text-wrap-balance">
+          {label}
+        </h1>
+
+        <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+          Loaders
+        </h2>
+        <div className="grid grid-cols-5 w-full gap-3">
+          {loaders.map((loader) => (
+            <LoaderPreviewCard
+              key={loader.slug}
+              loader={loader}
+              onSelect={() => onSelect(loader.slug)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Loader detail — 2 inner columns ──────────────────────────────────────────
 
-function LoaderDetail({ loader, panelKey }: { loader: Loader; panelKey: string }) {
+function LoaderDetail({
+  loader,
+  panelKey,
+}: {
+  loader: Loader;
+  panelKey: string;
+}) {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
     (typeof window !== "undefined"
@@ -180,28 +273,44 @@ function LoaderDetail({ loader, panelKey }: { loader: Loader; panelKey: string }
 interface LoaderContentPanelProps {
   loaders: Loader[];
   activeSlug?: string;
+  onSelect: (slug: string) => void;
 }
 
 export function LoaderContentPanel({
   loaders,
   activeSlug,
+  onSelect,
 }: LoaderContentPanelProps) {
-  const activeLoader = loaders.find((l) => l.slug === activeSlug);
+  const activeGroup = resolveLoaderGroup(activeSlug ?? "", loaders);
+  const activeLoader = activeGroup
+    ? undefined
+    : loaders.find((l) => l.slug === activeSlug);
   const panelKey = activeSlug ?? "";
+  const modeKey = activeGroup ? `group--${activeGroup.id}` : "detail";
 
   return (
     <div className="flex-1 overflow-hidden">
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          key="loader-detail"
+          key={modeKey}
           className="grid h-full"
-          style={{ gridTemplateColumns: "1fr 490px" }}
+          style={{ gridTemplateColumns: activeGroup ? "1fr" : "1fr 490px" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          {activeLoader && <LoaderDetail loader={activeLoader} panelKey={panelKey} />}
+          {activeGroup ? (
+            <LoaderGroupOverview
+              label={activeGroup.label}
+              loaders={activeGroup.loaders}
+              onSelect={onSelect}
+            />
+          ) : (
+            activeLoader && (
+              <LoaderDetail loader={activeLoader} panelKey={panelKey} />
+            )
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

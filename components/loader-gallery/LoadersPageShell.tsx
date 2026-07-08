@@ -13,23 +13,21 @@ import type { Loader } from "@/types/loader";
 interface LoadersPageShellProps {
   loaders: Loader[];
   sidebarSections: SidebarSectionConfig[];
-  firstSlug: string;
 }
 
 export function LoadersPageShell({
   loaders,
   sidebarSections,
-  firstSlug,
 }: LoadersPageShellProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const rawSlug = searchParams.get("slug") ?? undefined;
-  const activeSlug = rawSlug ?? firstSlug;
+  const activeSlug = searchParams.get("slug") ?? undefined;
 
+  // No slug means nothing to show here — send visitors to the gallery.
   useEffect(() => {
-    if (!rawSlug && firstSlug) {
-      router.replace(`/loaders?slug=${firstSlug}`, { scroll: false });
+    if (!activeSlug) {
+      router.replace("/loader-gallery");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -52,7 +50,11 @@ export function LoadersPageShell({
           onSelect={handleSelect}
         />
 
-        <LoaderContentPanel loaders={loaders} activeSlug={activeSlug} />
+        <LoaderContentPanel
+          loaders={loaders}
+          activeSlug={activeSlug}
+          onSelect={handleSelect}
+        />
       </PatternSection>
     </div>
   );

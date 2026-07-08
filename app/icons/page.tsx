@@ -40,11 +40,10 @@ export default function IconsPage() {
       label: 'Icons',
       nodes: sidebarNodes,
       topLink: { label: 'Gallery', href: '/icon-gallery' },
+      selectableGroups: true,
     },
     // When loaders are ready: { id: 'loaders', label: 'Loaders', nodes: loaderNodes },
   ];
-
-  const firstSlug = icons[0]?.slug ?? '';
 
   return (
     <Suspense>
@@ -52,7 +51,6 @@ export default function IconsPage() {
         icons={icons}
         buttonCodes={buttonCodes}
         sidebarSections={sidebarSections}
-        firstSlug={firstSlug}
       />
     </Suspense>
   );

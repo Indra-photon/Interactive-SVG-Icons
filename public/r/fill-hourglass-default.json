@@ -1,0 +1,34 @@
+{
+  "name": "fill-hourglass-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/loaders/fill-hourglass/default.tsx",
+      "content": "'use client';\n\nimport { useEffect } from 'react';\nimport { motion, useAnimation } from 'motion/react';\n\ninterface FillHourglassProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  strokeColor?: string;\n  backgroundColor?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n}\n\n// Fixed 100x100 viewBox; width/height scale the svg.\n// Sand drains from the top bulb to the bottom one, then the whole\n// hourglass flips 180° — the loop restart lands on an identical frame.\nconst TOP_SAND_START = 30;\nconst TOP_SAND_END = 47;\nconst BOTTOM_SAND_START = 80;\nconst BOTTOM_SAND_END = 62;\n\nexport function FillHourglass({\n  width = 60,\n  height = 60,\n  color = \"#e8a33d\",\n  strokeColor = \"#1f1f1f\",\n  backgroundColor = \"#ffffff\",\n  isAnimating = true,\n  duration = 4.0,\n  ease = 'linear',\n}: FillHourglassProps) {\n  const rotateControls = useAnimation();\n  const topControls = useAnimation();\n  const bottomControls = useAnimation();\n  const streamControls = useAnimation();\n\n  useEffect(() => {\n    if (isAnimating) {\n      rotateControls.start({\n        rotate: [0, 0, 180],\n        transition: { duration, repeat: Infinity, ease: 'easeInOut', times: [0, 0.8, 1] },\n      });\n      topControls.start({\n        y: [TOP_SAND_START, TOP_SAND_END, TOP_SAND_END],\n        transition: { duration, repeat: Infinity, ease, times: [0, 0.78, 1] },\n      });\n      bottomControls.start({\n        y: [BOTTOM_SAND_START, BOTTOM_SAND_END, BOTTOM_SAND_END],\n        transition: { duration, repeat: Infinity, ease, times: [0, 0.78, 1] },\n      });\n      streamControls.start({\n        opacity: [1, 1, 0, 0],\n        transition: { duration, repeat: Infinity, ease: 'linear', times: [0, 0.72, 0.78, 1] },\n      });\n    } else {\n      rotateControls.stop();\n      topControls.stop();\n      bottomControls.stop();\n      streamControls.stop();\n      rotateControls.set({ rotate: 0 });\n      topControls.set({ y: TOP_SAND_START });\n      bottomControls.set({ y: BOTTOM_SAND_START });\n      streamControls.set({ opacity: 1 });\n    }\n  }, [isAnimating, duration, ease, rotateControls, topControls, bottomControls, streamControls]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <clipPath id={`fill-hourglass-top-clip-${width}`}>\n          <path d=\"M 36 20 L 64 20 L 51.5 46.5 L 48.5 46.5 Z\" />\n        </clipPath>\n        <clipPath id={`fill-hourglass-bottom-clip-${width}`}>\n          <path d=\"M 48.5 53.5 L 51.5 53.5 L 64 80 L 36 80 Z\" />\n        </clipPath>\n      </defs>\n      <motion.g\n        style={{ transformBox: 'fill-box', transformOrigin: 'center' }}\n        initial={{ rotate: 0 }}\n        animate={rotateControls}\n      >\n        {/* Glass interior */}\n        <path\n          d=\"M 34 18 L 66 18 L 53 46 L 53 54 L 66 82 L 34 82 L 47 54 L 47 46 Z\"\n          fill={backgroundColor}\n        />\n        {/* Top sand */}\n        <g clipPath={`url(#fill-hourglass-top-clip-${width})`}>\n          <motion.rect\n            x={34}\n            width={32}\n            height={16}\n            fill={color}\n            initial={{ y: TOP_SAND_START }}\n            animate={topControls}\n          />\n        </g>\n        {/* Falling stream */}\n        <motion.line\n          x1={50}\n          y1={54}\n          x2={50}\n          y2={78}\n          stroke={color}\n          strokeWidth={2.5}\n          strokeLinecap=\"round\"\n          initial={{ opacity: 1 }}\n          animate={streamControls}\n        />\n        {/* Bottom sand */}\n        <g clipPath={`url(#fill-hourglass-bottom-clip-${width})`}>\n          <motion.rect\n            x={34}\n            width={32}\n            height={17}\n            fill={color}\n            initial={{ y: BOTTOM_SAND_START }}\n            animate={bottomControls}\n          />\n        </g>\n        {/* Glass outline */}\n        <path\n          d=\"M 34 18 L 66 18 L 53 46 L 53 54 L 66 82 L 34 82 L 47 54 L 47 46 Z\"\n          stroke={strokeColor}\n          strokeWidth={5}\n          strokeLinejoin=\"round\"\n          fill=\"none\"\n        />\n        {/* Frame bars */}\n        <line x1={30} y1={14} x2={70} y2={14} stroke={strokeColor} strokeWidth={5} strokeLinecap=\"round\" />\n        <line x1={30} y1={86} x2={70} y2={86} stroke={strokeColor} strokeWidth={5} strokeLinecap=\"round\" />\n      </motion.g>\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/loaders/fill-hourglass/default.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Hourglass - Hourglass",
+    "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
+    "category": "loaders",
+    "tags": [
+      "hourglass",
+      "sand",
+      "timer",
+      "time",
+      "fill",
+      "flip",
+      "waiting"
+    ],
+    "animationType": "loop"
+  }
+}

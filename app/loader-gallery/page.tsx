@@ -20,6 +20,7 @@ export default function LoaderGalleryPage() {
       label: 'Loaders',
       nodes: sidebarNodes,
       topLink: { label: 'Gallery', href: '/loader-gallery' },
+      selectableGroups: true,
     },
   ];
 

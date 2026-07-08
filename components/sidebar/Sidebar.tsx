@@ -31,6 +31,9 @@ export interface SidebarSectionConfig {
   label: string;
   nodes: SidebarNode[];
   topLink?: SidebarTopLink;
+  // When true, clicking a group node selects it (group overview page)
+  // in addition to toggling expand.
+  selectableGroups?: boolean;
 }
 
 interface SidebarProps {
@@ -99,6 +102,7 @@ export function Sidebar({
                   activeSlug={activeSlug}
                   activeVariation={activeVariation}
                   onSelect={onSelect}
+                  selectableGroups={section.selectableGroups}
                 />
               ))}
             </ul>

@@ -8,7 +8,7 @@ export type SidebarNode = {
   label: string;
   slug: string;
   variation?: string;
-  isGroup?: boolean; // pure grouping node — clicking only toggles expand, never selects content
+  isGroup?: boolean; // grouping node — clicking toggles expand; also selects (overview page) when the section sets selectableGroups
   children?: SidebarNode[];
 };
 
@@ -19,6 +19,7 @@ export function buildIconSidebarNodes(icons: Icon[]): SidebarNode[] {
     id: icon.slug,
     label: icon.name.replace(/ Icon$/i, ''),
     slug: icon.slug,
+    isGroup: true,
     children: icon.variations.map(v => ({
       id: `${icon.slug}--${v.name}`,
       label: v.displayName,
@@ -38,10 +39,26 @@ const LOADER_GROUPS: { id: string; label: string; match: (slug: string) => boole
   { id: 'dot-matrix', label: 'Dot Matrix',  match: s => s.startsWith('dot-matrix') },
   { id: 'audio',      label: 'Audio',       match: s => s.startsWith('audio-') },
   { id: 'ball',       label: 'Ball Bounce', match: s => s.startsWith('ball-bounce') },
+  { id: 'fill',       label: 'Liquid Fill', match: s => s.startsWith('fill-') },
   { id: 'spinner',    label: 'Spinner',     match: s => ['circle-spinner-wipe', 'circular-wave-fill', 'conic-spinner', 'spinner-orbit-dots'].includes(s) },
   { id: 'dots',       label: 'Dots',        match: s => s.startsWith('dots-') },
   { id: 'square',     label: 'Square',      match: s => s.startsWith('square-') },
 ];
+
+export const LOADER_GROUP_SLUG_PREFIX = 'group--';
+
+// Resolves a sidebar group slug ("group--fill") to its label and member
+// loaders. Returns null for regular loader slugs.
+export function resolveLoaderGroup(
+  slug: string,
+  loaders: Loader[]
+): { id: string; label: string; loaders: Loader[] } | null {
+  if (!slug.startsWith(LOADER_GROUP_SLUG_PREFIX)) return null;
+  const id = slug.slice(LOADER_GROUP_SLUG_PREFIX.length);
+  const group = LOADER_GROUPS.find(g => g.id === id);
+  if (!group) return null;
+  return { id, label: group.label, loaders: loaders.filter(l => group.match(l.slug)) };
+}
 
 export function buildLoaderSidebarNodes(loaders: Loader[]): SidebarNode[] {
   const buckets = new Map<string, Loader[]>(LOADER_GROUPS.map(g => [g.id, []]));
