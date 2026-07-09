@@ -1920,6 +1920,25 @@
       ]
     },
     {
+      "name": "teletype-clock-default",
+      "type": "registry:block",
+      "title": "Teletype Clock - Split-Flap Clock",
+      "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/teletype-clock/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/teletype-clock/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "subitem-navbar-subitem-navbar",
       "type": "registry:block",
       "title": "SubItem Navbar - SubItem Navbar",
@@ -1986,6 +2005,27 @@
       ]
     },
     {
+      "name": "onboarding-form-default",
+      "type": "registry:block",
+      "title": "Onboarding Form - Onboarding Form",
+      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
+      "dependencies": [
+        "motion/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/onboarding-form/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/onboarding-form/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "morphing-image-effect-default",
       "type": "registry:block",
       "title": "Morphing Image Effect - Image Morph",
@@ -2007,7 +2047,7 @@
     {
       "name": "category-ticker-vertical-marquee",
       "type": "registry:block",
-      "title": "Category Ticker - Vertical Marquee",
+      "title": "Vertical Marquee - Vertical Marquee",
       "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
       "dependencies": [
         "motion/react",
@@ -2022,27 +2062,6 @@
           "path": "components/craftui/blocks/category-ticker/vertical-marquee.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/category-ticker/vertical-marquee.tsx"
-        }
-      ]
-    },
-    {
-      "name": "category-ticker-onboarding-steps",
-      "type": "registry:block",
-      "title": "Category Ticker - Onboarding Steps",
-      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
-      "dependencies": [
-        "motion/react",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/category-ticker/onboarding-steps.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/category-ticker/onboarding-steps.tsx"
         }
       ]
     },

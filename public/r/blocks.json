@@ -1,6 +1,71 @@
 {
   "blocks": [
     {
+      "slug": "teletype-clock",
+      "name": "Teletype Clock",
+      "category": "number-animation",
+      "tags": [
+        "clock",
+        "flip",
+        "split-flap",
+        "time",
+        "3d",
+        "loop",
+        "retro"
+      ],
+      "description": "A classic split-flap airport-board clock. Each digit lives on a dark card split by a center seam — when the time changes, the top flap falls with gravity, reveals the next digit, and the bottom flap lands with a mechanical bounce.",
+      "createdAt": "2026-07-08T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Split-Flap Clock",
+          "tier": "free",
+          "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
+          "animationType": "loop",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "demo",
+              "type": "boolean",
+              "default": "false",
+              "description": "Advance the clock by one minute on an interval so flips happen constantly (for showcases)"
+            },
+            {
+              "name": "demoIntervalMs",
+              "type": "number",
+              "default": "3000",
+              "description": "Milliseconds between flips in demo mode"
+            },
+            {
+              "name": "hour12",
+              "type": "boolean",
+              "default": "false",
+              "description": "Use 12-hour format instead of 24-hour"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "\"\"",
+              "description": "Extra classes for the outer wrapper"
+            }
+          ],
+          "componentName": "TeletypeClock",
+          "previewHint": "Digits flip every few seconds in demo mode",
+          "features": [
+            "Two-phase flip: rotateX 0 → -90° fall with ease-in-cubic gravity, then 90 → 0° landing with overshoot bounce",
+            "Only transform and opacity are animated — flaps run on the compositor with backface-visibility hidden",
+            "Digit halves are full-height numerals clipped by overflow-hidden windows, so the seam cuts each digit cleanly",
+            "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
+            "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
+            "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "subitem-navbar",
       "name": "SubItem Navbar",
       "category": "navbar",
@@ -239,6 +304,62 @@
       ]
     },
     {
+      "slug": "onboarding-form",
+      "name": "Onboarding Form",
+      "category": "multi-step-form",
+      "tags": [
+        "form",
+        "onboarding",
+        "multi-step",
+        "ticker",
+        "animation",
+        "click"
+      ],
+      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
+      "createdAt": "2026-06-23T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Onboarding Form",
+          "tier": "free",
+          "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
+          "animationType": "click",
+          "dependencies": [
+            "motion/react",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "steps",
+              "type": "Step[]",
+              "default": "DEFAULT_STEPS",
+              "required": false,
+              "description": "Array of { label, question, options[] } objects defining each step"
+            },
+            {
+              "name": "onComplete",
+              "type": "function",
+              "required": false,
+              "description": "Callback fired when the user submits the final step, receives answers keyed by step index"
+            }
+          ],
+          "componentName": "OnboardingForm",
+          "previewHint": "Select an answer, then click the arrow to advance through each step",
+          "features": [
+            "Vertical ticker syncs with the active step — same scroll mechanic as the Vertical Marquee variation",
+            "Question panel slides in/out with direction-aware animation (forward vs back)",
+            "Next button is disabled until an option is selected — no accidental skips",
+            "Arrow icon swaps to a checkmark on the final step with a spring micro-animation",
+            "Completion screen fades in after the last step is submitted",
+            "Fully driven by the steps prop — swap questions without touching source",
+            "Respects prefers-reduced-motion — all transitions collapse to duration 0"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "morphing-image-effect",
       "name": "Morphing Image Effect",
       "category": "creative",
@@ -286,7 +407,7 @@
     },
     {
       "slug": "category-ticker",
-      "name": "Category Ticker",
+      "name": "Vertical Marquee",
       "category": "ticker",
       "tags": [
         "ticker",
@@ -376,49 +497,10 @@
               "type": "website"
             }
           ]
-        },
-        {
-          "name": "onboarding-steps",
-          "displayName": "Onboarding Steps",
-          "tier": "free",
-          "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
-          "animationType": "click",
-          "dependencies": [
-            "motion/react",
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "steps",
-              "type": "Step[]",
-              "default": "DEFAULT_STEPS",
-              "required": false,
-              "description": "Array of { label, question, options[] } objects defining each step"
-            },
-            {
-              "name": "onComplete",
-              "type": "function",
-              "required": false,
-              "description": "Callback fired when the user submits the final step, receives answers keyed by step index"
-            }
-          ],
-          "componentName": "OnboardingSteps",
-          "previewHint": "Select an answer, then click the arrow to advance through each step",
-          "features": [
-            "Vertical ticker syncs with the active step — same scroll mechanic as the Vertical Marquee variation",
-            "Question panel slides in/out with direction-aware animation (forward vs back)",
-            "Next button is disabled until an option is selected — no accidental skips",
-            "Arrow icon swaps to a checkmark on the final step with a spring micro-animation",
-            "Completion screen fades in after the last step is submitted",
-            "Fully driven by the steps prop — swap questions without touching source",
-            "Respects prefers-reduced-motion — all transitions collapse to duration 0"
-          ]
         }
       ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-08T13:33:46.335Z"
+  "lastUpdated": "2026-07-09T23:44:51.775Z"
 }

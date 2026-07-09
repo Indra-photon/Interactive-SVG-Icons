@@ -14,6 +14,13 @@ export type SidebarNode = {
 
 export type SectionId = 'icons' | 'loaders' | 'blocks' | 'ui';
 
+function toTitleCase(slug: string): string {
+  return slug
+    .split(/[-\s]+/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export function buildIconSidebarNodes(icons: Icon[]): SidebarNode[] {
   return icons.map(icon => ({
     id: icon.slug,
@@ -140,29 +147,26 @@ export function buildBlockSidebarNodes(blocks: Block[]): SidebarNode[] {
 
   const nodes: SidebarNode[] = [];
   for (const [category, members] of categoryMap) {
-    if (members.length === 1) {
-      nodes.push(blockToNode(members[0]));
-    } else {
-      // Multiple blocks in the same category — wrap in a group
-      nodes.push({
-        id: `group--${category}`,
-        label: category.charAt(0).toUpperCase() + category.slice(1),
-        slug: `group--${category}`,
-        isGroup: true,
-        children: members.map((block) => {
-          if (block.variations.length === 1) {
-            const v = block.variations[0];
-            return {
-              id: `${block.slug}--${v.name}`,
-              label: block.name,
-              slug: block.slug,
-              variation: v.name,
-            };
-          }
-          return blockToNode(block);
-        }),
-      });
-    }
+    // Every category gets its own folder, even with a single block in it —
+    // categories are a deliberate grouping, not just an overflow mechanism.
+    nodes.push({
+      id: `group--${category}`,
+      label: toTitleCase(category),
+      slug: `group--${category}`,
+      isGroup: true,
+      children: members.map((block) => {
+        if (block.variations.length === 1) {
+          const v = block.variations[0];
+          return {
+            id: `${block.slug}--${v.name}`,
+            label: block.name,
+            slug: block.slug,
+            variation: v.name,
+          };
+        }
+        return blockToNode(block);
+      }),
+    });
   }
 
   return nodes;
@@ -216,7 +220,7 @@ export function buildUISidebarNodes(components: UIComponent[]): SidebarNode[] {
         // folder so it still reads Input → OTP Input.
         nodes.push({
           id: `group--${category}`,
-          label: category.charAt(0).toUpperCase() + category.slice(1),
+          label: toTitleCase(category),
           slug: `group--${category}`,
           isGroup: true,
           children: [node],
@@ -225,7 +229,7 @@ export function buildUISidebarNodes(components: UIComponent[]): SidebarNode[] {
     } else {
       nodes.push({
         id: `group--${category}`,
-        label: category.charAt(0).toUpperCase() + category.slice(1),
+        label: toTitleCase(category),
         slug: `group--${category}`,
         isGroup: true,
         children: members.map(componentToNode),
