@@ -20,6 +20,7 @@ export default function IconGalleryPage() {
       label: 'Icons',
       nodes: sidebarNodes,
       topLink: { label: 'Gallery', href: '/icon-gallery' },
+      selectableGroups: true,
     },
   ];
 

@@ -1,0 +1,35 @@
+{
+  "name": "fill-beer-glass-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/loaders/fill-beer-glass/default.tsx",
+      "content": "'use client';\n\nimport { useEffect } from 'react';\nimport { motion, useAnimation } from 'motion/react';\n\ninterface FillBeerGlassProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  secondaryColor?: string;\n  strokeColor?: string;\n  backgroundColor?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n}\n\n// Fixed 100x100 viewBox; width/height scale the svg.\n// Beer + foam live in one group that rises from the bottom of the mug.\nconst EMPTY_Y = 56;\n\nexport function FillBeerGlass({\n  width = 60,\n  height = 60,\n  color = \"#f2a93b\",\n  secondaryColor = \"#fdf3d8\",\n  strokeColor = \"#1f1f1f\",\n  backgroundColor = \"#ffffff\",\n  isAnimating = true,\n  duration = 3.0,\n  ease = 'linear',\n}: FillBeerGlassProps) {\n  const controls = useAnimation();\n\n  useEffect(() => {\n    if (isAnimating) {\n      // Fill over ~85% of the cycle, then hold while the beer fades out so\n      // the loop restarts at empty without a visible snap.\n      controls.start({\n        y: [EMPTY_Y, 0, 0],\n        opacity: [1, 1, 0],\n        transition: { duration, repeat: Infinity, ease, times: [0, 0.85, 1] },\n      });\n    } else {\n      controls.stop();\n      controls.set({ y: EMPTY_Y, opacity: 1 });\n    }\n  }, [isAnimating, duration, ease, controls]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <clipPath id={`fill-beer-glass-clip-${width}`}>\n          <rect x={27} y={19} width={38} height={56} rx={5} />\n        </clipPath>\n      </defs>\n      {/* Mug interior */}\n      <rect x={24} y={16} width={44} height={62} rx={8} fill={backgroundColor} />\n      {/* Rising beer with foam cap */}\n      <g clipPath={`url(#fill-beer-glass-clip-${width})`}>\n        <motion.g initial={{ y: EMPTY_Y }} animate={controls}>\n          <circle cx={32} cy={24} r={5} fill={secondaryColor} />\n          <circle cx={41.5} cy={22.5} r={5.5} fill={secondaryColor} />\n          <circle cx={51} cy={24} r={5} fill={secondaryColor} />\n          <circle cx={60} cy={22.5} r={5.5} fill={secondaryColor} />\n          <rect x={27} y={24} width={38} height={8} fill={secondaryColor} />\n          <rect x={27} y={31} width={38} height={70} fill={color} />\n        </motion.g>\n      </g>\n      {/* Handle */}\n      <path\n        d=\"M 68 34 C 84 30 90 38 87 48 C 84 56 76 58 68 56\"\n        stroke={strokeColor}\n        strokeWidth={5}\n        strokeLinecap=\"round\"\n        fill=\"none\"\n      />\n      {/* Mug outline */}\n      <rect\n        x={24}\n        y={16}\n        width={44}\n        height={62}\n        rx={8}\n        stroke={strokeColor}\n        strokeWidth={5}\n        fill=\"none\"\n      />\n      {/* Base line */}\n      <line x1={18} y1={86} x2={74} y2={86} stroke={strokeColor} strokeWidth={5} strokeLinecap=\"round\" />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/loaders/fill-beer-glass/default.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Beer Glass - Beer Glass",
+    "description": "An outlined beer mug fills with amber liquid while a bubbly foam cap rises on top",
+    "category": "loaders",
+    "tags": [
+      "beer",
+      "mug",
+      "glass",
+      "liquid",
+      "foam",
+      "fill",
+      "drink",
+      "playful"
+    ],
+    "animationType": "loop"
+  }
+}

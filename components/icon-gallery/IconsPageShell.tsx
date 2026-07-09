@@ -14,31 +14,23 @@ interface IconsPageShellProps {
   icons: Icon[];
   buttonCodes: Record<string, string>;
   sidebarSections: SidebarSectionConfig[];
-  firstSlug: string;
 }
 
 export function IconsPageShell({
   icons,
   buttonCodes,
   sidebarSections,
-  firstSlug,
 }: IconsPageShellProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const rawSlug = searchParams.get("slug") ?? undefined;
-  const rawVariation = searchParams.get("variation") ?? undefined;
+  const activeSlug = searchParams.get("slug") ?? undefined;
+  const activeVariation = searchParams.get("variation") ?? undefined;
 
-  const activeSlug = rawSlug ?? firstSlug;
-  const activeVariation = rawVariation;
-
+  // No slug means nothing to show here — send visitors to the gallery.
   useEffect(() => {
-    if (!rawSlug && firstSlug) {
-      const firstVariation = icons.find((i) => i.slug === firstSlug)?.variations[0]?.name;
-      const params = new URLSearchParams();
-      params.set("slug", firstSlug);
-      if (firstVariation) params.set("variation", firstVariation);
-      router.replace(`/icons?${params.toString()}`, { scroll: false });
+    if (!activeSlug) {
+      router.replace("/icon-gallery");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

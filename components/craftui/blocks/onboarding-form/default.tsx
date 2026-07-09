@@ -17,7 +17,7 @@ interface Step {
   options: string[];
 }
 
-interface OnboardingStepsProps {
+interface OnboardingFormProps {
   steps?: Step[];
   onComplete?: (answers: Record<number, string>) => void;
 }
@@ -390,10 +390,10 @@ function CompletionScreen() {
 
 // ── Root ──────────────────────────────────────────────────────────────────────
 
-export default function OnboardingSteps({
+export default function OnboardingForm({
   steps = DEFAULT_STEPS,
   onComplete,
-}: OnboardingStepsProps) {
+}: OnboardingFormProps) {
   const shouldReduceMotion = useReducedMotion();
   const [activeStep, setActiveStep] = useState(0);
   const [direction, setDirection] = useState(1);

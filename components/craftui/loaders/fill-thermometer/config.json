@@ -1,0 +1,82 @@
+{
+  "name": "Thermometer",
+  "category": "loaders",
+  "tags": [
+    "thermometer",
+    "temperature",
+    "mercury",
+    "level",
+    "fill",
+    "rising",
+    "progress",
+    "health"
+  ],
+  "description": "A thermometer whose mercury column rises from the bulb to the top, fits progress-style loading",
+  "createdAt": "2026-07-08",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Thermometer",
+      "tier": "free",
+      "description": "An outlined thermometer with a mercury column that rises from the bulb to the top in a loop",
+      "animationType": "loop",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "default": 60,
+          "description": "Width of the loader container in pixels"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": 60,
+          "description": "Height of the loader container in pixels"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "#ef4444",
+          "description": "Color of the mercury"
+        },
+        {
+          "name": "strokeColor",
+          "type": "string",
+          "default": "#1f1f1f",
+          "description": "Color of the thermometer outline and tick marks"
+        },
+        {
+          "name": "backgroundColor",
+          "type": "string",
+          "default": "#ffffff",
+          "description": "Fill color of the stem and bulb interior"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs. Set to false to pause animation."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 2.5,
+          "description": "Animation cycle duration in seconds",
+          "min": 0.1,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "linear",
+          "description": "Easing function"
+        }
+      ],
+      "componentName": "FillThermometer"
+    }
+  ]
+}

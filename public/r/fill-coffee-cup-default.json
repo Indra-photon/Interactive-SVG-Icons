@@ -1,0 +1,35 @@
+{
+  "name": "fill-coffee-cup-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/loaders/fill-coffee-cup/default.tsx",
+      "content": "'use client';\n\nimport { useEffect } from 'react';\nimport { motion, useAnimation } from 'motion/react';\n\ninterface FillCoffeeCupProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  secondaryColor?: string;\n  strokeColor?: string;\n  backgroundColor?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n}\n\n// All geometry lives in a fixed 100x100 viewBox; width/height scale the svg.\nconst VIEW = 100;\nconst FRONT_WAVELENGTH = 60;\nconst BACK_WAVELENGTH = 90;\n\n// Repeating wave spanning -2*VIEW..2*VIEW so it stays inside the clip while\n// translating horizontally by one wavelength (a seamless loop).\nconst buildWavePath = (level: number, amplitude: number, wavelength: number) => {\n  let d = `M ${-VIEW * 2} ${level}`;\n  let up = true;\n  for (let x = -VIEW * 2; x < VIEW * 2; x += wavelength / 2) {\n    const cpY = up ? level - amplitude : level + amplitude;\n    d += ` Q ${x + wavelength / 4} ${cpY} ${x + wavelength / 2} ${level}`;\n    up = !up;\n  }\n  d += ` L ${VIEW * 2} ${VIEW + 20} L ${-VIEW * 2} ${VIEW + 20} Z`;\n  return d;\n};\n\nexport function FillCoffeeCup({\n  width = 60,\n  height = 60,\n  color = \"#e8a33d\",\n  secondaryColor = \"#f0d9aa\",\n  strokeColor = \"#1f1f1f\",\n  backgroundColor = \"#ffffff\",\n  isAnimating = true,\n  duration = 2.0,\n  ease = 'linear',\n}: FillCoffeeCupProps) {\n  const frontControls = useAnimation();\n  const backControls = useAnimation();\n\n  useEffect(() => {\n    if (isAnimating) {\n      frontControls.start({\n        x: [0, -FRONT_WAVELENGTH],\n        transition: { duration, repeat: Infinity, ease },\n      });\n      backControls.start({\n        x: [0, BACK_WAVELENGTH],\n        transition: { duration: duration * 1.6, repeat: Infinity, ease },\n      });\n    } else {\n      frontControls.stop();\n      backControls.stop();\n      frontControls.set({ x: 0 });\n      backControls.set({ x: 0 });\n    }\n  }, [isAnimating, duration, ease, frontControls, backControls]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${VIEW} ${VIEW}`}\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <clipPath id={`coffee-cup-clip-${width}`}>\n          <rect x={23} y={21} width={46} height={52} rx={9} />\n        </clipPath>\n      </defs>\n      {/* Cup interior */}\n      <rect x={20} y={18} width={52} height={58} rx={12} fill={backgroundColor} />\n      {/* Liquid */}\n      <g clipPath={`url(#coffee-cup-clip-${width})`}>\n        <motion.path\n          fill={secondaryColor}\n          initial={{ d: buildWavePath(42, 8, BACK_WAVELENGTH) }}\n          d={buildWavePath(42, 8, BACK_WAVELENGTH)}\n          animate={backControls}\n        />\n        <motion.path\n          fill={color}\n          initial={{ d: buildWavePath(46, 5, FRONT_WAVELENGTH) }}\n          d={buildWavePath(46, 5, FRONT_WAVELENGTH)}\n          animate={frontControls}\n        />\n      </g>\n      {/* Handle */}\n      <path\n        d=\"M 72 32 C 88 26 96 34 92 44 C 89 52 80 56 72 54\"\n        stroke={strokeColor}\n        strokeWidth={5}\n        strokeLinecap=\"round\"\n        fill=\"none\"\n      />\n      {/* Cup outline */}\n      <rect\n        x={20}\n        y={18}\n        width={52}\n        height={58}\n        rx={12}\n        stroke={strokeColor}\n        strokeWidth={5}\n        fill=\"none\"\n      />\n      {/* Saucer line */}\n      <line x1={14} y1={86} x2={76} y2={86} stroke={strokeColor} strokeWidth={5} strokeLinecap=\"round\" />\n      <line x1={86} y1={86} x2={93} y2={86} stroke={strokeColor} strokeWidth={5} strokeLinecap=\"round\" />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/loaders/fill-coffee-cup/default.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Coffee Cup - Coffee Cup",
+    "description": "An outlined coffee cup where two layered waves of liquid slosh continuously at a constant level",
+    "category": "loaders",
+    "tags": [
+      "coffee",
+      "cup",
+      "liquid",
+      "wave",
+      "fill",
+      "drink",
+      "cafe",
+      "playful"
+    ],
+    "animationType": "loop"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "slug": "category-ticker",
-  "name": "Category Ticker",
+  "name": "Vertical Marquee",
   "category": "ticker",
   "tags": ["ticker", "marquee", "animation", "typography", "scroll", "loop"],
   "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
@@ -79,42 +79,6 @@
           "type": "website"
         }
       ]
-    },
-    {
-      "name": "onboarding-steps",
-      "displayName": "Onboarding Steps",
-      "componentName": "OnboardingSteps",
-      "previewHint": "Select an answer, then click the arrow to advance through each step",
-      "tier": "free",
-      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
-      "animationType": "click",
-      "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
-      "registryDependencies": [],
-      "props": [
-        {
-          "name": "steps",
-          "type": "Step[]",
-          "default": "DEFAULT_STEPS",
-          "required": false,
-          "description": "Array of { label, question, options[] } objects defining each step"
-        },
-        {
-          "name": "onComplete",
-          "type": "function",
-          "required": false,
-          "description": "Callback fired when the user submits the final step, receives answers keyed by step index"
-        }
-      ],
-      "features": [
-        "Vertical ticker syncs with the active step — same scroll mechanic as the Vertical Marquee variation",
-        "Question panel slides in/out with direction-aware animation (forward vs back)",
-        "Next button is disabled until an option is selected — no accidental skips",
-        "Arrow icon swaps to a checkmark on the final step with a spring micro-animation",
-        "Completion screen fades in after the last step is submitted",
-        "Fully driven by the steps prop — swap questions without touching source",
-        "Respects prefers-reduced-motion — all transitions collapse to duration 0"
-      ],
-      "inspiration": []
     }
   ]
 }

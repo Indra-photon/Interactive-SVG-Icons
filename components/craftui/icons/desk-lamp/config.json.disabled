@@ -1,0 +1,86 @@
+{
+  "slug": "desk-lamp",
+  "name": "Desk Lamp Icon",
+  "category": "interface",
+  "tags": [
+    "lamp",
+    "desk",
+    "light",
+    "study",
+    "workspace",
+    "illustration"
+  ],
+  "description": "Illustrated desk lamp that lights up, for study, focus, and workspace features",
+  "createdAt": "2026-07-08T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "tier": "free",
+      "description": "Illustrated desk lamp; the shade interior warms up and casts a soft halo when active",
+      "animationType": "hover",
+      "dependencies": [
+        "motion/react"
+      ],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 24,
+          "min": 8,
+          "max": 256,
+          "step": 1,
+          "description": "Width and height of the icon in pixels"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "",
+          "description": "Additional CSS classes to apply"
+        },
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "default": false,
+          "description": "Controls the light. Set to true to turn the lamp on."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.4,
+          "required": false,
+          "description": "Duration of the light on/off fade in seconds",
+          "min": 0.1,
+          "max": 3,
+          "step": 0.05
+        },
+        {
+          "name": "ease",
+          "type": "ease",
+          "default": "easeOut",
+          "required": false,
+          "description": "Easing of the animation. Accepts a named ease or a cubic-bezier array."
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "#7ba3ec",
+          "description": "Body color of the lamp (shade, arm, and base)"
+        },
+        {
+          "name": "accentColor",
+          "type": "string",
+          "default": "#e8836f",
+          "description": "Accent color for the hinge pins and base button"
+        },
+        {
+          "name": "glowColor",
+          "type": "string",
+          "default": "#f7c877",
+          "description": "Warm color of the lit interior and halo"
+        }
+      ],
+      "componentName": "IconDeskLamp"
+    }
+  ]
+}

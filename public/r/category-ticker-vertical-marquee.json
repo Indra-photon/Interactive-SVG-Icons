@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "displayName": "Category Ticker - Vertical Marquee",
+    "displayName": "Vertical Marquee - Vertical Marquee",
     "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
     "category": "ticker",
     "tags": [

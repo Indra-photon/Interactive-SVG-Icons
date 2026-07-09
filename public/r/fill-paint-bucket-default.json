@@ -1,0 +1,35 @@
+{
+  "name": "fill-paint-bucket-default",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
+      "content": "'use client';\n\nimport { useEffect } from 'react';\nimport { motion, useAnimation } from 'motion/react';\n\ninterface FillPaintBucketProps {\n  width?: number;\n  height?: number;\n  color?: string;\n  strokeColor?: string;\n  backgroundColor?: string;\n  isAnimating?: boolean;\n  duration?: number;\n  ease?: any;\n}\n\n// Fixed 100x100 viewBox; width/height scale the svg.\n// Timeline: the stream pours in (0 → 0.15), the paint level rises while the\n// stream holds (0.15 → 0.85), then the stream fades out (0.85 → 1).\nconst BODY_PATH = 'M 27 44 L 31 80 Q 31.5 84 35 84 L 65 84 Q 68.5 84 69 80 L 73 44 Z';\n\nexport function FillPaintBucket({\n  width = 60,\n  height = 60,\n  color = \"#8b5cf6\",\n  strokeColor = \"#1f1f1f\",\n  backgroundColor = \"#ffffff\",\n  isAnimating = true,\n  duration = 3.0,\n  ease = 'linear',\n}: FillPaintBucketProps) {\n  const streamControls = useAnimation();\n  const levelControls = useAnimation();\n\n  useEffect(() => {\n    if (isAnimating) {\n      streamControls.start({\n        height: [0, 43, 43, 43],\n        opacity: [1, 1, 1, 0],\n        transition: { duration, repeat: Infinity, ease: 'linear', times: [0, 0.15, 0.85, 1] },\n      });\n      // The paint fades out with the stream so the loop restarts at empty\n      // without a visible snap.\n      levelControls.start({\n        y: [82, 82, 50, 50],\n        height: [0, 0, 32, 32],\n        opacity: [1, 1, 1, 0],\n        transition: { duration, repeat: Infinity, ease, times: [0, 0.15, 0.85, 1] },\n      });\n    } else {\n      streamControls.stop();\n      levelControls.stop();\n      streamControls.set({ height: 0, opacity: 1 });\n      levelControls.set({ y: 82, height: 0, opacity: 1 });\n    }\n  }, [isAnimating, duration, ease, streamControls, levelControls]);\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox=\"0 0 100 100\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      aria-label=\"Loading\"\n      role=\"img\"\n    >\n      <defs>\n        <clipPath id={`fill-paint-bucket-clip-${width}`}>\n          <path d=\"M 30 47 L 33.7 79 Q 34 81.5 36.5 81.5 L 63.5 81.5 Q 66 81.5 66.3 79 L 70 47 Z\" />\n        </clipPath>\n      </defs>\n      {/* Pouring stream */}\n      <motion.rect\n        x={46}\n        y={4}\n        width={8}\n        rx={3}\n        fill={color}\n        initial={{ height: 0, opacity: 1 }}\n        animate={streamControls}\n      />\n      {/* Bucket interior */}\n      <path d={BODY_PATH} fill={backgroundColor} />\n      {/* Rising paint */}\n      <g clipPath={`url(#fill-paint-bucket-clip-${width})`}>\n        <motion.rect\n          x={28}\n          width={44}\n          fill={color}\n          initial={{ y: 82, height: 0 }}\n          animate={levelControls}\n        />\n      </g>\n      {/* Bucket outline */}\n      <path\n        d={BODY_PATH}\n        stroke={strokeColor}\n        strokeWidth={5}\n        strokeLinejoin=\"round\"\n        fill=\"none\"\n      />\n      {/* Rim */}\n      <line x1={27} y1={44} x2={73} y2={44} stroke={strokeColor} strokeWidth={5} strokeLinecap=\"round\" />\n    </svg>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Paint Bucket - Paint Bucket",
+    "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
+    "category": "loaders",
+    "tags": [
+      "paint",
+      "bucket",
+      "pouring",
+      "design",
+      "color",
+      "fill",
+      "creative",
+      "art"
+    ],
+    "animationType": "loop"
+  }
+}

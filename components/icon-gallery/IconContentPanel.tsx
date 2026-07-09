@@ -59,10 +59,10 @@ function VariationPreviewCard({
       </div>
       <div className="flex items-start justify-between gap-1.5">
         <div className="min-w-0">
-          <p className="font-sans font-medium text-foreground text-xs truncate">
+          <p className="text-[18px] font-sans text-foreground text-wrap-balance truncate">
             {variation.displayName}
           </p>
-          <p className="text-[11px] text-foreground/60 tracking-tighter mt-0.5 line-clamp-2">
+          <p className="text-[14px] text-foreground/80 font-sans tracking-tighter text-wrap-pretty mt-0.5 line-clamp-2">
             {variation.description}
           </p>
         </div>
@@ -90,33 +90,14 @@ function IconOverview({
   return (
     <div className="overflow-y-auto py-10 px-8">
       <div className="w-full">
-        <p className="text-xs font-mono text-foreground/80 uppercase tracking-widest mb-2">
-          {icon.category}
-        </p>
         <h1 className="text-2xl font-sans text-foreground text-wrap-balance">
           {icon.name.replace(/ Icon$/i, "")}
         </h1>
-        <p className="text-foreground/80 font-sans tracking-tighter mb-8 text-wrap-pretty">
-          {icon.description}
-        </p>
 
-        {icon.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-10">
-            {icon.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-0.5 bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 rounded text-xs"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-          Variations
+        <h2 className="text-xs font-mono text-primary/80 mb-8">
+          Check out all the interactions for this icon below.
         </h2>
-        <div className="grid grid-cols-4 w-full gap-3">
+        <div className="grid grid-cols-5 w-full gap-3">
           {icon.variations.map((v) => (
             <VariationPreviewCard
               key={v.name}
