@@ -1,6 +1,117 @@
 {
   "blocks": [
     {
+      "slug": "travel-card",
+      "name": "Travel Card",
+      "category": "card",
+      "tags": [
+        "card",
+        "travel",
+        "product",
+        "morph",
+        "click",
+        "animation"
+      ],
+      "description": "A two-stage travel booking card that morphs from a full-bleed poster into a detail view with price, tags, and an Add to Cart action.",
+      "createdAt": "2026-07-15T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Travel Card",
+          "tier": "free",
+          "description": "The image, background color, CTA button, and a badge icon all animate between a cover-photo stage and a detail stage with price and tags, connected by an icon that flies along a curved path between the two.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "imageUrl",
+              "type": "string",
+              "required": false,
+              "description": "Cover photo URL rendered in both stages. Defaults to the built-in Deep Blue Nights photo."
+            },
+            {
+              "name": "imageAlt",
+              "type": "string",
+              "required": false,
+              "description": "Alt text for the cover photo."
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "required": false,
+              "description": "Destination/product title shown in the detail stage header."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "description": "Body copy shown below the title in the detail stage."
+            },
+            {
+              "name": "price",
+              "type": "string",
+              "required": false,
+              "description": "Price pill text, e.g. \"$2,999\"."
+            },
+            {
+              "name": "availabilityText",
+              "type": "string",
+              "required": false,
+              "description": "Text in the top-right chip, e.g. \"9 seats left\"."
+            },
+            {
+              "name": "tagText",
+              "type": "string",
+              "required": false,
+              "description": "Label on the icon pill next to the price, e.g. \"Perfect for summer\"."
+            },
+            {
+              "name": "tagIcon",
+              "type": "HugeIcon",
+              "required": false,
+              "description": "HugeIcons icon rendered inside the tag pill. Defaults to Sun01Icon."
+            },
+            {
+              "name": "exploreLabel",
+              "type": "string",
+              "required": false,
+              "description": "CTA label shown in the collapsed stage. Defaults to \"Explore\"."
+            },
+            {
+              "name": "addToCartLabel",
+              "type": "string",
+              "required": false,
+              "description": "CTA label shown in the expanded stage. Defaults to \"Add to Cart\"."
+            },
+            {
+              "name": "onAddToCart",
+              "type": "() => void",
+              "required": false,
+              "description": "Called when the CTA is clicked while the card is expanded (the Add to Cart action)."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the root wrapper."
+            }
+          ],
+          "componentName": "TravelCard",
+          "previewHint": "Click Explore to expand the card, click Add to Cart to collapse it back",
+          "features": [
+            "Image, card background, and CTA button all morph size/position/color together on a single click, driven by one shared stage state",
+            "A single icon travels along an SVG offset-path between the button and the detail chip so the two stages read as one continuous object, not a swap",
+            "Respects prefers-reduced-motion — all springs and the flight-path animation collapse to instant transitions"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "teletype-clock",
       "name": "Teletype Clock",
       "category": "number-animation",
@@ -502,5 +613,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-09T23:44:51.775Z"
+  "lastUpdated": "2026-07-15T10:37:42.222Z"
 }

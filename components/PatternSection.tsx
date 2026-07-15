@@ -18,7 +18,7 @@ export function PatternSection({
 }) {
   return (
     <div
-      className={`relative grid grid-cols-[2.5rem_1fr_2.5rem] ${fillHeight ? "grid-rows-[1px_1fr_1px]" : "grid-rows-[1px_auto_1px]"} bg-white [--pattern-fg:var(--color-gray-950)]/10 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10 ${className}`}
+      className={`relative grid grid-cols-[2.5rem_1fr_2.5rem] ${fillHeight ? "grid-rows-[1px_minmax(0,1fr)_1px]" : "grid-rows-[1px_auto_1px]"} bg-white [--pattern-fg:var(--color-gray-950)]/10 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10 ${className}`}
     >
       <div className={`col-start-2 row-start-2 ${contentClassName}`}>
         {children}
