@@ -1920,6 +1920,27 @@
       ]
     },
     {
+      "name": "travel-card-default",
+      "type": "registry:block",
+      "title": "Travel Card - Travel Card",
+      "description": "The image, background color, CTA button, and a badge icon all animate between a cover-photo stage and a detail stage with price and tags, connected by an icon that flies along a curved path between the two.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/travel-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/travel-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "teletype-clock-default",
       "type": "registry:block",
       "title": "Teletype Clock - Split-Flap Clock",
