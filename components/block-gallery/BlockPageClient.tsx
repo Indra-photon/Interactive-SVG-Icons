@@ -2,41 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, ChevronRight, Copy, Check } from "lucide-react";
+import { X, ChevronRight } from "lucide-react";
+import { PropsTable } from "@/components/PropsTable";
+import { InstallCommand } from "@/components/InstallCommand";
 import type { Block } from "@/types/block";
 
 interface BlockPageClientProps {
   block: Block;
   baseUrl: string;
-}
-
-function useCopy() {
-  const [copied, setCopied] = useState(false);
-  const copy = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-  return { copied, copy };
-}
-
-function InstallCommand({ command }: { command: string }) {
-  const { copied, copy } = useCopy();
-  return (
-    <div className="relative group">
-      <div className="bg-zinc-950 text-zinc-100 rounded-lg px-4 py-3 font-mono text-xs leading-relaxed overflow-x-auto pr-10">
-        {command}
-      </div>
-      <button
-        onClick={() => copy(command)}
-        className="absolute right-2.5 top-2.5 text-zinc-400 hover:text-zinc-100 transition-colors"
-        aria-label="Copy command"
-      >
-        {copied ? <Check size={14} /> : <Copy size={14} />}
-      </button>
-    </div>
-  );
 }
 
 function BlockFullPreview({
@@ -191,12 +164,7 @@ export function BlockPageClient({ block, baseUrl }: BlockPageClientProps) {
                 </div>
 
                 {/* Installation */}
-                <div className="space-y-2">
-                  <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    Installation
-                  </h3>
-                  <InstallCommand command={cliCommand} />
-                </div>
+                <InstallCommand command={cliCommand} className="" />
 
                 {/* Dependencies */}
                 {variation.dependencies?.length > 0 && (
@@ -242,68 +210,7 @@ export function BlockPageClient({ block, baseUrl }: BlockPageClientProps) {
                     <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                       Props
                     </h3>
-                    <div className="rounded-xl border border-border overflow-hidden">
-                      <table className="w-full text-xs">
-                        <thead>
-                          <tr className="bg-muted border-b border-border">
-                            <th className="px-3 py-2.5 text-left font-medium text-foreground">
-                              Prop
-                            </th>
-                            <th className="px-3 py-2.5 text-left font-medium text-foreground">
-                              Type
-                            </th>
-                            <th className="px-3 py-2.5 text-left font-medium text-foreground">
-                              Req
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-border">
-                          {variation.props.map((prop) => (
-                            <tr
-                              key={prop.name}
-                              className="hover:bg-muted/50 transition-colors"
-                            >
-                              <td className="px-3 py-2.5">
-                                <code className="font-mono text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 px-1.5 py-0.5 rounded text-[11px]">
-                                  {prop.name}
-                                </code>
-                              </td>
-                              <td className="px-3 py-2.5 font-mono text-muted-foreground text-[11px]">
-                                {prop.type}
-                              </td>
-                              <td className="px-3 py-2.5 text-[11px]">
-                                {prop.required ? (
-                                  <span className="text-red-500 font-medium">
-                                    yes
-                                  </span>
-                                ) : (
-                                  <span className="text-muted-foreground">
-                                    no
-                                  </span>
-                                )}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-
-                    {/* Prop descriptions below the table */}
-                    <div className="space-y-2 pt-1">
-                      {variation.props.map((prop) => (
-                        <div
-                          key={prop.name}
-                          className="flex gap-2 text-xs font-sans"
-                        >
-                          <code className="shrink-0 font-mono text-blue-600 dark:text-blue-400">
-                            {prop.name}
-                          </code>
-                          <span className="text-muted-foreground">
-                            {prop.description}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                    <PropsTable props={variation.props} showRequired />
                   </div>
                 )}
               </div>

@@ -11,7 +11,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { LoaderConfigurator } from "./LoaderConfigurator";
 import { LoaderPreview } from "./LoaderPreview";
-import { CopyButton } from "./CopyButton";
+import { InstallCommand } from "@/components/InstallCommand";
+import { PropsTable } from "@/components/PropsTable";
 import { MorphArrow } from "@/components/ui/morph-arrow";
 import { resolveLoaderGroup } from "@/lib/sidebar-data";
 import type { Loader } from "@/types/loader";
@@ -168,61 +169,19 @@ function LoaderDetail({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <div className="">
-            <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-              Installation
-            </h2>
-            <CopyButton text={installCommand} />
-          </div>
+          <InstallCommand command={installCommand} className="" />
 
           {variation.props?.length > 0 && (
             <div>
               <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
                 Props
               </h2>
-              <div className="overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="bg-linear-to-b from-primary/50 to-primary/90 dark:bg-stone-800">
-                      <th className="text-left text-xs font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2">
-                        Prop
-                      </th>
-                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2">
-                        Type
-                      </th>
-                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2">
-                        Default
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
-                    {variation.props.map((prop) => (
-                      <tr
-                        key={prop.name}
-                        className="bg-white dark:bg-stone-900/40"
-                      >
-                        <td className="px-3 py-2 align-top">
-                          <code className="font-mono font-semibold text-foreground dark:text-stone-200">
-                            {prop.name}
-                          </code>
-                        </td>
-                        <td className="px-3 py-2 align-top font-mono text-foreground/80 whitespace-nowrap">
-                          {prop.type === "ease"
-                            ? "string | number[]"
-                            : prop.type}
-                        </td>
-                        <td className="px-3 py-2 align-top font-mono text-foreground/80 whitespace-nowrap">
-                          {Array.isArray(prop.default)
-                            ? `[${(prop.default as number[]).join(", ")}]`
-                            : typeof prop.default === "string"
-                              ? `"${prop.default}"`
-                              : String(prop.default)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <PropsTable
+                props={variation.props.map((prop) => ({
+                  ...prop,
+                  type: prop.type === "ease" ? "string | number[]" : prop.type,
+                }))}
+              />
             </div>
           )}
 

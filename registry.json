@@ -2026,6 +2026,28 @@
       ]
     },
     {
+      "name": "product-card-default",
+      "type": "registry:block",
+      "title": "Product Card - Product Card",
+      "description": "Three photos morph from an overlapping stacked deck into an evenly spaced fan, while the CTA morphs from a small gallery icon into a full-width action button and the price/description/tags fade in.",
+      "dependencies": [
+        "motion",
+        "react-use-measure",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/product-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/product-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "onboarding-form-default",
       "type": "registry:block",
       "title": "Onboarding Form - Onboarding Form",
@@ -2062,6 +2084,23 @@
           "path": "components/craftui/blocks/morphing-image-effect/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/morphing-image-effect/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "frosted-navbar-frosted-navbar",
+      "type": "registry:block",
+      "title": "Frosted Navbar - Frosted Navbar",
+      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
         }
       ]
     },

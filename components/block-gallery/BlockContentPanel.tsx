@@ -13,7 +13,8 @@ import {
   ArrowLeft01Icon,
 } from "@hugeicons/core-free-icons";
 import { BlockPreview } from "./BlockPreview";
-import { CopyButton } from "@/components/icon-gallery/CopyButton";
+import { InstallCommand } from "@/components/InstallCommand";
+import { PropsTable } from "@/components/PropsTable";
 import type { Block } from "@/types/block";
 
 // Expanded width of the morphing right panel — content is laid out at this
@@ -206,12 +207,7 @@ function VariationDetail({
           )}
 
           {/* Installation */}
-          <div className="mt-10">
-            <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-              Installation
-            </h2>
-            <CopyButton text={installCommand} />
-          </div>
+          <InstallCommand command={installCommand} />
 
           {/* Props table */}
           {variation.props?.length > 0 && (
@@ -219,65 +215,7 @@ function VariationDetail({
               <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
                 Props
               </h2>
-              <div className="overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="bg-linear-to-b from-primary/50 to-primary/90 dark:bg-stone-800">
-                      <th className="text-left text-xs font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-4 py-2.5">
-                        Prop
-                      </th>
-                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2.5">
-                        Description
-                      </th>
-                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2.5">
-                        Type
-                      </th>
-                      <th className="text-left font-mono font-semibold uppercase tracking-wide text-primary-foreground/90 px-3 py-2.5">
-                        Required
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
-                    {variation.props.map((prop) => {
-                      const depth = (prop.name.match(/\[\]\./g) ?? []).length;
-                      return (
-                        <tr
-                          key={prop.name}
-                          className="bg-white dark:bg-stone-900/40"
-                        >
-                          <td
-                            className="py-3 pr-3 align-top whitespace-nowrap"
-                            style={{ paddingLeft: `${16 + depth * 16}px` }}
-                          >
-                            <code className="font-mono font-semibold text-[12px] text-foreground dark:text-stone-200">
-                              {prop.name}
-                            </code>
-                          </td>
-                          <td className="px-3 py-3 align-top font-mono text-[11px] leading-relaxed text-foreground/60">
-                            {prop.description ?? "—"}
-                          </td>
-                          <td className="px-3 py-3 align-top whitespace-nowrap">
-                            <span className="inline-block rounded-md bg-stone-100 dark:bg-stone-800 px-1.5 py-0.5 font-mono text-[11px] text-stone-600 dark:text-stone-300">
-                              {prop.type}
-                            </span>
-                          </td>
-                          <td className="px-3 py-3 align-top whitespace-nowrap">
-                            {prop.required ? (
-                              <span className="inline-block rounded-md bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 font-mono text-[11px] font-medium text-red-500 dark:text-red-400">
-                                required
-                              </span>
-                            ) : (
-                              <span className="inline-block rounded-md bg-stone-50 dark:bg-stone-800 px-1.5 py-0.5 font-mono text-[11px] text-stone-400">
-                                optional
-                              </span>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+              <PropsTable props={variation.props} showRequired />
             </div>
           )}
         </motion.div>

@@ -1,0 +1,32 @@
+{
+  "name": "frosted-navbar-frosted-navbar",
+  "type": "registry:block",
+  "tier": "free",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
+      "content": "import type { ComponentPropsWithoutRef, ElementType, ReactNode } from \"react\";\n\nexport interface StickyFrostedNavProps {\n  /** Element/tag to render as — defaults to <nav>, use \"header\" for page chrome. */\n  as?: ElementType;\n  /** Your actual content: nav links, icons, a search input, a card title, etc. */\n  children?: ReactNode;\n  /** Blur strength in px for the fade-out region. */\n  blur?: number;\n  /** Brightness % applied to the main blur region. */\n  brightness?: number;\n  /** Saturation % applied to the main blur region. */\n  saturate?: number;\n  /** Blur strength in px for the thin edge-highlight rim. */\n  edgeBlur?: number;\n  /** Brightness % applied to the edge-highlight rim. */\n  edgeBrightness?: number;\n  /** Saturation % applied to the edge-highlight rim. */\n  edgeSaturate?: number;\n  /** Set false to omit the edge-highlight rim. */\n  edgeHighlight?: boolean;\n  /** Thickness of the edge-highlight rim in px. */\n  edgeThickness?: number;\n  className?: string;\n}\n\ntype StickyFrostedNavExtraProps = Omit<\n  ComponentPropsWithoutRef<\"nav\">,\n  keyof StickyFrostedNavProps\n>;\n\nexport default function StickyFrostedNav({\n  as: Tag = \"nav\",\n  children,\n  blur = 12,\n  brightness = 110,\n  saturate = 110,\n  edgeBlur = 6,\n  edgeBrightness = 120,\n  edgeSaturate = 110,\n  edgeHighlight = true,\n  edgeThickness = 1,\n  className,\n  ...rest\n}: StickyFrostedNavProps & StickyFrostedNavExtraProps) {\n  return (\n    <Tag className={`sticky top-0 z-10 ${className ?? \"\"}`}>\n      {/* Blur extends past the nav's real bottom edge so the filter has\n          geometry to sample against right up to the cutoff (avoids a\n          truncation seam). `overflow-hidden` on the wrapper — not a mask —\n          is what guarantees that extended part never actually paints, since\n          mask-image's alpha vs. luminance interpretation isn't reliable\n          across browsers for this. */}\n      <div className=\"pointer-events-none absolute inset-0 overflow-hidden\">\n        <div\n          className=\"absolute inset-0 h-[200%]\"\n          style={{\n            backdropFilter: `blur(${blur}px) brightness(${brightness}%) saturate(${saturate}%)`,\n            WebkitBackdropFilter: `blur(${blur}px) brightness(${brightness}%) saturate(${saturate}%)`,\n          }}\n        />\n      </div>\n\n      {/* Thin light rim along the bottom edge, so the panel reads as a\n          physical, lit sheet of glass rather than a flat blurred tint. */}\n      {edgeHighlight && (\n        <div\n          className=\"pointer-events-none absolute inset-x-0 bottom-0 bg-white/10\"\n          style={{\n            height: edgeThickness,\n            backdropFilter: `blur(${edgeBlur}px) brightness(${edgeBrightness}%) saturate(${edgeSaturate}%)`,\n            WebkitBackdropFilter: `blur(${edgeBlur}px) brightness(${edgeBrightness}%) saturate(${edgeSaturate}%)`,\n          }}\n        />\n      )}\n\n      {/* Your content, rendered above both layers */}\n      <div className=\"relative\">{children}</div>\n    </Tag>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Frosted Navbar - Frosted Navbar",
+    "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+    "category": "navbar",
+    "tags": [
+      "navbar",
+      "sticky",
+      "blur",
+      "glass",
+      "frosted",
+      "scroll",
+      "header"
+    ],
+    "animationType": "scroll"
+  }
+}

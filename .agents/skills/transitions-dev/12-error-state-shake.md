@@ -169,7 +169,7 @@ function showError() {
 // clears the error so the user isn't shaking at a value they're
 // already correcting.
 const inputEl = wrap.querySelector("input, textarea");
-inputEl?.addEventListener("input", () => {
+  inputEl?.addEventListener("input", () => {
   if (wrap._revertTimer) {
     clearTimeout(wrap._revertTimer);
     wrap._revertTimer = null;
