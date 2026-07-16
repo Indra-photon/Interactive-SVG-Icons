@@ -1,0 +1,98 @@
+{
+  "slug": "frosted-navbar",
+  "name": "Frosted Navbar",
+  "category": "navbar",
+  "tags": ["navbar", "sticky", "blur", "glass", "frosted", "scroll", "header"],
+  "description": "A sticky, glass-like navbar with a uniform backdrop blur clipped cleanly to its own bounds, plus an optional lit edge-highlight rim along the bottom.",
+  "createdAt": "2026-07-15T00:00:00Z",
+  "variations": [
+    {
+      "name": "frosted-navbar",
+      "displayName": "Frosted Navbar",
+      "componentName": "StickyFrostedNav",
+      "tier": "free",
+      "previewHint": "Scroll the panel — content fades and blurs as it slides under the sticky header",
+      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+      "animationType": "scroll",
+      "dependencies": [],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "as",
+          "type": "ElementType",
+          "required": false,
+          "description": "Element/tag to render as. Defaults to \"nav\"; use \"header\" for page chrome."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Content rendered inside the bar: nav links, icons, a search input, a card title, etc."
+        },
+        {
+          "name": "blur",
+          "type": "number",
+          "required": false,
+          "description": "Blur strength in px for the main backdrop region. Defaults to 12."
+        },
+        {
+          "name": "brightness",
+          "type": "number",
+          "required": false,
+          "description": "Brightness percentage applied to the main backdrop filter. Defaults to 110."
+        },
+        {
+          "name": "saturate",
+          "type": "number",
+          "required": false,
+          "description": "Saturation percentage applied to the main backdrop filter. Defaults to 110."
+        },
+        {
+          "name": "edgeBlur",
+          "type": "number",
+          "required": false,
+          "description": "Blur strength in px for the thin edge-highlight rim. Defaults to 6."
+        },
+        {
+          "name": "edgeBrightness",
+          "type": "number",
+          "required": false,
+          "description": "Brightness percentage applied to the edge-highlight rim's backdrop filter. Defaults to 110."
+        },
+        {
+          "name": "edgeSaturate",
+          "type": "number",
+          "required": false,
+          "description": "Saturation percentage applied to the edge-highlight rim's backdrop filter. Defaults to 110."
+        },
+        {
+          "name": "edgeHighlight",
+          "type": "boolean",
+          "required": false,
+          "description": "Set false to omit the edge-highlight rim. Defaults to true."
+        },
+        {
+          "name": "edgeThickness",
+          "type": "number",
+          "required": false,
+          "description": "Thickness of the edge-highlight rim in px. Defaults to 1."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Applied to the root element alongside the sticky positioning classes."
+        }
+      ],
+      "features": [
+        "No hardcoded height or width — sizes to content and parent, works as a nav or header in any layout",
+        "Uniform full-strength blur across the entire bar, clipped by overflow-hidden so it can never bleed into content below",
+        "Blur, brightness, and saturation are independently tunable for both the main backdrop and the edge-highlight rim",
+        "Optional lit edge-highlight rim pinned to the bottom edge so the panel reads as a physical sheet of glass",
+        "Polymorphic `as` prop to render a <nav>, <header>, or any element",
+        "Extra DOM props (id, aria-label, style, etc.) pass through to the root element"
+      ],
+      "inspiration": []
+    }
+  ]
+}

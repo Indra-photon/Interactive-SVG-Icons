@@ -3,9 +3,10 @@ import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
 import type { LoaderRegistry } from '@/types/loader';
-import { CopyButton } from '@/components/loader-gallery/CopyButton';
 import { LoaderConfigurator } from '@/components/loader-gallery/LoaderConfigurator';
 import { Container } from '@/components/Container';
+import { PropsTable } from '@/components/PropsTable';
+import { InstallCommand } from '@/components/InstallCommand';
 
 async function getLoader(slug: string) {
   try {
@@ -95,15 +96,7 @@ export default async function LoaderDetailPage({
                 </div>
 
                 {/* Installation */}
-                <div className="mb-8">
-                  <h3 className="text-sm font-semibold uppercase tracking-widest text-stone-400 mb-3">
-                    Installation
-                  </h3>
-                  <div className="bg-stone-950 text-stone-100 px-4 py-3.5 rounded-lg font-mono text-sm overflow-x-auto">
-                    {cliCommand}
-                  </div>
-                  <CopyButton text={cliCommand} />
-                </div>
+                <InstallCommand command={cliCommand} className="mb-8" />
 
                 {/* Props table */}
                 {variation.props?.length > 0 && (
@@ -111,42 +104,12 @@ export default async function LoaderDetailPage({
                     <h3 className="text-sm font-semibold uppercase tracking-widest text-stone-400 mb-3">
                       Props
                     </h3>
-                    <div className="border border-stone-200 rounded-xl overflow-hidden">
-                      <table className="w-full text-sm">
-                        <thead>
-                          <tr className="bg-stone-50 border-b border-stone-200">
-                            <th className="px-4 py-3 text-left font-medium text-stone-700">Name</th>
-                            <th className="px-4 py-3 text-left font-medium text-stone-700">Type</th>
-                            <th className="px-4 py-3 text-left font-medium text-stone-700">Default</th>
-                            <th className="px-4 py-3 text-left font-medium text-stone-700">Description</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-stone-100">
-                          {variation.props.map((prop: any) => (
-                            <tr key={prop.name} className="hover:bg-stone-50 transition-colors">
-                              <td className="px-4 py-3">
-                                <code className="text-xs font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
-                                  {prop.name}
-                                </code>
-                              </td>
-                              <td className="px-4 py-3 text-xs font-mono text-stone-500">
-                                {prop.type === 'ease' ? 'string | number[]' : prop.type}
-                              </td>
-                              <td className="px-4 py-3 text-xs font-mono text-stone-500">
-                                {Array.isArray(prop.default)
-                                  ? `[${(prop.default as number[]).join(', ')}]`
-                                  : typeof prop.default === 'string'
-                                  ? `"${prop.default}"`
-                                  : String(prop.default)}
-                              </td>
-                              <td className="px-4 py-3 text-xs text-stone-500">
-                                {prop.description || '—'}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                    <PropsTable
+                      props={variation.props.map((prop: any) => ({
+                        ...prop,
+                        type: prop.type === 'ease' ? 'string | number[]' : prop.type,
+                      }))}
+                    />
                   </div>
                 )}
               </div>

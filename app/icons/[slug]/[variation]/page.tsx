@@ -3,10 +3,11 @@ import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
 import type { IconRegistry } from '@/types/icon';
-import { CopyButton } from '@/components/icon-gallery/CopyButton';
 import { ButtonCodeDisplay } from '@/components/icon-gallery/ButtonCodeDisplay';
 import { IconConfigurator } from '@/components/icon-gallery/IconConfigurator';
 import { Container } from '@/components/Container';
+import { PropsTable } from '@/components/PropsTable';
+import { InstallCommand } from '@/components/InstallCommand';
 
 // async function getVariation(slug: string, variationName: string) {
 //   try {
@@ -134,14 +135,8 @@ export default async function VariationDetailPage({
 
         {/* Installation Section */}
         <div className="space-y-6">
-          <div>
-            <h2 className="text-2xl font-sans mb-4">Installation</h2>
-            <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-              {installCommand}
-            </div>
-            <CopyButton text={installCommand} />
-          </div>
-          
+          <InstallCommand command={installCommand} className="" />
+
           {/* <div>
             <h3 className="text-xl font-sans mb-4">Usage</h3>
             <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto whitespace-pre">
@@ -157,34 +152,7 @@ export default async function VariationDetailPage({
           {variation.props && variation.props.length > 0 ? (
             <div>
               <h3 className="text-xl font-sans mb-4">Props</h3>
-              <div className="border rounded-lg overflow-hidden">
-                <table className="w-full">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-2 text-left">Prop</th>
-                      <th className="px-4 py-2 text-left">Type</th>
-                      <th className="px-4 py-2 text-left">Default</th>
-                      <th className="px-4 py-2 text-left">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {variation.props.map((prop) => (
-                      <tr key={prop.name} className="border-t">
-                        <td className="px-4 py-2 font-mono text-sm">{prop.name}</td>
-                        <td className="px-4 py-2 text-sm text-gray-600">{prop.type}</td>
-                        <td className="px-4 py-2 font-mono text-sm">
-                          {typeof prop.default === 'string' && prop.default !== '' 
-                            ? `"${prop.default}"` 
-                            : String(prop.default)}
-                        </td>
-                        <td className="px-4 py-2 text-sm text-gray-600">
-                          {prop.description || '-'}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <PropsTable props={variation.props} />
             </div>
           ) : null}
 

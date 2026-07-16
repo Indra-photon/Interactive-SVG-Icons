@@ -1,0 +1,101 @@
+{
+  "slug": "product-card",
+  "name": "Product Card",
+  "category": "card",
+  "tags": ["card", "product", "gallery", "morph", "click", "animation"],
+  "description": "A two-stage product card that morphs a stacked photo deck into an even fan of thumbnails alongside price, tags, and a booking action.",
+  "createdAt": "2026-07-16T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Product Card",
+      "componentName": "ProductCard",
+      "previewHint": "Click the gallery icon to expand the card, click Book Now to collapse it back",
+      "tier": "free",
+      "description": "Three photos morph from an overlapping stacked deck into an evenly spaced fan, while the CTA morphs from a small gallery icon into a full-width action button and the price/description/tags fade in.",
+      "animationType": "click",
+      "dependencies": ["motion", "react-use-measure", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "images",
+          "type": "[string, string, string]",
+          "required": false,
+          "description": "The three photo URLs rendered in the stacked deck and fan layouts."
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "required": false,
+          "description": "Base alt text for each photo; suffixed with its position (e.g. \"Product photo 1\")."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "Product/listing title shown in the expanded stage."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Body copy shown below the title in the expanded stage."
+        },
+        {
+          "name": "price",
+          "type": "string",
+          "required": false,
+          "description": "Price pill text, e.g. \"$189/night\"."
+        },
+        {
+          "name": "tags",
+          "type": "string[]",
+          "required": false,
+          "description": "Pill labels rendered below the description in the expanded stage."
+        },
+        {
+          "name": "viewLabel",
+          "type": "string",
+          "required": false,
+          "description": "Accessible label for the CTA while collapsed (icon-only button)."
+        },
+        {
+          "name": "actionLabel",
+          "type": "string",
+          "required": false,
+          "description": "CTA label shown in the expanded stage. Defaults to \"Book Now\"."
+        },
+        {
+          "name": "viewIcon",
+          "type": "HugeIcon",
+          "required": false,
+          "description": "HugeIcons icon rendered in the collapsed, icon-only CTA. Defaults to GridViewIcon."
+        },
+        {
+          "name": "actionIcon",
+          "type": "HugeIcon",
+          "required": false,
+          "description": "HugeIcons icon rendered next to the CTA label in the expanded stage. Defaults to ShoppingBag01Icon."
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "required": false,
+          "description": "Called when the CTA is clicked while the card is expanded."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the root wrapper."
+        }
+      ],
+      "features": [
+        "Three photos animate independently between a stacked deck and an evenly spaced fan on a single click",
+        "CTA morphs between an icon-only button and a full-width labeled button, driven by the same stage state as the photos",
+        "Respects prefers-reduced-motion — all springs and detail transitions collapse to instant transitions"
+      ],
+      "inspiration": []
+    }
+  ]
+}
