@@ -1,0 +1,38 @@
+{
+  "name": "button-whimsical",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "motion/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json",
+    "craftui-base"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/button/whimsical.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useReducedMotion } from \"motion/react\";\nimport { cn } from \"@/lib/utils\";\nimport { Button } from \"@/components/ui/button\";\n\nexport interface WhimsicalButtonProps extends Omit<\n  React.ComponentProps<typeof Button>,\n  \"variant\"\n> {\n  /** Hue (0-360) driving --main-color, from which every deco particle's color is derived. */\n  mainHue?: number;\n  /** Base width of each deco particle, in px (scaled per-particle). */\n  decoSize?: number;\n  /** Base travel duration in seconds — each particle applies its own speed multiplier on top. */\n  timing?: number;\n}\n\ninterface DecoConfig {\n  color: string;\n  scale: number;\n  endOffset: string;\n  endTranslate: string;\n  speed: number;\n}\n\nconst DECOS: DecoConfig[] = [\n  {\n    color: \"oklch(from var(--main-color) 80% c h)\",\n    scale: 1,\n    endOffset: \"80%\",\n    endTranslate: \"0px 30px\",\n    speed: 1,\n  },\n  {\n    color: \"oklch(from var(--main-color) 80% c calc(h + 50))\",\n    scale: 0.85,\n    endOffset: \"60%\",\n    endTranslate: \"0px -30px\",\n    speed: 1,\n  },\n  {\n    color: \"oklch(from var(--main-color) 70% c calc(h + 20))\",\n    scale: 1.15,\n    endOffset: \"70%\",\n    endTranslate: \"0px -10px\",\n    speed: 0.85,\n  },\n  {\n    color: \"oklch(from var(--main-color) 80% c calc(h - 20))\",\n    scale: 0.7,\n    endOffset: \"75%\",\n    endTranslate: \"-20px 50px\",\n    speed: 1.2,\n  },\n  {\n    color: \"oklch(from var(--main-color) 80% c calc(h - 200))\",\n    scale: 1,\n    endOffset: \"70%\",\n    endTranslate: \"0px 0px\",\n    speed: 1,\n  },\n];\n\nfunction DecoParticle({\n  deco,\n  size,\n  hovered,\n  timing,\n}: {\n  deco: DecoConfig;\n  size: number;\n  hovered: boolean;\n  timing: number;\n}) {\n  const width = size * deco.scale;\n  const travelDuration = timing * deco.speed;\n  const fadeDuration = travelDuration * 0.85;\n\n  return (\n    <motion.span\n      aria-hidden=\"true\"\n      className=\"pointer-events-none absolute\"\n      style={{\n        offsetPath: \"border-box\",\n        offsetRotate: \"0deg\",\n        width,\n        aspectRatio: \"1 / 3\",\n        borderRadius: \"50%\",\n        background: deco.color,\n        filter: \"blur(3px)\",\n      }}\n      initial={false}\n      animate={\n        hovered\n          ? {\n              offsetDistance: deco.endOffset,\n              translate: deco.endTranslate,\n              opacity: [0, 1, 1, 0],\n            }\n          : { offsetDistance: \"0%\", translate: \"0px 0px\", opacity: 0 }\n      }\n      transition={\n        hovered\n          ? {\n              offsetDistance: { duration: travelDuration, ease: \"easeOut\" },\n              translate: { duration: travelDuration, ease: \"easeOut\" },\n              opacity: {\n                duration: fadeDuration,\n                times: [0, 0.2, 0.7, 1],\n              },\n            }\n          : { duration: 0 }\n      }\n    >\n      {/* The two wings fan out from center, recreating the CSS ::before/::after sparkle. */}\n      <span\n        style={{\n          position: \"absolute\",\n          width: \"inherit\",\n          aspectRatio: \"inherit\",\n          borderRadius: \"inherit\",\n          background: \"inherit\",\n          translate: \"-50%\",\n          rotate: \"55deg\",\n        }}\n      />\n      <span\n        style={{\n          position: \"absolute\",\n          width: \"inherit\",\n          aspectRatio: \"inherit\",\n          borderRadius: \"inherit\",\n          background: \"inherit\",\n          translate: \"-50%\",\n          rotate: \"-55deg\",\n        }}\n      />\n    </motion.span>\n  );\n}\n\nexport const WhimsicalButton = React.forwardRef<\n  HTMLButtonElement,\n  WhimsicalButtonProps\n>(function WhimsicalButton(\n  {\n    mainHue = 260,\n    decoSize = 7,\n    timing = 1.5,\n    className,\n    children = \"Whimsy\",\n    style,\n    onMouseEnter,\n    onMouseLeave,\n    onFocus,\n    onBlur,\n    ...props\n  },\n  ref,\n) {\n  const [hovered, setHovered] = React.useState(false);\n  const reduced = useReducedMotion();\n\n  return (\n    <Button\n      ref={ref}\n      variant=\"ghost\"\n      className={cn(\n        \"relative isolate overflow-visible rounded-full bg-background text-foreground\",\n        \"\",\n        \"border-2 transition-colors duration-[400ms]\",\n        hovered ? \"border-[var(--main-color)]\" : \"border-border\",\n        className,\n      )}\n      style={\n        {\n          \"--main-color\": `hsl(${mainHue} 80% 70%)`,\n          ...style,\n        } as React.CSSProperties\n      }\n      onMouseEnter={(e) => {\n        setHovered(true);\n        onMouseEnter?.(e);\n      }}\n      onMouseLeave={(e) => {\n        setHovered(false);\n        onMouseLeave?.(e);\n      }}\n      onFocus={(e) => {\n        setHovered(true);\n        onFocus?.(e);\n      }}\n      onBlur={(e) => {\n        setHovered(false);\n        onBlur?.(e);\n      }}\n      {...props}\n    >\n      {children}\n\n      {/* Deco particles travel along the button's own border on hover. Skipped\n          entirely under prefers-reduced-motion — border/glow color still transitions. */}\n      {!reduced &&\n        DECOS.map((deco, i) => (\n          <DecoParticle\n            key={i}\n            deco={deco}\n            size={decoSize}\n            hovered={hovered}\n            timing={timing}\n          />\n        ))}\n    </Button>\n  );\n});\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/button/whimsical.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Button - Whimsical",
+    "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
+    "category": "button",
+    "tags": [
+      "button",
+      "cta",
+      "hover",
+      "click",
+      "sparkle",
+      "particles",
+      "confetti",
+      "scramble",
+      "offset-path",
+      "whimsical"
+    ],
+    "animationType": "keyframes"
+  }
+}

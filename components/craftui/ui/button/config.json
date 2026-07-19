@@ -1,0 +1,173 @@
+{
+  "slug": "button",
+  "name": "Button",
+  "category": "button",
+  "shadcnBase": "button",
+  "tags": [
+    "button",
+    "cta",
+    "hover",
+    "click",
+    "sparkle",
+    "particles",
+    "confetti",
+    "scramble",
+    "offset-path",
+    "whimsical"
+  ],
+  "description": "Animated buttons built on top of the shadcn/ui Button, each exploring a different animation pattern — a hover-triggered sparkle trail, a click-triggered confetti burst, and a hover-triggered scramble-text reveal.",
+  "createdAt": "2026-07-17T00:00:00Z",
+  "variations": [
+    {
+      "name": "whimsical",
+      "displayName": "Whimsical",
+      "componentName": "WhimsicalButton",
+      "tier": "free",
+      "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
+      "animationType": "keyframes",
+      "dependencies": ["motion/react"],
+      "registryDependencies": ["craftui-base"],
+      "previewHint": "Hover (or tab to focus) the button to see the five sparkle particles launch along the border.",
+      "features": [
+        "Particles travel via CSS offset-path: border-box — they literally ride the button's own rounded outline, no hand-tuned path math",
+        "Each particle is an independent config (color, scale, end-offset, end-translate, speed) driving a data array — no per-particle conditional logic",
+        "Colors use CSS relative-color syntax (oklch(from var(--main-color) ...)) so a single mainHue prop repaints every particle consistently",
+        "Opacity follows a life-cycle keyframe (fade in, hold, fade out) so particles never pop in or out abruptly",
+        "Wraps shadcn/ui's Button (ghost variant) rather than replacing it — accepts every standard Button prop",
+        "Skips all particle motion under prefers-reduced-motion; the border color change remains instant"
+      ],
+      "props": [
+        {
+          "name": "mainHue",
+          "type": "number",
+          "default": 260,
+          "min": 0,
+          "max": 360,
+          "step": 1,
+          "description": "Hue (0-360) driving --main-color and every particle's derived color"
+        },
+        {
+          "name": "decoSize",
+          "type": "number",
+          "default": 7,
+          "min": 3,
+          "max": 16,
+          "step": 1,
+          "description": "Base width of each sparkle particle, in px"
+        },
+        {
+          "name": "timing",
+          "type": "number",
+          "default": 1.5,
+          "min": 0.4,
+          "max": 3,
+          "step": 0.1,
+          "description": "Base travel duration in seconds — each particle multiplies this by its own speed variation"
+        }
+      ]
+    },
+    {
+      "name": "confetti",
+      "displayName": "Confetti Burst",
+      "componentName": "ConfettiButton",
+      "tier": "free",
+      "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
+      "animationType": "keyframes",
+      "dependencies": ["motion/react"],
+      "registryDependencies": ["craftui-base"],
+      "previewHint": "Click the button to fire a confetti burst. Click repeatedly — each click stacks its own independent burst.",
+      "features": [
+        "Impulse-triggered on click, not continuous on hover — a one-shot celebratory animation rather than an ambient loop",
+        "Each particle gets an independent random angle, distance, rotation, size and shape (rect or circle), driving a data array — no per-particle conditional logic",
+        "y-axis uses a 3-keyframe rise-then-fall curve (easeOut up, easeIn down) to simulate gravity, while x and rotation animate in a single easeOut pass",
+        "Colors cycle through a fixed set of hue offsets from a single baseHue prop, giving a multi-color mix instead of monochrome confetti",
+        "Bursts are independent and stack — clicking again mid-animation launches a second burst without cancelling the first",
+        "Wraps shadcn/ui's Button rather than replacing it — accepts every standard Button prop, including variant",
+        "Skips the burst entirely under prefers-reduced-motion; the click still fires onClick"
+      ],
+      "props": [
+        {
+          "name": "particleCount",
+          "type": "number",
+          "default": 14,
+          "min": 4,
+          "max": 40,
+          "step": 1,
+          "description": "Number of confetti pieces launched per click"
+        },
+        {
+          "name": "baseHue",
+          "type": "number",
+          "default": 200,
+          "min": 0,
+          "max": 360,
+          "step": 1,
+          "description": "Base hue (0-360) the confetti palette's hue offsets are applied to"
+        },
+        {
+          "name": "spread",
+          "type": "number",
+          "default": 60,
+          "min": 20,
+          "max": 160,
+          "step": 5,
+          "description": "Max travel distance in px before gravity pulls pieces back down"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 0.8,
+          "min": 0.3,
+          "max": 2,
+          "step": 0.1,
+          "description": "Total burst duration in seconds"
+        }
+      ]
+    },
+    {
+      "name": "scramble",
+      "displayName": "Scramble Text",
+      "componentName": "ScrambleButton",
+      "tier": "free",
+      "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
+      "animationType": "keyframes",
+      "dependencies": ["motion/react"],
+      "registryDependencies": ["craftui-base"],
+      "previewHint": "Hover (or tab to focus) the button to watch the label scramble and resolve left to right.",
+      "features": [
+        "Purely typographic — no particles, movement or color change, just the label's characters substituting over time",
+        "Each character locks in at a later frame than the one before it (index * staggerFrames), producing the left-to-right decode reveal from a single interval loop",
+        "Spaces are preserved as-is and never scrambled, so multi-word labels stay legible mid-animation",
+        "Re-hovering mid-scramble restarts cleanly — the previous interval is cleared before a new one starts",
+        "Wraps shadcn/ui's Button rather than replacing it — accepts every standard Button prop, including variant",
+        "Skips scrambling entirely under prefers-reduced-motion; the label is shown as-is"
+      ],
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "Whimsy",
+          "description": "The button's label — scrambled on hover, then revealed character-by-character"
+        },
+        {
+          "name": "frameDuration",
+          "type": "number",
+          "default": 35,
+          "min": 15,
+          "max": 100,
+          "step": 5,
+          "description": "Milliseconds between scramble frames"
+        },
+        {
+          "name": "staggerFrames",
+          "type": "number",
+          "default": 3,
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "description": "Frames each subsequent character waits before locking in — controls how pronounced the left-to-right reveal looks"
+        }
+      ]
+    }
+  ]
+}
