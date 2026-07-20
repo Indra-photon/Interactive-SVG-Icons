@@ -2105,6 +2105,27 @@
       ]
     },
     {
+      "name": "contact-reveal-card-default",
+      "type": "registry:block",
+      "title": "Contact Reveal Card - Contact Reveal Card",
+      "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "category-ticker-vertical-marquee",
       "type": "registry:block",
       "title": "Vertical Marquee - Vertical Marquee",
@@ -2225,6 +2246,66 @@
           "success": "oklch(0.696 0.17 162.48)"
         }
       }
+    },
+    {
+      "name": "button-whimsical",
+      "type": "registry:ui",
+      "title": "Button - Whimsical",
+      "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/button/whimsical.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/button/whimsical.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-confetti",
+      "type": "registry:ui",
+      "title": "Button - Confetti Burst",
+      "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/button/confetti.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/button/confetti.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-scramble",
+      "type": "registry:ui",
+      "title": "Button - Scramble Text",
+      "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/button/scramble.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/button/scramble.tsx"
+        }
+      ]
     },
     {
       "name": "accordion-clip",
