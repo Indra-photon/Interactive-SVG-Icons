@@ -2105,6 +2105,27 @@
       ]
     },
     {
+      "name": "contact-reveal-card-default",
+      "type": "registry:block",
+      "title": "Contact Reveal Card - Contact Reveal Card",
+      "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "category-ticker-vertical-marquee",
       "type": "registry:block",
       "title": "Vertical Marquee - Vertical Marquee",
