@@ -223,7 +223,7 @@ export function IconSection() {
   return (
     <div
       ref={iconSectionRef}
-      className="relative mx-auto max-w-9xl min-h-screen py-24 flex items-center justify-center overflow-hidden"
+      className="relative w-full min-h-dvh py-24 flex items-center justify-center overflow-hidden"
       onMouseEnter={() => setIsGalleryHovered(true)}
       onMouseLeave={() => setIsGalleryHovered(false)}
     >

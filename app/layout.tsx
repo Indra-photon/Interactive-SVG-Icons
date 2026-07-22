@@ -192,31 +192,31 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
-        {/* <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        > */}
-        <MotionProvider>
-          <NavBar />
-          {/* <UserSync /> */}
-          {children}
-          <GoogleTagManager gtmId="Your GTM ID" />
-          <Toaster position="top-right" />
-          <DialRoot
-            productionEnabled
-            position="bottom-right"
-            theme="light"
-            defaultOpen={false}
+        >
+          <MotionProvider>
+            <NavBar />
+            {/* <UserSync /> */}
+            {children}
+            <GoogleTagManager gtmId="Your GTM ID" />
+            <Toaster position="top-right" />
+            <DialRoot
+              productionEnabled
+              position="bottom-right"
+              theme="system"
+              defaultOpen={false}
+            />
+          </MotionProvider>
+          <Analytics />
+          <Script
+            src="https://cloud.umami.is/script.js"
+            data-website-id="12be97c1-8b62-4f75-9793-a78ef4aa27e4"
           />
-        </MotionProvider>
-        <Analytics />
-        <Script
-          src="https://cloud.umami.is/script.js"
-          data-website-id="12be97c1-8b62-4f75-9793-a78ef4aa27e4"
-        />
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
     // </ClerkProvider>

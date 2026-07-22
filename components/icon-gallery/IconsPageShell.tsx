@@ -7,7 +7,7 @@ import {
   type SidebarSectionConfig,
 } from "@/components/sidebar/Sidebar";
 import { IconContentPanel } from "./IconContentPanel";
-import { PatternSection } from "@/components/PatternSection";
+// import { PatternSection } from "@/components/PatternSection";
 import type { Icon } from "@/types/icon";
 
 interface IconsPageShellProps {
@@ -43,13 +43,14 @@ export function IconsPageShell({
   };
 
   return (
-    <div className="h-[calc(100vh-65px)] max-w-9xl mx-auto">
-      <PatternSection
+    <div className="h-[calc(100dvh-1.5rem)] w-full">
+      {/* <PatternSection
         hideTopBar={true}
         fillHeight
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
-      >
+      > */}
+      <div className="flex h-full overflow-hidden">
         <Sidebar
           sections={sidebarSections}
           activeSlug={activeSlug}
@@ -64,7 +65,8 @@ export function IconsPageShell({
           activeVariation={activeVariation}
           onVariationSelect={handleSelect}
         />
-      </PatternSection>
+      </div>
+      {/* </PatternSection> */}
     </div>
   );
 }

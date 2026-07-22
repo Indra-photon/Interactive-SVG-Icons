@@ -8,7 +8,7 @@ import {
 } from "@/components/sidebar/Sidebar";
 import { IconCard } from "./IconCard";
 import { GallerySearch } from "@/components/gallery/GallerySearch";
-import { PatternSection } from "@/components/PatternSection";
+// import { PatternSection } from "@/components/PatternSection";
 import type { Icon } from "@/types/icon";
 
 interface IconGalleryShellProps {
@@ -38,7 +38,9 @@ export function IconGalleryShell({
   const matchedSlugs = useMemo(
     () =>
       new Set(
-        icons.filter((icon) => matchesQuery(icon, query)).map((icon) => icon.slug),
+        icons
+          .filter((icon) => matchesQuery(icon, query))
+          .map((icon) => icon.slug),
       ),
     [icons, query],
   );
@@ -51,13 +53,14 @@ export function IconGalleryShell({
   };
 
   return (
-    <div className="h-[calc(100vh-65px)] max-w-9xl mx-auto">
-      <PatternSection
+    <div className="h-[calc(100dvh-1.5rem)] w-full">
+      {/* <PatternSection
         hideTopBar={true}
         fillHeight
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
-      >
+      > */}
+      <div className="flex h-full overflow-hidden">
         <Sidebar sections={sidebarSections} onSelect={handleSelect} />
 
         <div className="flex-1 overflow-y-auto px-5 corner-squircle rounded-[10px] py-10 bg-foreground/5 dark:bg-backgoround/5">
@@ -89,7 +92,8 @@ export function IconGalleryShell({
             )}
           </div>
         </div>
-      </PatternSection>
+      </div>
+      {/* </PatternSection> */}
     </div>
   );
 }

@@ -149,7 +149,7 @@
   /* transitions-dev: card-resize — morphing-image-effect */
   .t-resize {
     transition:
-      width  var(--resize-dur) var(--ease-in-out-quart),
+      width var(--resize-dur) var(--ease-in-out-quart),
       height var(--resize-dur) var(--ease-in-out-quart);
     will-change: width, height;
   }
@@ -255,6 +255,15 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-nav-surface: var(--nav-surface);
+  --color-nav-surface-elevated: var(--nav-surface-elevated);
+  --color-nav-foreground: var(--nav-foreground);
+  --color-nav-foreground-muted: var(--nav-foreground-muted);
+  --color-nav-border: var(--nav-border);
+  --color-nav-hover: var(--nav-hover);
+  --color-pattern-surface: var(--pattern-surface);
+  --color-pattern-accent: var(--pattern-accent);
+  --color-pattern-diamond: var(--pattern-diamond);
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
   --card-shadow: var(--shadow-border);
@@ -294,6 +303,36 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Navbar surface — its own scale so the nav can read as a distinct surface
+     in each theme. --nav-surface-elevated is the expanded card, which sits
+     one step *toward* the viewer from the strip/pill. */
+  --nav-surface: oklch(0.985 0 0);
+  --nav-surface-elevated: oklch(1 0 0);
+  --nav-foreground: oklch(0.145 0 0);
+  --nav-foreground-muted: oklch(0.556 0 0);
+  --nav-border: oklch(0.922 0 0);
+  --nav-hover: oklch(0.97 0 0);
+
+  /* PatternSection — decorative hatched rails, hairline bars, corner diamonds.
+     --pattern-fg is consumed directly as var(), both by the hatch gradient and
+     by the rail borders, so it carries its own alpha rather than a /10 modifier.
+     --pattern-diamond is separate from --pattern-accent only because the
+     diamonds currently invert in dark mode; see PatternSection.tsx. */
+  --pattern-surface: oklch(1 0 0);
+  --pattern-fg: oklch(0.145 0 0 / 10%);
+  --pattern-accent: oklch(0.658 0.201 38.6);
+  --pattern-diamond: var(--pattern-accent);
+  /* The colour that moves through the rails. Bare R G B channels, because the
+     shader paints per-pixel into an ImageData buffer and needs numbers rather
+     than a colour string it would have to parse out of oklch().
+     --pattern-shader-alpha is peak opacity, 0–1. */
+  /* Deeper than --pattern-accent so it holds against a white ground:
+     oklch(0.58 0.2 38.6). Light mode also drops the green lift, otherwise the
+     peaks wash out toward yellow. */
+  --pattern-shader-rgb: 213 60 0;
+  --pattern-shader-alpha: 0.6;
+  --pattern-shader-warm: 40;
 }
 
 .dark {
@@ -328,6 +367,24 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Preserves the original hardcoded navbar palette: #000 strip, #0e0e0e card,
+     neutral-800 hover, and the white/40 + white/7% opacity steps. */
+  --nav-surface: oklch(0 0 0);
+  --nav-surface-elevated: oklch(0.155 0 0);
+  --nav-foreground: oklch(1 0 0);
+  --nav-foreground-muted: oklch(0.708 0 0);
+  --nav-border: oklch(1 0 0 / 7%);
+  --nav-hover: oklch(0.269 0 0);
+
+  --pattern-surface: oklch(0.145 0 0);
+  --pattern-fg: oklch(1 0 0 / 10%);
+  --pattern-accent: oklch(0.658 0.201 38.6);
+  /* Preserves today's behaviour: diamonds read as surface, not accent, in dark */
+  --pattern-diamond: var(--pattern-surface);
+  --pattern-shader-rgb: 253 85 29;
+  --pattern-shader-alpha: 0.7;
+  --pattern-shader-warm: 90;
   --input-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
   --input-shadow-hover: 0 0 0 1px rgba(255, 255, 255, 0.13);
   --input-shadow-focus:
@@ -369,11 +426,25 @@
 }
 
 @keyframes ri-shake {
-  0%     { transform: translateX(0);                                animation-timing-function: var(--shake-ease); }
-  28.57% { transform: translateX(var(--shake-distance));            animation-timing-function: var(--shake-ease); }
-  57.14% { transform: translateX(calc(var(--shake-distance) * -1)); animation-timing-function: var(--shake-ease); }
-  78.57% { transform: translateX(var(--shake-overshoot));           animation-timing-function: var(--shake-ease); }
-  100%   { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+    animation-timing-function: var(--shake-ease);
+  }
+  28.57% {
+    transform: translateX(var(--shake-distance));
+    animation-timing-function: var(--shake-ease);
+  }
+  57.14% {
+    transform: translateX(calc(var(--shake-distance) * -1));
+    animation-timing-function: var(--shake-ease);
+  }
+  78.57% {
+    transform: translateX(var(--shake-overshoot));
+    animation-timing-function: var(--shake-ease);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .ri-caret {
@@ -398,8 +469,14 @@
 }
 
 @keyframes ri-caret-blink {
-  0%, 49%   { opacity: var(--ri-caret-max, 1); }
-  50%, 100% { opacity: 0; }
+  0%,
+  49% {
+    opacity: var(--ri-caret-max, 1);
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -410,5 +487,70 @@
   .ri-caret {
     animation: none;
     opacity: var(--ri-caret-max, 1);
+  }
+}
+
+/* ─── Pixel Dissolve Card (pixel-dissolve-card/default) ──────────────────── */
+/* Mirrors the css payload in
+   components/craftui/blocks/pixel-dissolve-card/config.json — consumers get
+   this injected into their globals.css by the shadcn CLI. */
+
+.pixcard-grid {
+  grid-template-columns: repeat(var(--pixcard-size, 14), 1fr);
+  grid-template-rows: repeat(var(--pixcard-size, 14), 1fr);
+}
+
+.pixcard-tile {
+  background-size: calc(var(--pixcard-size, 14) * 100%)
+    calc(var(--pixcard-size, 14) * 100%);
+  background-repeat: no-repeat;
+  /* Slight overscale hides the hairline seams between neighbouring tiles. */
+  transform: scale(1.02);
+  animation: pixcard-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes pixcard-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* The heading animation lives in the component, via motion/react. */
+
+@media (prefers-reduced-motion: reduce) {
+  .pixcard-tile {
+    animation: none;
+  }
+}
+
+/* ─── Hero card pixel mosaic ─────────────────────────────────────────────── */
+/* Resting opacity is set per cell in HeroPixelGrid.tsx; hovering the card
+   swaps it for an alternating blink whose tempo and phase are also per cell. */
+
+.hero-pixel {
+  opacity: var(--pixel-o, 1);
+}
+
+.group:hover .hero-pixel {
+  will-change: opacity;
+  animation: hero-pixel-blink var(--pixel-dur, 1.2s) ease-in-out
+    var(--pixel-delay, 0s) infinite alternate;
+}
+
+@keyframes hero-pixel-blink {
+  from {
+    opacity: var(--pixel-o, 1);
+  }
+  to {
+    opacity: var(--pixel-o-active, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .hero-pixel {
+    animation: none;
   }
 }

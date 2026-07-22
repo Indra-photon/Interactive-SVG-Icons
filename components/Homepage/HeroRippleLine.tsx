@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
 export interface HeroRippleLineHandle {
   /** Fire a scripted, decaying wave that travels left → right along the line. */
@@ -15,14 +10,19 @@ export interface HeroRippleLineHandle {
 interface HeroRippleLineProps {
   /** Row-level hover state — lifts the resting brightness of the line. */
   active?: boolean;
+  /**
+   * Axis the line runs along. Vertical is not a CSS rotation — the drag maths
+   * swaps axes too, so the bow still follows the pointer the right way.
+   */
+  orientation?: "horizontal" | "vertical";
   className?: string;
 }
 
-// Abstract coordinate space. Height maps 1:1 to the rendered pixel height
-// (see the h-6 wrapper below), so amplitude values below are effectively px.
-const VIEW_W = 200;
-const VIEW_H = 24;
-const MID_Y = VIEW_H / 2;
+// Abstract coordinate space. The short side maps 1:1 to rendered pixels
+// (see the h-6 / w-6 wrapper below), so amplitudes below are effectively px.
+const VIEW_LONG = 200; // along the line
+const VIEW_SHORT = 24; // across it
+const MID = VIEW_SHORT / 2;
 
 const DRAG_MAX_AMPLITUDE = 5; // live mouse-follow clamp
 const DRAG_SENSITIVITY = 0.16;
@@ -38,7 +38,11 @@ const STOP_THRESHOLD = 0.04;
 export const HeroRippleLine = forwardRef<
   HeroRippleLineHandle,
   HeroRippleLineProps
->(function HeroRippleLine({ active = false, className = "" }, ref) {
+>(function HeroRippleLine(
+  { active = false, orientation = "horizontal", className = "" },
+  ref,
+) {
+  const isVertical = orientation === "vertical";
   const svgRef = useRef<SVGSVGElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
 
@@ -64,9 +68,14 @@ export const HeroRippleLine = forwardRef<
     if (!path) return;
     lastValue.current = value;
 
-    const cx = VIEW_W * xPos.current;
-    const cy = MID_Y + value;
-    path.setAttribute("d", `M0,${MID_Y} Q${cx},${cy} ${VIEW_W},${MID_Y}`);
+    const along = VIEW_LONG * xPos.current; // travel down/across the line
+    const bow = MID + value; // perpendicular displacement
+    path.setAttribute(
+      "d",
+      isVertical
+        ? `M${MID},0 Q${bow},${along} ${MID},${VIEW_LONG}`
+        : `M0,${MID} Q${along},${bow} ${VIEW_LONG},${MID}`,
+    );
 
     const magnitude = Math.min(Math.abs(value) / PULSE_AMPLITUDE, 1);
     const baseOpacity = activeRef.current ? 0.7 : 0.25;
@@ -132,13 +141,17 @@ export const HeroRippleLine = forwardRef<
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     if (reducedMotion.current || !isDragging.current) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    xPos.current = Math.min(
-      Math.max((e.clientX - rect.left) / rect.width, 0),
-      1,
-    );
+    // Position tracks the pointer along the line; amplitude comes from motion
+    // across it — so both swap with the orientation.
+    const alongRatio = isVertical
+      ? (e.clientY - rect.top) / rect.height
+      : (e.clientX - rect.left) / rect.width;
+    const acrossDelta = isVertical ? e.movementX : e.movementY;
+
+    xPos.current = Math.min(Math.max(alongRatio, 0), 1);
     envelope.current = Math.min(
       Math.max(
-        envelope.current + e.movementY * DRAG_SENSITIVITY,
+        envelope.current + acrossDelta * DRAG_SENSITIVITY,
         -DRAG_MAX_AMPLITUDE,
       ),
       DRAG_MAX_AMPLITUDE,
@@ -156,9 +169,13 @@ export const HeroRippleLine = forwardRef<
   return (
     <svg
       ref={svgRef}
-      className={`flex-1 h-6 min-w-8 ${className}`}
+      className={`${isVertical ? "h-full w-6 min-h-8" : "h-6 min-w-8 flex-1"} ${className}`}
       preserveAspectRatio="none"
-      viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+      viewBox={
+        isVertical
+          ? `0 0 ${VIEW_SHORT} ${VIEW_LONG}`
+          : `0 0 ${VIEW_LONG} ${VIEW_SHORT}`
+      }
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
