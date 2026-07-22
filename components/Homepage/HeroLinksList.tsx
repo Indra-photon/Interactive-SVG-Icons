@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/card";
 import { MorphArrow } from "@/components/ui/morph-arrow";
 import { HeroRippleLine } from "@/components/Homepage/HeroRippleLine";
+import HeroSocialLinks from "@/components/Homepage/HeroSocialLinks";
+import HeroRepoStats from "@/components/Homepage/HeroRepoStats";
 import {
   HeroPixelGrid,
   type HeroPixelTheme,
@@ -33,7 +35,7 @@ const HERO_LINKS: HeroLinkCard[] = [
   {
     label: "Loaders",
     href: "/loaders",
-    subheading: "66 animated loaders, drop-in ready.",
+    subheading: "66 animated loaders.",
     cta: "Browse loaders",
     theme: "sky",
   },
@@ -126,7 +128,9 @@ function HeroLinkCardItem({
           </Paragraph>
         </CardTitle>
         <CardDescription>
-          <Paragraph variant="card-Description">{subheading}</Paragraph>
+          <Paragraph variant="card-Description" className="">
+            {subheading}
+          </Paragraph>
         </CardDescription>
       </CardContent>
 
@@ -211,6 +215,14 @@ export function HeroLinksList() {
             <HeroLinkCardItem {...link} />
           </Fragment>
         ))}
+
+        {/* Sits in the same grid as the cards so the two blocks line up with
+            the outer cards' edges rather than the viewport. items-end puts
+            both bottom rows on one baseline despite the differing labels. */}
+        <div className="col-span-full mt-18 flex flex-col items-start gap-8 sm:flex-row sm:items-end sm:justify-between">
+          <HeroRepoStats />
+          <HeroSocialLinks />
+        </div>
       </div>
     </motion.div>
   );

@@ -7,7 +7,6 @@ import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
 import { Button } from "@/components/ui/button";
 // import { PatternSection } from "@/components/PatternSection";
-import HeroSocialLinks from "@/components/Homepage/HeroSocialLinks";
 import { HeroLinksList } from "@/components/Homepage/HeroLinksList";
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -20,20 +19,24 @@ export default function Home() {
       {/* ── Hero ── */}
       <div className="max-w-7xl mx-auto">
         {/* <PatternSection hideTopBar hideBottomBar={true} fillHeight shader> */}
-        <motion.div className="relative flex flex-col items-center gap-6 min-h-dvh justify-center text-center">
-          <HeroSocialLinks />
-          <Heading className="">
-            <span className="block overflow-hidden">
-              <motion.span
-                initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
-                animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
-                transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-                className="block text-foreground/70 font-light"
-              >
-                Craft Better Interface
-              </motion.span>
-            </span>
-            <span className="block overflow-hidden">
+        <motion.div className="relative flex flex-col gap-6 py-24">
+          {/* Same width and padding as HeroLinksList's own wrapper, so the
+              heading's left edge lands on the first card's left edge rather
+              than on the wider max-w-7xl shell. */}
+          <div className="mx-auto w-full max-w-6xl px-8 sm:px-4">
+            {/* sm:text-left overrides Heading's built-in sm:text-center. */}
+            <Heading className="sm:text-left">
+              <span className="block overflow-hidden">
+                <motion.span
+                  initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
+                  animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+                  transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
+                  className="block text-foreground"
+                >
+                  Craft Better Interface
+                </motion.span>
+              </span>
+              {/* <span className="block overflow-hidden">
               <motion.span
                 initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
                 animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
@@ -42,140 +45,37 @@ export default function Home() {
                   ease: [0.19, 1, 0.22, 1],
                   delay: 0.1,
                 }}
-                className="tracking-tighter"
+                className="tracking-tighter text-foreground/70"
               >
                 for modern web.
               </motion.span>
-            </span>
-          </Heading>
+            </span> */}
+            </Heading>
 
-          {/* <motion.div
-              className="flex flex-wrap items-center justify-center gap-3 pt-1"
-              variants={{
-                hidden: {},
-                show: {
-                  transition: { staggerChildren: 0.09, delayChildren: 0.22 },
-                },
+            {/* max-w-2xl keeps the measure near 70 characters; the heading is
+                free to run wider. */}
+            <motion.div
+              initial={{ y: 12, filter: "blur(8px)", opacity: 0 }}
+              animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+              transition={{
+                duration: 0.7,
+                ease: [0.19, 1, 0.22, 1],
+                delay: 0.2,
               }}
-              initial="hidden"
-              animate="show"
+              className="mt-6 flex max-w-2xl flex-col gap-4"
             >
-              <motion.div
-                variants={{
-                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                  show: {
-                    y: 0,
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                  },
-                }}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
-                >
-                  <Link href="/loaders">
-                    Browse Loaders
-                    <span className="ml-2">
-                      <DotsRotate
-                        dotSize={6}
-                        width={22}
-                        height={24}
-                        color="var(--background)"
-                        isAnimating
-                      />
-                    </span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                variants={{
-                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                  show: {
-                    y: 0,
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                  },
-                }}
-                onMouseEnter={() => setIconsHovered(true)}
-                onMouseLeave={() => setIconsHovered(false)}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
-                >
-                  <Link href="/icons">
-                    Browse Icons
-                    <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                      <MorphArrow isHovered={iconsHovered} size={15} />
-                    </span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                variants={{
-                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                  show: {
-                    y: 0,
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                  },
-                }}
-                onMouseEnter={() => setIconsHovered(true)}
-                onMouseLeave={() => setIconsHovered(false)}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
-                >
-                  <Link href="/illustrations">
-                    Browse Illustrations
-                    <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                      <MorphArrow isHovered={iconsHovered} size={15} />
-                    </span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                variants={{
-                  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-                  show: {
-                    y: 0,
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-                  },
-                }}
-                onMouseEnter={() => setIconsHovered(true)}
-                onMouseLeave={() => setIconsHovered(false)}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="corner-squircle rounded-[10px] font-mono tracking-tighter"
-                >
-                  <Link href="/blocks">
-                    Browse Blocks
-                    <span className="bg-primary/70 p-1 rounded-[6px] text-white ml-2">
-                      <MorphArrow isHovered={iconsHovered} size={15} />
-                    </span>
-                  </Link>
-                </Button>
-              </motion.div>
-            </motion.div> */}
+              <Paragraph variant="default">
+                A growing library of animated loaders, interactive icons, and
+                composable blocks — built with React, Tailwind, and Framer
+                Motion.
+              </Paragraph>
+              <Paragraph variant="default">
+                Every component ships as readable source you can copy straight
+                into your project. No package to install, no design system to
+                adopt. Take what you need and make it yours.
+              </Paragraph>
+            </motion.div>
+          </div>
 
           <HeroLinksList />
         </motion.div>
