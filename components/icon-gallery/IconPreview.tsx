@@ -99,7 +99,7 @@ export function IconPreview({
         className=""
       />
       {hint && (
-        <p className="text-[11px] font-mono text-stone-400">{hint}</p>
+        <p className="text-[11px] font-mono text-muted-foreground">{hint}</p>
       )}
     </div>
   );

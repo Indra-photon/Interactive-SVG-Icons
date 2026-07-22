@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { HugeiconsIcon } from '@hugeicons/react';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ChevronRightIcon,
   Folder01Icon,
   File01Icon,
-} from '@hugeicons/core-free-icons';
-import type { SidebarNode } from '@/lib/sidebar-data';
+} from "@hugeicons/core-free-icons";
+import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import type { SidebarNode } from "@/lib/sidebar-data";
 
 interface SidebarItemProps {
   node: SidebarNode;
@@ -28,8 +29,8 @@ export function SidebarItem({
   const hasChildren = Boolean(node.children && node.children.length > 0);
   const isLeaf = !hasChildren;
 
-  const isChildActive = hasChildren &&
-    node.children!.some(child => child.slug === activeSlug);
+  const isChildActive =
+    hasChildren && node.children!.some((child) => child.slug === activeSlug);
 
   const [isOpen, setIsOpen] = useState(isChildActive);
 
@@ -50,10 +51,10 @@ export function SidebarItem({
       if (isGroupSelectable) {
         // First click selects the group (and expands it); clicking the
         // already-active group toggles expand like a normal folder.
-        setIsOpen(prev => (node.slug === activeSlug ? !prev : true));
+        setIsOpen((prev) => (node.slug === activeSlug ? !prev : true));
         onSelect(node.slug);
       } else {
-        setIsOpen(prev => !prev);
+        setIsOpen((prev) => !prev);
       }
     } else {
       onSelect(node.slug, node.variation);
@@ -61,19 +62,22 @@ export function SidebarItem({
   };
 
   return (
-    <li>
-      <button
+    <SidebarMenuItem>
+      <SidebarMenuButton
+        size="sm"
+        isActive={isActive}
         onClick={handleClick}
-        className={`w-full flex items-center gap-1.5 py-1 px-2 rounded-md text-sm text-left transition-colors ${
-          isActive
-            ? 'bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-medium'
-            : 'text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-800/50'
-        }`}
+        aria-expanded={hasChildren ? isOpen : undefined}
+        className={
+          hasChildren
+            ? "tracking-tighter text-sidebar-foreground" // main category
+            : "tracking-tight text-xs text-sidebar-foreground/90" // children
+        }
       >
         {hasChildren ? (
           <motion.span
             animate={{ rotate: isOpen ? 90 : 0 }}
-            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
+            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
             className="flex shrink-0"
           >
             <HugeiconsIcon icon={ChevronRightIcon} size={12} strokeWidth={2} />
@@ -87,30 +91,32 @@ export function SidebarItem({
             icon={Folder01Icon}
             size={15}
             strokeWidth={1.5}
-            className="shrink-0 text-sky-500"
+            className="shrink-0 text-sidebar-icon-accent"
           />
         ) : (
           <HugeiconsIcon
             icon={File01Icon}
             size={15}
             strokeWidth={1.5}
-            className="shrink-0 text-stone-400 dark:text-stone-500"
+            className="shrink-0 text-sidebar-icon-muted"
           />
         )}
 
-        <span className="truncate">{node.label}</span>
-      </button>
+        <span>{node.label}</span>
+      </SidebarMenuButton>
 
       <AnimatePresence>
         {isOpen && hasChildren && (
+          // Kept as a motion.ul (rather than SidebarMenuSub) so the height
+          // spring survives — the sub styling is applied by hand instead.
           <motion.ul
             initial={{ height: 0 }}
-            animate={{ height: 'auto' }}
+            animate={{ height: "auto" }}
             exit={{ height: 0 }}
-            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-            className="pl-5 overflow-hidden flex flex-col"
+            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+            className="mx-3.5 flex min-w-0 translate-x-px flex-col overflow-hidden border-l border-sidebar-border px-2.5 group-data-[collapsible=icon]:hidden"
           >
-            {node.children!.map(child => (
+            {node.children!.map((child) => (
               <SidebarItem
                 key={child.id}
                 node={child}
@@ -123,6 +129,6 @@ export function SidebarItem({
           </motion.ul>
         )}
       </AnimatePresence>
-    </li>
+    </SidebarMenuItem>
   );
 }

@@ -255,6 +255,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-icon-accent: var(--sidebar-icon-accent);
+  --color-sidebar-icon-muted: var(--sidebar-icon-muted);
   --color-nav-surface: var(--nav-surface);
   --color-nav-surface-elevated: var(--nav-surface-elevated);
   --color-nav-foreground: var(--nav-foreground);
@@ -278,7 +280,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(55.3% 0.195 38.402);
+  --primary: oklch(39.1% 0.09 240.876);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -295,14 +297,26 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
+  /* Concentric frame: the sidebar sits *inside* the page card, inset by
+     --sidebar-gap. Keeping radius = page-radius - gap is what makes the two
+     corners read as parallel rather than merely both-rounded. */
+  --page-radius: 20px;
+  --sidebar-gap: 8px;
+  --sidebar-radius: calc(var(--page-radius) - var(--sidebar-gap));
+
+  /* Warm grey, a clear step down from the white card it floats on. */
+  --sidebar: oklch(0.925 0.004 70);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.965 0.003 70);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
+  /* The fill does the separating now — a visible border would flatten it. */
+  --sidebar-border: oklch(0 0 0 / 6%);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Folder / section icons keep the same blue in both themes (sky-500). */
+  --sidebar-icon-muted: oklch(74.6% 0.16 232.661);
+  --sidebar-icon-accent: oklch(44.3% 0.11 240.79);
 
   /* Navbar surface — its own scale so the nav can read as a distinct surface
      in each theme. --nav-surface-elevated is the expanded card, which sits
@@ -345,7 +359,7 @@
   /* Same hue as the light-mode primary, lifted in L and eased off chroma so it
      reads as the same orange against the dark background. Chroma sits at ~95%
      of the sRGB maximum for this L/H, so it stays in gamut. */
-  --primary: oklch(0.72 0.17 38.402);
+  --primary: oklch(60.9% 0.126 221.723);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -362,14 +376,19 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
+  /* In dark mode the sidebar goes *lighter* than the card — with no usable
+     drop shadow, the lighter fill is what preserves the "on top" read. */
+  --sidebar: oklch(0.262 0.003 70);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.32 0.003 70);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-border: oklch(1 0 0 / 8%);
   --sidebar-ring: oklch(0.556 0 0);
+  /* Same blue as light mode — the accent is deliberately theme-invariant. */
+  --sidebar-icon-accent: oklch(0.685 0.169 237.323);
+  --sidebar-icon-muted: oklch(0.685 0.169 237.323 / 70%);
 
   /* Preserves the original hardcoded navbar palette: #000 strip, #0e0e0e card,
      neutral-800 hover, and the white/40 + white/7% opacity steps. */

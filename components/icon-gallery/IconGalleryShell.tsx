@@ -6,6 +6,11 @@ import {
   Sidebar,
   type SidebarSectionConfig,
 } from "@/components/sidebar/Sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { IconCard } from "./IconCard";
 import { GallerySearch } from "@/components/gallery/GallerySearch";
 // import { PatternSection } from "@/components/PatternSection";
@@ -60,10 +65,13 @@ export function IconGalleryShell({
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
       > */}
-      <div className="flex h-full overflow-hidden">
+      <SidebarProvider className="h-full min-h-0 overflow-hidden rounded-(--page-radius) bg-card">
         <Sidebar sections={sidebarSections} onSelect={handleSelect} />
 
-        <div className="flex-1 overflow-y-auto px-5 corner-squircle rounded-[10px] py-10 bg-foreground/5 dark:bg-backgoround/5">
+        <SidebarInset className="min-w-0 overflow-hidden bg-transparent">
+        <SidebarTrigger className="absolute top-3 left-3 z-20" />
+
+        <div className="flex-1 overflow-y-auto px-5 py-10">
           <GallerySearch
             value={query}
             onChange={setQuery}
@@ -92,7 +100,8 @@ export function IconGalleryShell({
             )}
           </div>
         </div>
-      </div>
+        </SidebarInset>
+      </SidebarProvider>
       {/* </PatternSection> */}
     </div>
   );

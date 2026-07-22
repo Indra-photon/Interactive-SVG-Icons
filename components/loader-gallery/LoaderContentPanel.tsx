@@ -14,6 +14,7 @@ import { LoaderPreview } from "./LoaderPreview";
 import { InstallCommand } from "@/components/InstallCommand";
 import { PropsTable } from "@/components/PropsTable";
 import { MorphArrow } from "@/components/ui/morph-arrow";
+import { Paragraph } from "@/components/Paragraph";
 import { resolveLoaderGroup } from "@/lib/sidebar-data";
 import type { Loader } from "@/types/loader";
 
@@ -38,9 +39,9 @@ function LoaderPreviewCard({
       onClick={onSelect}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group corner-squircle rounded-[10px] border border-stone-200 dark:border-stone-700 p-3 text-left hover:border-stone-400 dark:hover:border-stone-500 hover:shadow-sm transition-[border-color,box-shadow] duration-150"
+      className="group corner-squircle rounded-[10px] border border-border p-3 text-left bg-card text-card-foreground hover:border-foreground/25 hover:shadow-sm transition-[border-color,box-shadow] duration-150"
     >
-      <div className="aspect-square bg-stone-50 dark:bg-stone-800 corner-squircle rounded-[8px] mb-2.5 flex items-center justify-center group-hover:bg-stone-100 dark:group-hover:bg-stone-700/60 transition-colors duration-150">
+      <div className="aspect-square bg-muted corner-squircle rounded-[8px] mb-2.5 flex items-center justify-center group-hover:bg-foreground/10 transition-colors duration-150">
         <div className="scale-[0.65]">
           <LoaderPreview
             loaderSlug={loader.slug}
@@ -50,12 +51,12 @@ function LoaderPreviewCard({
       </div>
       <div className="flex items-start justify-between gap-1.5">
         <div className="min-w-0">
-          <p className="text-[18px] font-sans text-foreground text-wrap-balance truncate">
+          <Paragraph variant="card-Heading" className="truncate">
             {loader.name}
-          </p>
-          <p className="text-[14px] text-foreground/80 font-sans tracking-tighter text-wrap-pretty mt-0.5 line-clamp-2">
+          </Paragraph>
+          <Paragraph variant="card-Description" className="mt-0.5 line-clamp-2">
             {loader.description}
-          </p>
+          </Paragraph>
         </div>
         <span className="shrink-0 px-1 py-0.5 bg-primary/10 text-primary rounded-[4px] text-[9px] font-mono uppercase tracking-wide">
           {variation.tier}
@@ -133,22 +134,22 @@ function LoaderDetail({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <p className="text-xs font-mono text-foreground/80 uppercase tracking-widest mb-2">
+          <Paragraph variant="panel-Eyebrow" className="mb-2">
             {loader.category}
-          </p>
-          <h1 className="text-2xl font-sans text-foreground text-wrap-balance">
+          </Paragraph>
+          <Paragraph as="h1" variant="panel-Title">
             {loader.name}
-          </h1>
-          <p className="text-foreground/80 font-sans tracking-tighter mb-6 text-wrap-pretty">
+          </Paragraph>
+          <Paragraph variant="panel-Description" className="mb-6">
             {loader.description}
-          </p>
+          </Paragraph>
 
           {loader.tags.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mb-8">
               {loader.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 rounded text-xs"
+                  className="px-2 py-0.5 bg-muted text-muted-foreground rounded text-xs"
                 >
                   {tag}
                 </span>

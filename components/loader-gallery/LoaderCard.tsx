@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { IconExternalLink } from '@tabler/icons-react';
+import { Paragraph } from '@/components/Paragraph';
 
 interface LoaderCardProps {
   loader: {
@@ -70,7 +71,7 @@ export function LoaderCard({ loader, isMatched = true }: LoaderCardProps) {
         href={`/loaders?slug=${loader.slug}`}
         tabIndex={isMatched ? undefined : -1}
         aria-hidden={!isMatched}
-        className={`border rounded-lg hover:shadow-lg transition-[box-shadow,transform,scale] active:scale-[0.96] group w-full h-full flex items-center justify-center bg-white relative overflow-hidden block ${
+        className={`border rounded-lg hover:shadow-lg transition-[box-shadow,transform,scale] active:scale-[0.96] group w-full h-full flex items-center justify-center bg-card text-card-foreground relative overflow-hidden block ${
           isMatched ? "" : "pointer-events-none"
         }`}
       >
@@ -84,18 +85,26 @@ export function LoaderCard({ loader, isMatched = true }: LoaderCardProps) {
           )}
         </div>
 
-        {/* Gradient overlay */}
+        {/* Gradient overlay — dark mode darkens further rather than swapping
+            the gradient for a flat fill. */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity dark:bg-neutral-900"
+          className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/50 opacity-0 group-hover:opacity-100 transition-opacity"
         />
 
-        {/* Slider from bottom */}
+        {/* Slider from bottom — foreground/background invert together, so the
+            bar stays legible in both themes. */}
         <motion.div
           variants={shouldReduceMotion ? reducedSliderVariants : sliderVariants}
-          className="absolute bottom-0 left-0 right-0 bg-black/80 text-white py-1.5 px-2 text-center text-[11px] font-medium backdrop-blur-sm"
+          className="absolute bottom-0 left-0 right-0 bg-foreground/85 text-background py-1.5 px-2 text-center backdrop-blur-sm"
         >
-          See in action
-          <IconExternalLink className="inline-block ml-1 mb-0.5" size={12} />
+          <Paragraph
+            as="span"
+            variant="card-Description"
+            className="block text-background"
+          >
+            See in action
+            <IconExternalLink className="inline-block ml-1 mb-0.5" size={12} />
+          </Paragraph>
         </motion.div>
 
         {/* Non-match mask */}
