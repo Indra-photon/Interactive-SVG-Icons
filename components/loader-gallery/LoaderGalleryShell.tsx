@@ -8,7 +8,7 @@ import {
 } from "@/components/sidebar/Sidebar";
 import { LoaderCard } from "./LoaderCard";
 import { GallerySearch } from "@/components/gallery/GallerySearch";
-import { PatternSection } from "@/components/PatternSection";
+// import { PatternSection } from "@/components/PatternSection";
 import type { Loader } from "@/types/loader";
 
 interface LoaderGalleryShellProps {
@@ -50,13 +50,14 @@ export function LoaderGalleryShell({
   };
 
   return (
-    <div className="h-[calc(100vh-65px)] max-w-9xl mx-auto">
-      <PatternSection
+    <div className="h-[calc(100dvh-1.5rem)] w-full">
+      {/* <PatternSection
         hideTopBar={true}
         fillHeight
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
-      >
+      > */}
+      <div className="flex h-full overflow-hidden">
         <Sidebar sections={sidebarSections} onSelect={handleSelect} />
 
         <div className="flex-1 overflow-y-auto px-5 rounded-[10px] py-10 bg-foreground/5 dark:bg-backgoround/5">
@@ -88,7 +89,8 @@ export function LoaderGalleryShell({
             )}
           </div>
         </div>
-      </PatternSection>
+      </div>
+      {/* </PatternSection> */}
     </div>
   );
 }

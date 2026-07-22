@@ -2,9 +2,12 @@
 
 import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Sidebar, type SidebarSectionConfig } from "@/components/sidebar/Sidebar";
+import {
+  Sidebar,
+  type SidebarSectionConfig,
+} from "@/components/sidebar/Sidebar";
 import { UIContentPanel } from "./UIContentPanel";
-import { PatternSection } from "@/components/PatternSection";
+// import { PatternSection } from "@/components/PatternSection";
 import type { UIComponent } from "@/types/ui-component";
 
 interface UIPageShellProps {
@@ -47,13 +50,14 @@ export function UIPageShell({
   };
 
   return (
-    <div className="h-[calc(100vh-65px)] max-w-9xl mx-auto">
-      <PatternSection
+    <div className="h-[calc(100dvh-1.5rem)] w-full">
+      {/* <PatternSection
         hideTopBar={true}
         fillHeight
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
-      >
+      > */}
+      <div className="flex h-full overflow-hidden">
         <Sidebar
           sections={sidebarSections}
           activeSlug={activeSlug}
@@ -66,7 +70,8 @@ export function UIPageShell({
           activeSlug={activeSlug}
           activeVariation={activeVariation}
         />
-      </PatternSection>
+      </div>
+      {/* </PatternSection> */}
     </div>
   );
 }

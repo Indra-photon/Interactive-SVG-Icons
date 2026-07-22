@@ -2048,6 +2048,25 @@
       ]
     },
     {
+      "name": "pixel-dissolve-card-default",
+      "type": "registry:block",
+      "title": "Pixel Dissolve Card - Pixel Dissolve Card",
+      "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/pixel-dissolve-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/pixel-dissolve-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "onboarding-form-default",
       "type": "registry:block",
       "title": "Onboarding Form - Onboarding Form",

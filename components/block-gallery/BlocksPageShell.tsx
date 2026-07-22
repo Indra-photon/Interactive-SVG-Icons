@@ -7,7 +7,7 @@ import {
   type SidebarSectionConfig,
 } from "@/components/sidebar/Sidebar";
 import { BlockContentPanel } from "./BlockContentPanel";
-import { PatternSection } from "@/components/PatternSection";
+// import { PatternSection } from "@/components/PatternSection";
 import type { Block } from "@/types/block";
 
 interface BlocksPageShellProps {
@@ -50,14 +50,15 @@ export function BlocksPageShell({
   };
 
   return (
-    <div className="h-[calc(100vh-65px)] max-w-9xl mx-auto">
-      <PatternSection
+    <div className="h-[calc(100dvh-1.5rem)] w-full">
+      {/* <PatternSection
         hideTopBar={true}
         hideBottomBar={false}
         fillHeight
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
-      >
+      > */}
+      <div className="flex h-full overflow-hidden">
         <Sidebar
           sections={sidebarSections}
           activeSlug={activeSlug}
@@ -71,7 +72,8 @@ export function BlocksPageShell({
           activeVariation={activeVariation}
           onVariationSelect={handleSelect}
         />
-      </PatternSection>
+      </div>
+      {/* </PatternSection> */}
     </div>
   );
 }
