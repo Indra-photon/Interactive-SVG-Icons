@@ -6,6 +6,11 @@ import {
   Sidebar,
   type SidebarSectionConfig,
 } from "@/components/sidebar/Sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { IconContentPanel } from "./IconContentPanel";
 // import { PatternSection } from "@/components/PatternSection";
 import type { Icon } from "@/types/icon";
@@ -50,7 +55,7 @@ export function IconsPageShell({
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
       > */}
-      <div className="flex h-full overflow-hidden">
+      <SidebarProvider className="h-full min-h-0 overflow-hidden rounded-(--page-radius) bg-card">
         <Sidebar
           sections={sidebarSections}
           activeSlug={activeSlug}
@@ -58,14 +63,18 @@ export function IconsPageShell({
           onSelect={handleSelect}
         />
 
-        <IconContentPanel
-          icons={icons}
-          buttonCodes={buttonCodes}
-          activeSlug={activeSlug}
-          activeVariation={activeVariation}
-          onVariationSelect={handleSelect}
-        />
-      </div>
+        <SidebarInset className="min-w-0 overflow-hidden bg-transparent">
+          <SidebarTrigger className="absolute top-3 left-3 z-20" />
+
+          <IconContentPanel
+            icons={icons}
+            buttonCodes={buttonCodes}
+            activeSlug={activeSlug}
+            activeVariation={activeVariation}
+            onVariationSelect={handleSelect}
+          />
+        </SidebarInset>
+      </SidebarProvider>
       {/* </PatternSection> */}
     </div>
   );

@@ -18,7 +18,7 @@ export function LoaderPreview({ loaderSlug, variationName }: LoaderPreviewProps)
         setPreviewComponent(() => exported);
       })
       .catch(() => {
-        setPreviewComponent(() => () => <div className="text-sm text-stone-400">Not found</div>);
+        setPreviewComponent(() => () => <div className="text-sm text-muted-foreground">Not found</div>);
       });
   }, [loaderSlug, variationName]);
 

@@ -9,6 +9,7 @@ import {
   GlobeIcon,
   YoutubeIcon,
 } from "@hugeicons/core-free-icons";
+import { Paragraph } from "../Paragraph";
 
 const SOCIAL_LINKS = [
   { icon: NewTwitterIcon, href: "https://x.com/Nil_phy_dreamer", label: "X" },
@@ -66,7 +67,7 @@ function MagneticIcon({
         icon={icon}
         size={16}
         strokeWidth={1.9}
-        className="text-primary dark:text-neutral-300"
+        className="text-primary"
       />
     </motion.a>
   );
@@ -74,10 +75,14 @@ function MagneticIcon({
 
 export default function HeroSocialLinks() {
   return (
-    <div className="absolute bottom-[20%] right-16 flex flex-col items-end gap-2">
-      <span className="text-2xl font-sans tracking-tighter text-foreground leading-none text-foreground/40 antialiased">
+    // Static flow, not absolute — the caller decides where this sits.
+    <div className="flex flex-col items-start gap-2">
+      <Paragraph
+        variant="default"
+        className="uppercase text-xs tracking-widest"
+      >
         Meet the creator
-      </span>
+      </Paragraph>
       <div className="flex flex-row gap-4">
         {SOCIAL_LINKS.map(({ icon, href, label }) => (
           <MagneticIcon key={label} icon={icon} href={href} label={label} />

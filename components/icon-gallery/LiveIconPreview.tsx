@@ -87,7 +87,7 @@ export function LiveIconPreview({ iconSlug, variationName, animationType }: Live
           {...(iconSlug === 'refresh' && { isAnimating })}
         />
       </div>
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-muted-foreground">
         {animationType === 'hover' ? 'Hover to see animation' : 'Click to see animation'}
       </p>
     </div>

@@ -17,7 +17,7 @@ export const Heading = <T extends React.ElementType = "h1">({
   return (
     <Tag
       className={twMerge(
-        " tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tighter text-foreground text-balance",
+        " tracking-tight text-left sm:text-center text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tighter text-foreground text-balance",
         className,
       )}
     >

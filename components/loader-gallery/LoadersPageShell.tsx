@@ -6,6 +6,11 @@ import {
   Sidebar,
   type SidebarSectionConfig,
 } from "@/components/sidebar/Sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { LoaderContentPanel } from "./LoaderContentPanel";
 // import { PatternSection } from "@/components/PatternSection";
 import type { Loader } from "@/types/loader";
@@ -44,19 +49,23 @@ export function LoadersPageShell({
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
       > */}
-      <div className="flex h-full overflow-hidden">
+      <SidebarProvider className="h-full min-h-0 overflow-hidden rounded-(--page-radius) bg-card">
         <Sidebar
           sections={sidebarSections}
           activeSlug={activeSlug}
           onSelect={handleSelect}
         />
 
-        <LoaderContentPanel
-          loaders={loaders}
-          activeSlug={activeSlug}
-          onSelect={handleSelect}
-        />
-      </div>
+        <SidebarInset className="min-w-0 overflow-hidden bg-transparent">
+          <SidebarTrigger className="absolute top-3 left-3 z-20" />
+
+          <LoaderContentPanel
+            loaders={loaders}
+            activeSlug={activeSlug}
+            onSelect={handleSelect}
+          />
+        </SidebarInset>
+      </SidebarProvider>
       {/* </PatternSection> */}
     </div>
   );

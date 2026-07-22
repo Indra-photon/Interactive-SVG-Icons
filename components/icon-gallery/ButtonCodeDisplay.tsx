@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { CopyButton } from "./CopyButton";
 import { CodeBottomPanel } from "./CodeBottomPanel";
+import { Paragraph } from "../Paragraph";
 
 interface ButtonCodeDisplayProps {
   iconSlug: string;
@@ -46,7 +47,7 @@ export function ButtonCodeDisplay({
             })
             .catch(() => ({
               default: () => (
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-muted-foreground">
                   Button example not available
                 </div>
               ),
@@ -60,12 +61,12 @@ export function ButtonCodeDisplay({
     <div ref={wrapperRef}>
       <div className="flex items-start justify-between gap-4 mb-2">
         <div className="flex-1">
-          <h3 className="text-2xl font-sans text-foreground text-wrap-balance">
+          <Paragraph variant="panel-Title" className="mb-1">
             Example Component
-          </h3>
-          <p className="text-foreground/80 font-sans tracking-tighter text-wrap-pretty">
+          </Paragraph>
+          <Paragraph variant="panel-Description" className="">
             Ready-to-use button component with the icon
-          </p>
+          </Paragraph>
         </div>
         <Button
           size="lg"
@@ -78,7 +79,7 @@ export function ButtonCodeDisplay({
       </div>
 
       {/* Live Button Preview */}
-      <div className="bg-gray-50 corner-squircle rounded-[10px] border border-border p-8 mb-4 flex items-center justify-center">
+      <div className="bg-muted corner-squircle rounded-[10px] border border-border p-8 mb-4 flex items-center justify-center">
         <ButtonExample />
       </div>
 

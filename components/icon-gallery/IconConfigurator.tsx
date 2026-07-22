@@ -169,7 +169,7 @@ function IconConfiguratorInner({
   return (
     <div className="corner-squircle rounded-[10px] border border-border overflow-hidden">
       {/* Preview */}
-      <div className="bg-stone-50 border-b border-stone-200 flex items-center justify-center py-10">
+      <div className="bg-muted border-b border-border flex items-center justify-center py-10">
         <IconPreview
           iconSlug={iconSlug}
           variationName={variation.name}
@@ -180,7 +180,7 @@ function IconConfiguratorInner({
       </div>
 
       {/* Hint + reset bar */}
-      <div className="flex items-center justify-end gap-2 px-5 py-3 bg-white border-b border-stone-100">
+      <div className="flex items-center justify-end gap-2 px-5 py-3 bg-card text-card-foreground border-b border-border">
         {isSpringMode ? (
           <span className="text-[11px] font-mono text-amber-600">
             Switch to <strong>Easing</strong> mode in the DialKit panel — spring

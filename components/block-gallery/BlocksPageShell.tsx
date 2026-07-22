@@ -6,6 +6,11 @@ import {
   Sidebar,
   type SidebarSectionConfig,
 } from "@/components/sidebar/Sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { BlockContentPanel } from "./BlockContentPanel";
 // import { PatternSection } from "@/components/PatternSection";
 import type { Block } from "@/types/block";
@@ -58,7 +63,7 @@ export function BlocksPageShell({
         className="h-full"
         contentClassName="flex h-full overflow-hidden"
       > */}
-      <div className="flex h-full overflow-hidden">
+      <SidebarProvider className="h-full min-h-0 overflow-hidden rounded-(--page-radius) bg-card">
         <Sidebar
           sections={sidebarSections}
           activeSlug={activeSlug}
@@ -66,13 +71,17 @@ export function BlocksPageShell({
           onSelect={handleSelect}
         />
 
-        <BlockContentPanel
-          blocks={blocks}
-          activeSlug={activeSlug}
-          activeVariation={activeVariation}
-          onVariationSelect={handleSelect}
-        />
-      </div>
+        <SidebarInset className="min-w-0 overflow-hidden bg-transparent">
+          <SidebarTrigger className="absolute top-3 left-3 z-20" />
+
+          <BlockContentPanel
+            blocks={blocks}
+            activeSlug={activeSlug}
+            activeVariation={activeVariation}
+            onVariationSelect={handleSelect}
+          />
+        </SidebarInset>
+      </SidebarProvider>
       {/* </PatternSection> */}
     </div>
   );
