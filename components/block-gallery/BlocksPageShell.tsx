@@ -19,12 +19,14 @@ interface BlocksPageShellProps {
   blocks: Block[];
   sidebarSections: SidebarSectionConfig[];
   firstSlug: string;
+  firstVariation: string;
 }
 
 export function BlocksPageShell({
   blocks,
   sidebarSections,
   firstSlug,
+  firstVariation,
 }: BlocksPageShellProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -33,12 +35,10 @@ export function BlocksPageShell({
   const rawVariation = searchParams.get("variation") ?? undefined;
 
   const activeSlug = rawSlug ?? firstSlug;
-  const activeVariation = rawVariation;
+  const activeVariation = rawVariation ?? firstVariation;
 
   useEffect(() => {
     if (!rawSlug && firstSlug) {
-      const firstVariation = blocks.find((b) => b.slug === firstSlug)
-        ?.variations[0]?.name;
       const params = new URLSearchParams();
       params.set("slug", firstSlug);
       if (firstVariation) params.set("variation", firstVariation);

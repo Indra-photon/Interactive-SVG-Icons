@@ -43,7 +43,7 @@ const DEFAULT_SLIDES: PixelDissolveSlide[] = [
       "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=900&auto=format&fit=crop",
     imageAlt: "Soft blue and pink light diffusion",
     heading:
-      "Motion is memory in disguise. Every pixel that fades was once certain of its place in the whole.",
+      "Motion is memory in disguise. Every pixel that fades was once certain of its place in the whole. Perfectly imperfect.",
   },
 ];
 
@@ -134,10 +134,10 @@ export default function PixelDissolveCard({
       type="button"
       onClick={next}
       aria-label="Show next slide"
-      className={`flex h-[550px] w-full max-w-[380px] cursor-pointer flex-col items-stretch overflow-hidden rounded-[22px] bg-[#fbfbfa] p-0 text-left shadow-[0_20px_60px_-25px_rgba(0,0,0,0.25)] transition-transform duration-150 select-none active:scale-[0.98] ${className}`}
+      className={`flex h-auto md:h-[550px] w-full max-w-[380px] cursor-pointer flex-col items-stretch overflow-hidden rounded-[18px] sm:rounded-[22px] bg-[#fbfbfa] p-0 text-left shadow-[0_20px_60px_-25px_rgba(0,0,0,0.25)] transition-transform duration-150 select-none active:scale-[0.98] ${className}`}
     >
       <div
-        className="relative h-80 shrink-0 overflow-hidden"
+        className="relative h-56 sm:h-72 md:h-80 shrink-0 overflow-hidden"
         style={{ ["--pixcard-size" as string]: size }}
       >
         {/* Incoming image sits underneath and is revealed as tiles drop away. */}
@@ -170,7 +170,7 @@ export default function PixelDissolveCard({
         )}
       </div>
 
-      <div className="relative px-[26px] pt-7 pb-[22px] text-[27px] leading-[1.08] font-medium tracking-[-0.02em] text-[#131313]">
+      <div className="relative px-4 pt-5 pb-5 sm:px-6 sm:pt-6 md:px-[26px] md:pt-7 md:pb-[22px] text-[19px] sm:text-[22px] md:text-[27px] leading-[1.08] font-medium tracking-[-0.02em] text-[#131313]">
         <AnimatePresence mode="wait">
           <motion.h2
             key={index}
@@ -179,7 +179,7 @@ export default function PixelDissolveCard({
           >
             {slide.heading.split(" ").map((word, i) => (
               <span key={`${i}-${word}`}>
-                <span className="inline-block overflow-hidden pb-[0.14em] align-bottom mb-[-0.14em]">
+                <span className="inline-block overflow-hidden pb-[0.14em] align-bottom mb-[-0.14em] text-pretty text-left">
                   <motion.span
                     className="inline-block"
                     initial={reduceMotion ? false : { y: "105%" }}

@@ -12,6 +12,8 @@ export interface Block {
   description: string;
   createdAt: string;
   variations: BlockVariation[];
+  /** Set false to hide from the gallery/sidebar without deleting the block. */
+  published?: boolean;
 }
 
 export interface BlockInspirationLink {
@@ -33,6 +35,12 @@ export interface BlockVariation {
   inspiration?: BlockInspirationLink[];
   componentName?: string;
   previewHint?: string;
+  /**
+   * When true, the preview renders the block directly at the container's real
+   * width (so its own `sm:`/`md:` breakpoints reflow it) instead of the fixed
+   * 1280px scale-to-fit canvas. Set once a block has been made responsive.
+   */
+  responsive?: boolean;
 }
 
 export interface BlockPropDefinition {

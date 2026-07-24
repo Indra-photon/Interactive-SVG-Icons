@@ -14,6 +14,7 @@
       "previewHint": "Digits flip every few seconds in demo mode",
       "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
       "animationType": "loop",
+      "responsive": true,
       "dependencies": ["motion"],
       "registryDependencies": [],
       "props": [

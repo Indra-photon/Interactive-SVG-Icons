@@ -87,7 +87,7 @@ export default function ContactRevealCard({
 
   return (
     <div
-      className={`flex h-full w-full flex-col items-center justify-center gap-8 rounded-[28px] bg-white px-8 py-10 ${className ?? ""}`}
+      className={`flex h-full w-full flex-col items-center justify-center gap-6 sm:gap-8 rounded-[20px] sm:rounded-[28px] bg-white px-5 py-8 sm:px-8 sm:py-10 ${className ?? ""}`}
     >
       <style>
         {`
@@ -99,7 +99,7 @@ export default function ContactRevealCard({
 
       {/* Text + caption */}
       <div className="flex flex-col items-center gap-2">
-        <div className="flex items-baseline whitespace-pre text-3xl font-medium tracking-tight sm:text-4xl">
+        <div className="flex items-baseline whitespace-pre text-8xl font-medium tracking-tight sm:text-8xl md:text-6xl">
           {segments.map((segment) => {
             const isActive = segment.start >= start && segment.end <= end;
             return (

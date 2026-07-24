@@ -14,6 +14,7 @@
       "tier": "free",
       "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
       "animationType": "click",
+      "responsive": true,
       "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
       "registryDependencies": [],
       "props": [

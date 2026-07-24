@@ -8,7 +8,9 @@ import { BlocksPageShell } from '@/components/block-gallery/BlocksPageShell';
 function loadBlockData() {
   const registryPath = path.join(process.cwd(), 'public/r/blocks.json');
   const registry: BlockRegistry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
-  return { blocks: registry.blocks };
+  // Blocks flagged `published: false` are hidden from the gallery/sidebar
+  // (files are kept — this is just a visibility flag).
+  return { blocks: registry.blocks.filter((b) => b.published !== false) };
 }
 
 export default function BlocksPage() {
@@ -20,6 +22,7 @@ export default function BlocksPage() {
   ];
 
   const firstSlug = blocks[0]?.slug ?? '';
+  const firstVariation = blocks[0]?.variations[0]?.name ?? '';
 
   return (
     <Suspense>
@@ -27,6 +30,7 @@ export default function BlocksPage() {
         blocks={blocks}
         sidebarSections={sidebarSections}
         firstSlug={firstSlug}
+        firstVariation={firstVariation}
       />
     </Suspense>
   );
