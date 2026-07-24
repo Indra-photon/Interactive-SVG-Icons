@@ -63,7 +63,7 @@ export function IllustrationSection() {
           <Button
             asChild
             size="lg"
-            variant="outline"
+            variant="secondary"
             className="corner-squircle rounded-[10px] font-mono tracking-tighter"
           >
             <Link href="/illustrations">Browse Illustrations</Link>

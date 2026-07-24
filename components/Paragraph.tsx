@@ -43,7 +43,9 @@ type ParagraphProps<T extends React.ElementType = "p"> = {
     | "card-Description"
     | "panel-Eyebrow"
     | "panel-Title"
-    | "panel-Description";
+    | "panel-Description"
+    | "overview-Title"
+    | "overview-Description";
 };
 
 export const Paragraph = <T extends React.ElementType = "p">({
@@ -69,6 +71,10 @@ export const Paragraph = <T extends React.ElementType = "p">({
       "tracking-wide font-medium text-base sm:text-[18px] md:text-[19px] lg:text-[20px] leading-tight text-foreground text-balance",
     "panel-Description":
       "tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground text-pretty",
+    "overview-Title":
+      "tracking-wide font-medium text-base sm:text-[18px] md:text-[19px] lg:text-[20px] leading-tight text-foreground text-balance",
+    "overview-Description":
+      "tracking-tighter text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] text-left line-clamp-3 leading-normal text-secondary-foreground text-pretty",
     muted:
       "font-sans font-medium tracking-tighter text-[14px] md:text-[16px] text-pretty",
     small:

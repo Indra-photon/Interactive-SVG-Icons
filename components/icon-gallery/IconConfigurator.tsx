@@ -14,6 +14,8 @@ import {
 import { useDialKitPanel } from "@/lib/useDialKitPanel";
 import type { PropDefinition } from "@/types/icon";
 import { Button } from "../ui/button";
+import { Paragraph } from "@/components/Paragraph";
+import { CopyButton } from "@/components/loader-gallery/CopyButton";
 
 // Icon booleans are animation triggers managed by the preview; className is a
 // developer utility. Neither belongs in the DialKit panel.
@@ -36,44 +38,6 @@ interface IconConfiguratorProps {
   iconSlug: string;
   iconName: string;
   variation: IconVariation;
-}
-
-// ── Source substitution ───────────────────────────────────────────────────────
-
-function substituteSource(
-  source: string,
-  propValues: Record<string, any>,
-  defaults: Record<string, any>,
-) {
-  let result = source;
-  for (const [name, value] of Object.entries(propValues)) {
-    if (JSON.stringify(value) === JSON.stringify(defaults[name])) continue;
-    if (typeof value === "string") {
-      result = result.replace(
-        new RegExp(`(${name}\\s*=\\s*)["'][^"']*["'](?=,)`, "g"),
-        `$1"${value}"`,
-      );
-    } else if (Array.isArray(value)) {
-      result = result.replace(
-        new RegExp(
-          `(${name}\\s*=\\s*)(?:["'][^'"]*["']|\\[[^\\]]*\\])(?=,)`,
-          "g",
-        ),
-        `$1${JSON.stringify(value)}`,
-      );
-    } else if (typeof value === "number") {
-      result = result.replace(
-        new RegExp(`(${name}\\s*=\\s*)[\\d.]+(?=,)`, "g"),
-        `$1${value}`,
-      );
-    } else if (typeof value === "boolean") {
-      result = result.replace(
-        new RegExp(`(${name}\\s*=\\s*)(?:true|false)(?=,)`, "g"),
-        `$1${value}`,
-      );
-    }
-  }
-  return result;
 }
 
 // ── Usage snippet ─────────────────────────────────────────────────────────────
@@ -115,7 +79,6 @@ function IconConfiguratorInner({
   variation,
   onReset,
 }: InnerProps) {
-  const [copied, setCopied] = useState<"usage" | "source" | null>(null);
   const { isOpen: dialKitOpen, toggle: toggleDialKit } = useDialKitPanel();
 
   const componentName =
@@ -146,26 +109,6 @@ function IconConfiguratorInner({
   const changed = !isSpringMode && isChanged(propValues, defaults);
   const snippet = buildUsageSnippet(componentName, propValues, defaults);
 
-  const copyUsage = async () => {
-    await navigator.clipboard.writeText(snippet);
-    setCopied("usage");
-    setTimeout(() => setCopied(null), 2000);
-  };
-
-  const copySource = async () => {
-    try {
-      const res = await fetch(`/r/${iconSlug}-${variation.name}.json`);
-      const data = await res.json();
-      const original = data.files[0].content as string;
-      const modified = substituteSource(original, propValues, defaults);
-      await navigator.clipboard.writeText(modified);
-      setCopied("source");
-      setTimeout(() => setCopied(null), 2000);
-    } catch {
-      console.error("Failed to copy source");
-    }
-  };
-
   return (
     <div className="corner-squircle rounded-[10px] border border-border overflow-hidden">
       {/* Preview */}
@@ -189,7 +132,7 @@ function IconConfiguratorInner({
         ) : (
           <Button
             size="lg"
-            variant={dialKitOpen ? "default" : "outline"}
+            variant="secondary"
             className="corner-squircle rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
             onClick={toggleDialKit}
           >
@@ -200,11 +143,8 @@ function IconConfiguratorInner({
           <Button
             asChild
             size="lg"
-            variant="outline"
-            onClick={() => {
-              onReset();
-              setCopied(null);
-            }}
+            variant="secondary"
+            onClick={onReset}
             className="corner-squircle rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
           >
             <span>Reset to Default</span>
@@ -214,46 +154,23 @@ function IconConfiguratorInner({
 
       {/* Code panel — only when something changed */}
       {changed && (
-        <div className="p-5 flex flex-col gap-3">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-stone-400">
-              Code
-            </span>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={copyUsage}
-                className={`text-[11px] font-mono px-2.5 py-1 rounded-md border transition-all ${
-                  copied === "usage"
-                    ? "bg-stone-900 text-white border-stone-900"
-                    : "bg-white text-stone-600 border-stone-200 hover:border-stone-400"
-                }`}
-              >
-                {copied === "usage" ? "✓ copied" : "copy usage"}
-              </button>
-              <button
-                onClick={copySource}
-                className={`text-[11px] font-mono px-2.5 py-1 rounded-md border transition-all ${
-                  copied === "source"
-                    ? "bg-stone-900 text-white border-stone-900"
-                    : "bg-white text-stone-600 border-stone-200 hover:border-stone-400"
-                }`}
-              >
-                {copied === "source" ? "✓ copied" : "copy source"}
-              </button>
+        <div className="p-5 flex flex-col gap-3 border-t border-border">
+          <div className="flex items-center justify-between gap-3">
+            <Paragraph
+              variant="panel-Description"
+              className="max-w-xl leading-tight"
+            >
+              Copy the code snippet and use directly with new configured values
+              after installation.
+            </Paragraph>
+            <div className="shrink-0">
+              <CopyButton label="copy usage" text={snippet} size="xs" />
             </div>
           </div>
 
-          <pre className="bg-stone-950 text-stone-100 rounded-lg p-4 text-[12px] font-mono leading-relaxed overflow-auto whitespace-pre">
+          <pre className="corner-squircle bg-muted text-foreground border border-border rounded-[8px] p-4 text-[14px] font-mono leading-relaxed overflow-auto whitespace-pre">
             {snippet}
           </pre>
-
-          <p className="text-[11px] text-stone-400 leading-relaxed">
-            <strong className="text-stone-600">copy usage</strong> — paste at
-            call site.
-            <br />
-            <strong className="text-stone-600">copy source</strong> — paste over
-            your installed file to bake in defaults.
-          </p>
         </div>
       )}
     </div>

@@ -18,10 +18,6 @@ import { Paragraph } from "@/components/Paragraph";
 import { resolveLoaderGroup } from "@/lib/sidebar-data";
 import type { Loader } from "@/types/loader";
 
-// ── Right panel shadow (inset from left edge, shadows over border) ────────────
-const RIGHT_PANEL_SHADOW =
-  "shadow-[inset_1px_0_0_rgba(0,0,0,0.06),inset_4px_0_12px_rgba(0,0,0,0.03)] dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.06)]";
-
 // ── Loader preview card (group overview grid) ─────────────────────────────────
 
 function LoaderPreviewCard({
@@ -39,7 +35,7 @@ function LoaderPreviewCard({
       onClick={onSelect}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group corner-squircle rounded-[10px] border border-border p-3 text-left bg-card text-card-foreground hover:border-foreground/25 hover:shadow-sm transition-[border-color,box-shadow] duration-150"
+      className="group corner-squircle rounded-[10px] border border-border p-2.5 sm:p-3 text-left bg-card text-card-foreground hover:border-foreground/25 hover:shadow-sm transition-[border-color,box-shadow] duration-150"
     >
       <div className="aspect-square bg-muted corner-squircle rounded-[8px] mb-2.5 flex items-center justify-center group-hover:bg-foreground/10 transition-colors duration-150">
         <div className="scale-[0.65]">
@@ -51,16 +47,13 @@ function LoaderPreviewCard({
       </div>
       <div className="flex items-start justify-between gap-1.5">
         <div className="min-w-0">
-          <Paragraph variant="card-Heading" className="truncate">
+          <Paragraph variant="overview-Title" className="truncate">
             {loader.name}
           </Paragraph>
-          <Paragraph variant="card-Description" className="mt-0.5 line-clamp-2">
+          <Paragraph variant="overview-Description" className="mt-0.5 ">
             {loader.description}
           </Paragraph>
         </div>
-        <span className="shrink-0 px-1 py-0.5 bg-primary/10 text-primary rounded-[4px] text-[9px] font-mono uppercase tracking-wide">
-          {variation.tier}
-        </span>
       </div>
       <p className="mt-2 flex items-center gap-1 text-[11px] font-mono uppercase tracking-widest text-foreground/50 group-hover:text-foreground transition-colors duration-150">
         Configure
@@ -82,16 +75,18 @@ function LoaderGroupOverview({
   onSelect: (slug: string) => void;
 }) {
   return (
-    <div className="overflow-y-auto py-10 px-8">
+    <div className="overflow-y-auto py-12 px-4 sm:py-14 sm:px-6 md:py-16 md:px-8">
       <div className="w-full">
-        <h1 className="text-2xl font-sans text-foreground text-wrap-balance">
-          {label}
-        </h1>
+        <Paragraph as="h1" variant="overview-Title" className="font-mono">
+          <span className="text-muted-foreground">loaders</span>
+          <span className="text-muted-foreground">{" / "}</span>
+          <span className="text-foreground">{label}</span>
+        </Paragraph>
 
-        <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-          Loaders
-        </h2>
-        <div className="grid grid-cols-5 w-full gap-3">
+        <Paragraph as="h2" variant="overview-Description" className="mb-8">
+          Check out all the loaders in this group below.
+        </Paragraph>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full gap-3">
           {loaders.map((loader) => (
             <LoaderPreviewCard
               key={loader.slug}
@@ -127,18 +122,19 @@ function LoaderDetail({
   return (
     <>
       {/* ── Middle: name + tags + configurator ── */}
-      <div className="overflow-y-auto py-10 px-8">
+      <div className="w-full max-w-5xl overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16">
         <motion.div
           key={panelKey}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <Paragraph variant="panel-Eyebrow" className="mb-2">
-            {loader.category}
-          </Paragraph>
-          <Paragraph as="h1" variant="panel-Title">
-            {loader.name}
+          <Paragraph variant="overview-Title" className="font-mono">
+            <span className="text-muted-foreground">loaders</span>
+            <span className="text-muted-foreground">{" / "}</span>
+            <span className="text-muted-foreground">{loader.category}</span>
+            <span className="text-muted-foreground">{" / "}</span>
+            <span className="text-foreground">{loader.name}</span>
           </Paragraph>
           <Paragraph variant="panel-Description" className="mb-6">
             {loader.description}
@@ -159,17 +155,9 @@ function LoaderDetail({
         </motion.div>
 
         <LoaderConfigurator loaderSlug={loader.slug} variation={variation} />
-      </div>
 
-      {/* ── Right: installation + props + inspiration ── */}
-      <div className={`overflow-y-auto py-10 px-6 ${RIGHT_PANEL_SHADOW}`}>
-        <motion.div
-          key={panelKey}
-          className="space-y-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
-        >
+        {/* ── Installation + props + inspiration (below the example) ── */}
+        <div className="mt-10 space-y-8">
           <InstallCommand command={installCommand} className="" />
 
           {variation.props?.length > 0 && (
@@ -222,7 +210,7 @@ function LoaderDetail({
               </div>
             </div>
           )}
-        </motion.div>
+        </div>
       </div>
     </>
   );
@@ -254,7 +242,7 @@ export function LoaderContentPanel({
         <motion.div
           key={modeKey}
           className="grid h-full"
-          style={{ gridTemplateColumns: activeGroup ? "1fr" : "1fr 490px" }}
+          style={{ gridTemplateColumns: "1fr" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

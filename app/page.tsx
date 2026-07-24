@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
-import { Button } from "@/components/ui/button";
 // import { PatternSection } from "@/components/PatternSection";
 import { HeroLinksList } from "@/components/Homepage/HeroLinksList";
 

@@ -14,16 +14,8 @@ import { UIConfigurator } from "./UIConfigurator";
 import { CopyButton } from "@/components/loader-gallery/CopyButton";
 import { InstallCommand } from "@/components/InstallCommand";
 import { PropsTable } from "@/components/PropsTable";
+import { Paragraph } from "@/components/Paragraph";
 import type { UIComponent } from "@/types/ui-component";
-
-const RIGHT_PANEL_SHADOW =
-  "shadow-[inset_1px_0_0_rgba(0,0,0,0.06),inset_4px_0_12px_rgba(0,0,0,0.03)] dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.06)]";
-
-// ── Usage block ───────────────────────────────────────────────────────────────
-
-function UsageBlock({ snippet }: { snippet: string }) {
-  return <CopyButton text={snippet} />;
-}
 
 function defaultSnippet(
   componentName: string,
@@ -56,19 +48,50 @@ function UIVariationDetail({
 
   return (
     <>
-      {/* ── Middle: configurator + installation + props ── */}
-      <div className="min-h-0 overflow-y-auto py-10 px-8">
+      {/* ── Middle: configurator + installation + props + features ── */}
+      <div className="w-full max-w-5xl min-h-0 overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16">
         <motion.div
           key={panelKey}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
+          <Paragraph variant="overview-Title" className="font-mono">
+            <span className="text-muted-foreground">ui</span>
+            <span className="text-muted-foreground">{" / "}</span>
+            <span className="text-muted-foreground">{component.name}</span>
+            <span className="text-muted-foreground">{" / "}</span>
+            <span className="text-foreground">{variation.displayName}</span>
+          </Paragraph>
+          <Paragraph variant="panel-Description" className="mb-8">
+            {variation.description}
+          </Paragraph>
+
           <UIConfigurator
             componentSlug={component.slug}
             variation={variation}
             onSnippetChange={setActiveSnippet}
           />
+
+          {/* Usage code */}
+          <div className="corner-squircle mt-6 rounded-[10px] border border-border p-5 flex flex-col gap-3">
+            <div className="flex items-center justify-between gap-3">
+              <Paragraph
+                variant="panel-Description"
+                className="max-w-xl leading-tight"
+              >
+                Copy the code snippet and use directly with new configured values
+                after installation.
+              </Paragraph>
+              <div className="shrink-0">
+                <CopyButton label="copy usage" text={activeSnippet} size="xs" />
+              </div>
+            </div>
+
+            <pre className="corner-squircle bg-muted text-foreground border border-border rounded-[8px] p-4 text-[14px] font-mono leading-relaxed overflow-auto whitespace-pre">
+              {activeSnippet}
+            </pre>
+          </div>
 
           {/* Installation */}
           <InstallCommand command={installCommand} />
@@ -82,33 +105,11 @@ function UIVariationDetail({
               <PropsTable props={variation.props} />
             </div>
           )}
-        </motion.div>
-      </div>
 
-      {/* ── Right: name + description + features + inspiration ── */}
-      <div className={`overflow-y-auto py-10 px-6 ${RIGHT_PANEL_SHADOW}`}>
-        <motion.div
-          key={panelKey}
-          className="space-y-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
-        >
-          {/* Name + description */}
-          <div>
-            <p className="text-xs font-mono text-foreground/50 uppercase tracking-widest mb-2">
-              {component.name}
-            </p>
-            <h2 className="text-xl font-mono text-primary/80 text-wrap-balance mb-2">
-              {variation.displayName}
-            </h2>
-            <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
-              {variation.description}
-            </p>
-          </div>
-
-          {/* Features */}
-          {variation.features && variation.features.length > 0 && (
+          {/* ── Features + inspiration (below the example) ── */}
+          <div className="mt-10 space-y-8">
+            {/* Features */}
+            {variation.features && variation.features.length > 0 && (
             <div>
               <h2 className="text-xl font-mono  tracking-wide text-primary/80 mb-3">
                 Design decisions taken here
@@ -170,6 +171,7 @@ function UIVariationDetail({
               </div>
             </div>
           )}
+          </div>
         </motion.div>
       </div>
     </>
@@ -206,7 +208,7 @@ export function UIContentPanel({
         <motion.div
           key={panelKey}
           className="grid h-full"
-          style={{ gridTemplateColumns: "1fr 490px" }}
+          style={{ gridTemplateColumns: "1fr" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
