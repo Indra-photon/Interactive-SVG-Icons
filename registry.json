@@ -1941,6 +1941,25 @@
       ]
     },
     {
+      "name": "theme-button-default",
+      "type": "registry:block",
+      "title": "Theme Button - Theme Button",
+      "description": "Collapsed status pill morphs into an expanded font or theme list via a shared layoutId spring, with a blur cross-fade on the inner content. Themes/fonts, selection, and change callbacks are all props. Includes an inlined iOS pulse spinner so the block ships self-contained.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/theme-button/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/theme-button/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "teletype-clock-default",
       "type": "registry:block",
       "title": "Teletype Clock - Split-Flap Clock",
