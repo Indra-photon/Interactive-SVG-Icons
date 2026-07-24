@@ -14,6 +14,7 @@
       "tier": "free",
       "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
       "animationType": "hover",
+      "responsive": true,
       "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons"],
       "registryDependencies": [],
       "props": [

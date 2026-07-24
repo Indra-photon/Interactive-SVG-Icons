@@ -94,9 +94,9 @@ const NAV_ITEMS: NavItem[] = [
 
 export default function SubitemNavbarPreview() {
   return (
-    <div className="flex items-center justify-center pt-10">
+    <div className="flex h-full w-full items-center justify-center">
       <div
-        className="relative h-[600px] w-[340px] overflow-hidden rounded-[15px]"
+        className="relative h-full max-h-[600px] w-full max-w-[340px] overflow-hidden rounded-[15px]"
         style={{
           boxShadow:
             "0 0 0 1px rgba(255,255,255,0.08), 0 40px 80px rgba(0,0,0,0.7), 0 8px 24px rgba(0,0,0,0.4)",

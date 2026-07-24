@@ -101,7 +101,7 @@ export function LoaderSection() {
           <Button
             asChild
             size="lg"
-            variant="outline"
+            variant="secondary"
             className="corner-squircle rounded-[10px] w-full font-mono tracking-tighter"
           >
             <Link href="/illustrations">Browse Illustrations</Link>

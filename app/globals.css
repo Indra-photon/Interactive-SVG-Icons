@@ -27,6 +27,14 @@
   --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
   --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   --resize-dur: 650ms;
+
+  /* Shared panel motion — mirrors EASE_OUT / PANEL_*_DUR in
+     components/block-gallery/BlockContentPanel.tsx. Keep in sync: that file's
+     values are a JS array/consts and cannot reference these CSS vars. Used by
+     the sidebar collapse (desktop) and the mobile sheet drawer. */
+  --ease-panel: cubic-bezier(0.22, 1, 0.36, 1);
+  --panel-dur-open: 250ms;
+  --panel-dur-close: 200ms;
   --shadow-border:
     0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06),
     0px 2px 4px 0px rgba(0, 0, 0, 0.04);
@@ -292,6 +300,10 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+  /* Gradient CTA button (secondary variant) — light theme */
+  --gradient-button: linear-gradient(180deg, #4ab0f0 0%, #24a0ed 100%);
+  --gradient-button-shadow: inset 0 0 1px 1px #ffffff4d, 0 0 0 1px #00000014,
+    0 2px 2px #0000000a, 0 0 0 1px #24a0ed;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -371,6 +383,10 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  /* Gradient CTA button (secondary variant) — dark theme */
+  --gradient-button: linear-gradient(180deg, #41a4ff 0%, #0082fb 100%);
+  --gradient-button-shadow: inset 0 0 1px 1px #ffffff2e, 0 0 0 1px #00000014,
+    0 2px 2px #0000000a, 0 0 0 1px #1e93fd;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

@@ -31,19 +31,13 @@ function formatDigits(date: Date, hour12: boolean): string[] {
 }
 
 /** Full-height numeral clipped to one half of the card by an overflow-hidden window */
-function DigitHalf({
-  digit,
-  half,
-}: {
-  digit: string;
-  half: "top" | "bottom";
-}) {
+function DigitHalf({ digit, half }: { digit: string; half: "top" | "bottom" }) {
   return (
     <div
       className={`absolute left-0 flex h-[200%] w-full items-center justify-center font-bold tabular-nums ${
         half === "top"
-          ? "top-0 text-neutral-400"
-          : "bottom-0 text-neutral-100"
+          ? "top-0 text-neutral-500 dark:text-neutral-400"
+          : "bottom-0 text-neutral-800 dark:text-neutral-100"
       }`}
     >
       {digit}
@@ -63,16 +57,16 @@ function FlipDigit({ digit }: { digit: string }) {
 
   return (
     <div
-      className="relative h-24 w-16 text-6xl sm:h-28 sm:w-20 sm:text-7xl"
+      className="relative h-48 w-40 text-8xl sm:h-24 sm:w-16 sm:text-6xl md:h-28 md:w-20 md:text-7xl"
       style={{ perspective: "350px" }}
     >
       {/* Static top half — the digit being revealed as the flap falls */}
-      <div className="absolute inset-x-0 top-0 h-1/2 overflow-hidden rounded-t-lg bg-neutral-800">
+      <div className="absolute inset-x-0 top-0 h-1/2 overflow-hidden rounded-t-lg bg-neutral-200 dark:bg-neutral-800">
         <DigitHalf digit={isFlipping ? digit : current} half="top" />
       </div>
 
       {/* Static bottom half — keeps showing the old digit until the flap lands */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden rounded-b-lg bg-[#1f1f1f]">
+      <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden rounded-b-lg bg-neutral-100 dark:bg-[#1f1f1f]">
         <DigitHalf digit={current} half="bottom" />
       </div>
 
@@ -81,7 +75,7 @@ function FlipDigit({ digit }: { digit: string }) {
           <motion.div key={flipId} className="contents">
             {/* Falling top flap — old digit, hinged on the center seam */}
             <motion.div
-              className="absolute inset-x-0 top-0 z-20 h-1/2 overflow-hidden rounded-t-lg bg-neutral-800"
+              className="absolute inset-x-0 top-0 z-20 h-1/2 overflow-hidden rounded-t-lg bg-neutral-200 dark:bg-neutral-800"
               style={{
                 transformOrigin: "bottom",
                 backfaceVisibility: "hidden",
@@ -103,7 +97,7 @@ function FlipDigit({ digit }: { digit: string }) {
 
             {/* Landing bottom flap — new digit, waits for the fall to finish, then hits 0°, bounces, settles */}
             <motion.div
-              className="absolute inset-x-0 bottom-0 z-20 h-1/2 overflow-hidden rounded-b-lg bg-[#1f1f1f]"
+              className="absolute inset-x-0 bottom-0 z-20 h-1/2 overflow-hidden rounded-b-lg bg-neutral-100 dark:bg-[#1f1f1f]"
               style={{
                 transformOrigin: "top",
                 backfaceVisibility: "hidden",
@@ -133,7 +127,7 @@ function FlipDigit({ digit }: { digit: string }) {
       </AnimatePresence>
 
       {/* Center seam */}
-      <div className="absolute inset-x-0 top-1/2 z-30 h-[2px] -translate-y-1/2 bg-black/70" />
+      <div className="absolute inset-x-0 top-1/2 z-30 h-[2px] -translate-y-1/2 bg-black/10 dark:bg-black/70" />
     </div>
   );
 }
@@ -168,7 +162,7 @@ export default function TeletypeClock({
   }, [demo, demoIntervalMs, hour12]);
 
   return (
-    <div className={`flex items-center gap-6 ${className}`}>
+    <div className={`flex items-center gap-4 sm:gap-6 ${className}`}>
       <div className="flex gap-1.5">
         <FlipDigit digit={digits[0]} />
         <FlipDigit digit={digits[1]} />

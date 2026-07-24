@@ -1,6 +1,7 @@
 {
   "slug": "frosted-navbar",
   "name": "Frosted Navbar",
+  "published": false,
   "category": "navbar",
   "tags": ["navbar", "sticky", "blur", "glass", "frosted", "scroll", "header"],
   "description": "A sticky, glass-like navbar with a uniform backdrop blur clipped cleanly to its own bounds, plus an optional lit edge-highlight rim along the bottom.",
@@ -14,6 +15,7 @@
       "previewHint": "Scroll the panel — content fades and blurs as it slides under the sticky header",
       "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
       "animationType": "scroll",
+      "responsive": true,
       "dependencies": [],
       "registryDependencies": [],
       "props": [

@@ -282,7 +282,8 @@ async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryI
       tags: configData.tags,
       description: configData.description,
       createdAt: configData.createdAt,
-      variations: []
+      variations: [],
+      ...(configData.published === false && { published: false })
     };
 
     for (const variation of configData.variations) {
@@ -355,6 +356,7 @@ async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryI
           ...(variation.previewHint && { previewHint: variation.previewHint }),
           ...(variation.features?.length && { features: variation.features }),
           ...(variation.inspiration?.length && { inspiration: variation.inspiration }),
+          ...(variation.responsive && { responsive: variation.responsive }),
         });
 
         console.log(`    ✓ ${variation.displayName} (${variation.tier})`);

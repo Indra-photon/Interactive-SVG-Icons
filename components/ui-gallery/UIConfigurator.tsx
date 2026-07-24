@@ -12,6 +12,7 @@ import {
 import { useDialKitPanel } from "@/lib/useDialKitPanel";
 import type { PropDefinition } from "@/types/loader";
 import { Button } from "@/components/ui/button";
+import { Paragraph } from "../Paragraph";
 
 interface Variation {
   name: string;
@@ -29,7 +30,14 @@ interface UIConfiguratorProps {
 
 // Documented in the props table but not dialable — state/a11y wiring, not motion.
 const DIAL_OPTS = {
-  excludeNames: ["value", "defaultValue", "label", "disabled", "autoFocus", "className"],
+  excludeNames: [
+    "value",
+    "defaultValue",
+    "label",
+    "disabled",
+    "autoFocus",
+    "className",
+  ],
 };
 
 // ── Code generation ───────────────────────────────────────────────────────────
@@ -37,7 +45,10 @@ const DIAL_OPTS = {
 // Static (non-dial) attrs each component's snippet always carries, keyed by slug.
 const STATIC_SNIPPET_ATTRS: Record<string, string[]> = {
   accordion: ["items={items}"],
-  "otp-input": ["validate={(code) => verify(code)}", "onSuccess={handleVerified}"],
+  "otp-input": [
+    "validate={(code) => verify(code)}",
+    "onSuccess={handleVerified}",
+  ],
 };
 
 function buildUsageSnippet(
@@ -65,7 +76,6 @@ function buildUsageSnippet(
   ];
   return `<${componentName}\n${attrs.join("\n")}\n/>`;
 }
-
 
 function isChanged(values: Record<string, any>, defaults: Record<string, any>) {
   for (const key of Object.keys(defaults)) {
@@ -133,16 +143,16 @@ function UIConfiguratorInner({
       {/* Hint + action bar */}
       <div className="flex items-center justify-between gap-2 px-5 py-3 bg-background">
         {variation.previewHint ? (
-          <p className="text-[11px] font-mono text-muted-foreground">
+          <Paragraph variant="panel-Description" className="">
             {variation.previewHint}
-          </p>
+          </Paragraph>
         ) : (
           <span />
         )}
         <div className="flex items-center gap-2">
           <Button
             size="sm"
-            variant={dialKitOpen ? "default" : "outline"}
+            variant="secondary"
             className="corner-squircle rounded-[8px] font-mono text-xs tracking-tighter"
             onClick={toggleDialKit}
           >
@@ -151,7 +161,7 @@ function UIConfiguratorInner({
           {changed && (
             <Button
               size="sm"
-              variant="outline"
+              variant="secondary"
               onClick={onReset}
               className="corner-squircle rounded-[8px] font-mono text-xs tracking-tighter"
             >
@@ -160,7 +170,6 @@ function UIConfiguratorInner({
           )}
         </div>
       </div>
-
     </div>
   );
 }

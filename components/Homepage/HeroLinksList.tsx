@@ -141,16 +141,13 @@ function HeroLinkCardItem({
           </Badge>
         ) : (
           <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="corner-squircle rounded-lg tracking-tighter"
+            variant="secondary"
+            size="xs"
+            className="corner-squircle rounded-[10px] tracking-normal px-5 whitespace-nowrap"
           >
-            <span>
-              {cta}
-              <span className="ml-2 rounded-[6px] bg-primary/70 p-1 text-white">
-                <MorphArrow isHovered={isHovered} size={14} />
-              </span>
+            {cta}
+            <span className="ml-2 inline-flex items-center justify-center rounded-[6px] p-1 text-white">
+              <MorphArrow isHovered={isHovered} size={14} />
             </span>
           </Button>
         )}

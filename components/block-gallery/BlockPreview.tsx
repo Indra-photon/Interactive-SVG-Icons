@@ -6,21 +6,30 @@ interface BlockPreviewProps {
   blockSlug: string;
   variationName: string;
   animationType?: string;
+  /** Render at real width (reflow) instead of the 1280px scale-to-fit canvas. */
+  responsive?: boolean;
 }
 
 export function BlockPreview({
   blockSlug,
   variationName,
   animationType,
+  responsive,
 }: BlockPreviewProps) {
   const [PreviewComponent, setPreviewComponent] =
     useState<React.ComponentType | null>(null);
   const [scale, setScale] = useState(1);
+  // Measured container height — drives the scaled-block inner height so it stays
+  // correct as the responsive container height changes across breakpoints.
+  const [containerHeight, setContainerHeight] = useState(660);
   const outerRef = useRef<HTMLDivElement>(null);
 
   const RENDER_WIDTH = 1280;
-  // Click-driven blocks need real interaction — skip scaling so layoutId animations work correctly
+  // Click-driven blocks need real interaction — skip scaling so layoutId
+  // animations work correctly. Blocks marked `responsive` also render directly
+  // so their own breakpoints reflow at the container's real width.
   const isInteractive = animationType === "click";
+  const renderDirect = isInteractive || Boolean(responsive);
 
   useEffect(() => {
     import(
@@ -36,33 +45,31 @@ export function BlockPreview({
   }, [blockSlug, variationName]);
 
   useEffect(() => {
-    if (isInteractive) return;
+    if (renderDirect) return;
     const el = outerRef.current;
     if (!el) return;
 
     const observer = new ResizeObserver(([entry]) => {
-      const containerWidth = entry.contentRect.width;
-      setScale(containerWidth / RENDER_WIDTH);
+      setScale(entry.contentRect.width / RENDER_WIDTH);
+      setContainerHeight(entry.contentRect.height);
     });
 
     observer.observe(el);
     return () => observer.disconnect();
   }, [isInteractive]);
 
-  const outerHeight = 660;
-  const innerHeight = scale > 0 ? outerHeight / scale : 640;
+  const innerHeight = scale > 0 ? containerHeight / scale : 640;
 
   return (
     <div
       ref={outerRef}
-      className="relative w-full overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)] bg-muted"
-      style={{ height: outerHeight }}
+      className="relative w-full h-[460px] sm:h-[560px] md:h-[660px] overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)] bg-muted"
     >
       {!PreviewComponent ? (
         <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
           Loading preview…
         </div>
-      ) : isInteractive ? (
+      ) : renderDirect ? (
         // Render at natural size — no scale transform so animations work correctly
         <div className="h-full w-full">
           <PreviewComponent />

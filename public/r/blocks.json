@@ -172,7 +172,8 @@
             "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
             "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
             "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
-          ]
+          ],
+          "responsive": true
         }
       ]
     },
@@ -258,7 +259,8 @@
             "Blur overlay rendered inside the component — just place BottomNavbar inside a relative container",
             "useMeasure drives submenu height so the pill expands to exactly fit any panel",
             "prefers-reduced-motion: all spring and blur transitions collapse to instant"
-          ]
+          ],
+          "responsive": true
         }
       ]
     },
@@ -304,7 +306,8 @@
             "Stat values animate with useSpring so numbers count up smoothly on each destination change"
           ]
         }
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "profile-card",
@@ -410,7 +413,8 @@
             "Avatar, badges, and click handlers are all composable slots per menu item, same pattern as SubItem Navbar's panel slot",
             "Dismiss overlay is scoped inside the phone frame so clicks outside the card close it",
             "PRO badge, community badge, and active row highlight are all composable per menu item"
-          ]
+          ],
+          "responsive": true
         }
       ]
     },
@@ -815,9 +819,11 @@
             "Optional lit edge-highlight rim pinned to the bottom edge so the panel reads as a physical sheet of glass",
             "Polymorphic `as` prop to render a <nav>, <header>, or any element",
             "Extra DOM props (id, aria-label, style, etc.) pass through to the root element"
-          ]
+          ],
+          "responsive": true
         }
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "contact-reveal-card",
@@ -898,7 +904,8 @@
             "Caption crossfades on change with a short fade + slide, keyed by the active field",
             "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
             "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
-          ]
+          ],
+          "responsive": true
         }
       ]
     },
@@ -999,5 +1006,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-22T09:24:29.561Z"
+  "lastUpdated": "2026-07-24T12:24:28.473Z"
 }

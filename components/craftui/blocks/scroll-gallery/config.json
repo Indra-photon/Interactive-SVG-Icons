@@ -1,6 +1,7 @@
 {
   "slug": "scroll-gallery",
   "name": "Scroll Gallery",
+  "published": false,
   "category": "gallery",
   "tags": ["scroll", "gallery", "parallax", "image", "animation", "lenis", "travel", "showcase"],
   "description": "A sticky scroll-driven gallery with a parallax image strip on the right and animated destination info on the left, connected by a flight-path arc divider.",

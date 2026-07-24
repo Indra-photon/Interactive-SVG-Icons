@@ -200,7 +200,7 @@ export default function ProfileCard({
             onClick={() => setIsOpen(false)}
             transition={SPRING}
             style={{ borderRadius: 20 }}
-            className="absolute top-3 right-5 z-20 w-[310px] cursor-pointer bg-white shadow-[0_8px_40px_rgba(0,0,0,0.14)]"
+            className="absolute top-3 right-5 z-20 w-[310px] max-w-[calc(100%-2.5rem)] cursor-pointer bg-white shadow-[0_8px_40px_rgba(0,0,0,0.14)]"
           >
             {/* Avatar — outside fade wrapper so it animates independently */}
             <div

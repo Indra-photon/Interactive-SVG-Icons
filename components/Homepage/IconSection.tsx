@@ -316,7 +316,7 @@ export function IconSection() {
           <Button
             asChild
             size="lg"
-            variant="outline"
+            variant="secondary"
             className="corner-squircle rounded-[10px] w-4/5 font-mono tracking-tighter self-start"
           >
             <Link href="/icons">

@@ -14,6 +14,7 @@
       "previewHint": "Tap any tab to expand its panel — Work/About/Journal show chip filters, Login shows a form",
       "description": "Tabs expand a panel above the bar via a spring-driven height animation. Panels are either a chip filter list (subs) or any React node (panel). LoginPanel is a named export for use as a panel slot.",
       "animationType": "click",
+      "responsive": true,
       "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons", "react-use-measure"],
       "registryDependencies": [],
       "props": [
