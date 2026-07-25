@@ -374,7 +374,7 @@ function ThemeButton({
             transition={shellTransition}
             // No overflow-hidden here: at rest nothing overflows the pill, and
             // it would clip the focus ring on the edge-filling triggers.
-            className={`flex select-none items-center gap-5 rounded-[34px] border border-border bg-popover text-popover-foreground shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)] ${className}`}
+            className={`flex select-none items-center gap-5 rounded-[34px] overflow-hidden border border-border bg-popover text-popover-foreground shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)] ${className}`}
             // morph-driven values stay inline so layoutId can interpolate them
             style={{ borderRadius: 34, padding: "16px 26px" }}
           >
@@ -484,7 +484,7 @@ function ThemeButton({
                         onClick={() => selectTheme(theme)}
                         className={`flex w-full touch-manipulation items-center gap-4 rounded-[20px] px-3.5 py-3 text-left transition-colors ${
                           isActive
-                            ? "border border-border bg-accent"
+                            ? ""
                             : "border border-transparent hover:bg-accent/50"
                         }`}
                       >
@@ -516,7 +516,7 @@ function ThemeButton({
                         onClick={() => selectFont(font)}
                         className={`flex w-full touch-manipulation items-center gap-4 rounded-[20px] px-3.5 py-2.5 text-left transition-colors ${
                           isActive
-                            ? "border border-border bg-accent"
+                            ? ""
                             : "border border-transparent hover:bg-accent/50"
                         }`}
                       >
