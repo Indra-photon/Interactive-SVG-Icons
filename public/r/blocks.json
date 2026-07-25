@@ -112,6 +112,122 @@
       ]
     },
     {
+      "slug": "theme-button",
+      "name": "Theme Button",
+      "category": "morphing-buttons",
+      "tags": [
+        "morph",
+        "button",
+        "theme",
+        "font",
+        "menu",
+        "interactive",
+        "click",
+        "spring",
+        "layout"
+      ],
+      "description": "A pill button that morphs into a picker menu on click using a shared layoutId. Click the font name to choose a typeface or the color swatch to choose a theme. Fully configurable: pass your own themes/fonts (list or function), control the selection, and react to picks via onThemeChange/onFontChange. The shell springs open with an Apple-style expand/collapse, content cross-fades with a blur, and the whole surface is theme-token aware for light and dark.",
+      "createdAt": "2026-07-24T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Theme Button",
+          "tier": "free",
+          "description": "Collapsed status pill morphs into an expanded font or theme list via a shared layoutId spring, with a blur cross-fade on the inner content. Themes/fonts, selection, and change callbacks are all props. Includes an inlined iOS pulse spinner so the block ships self-contained.",
+          "animationType": "click",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "themes",
+              "type": "ThemeOption[] | (() => ThemeOption[])",
+              "default": "built-in 5",
+              "description": "Theme options as a list or a function returning one. Each: { id, label, dots: string[] }. Falls back to the built-in set."
+            },
+            {
+              "name": "fonts",
+              "type": "FontOption[] | (() => FontOption[])",
+              "default": "built-in 5",
+              "description": "Font options as a list or a function returning one. Each: { id, label, stack }. Falls back to the built-in set."
+            },
+            {
+              "name": "defaultThemeId",
+              "type": "string",
+              "default": "first theme",
+              "description": "Uncontrolled initial theme selection, by id."
+            },
+            {
+              "name": "defaultFontId",
+              "type": "string",
+              "default": "first font",
+              "description": "Uncontrolled initial font selection, by id."
+            },
+            {
+              "name": "themeId",
+              "type": "string",
+              "description": "Controlled theme selection, by id. When set, the theme dimension is controlled."
+            },
+            {
+              "name": "fontId",
+              "type": "string",
+              "description": "Controlled font selection, by id. When set, the font dimension is controlled."
+            },
+            {
+              "name": "onThemeChange",
+              "type": "(theme: ThemeOption) => void",
+              "description": "Fires with the full option after a theme is picked — do whatever you want with it."
+            },
+            {
+              "name": "onFontChange",
+              "type": "(font: FontOption) => void",
+              "description": "Fires with the full option after a font is picked."
+            },
+            {
+              "name": "onOpenChange",
+              "type": "(mode: 'font' | 'theme' | null) => void",
+              "description": "Fires when the menu opens ('font' | 'theme') or closes (null)."
+            },
+            {
+              "name": "processLabel",
+              "type": "string",
+              "default": "Process",
+              "description": "Label shown next to the spinner segment."
+            },
+            {
+              "name": "showProcess",
+              "type": "boolean",
+              "default": "true",
+              "description": "Show the spinner + label segment."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "description": "Extra classes merged onto the pill shell."
+            }
+          ],
+          "componentName": "ThemeButton",
+          "previewHint": "Click the font name or the color swatch — the sample text below reacts to your pick",
+          "features": [
+            "Fully prop-driven: pass themes/fonts as a list or a function, control selection, and react via onThemeChange/onFontChange/onOpenChange",
+            "Controlled or uncontrolled per dimension — works with zero props out of the box",
+            "Two morph targets: the font name opens a typeface picker, the color swatch opens the theme picker",
+            "iOS pulse spinner is inlined verbatim (not imported) so the downloaded block is self-contained",
+            "Shared layoutId morph between collapsed pill and expanded menu — Motion interpolates size, position, and border-radius",
+            "Apple-style spring: expand is slower (bigger travel), collapse ~30% faster",
+            "Inner content cross-fades with a blur; exit is faster so it clears the morph",
+            "Full-row / full-segment hit targets — the whole option is clickable, not just its text and icon",
+            "Full APG menu keyboard model: opening moves focus into the menu, Arrow/Home/End rove between options (roving tabindex), Enter/Space select, Escape closes and refocuses the trigger",
+            "Focus is returned to the opening trigger on Escape/selection; outside-click dismissal leaves focus where the user clicked",
+            "Dismissible: closes on outside click or Escape; triggers and menu carry aria-haspopup/expanded and role=menu/menuitemradio; decorative spinner/dots/dividers are aria-hidden",
+            "Surface uses popover/accent/border tokens so it flips correctly in light and dark",
+            "prefers-reduced-motion: springs and the spinner collapse to instant"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "teletype-clock",
       "name": "Teletype Clock",
       "category": "number-animation",
@@ -1006,5 +1122,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-24T12:24:28.473Z"
+  "lastUpdated": "2026-07-24T16:27:25.937Z"
 }

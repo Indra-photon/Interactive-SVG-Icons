@@ -7,6 +7,10 @@ description: Web typography from choosing fonts to spacing, wrapping and accessi
 
 Good typography is mostly restraint. A sensible scale, comfortable spacing and enough contrast beat any clever effect. A label, a table cell, a marketing headline and an article paragraph should not share one set of rules. Apply these principles when building or reviewing anything with text in it.
 
+When reviewing, read the page instead of scanning the code: squint to check the hierarchy holds, read one full paragraph for comfort, and resize the viewport to catch bad wrapping, widows and truncation at real content lengths.
+
+The words themselves (button labels, error messages, empty states) are covered by the `better-writing` skill; this skill covers how text renders.
+
 **Match the project's styling system.** Before suggesting or writing any fix, check how the codebase styles things and express every change in that system: Tailwind utilities in a Tailwind project, plain declarations in CSS, CSS Modules, styled-components or StyleX. The [cheat sheet](css-cheat-sheet.md) maps each declaration to its Tailwind equivalent. Never introduce a second styling approach just to apply a typography fix.
 
 ## Quick Reference
@@ -36,7 +40,7 @@ When a weight or style is not loaded, the browser synthesizes it. That is a safe
 
 ### 4. Fewer Fonts, Sizes and Weights
 
-Rarely use more than three fonts. Weight and size define hierarchy, but overusing them hurts readability quickly. Pair for contrast, not similarity: a serif headline with a sans body reads as deliberate, two near-identical sans-serifs read as a mistake.
+Rarely use more than three fonts. Weight and size define hierarchy, but overusing them hurts readability quickly. Pair for contrast, not similarity: a serif headline with a sans body reads as deliberate, two near-identical sans-serifs read as a mistake. Below `18px`, stay at weight `400`+; weights under `300` are display-only (`28px`+), they disappear at text sizes.
 
 ### 5. Use a Type Scale with Semantic Names
 
@@ -48,7 +52,7 @@ Map each heading level used on a page to a descending step of the type scale: a 
 
 ### 7. Line-Height by Role
 
-Headings tighter, around `1.1`. Body copy `1.5` to `1.6`. Prefer unitless values so line-height scales with the font size; fixed values like `24px` do not.
+Headings tighter, around `1.1`. Body copy `1.5` to `1.6`. Prefer unitless values so line-height scales with the font size; fixed values like `24px` do not. Tight line-height is for short text: anything that wraps to three or more lines needs at least `1.4`, even in height-constrained rows.
 
 ### 8. Letter-Spacing by Size
 
@@ -84,7 +88,7 @@ iOS Safari zooms the whole page when an input's text is smaller than `16px`. Kee
 
 ### 16. Size and Contrast Floors
 
-Body text `16px` (the web default and the right reading size). UI text can go smaller: `14px` for inputs and menus (inputs still need `16px` on mobile, see principle 15), `13px` for captions, rarely below `12px`. WCAG AA: `4.5:1` contrast for regular text, `3:1` for large text (roughly `24px` and up).
+Body text `16px` (the web default and the right reading size). UI text can go smaller: `14px` for inputs and menus (inputs still need `16px` on mobile, see principle 15), `13px` for captions, rarely below `12px`. WCAG AA: `4.5:1` contrast for regular text, `3:1` for large text (`24px` and up, or `18.5px`+ bold). When text fails these floors, report the failing pair and its ratio; don't change the project's colors unless asked.
 
 ### 17. Font Smoothing on the Root
 
@@ -97,26 +101,6 @@ To support right-to-left content, use direction-agnostic properties: `margin-inl
 ### 19. Style the Selection, Disable It Where It Distracts
 
 `::selection` is a subtle way to embed brand in the reading experience; keep the combination legible. Use `user-select: none` on button labels where copying is unlikely and selection feels distracting, and make sure `cmd+A` only grabs text the user expects to copy. In cross-platform apps that feel closer to native, disable selection for the interface and keep it only on content worth copying.
-
-## Review Output Format
-
-Always present changes as a markdown table with **Before** and **After** columns. Include every change you made, not just a subset. Never list findings as separate "Before:" / "After:" lines outside of a table. Group changes by principle using a heading above each table, and keep each row focused on a single diff. Write every **After** snippet in the styling system the project already uses.
-
-### Example
-
-#### Tabular numbers
-| Before | After |
-| --- | --- |
-| `<span>{price}</span>` on live price | `<span className="tabular-nums">{price}</span>` |
-| `font-feature-settings: "tnum" 1` | `font-variant-numeric: tabular-nums` |
-
-#### Line-height and measure
-| Before | After |
-| --- | --- |
-| `leading-none` on body paragraph | `leading-normal` (body needs `1.5`–`1.6`) |
-| Full-width article column | `max-w-2xl` (~65 characters per line at `16px`) |
-
-Rows should cite the specific file and property when it is not obvious from the snippet. If a principle was reviewed but nothing needed to change, omit that table entirely.
 
 ## Common Mistakes
 
@@ -142,25 +126,43 @@ Rows should cite the specific file and property when it is not obvious from the 
 | `margin-left` in RTL-capable UI | `margin-inline-start` |
 | Selectable button labels in native-feel UI | `user-select: none`, keep selection on real content |
 | Extra-info hint with no visual cue | Dotted underline via `text-decoration-style: dotted` |
-| Tailwind classes dropped into a CSS-in-JS codebase (or the reverse) | Express the fix in the styling system the project already uses |
+| Thin/Light weight on `14px` UI text | Weight `400`+ below `18px`; thin weights are display-only |
+| `leading-none` on a three-line card description | At least `1.4` on any text that wraps to 3+ lines |
 
-## Review Checklist
+## Review Output Format
 
-- [ ] Web fonts are `.woff2`
-- [ ] `font-weight` / `font-variant-*` used instead of raw axis and feature tags
-- [ ] `font-synthesis: none` set; no faked weights or styles
-- [ ] Sizes come from the type scale, no one-off values
-- [ ] Heading sizes descend with level (`h1` ≥ `h2` ≥ `h3`…), levels stay visually distinct, none skipped
-- [ ] Headings ~`1.1` line-height, body `1.5`–`1.6`, unitless
-- [ ] Large headings have slightly negative tracking, small uppercase labels positive
-- [ ] Long-form text capped around 60–75 characters per line
-- [ ] Headings use `text-wrap: balance`, body uses `text-wrap: pretty`
-- [ ] Changing numbers use `tabular-nums`
-- [ ] Truncated content is reachable in full somewhere
-- [ ] Copy stored in natural case, presentation via `text-transform`
-- [ ] Underlines use `from-font` or tuned thickness, offset and skip-ink
-- [ ] Inputs are `16px`+ on mobile viewports
-- [ ] Text sizes and contrast meet the floors (`16px` body, `4.5:1` / `3:1`)
-- [ ] `antialiased` applied once on the root layout
-- [ ] Directional properties are logical (`inline-start`, `start`)
-- [ ] Any styled `::selection` stays legible
+Present every review in two parts.
+
+### Findings
+
+Group findings by principle. Use a markdown table with **Severity**, **Location**, **Before**, **After**, and **Why** columns. Include every change made or proposed, not a subset. Never use separate "Before:" / "After:" lines.
+
+- **Severity**: `HIGH` makes text unreadable, unavailable, or structurally misleading; `MEDIUM` harms hierarchy, wrapping, or scanning; `LOW` is isolated typographic polish.
+- **Location**: cite `path/to/file:line`. If the artifact has no source files, cite the exact screen and component instead.
+- **Before / After**: show the current typography and an actionable replacement.
+- **Why**: name the violated principle and its effect on readability or hierarchy.
+
+Consolidate a repeated systemic issue into one row and list every affected location. Omit principles with no findings.
+
+### Example
+
+#### Tabular numbers
+| Severity | Location | Before | After | Why |
+| --- | --- | --- | --- | --- |
+| MEDIUM | `src/Price.tsx:17` | `<span>{price}</span>` on a live price | `<span className="tabular-nums">{price}</span>` | Proportional digits cause changing values to shift |
+| LOW | `src/numbers.css:8` | `font-feature-settings: "tnum" 1` | `font-variant-numeric: tabular-nums` | The high-level property preserves fallback behavior |
+
+#### Line-height and measure
+| Severity | Location | Before | After | Why |
+| --- | --- | --- | --- | --- |
+| MEDIUM | `src/Article.tsx:33` | `leading-none` on a body paragraph | `leading-normal` (`1.5`–`1.6`) | Wrapped body text needs enough vertical separation |
+| MEDIUM | `src/article.css:12` | Full-width article column | `max-width` near 65 characters at `16px` | Long measures make lines hard to track |
+
+### Verification and Verdict
+
+After the findings:
+
+1. **Verification**: list the exact checks run and their observed results, including wrapping, hierarchy, text resizing, font loading, and dynamic-value stability when applicable. If a check was not run, state what still needs verification.
+2. **Verdict**: `Block` if any `HIGH` finding remains, `Needs changes` if only `MEDIUM` or `LOW` findings remain, and `Approve` only when no actionable findings remain.
+
+When there are no findings, omit the tables, state "No actionable typography findings", report verification, and end with `Approve`.

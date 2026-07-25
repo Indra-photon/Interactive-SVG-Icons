@@ -1,23 +1,47 @@
 {
   "version": 1,
   "skills": {
+    "better-accessibility": {
+      "source": "jakubkrehel/skills",
+      "sourceType": "github",
+      "skillPath": "skills/better-accessibility/SKILL.md",
+      "computedHash": "0afdc1468a1d29f87f5870465fe23ad6938b0d676ed6954519fc5a2983790f47"
+    },
     "better-colors": {
       "source": "jakubkrehel/skills",
       "sourceType": "github",
       "skillPath": "skills/better-colors/SKILL.md",
-      "computedHash": "018f47015d71a146963d05aa592ded3f885917b11d021b981d8b0148422f953e"
+      "computedHash": "21489757c823764d13ad37302c49ed3155ef619200def82e3dccb857d1c023fb"
+    },
+    "better-interface": {
+      "source": "jakubkrehel/skills",
+      "sourceType": "github",
+      "skillPath": "skills/better-interface/SKILL.md",
+      "computedHash": "51872b97fef9041c06aa0db9578ca2a51ea91d440ded8f4fed98f5fc70120bed"
+    },
+    "better-layout": {
+      "source": "jakubkrehel/skills",
+      "sourceType": "github",
+      "skillPath": "skills/better-layout/SKILL.md",
+      "computedHash": "eef4a7fb01462a9787a7a2838a96ba7fbf44b69831c30c5a22554aaaa413052d"
     },
     "better-typography": {
       "source": "jakubkrehel/skills",
       "sourceType": "github",
       "skillPath": "skills/better-typography/SKILL.md",
-      "computedHash": "84642a2f7ad030fdcef18bf654c3cbf9e63347259a2229bc3b2e6bd9540eca27"
+      "computedHash": "89dafabc4e9c5daa1e3a6ff74ecf40bd088767f992338f12423eabd8fcf775cd"
     },
     "better-ui": {
       "source": "jakubkrehel/skills",
       "sourceType": "github",
       "skillPath": "skills/better-ui/SKILL.md",
-      "computedHash": "cb08e0fc63bdd829277770815d645979e0661ae5717dfb01e39a921138b684da"
+      "computedHash": "ea0fda767847e14881b401f13637f9f33b9a9dab09d9154b1f64edb0abfcb584"
+    },
+    "better-writing": {
+      "source": "jakubkrehel/skills",
+      "sourceType": "github",
+      "skillPath": "skills/better-writing/SKILL.md",
+      "computedHash": "1d547aafb751fb348bc01fad21ae2f8851380fb1c3d5217aff16ef44e5c9bc2a"
     },
     "improve": {
       "source": "shadcn/improve",

@@ -92,9 +92,11 @@ WCAG AA contrast:
 | Text | Minimum |
 | --- | --- |
 | Regular text | `4.5:1` |
-| Large text (~`24px`+) | `3:1` |
+| Large text (`24px`+, or `18.5px`+ bold) | `3:1` |
 
 Bigger, heavier letters stay legible at lower contrast.
+
+When text fails these floors, report the failing foreground/background pair and its measured ratio; changing the project's colors is a design decision that stays with the user (the `better-colors` skill covers measuring and, on request, fixing).
 
 ## Font smoothing
 
