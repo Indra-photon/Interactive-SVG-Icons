@@ -1,0 +1,36 @@
+{
+  "name": "alert-dialog-blur",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/alert-dialog/blur.tsx",
+      "content": "\"use client\";\n\nimport { AlertDialog } from \"@base-ui-components/react/alert-dialog\";\nimport type { ReactNode } from \"react\";\n\nexport interface BlurAlertDialogProps {\n  triggerLabel?: ReactNode;\n  title?: ReactNode;\n  description?: ReactNode;\n  cancelLabel?: ReactNode;\n  actionLabel?: ReactNode;\n  onAction?: () => void;\n  /** Blur focus-in duration in ms. Default 400. */\n  duration?: number;\n  className?: string;\n}\n\n/**\n * Blur — the popup resolves out of a 16px blur while fading in, like a lens\n * pulling focus. Glass surface tuned for both themes: a light frost over dark,\n * a soft white frost over light, with two ambient color blobs behind the glass.\n */\nexport function BlurAlertDialog({\n  triggerLabel = \"End session\",\n  title = \"End your session?\",\n  description = \"You'll be signed out on this device and any unsaved drafts will stay in the cloud.\",\n  cancelLabel = \"Stay\",\n  actionLabel = \"Sign out\",\n  onAction,\n  duration = 400,\n  className = \"\",\n}: BlurAlertDialogProps = {}) {\n  return (\n    <AlertDialog.Root>\n      <AlertDialog.Trigger className=\"rounded-full border border-border bg-background/60 px-4 py-2 text-sm font-medium text-foreground backdrop-blur transition hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\">\n        {triggerLabel}\n      </AlertDialog.Trigger>\n      <AlertDialog.Portal>\n        <AlertDialog.Backdrop className=\"fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0\" />\n        <AlertDialog.Popup\n          style={{\n            transition: `filter ${duration}ms ease, opacity ${duration}ms ease`,\n          }}\n          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-2xl [filter:blur(0px)] data-[starting-style]:opacity-0 data-[starting-style]:[filter:blur(16px)] data-[ending-style]:opacity-0 data-[ending-style]:[filter:blur(16px)] dark:border-white/10 dark:bg-white/10 sm:p-7 ${className}`}\n        >\n          <div className=\"pointer-events-none absolute -right-10 -top-16 h-40 w-40 rounded-full bg-fuchsia-500/30 blur-3xl\" />\n          <div className=\"pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-sky-500/30 blur-3xl\" />\n          <AlertDialog.Title className=\"relative text-base font-semibold text-foreground sm:text-lg\">\n            {title}\n          </AlertDialog.Title>\n          <AlertDialog.Description className=\"relative mt-2 text-sm leading-relaxed text-muted-foreground\">\n            {description}\n          </AlertDialog.Description>\n          <div className=\"relative mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3\">\n            <AlertDialog.Close className=\"rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition hover:bg-accent hover:text-accent-foreground\">\n              {cancelLabel}\n            </AlertDialog.Close>\n            <AlertDialog.Close\n              onClick={onAction}\n              className=\"rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:opacity-90\"\n            >\n              {actionLabel}\n            </AlertDialog.Close>\n          </div>\n        </AlertDialog.Popup>\n      </AlertDialog.Portal>\n    </AlertDialog.Root>\n  );\n}\n\nexport default BlurAlertDialog;\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/alert-dialog/blur.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Alert Dialog - Blur",
+    "category": "overlay",
+    "tags": [
+      "alert-dialog",
+      "dialog",
+      "modal",
+      "overlay",
+      "confirmation",
+      "base-ui",
+      "animation",
+      "clip-path",
+      "spring",
+      "blur"
+    ],
+    "animationType": "ease"
+  }
+}

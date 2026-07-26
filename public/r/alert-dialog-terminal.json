@@ -1,0 +1,36 @@
+{
+  "name": "alert-dialog-terminal",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/alert-dialog/terminal.tsx",
+      "content": "\"use client\";\n\nimport { AlertDialog } from \"@base-ui-components/react/alert-dialog\";\nimport type { ReactNode } from \"react\";\n\nexport interface TerminalAlertDialogProps {\n  triggerLabel?: ReactNode;\n  title?: ReactNode;\n  description?: ReactNode;\n  cancelLabel?: ReactNode;\n  actionLabel?: ReactNode;\n  onAction?: () => void;\n  /** Clip-path unroll duration in ms. Default 350. */\n  duration?: number;\n  className?: string;\n}\n\n/**\n * Terminal — a CRT power-on. The popup opens from a center horizontal line via\n * clip-path inset, unrolling vertically. It's a self-contained \"screen\", so the\n * green-on-black identity stays constant regardless of the site theme; the\n * trigger uses theme tokens so it sits naturally on both.\n */\nexport function TerminalAlertDialog({\n  triggerLabel = \"Run command\",\n  title = \"sudo rm -rf /production\",\n  description = \"This operation will wipe 1,204 records. Type-safe confirmation required.\",\n  cancelLabel = \"[esc] abort\",\n  actionLabel = \"[y] execute\",\n  onAction,\n  duration = 350,\n  className = \"\",\n}: TerminalAlertDialogProps = {}) {\n  return (\n    <AlertDialog.Root>\n      <AlertDialog.Trigger className=\"rounded-sm border border-border bg-foreground px-4 py-2 font-mono text-sm text-background transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\">\n        {triggerLabel}\n      </AlertDialog.Trigger>\n      <AlertDialog.Portal>\n        <AlertDialog.Backdrop className=\"fixed inset-0 z-40 bg-black/80 transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0\" />\n        <AlertDialog.Popup\n          style={{\n            transition: `clip-path ${duration}ms cubic-bezier(0.76,0,0.24,1), opacity ${Math.round(duration * 0.4)}ms`,\n          }}\n          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-md border border-green-500/40 bg-[#0a0f0a] font-mono shadow-[0_0_40px_-10px] shadow-green-500/40 [clip-path:inset(0_0_0_0)] data-[starting-style]:opacity-40 data-[starting-style]:[clip-path:inset(50%_0_50%_0)] data-[ending-style]:opacity-40 data-[ending-style]:[clip-path:inset(50%_0_50%_0)] ${className}`}\n        >\n          <div className=\"flex items-center gap-2 border-b border-green-500/20 px-4 py-2 text-xs text-green-500/60\">\n            <span className=\"size-2.5 rounded-full bg-red-500/70\" />\n            <span className=\"size-2.5 rounded-full bg-yellow-500/70\" />\n            <span className=\"size-2.5 rounded-full bg-green-500/70\" />\n            <span className=\"ml-2\">root@system: ~/danger</span>\n          </div>\n          <div className=\"p-4 sm:p-5\">\n            <AlertDialog.Title className=\"text-sm text-green-400\">\n              <span className=\"text-green-600\">$</span> {title}\n              <span className=\"ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-pulse bg-green-400\" />\n            </AlertDialog.Title>\n            <AlertDialog.Description className=\"mt-2 text-xs leading-relaxed text-green-500/60\">\n              <span className=\"text-red-400\">[WARN]</span> {description}\n            </AlertDialog.Description>\n            <div className=\"mt-5 flex justify-end gap-2 text-xs\">\n              <AlertDialog.Close className=\"rounded-sm border border-green-500/30 px-3 py-1.5 text-green-400 transition hover:bg-green-500/10\">\n                {cancelLabel}\n              </AlertDialog.Close>\n              <AlertDialog.Close\n                onClick={onAction}\n                className=\"rounded-sm border border-red-500/40 bg-red-500/10 px-3 py-1.5 text-red-400 transition hover:bg-red-500/20\"\n              >\n                {actionLabel}\n              </AlertDialog.Close>\n            </div>\n          </div>\n        </AlertDialog.Popup>\n      </AlertDialog.Portal>\n    </AlertDialog.Root>\n  );\n}\n\nexport default TerminalAlertDialog;\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/alert-dialog/terminal.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Alert Dialog - Terminal",
+    "category": "overlay",
+    "tags": [
+      "alert-dialog",
+      "dialog",
+      "modal",
+      "overlay",
+      "confirmation",
+      "base-ui",
+      "animation",
+      "clip-path",
+      "spring",
+      "blur"
+    ],
+    "animationType": "clip-path"
+  }
+}

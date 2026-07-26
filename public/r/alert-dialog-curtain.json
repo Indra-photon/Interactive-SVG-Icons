@@ -1,0 +1,36 @@
+{
+  "name": "alert-dialog-curtain",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/alert-dialog/curtain.tsx",
+      "content": "\"use client\";\n\nimport { AlertDialog } from \"@base-ui-components/react/alert-dialog\";\nimport type { ReactNode } from \"react\";\n\nexport interface CurtainAlertDialogProps {\n  triggerLabel?: ReactNode;\n  eyebrow?: ReactNode;\n  title?: ReactNode;\n  description?: ReactNode;\n  cancelLabel?: ReactNode;\n  actionLabel?: ReactNode;\n  onAction?: () => void;\n  /** Clip-path curtain duration in ms. Default 600. */\n  duration?: number;\n  className?: string;\n}\n\n/**\n * Curtain — editorial. The popup opens horizontally from its center line via a\n * clip-path inset, like a stage curtain parting. Serif type, a hairline rule,\n * and full theme-token surfaces so the paper flips to ink in dark mode. Type\n * scales up on ≥sm screens.\n */\nexport function CurtainAlertDialog({\n  triggerLabel = \"Cancel subscription\",\n  eyebrow = \"Confirmation\",\n  title = \"Cancel your subscription?\",\n  description = \"Your access continues until the end of the billing period. After that, premium features will no longer be available.\",\n  cancelLabel = \"Never mind\",\n  actionLabel = \"Confirm cancellation\",\n  onAction,\n  duration = 600,\n  className = \"\",\n}: CurtainAlertDialogProps = {}) {\n  return (\n    <AlertDialog.Root>\n      <AlertDialog.Trigger className=\"border border-foreground px-5 py-2 text-sm tracking-wide text-foreground transition hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\">\n        {triggerLabel}\n      </AlertDialog.Trigger>\n      <AlertDialog.Portal>\n        <AlertDialog.Backdrop className=\"fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0\" />\n        <AlertDialog.Popup\n          style={{\n            transition: `clip-path ${duration}ms cubic-bezier(0.65,0,0.35,1)`,\n          }}\n          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 border border-border bg-card p-6 text-card-foreground shadow-2xl [clip-path:inset(0_0_0_0)] data-[starting-style]:[clip-path:inset(0_50%_0_50%)] data-[ending-style]:[clip-path:inset(0_50%_0_50%)] sm:p-8 ${className}`}\n        >\n          <p className=\"text-xs uppercase tracking-[0.3em] text-muted-foreground\">\n            {eyebrow}\n          </p>\n          <AlertDialog.Title className=\"mt-3 font-serif text-xl leading-tight text-foreground sm:text-2xl\">\n            {title}\n          </AlertDialog.Title>\n          <div className=\"my-4 h-px w-12 bg-border\" />\n          <AlertDialog.Description className=\"font-serif text-[15px] leading-relaxed text-muted-foreground\">\n            {description}\n          </AlertDialog.Description>\n          <div className=\"mt-7 flex items-center justify-between gap-4\">\n            <AlertDialog.Close className=\"text-sm tracking-wide text-muted-foreground underline-offset-4 transition hover:text-foreground hover:underline\">\n              {cancelLabel}\n            </AlertDialog.Close>\n            <AlertDialog.Close\n              onClick={onAction}\n              className=\"bg-foreground px-5 py-2 text-sm tracking-wide text-background transition hover:opacity-90\"\n            >\n              {actionLabel}\n            </AlertDialog.Close>\n          </div>\n        </AlertDialog.Popup>\n      </AlertDialog.Portal>\n    </AlertDialog.Root>\n  );\n}\n\nexport default CurtainAlertDialog;\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/alert-dialog/curtain.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Alert Dialog - Curtain",
+    "category": "overlay",
+    "tags": [
+      "alert-dialog",
+      "dialog",
+      "modal",
+      "overlay",
+      "confirmation",
+      "base-ui",
+      "animation",
+      "clip-path",
+      "spring",
+      "blur"
+    ],
+    "animationType": "clip-path"
+  }
+}

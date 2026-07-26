@@ -424,6 +424,376 @@
       ]
     },
     {
+      "slug": "alert-dialog",
+      "name": "Alert Dialog",
+      "category": "overlay",
+      "shadcnBase": "alert-dialog",
+      "tags": [
+        "alert-dialog",
+        "dialog",
+        "modal",
+        "overlay",
+        "confirmation",
+        "base-ui",
+        "animation",
+        "clip-path",
+        "spring",
+        "blur"
+      ],
+      "description": "A confirmation dialog built on Base UI's accessible AlertDialog primitive. Every variation uses a different entrance technique — scale, blur focus-in, spring overshoot, iOS zoom, CRT unroll, or a parting curtain. All are theme-token driven so they flip cleanly between light and dark, and every surface is responsive with type that scales up on larger screens.",
+      "createdAt": "2026-07-26T00:00:00Z",
+      "variations": [
+        {
+          "name": "scale",
+          "displayName": "Scale",
+          "componentName": "ScaleAlertDialog",
+          "tier": "free",
+          "animationType": "ease",
+          "dependencies": [
+            "@base-ui-components/react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 200,
+              "min": 80,
+              "max": 800,
+              "step": 10,
+              "description": "Enter/exit transition duration in milliseconds"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Dialog title"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "description": "Supporting body copy"
+            },
+            {
+              "name": "cancelLabel",
+              "type": "string",
+              "default": "Keep editing",
+              "description": "Dismiss button label"
+            },
+            {
+              "name": "actionLabel",
+              "type": "string",
+              "default": "Discard",
+              "description": "Confirm button label"
+            },
+            {
+              "name": "onAction",
+              "type": "() => void",
+              "description": "Fires when the action button is pressed"
+            }
+          ],
+          "previewHint": "Click the trigger to open. The popup scales up from 95% while fading in; adjust the duration with the DialKit panel.",
+          "features": [
+            "Fully theme-token driven (popover / border / primary / muted) — flips cleanly between light and dark",
+            "Responsive: full-width on mobile with column-stacked buttons, capped at max-w-md with a right-aligned row on ≥sm",
+            "Title steps up from text-base to text-lg on ≥sm screens",
+            "Backdrop cross-fades independently of the popup so the character stays on the card",
+            "Focus-visible ring on the trigger and full keyboard/ARIA semantics from Base UI's AlertDialog"
+          ]
+        },
+        {
+          "name": "blur",
+          "displayName": "Blur",
+          "componentName": "BlurAlertDialog",
+          "tier": "free",
+          "animationType": "ease",
+          "dependencies": [
+            "@base-ui-components/react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 400,
+              "min": 120,
+              "max": 900,
+              "step": 10,
+              "description": "Blur focus-in duration in milliseconds"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Dialog title"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "description": "Supporting body copy"
+            },
+            {
+              "name": "cancelLabel",
+              "type": "string",
+              "default": "Stay",
+              "description": "Dismiss button label"
+            },
+            {
+              "name": "actionLabel",
+              "type": "string",
+              "default": "Sign out",
+              "description": "Confirm button label"
+            },
+            {
+              "name": "onAction",
+              "type": "() => void",
+              "description": "Fires when the action button is pressed"
+            }
+          ],
+          "previewHint": "Click the trigger to open. The card resolves out of a 16px blur while fading in — like a lens pulling focus.",
+          "features": [
+            "Filter-blur entrance: the popup animates from blur(16px) + opacity 0 to sharp",
+            "Glass surface tuned for both themes — a soft white frost on light, a light frost on dark via dark: overrides",
+            "Two ambient color blobs sit behind the glass for depth without touching content contrast",
+            "Responsive padding and column-stacked buttons on mobile",
+            "Base UI AlertDialog handles focus trapping, Escape, and ARIA wiring"
+          ]
+        },
+        {
+          "name": "slam",
+          "displayName": "Slam",
+          "componentName": "SlamAlertDialog",
+          "tier": "free",
+          "animationType": "spring",
+          "dependencies": [
+            "@base-ui-components/react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 500,
+              "min": 200,
+              "max": 900,
+              "step": 10,
+              "description": "Overshoot slam duration in milliseconds"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Dialog title"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "description": "Supporting body copy"
+            },
+            {
+              "name": "cancelLabel",
+              "type": "string",
+              "default": "Nope",
+              "description": "Dismiss button label"
+            },
+            {
+              "name": "actionLabel",
+              "type": "string",
+              "default": "Do it!",
+              "description": "Confirm button label"
+            },
+            {
+              "name": "onAction",
+              "type": "() => void",
+              "description": "Fires when the action button is pressed"
+            }
+          ],
+          "previewHint": "Click the trigger to open. The card drops in with a back-out spring, overshooting before it settles.",
+          "features": [
+            "Neo-brutalist look with a back-out (overshoot) cubic-bezier so the card bounces to rest",
+            "Hard offset shadows and borders drawn with var(--foreground) — the whole block inverts correctly in dark mode",
+            "Popup fades while an inner wrapper carries the transform via group-data starting/ending styles",
+            "Bold accent buttons (yellow / lime) with active press-down offset that reads on both themes",
+            "Title scales from text-lg to text-xl on ≥sm screens"
+          ]
+        },
+        {
+          "name": "ios",
+          "displayName": "iOS",
+          "componentName": "IosAlertDialog",
+          "tier": "free",
+          "animationType": "spring",
+          "dependencies": [
+            "@base-ui-components/react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 350,
+              "min": 150,
+              "max": 800,
+              "step": 10,
+              "description": "Spring settle duration in milliseconds"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Dialog title"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "description": "Supporting body copy"
+            },
+            {
+              "name": "cancelLabel",
+              "type": "string",
+              "default": "Don't Allow",
+              "description": "Dismiss button label"
+            },
+            {
+              "name": "actionLabel",
+              "type": "string",
+              "default": "Allow",
+              "description": "Confirm button label"
+            },
+            {
+              "name": "onAction",
+              "type": "() => void",
+              "description": "Fires when the action button is pressed"
+            }
+          ],
+          "previewHint": "Click the trigger to open. The card enters at 118% and springs down to rest, iOS system-alert style.",
+          "features": [
+            "System-alert zoom: enters at scale 1.18 and springs to rest with a back-out curve, exits shrunk to 0.92",
+            "Frosted popover surface and stacked full-width buttons use theme tokens — reads on light and dark",
+            "Fixed 270px width with hairline dividers, matching the native iOS alert footprint",
+            "Blue action text and active-press background tint",
+            "Base UI AlertDialog supplies focus management and Escape-to-dismiss"
+          ]
+        },
+        {
+          "name": "terminal",
+          "displayName": "Terminal",
+          "componentName": "TerminalAlertDialog",
+          "tier": "free",
+          "animationType": "clip-path",
+          "dependencies": [
+            "@base-ui-components/react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 350,
+              "min": 150,
+              "max": 900,
+              "step": 10,
+              "description": "Clip-path unroll duration in milliseconds"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Command shown after the prompt"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "description": "Warning body copy"
+            },
+            {
+              "name": "cancelLabel",
+              "type": "string",
+              "default": "[esc] abort",
+              "description": "Dismiss button label"
+            },
+            {
+              "name": "actionLabel",
+              "type": "string",
+              "default": "[y] execute",
+              "description": "Confirm button label"
+            },
+            {
+              "name": "onAction",
+              "type": "() => void",
+              "description": "Fires when the action button is pressed"
+            }
+          ],
+          "previewHint": "Click the trigger to open. The popup unrolls vertically from a center line, CRT power-on style.",
+          "features": [
+            "Clip-path unroll: opens from inset(50% 0 50% 0) to full, so the screen powers on from a horizontal line",
+            "Self-contained green-on-black 'screen' identity stays constant across site themes; the trigger uses theme tokens",
+            "Monospace type, faux window chrome dots, and a blinking cursor caret",
+            "Opacity ramps at ~40% of the clip duration so the reveal reads as light warming up",
+            "Base UI AlertDialog keeps it fully accessible despite the terminal styling"
+          ]
+        },
+        {
+          "name": "curtain",
+          "displayName": "Curtain",
+          "componentName": "CurtainAlertDialog",
+          "tier": "free",
+          "animationType": "clip-path",
+          "dependencies": [
+            "@base-ui-components/react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 600,
+              "min": 200,
+              "max": 1200,
+              "step": 10,
+              "description": "Clip-path curtain duration in milliseconds"
+            },
+            {
+              "name": "eyebrow",
+              "type": "string",
+              "default": "Confirmation",
+              "description": "Small uppercase label above the title"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Dialog title"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "description": "Supporting body copy"
+            },
+            {
+              "name": "cancelLabel",
+              "type": "string",
+              "default": "Never mind",
+              "description": "Dismiss button label"
+            },
+            {
+              "name": "actionLabel",
+              "type": "string",
+              "default": "Confirm cancellation",
+              "description": "Confirm button label"
+            },
+            {
+              "name": "onAction",
+              "type": "() => void",
+              "description": "Fires when the action button is pressed"
+            }
+          ],
+          "previewHint": "Click the trigger to open. The popup parts horizontally from its center line like a stage curtain.",
+          "features": [
+            "Clip-path curtain: opens from inset(0 50% 0 50%) outward so the panel parts from the middle",
+            "Editorial serif type with an eyebrow label and a hairline rule, all on theme-token surfaces",
+            "Paper flips to ink in dark mode — card / border / foreground tokens do the work",
+            "Title scales from text-xl to text-2xl on ≥sm screens",
+            "Base UI AlertDialog provides focus trapping and keyboard semantics"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "accordion",
       "name": "Accordion",
       "category": "disclosure",
@@ -593,5 +963,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-24T16:27:25.933Z"
+  "lastUpdated": "2026-07-26T09:17:41.387Z"
 }
