@@ -1,0 +1,36 @@
+{
+  "name": "alert-dialog-scale",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/alert-dialog/scale.tsx",
+      "content": "\"use client\";\n\nimport { AlertDialog } from \"@base-ui-components/react/alert-dialog\";\nimport type { ReactNode } from \"react\";\n\nexport interface ScaleAlertDialogProps {\n  /** Trigger button label. */\n  triggerLabel?: ReactNode;\n  title?: ReactNode;\n  description?: ReactNode;\n  /** Dismiss / \"keep editing\" label. */\n  cancelLabel?: ReactNode;\n  /** Confirm / destructive label. */\n  actionLabel?: ReactNode;\n  /** Fires when the action button is pressed (before the dialog closes). */\n  onAction?: () => void;\n  /** Enter/exit transition duration in ms. Default 200. */\n  duration?: number;\n  className?: string;\n}\n\n/**\n * Scale — the workhorse. Popup scales up from 95% while fading in; backdrop\n * cross-fades. Everything is driven by theme tokens so it flips cleanly between\n * light and dark, and the type scale steps up on ≥sm screens.\n */\nexport function ScaleAlertDialog({\n  triggerLabel = \"Discard changes\",\n  title = \"Discard changes?\",\n  description = \"Your edits haven't been saved. If you leave now, everything you typed will be lost.\",\n  cancelLabel = \"Keep editing\",\n  actionLabel = \"Discard\",\n  onAction,\n  duration = 110,\n  className = \"\",\n}: ScaleAlertDialogProps = {}) {\n  return (\n    <AlertDialog.Root>\n      <AlertDialog.Trigger className=\"rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\">\n        {triggerLabel}\n      </AlertDialog.Trigger>\n      <AlertDialog.Portal>\n        <AlertDialog.Backdrop className=\"fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-[70ms]\" />\n        <AlertDialog.Popup\n          style={{ transitionDuration: `${duration}ms` }}\n          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border bg-popover p-5 text-popover-foreground shadow-xl transition-all ease-out data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:!duration-[70ms] sm:p-6 ${className}`}\n        >\n          <AlertDialog.Title className=\"text-base font-semibold text-foreground tracking-tight sm:text-lg\">\n            {title}\n          </AlertDialog.Title>\n          <AlertDialog.Description className=\"mt-1 text-sm leading-tight text-muted-foreground\">\n            {description}\n          </AlertDialog.Description>\n          <div className=\"mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3\">\n            <AlertDialog.Close className=\"rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-accent hover:text-accent-foreground\">\n              {cancelLabel}\n            </AlertDialog.Close>\n            <AlertDialog.Close\n              onClick={onAction}\n              className=\"rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90\"\n            >\n              {actionLabel}\n            </AlertDialog.Close>\n          </div>\n        </AlertDialog.Popup>\n      </AlertDialog.Portal>\n    </AlertDialog.Root>\n  );\n}\n\nexport default ScaleAlertDialog;\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/alert-dialog/scale.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Alert Dialog - Scale",
+    "category": "overlay",
+    "tags": [
+      "alert-dialog",
+      "dialog",
+      "modal",
+      "overlay",
+      "confirmation",
+      "base-ui",
+      "animation",
+      "clip-path",
+      "spring",
+      "blur"
+    ],
+    "animationType": "ease"
+  }
+}

@@ -2346,6 +2346,132 @@
       ]
     },
     {
+      "name": "alert-dialog-scale",
+      "type": "registry:ui",
+      "title": "Alert Dialog - Scale",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/scale.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/scale.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-blur",
+      "type": "registry:ui",
+      "title": "Alert Dialog - Blur",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/blur.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/blur.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-slam",
+      "type": "registry:ui",
+      "title": "Alert Dialog - Slam",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/slam.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/slam.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-ios",
+      "type": "registry:ui",
+      "title": "Alert Dialog - iOS",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/ios.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/ios.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-terminal",
+      "type": "registry:ui",
+      "title": "Alert Dialog - Terminal",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/terminal.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/terminal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-curtain",
+      "type": "registry:ui",
+      "title": "Alert Dialog - Curtain",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/curtain.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/curtain.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-reactive",
+      "type": "registry:ui",
+      "title": "Alert Dialog - Reactive",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/reactive.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/reactive.tsx"
+        }
+      ]
+    },
+    {
       "name": "accordion-clip",
       "type": "registry:ui",
       "title": "Accordion - Clip",

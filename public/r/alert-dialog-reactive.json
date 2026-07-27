@@ -1,0 +1,36 @@
+{
+  "name": "alert-dialog-reactive",
+  "type": "registry:ui",
+  "tier": "free",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/craftui-base.json"
+  ],
+  "files": [
+    {
+      "path": "components/craftui/ui/alert-dialog/reactive.tsx",
+      "content": "\"use client\";\n\nimport { AlertDialog } from \"@base-ui-components/react/alert-dialog\";\nimport { useState } from \"react\";\nimport type { CSSProperties, ReactNode } from \"react\";\n\nexport interface ReactiveAlertDialogProps {\n  triggerLabel?: ReactNode;\n  title?: ReactNode;\n  description?: ReactNode;\n  /** Reject label — triggers the tumble-away exit. */\n  disagreeLabel?: ReactNode;\n  /** Accept label — triggers the snappy exit. */\n  agreeLabel?: ReactNode;\n  /** Fires when Agree is pressed (before the dialog closes). */\n  onAction?: () => void;\n  /** Enter / Agree-exit duration in ms. Default 200. */\n  duration?: number;\n  /** Disagree tumble-away duration in ms. Default 300. */\n  disagreeDuration?: number;\n  /** Disagree rotation in degrees. Default 12. */\n  disagreeAngle?: number;\n  /** Disagree vertical drop in px. Default 80. */\n  disagreeShift?: number;\n  className?: string;\n}\n\n/**\n * Reactive — the exit branches on the action. Agree mirrors the entry with a\n * snappy scale-and-fade; Disagree pivots from its top-left corner, rotating and\n * dropping on an ease-in \"gravity\" curve before fading out. Controlled Base UI\n * AlertDialog with a two-layer popup (outer centers + fades, inner carries the\n * transform) so the exit transform never fights the centering translate.\n * Theme-token driven and honors prefers-reduced-motion.\n */\nexport function ReactiveAlertDialog({\n  triggerLabel = \"Review terms\",\n  title = \"Do you accept the terms?\",\n  description = \"Agreeing continues to your account. Disagreeing discards this step and returns you to the start.\",\n  disagreeLabel = \"Disagree\",\n  agreeLabel = \"Agree\",\n  onAction,\n  duration = 200,\n  disagreeDuration = 150,\n  disagreeAngle = 5,\n  disagreeShift = 220,\n  className = \"\",\n}: ReactiveAlertDialogProps = {}) {\n  const [open, setOpen] = useState(false);\n  const [exit, setExit] = useState<\"agree\" | \"disagree\">(\"agree\");\n\n  // Every fresh open resets to the neutral mode, so the enter (and any\n  // Escape/backdrop dismissal) always uses the snappy scale, never the tumble.\n  const handleOpenChange = (next: boolean) => {\n    if (next) setExit(\"agree\");\n    setOpen(next);\n  };\n  const handleAgree = () => {\n    setExit(\"agree\");\n    onAction?.();\n    setOpen(false);\n  };\n  const handleDisagree = () => {\n    setExit(\"disagree\");\n    setOpen(false);\n  };\n\n  const isDisagree = exit === \"disagree\";\n  // The enter always runs in \"agree\" mode, so this resolves to `duration` /\n  // ease-out for the entrance; it only becomes the tumble values once Disagree\n  // flips `exit`, right before the closing transition starts.\n  const activeDuration = isDisagree ? disagreeDuration : duration;\n  const ease = isDisagree\n    ? \"cubic-bezier(0.4,0,1,1)\" // ease-in: accelerates like a drop\n    : \"cubic-bezier(0.22,1,0.36,1)\"; // ease-out: snappy\n\n  const innerStyle: CSSProperties = {\n    transitionDuration: `${activeDuration}ms`,\n    transitionTimingFunction: ease,\n    transformOrigin: isDisagree ? \"top left\" : \"center\",\n  };\n  if (isDisagree) {\n    (innerStyle as Record<string, string>)[\"--exit-transform\"] =\n      `rotate(${disagreeAngle}deg) translateY(${disagreeShift}px)`;\n  }\n\n  const layerStyle: CSSProperties = {\n    transitionDuration: `${activeDuration}ms`,\n    transitionTimingFunction: ease,\n  };\n\n  return (\n    <AlertDialog.Root open={open} onOpenChange={handleOpenChange}>\n      <AlertDialog.Trigger className=\"rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\">\n        {triggerLabel}\n      </AlertDialog.Trigger>\n      <AlertDialog.Portal>\n        <AlertDialog.Backdrop\n          style={layerStyle}\n          className=\"fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 motion-reduce:transition-none\"\n        />\n        <AlertDialog.Popup\n          style={layerStyle}\n          className=\"group fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 motion-reduce:transition-none\"\n        >\n          <div\n            style={innerStyle}\n            className={`rounded-2xl border border-border bg-popover p-5 text-popover-foreground shadow-xl [transition-property:transform] group-data-[starting-style]:scale-95 group-data-[ending-style]:[transform:var(--exit-transform,scale(0.95))] motion-reduce:!transition-none sm:p-6 ${className}`}\n          >\n            <AlertDialog.Title className=\"text-base font-semibold text-foreground sm:text-lg\">\n              {title}\n            </AlertDialog.Title>\n            <AlertDialog.Description className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">\n              {description}\n            </AlertDialog.Description>\n            <div className=\"mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3\">\n              <button\n                type=\"button\"\n                onClick={handleDisagree}\n                className=\"rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\"\n              >\n                {disagreeLabel}\n              </button>\n              <button\n                type=\"button\"\n                onClick={handleAgree}\n                className=\"rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\"\n              >\n                {agreeLabel}\n              </button>\n            </div>\n          </div>\n        </AlertDialog.Popup>\n      </AlertDialog.Portal>\n    </AlertDialog.Root>\n  );\n}\n\nexport default ReactiveAlertDialog;\n",
+      "type": "registry:ui",
+      "target": "~/components/craftui/ui/alert-dialog/reactive.tsx"
+    }
+  ],
+  "meta": {
+    "displayName": "Alert Dialog - Reactive",
+    "category": "overlay",
+    "tags": [
+      "alert-dialog",
+      "dialog",
+      "modal",
+      "overlay",
+      "confirmation",
+      "base-ui",
+      "animation",
+      "clip-path",
+      "spring",
+      "blur"
+    ],
+    "animationType": "spring"
+  }
+}

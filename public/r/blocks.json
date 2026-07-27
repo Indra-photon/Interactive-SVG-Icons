@@ -210,19 +210,11 @@
           "componentName": "ThemeButton",
           "previewHint": "Click the font name or the color swatch — the sample text below reacts to your pick",
           "features": [
-            "Fully prop-driven: pass themes/fonts as a list or a function, control selection, and react via onThemeChange/onFontChange/onOpenChange",
-            "Controlled or uncontrolled per dimension — works with zero props out of the box",
-            "Two morph targets: the font name opens a typeface picker, the color swatch opens the theme picker",
-            "iOS pulse spinner is inlined verbatim (not imported) so the downloaded block is self-contained",
-            "Shared layoutId morph between collapsed pill and expanded menu — Motion interpolates size, position, and border-radius",
-            "Apple-style spring: expand is slower (bigger travel), collapse ~30% faster",
-            "Inner content cross-fades with a blur; exit is faster so it clears the morph",
-            "Full-row / full-segment hit targets — the whole option is clickable, not just its text and icon",
-            "Full APG menu keyboard model: opening moves focus into the menu, Arrow/Home/End rove between options (roving tabindex), Enter/Space select, Escape closes and refocuses the trigger",
-            "Focus is returned to the opening trigger on Escape/selection; outside-click dismissal leaves focus where the user clicked",
-            "Dismissible: closes on outside click or Escape; triggers and menu carry aria-haspopup/expanded and role=menu/menuitemradio; decorative spinner/dots/dividers are aria-hidden",
-            "Surface uses popover/accent/border tokens so it flips correctly in light and dark",
-            "prefers-reduced-motion: springs and the spinner collapse to instant"
+            "Morphs between collapsed pill and expanded menu via a shared layoutId — Motion interpolates size, position, and border-radius in one spring",
+            "Runs an asymmetric Apple-style spring: expand at 0.4s with slight bounce, collapse ~30% faster with none",
+            "Cross-fades inner content with a blur; exit runs ~25% faster than enter so old content clears before the morph lands",
+            "Implements the full APG menu pattern: role=\"menu\" with menuitemradio options, roving tabindex, and focus returned to the opening trigger",
+            "Respects prefers-reduced-motion — the morph spring, cross-fade, and spinner all collapse to instant"
           ]
         }
       ]
@@ -1122,5 +1114,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-24T16:27:25.937Z"
+  "lastUpdated": "2026-07-27T14:58:26.479Z"
 }
