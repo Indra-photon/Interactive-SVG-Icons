@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { Suspense } from "react";
 import type { UIComponentRegistry } from "@/types/ui-component";
 import { buildUISidebarNodes } from "@/lib/sidebar-data";
-import { UIPageShell } from "@/components/ui-gallery/UIPageShell";
+import { UIGalleryShell } from "@/components/ui-gallery/UIGalleryShell";
 
 function loadUIData() {
   const registryPath = path.join(process.cwd(), "public/r/ui.json");
@@ -13,7 +12,7 @@ function loadUIData() {
   return registry.components;
 }
 
-export default function UIPage() {
+export default function UIGalleryPage() {
   const components = loadUIData();
   const sidebarNodes = buildUISidebarNodes(components);
 
@@ -27,8 +26,6 @@ export default function UIPage() {
   ];
 
   return (
-    <Suspense>
-      <UIPageShell components={components} sidebarSections={sidebarSections} />
-    </Suspense>
+    <UIGalleryShell components={components} sidebarSections={sidebarSections} />
   );
 }
