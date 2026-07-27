@@ -28,11 +28,11 @@
       "registryDependencies": [],
       "previewHint": "Click the trigger to open. The popup scales up from 95% while fading in; adjust the duration with the DialKit panel.",
       "features": [
-        "Fully theme-token driven (popover / border / primary / muted) — flips cleanly between light and dark",
-        "Responsive: full-width on mobile with column-stacked buttons, capped at max-w-md with a right-aligned row on ≥sm",
-        "Title steps up from text-base to text-lg on ≥sm screens",
-        "Backdrop cross-fades independently of the popup so the character stays on the card",
-        "Focus-visible ring on the trigger and full keyboard/ARIA semantics from Base UI's AlertDialog"
+        "Enters by scaling the popup from 95% to 100% while cross-fading opacity, driven by the data-[starting-style] hook on an ease-out tween — compositor-only (transform + opacity)",
+        "Breaks enter/exit symmetry: the exit drops the scale entirely and fades out on a fixed ~70ms opacity tween, decoupled from the enter with an important-flagged duration so tuning entrance speed never slows the dismiss",
+        "Cross-fades the backdrop independently of the popup — a longer fade-in, a ~70ms fade-out — so the motion stays anchored on the card",
+        "Renders fully from theme tokens (popover / border / primary / muted) and adapts responsively: full-width with column-stacked buttons on mobile, capped at max-w-md with a right-aligned row and a stepped-up title on ≥sm",
+        "Inherits Base UI AlertDialog semantics — focus trap, focus restoration on close, role=\"alertdialog\", and aria-labelledby / aria-describedby wired from Title and Description; the trigger carries a focus-visible ring"
       ],
       "props": [
         {
@@ -79,11 +79,11 @@
       "registryDependencies": [],
       "previewHint": "Click the trigger to open. The card resolves out of a 16px blur while fading in — like a lens pulling focus.",
       "features": [
-        "Filter-blur entrance: the popup animates from blur(16px) + opacity 0 to sharp",
-        "Glass surface tuned for both themes — a soft white frost on light, a light frost on dark via dark: overrides",
-        "Two ambient color blobs sit behind the glass for depth without touching content contrast",
-        "Responsive padding and column-stacked buttons on mobile",
-        "Base UI AlertDialog handles focus trapping, Escape, and ARIA wiring"
+        "Resolves the popup out of a 16px blur while fading in — a state-driven transition on the filter and opacity properties (a filter/paint effect, not compositor-only), like a lens pulling focus; the exit reverses back into blur",
+        "Layers a frosted-glass surface (translucent fill + backdrop-blur) tuned per theme through dark: overrides, with two ambient fuchsia / sky color blobs sitting behind the glass via a large blur radius for depth without touching content contrast",
+        "Drives the blur-in duration from a duration prop; the exit mirrors the enter",
+        "Aligns the primary action to the leading edge, sets body copy to relaxed leading, and gives the buttons a concentric rounded-xl against the rounded-3xl surface; padding and button stacking adapt on mobile",
+        "Inherits Base UI AlertDialog semantics — focus trap, focus restoration, role=\"alertdialog\", and aria-labelledby / aria-describedby from Title and Description; the trigger shows a focus-visible ring"
       ],
       "props": [
         {
@@ -130,11 +130,11 @@
       "registryDependencies": [],
       "previewHint": "Click the trigger to open. The card drops in with a back-out spring, overshooting before it settles.",
       "features": [
-        "Neo-brutalist look with a back-out (overshoot) cubic-bezier so the card bounces to rest",
-        "Hard offset shadows and borders drawn with var(--foreground) — the whole block inverts correctly in dark mode",
-        "Popup fades while an inner wrapper carries the transform via group-data starting/ending styles",
-        "Bold accent buttons (yellow / lime) with active press-down offset that reads on both themes",
-        "Title scales from text-lg to text-xl on ≥sm screens"
+        "Splits motion across two layers: the outer popup cross-fades opacity while an inner wrapper carries the transform via group-data-[starting-style] / [ending-style] hooks, keeping the animation off the centering translate",
+        "Enters on a back-out (overshoot) cubic-bezier — the inner card scales up from 80% with a -40px translateY, overshooting before it settles; the enter duration is a duration prop",
+        "Breaks enter/exit symmetry: the exit shrinks to 96% on a plain ease-out with no overshoot at a fixed ~160ms, so dismissal is quieter and faster than the slam-in",
+        "Renders the neo-brutalist look with hard offset box-shadows and borders in var(--foreground) so the whole block inverts in dark mode; the yellow / lime accent buttons translate down and drop their shadow on the active press state",
+        "Accessibility: honors prefers-reduced-motion (motion-reduce guards zero the transitions on backdrop, popup, and inner card so enter and exit are instant) and inherits Base UI's focus trap, focus restore, role=\"alertdialog\", and Title / Description-driven aria labelling"
       ],
       "props": [
         {
@@ -181,11 +181,10 @@
       "registryDependencies": [],
       "previewHint": "Click the trigger to open. The card enters at 118% and springs down to rest, iOS system-alert style.",
       "features": [
-        "System-alert zoom: enters at scale 1.18 and springs to rest with a back-out curve, exits shrunk to 0.92",
-        "Frosted popover surface and stacked full-width buttons use theme tokens — reads on light and dark",
-        "Fixed 270px width with hairline dividers, matching the native iOS alert footprint",
-        "Blue action text and active-press background tint",
-        "Base UI AlertDialog supplies focus management and Escape-to-dismiss"
+        "Mirrors the iOS system alert: an inner card zooms from 118% down to rest on a back-out (overshoot) cubic-bezier while the outer popup cross-fades — motion split across two layers via group-data hooks, with the spring-settle enter duration driven by a duration prop",
+        "Breaks enter/exit symmetry: the exit shrinks to 95% on a plain ease-out with no overshoot at ~200ms, faster than the ~350ms spring-in",
+        "Renders a frosted popover surface (translucent fill + backdrop-blur) at a fixed 270px width with hairline dividers between stacked full-width buttons; the action reads in iOS blue with an active-press background tint",
+        "Respects prefers-reduced-motion (motion-reduce guards make enter and exit instant) and inherits Base UI's focus trap, focus restoration, role=\"alertdialog\", and aria-labelledby / aria-describedby from Title and Description"
       ],
       "props": [
         {
@@ -232,11 +231,10 @@
       "registryDependencies": [],
       "previewHint": "Click the trigger to open. The popup unrolls vertically from a center line, CRT power-on style.",
       "features": [
-        "Clip-path unroll: opens from inset(50% 0 50% 0) to full, so the screen powers on from a horizontal line",
-        "Self-contained green-on-black 'screen' identity stays constant across site themes; the trigger uses theme tokens",
-        "Monospace type, faux window chrome dots, and a blinking cursor caret",
-        "Opacity ramps at ~40% of the clip duration so the reveal reads as light warming up",
-        "Base UI AlertDialog keeps it fully accessible despite the terminal styling"
+        "Powers on like a CRT: clip-path unrolls the popup from inset(50% 0 50% 0) — a collapsed center line — out to inset(0) on an ease-out cubic-bezier, while opacity ramps in over roughly the first 40% of the clip so the reveal reads as the screen warming up (clip-path is a paint-level animation, not compositor-only)",
+        "Breaks enter/exit symmetry: the exit re-rolls to the center line on a decoupled, faster ~220ms transition",
+        "Keeps a self-contained green-on-black identity regardless of the site theme (only the trigger uses theme tokens); includes monospace type, faux traffic-light window dots, a $-prompt title with a blinking block cursor, and a [WARN]-tagged description",
+        "Respects prefers-reduced-motion on two fronts — motion-reduce zeroes the unroll transition on popup and backdrop, and stops the infinite cursor pulse via animate-none — and inherits Base UI's focus trap, role=\"alertdialog\", and Title / Description aria labelling"
       ],
       "props": [
         {
@@ -287,11 +285,10 @@
       "registryDependencies": [],
       "previewHint": "Click the trigger to open. The popup parts horizontally from its center line like a stage curtain.",
       "features": [
-        "Clip-path curtain: opens from inset(0 50% 0 50%) outward so the panel parts from the middle",
-        "Editorial serif type with an eyebrow label and a hairline rule, all on theme-token surfaces",
-        "Paper flips to ink in dark mode — card / border / foreground tokens do the work",
-        "Title scales from text-xl to text-2xl on ≥sm screens",
-        "Base UI AlertDialog provides focus trapping and keyboard semantics"
+        "Parts like a stage curtain: clip-path opens the popup horizontally from inset(0 50% 0 50%) — a collapsed center line — out to inset(0) on an ease-out cubic-bezier; no opacity is animated, only the clip (a paint-level animation, not compositor-only)",
+        "Breaks enter/exit symmetry: the curtain draws shut on a decoupled, faster transition than it opens",
+        "Sets an editorial treatment — serif title and body, an uppercase letter-spaced eyebrow, and a short hairline rule — on full theme-token surfaces so the paper flips to ink in dark mode, with type stepping up from text-xl to text-2xl on ≥sm",
+        "Respects prefers-reduced-motion (motion-reduce zeroes the clip transition on popup and backdrop) and inherits Base UI's focus trap, focus restoration, role=\"alertdialog\", and Title / Description-driven aria labelling"
       ],
       "props": [
         {
@@ -344,11 +341,11 @@
       "registryDependencies": [],
       "previewHint": "Click the trigger to open, then choose. Agree exits with a snappy scale-down; Disagree tips from its top-left corner and tumbles away.",
       "features": [
-        "Action-aware exit: the closing animation branches on which button was pressed",
-        "Agree mirrors the entry — a snappy scale-and-fade on an ease-out curve",
-        "Disagree pivots from transform-origin top-left, rotating and dropping on an ease-in 'gravity' curve before fading",
-        "Controlled Base UI AlertDialog with a two-layer popup so the exit transform never fights the centering translate",
-        "Theme-token driven and honors prefers-reduced-motion — both exits become instant"
+        "Branches the exit on the action: a controlled Base UI AlertDialog (open / onOpenChange) plus an exit-mode state set before close pick which closing animation runs, so the same dialog leaves two different ways",
+        "Enters by scaling the inner card from 95% with an opacity fade on an ease-out curve; Agree mirrors that exactly — a snappy scale-down and fade — so accepting reverses the entrance",
+        "Disagrees with a tumble: the card pivots from transform-origin top-left, rotating and dropping via translateY before fading, on an ease-in ('gravity') cubic-bezier that accelerates as it falls; the tumble's angle, drop distance, and duration are props",
+        "Splits centering from animation across two layers (outer popup translates to center and fades, inner card carries the transform) so the exit rotate/translate never fights the centering translate; the exit mode resets to neutral on every open, keeping entrances and Escape / backdrop dismissals snappy",
+        "Respects prefers-reduced-motion (motion-reduce guards make both exits instant) and inherits Base UI's focus trap, focus restoration, role=\"alertdialog\", and aria-labelledby / aria-describedby from Title and Description"
       ],
       "props": [
         {
