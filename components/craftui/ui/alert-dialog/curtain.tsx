@@ -11,16 +11,17 @@ export interface CurtainAlertDialogProps {
   cancelLabel?: ReactNode;
   actionLabel?: ReactNode;
   onAction?: () => void;
-  /** Clip-path curtain duration in ms. Default 600. */
+  /** Clip-path curtain (enter) duration in ms. Default 400. */
   duration?: number;
   className?: string;
 }
 
 /**
  * Curtain — editorial. The popup opens horizontally from its center line via a
- * clip-path inset, like a stage curtain parting. Serif type, a hairline rule,
- * and full theme-token surfaces so the paper flips to ink in dark mode. Type
- * scales up on ≥sm screens.
+ * clip-path inset on an ease-out curve, like a stage curtain parting, then draws
+ * shut faster on close. Serif type, a hairline rule, and full theme-token
+ * surfaces so the paper flips to ink in dark mode. Type scales up on ≥sm
+ * screens. Honors prefers-reduced-motion.
  */
 export function CurtainAlertDialog({
   triggerLabel = "Cancel subscription",
@@ -30,7 +31,7 @@ export function CurtainAlertDialog({
   cancelLabel = "Never mind",
   actionLabel = "Confirm cancellation",
   onAction,
-  duration = 600,
+  duration = 400,
   className = "",
 }: CurtainAlertDialogProps = {}) {
   return (
@@ -39,12 +40,12 @@ export function CurtainAlertDialog({
         {triggerLabel}
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
-        <AlertDialog.Backdrop className="fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0" />
+        <AlertDialog.Backdrop className="fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-[250ms] motion-reduce:transition-none" />
         <AlertDialog.Popup
           style={{
-            transition: `clip-path ${duration}ms cubic-bezier(0.65,0,0.35,1)`,
+            transition: `clip-path ${duration}ms cubic-bezier(0.22,1,0.36,1)`,
           }}
-          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 border border-border bg-card p-6 text-card-foreground shadow-2xl [clip-path:inset(0_0_0_0)] data-[starting-style]:[clip-path:inset(0_50%_0_50%)] data-[ending-style]:[clip-path:inset(0_50%_0_50%)] sm:p-8 ${className}`}
+          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 border border-border bg-card p-6 text-card-foreground shadow-2xl [clip-path:inset(0_0_0_0)] data-[starting-style]:[clip-path:inset(0_50%_0_50%)] data-[ending-style]:[clip-path:inset(0_50%_0_50%)] data-[ending-style]:!duration-[300ms] motion-reduce:!transition-none sm:p-8 ${className}`}
         >
           <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
             {eyebrow}

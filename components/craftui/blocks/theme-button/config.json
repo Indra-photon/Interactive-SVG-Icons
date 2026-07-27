@@ -85,19 +85,55 @@
         }
       ],
       "features": [
-        "Fully prop-driven: pass themes/fonts as a list or a function, control selection, and react via onThemeChange/onFontChange/onOpenChange",
-        "Controlled or uncontrolled per dimension — works with zero props out of the box",
-        "Two morph targets: the font name opens a typeface picker, the color swatch opens the theme picker",
-        "iOS pulse spinner is inlined verbatim (not imported) so the downloaded block is self-contained",
-        "Shared layoutId morph between collapsed pill and expanded menu — Motion interpolates size, position, and border-radius",
-        "Apple-style spring: expand is slower (bigger travel), collapse ~30% faster",
-        "Inner content cross-fades with a blur; exit is faster so it clears the morph",
-        "Full-row / full-segment hit targets — the whole option is clickable, not just its text and icon",
-        "Full APG menu keyboard model: opening moves focus into the menu, Arrow/Home/End rove between options (roving tabindex), Enter/Space select, Escape closes and refocuses the trigger",
-        "Focus is returned to the opening trigger on Escape/selection; outside-click dismissal leaves focus where the user clicked",
-        "Dismissible: closes on outside click or Escape; triggers and menu carry aria-haspopup/expanded and role=menu/menuitemradio; decorative spinner/dots/dividers are aria-hidden",
-        "Surface uses popover/accent/border tokens so it flips correctly in light and dark",
-        "prefers-reduced-motion: springs and the spinner collapse to instant"
+        "Morphs between collapsed pill and expanded menu via a shared layoutId — Motion interpolates size, position, and border-radius in one spring",
+        "Runs an asymmetric Apple-style spring: expand at 0.4s with slight bounce, collapse ~30% faster with none",
+        "Cross-fades inner content with a blur; exit runs ~25% faster than enter so old content clears before the morph lands",
+        "Implements the full APG menu pattern: role=\"menu\" with menuitemradio options, roving tabindex, and focus returned to the opening trigger",
+        "Respects prefers-reduced-motion — the morph spring, cross-fade, and spinner all collapse to instant"
+      ],
+      "featureSections": [
+        {
+          "title": "Shared Layout Morph",
+          "summary": "Morphs the collapsed pill into the expanded picker menu by bridging two elements with a shared layoutId, driven entirely by open/close state.",
+          "points": [
+            "Interpolates size, position, and border-radius between pill and menu via one shared layoutId",
+            "Keeps morph-driven values (border-radius, padding, width) inline so Motion can interpolate them",
+            "Runs an asymmetric Apple-style spring in perceptual duration/bounce terms: expand at 0.4s with slight bounce, collapse ~30% faster with none",
+            "Swaps the two shells through AnimatePresence in popLayout mode so the exiting element leaves the layout flow immediately"
+          ]
+        },
+        {
+          "title": "Content Cross-fade & Blur",
+          "summary": "Cross-fades the inner content separately from the shell morph using opacity, blur, and a slight scale, with ease-out timing.",
+          "points": [
+            "Fades content through a 4–6px blur, adding a 0.96 scale on the menu side",
+            "Runs exits ~25% faster than enters so outgoing content clears before the morph lands",
+            "Uses an ease-out cubic so content reads instantly then settles",
+            "Pins content with layout=\"position\" so text never stretches during the shell morph"
+          ]
+        },
+        {
+          "title": "Menu Accessibility",
+          "summary": "Implements the full APG menu pattern with focus management, roving tabindex, and a reduced-motion fallback.",
+          "points": [
+            "Marks triggers with aria-haspopup and aria-expanded; options are menuitemradio with aria-checked inside role=\"menu\"",
+            "Moves focus onto the selected option on open; Arrow/Home/End rove between options via roving tabindex",
+            "Returns focus to the opening trigger on Escape or selection; outside-click dismissal leaves focus where the user clicked",
+            "Hides decorative spinner, color dots, and dividers with aria-hidden",
+            "Respects prefers-reduced-motion — the morph spring, cross-fade, and spinner all collapse to instant"
+          ]
+        },
+        {
+          "title": "State & Configurability",
+          "summary": "Handles selection per dimension as controlled or uncontrolled, with all options and callbacks exposed as props.",
+          "points": [
+            "Accepts themes and fonts as arrays or functions, falling back to built-in sets",
+            "Controls each dimension independently: themeId/fontId for controlled, default*Id for uncontrolled",
+            "Reports every interaction via onThemeChange, onFontChange, and onOpenChange",
+            "Ships self-contained — the iOS pulse spinner is inlined verbatim, not imported",
+            "Expands hit targets to full segment and row height with negative-margin padding, without shifting the visible layout"
+          ]
+        }
       ]
     }
   ]

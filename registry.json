@@ -2454,6 +2454,24 @@
       ]
     },
     {
+      "name": "alert-dialog-reactive",
+      "type": "registry:ui",
+      "title": "Alert Dialog - Reactive",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/alert-dialog/reactive.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/alert-dialog/reactive.tsx"
+        }
+      ]
+    },
+    {
       "name": "accordion-clip",
       "type": "registry:ui",
       "title": "Accordion - Clip",

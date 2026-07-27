@@ -31,7 +31,7 @@ export function ScaleAlertDialog({
   cancelLabel = "Keep editing",
   actionLabel = "Discard",
   onAction,
-  duration = 200,
+  duration = 110,
   className = "",
 }: ScaleAlertDialogProps = {}) {
   return (
@@ -40,17 +40,15 @@ export function ScaleAlertDialog({
         {triggerLabel}
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
-        <AlertDialog.Backdrop
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0"
-        />
+        <AlertDialog.Backdrop className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-[70ms]" />
         <AlertDialog.Popup
           style={{ transitionDuration: `${duration}ms` }}
-          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border bg-popover p-5 text-popover-foreground shadow-xl transition-all ease-out data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:scale-95 data-[ending-style]:opacity-0 sm:p-6 ${className}`}
+          className={`fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border bg-popover p-5 text-popover-foreground shadow-xl transition-all ease-out data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:!duration-[70ms] sm:p-6 ${className}`}
         >
-          <AlertDialog.Title className="text-base font-semibold text-foreground sm:text-lg">
+          <AlertDialog.Title className="text-base font-semibold text-foreground tracking-tight sm:text-lg">
             {title}
           </AlertDialog.Title>
-          <AlertDialog.Description className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          <AlertDialog.Description className="mt-1 text-sm leading-tight text-muted-foreground">
             {description}
           </AlertDialog.Description>
           <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">

@@ -17,8 +17,9 @@ export interface IosAlertDialogProps {
 
 /**
  * iOS — the system-alert zoom. The card enters at 118% and springs down to rest
- * with a back-out curve, exiting shrunk to 92%. Frosted surface and stacked
- * full-width buttons use theme tokens so it reads on light and dark.
+ * with a back-out curve, then dismisses fast on a plain ease-out (no overshoot),
+ * shrinking to 95%. Frosted surface and stacked full-width buttons use theme
+ * tokens so it reads on light and dark. Honors prefers-reduced-motion.
  */
 export function IosAlertDialog({
   triggerLabel = "Allow location",
@@ -36,14 +37,14 @@ export function IosAlertDialog({
         {triggerLabel}
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
-        <AlertDialog.Backdrop className="fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0" />
-        <AlertDialog.Popup className="group fixed left-1/2 top-1/2 z-50 w-[270px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-200 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0">
+        <AlertDialog.Backdrop className="fixed inset-0 z-40 bg-black/40 transition-opacity duration-[250ms] data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-[200ms] motion-reduce:transition-none" />
+        <AlertDialog.Popup className="group fixed left-1/2 top-1/2 z-50 w-[270px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-[250ms] data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-[200ms] motion-reduce:transition-none">
           <div
             style={{
               transitionDuration: `${duration}ms`,
               transitionTimingFunction: "cubic-bezier(0.34,1.56,0.64,1)",
             }}
-            className={`overflow-hidden rounded-[14px] border border-border bg-popover/80 text-center shadow-xl backdrop-blur-xl [transition-property:transform] group-data-[starting-style]:[transform:scale(1.18)] group-data-[ending-style]:[transform:scale(0.92)] ${className}`}
+            className={`overflow-hidden rounded-[14px] border border-border bg-popover/80 text-center shadow-xl backdrop-blur-xl [transition-property:transform] group-data-[starting-style]:[transform:scale(1.18)] group-data-[ending-style]:[transform:scale(0.95)] group-data-[ending-style]:!duration-[200ms] group-data-[ending-style]:![transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:!transition-none ${className}`}
           >
             <div className="px-4 pb-4 pt-5">
               <AlertDialog.Title className="text-[17px] font-semibold text-foreground">

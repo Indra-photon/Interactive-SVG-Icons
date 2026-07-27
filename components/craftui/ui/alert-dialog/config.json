@@ -15,7 +15,7 @@
     "spring",
     "blur"
   ],
-  "description": "A confirmation dialog built on Base UI's accessible AlertDialog primitive. Every variation uses a different entrance technique — scale, blur focus-in, spring overshoot, iOS zoom, CRT unroll, or a parting curtain. All are theme-token driven so they flip cleanly between light and dark, and every surface is responsive with type that scales up on larger screens.",
+  "description": "A confirmation dialog built on Base UI's accessible AlertDialog primitive. Every variation uses a different entrance technique — scale, blur focus-in, spring overshoot, iOS zoom, CRT unroll, a parting curtain, or an action-reactive exit that branches on Agree vs Disagree. All are theme-token driven so they flip cleanly between light and dark, and every surface is responsive with type that scales up on larger screens.",
   "createdAt": "2026-07-26T00:00:00Z",
   "variations": [
     {
@@ -38,17 +38,35 @@
         {
           "name": "duration",
           "type": "number",
-          "default": 200,
+          "default": 110,
           "min": 80,
           "max": 800,
           "step": 10,
           "description": "Enter/exit transition duration in milliseconds"
         },
         { "name": "title", "type": "string", "description": "Dialog title" },
-        { "name": "description", "type": "string", "description": "Supporting body copy" },
-        { "name": "cancelLabel", "type": "string", "default": "Keep editing", "description": "Dismiss button label" },
-        { "name": "actionLabel", "type": "string", "default": "Discard", "description": "Confirm button label" },
-        { "name": "onAction", "type": "() => void", "description": "Fires when the action button is pressed" }
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Supporting body copy"
+        },
+        {
+          "name": "cancelLabel",
+          "type": "string",
+          "default": "Keep editing",
+          "description": "Dismiss button label"
+        },
+        {
+          "name": "actionLabel",
+          "type": "string",
+          "default": "Discard",
+          "description": "Confirm button label"
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "description": "Fires when the action button is pressed"
+        }
       ]
     },
     {
@@ -71,17 +89,35 @@
         {
           "name": "duration",
           "type": "number",
-          "default": 400,
-          "min": 120,
-          "max": 900,
+          "default": 130,
+          "min": 100,
+          "max": 200,
           "step": 10,
           "description": "Blur focus-in duration in milliseconds"
         },
         { "name": "title", "type": "string", "description": "Dialog title" },
-        { "name": "description", "type": "string", "description": "Supporting body copy" },
-        { "name": "cancelLabel", "type": "string", "default": "Stay", "description": "Dismiss button label" },
-        { "name": "actionLabel", "type": "string", "default": "Sign out", "description": "Confirm button label" },
-        { "name": "onAction", "type": "() => void", "description": "Fires when the action button is pressed" }
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Supporting body copy"
+        },
+        {
+          "name": "cancelLabel",
+          "type": "string",
+          "default": "Stay",
+          "description": "Dismiss button label"
+        },
+        {
+          "name": "actionLabel",
+          "type": "string",
+          "default": "Sign out",
+          "description": "Confirm button label"
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "description": "Fires when the action button is pressed"
+        }
       ]
     },
     {
@@ -104,17 +140,35 @@
         {
           "name": "duration",
           "type": "number",
-          "default": 500,
+          "default": 320,
           "min": 200,
           "max": 900,
           "step": 10,
-          "description": "Overshoot slam duration in milliseconds"
+          "description": "Overshoot slam (enter) duration in milliseconds"
         },
         { "name": "title", "type": "string", "description": "Dialog title" },
-        { "name": "description", "type": "string", "description": "Supporting body copy" },
-        { "name": "cancelLabel", "type": "string", "default": "Nope", "description": "Dismiss button label" },
-        { "name": "actionLabel", "type": "string", "default": "Do it!", "description": "Confirm button label" },
-        { "name": "onAction", "type": "() => void", "description": "Fires when the action button is pressed" }
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Supporting body copy"
+        },
+        {
+          "name": "cancelLabel",
+          "type": "string",
+          "default": "Nope",
+          "description": "Dismiss button label"
+        },
+        {
+          "name": "actionLabel",
+          "type": "string",
+          "default": "Do it!",
+          "description": "Confirm button label"
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "description": "Fires when the action button is pressed"
+        }
       ]
     },
     {
@@ -141,13 +195,31 @@
           "min": 150,
           "max": 800,
           "step": 10,
-          "description": "Spring settle duration in milliseconds"
+          "description": "Spring settle (enter) duration in milliseconds"
         },
         { "name": "title", "type": "string", "description": "Dialog title" },
-        { "name": "description", "type": "string", "description": "Supporting body copy" },
-        { "name": "cancelLabel", "type": "string", "default": "Don't Allow", "description": "Dismiss button label" },
-        { "name": "actionLabel", "type": "string", "default": "Allow", "description": "Confirm button label" },
-        { "name": "onAction", "type": "() => void", "description": "Fires when the action button is pressed" }
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Supporting body copy"
+        },
+        {
+          "name": "cancelLabel",
+          "type": "string",
+          "default": "Don't Allow",
+          "description": "Dismiss button label"
+        },
+        {
+          "name": "actionLabel",
+          "type": "string",
+          "default": "Allow",
+          "description": "Confirm button label"
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "description": "Fires when the action button is pressed"
+        }
       ]
     },
     {
@@ -174,13 +246,35 @@
           "min": 150,
           "max": 900,
           "step": 10,
-          "description": "Clip-path unroll duration in milliseconds"
+          "description": "Clip-path unroll (enter) duration in milliseconds"
         },
-        { "name": "title", "type": "string", "description": "Command shown after the prompt" },
-        { "name": "description", "type": "string", "description": "Warning body copy" },
-        { "name": "cancelLabel", "type": "string", "default": "[esc] abort", "description": "Dismiss button label" },
-        { "name": "actionLabel", "type": "string", "default": "[y] execute", "description": "Confirm button label" },
-        { "name": "onAction", "type": "() => void", "description": "Fires when the action button is pressed" }
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Command shown after the prompt"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Warning body copy"
+        },
+        {
+          "name": "cancelLabel",
+          "type": "string",
+          "default": "[esc] abort",
+          "description": "Dismiss button label"
+        },
+        {
+          "name": "actionLabel",
+          "type": "string",
+          "default": "[y] execute",
+          "description": "Confirm button label"
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "description": "Fires when the action button is pressed"
+        }
       ]
     },
     {
@@ -203,18 +297,119 @@
         {
           "name": "duration",
           "type": "number",
-          "default": 600,
+          "default": 400,
           "min": 200,
           "max": 1200,
           "step": 10,
-          "description": "Clip-path curtain duration in milliseconds"
+          "description": "Clip-path curtain (enter) duration in milliseconds"
         },
-        { "name": "eyebrow", "type": "string", "default": "Confirmation", "description": "Small uppercase label above the title" },
+        {
+          "name": "eyebrow",
+          "type": "string",
+          "default": "Confirmation",
+          "description": "Small uppercase label above the title"
+        },
         { "name": "title", "type": "string", "description": "Dialog title" },
-        { "name": "description", "type": "string", "description": "Supporting body copy" },
-        { "name": "cancelLabel", "type": "string", "default": "Never mind", "description": "Dismiss button label" },
-        { "name": "actionLabel", "type": "string", "default": "Confirm cancellation", "description": "Confirm button label" },
-        { "name": "onAction", "type": "() => void", "description": "Fires when the action button is pressed" }
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Supporting body copy"
+        },
+        {
+          "name": "cancelLabel",
+          "type": "string",
+          "default": "Never mind",
+          "description": "Dismiss button label"
+        },
+        {
+          "name": "actionLabel",
+          "type": "string",
+          "default": "Confirm cancellation",
+          "description": "Confirm button label"
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "description": "Fires when the action button is pressed"
+        }
+      ]
+    },
+    {
+      "name": "reactive",
+      "displayName": "Reactive",
+      "componentName": "ReactiveAlertDialog",
+      "tier": "free",
+      "animationType": "spring",
+      "dependencies": ["@base-ui-components/react"],
+      "registryDependencies": [],
+      "previewHint": "Click the trigger to open, then choose. Agree exits with a snappy scale-down; Disagree tips from its top-left corner and tumbles away.",
+      "features": [
+        "Action-aware exit: the closing animation branches on which button was pressed",
+        "Agree mirrors the entry — a snappy scale-and-fade on an ease-out curve",
+        "Disagree pivots from transform-origin top-left, rotating and dropping on an ease-in 'gravity' curve before fading",
+        "Controlled Base UI AlertDialog with a two-layer popup so the exit transform never fights the centering translate",
+        "Theme-token driven and honors prefers-reduced-motion — both exits become instant"
+      ],
+      "props": [
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 200,
+          "min": 80,
+          "max": 500,
+          "step": 10,
+          "description": "Enter / Agree-exit duration in milliseconds"
+        },
+        {
+          "name": "disagreeDuration",
+          "type": "number",
+          "default": 150,
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "description": "Disagree tumble-away duration in milliseconds"
+        },
+        {
+          "name": "disagreeAngle",
+          "type": "number",
+          "default": 3,
+          "min": 0,
+          "max": 25,
+          "step": 1,
+          "description": "Disagree rotation in degrees"
+        },
+        {
+          "name": "disagreeShift",
+          "type": "number",
+          "default": 220,
+          "min": 0,
+          "max": 240,
+          "step": 5,
+          "description": "Disagree vertical drop in pixels"
+        },
+        { "name": "title", "type": "string", "description": "Dialog title" },
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Supporting body copy"
+        },
+        {
+          "name": "disagreeLabel",
+          "type": "string",
+          "default": "Disagree",
+          "description": "Reject button label"
+        },
+        {
+          "name": "agreeLabel",
+          "type": "string",
+          "default": "Agree",
+          "description": "Accept button label"
+        },
+        {
+          "name": "onAction",
+          "type": "() => void",
+          "description": "Fires when Agree is pressed"
+        }
       ]
     }
   ]

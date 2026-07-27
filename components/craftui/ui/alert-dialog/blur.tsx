@@ -24,10 +24,10 @@ export function BlurAlertDialog({
   triggerLabel = "End session",
   title = "End your session?",
   description = "You'll be signed out on this device and any unsaved drafts will stay in the cloud.",
-  cancelLabel = "Stay",
+  cancelLabel = "Continue",
   actionLabel = "Sign out",
   onAction,
-  duration = 400,
+  duration = 130,
   className = "",
 }: BlurAlertDialogProps = {}) {
   return (
@@ -45,21 +45,21 @@ export function BlurAlertDialog({
         >
           <div className="pointer-events-none absolute -right-10 -top-16 h-40 w-40 rounded-full bg-fuchsia-500/30 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-sky-500/30 blur-3xl" />
-          <AlertDialog.Title className="relative text-base font-semibold text-foreground sm:text-lg">
+          <AlertDialog.Title className="relative text-base font-semibold tracking-tight text-foreground sm:text-lg">
             {title}
           </AlertDialog.Title>
           <AlertDialog.Description className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
             {description}
           </AlertDialog.Description>
-          <div className="relative mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
-            <AlertDialog.Close className="rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition hover:bg-accent hover:text-accent-foreground">
-              {cancelLabel}
-            </AlertDialog.Close>
+          <div className="relative mt-6 flex flex-col gap-2 sm:flex-row sm:justify-start sm:gap-3">
             <AlertDialog.Close
               onClick={onAction}
-              className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:opacity-90"
+              className="rounded-xl bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:opacity-90"
             >
               {actionLabel}
+            </AlertDialog.Close>
+            <AlertDialog.Close className="rounded-xl border border-border px-4 py-2 text-sm font-medium text-foreground transition hover:bg-accent hover:text-accent-foreground">
+              {cancelLabel}
             </AlertDialog.Close>
           </div>
         </AlertDialog.Popup>
