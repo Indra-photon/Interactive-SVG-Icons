@@ -16,6 +16,7 @@ import { InstallCommand } from "@/components/InstallCommand";
 import { PropsTable } from "@/components/PropsTable";
 import { Paragraph } from "@/components/Paragraph";
 import type { UIComponent } from "@/types/ui-component";
+import { Heading } from "../Heading";
 
 function defaultSnippet(
   componentName: string,
@@ -56,7 +57,7 @@ function UIVariationDetail({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <Paragraph variant="overview-Title" className="font-mono">
+          <Paragraph variant="panel-Title" className="font-mono">
             <span className="text-muted-foreground">ui</span>
             <span className="text-muted-foreground">{" / "}</span>
             <span className="text-muted-foreground">{component.name}</span>
@@ -80,8 +81,8 @@ function UIVariationDetail({
                 variant="panel-Description"
                 className="max-w-xl leading-tight"
               >
-                Copy the code snippet and use directly with new configured values
-                after installation.
+                Copy the code snippet and use directly with new configured
+                values after installation.
               </Paragraph>
               <div className="shrink-0">
                 <CopyButton label="copy usage" text={activeSnippet} size="xs" />
@@ -99,9 +100,9 @@ function UIVariationDetail({
           {/* Props table */}
           {variation.props?.length > 0 && (
             <div className="mt-10">
-              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+              <Paragraph variant="Instruction-Heading" className="mb-3">
                 Props
-              </h2>
+              </Paragraph>
               <PropsTable props={variation.props} />
             </div>
           )}
@@ -110,67 +111,70 @@ function UIVariationDetail({
           <div className="mt-10 space-y-8">
             {/* Features */}
             {variation.features && variation.features.length > 0 && (
-            <div>
-              <h2 className="text-xl font-mono  tracking-wide text-primary/80 mb-3">
-                Design decisions taken here
-              </h2>
-              <ul className="flex flex-col gap-2">
-                {variation.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <span className="corner-squircle shrink-0 mt-0.5 flex items-center justify-center rounded-[4px] size-4 bg-linear-to-b from-primary/50 to-primary/90">
-                      <HugeiconsIcon
-                        icon={Tick01Icon}
-                        size={10}
-                        strokeWidth={2.5}
-                        className="text-white"
-                      />
-                    </span>
-                    <p className="text-sm text-foreground/90 font-mono tracking-tight leading-relaxed text-wrap-pretty">
-                      {feature}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Inspiration */}
-          {variation.inspiration && variation.inspiration.length > 0 && (
-            <div>
-              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-                Inspiration
-              </h2>
-              <div className="flex flex-col gap-1">
-                {variation.inspiration.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-xs text-foreground/70 hover:text-foreground transition-colors duration-150 group py-1"
-                  >
-                    <HugeiconsIcon
-                      icon={
-                        link.type === "twitter"
-                          ? NewTwitterIcon
-                          : link.type === "dribbble"
-                            ? DribbbleIcon
-                            : link.type === "pinterest"
-                              ? PinterestIcon
-                              : GlobeIcon
-                      }
-                      size={13}
-                      strokeWidth={1.5}
-                      className="shrink-0 text-foreground/40 group-hover:text-foreground/70 transition-colors"
-                    />
-                    <span className="group-hover:underline underline-offset-2 font-mono text-[12px]">
-                      {link.label}
-                    </span>
-                  </a>
-                ))}
+              <div>
+                <Paragraph variant="Instruction-Heading" className="mb-3 ">
+                  Design decisions taken here
+                </Paragraph>
+                <ul className="flex flex-col gap-2">
+                  {variation.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2">
+                      <span className="corner-squircle shrink-0 mt-0.5 flex items-center justify-center rounded-[4px] size-4 bg-foreground">
+                        <HugeiconsIcon
+                          icon={Tick01Icon}
+                          size={12}
+                          strokeWidth={2.5}
+                          className="text-background"
+                        />
+                      </span>
+                      <Paragraph
+                        variant="panel-Description"
+                        className="text-foreground/70"
+                      >
+                        {feature}
+                      </Paragraph>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          )}
+            )}
+
+            {/* Inspiration */}
+            {variation.inspiration && variation.inspiration.length > 0 && (
+              <div>
+                <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+                  Inspiration
+                </h2>
+                <div className="flex flex-col gap-1">
+                  {variation.inspiration.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-xs text-foreground/70 hover:text-foreground transition-colors duration-150 group py-1"
+                    >
+                      <HugeiconsIcon
+                        icon={
+                          link.type === "twitter"
+                            ? NewTwitterIcon
+                            : link.type === "dribbble"
+                              ? DribbbleIcon
+                              : link.type === "pinterest"
+                                ? PinterestIcon
+                                : GlobeIcon
+                        }
+                        size={13}
+                        strokeWidth={1.5}
+                        className="shrink-0 text-foreground/40 group-hover:text-foreground/70 transition-colors"
+                      />
+                      <span className="group-hover:underline underline-offset-2 font-mono text-[12px]">
+                        {link.label}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

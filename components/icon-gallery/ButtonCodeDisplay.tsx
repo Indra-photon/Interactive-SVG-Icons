@@ -70,7 +70,7 @@ export function ButtonCodeDisplay({
         </div>
         <Button
           size="lg"
-          variant="outline"
+          variant="ghost"
           onClick={handleGetCode}
           className="corner-squircle rounded-[10px] font-mono text-xs tracking-tighter :active:scale-95 transition-transform duration-100 ease-out"
         >

@@ -304,6 +304,10 @@
   --gradient-button: linear-gradient(180deg, #4ab0f0 0%, #24a0ed 100%);
   --gradient-button-shadow: inset 0 0 1px 1px #ffffff4d, 0 0 0 1px #00000014,
     0 2px 2px #0000000a, 0 0 0 1px #24a0ed;
+  /* Muted gradient button (ghost variant) — light theme */
+  --gradient-button-muted: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+  --gradient-button-muted-shadow: inset 0 0 1px 1px #ffffff80,
+    0 0 0 1px #00000014, 0 2px 2px #0000000a, 0 0 0 1px #e5e5e5;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -387,6 +391,10 @@
   --gradient-button: linear-gradient(180deg, #41a4ff 0%, #0082fb 100%);
   --gradient-button-shadow: inset 0 0 1px 1px #ffffff2e, 0 0 0 1px #00000014,
     0 2px 2px #0000000a, 0 0 0 1px #1e93fd;
+  /* Muted gradient button (ghost variant) — dark theme */
+  --gradient-button-muted: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  --gradient-button-muted-shadow: inset 0 0 1px 1px #ffffff1a,
+    0 0 0 1px #00000014, 0 2px 2px #0000000a, 0 0 0 1px #404040;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

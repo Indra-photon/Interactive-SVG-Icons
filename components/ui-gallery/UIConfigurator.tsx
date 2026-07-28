@@ -152,7 +152,7 @@ function UIConfiguratorInner({
         <div className="flex items-center gap-2">
           <Button
             size="sm"
-            variant="secondary"
+            variant="ghost"
             className="corner-squircle rounded-[8px] font-mono text-xs tracking-tighter"
             onClick={toggleDialKit}
           >
@@ -161,7 +161,7 @@ function UIConfiguratorInner({
           {changed && (
             <Button
               size="sm"
-              variant="secondary"
+              variant="ghost"
               onClick={onReset}
               className="corner-squircle rounded-[8px] font-mono text-xs tracking-tighter"
             >

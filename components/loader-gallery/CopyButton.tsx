@@ -63,7 +63,7 @@ export function CopyButton({
       <Button
         asChild
         size={size}
-        variant="secondary"
+        variant="ghost"
         onClick={handleCopy}
         className="corner-squircle rounded-[10px] font-mono text-xs tracking-tighter"
       >
@@ -81,7 +81,7 @@ export function CopyButton({
     <Button
       asChild
       size={size}
-      variant="secondary"
+      variant="ghost"
       onClick={handleCopy}
       className="corner-squircle w-full min-w-0 rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
     >

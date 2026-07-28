@@ -44,6 +44,7 @@ type ParagraphProps<T extends React.ElementType = "p"> = {
     | "panel-Eyebrow"
     | "panel-Title"
     | "panel-Description"
+    | "Instruction-Heading"
     | "overview-Title"
     | "overview-Description";
 };
@@ -71,6 +72,11 @@ export const Paragraph = <T extends React.ElementType = "p">({
       "tracking-wide font-medium text-base sm:text-[18px] md:text-[19px] lg:text-[20px] leading-tight text-foreground text-balance",
     "panel-Description":
       "tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground text-pretty",
+    // ── Body copy for features / design decisions / installation / props ──
+    // A step larger than panel-Description, relaxed leading for multi-line
+    // reading, foreground color to match body text.
+    "Instruction-Heading":
+      "tracking-normal font-normal text-[24px] sm:text-[24px] md:text-[24px] lg:text-[26px] leading-relaxed text-foreground text-pretty",
     "overview-Title":
       "tracking-wide font-medium text-base sm:text-[18px] md:text-[19px] lg:text-[20px] leading-tight text-foreground text-balance",
     "overview-Description":

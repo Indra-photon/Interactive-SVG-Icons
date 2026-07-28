@@ -24,7 +24,7 @@ export function CopyButton({ text, buttonText = text }: CopyButtonProps) {
     <Button
       asChild
       size="lg"
-      variant="outline"
+      variant="ghost"
       onClick={handleCopy}
       className="corner-squircle w-full min-w-0 rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
     >

@@ -122,7 +122,7 @@ function LoaderConfiguratorInner({
         ) : (
           <Button
             size="lg"
-            variant="secondary"
+            variant="ghost"
             className="corner-squircle rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
             onClick={toggleDialKit}
           >
@@ -133,7 +133,7 @@ function LoaderConfiguratorInner({
           <Button
             asChild
             size="lg"
-            variant="secondary"
+            variant="ghost"
             onClick={onReset}
             className="corner-squircle rounded-[10px] font-mono text-left text-xs tracking-tighter relative overflow-hidden"
           >
