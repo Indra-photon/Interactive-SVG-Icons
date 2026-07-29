@@ -211,19 +211,26 @@ function arcPosition(angleDeg: number) {
 }
 
 function WaveformBars() {
+  const reduceMotion = useReducedMotion();
   return (
     <div className="flex h-5 items-center gap-[2.5px]">
       {WAVEFORM_BARS.map(({ maxH, dur }, i) => (
         <motion.span
           key={i}
           className="block w-[2.5px] rounded-full bg-rose-500"
-          animate={{ height: [maxH * 0.25, maxH, maxH * 0.25] }}
-          transition={{
-            duration: dur,
-            repeat: Infinity,
-            delay: i * 0.08,
-            ease: "easeInOut",
-          }}
+          animate={
+            reduceMotion ? { height: maxH * 0.6 } : { height: [maxH * 0.25, maxH, maxH * 0.25] }
+          }
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : {
+                  duration: dur,
+                  repeat: Infinity,
+                  delay: i * 0.08,
+                  ease: "easeInOut",
+                }
+          }
           style={{ minHeight: 3 }}
         />
       ))}
@@ -231,12 +238,20 @@ function WaveformBars() {
   );
 }
 
-function useTypewriter(text: string, speed = 42) {
+function useTypewriter(text: string, reduceMotion: boolean, speed = 42) {
   const [displayed, setDisplayed] = useState("");
 
   useEffect(() => {
+    if (!text) {
+      setDisplayed("");
+      return;
+    }
+    // Under reduced motion, skip the character-by-character reveal.
+    if (reduceMotion) {
+      setDisplayed(text);
+      return;
+    }
     setDisplayed("");
-    if (!text) return;
     let i = 0;
     const timer = setInterval(() => {
       i++;
@@ -244,21 +259,28 @@ function useTypewriter(text: string, speed = 42) {
       if (i >= text.length) clearInterval(timer);
     }, speed);
     return () => clearInterval(timer);
-  }, [text, speed]);
+  }, [text, reduceMotion, speed]);
 
   return displayed;
 }
 
-function MorphMenu({
+function MorphMenu<T>({
   layoutId,
   isOpen,
   onOpen,
   onClose,
   reduceMotion,
   collapsed,
-  expanded,
-  panelWidth,
   triggerLabel,
+  panelWidth,
+  menuLabel,
+  items,
+  getItemKey,
+  isItemActive,
+  onSelect,
+  renderItem,
+  listClassName = "",
+  itemClassName,
 }: {
   layoutId: string;
   isOpen: boolean;
@@ -266,9 +288,16 @@ function MorphMenu({
   onClose: () => void;
   reduceMotion: boolean | null;
   collapsed: React.ReactNode;
-  expanded: React.ReactNode;
-  panelWidth: number;
   triggerLabel: string;
+  panelWidth: number;
+  menuLabel: string;
+  items: T[];
+  getItemKey: (item: T) => React.Key;
+  isItemActive: (item: T) => boolean;
+  onSelect: (item: T) => void;
+  renderItem: (item: T, active: boolean) => React.ReactNode;
+  listClassName?: string;
+  itemClassName: (active: boolean) => string;
 }) {
   const shellTransition = reduceMotion
     ? { duration: 0 }
@@ -278,18 +307,93 @@ function MorphMenu({
   const contentIn = reduceMotion ? { duration: 0 } : CONTENT_IN;
   const contentOut = reduceMotion ? { duration: 0 } : CONTENT_OUT;
 
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const menuRef = React.useRef<HTMLDivElement>(null);
+  const itemRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+  // Whether the next close returns focus to the trigger (Escape / select) or
+  // leaves it where the user pointed (outside-pointer dismissal).
+  const restoreFocusRef = React.useRef(true);
+  const wasOpenRef = React.useRef(false);
+
+  // On open: seed the roving index at the current selection and move focus onto
+  // it. On close (only once it has actually been open): return focus to the
+  // trigger, unless an outside pointer opted out.
+  React.useEffect(() => {
+    if (isOpen) {
+      wasOpenRef.current = true;
+      const found = items.findIndex(isItemActive);
+      const idx = found >= 0 ? found : 0;
+      setActiveIndex(idx);
+      const raf = requestAnimationFrame(() => itemRefs.current[idx]?.focus());
+      return () => cancelAnimationFrame(raf);
+    }
+    if (!wasOpenRef.current) return;
+    wasOpenRef.current = false;
+    if (!restoreFocusRef.current) {
+      restoreFocusRef.current = true;
+      return;
+    }
+    const raf = requestAnimationFrame(() => triggerRef.current?.focus());
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
+  // Dismiss on outside pointer without stealing focus back to the trigger.
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const onPointerDown = (e: PointerEvent) => {
+      const t = e.target as Node;
+      if (menuRef.current?.contains(t) || triggerRef.current?.contains(t)) {
+        return;
+      }
+      restoreFocusRef.current = false;
+      onClose();
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
+  const handleSelect = (item: T) => {
+    restoreFocusRef.current = true;
+    onSelect(item);
+  };
+
+  // Roving arrow-key navigation; Escape closes and restores focus to the trigger.
+  const onMenuKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      restoreFocusRef.current = true;
+      onClose();
+      return;
+    }
+    const count = items.length;
+    if (count === 0) return;
+    let next = activeIndex;
+    switch (e.key) {
+      case "ArrowDown":
+        next = (activeIndex + 1) % count;
+        break;
+      case "ArrowUp":
+        next = (activeIndex - 1 + count) % count;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = count - 1;
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    setActiveIndex(next);
+    itemRefs.current[next]?.focus();
+  };
+
   return (
     <div className="relative inline-flex flex-shrink-0">
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose();
-          }}
-        />
-      )}
-
       <div
         aria-hidden
         className="pointer-events-none inline-flex items-center gap-2 px-3.5 py-2 text-xs font-medium whitespace-nowrap opacity-0 select-none"
@@ -307,11 +411,14 @@ function MorphMenu({
         {!isOpen && (
           <motion.button
             key="collapsed"
+            ref={triggerRef}
             layoutId={layoutId}
             onClick={(e) => {
               e.stopPropagation();
               onOpen();
             }}
+            aria-haspopup="menu"
+            aria-expanded={isOpen}
             aria-label={triggerLabel}
             whileTap={{ scale: 0.96 }}
             transition={shellTransition}
@@ -351,6 +458,11 @@ function MorphMenu({
             className="absolute bottom-0 start-0 z-50 bg-muted-foreground p-1.5 text-background ring-1 ring-border"
           >
             <motion.div
+              ref={menuRef}
+              role="menu"
+              aria-label={menuLabel}
+              aria-orientation="vertical"
+              onKeyDown={onMenuKeyDown}
               layout="position"
               initial={{ opacity: 0.97, filter: "blur(4px)", scale: 0.97 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
@@ -361,8 +473,26 @@ function MorphMenu({
                 transition: contentOut,
               }}
               transition={contentIn}
+              className={listClassName}
             >
-              {expanded}
+              {items.map((item, i) => {
+                const active = isItemActive(item);
+                return (
+                  <button
+                    key={getItemKey(item)}
+                    ref={(el) => {
+                      itemRefs.current[i] = el;
+                    }}
+                    role="menuitemradio"
+                    aria-checked={active}
+                    tabIndex={i === activeIndex ? 0 : -1}
+                    onClick={() => handleSelect(item)}
+                    className={itemClassName(active)}
+                  >
+                    {renderItem(item, active)}
+                  </button>
+                );
+              })}
             </motion.div>
           </motion.div>
         )}
@@ -444,8 +574,9 @@ export default function AIChat({
   const [openMenu, setOpenMenu] = useState<"mode" | "model" | null>(null);
 
   const reduceMotion = useReducedMotion();
-  const typewriterText = useTypewriter(currentPhrase);
+  const typewriterText = useTypewriter(currentPhrase, !!reduceMotion);
   const promptId = React.useId();
+  const toolsMenuId = React.useId();
 
   const closeAll = () => {
     setPlusOpen(false);
@@ -514,7 +645,11 @@ export default function AIChat({
         className={`relative w-full max-w-2xl ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="pointer-events-none absolute top-full end-4 flex max-w-full flex-wrap items-start justify-end gap-2 pt-1.5">
+        <div
+          id={toolsMenuId}
+          inert={!menuOpen}
+          className="pointer-events-none absolute top-full end-4 flex max-w-full flex-wrap items-start justify-end gap-2 pt-1.5"
+        >
           {toolItems.map((item, i) => {
             const active = selectedTool?.label === item.label;
             return (
@@ -556,6 +691,10 @@ export default function AIChat({
           })}
         </div>
 
+        <div role="status" aria-live="polite" className="sr-only">
+          {isRecording ? currentPhrase : ""}
+        </div>
+
         <AnimatePresence>
           {isRecording && (
             <motion.div
@@ -566,15 +705,22 @@ export default function AIChat({
               className="absolute top-full inset-x-0 z-0 pt-1.5"
             >
               <div className="flex items-start gap-3 rounded-2xl bg-foreground/90 px-5 py-4 text-background backdrop-blur-sm">
-                <p className="min-h-[20px] flex-1 text-sm leading-relaxed text-pretty text-background/90">
+                <p
+                  aria-hidden={true}
+                  className="min-h-[20px] flex-1 text-sm leading-relaxed text-pretty text-background/90"
+                >
                   {typewriterText}
                   <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{
-                      duration: 0.5,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                    }}
+                    animate={reduceMotion ? { opacity: 1 } : { opacity: [1, 0] }}
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : {
+                            duration: 0.5,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                          }
+                    }
                     className="ms-[2px] inline-block h-[14px] w-[2px] rounded-full bg-background/70 align-middle"
                   />
                 </p>
@@ -629,10 +775,10 @@ export default function AIChat({
             }}
             placeholder={placeholder}
             disabled={isRecording}
-            className="w-full bg-transparent px-1.5 pb-2.5 text-base text-foreground transition-colors duration-150 ease-out outline-none placeholder:text-muted-foreground focus:placeholder:text-muted-foreground/60"
+            className="w-full bg-transparent px-1.5 pb-10 text-base text-foreground transition-colors duration-150 ease-out outline-none placeholder:text-muted-foreground focus:placeholder:text-muted-foreground/60"
           />
 
-          <div className="flex items-center gap-3 select-none sm:gap-4">
+          <div className="flex items-center gap-3 select-none sm:gap-4 pt-10">
             <motion.div
               animate={{ opacity: isRecording ? 0.35 : 1 }}
               transition={{ duration: 0.3, ease: EASE_OUT_QUART }}
@@ -672,6 +818,7 @@ export default function AIChat({
                     }}
                     whileTap={{ scale: 0.96 }}
                     aria-label={item.label}
+                    inert={!plusOpen}
                     onClick={() => {
                       onAttach?.(item);
                       setPlusOpen(false);
@@ -701,6 +848,7 @@ export default function AIChat({
                   setPlusOpen((v) => !v);
                 }}
                 aria-label="Add attachment"
+                aria-expanded={plusOpen}
                 className="relative z-20 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors before:absolute before:-inset-1 before:content-[''] hover:bg-accent hover:text-foreground"
               >
                 <HugeiconsIcon
@@ -725,6 +873,17 @@ export default function AIChat({
                   reduceMotion={reduceMotion}
                   triggerLabel={`Mode: ${selectedMode.label}`}
                   panelWidth={230}
+                  menuLabel="Select a mode"
+                  items={modes}
+                  getItemKey={(mode) => mode.id}
+                  isItemActive={(mode) => mode.id === selectedMode.id}
+                  onSelect={selectMode}
+                  listClassName="flex flex-col gap-1"
+                  itemClassName={(active) =>
+                    `flex flex-col gap-1 rounded-[9px] px-3 py-2 text-start transition-[background-color,transform] select-none active:scale-[0.96] ${
+                      active ? "bg-background/10" : "hover:bg-background/5"
+                    }`
+                  }
                   collapsed={
                     <span className="flex items-center gap-2">
                       <HugeiconsIcon
@@ -732,54 +891,42 @@ export default function AIChat({
                         size={14}
                         strokeWidth={1.5}
                         color="currentColor"
+                        aria-hidden={true}
                       />
                       <span className="max-[440px]:hidden">
                         {selectedMode.label}
                       </span>
                     </span>
                   }
-                  expanded={
-                    <div className="flex flex-col gap-1">
-                      {modes.map((mode) => {
-                        const active = mode.id === selectedMode.id;
-                        return (
-                          <button
-                            key={mode.id}
-                            onClick={() => selectMode(mode)}
-                            className={`flex flex-col gap-1 rounded-[9px] px-3 py-2 text-start transition-[background-color,transform] select-none active:scale-[0.96] ${
-                              active
-                                ? "bg-background/10"
-                                : "hover:bg-background/5"
-                            }`}
-                          >
-                            <span className="flex items-center gap-1 text-sm font-medium text-background tracking-normal">
-                              <span className="flex-shrink-0 text-background">
-                                <HugeiconsIcon
-                                  icon={mode.icon}
-                                  size={14}
-                                  strokeWidth={1.8}
-                                  color="currentColor"
-                                />
-                              </span>
-                              {mode.label}
-                              {active && (
-                                <HugeiconsIcon
-                                  icon={Tick02Icon}
-                                  size={15}
-                                  strokeWidth={2.2}
-                                  color="currentColor"
-                                  className="ms-auto"
-                                />
-                              )}
-                            </span>
-                            <span className="text-xs text-pretty text-background/90 tracking-tight">
-                              {mode.desc}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  }
+                  renderItem={(mode, active) => (
+                    <>
+                      <span className="flex items-center gap-1 text-sm font-medium text-background tracking-normal">
+                        <span className="flex-shrink-0 text-background">
+                          <HugeiconsIcon
+                            icon={mode.icon}
+                            size={14}
+                            strokeWidth={1.8}
+                            color="currentColor"
+                            aria-hidden={true}
+                          />
+                        </span>
+                        {mode.label}
+                        {active && (
+                          <HugeiconsIcon
+                            icon={Tick02Icon}
+                            size={15}
+                            strokeWidth={2.2}
+                            color="currentColor"
+                            aria-hidden={true}
+                            className="ms-auto"
+                          />
+                        )}
+                      </span>
+                      <span className="text-xs text-pretty text-background/90 tracking-tight">
+                        {mode.desc}
+                      </span>
+                    </>
+                  )}
                 />
               </motion.div>
 
@@ -795,48 +942,44 @@ export default function AIChat({
                   reduceMotion={reduceMotion}
                   triggerLabel={`Model: ${selectedModel.label}`}
                   panelWidth={280}
+                  menuLabel="Select a model"
+                  items={models}
+                  getItemKey={(model) => model.id}
+                  isItemActive={(model) => model.id === selectedModel.id}
+                  onSelect={selectModel}
+                  listClassName="max-h-60 overflow-y-auto"
+                  itemClassName={() =>
+                    "flex w-full items-center gap-2.5 rounded-[8px] px-3 py-2 text-start transition-[background-color,transform] select-none hover:bg-background/5 active:scale-[0.96]"
+                  }
                   collapsed={
                     <span className="inline-block max-w-[8rem] truncate align-middle max-[440px]:max-w-[4.5rem]">
                       {selectedModel.label}
                     </span>
                   }
-                  expanded={
-                    <div className="flex flex-col">
-                      <div className="max-h-60 overflow-y-auto">
-                        {models.map((model) => {
-                          const active = selectedModel.id === model.id;
-                          return (
-                            <button
-                              key={model.id}
-                              onClick={() => selectModel(model)}
-                              className="flex w-full items-center gap-2.5 rounded-[8px] px-3 py-2 text-start transition-[background-color,transform] select-none hover:bg-background/5 active:scale-[0.96]"
-                            >
-                              <span
-                                className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                                style={{ background: model.color }}
-                              >
-                                {model.label[0]}
-                              </span>
-                              <span className="flex-1 text-sm text-background">
-                                {model.label}{" "}
-                                <span className="text-background/60">
-                                  {model.tier}
-                                </span>
-                              </span>
-                              {active && (
-                                <HugeiconsIcon
-                                  icon={Tick02Icon}
-                                  size={16}
-                                  strokeWidth={2.2}
-                                  color="currentColor"
-                                />
-                              )}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  }
+                  renderItem={(model, active) => (
+                    <>
+                      <span
+                        className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                        style={{ background: model.color }}
+                        aria-hidden={true}
+                      >
+                        {model.label[0]}
+                      </span>
+                      <span className="flex-1 text-sm text-background">
+                        {model.label}{" "}
+                        <span className="text-background/60">{model.tier}</span>
+                      </span>
+                      {active && (
+                        <HugeiconsIcon
+                          icon={Tick02Icon}
+                          size={16}
+                          strokeWidth={2.2}
+                          color="currentColor"
+                          aria-hidden={true}
+                        />
+                      )}
+                    </>
+                  )}
                 />
               </motion.div>
             </div>
@@ -864,6 +1007,8 @@ export default function AIChat({
                     : "text-foreground hover:bg-accent hover:text-foreground"
                 }`}
                 aria-label={selectedTool ? selectedTool.label : "Tools"}
+                aria-expanded={menuOpen}
+                aria-controls={toolsMenuId}
                 title={selectedTool ? selectedTool.label : "Tools"}
               >
                 <AnimatePresence mode="popLayout" initial={false}>
@@ -895,7 +1040,9 @@ export default function AIChat({
                   e.stopPropagation();
                   toggleRecording();
                 }}
-                aria-label={isRecording ? "Stop voice input" : "Start voice input"}
+                aria-label={
+                  isRecording ? "Stop voice input" : "Start voice input"
+                }
                 aria-pressed={isRecording}
                 className="relative flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors before:absolute before:-inset-1 before:content-[''] hover:bg-accent hover:text-foreground"
                 animate={{ scale: isRecording ? 1.05 : 1 }}

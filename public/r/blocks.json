@@ -1137,7 +1137,7 @@
           "name": "default",
           "displayName": "AI Chat",
           "tier": "free",
-          "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension.",
+          "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension. The pickers ship as full APG menus (roving tabindex, arrow-key navigation, focus restore), every control carries an accessible name, closed reveals are inert, the transcript announces through an aria-live region, and all motion honors prefers-reduced-motion.",
           "animationType": "click",
           "dependencies": [
             "motion",
@@ -1268,8 +1268,9 @@
             "Morphs the mode and model pickers between a collapsed pill and an expanded panel via a shared layoutId, springing size, position, and border-radius in one motion while the inner content cross-fades through a blur",
             "Fans the plus button's attachment items out along an arc from per-item sin/cos offsets, rotating the trigger 45° and staggering each item on a stiffness/damping spring",
             "Reveals tool chips with a reverse-stagger panel drop — y-translate plus a 2px cross-blur on the transitions-dev ease — and swaps the sparkle glyph for the selected tool's icon through an AnimatePresence popLayout cross-fade",
-            "Cross-fades the mic into a looping height-keyframe waveform and slides a typewriter transcript panel in above the input, dimming the heading, input, and controls to 0.35 while recording",
-            "Uses an inverse bg-foreground/text-background shell for pills, chips, panels, and transcript so the two-tone contrast survives both themes; disables the input during recording and collapses every transition under prefers-reduced-motion"
+            "Cross-fades the mic into a height-keyframe waveform and slides a typewriter transcript panel in above the input, dimming the heading, input, and controls to 0.35 while recording",
+            "Implements the mode and model dropdowns as full APG menus — role=\"menu\" with menuitemradio options, aria-checked selection, roving tabindex, Arrow/Home/End navigation, Escape, and focus moved into the panel on open then returned to the trigger on close",
+            "Ships the accessibility contract with the block: accessible names on every icon-only control, a visually hidden label for the prompt, aria-expanded disclosures whose closed reveals are inert, an aria-live transcript region, and a prefers-reduced-motion fallback across the morph, waveform, caret, and typewriter"
           ],
           "responsive": true
         }
@@ -1277,5 +1278,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-29T10:36:18.431Z"
+  "lastUpdated": "2026-07-29T11:55:42.453Z"
 }

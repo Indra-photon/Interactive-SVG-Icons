@@ -27,7 +27,7 @@
       "tier": "free",
       "responsive": true,
       "previewHint": "Open the plus (radial attachments), the sparkle (tool chips), and the mode/model pills (morphing panels), then tap the mic to watch it swap to a waveform with a typewriter transcript",
-      "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension.",
+      "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension. The pickers ship as full APG menus (roving tabindex, arrow-key navigation, focus restore), every control carries an accessible name, closed reveals are inert, the transcript announces through an aria-live region, and all motion honors prefers-reduced-motion.",
       "animationType": "click",
       "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons"],
       "registryDependencies": [],
@@ -152,8 +152,9 @@
         "Morphs the mode and model pickers between a collapsed pill and an expanded panel via a shared layoutId, springing size, position, and border-radius in one motion while the inner content cross-fades through a blur",
         "Fans the plus button's attachment items out along an arc from per-item sin/cos offsets, rotating the trigger 45° and staggering each item on a stiffness/damping spring",
         "Reveals tool chips with a reverse-stagger panel drop — y-translate plus a 2px cross-blur on the transitions-dev ease — and swaps the sparkle glyph for the selected tool's icon through an AnimatePresence popLayout cross-fade",
-        "Cross-fades the mic into a looping height-keyframe waveform and slides a typewriter transcript panel in above the input, dimming the heading, input, and controls to 0.35 while recording",
-        "Uses an inverse bg-foreground/text-background shell for pills, chips, panels, and transcript so the two-tone contrast survives both themes; disables the input during recording and collapses every transition under prefers-reduced-motion"
+        "Cross-fades the mic into a height-keyframe waveform and slides a typewriter transcript panel in above the input, dimming the heading, input, and controls to 0.35 while recording",
+        "Implements the mode and model dropdowns as full APG menus — role=\"menu\" with menuitemradio options, aria-checked selection, roving tabindex, Arrow/Home/End navigation, Escape, and focus moved into the panel on open then returned to the trigger on close",
+        "Ships the accessibility contract with the block: accessible names on every icon-only control, a visually hidden label for the prompt, aria-expanded disclosures whose closed reveals are inert, an aria-live transcript region, and a prefers-reduced-motion fallback across the morph, waveform, caret, and typewriter"
       ],
       "featureSections": [
         {
@@ -174,7 +175,7 @@
             "Positions each item from sin/cos of its angle at a fixed radius, auto-distributing across 110° when no angle is given",
             "Rotates the plus trigger 45° into a close affordance on an ease-out tween",
             "Springs items out with stiffness/damping and a small per-item open delay, adding a blur-in on entry",
-            "Collapses on item click or an outside-click catcher, firing onAttach with the chosen item"
+            "Marks the trigger aria-expanded and makes the collapsed items inert, firing onAttach with the chosen item"
           ]
         },
         {
@@ -184,17 +185,30 @@
             "Translates chips from a -130% y-offset with a 2px cross-blur on the transitions-dev ease",
             "Reverses the stagger order on open and runs the close faster than the open",
             "Cross-fades the sparkle icon to the selected tool's icon via AnimatePresence popLayout with a scale-and-blur",
-            "Toggles selection off when the same chip is tapped, tinting the trigger with the rose accent while active"
+            "Toggles selection off when the same chip is tapped, filling the trigger with the inverse shell while active",
+            "Wires the trigger with aria-expanded and aria-controls and makes the closed chip region inert"
           ]
         },
         {
           "title": "Voice Recording & Transcript",
-          "summary": "Cross-fades the mic to a live waveform and types a transcript into a panel that slides in above the composer.",
+          "summary": "Cross-fades the mic to a waveform and types a transcript into a panel that slides in above the composer.",
           "points": [
             "Swaps the mic for a waveform of bars looping independent height keyframes at staggered delays",
             "Slides the transcript panel down from a -110% offset on an ease-out-quart, revealing a blinking caret",
             "Types the phrase character by character on an interval, then pushes it into the input when accepted",
+            "Announces the full phrase through a pre-rendered aria-live=\"polite\" region while the visual text stays aria-hidden",
             "Dims the heading, input, and control row to 0.35 and disables the input for the duration of recording"
+          ]
+        },
+        {
+          "title": "Accessibility & Keyboard",
+          "summary": "Carries a keyboard and screen-reader contract with the block: APG menu semantics, named controls, and a reduced-motion fallback.",
+          "points": [
+            "Drives the mode and model menus with role=\"menu\", menuitemradio, aria-checked, roving tabindex, and Arrow/Home/End navigation",
+            "Moves focus onto the selected option on open and returns it to the trigger on Escape or selection, dismissing on outside pointer without stealing focus",
+            "Names every icon-only button with aria-label, hides decorative icons, and gives the prompt a visually hidden label",
+            "Removes closed radial and tool reveals from the tab order and accessibility tree with inert, reflecting state via aria-expanded",
+            "Collapses the morph, waveform, caret, and typewriter under prefers-reduced-motion and disables the input while recording"
           ]
         }
       ]

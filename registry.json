@@ -2188,7 +2188,7 @@
       "name": "ai-chat-default",
       "type": "registry:block",
       "title": "AI Chat - AI Chat",
-      "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension.",
+      "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension. The pickers ship as full APG menus (roving tabindex, arrow-key navigation, focus restore), every control carries an accessible name, closed reveals are inert, the transcript announces through an aria-live region, and all motion honors prefers-reduced-motion.",
       "dependencies": [
         "motion",
         "@hugeicons/react",
