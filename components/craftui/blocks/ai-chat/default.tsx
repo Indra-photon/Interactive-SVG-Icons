@@ -258,6 +258,7 @@ function MorphMenu({
   collapsed,
   expanded,
   panelWidth,
+  triggerLabel,
 }: {
   layoutId: string;
   isOpen: boolean;
@@ -267,6 +268,7 @@ function MorphMenu({
   collapsed: React.ReactNode;
   expanded: React.ReactNode;
   panelWidth: number;
+  triggerLabel: string;
 }) {
   const shellTransition = reduceMotion
     ? { duration: 0 }
@@ -310,6 +312,7 @@ function MorphMenu({
               e.stopPropagation();
               onOpen();
             }}
+            aria-label={triggerLabel}
             whileTap={{ scale: 0.96 }}
             transition={shellTransition}
             style={{ overflow: "hidden", borderRadius: 12 }}
@@ -329,6 +332,7 @@ function MorphMenu({
                 size={12}
                 strokeWidth={2}
                 color="currentColor"
+                aria-hidden={true}
                 className="mt-0.5 flex-shrink-0"
               />
             </motion.span>
@@ -441,6 +445,7 @@ export default function AIChat({
 
   const reduceMotion = useReducedMotion();
   const typewriterText = useTypewriter(currentPhrase);
+  const promptId = React.useId();
 
   const closeAll = () => {
     setPlusOpen(false);
@@ -588,6 +593,7 @@ export default function AIChat({
                     setRecording(false);
                     setCurrentPhrase("");
                   }}
+                  aria-label="Use transcript"
                   className="relative flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-background/15 transition-colors before:absolute before:-inset-1.5 before:content-[''] hover:bg-background/25"
                 >
                   <HugeiconsIcon
@@ -595,6 +601,7 @@ export default function AIChat({
                     size={14}
                     strokeWidth={2}
                     color="currentColor"
+                    aria-hidden={true}
                   />
                 </motion.button>
               </div>
@@ -603,7 +610,11 @@ export default function AIChat({
         </AnimatePresence>
 
         <div className="relative z-10 rounded-[14px] border border-transparent bg-card px-4 pt-3.5 pb-3 shadow-[var(--input-shadow)]">
+          <label htmlFor={promptId} className="sr-only">
+            {placeholder}
+          </label>
           <motion.input
+            id={promptId}
             animate={{ opacity: isRecording ? 0.35 : 1 }}
             transition={{ duration: 0.3, ease: EASE_OUT_QUART }}
             type="text"
@@ -660,6 +671,7 @@ export default function AIChat({
                       delay: plusOpen ? i * 0.015 : 0,
                     }}
                     whileTap={{ scale: 0.96 }}
+                    aria-label={item.label}
                     onClick={() => {
                       onAttach?.(item);
                       setPlusOpen(false);
@@ -671,6 +683,7 @@ export default function AIChat({
                         size={19}
                         strokeWidth={1.6}
                         color="currentColor"
+                        aria-hidden={true}
                       />
                     </div>
                   </motion.button>
@@ -687,9 +700,15 @@ export default function AIChat({
                   setMenuOpen(false);
                   setPlusOpen((v) => !v);
                 }}
+                aria-label="Add attachment"
                 className="relative z-20 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors before:absolute before:-inset-1 before:content-[''] hover:bg-accent hover:text-foreground"
               >
-                <HugeiconsIcon icon={Add01Icon} size={20} strokeWidth={1.8} />
+                <HugeiconsIcon
+                  icon={Add01Icon}
+                  size={20}
+                  strokeWidth={1.8}
+                  aria-hidden={true}
+                />
               </motion.button>
             </motion.div>
 
@@ -704,6 +723,7 @@ export default function AIChat({
                   onOpen={() => !isRecording && openMorph("mode")}
                   onClose={() => setOpenMenu(null)}
                   reduceMotion={reduceMotion}
+                  triggerLabel={`Mode: ${selectedMode.label}`}
                   panelWidth={230}
                   collapsed={
                     <span className="flex items-center gap-2">
@@ -773,6 +793,7 @@ export default function AIChat({
                   onOpen={() => !isRecording && openMorph("model")}
                   onClose={() => setOpenMenu(null)}
                   reduceMotion={reduceMotion}
+                  triggerLabel={`Model: ${selectedModel.label}`}
                   panelWidth={280}
                   collapsed={
                     <span className="inline-block max-w-[8rem] truncate align-middle max-[440px]:max-w-[4.5rem]">
@@ -842,6 +863,7 @@ export default function AIChat({
                     ? "bg-foreground text-background hover:bg-foreground/90"
                     : "text-foreground hover:bg-accent hover:text-foreground"
                 }`}
+                aria-label={selectedTool ? selectedTool.label : "Tools"}
                 title={selectedTool ? selectedTool.label : "Tools"}
               >
                 <AnimatePresence mode="popLayout" initial={false}>
@@ -862,6 +884,7 @@ export default function AIChat({
                       size={20}
                       strokeWidth={1.8}
                       color="currentColor"
+                      aria-hidden={true}
                     />
                   </motion.span>
                 </AnimatePresence>
@@ -872,6 +895,8 @@ export default function AIChat({
                   e.stopPropagation();
                   toggleRecording();
                 }}
+                aria-label={isRecording ? "Stop voice input" : "Start voice input"}
+                aria-pressed={isRecording}
                 className="relative flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors before:absolute before:-inset-1 before:content-[''] hover:bg-accent hover:text-foreground"
                 animate={{ scale: isRecording ? 1.05 : 1 }}
                 whileTap={{ scale: 0.96 }}
@@ -881,6 +906,7 @@ export default function AIChat({
                   {isRecording ? (
                     <motion.div
                       key="waveform"
+                      aria-hidden={true}
                       initial={{ opacity: 0, scale: 0.25, filter: "blur(2px)" }}
                       animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                       exit={{ opacity: 0, scale: 0.25, filter: "blur(2px)" }}
@@ -909,6 +935,7 @@ export default function AIChat({
                         size={20}
                         strokeWidth={1.8}
                         color="currentColor"
+                        aria-hidden={true}
                       />
                     </motion.div>
                   )}
