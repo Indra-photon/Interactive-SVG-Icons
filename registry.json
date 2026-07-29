@@ -1284,25 +1284,6 @@
       ]
     },
     {
-      "name": "dots-bounce-default",
-      "type": "registry:ui",
-      "title": "Dots Bounce - Dots Bounce",
-      "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dots-bounce/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dots-bounce/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dots-compress-default",
       "type": "registry:ui",
       "title": "Dots Compress - Dots Compress",
@@ -1318,6 +1299,25 @@
           "path": "components/craftui/loaders/dots-compress/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dots-compress/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dots-bounce-default",
+      "type": "registry:ui",
+      "title": "Dots Bounce - Dots Bounce",
+      "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-bounce/default.tsx"
         }
       ]
     },
@@ -2126,6 +2126,23 @@
       ]
     },
     {
+      "name": "frosted-navbar-frosted-navbar",
+      "type": "registry:block",
+      "title": "Frosted Navbar - Frosted Navbar",
+      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
+        }
+      ]
+    },
+    {
       "name": "contact-reveal-card-default",
       "type": "registry:block",
       "title": "Contact Reveal Card - Contact Reveal Card",
@@ -2147,23 +2164,6 @@
       ]
     },
     {
-      "name": "frosted-navbar-frosted-navbar",
-      "type": "registry:block",
-      "title": "Frosted Navbar - Frosted Navbar",
-      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
-        }
-      ]
-    },
-    {
       "name": "category-ticker-vertical-marquee",
       "type": "registry:block",
       "title": "Vertical Marquee - Vertical Marquee",
@@ -2181,6 +2181,27 @@
           "path": "components/craftui/blocks/category-ticker/vertical-marquee.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/category-ticker/vertical-marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-chat-default",
+      "type": "registry:block",
+      "title": "AI Chat - AI Chat",
+      "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/ai-chat/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/ai-chat/default.tsx"
         }
       ]
     },
