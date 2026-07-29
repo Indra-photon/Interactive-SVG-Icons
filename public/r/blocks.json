@@ -515,12 +515,11 @@
           "componentName": "ProfileCard",
           "previewHint": "Tap the avatar in the top-right to expand the profile card",
           "features": [
-            "Shared layout animation (layoutId) morphs the avatar from 40px to a 310px card — no clone, one continuous motion",
-            "Avatar is a separate layoutId child so it independently transitions size and position",
-            "Flat menuItems array with a per-row dividerAfter flag — grouping without a nested array shape",
-            "Avatar, badges, and click handlers are all composable slots per menu item, same pattern as SubItem Navbar's panel slot",
-            "Dismiss overlay is scoped inside the phone frame so clicks outside the card close it",
-            "PRO badge, community badge, and active row highlight are all composable per menu item"
+            "Two shared layout transitions run in parallel on one duration spring (duration 0.5, bounce 0.25): layoutId \"profile-card\" projects the box from 40px to 310px while layoutId \"profile-avatar\" carries the avatar as its own child, so the avatar interpolates 36px to 42px as a circle instead of stretching with the widening container — one continuous morph, no clone or swap",
+            "Header text and menu rows live in a fade wrapper decoupled from the morph: opacity and a blur(4px) to blur(0px) filter animate on an ease-out tween delayed 0.18s, so content resolves into a card that has already settled rather than smearing during the layout projection",
+            "A menuReady gate holds the rows pointer-events-none for 400ms (the fade's 0.18s delay plus 0.2s duration) after open, so a fast press or the opening click's mouse-up can't activate a row while it is still invisible",
+            "splitIntoSegments derives dividers from a flat menuItems array: a per-row dividerAfter flag starts a new group, keeping badge, active-row highlight, and onClick as composable per-item slots without a nested array shape",
+            "Dismiss is an AnimatePresence overlay pinned absolute inset-0 to the component's own box (fades 0.15s) with the collapsed trigger switched to pointerEvents none while open; rows give a whileTap scale-0.98 press and focus as native motion.buttons, though the menu ships pointer-first with no role=\"menu\" contract or prefers-reduced-motion fallback yet"
           ],
           "responsive": true
         }
@@ -827,6 +826,90 @@
       ]
     },
     {
+      "slug": "contact-reveal-card",
+      "name": "Contact Reveal Card",
+      "category": "creative",
+      "tags": [
+        "card",
+        "hover",
+        "text",
+        "icon",
+        "creative",
+        "animation"
+      ],
+      "description": "A single identity string that reveals a different highlighted slice as you hover or select icons below it — profile, website, email, and Instagram each spotlight their own substring with a matching caption.",
+      "createdAt": "2026-07-19T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Contact Reveal Card",
+          "tier": "free",
+          "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
+          "animationType": "hover",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": false,
+              "description": "The full identity string every field highlights a slice of. Defaults to \"kumail@creatifly.co\"."
+            },
+            {
+              "name": "fields",
+              "type": "ContactField[]",
+              "required": false,
+              "description": "Icon + label + highlight range list. Defaults to Profile / Website / Email / Instagram, each mapped to a substring of `text`."
+            },
+            {
+              "name": "fields[].key",
+              "type": "string",
+              "required": true,
+              "description": "Unique identifier for the field."
+            },
+            {
+              "name": "fields[].icon",
+              "type": "HugeIcon",
+              "required": true,
+              "description": "HugeIcons icon component rendered in the icon row."
+            },
+            {
+              "name": "fields[].label",
+              "type": "string",
+              "required": true,
+              "description": "Caption shown under the text when this field is active."
+            },
+            {
+              "name": "fields[].highlight",
+              "type": "[number, number]",
+              "required": true,
+              "description": "Character range [start, end) of `text` this field highlights."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the root wrapper."
+            }
+          ],
+          "componentName": "ContactRevealCard",
+          "previewHint": "Hover an icon to preview, click to select — the highlighted text and caption follow",
+          "features": [
+            "Selection state splits into a hover preview (previewKey) and a committed selection (selectedKey) so touch devices work the same as hover — click always commits",
+            "The three text spans share a layout spring so the dashed-underline highlight resizes and repositions smoothly across differently-sized substrings, no remount",
+            "Caption crossfades on change with a short fade + slide, keyed by the active field",
+            "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
+            "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "frosted-navbar",
       "name": "Frosted Navbar",
       "category": "navbar",
@@ -934,90 +1017,6 @@
       "published": false
     },
     {
-      "slug": "contact-reveal-card",
-      "name": "Contact Reveal Card",
-      "category": "creative",
-      "tags": [
-        "card",
-        "hover",
-        "text",
-        "icon",
-        "creative",
-        "animation"
-      ],
-      "description": "A single identity string that reveals a different highlighted slice as you hover or select icons below it — profile, website, email, and Instagram each spotlight their own substring with a matching caption.",
-      "createdAt": "2026-07-19T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Contact Reveal Card",
-          "tier": "free",
-          "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
-          "animationType": "hover",
-          "dependencies": [
-            "motion",
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "text",
-              "type": "string",
-              "required": false,
-              "description": "The full identity string every field highlights a slice of. Defaults to \"kumail@creatifly.co\"."
-            },
-            {
-              "name": "fields",
-              "type": "ContactField[]",
-              "required": false,
-              "description": "Icon + label + highlight range list. Defaults to Profile / Website / Email / Instagram, each mapped to a substring of `text`."
-            },
-            {
-              "name": "fields[].key",
-              "type": "string",
-              "required": true,
-              "description": "Unique identifier for the field."
-            },
-            {
-              "name": "fields[].icon",
-              "type": "HugeIcon",
-              "required": true,
-              "description": "HugeIcons icon component rendered in the icon row."
-            },
-            {
-              "name": "fields[].label",
-              "type": "string",
-              "required": true,
-              "description": "Caption shown under the text when this field is active."
-            },
-            {
-              "name": "fields[].highlight",
-              "type": "[number, number]",
-              "required": true,
-              "description": "Character range [start, end) of `text` this field highlights."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the root wrapper."
-            }
-          ],
-          "componentName": "ContactRevealCard",
-          "previewHint": "Hover an icon to preview, click to select — the highlighted text and caption follow",
-          "features": [
-            "Selection state splits into a hover preview (previewKey) and a committed selection (selectedKey) so touch devices work the same as hover — click always commits",
-            "The three text spans share a layout spring so the dashed-underline highlight resizes and repositions smoothly across differently-sized substrings, no remount",
-            "Caption crossfades on change with a short fade + slide, keyed by the active field",
-            "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
-            "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
-          ],
-          "responsive": true
-        }
-      ]
-    },
-    {
       "slug": "category-ticker",
       "name": "Vertical Marquee",
       "category": "ticker",
@@ -1114,5 +1113,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T14:58:26.479Z"
+  "lastUpdated": "2026-07-28T21:00:16.457Z"
 }

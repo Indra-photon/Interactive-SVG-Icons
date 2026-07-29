@@ -3212,79 +3212,6 @@
       ]
     },
     {
-      "slug": "dots-compress",
-      "name": "Dots Compress",
-      "category": "loaders",
-      "tags": [
-        "dots",
-        "loading",
-        "compress",
-        "squeeze",
-        "morph"
-      ],
-      "description": "Three dots that compress from horizontal line to vertical stack",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dots Compress",
-          "componentName": "DotsCompress",
-          "tier": "free",
-          "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Initial width of the loader in horizontal state (pixels)"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the dots"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 12,
-              "description": "Diameter of each dot in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": [
-                0.455,
-                0.03,
-                0.515,
-                0.955
-              ],
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "dots-bounce",
       "name": "Dots Bounce",
       "category": "loaders",
@@ -3371,6 +3298,79 @@
               "min": 0,
               "max": 0.5,
               "step": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dots-compress",
+      "name": "Dots Compress",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "loading",
+        "compress",
+        "squeeze",
+        "morph"
+      ],
+      "description": "Three dots that compress from horizontal line to vertical stack",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dots Compress",
+          "componentName": "DotsCompress",
+          "tier": "free",
+          "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Initial width of the loader in horizontal state (pixels)"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.455,
+                0.03,
+                0.515,
+                0.955
+              ],
+              "description": "Easing function"
             }
           ]
         }
@@ -6041,5 +6041,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T14:58:26.513Z"
+  "lastUpdated": "2026-07-28T21:00:16.504Z"
 }

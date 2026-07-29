@@ -118,7 +118,7 @@ function UIVariationDetail({
                 <ul className="flex flex-col gap-2">
                   {variation.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2">
-                      <span className="corner-squircle shrink-0 mt-0.5 flex items-center justify-center rounded-[4px] size-4 bg-foreground">
+                      <span className="corner-squircle shrink-0 mt-1 flex items-center justify-center rounded-[4px] size-3.5 bg-foreground">
                         <HugeiconsIcon
                           icon={Tick01Icon}
                           size={12}
