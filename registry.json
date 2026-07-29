@@ -1284,25 +1284,6 @@
       ]
     },
     {
-      "name": "dots-compress-default",
-      "type": "registry:ui",
-      "title": "Dots Compress - Dots Compress",
-      "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dots-compress/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dots-compress/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dots-bounce-default",
       "type": "registry:ui",
       "title": "Dots Bounce - Dots Bounce",
@@ -1318,6 +1299,25 @@
           "path": "components/craftui/loaders/dots-bounce/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dots-bounce/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dots-compress-default",
+      "type": "registry:ui",
+      "title": "Dots Compress - Dots Compress",
+      "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-compress/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-compress/default.tsx"
         }
       ]
     },
@@ -2126,23 +2126,6 @@
       ]
     },
     {
-      "name": "frosted-navbar-frosted-navbar",
-      "type": "registry:block",
-      "title": "Frosted Navbar - Frosted Navbar",
-      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
-        }
-      ]
-    },
-    {
       "name": "contact-reveal-card-default",
       "type": "registry:block",
       "title": "Contact Reveal Card - Contact Reveal Card",
@@ -2160,6 +2143,23 @@
           "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "frosted-navbar-frosted-navbar",
+      "type": "registry:block",
+      "title": "Frosted Navbar - Frosted Navbar",
+      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
         }
       ]
     },

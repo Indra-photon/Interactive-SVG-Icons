@@ -18,31 +18,22 @@ import type { UIComponent } from "@/types/ui-component";
 interface UIPageShellProps {
   components: UIComponent[];
   sidebarSections: SidebarSectionConfig[];
-  firstSlug: string;
-  firstVariation: string;
 }
 
 export function UIPageShell({
   components,
   sidebarSections,
-  firstSlug,
-  firstVariation,
 }: UIPageShellProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const rawSlug = searchParams.get("slug") ?? undefined;
-  const rawVariation = searchParams.get("variation") ?? undefined;
+  const activeSlug = searchParams.get("slug") ?? undefined;
+  const activeVariation = searchParams.get("variation") ?? undefined;
 
-  const activeSlug = rawSlug ?? firstSlug;
-  const activeVariation = rawVariation ?? firstVariation;
-
+  // No slug means nothing to show here — send visitors to the gallery.
   useEffect(() => {
-    if (!rawSlug && firstSlug) {
-      const params = new URLSearchParams();
-      params.set("slug", firstSlug);
-      if (firstVariation) params.set("variation", firstVariation);
-      router.replace(`/ui?${params.toString()}`, { scroll: false });
+    if (!activeSlug) {
+      router.replace("/ui-gallery");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

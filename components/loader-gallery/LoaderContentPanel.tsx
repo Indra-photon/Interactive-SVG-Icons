@@ -162,9 +162,9 @@ function LoaderDetail({
 
           {variation.props?.length > 0 && (
             <div>
-              <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+              <Paragraph variant="Instruction-Heading" className="mb-3">
                 Props
-              </h2>
+              </Paragraph>
               <PropsTable
                 props={variation.props.map((prop) => ({
                   ...prop,

@@ -86,12 +86,11 @@
         }
       ],
       "features": [
-        "Shared layout animation (layoutId) morphs the avatar from 40px to a 310px card — no clone, one continuous motion",
-        "Avatar is a separate layoutId child so it independently transitions size and position",
-        "Flat menuItems array with a per-row dividerAfter flag — grouping without a nested array shape",
-        "Avatar, badges, and click handlers are all composable slots per menu item, same pattern as SubItem Navbar's panel slot",
-        "Dismiss overlay is scoped inside the phone frame so clicks outside the card close it",
-        "PRO badge, community badge, and active row highlight are all composable per menu item"
+        "Two shared layout transitions run in parallel on one duration spring (duration 0.5, bounce 0.25): layoutId \"profile-card\" projects the box from 40px to 310px while layoutId \"profile-avatar\" carries the avatar as its own child, so the avatar interpolates 36px to 42px as a circle instead of stretching with the widening container — one continuous morph, no clone or swap",
+        "Header text and menu rows live in a fade wrapper decoupled from the morph: opacity and a blur(4px) to blur(0px) filter animate on an ease-out tween delayed 0.18s, so content resolves into a card that has already settled rather than smearing during the layout projection",
+        "A menuReady gate holds the rows pointer-events-none for 400ms (the fade's 0.18s delay plus 0.2s duration) after open, so a fast press or the opening click's mouse-up can't activate a row while it is still invisible",
+        "splitIntoSegments derives dividers from a flat menuItems array: a per-row dividerAfter flag starts a new group, keeping badge, active-row highlight, and onClick as composable per-item slots without a nested array shape",
+        "Dismiss is an AnimatePresence overlay pinned absolute inset-0 to the component's own box (fades 0.15s) with the collapsed trigger switched to pointerEvents none while open; rows give a whileTap scale-0.98 press and focus as native motion.buttons, though the menu ships pointer-first with no role=\"menu\" contract or prefers-reduced-motion fallback yet"
       ],
       "inspiration": []
     }

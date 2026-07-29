@@ -170,9 +170,9 @@ function VariationDetail({
         {/* Props table */}
         {variation.props?.length > 0 && (
           <div className="mt-10">
-            <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
+            <Paragraph variant="Instruction-Heading" className="mb-3">
               Props
-            </h2>
+            </Paragraph>
             <PropsTable props={variation.props} showRequired />
           </div>
         )}
@@ -218,21 +218,26 @@ function VariationDetail({
         {/* Features */}
         {variation.features && variation.features.length > 0 && (
           <div className="mt-10">
-            <h2 className="text-xs font-mono uppercase tracking-widest text-primary/80 mb-3">
-              Features
-            </h2>
+            <Paragraph variant="Instruction-Heading" className="mb-3">
+              Design decisions taken here
+            </Paragraph>
             <ul className="flex flex-col gap-2">
               {variation.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-2">
-                  <span className="corner-squircle shrink-0 mt-0.5 flex items-center justify-center rounded-[4px] size-4 bg-linear-to-b from-primary/50 to-primary/90">
+                  <span className="corner-squircle shrink-0 mt-1 flex items-center justify-center rounded-[4px] size-3.5 bg-foreground">
                     <HugeiconsIcon
                       icon={Tick01Icon}
-                      size={10}
+                      size={12}
                       strokeWidth={2.5}
-                      className="text-white"
+                      className="text-background"
                     />
                   </span>
-                  <Paragraph variant="panel-Description">{feature}</Paragraph>
+                  <Paragraph
+                    variant="panel-Description"
+                    className="text-foreground/70"
+                  >
+                    {feature}
+                  </Paragraph>
                 </li>
               ))}
             </ul>

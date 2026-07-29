@@ -15,7 +15,7 @@ const buttonVariants = cva(
         secondary:
           "bg-[image:var(--gradient-button)] text-white shadow-[var(--gradient-button-shadow)] transition-[filter,transform,scale,box-shadow] hover:brightness-110",
         ghost:
-          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+          "bg-[image:var(--gradient-button-muted)] text-foreground shadow-[var(--gradient-button-muted-shadow)] transition-[filter,transform,scale,box-shadow] hover:brightness-95 dark:hover:brightness-110",
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",

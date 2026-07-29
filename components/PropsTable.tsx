@@ -25,22 +25,22 @@ export function PropsTable({
     <div className="overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
       <table className="w-full text-xs">
         <thead>
-          <tr className="bg-[image:var(--gradient-button)] shadow-[var(--gradient-button-shadow)]">
-            <th className="text-left text-xs font-mono font-semibold uppercase tracking-wide text-white/90 px-4 py-2.5">
+          <tr className="bg-[image:var(--gradient-button-muted)] shadow-[var(--gradient-button-muted-shadow)]">
+            <th className="text-left text-xs font-mono font-semibold uppercase tracking-wide text-foreground/90 px-4 py-2.5">
               Prop
             </th>
-            <th className="text-left font-mono font-semibold uppercase tracking-wide text-white/90 px-3 py-2.5">
+            <th className="text-left font-mono font-semibold uppercase tracking-wide text-foreground/90 px-3 py-2.5">
               Type
             </th>
-            <th className="text-left font-mono font-semibold uppercase tracking-wide text-white/90 px-3 py-2.5">
+            <th className="text-left font-mono font-semibold uppercase tracking-wide text-foreground/90 px-3 py-2.5">
               Default
             </th>
             {showRequired ? (
-              <th className="text-left font-mono font-semibold uppercase tracking-wide text-white/90 px-3 py-2.5">
+              <th className="text-left font-mono font-semibold uppercase tracking-wide text-foreground/90 px-3 py-2.5">
                 Required
               </th>
             ) : (
-              <th className="text-left font-mono font-semibold uppercase tracking-wide text-white/90 px-3 py-2.5">
+              <th className="text-left font-mono font-semibold uppercase tracking-wide text-foreground/90 px-3 py-2.5">
                 Values
               </th>
             )}
