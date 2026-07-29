@@ -826,90 +826,6 @@
       ]
     },
     {
-      "slug": "contact-reveal-card",
-      "name": "Contact Reveal Card",
-      "category": "creative",
-      "tags": [
-        "card",
-        "hover",
-        "text",
-        "icon",
-        "creative",
-        "animation"
-      ],
-      "description": "A single identity string that reveals a different highlighted slice as you hover or select icons below it — profile, website, email, and Instagram each spotlight their own substring with a matching caption.",
-      "createdAt": "2026-07-19T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Contact Reveal Card",
-          "tier": "free",
-          "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
-          "animationType": "hover",
-          "dependencies": [
-            "motion",
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "text",
-              "type": "string",
-              "required": false,
-              "description": "The full identity string every field highlights a slice of. Defaults to \"kumail@creatifly.co\"."
-            },
-            {
-              "name": "fields",
-              "type": "ContactField[]",
-              "required": false,
-              "description": "Icon + label + highlight range list. Defaults to Profile / Website / Email / Instagram, each mapped to a substring of `text`."
-            },
-            {
-              "name": "fields[].key",
-              "type": "string",
-              "required": true,
-              "description": "Unique identifier for the field."
-            },
-            {
-              "name": "fields[].icon",
-              "type": "HugeIcon",
-              "required": true,
-              "description": "HugeIcons icon component rendered in the icon row."
-            },
-            {
-              "name": "fields[].label",
-              "type": "string",
-              "required": true,
-              "description": "Caption shown under the text when this field is active."
-            },
-            {
-              "name": "fields[].highlight",
-              "type": "[number, number]",
-              "required": true,
-              "description": "Character range [start, end) of `text` this field highlights."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the root wrapper."
-            }
-          ],
-          "componentName": "ContactRevealCard",
-          "previewHint": "Hover an icon to preview, click to select — the highlighted text and caption follow",
-          "features": [
-            "Selection state splits into a hover preview (previewKey) and a committed selection (selectedKey) so touch devices work the same as hover — click always commits",
-            "The three text spans share a layout spring so the dashed-underline highlight resizes and repositions smoothly across differently-sized substrings, no remount",
-            "Caption crossfades on change with a short fade + slide, keyed by the active field",
-            "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
-            "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
-          ],
-          "responsive": true
-        }
-      ]
-    },
-    {
       "slug": "frosted-navbar",
       "name": "Frosted Navbar",
       "category": "navbar",
@@ -1017,6 +933,90 @@
       "published": false
     },
     {
+      "slug": "contact-reveal-card",
+      "name": "Contact Reveal Card",
+      "category": "creative",
+      "tags": [
+        "card",
+        "hover",
+        "text",
+        "icon",
+        "creative",
+        "animation"
+      ],
+      "description": "A single identity string that reveals a different highlighted slice as you hover or select icons below it — profile, website, email, and Instagram each spotlight their own substring with a matching caption.",
+      "createdAt": "2026-07-19T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Contact Reveal Card",
+          "tier": "free",
+          "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
+          "animationType": "hover",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": false,
+              "description": "The full identity string every field highlights a slice of. Defaults to \"kumail@creatifly.co\"."
+            },
+            {
+              "name": "fields",
+              "type": "ContactField[]",
+              "required": false,
+              "description": "Icon + label + highlight range list. Defaults to Profile / Website / Email / Instagram, each mapped to a substring of `text`."
+            },
+            {
+              "name": "fields[].key",
+              "type": "string",
+              "required": true,
+              "description": "Unique identifier for the field."
+            },
+            {
+              "name": "fields[].icon",
+              "type": "HugeIcon",
+              "required": true,
+              "description": "HugeIcons icon component rendered in the icon row."
+            },
+            {
+              "name": "fields[].label",
+              "type": "string",
+              "required": true,
+              "description": "Caption shown under the text when this field is active."
+            },
+            {
+              "name": "fields[].highlight",
+              "type": "[number, number]",
+              "required": true,
+              "description": "Character range [start, end) of `text` this field highlights."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the root wrapper."
+            }
+          ],
+          "componentName": "ContactRevealCard",
+          "previewHint": "Hover an icon to preview, click to select — the highlighted text and caption follow",
+          "features": [
+            "Selection state splits into a hover preview (previewKey) and a committed selection (selectedKey) so touch devices work the same as hover — click always commits",
+            "The three text spans share a layout spring so the dashed-underline highlight resizes and repositions smoothly across differently-sized substrings, no remount",
+            "Caption crossfades on change with a short fade + slide, keyed by the active field",
+            "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
+            "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "category-ticker",
       "name": "Vertical Marquee",
       "category": "ticker",
@@ -1110,8 +1110,173 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "ai-chat",
+      "name": "AI Chat",
+      "category": "Chat UI",
+      "tags": [
+        "chat",
+        "ai",
+        "prompt",
+        "input",
+        "composer",
+        "morph",
+        "layoutId",
+        "radial-menu",
+        "voice",
+        "waveform",
+        "dropdown",
+        "spring",
+        "interactive"
+      ],
+      "description": "An AI prompt composer built around a light input card floating over an inverse-shell control row. The mode and model pickers morph from pill to panel via shared layoutId springs, the plus button fans a radial attachment menu, the tool chips stagger in with a cross-blur, and the mic swaps to a live waveform while a typewriter transcript slides in above. Every list — attachments, tools, modes, models, transcript phrases — is a prop, selection is controlled or uncontrolled per dimension, and the whole surface is driven by globals.css theme tokens so it flips cleanly between light and dark.",
+      "createdAt": "2026-07-29T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "AI Chat",
+          "tier": "free",
+          "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension. The pickers ship as full APG menus (roving tabindex, arrow-key navigation, focus restore), every control carries an accessible name, closed reveals are inert, the transcript announces through an aria-live region, and all motion honors prefers-reduced-motion.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "heading",
+              "type": "string",
+              "default": "\"Ready when you are.\"",
+              "description": "Headline above the composer. Dims to 0.35 opacity while recording."
+            },
+            {
+              "name": "placeholder",
+              "type": "string",
+              "default": "\"Our AI is ready to help. Ask it anything...\"",
+              "description": "Placeholder text for the prompt input."
+            },
+            {
+              "name": "arcItems",
+              "type": "ArcItem[]",
+              "default": "built-in 4 (Photo, Video, File, Attach)",
+              "description": "Radial menu items fanned out by the plus button. Each: { icon, label, angle? }. Omit angle and items auto-distribute across a 110° arc; provide it to pin a fixed angle."
+            },
+            {
+              "name": "toolItems",
+              "type": "ToolItem[]",
+              "default": "built-in 4 (Create image, Thinking, Deep research, Web search)",
+              "description": "Tool chips revealed by the sparkle button. Each: { icon, label }. The selected tool's icon replaces the sparkle glyph."
+            },
+            {
+              "name": "modes",
+              "type": "ChatModeOption[]",
+              "default": "built-in 3 (Ask, Plan, Build)",
+              "description": "Mode picker options. Each: { id, label, icon, desc }. Rendered as the left morphing pill/panel."
+            },
+            {
+              "name": "models",
+              "type": "ModelOption[]",
+              "default": "built-in 6",
+              "description": "Model picker options. Each: { id, label, tier, color }. color paints the round monogram badge; the list scrolls past six entries."
+            },
+            {
+              "name": "mockPhrases",
+              "type": "string[]",
+              "default": "built-in 4",
+              "description": "Phrase pool the mock voice recording types out. A random entry is chosen each time recording starts."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "description": "Controlled input value. When set, the composer input is controlled — pair with onValueChange."
+            },
+            {
+              "name": "defaultValue",
+              "type": "string",
+              "default": "\"\"",
+              "description": "Uncontrolled initial input value."
+            },
+            {
+              "name": "onValueChange",
+              "type": "(value: string) => void",
+              "description": "Fires on every input change, and when an accepted transcript is pushed into the field."
+            },
+            {
+              "name": "onSubmit",
+              "type": "(value: string) => void",
+              "description": "Fires when Enter is pressed (without Shift) in the input."
+            },
+            {
+              "name": "defaultModeId",
+              "type": "string",
+              "default": "first mode",
+              "description": "Uncontrolled initial mode selection, by id."
+            },
+            {
+              "name": "modeId",
+              "type": "string",
+              "description": "Controlled mode selection, by id. When set, the mode dimension is controlled."
+            },
+            {
+              "name": "onModeChange",
+              "type": "(mode: ChatModeOption) => void",
+              "description": "Fires with the full option after a mode is picked."
+            },
+            {
+              "name": "defaultModelId",
+              "type": "string",
+              "default": "first model",
+              "description": "Uncontrolled initial model selection, by id."
+            },
+            {
+              "name": "modelId",
+              "type": "string",
+              "description": "Controlled model selection, by id. When set, the model dimension is controlled."
+            },
+            {
+              "name": "onModelChange",
+              "type": "(model: ModelOption) => void",
+              "description": "Fires with the full option after a model is picked."
+            },
+            {
+              "name": "onToolChange",
+              "type": "(tool: ToolItem | null) => void",
+              "description": "Fires when a tool chip is toggled — the option when selected, null when the same chip is deselected."
+            },
+            {
+              "name": "onAttach",
+              "type": "(item: ArcItem) => void",
+              "description": "Fires when a radial attachment item is clicked."
+            },
+            {
+              "name": "onRecordingChange",
+              "type": "(recording: boolean) => void",
+              "description": "Fires when the mic toggles the recording state on or off."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "description": "Extra classes merged onto the composer's max-width wrapper."
+            }
+          ],
+          "componentName": "AIChat",
+          "previewHint": "Open the plus (radial attachments), the sparkle (tool chips), and the mode/model pills (morphing panels), then tap the mic to watch it swap to a waveform with a typewriter transcript",
+          "features": [
+            "Morphs the mode and model pickers between a collapsed pill and an expanded panel via a shared layoutId, springing size, position, and border-radius in one motion while the inner content cross-fades through a blur",
+            "Fans the plus button's attachment items out along an arc from per-item sin/cos offsets, rotating the trigger 45° and staggering each item on a stiffness/damping spring",
+            "Reveals tool chips with a reverse-stagger panel drop — y-translate plus a 2px cross-blur on the transitions-dev ease — and swaps the sparkle glyph for the selected tool's icon through an AnimatePresence popLayout cross-fade",
+            "Cross-fades the mic into a height-keyframe waveform and slides a typewriter transcript panel in above the input, dimming the heading, input, and controls to 0.35 while recording",
+            "Implements the mode and model dropdowns as full APG menus — role=\"menu\" with menuitemradio options, aria-checked selection, roving tabindex, Arrow/Home/End navigation, Escape, and focus moved into the panel on open then returned to the trigger on close",
+            "Ships the accessibility contract with the block: accessible names on every icon-only control, a visually hidden label for the prompt, aria-expanded disclosures whose closed reveals are inert, an aria-live transcript region, and a prefers-reduced-motion fallback across the morph, waveform, caret, and typewriter"
+          ],
+          "responsive": true
+        }
+      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-28T21:00:16.457Z"
+  "lastUpdated": "2026-07-29T11:55:42.453Z"
 }
