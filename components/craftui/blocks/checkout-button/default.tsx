@@ -82,8 +82,8 @@ const DEFAULT_WALLETS: Wallet[] = [
 const SHELL_ID = "checkout-button-shell";
 const EASE_OUT: [number, number, number, number] = [0.215, 0.61, 0.355, 1];
 
-const EXPAND_SPRING = { type: "spring", duration: 0.25, bounce: 0.05 } as const;
-const COLLAPSE_SPRING = { type: "spring", duration: 0.2, bounce: 0 } as const;
+const EXPAND_SPRING = { type: "spring", duration: 0.3, bounce: 0.05 } as const;
+const COLLAPSE_SPRING = { type: "spring", duration: 0.28, bounce: 0 } as const;
 
 const FADE_IN = { duration: 0.18, ease: EASE_OUT } as const;
 const FADE_OUT = { duration: 0.12, ease: EASE_OUT } as const;
@@ -109,12 +109,12 @@ const STEP_EXIT = {
 function Field({ label, placeholder }: { label: string; placeholder: string }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[11px] font-medium tracking-wide text-[#8e8e93] uppercase">
+      <span className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
         {label}
       </span>
       <input
         placeholder={placeholder}
-        className="h-10 rounded-lg border border-[#2c2c2e] bg-[#111113] px-3 text-sm text-white transition-colors outline-none placeholder:text-[#5a5a5f] focus:border-[#2090ff]"
+        className="h-10 rounded-lg border border-border bg-muted px-3 text-sm text-foreground transition-colors outline-none placeholder:text-muted-foreground/70 focus:border-primary"
       />
     </label>
   );
@@ -133,7 +133,7 @@ function IconButton({
     <button
       onClick={onClick}
       aria-label={label}
-      className="flex size-8 items-center justify-center rounded-full border border-[#2c2c2e] text-[#8e8e93] transition-colors hover:bg-white/10 hover:text-white"
+      className="flex size-8 items-center justify-center rounded-full text-muted-foreground shadow-[var(--input-shadow)] transition-[color,background-color,box-shadow] hover:bg-accent hover:text-foreground hover:shadow-[var(--input-shadow-hover)]"
     >
       <HugeiconsIcon icon={icon} size={16} />
     </button>
@@ -150,7 +150,7 @@ function MethodTabs({
   onSelect: (m: MethodId) => void;
 }) {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 px-[2px]">
       {methods.map((m) => {
         const selected = m.id === current;
         return (
@@ -159,7 +159,7 @@ function MethodTabs({
             onClick={() => onSelect(m.id)}
             aria-label={m.label}
             aria-pressed={selected}
-            className="relative flex h-12 flex-1 items-center justify-center rounded-xl border border-[#2c2c2e] bg-[#111113] transition-colors hover:bg-[#1a1a1c]"
+            className="relative flex h-12 flex-1 items-center justify-center rounded-xl bg-muted shadow-[var(--input-shadow)] transition-[color,background-color,box-shadow] hover:bg-accent hover:shadow-[var(--input-shadow-hover)]"
           >
             {selected && (
               <motion.div
@@ -172,7 +172,9 @@ function MethodTabs({
               icon={m.icon}
               size={20}
               className={
-                selected ? "relative text-white" : "relative text-[#8e8e93]"
+                selected
+                  ? "relative text-foreground"
+                  : "relative text-muted-foreground"
               }
             />
           </button>
@@ -184,12 +186,12 @@ function MethodTabs({
 
 function PayButton({ label, onPay }: { label: string; onPay: () => void }) {
   return (
-    <div className="mt-4">
+    <div className="mt-4 px-1">
       <motion.button
         layoutId="pay-action"
         onClick={onPay}
         transition={MORPH}
-        className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#2090ff] text-sm font-semibold text-white transition-colors hover:bg-[#1a7fe0]"
+        className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
       >
         <HugeiconsIcon icon={SquareLock01Icon} size={15} />
         {label}
@@ -200,22 +202,22 @@ function PayButton({ label, onPay }: { label: string; onPay: () => void }) {
 
 function ConnectWalletCta({ onConnect }: { onConnect: () => void }) {
   return (
-    <div className="mt-4">
+    <div className="mt-4 px-1">
       <motion.div
         layout="position"
         transition={MORPH}
         className="flex items-center gap-3"
       >
-        <span className="h-px flex-1 bg-[#2c2c2e]" />
-        <span className="text-xs font-medium text-[#8e8e93]">OR</span>
-        <span className="h-px flex-1 bg-[#2c2c2e]" />
+        <span className="h-px flex-1 bg-border" />
+        <span className="text-xs font-medium text-muted-foreground">OR</span>
+        <span className="h-px flex-1 bg-border" />
       </motion.div>
       <motion.button
         layoutId="wallet-action"
         onClick={onConnect}
         transition={MORPH}
         style={{ borderRadius: 12 }}
-        className="mt-4 flex h-11 w-full items-center justify-center gap-2 border border-[#2c2c2e] bg-[#151517] text-sm font-semibold text-white transition-colors hover:bg-[#1a1a1c]"
+        className="mt-4 flex h-11 w-full items-center justify-center gap-2 bg-secondary text-sm font-semibold text-foreground shadow-[var(--input-shadow)] transition-[color,background-color,box-shadow] hover:bg-accent hover:shadow-[var(--input-shadow-hover)]"
       >
         <HugeiconsIcon icon={Wallet01Icon} size={16} />
         Connect Wallet
@@ -237,7 +239,7 @@ function QrPanel({ amount, qrSrc }: { amount: string; qrSrc: string }) {
           unoptimized
         />
       </div>
-      <p className="text-sm text-[#8e8e93]">
+      <p className="text-sm text-muted-foreground">
         Scan with any payments app to pay {amount}
       </p>
     </div>
@@ -265,18 +267,22 @@ function ApplePanel({
 }) {
   return (
     <div className="flex min-h-[180px] flex-col items-center justify-center gap-4">
-      <div className="flex size-16 items-center justify-center rounded-2xl border border-[#2c2c2e] bg-[#111113]">
-        <HugeiconsIcon icon={Apple01Icon} size={30} className="text-white" />
+      <div className="flex size-16 items-center justify-center rounded-2xl bg-muted shadow-[var(--input-shadow)]">
+        <HugeiconsIcon
+          icon={Apple01Icon}
+          size={30}
+          className="text-foreground"
+        />
       </div>
-      <div className="w-full rounded-xl border border-[#2c2c2e] bg-[#111113] px-3.5 py-3">
+      <div className="w-full rounded-xl bg-muted px-3.5 py-3 shadow-[var(--input-shadow)]">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-[#8e8e93]">Apple Card</span>
-          <span className="text-sm font-medium text-white">
+          <span className="text-sm text-muted-foreground">Apple Card</span>
+          <span className="text-sm font-medium text-foreground">
             •••• {cardLast4}
           </span>
         </div>
       </div>
-      <p className="text-center text-sm text-[#8e8e93]">
+      <p className="text-center text-sm text-muted-foreground">
         Double-click the side button to pay {amount}.
       </p>
     </div>
@@ -294,20 +300,26 @@ function AmazonPanel({
 }) {
   return (
     <div className="flex min-h-[210px] flex-col items-center justify-center gap-4">
-      <div className="flex size-16 items-center justify-center rounded-2xl border border-[#2c2c2e] bg-[#111113]">
-        <HugeiconsIcon icon={AmazonIcon} size={30} className="text-white" />
+      <div className="flex size-16 items-center justify-center rounded-2xl bg-muted shadow-[var(--input-shadow)]">
+        <HugeiconsIcon
+          icon={AmazonIcon}
+          size={30}
+          className="text-foreground"
+        />
       </div>
       <div className="w-full space-y-2">
-        <div className="flex items-center justify-between rounded-xl border border-[#2c2c2e] bg-[#111113] px-3.5 py-2.5">
-          <span className="text-sm text-[#8e8e93]">Account</span>
-          <span className="text-sm font-medium text-white">{account}</span>
+        <div className="flex items-center justify-between rounded-xl bg-muted px-3.5 py-2.5 shadow-[var(--input-shadow)]">
+          <span className="text-sm text-muted-foreground">Account</span>
+          <span className="text-sm font-medium text-foreground">{account}</span>
         </div>
-        <div className="flex items-center justify-between rounded-xl border border-[#2c2c2e] bg-[#111113] px-3.5 py-2.5">
-          <span className="text-sm text-[#8e8e93]">Gift card balance</span>
-          <span className="text-sm font-medium text-white">{balance}</span>
+        <div className="flex items-center justify-between rounded-xl bg-muted px-3.5 py-2.5 shadow-[var(--input-shadow)]">
+          <span className="text-sm text-muted-foreground">
+            Gift card balance
+          </span>
+          <span className="text-sm font-medium text-foreground">{balance}</span>
         </div>
       </div>
-      <p className="text-center text-sm text-[#8e8e93]">
+      <p className="text-center text-sm text-muted-foreground">
         Pay {amount} with your Amazon account.
       </p>
     </div>
@@ -383,10 +395,10 @@ function PaymentScreen({
   const label = method === "qr" ? `Pay ${amount} manually` : `Pay ${amount}`;
   return (
     <>
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-5 flex items-center justify-between px-1 py-1">
         <div>
-          <h2 className="text-xl font-semibold text-white">{title}</h2>
-          <p className="mt-0.5 text-sm text-[#8e8e93]">{subtitle}</p>
+          <h2 className="text-xl font-semibold text-foreground">{title}</h2>
+          <p className="mt-0.5 text-sm text-muted-foreground">{subtitle}</p>
         </div>
         <IconButton onClick={onClose} label="Close" icon={Cancel01Icon} />
       </div>
@@ -435,9 +447,11 @@ function ConnectWalletScreen({
 }) {
   return (
     <>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between px-1 py-1">
         <IconButton onClick={onBack} label="Back" icon={ArrowLeft01Icon} />
-        <h2 className="text-lg font-semibold text-white">Connect Wallet</h2>
+        <h2 className="text-lg font-semibold text-foreground">
+          Connect Wallet
+        </h2>
         <IconButton onClick={onClose} label="Close" icon={Cancel01Icon} />
       </div>
 
@@ -446,7 +460,7 @@ function ConnectWalletScreen({
           <button
             key={w.id}
             onClick={() => onConnect(w.id)}
-            className="flex items-center gap-3 rounded-xl border border-[#2c2c2e] bg-[#151517] px-3 py-2.5 text-left transition-colors hover:bg-[#1a1a1c]"
+            className="flex items-center gap-3 rounded-xl bg-secondary px-3 py-2.5 text-left shadow-[var(--input-shadow)] transition-[color,background-color,box-shadow] hover:bg-accent hover:shadow-[var(--input-shadow-hover)]"
           >
             <span
               className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-lg text-lg leading-none"
@@ -458,18 +472,18 @@ function ConnectWalletScreen({
                 w.emoji
               )}
             </span>
-            <span className="flex-1 text-[15px] font-semibold text-white">
+            <span className="flex-1 text-[15px] font-semibold text-foreground">
               {w.name}
             </span>
             {w.badge && (
-              <span className="rounded-full bg-[#2c2c2e] px-2 py-0.5 text-xs font-medium text-[#8e8e93]">
+              <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                 {w.badge}
               </span>
             )}
             <HugeiconsIcon
               icon={ArrowRight01Icon}
               size={16}
-              className="text-[#5a5a5f]"
+              className="text-muted-foreground"
             />
           </button>
         ))}
@@ -479,8 +493,8 @@ function ConnectWalletScreen({
         layoutId="wallet-action"
         onClick={onCreate}
         transition={MORPH}
-        style={{ borderRadius: 9999 }}
-        className="mt-4 flex h-11 w-full items-center justify-center gap-2 bg-[#2090ff] text-sm font-semibold text-white transition-colors hover:bg-[#1a7fe0]"
+        style={{ borderRadius: 12 }}
+        className="mt-4 flex h-11 w-full items-center justify-center gap-2 bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
       >
         <HugeiconsIcon icon={Add01Icon} size={16} />
         Create a New Wallet
@@ -546,12 +560,7 @@ function CheckoutButton({
   const handleCreate = () => onCreateWallet?.();
 
   return (
-    <div
-      className={cn(
-        "flex h-screen items-center justify-center",
-        className,
-      )}
-    >
+    <div className={cn("flex h-screen items-center justify-center", className)}>
       <AnimatePresence mode="popLayout">
         {!isOpen && (
           <motion.div
@@ -561,7 +570,7 @@ function CheckoutButton({
             onClick={() => setIsOpen(true)}
             transition={shellTransition}
             style={{ borderRadius: 10 }}
-            className="flex h-9 cursor-pointer items-center gap-2 overflow-hidden border border-[#2c2c2e] bg-[#1c1c1e] px-3 text-sm font-medium text-white shadow-md select-none"
+            className="flex h-9 cursor-pointer items-center gap-2 overflow-hidden bg-card px-3 text-sm font-medium text-foreground shadow-[var(--input-shadow),0_2px_8px_-2px_rgba(0,0,0,0.2)] select-none"
           >
             <motion.div
               layout="position"
@@ -586,7 +595,7 @@ function CheckoutButton({
             transition={shellTransition}
             onLayoutAnimationComplete={() => setOpened(true)}
             style={{ borderRadius: 20 }}
-            className="w-[340px] overflow-hidden border border-[#2c2c2e] bg-[#1c1c1e] p-5 shadow-2xl"
+            className="w-[340px] overflow-hidden bg-card p-5 shadow-[var(--input-shadow),0_20px_50px_-12px_rgba(0,0,0,0.4)]"
           >
             <motion.div
               layout="position"

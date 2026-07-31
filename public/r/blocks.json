@@ -1318,7 +1318,7 @@
               "name": "models",
               "type": "ModelOption[]",
               "default": "built-in 6",
-              "description": "Model picker options. Each: { id, label, tier, color }. color paints the round monogram badge; the list scrolls past six entries."
+              "description": "Model picker options. Each: { id, label, tier, color, icon? }. color paints the round badge; icon renders inside it (falling back to the label's first letter when omitted); the list scrolls past six entries."
             },
             {
               "name": "mockPhrases",
@@ -1416,5 +1416,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-31T08:52:05.634Z"
+  "lastUpdated": "2026-07-31T09:17:42.457Z"
 }

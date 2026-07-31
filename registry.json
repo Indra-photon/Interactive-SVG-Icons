@@ -1445,25 +1445,6 @@
       ]
     },
     {
-      "name": "conic-spinner-default",
-      "type": "registry:ui",
-      "title": "Conic Spinner - Conic Spinner",
-      "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/conic-spinner/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/conic-spinner/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "cross-expand-default",
       "type": "registry:ui",
       "title": "Cross Expand - Cross Expand",
@@ -1479,6 +1460,25 @@
           "path": "components/craftui/loaders/cross-expand/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/cross-expand/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "conic-spinner-default",
+      "type": "registry:ui",
+      "title": "Conic Spinner - Conic Spinner",
+      "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/conic-spinner/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/conic-spinner/default.tsx"
         }
       ]
     },
@@ -2330,6 +2330,66 @@
       }
     },
     {
+      "name": "button-whimsical",
+      "type": "registry:ui",
+      "title": "Button - Whimsical",
+      "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/button/whimsical.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/button/whimsical.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-confetti",
+      "type": "registry:ui",
+      "title": "Button - Confetti Burst",
+      "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/button/confetti.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/button/confetti.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-scramble",
+      "type": "registry:ui",
+      "title": "Button - Scramble Text",
+      "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
+      "dependencies": [
+        "motion/react"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/button/scramble.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/button/scramble.tsx"
+        }
+      ]
+    },
+    {
       "name": "alert-dialog-scale",
       "type": "registry:ui",
       "title": "Alert Dialog - Scale",
@@ -2452,66 +2512,6 @@
           "path": "components/craftui/ui/alert-dialog/reactive.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/ui/alert-dialog/reactive.tsx"
-        }
-      ]
-    },
-    {
-      "name": "button-whimsical",
-      "type": "registry:ui",
-      "title": "Button - Whimsical",
-      "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
-      "dependencies": [
-        "motion/react"
-      ],
-      "registryDependencies": [
-        "craftui-base",
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/ui/button/whimsical.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/button/whimsical.tsx"
-        }
-      ]
-    },
-    {
-      "name": "button-confetti",
-      "type": "registry:ui",
-      "title": "Button - Confetti Burst",
-      "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
-      "dependencies": [
-        "motion/react"
-      ],
-      "registryDependencies": [
-        "craftui-base",
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/ui/button/confetti.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/button/confetti.tsx"
-        }
-      ]
-    },
-    {
-      "name": "button-scramble",
-      "type": "registry:ui",
-      "title": "Button - Scramble Text",
-      "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
-      "dependencies": [
-        "motion/react"
-      ],
-      "registryDependencies": [
-        "craftui-base",
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/ui/button/scramble.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/button/scramble.tsx"
         }
       ]
     },
