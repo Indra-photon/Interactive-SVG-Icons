@@ -59,8 +59,8 @@ export interface CheckoutButtonProps {
 }
 
 const DEFAULT_METHODS: PaymentMethod[] = [
-  { id: "qr", label: "QR code", icon: QrCodeIcon },
   { id: "card", label: "Card", icon: CreditCardIcon },
+  { id: "qr", label: "QR code", icon: QrCodeIcon },
   { id: "apple", label: "Apple Pay", icon: Apple01Icon },
   { id: "amazon", label: "Amazon Pay", icon: AmazonIcon },
 ];
@@ -80,30 +80,30 @@ const DEFAULT_WALLETS: Wallet[] = [
 ];
 
 const SHELL_ID = "checkout-button-shell";
+const INITIAL_METHOD: MethodId = "card";
 const EASE_OUT: [number, number, number, number] = [0.215, 0.61, 0.355, 1];
 
 const EXPAND_SPRING = { type: "spring", duration: 0.3, bounce: 0.16 } as const;
 const COLLAPSE_SPRING = { type: "spring", duration: 0.25, bounce: 0 } as const;
 
 const FADE_IN = { duration: 0.18, ease: EASE_OUT } as const;
+const FADE_IN_FIRST = { duration: 0.3, ease: EASE_OUT } as const;
 const FADE_OUT = { duration: 0.12, ease: EASE_OUT } as const;
 const MORPH = { type: "spring", bounce: 0, duration: 0.18 } as const;
 
 const CONTENT_IN = FADE_IN;
 const CONTENT_OUT = FADE_OUT;
 
-const STEP_INITIAL = { opacity: 0, scale: 0.96, filter: "blur(4px)" } as const;
+const STEP_INITIAL = { opacity: 0, filter: "blur(6px)" } as const;
 const STEP_ANIMATE = {
   opacity: 1,
-  scale: 1,
   filter: "blur(0px)",
-  transition: FADE_IN,
+  transition: FADE_IN_FIRST,
 } as const;
 const STEP_EXIT = {
   opacity: 0,
-  scale: 0.96,
-  filter: "blur(4px)",
-  transition: FADE_OUT,
+  filter: "blur(6px)",
+  transition: COLLAPSE_SPRING,
 } as const;
 
 function Field({ label, placeholder }: { label: string; placeholder: string }) {
@@ -520,12 +520,15 @@ function CheckoutButton({
   onCreateWallet,
   className,
 }: CheckoutButtonProps) {
+  const initialMethod =
+    methods.find((m) => m.id === INITIAL_METHOD)?.id ?? methods[0]?.id ?? "qr";
+
   const [isOpen, setIsOpen] = React.useState(false);
-  const [step, setStep] = React.useState<Step>(methods[0]?.id ?? "qr");
+  const [step, setStep] = React.useState<Step>(initialMethod);
   const [bodyRef, { height }] = useMeasure({ offsetSize: true });
   const shouldReduceMotion = useReducedMotion();
   const [opened, setOpened] = React.useState(false);
-  const prevPayStep = React.useRef<MethodId>(methods[0]?.id ?? "qr");
+  const prevPayStep = React.useRef<MethodId>(initialMethod);
 
   const resolvedSubtitle = subtitle ?? `Support with ${amount}`;
 
@@ -547,7 +550,7 @@ function CheckoutButton({
   const close = () => {
     setIsOpen(false);
     setOpened(false);
-    setTimeout(() => setStep(methods[0]?.id ?? "qr"), 300);
+    setTimeout(() => setStep(initialMethod), 300);
   };
 
   const handlePay = () => {
