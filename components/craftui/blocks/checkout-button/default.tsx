@@ -82,8 +82,8 @@ const DEFAULT_WALLETS: Wallet[] = [
 const SHELL_ID = "checkout-button-shell";
 const EASE_OUT: [number, number, number, number] = [0.215, 0.61, 0.355, 1];
 
-const EXPAND_SPRING = { type: "spring", duration: 0.3, bounce: 0.05 } as const;
-const COLLAPSE_SPRING = { type: "spring", duration: 0.28, bounce: 0 } as const;
+const EXPAND_SPRING = { type: "spring", duration: 0.3, bounce: 0.16 } as const;
+const COLLAPSE_SPRING = { type: "spring", duration: 0.25, bounce: 0 } as const;
 
 const FADE_IN = { duration: 0.18, ease: EASE_OUT } as const;
 const FADE_OUT = { duration: 0.12, ease: EASE_OUT } as const;
@@ -570,7 +570,7 @@ function CheckoutButton({
             onClick={() => setIsOpen(true)}
             transition={shellTransition}
             style={{ borderRadius: 10 }}
-            className="flex h-9 cursor-pointer items-center gap-2 overflow-hidden bg-card px-3 text-sm font-medium text-foreground shadow-[var(--input-shadow),0_2px_8px_-2px_rgba(0,0,0,0.2)] select-none"
+            className="flex h-9 cursor-pointer items-center gap-2 overflow-hidden bg-card px-3 text-sm font-medium text-foreground select-none"
           >
             <motion.div
               layout="position"
@@ -595,7 +595,7 @@ function CheckoutButton({
             transition={shellTransition}
             onLayoutAnimationComplete={() => setOpened(true)}
             style={{ borderRadius: 20 }}
-            className="w-[340px] overflow-hidden bg-card p-5 shadow-[var(--input-shadow),0_20px_50px_-12px_rgba(0,0,0,0.4)]"
+            className="w-[340px] overflow-hidden bg-card p-5"
           >
             <motion.div
               layout="position"
