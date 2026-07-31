@@ -1017,6 +1017,144 @@
       ]
     },
     {
+      "slug": "checkout-button",
+      "name": "Check out Button",
+      "category": "payment-block",
+      "tags": [
+        "payment",
+        "checkout",
+        "wallet",
+        "morph",
+        "layout",
+        "click"
+      ],
+      "description": "A compact trigger button that morphs into a checkout card with tabbed payment methods (QR, card, Apple Pay, Amazon Pay) and a connect-wallet screen, all sharing one layout shell.",
+      "createdAt": "2026-07-31T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Check out Button",
+          "tier": "free",
+          "description": "A compact trigger button that morphs into a checkout card with tabbed payment methods (QR, card, Apple Pay, Amazon Pay) and a connect-wallet screen, all sharing one layout shell.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "react-use-measure",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [
+            "utils"
+          ],
+          "props": [
+            {
+              "name": "amount",
+              "type": "string",
+              "default": "\"$5.00\"",
+              "required": false,
+              "description": "Charge amount shown across the header, tabs, and pay button copy"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "default": "\"Buy me a coffee\"",
+              "required": false,
+              "description": "Heading of the expanded checkout card"
+            },
+            {
+              "name": "subtitle",
+              "type": "string",
+              "default": "`Support with ${amount}`",
+              "required": false,
+              "description": "Sub-heading under the title; falls back to a support line built from amount"
+            },
+            {
+              "name": "triggerLabel",
+              "type": "string",
+              "default": "\"Buy me a coffee\"",
+              "required": false,
+              "description": "Text of the collapsed trigger button"
+            },
+            {
+              "name": "triggerIcon",
+              "type": "HugeIcon",
+              "default": "CreditCardIcon",
+              "required": false,
+              "description": "Icon rendered inside the collapsed trigger button"
+            },
+            {
+              "name": "methods",
+              "type": "PaymentMethod[]",
+              "default": "DEFAULT_METHODS",
+              "required": false,
+              "description": "Array of { id, label, icon } tabs; the first entry is the initial and reset step"
+            },
+            {
+              "name": "wallets",
+              "type": "Wallet[]",
+              "default": "DEFAULT_WALLETS",
+              "required": false,
+              "description": "Array of { id, name, emoji?, bg, badge?, icon? } rows on the connect-wallet screen"
+            },
+            {
+              "name": "qrSrc",
+              "type": "string",
+              "default": "buymeacoffee QR URL",
+              "required": false,
+              "description": "Image source for the QR-code payment panel"
+            },
+            {
+              "name": "applyCardLast4",
+              "type": "string",
+              "default": "\"4242\"",
+              "required": false,
+              "description": "Last four digits shown on the Apple Pay card row"
+            },
+            {
+              "name": "amazonAccount",
+              "type": "string",
+              "default": "\"indra@acme.com\"",
+              "required": false,
+              "description": "Account label shown on the Amazon Pay panel"
+            },
+            {
+              "name": "amazonBalance",
+              "type": "string",
+              "default": "\"$12.40\"",
+              "required": false,
+              "description": "Gift-card balance shown on the Amazon Pay panel"
+            },
+            {
+              "name": "onPay",
+              "type": "function",
+              "required": false,
+              "description": "Callback fired when the pay button is pressed, receives the active method id"
+            },
+            {
+              "name": "onConnectWallet",
+              "type": "function",
+              "required": false,
+              "description": "Callback fired when a wallet row is tapped, receives the wallet id"
+            },
+            {
+              "name": "onCreateWallet",
+              "type": "function",
+              "required": false,
+              "description": "Callback fired when the Create a New Wallet button is pressed"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Merged onto the root wrapper via cn for call-site layout overrides"
+            }
+          ],
+          "componentName": "CheckoutButton",
+          "previewHint": "Click the button to expand the checkout card, switch payment tabs, then open Connect Wallet"
+        }
+      ]
+    },
+    {
       "slug": "category-ticker",
       "name": "Vertical Marquee",
       "category": "ticker",
@@ -1180,7 +1318,7 @@
               "name": "models",
               "type": "ModelOption[]",
               "default": "built-in 6",
-              "description": "Model picker options. Each: { id, label, tier, color }. color paints the round monogram badge; the list scrolls past six entries."
+              "description": "Model picker options. Each: { id, label, tier, color, icon? }. color paints the round badge; icon renders inside it (falling back to the label's first letter when omitted); the list scrolls past six entries."
             },
             {
               "name": "mockPhrases",
@@ -1278,5 +1416,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-07-29T11:55:42.453Z"
+  "lastUpdated": "2026-07-31T09:17:42.457Z"
 }

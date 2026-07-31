@@ -26,6 +26,11 @@ import {
   MessageQuestionIcon,
   TaskDaily01Icon,
   SourceCodeIcon,
+  NeuralNetworkIcon,
+  AiBrain01Icon,
+  CpuIcon,
+  AiMagicIcon,
+  Atom01Icon,
 } from "@hugeicons/core-free-icons";
 
 export type HugeIcon = typeof SparklesIcon;
@@ -53,6 +58,7 @@ export interface ModelOption {
   label: string;
   tier: string;
   color: string;
+  icon?: HugeIcon;
 }
 
 export interface AIChatProps {
@@ -144,36 +150,42 @@ const DEFAULT_MODELS: ModelOption[] = [
     label: "Kimi K3",
     tier: "High",
     color: "oklch(0.21 0.034 264.665)",
+    icon: NeuralNetworkIcon,
   },
   {
     id: "gpt-terra",
     label: "GPT-5.6 Terra",
     tier: "Medium",
     color: "oklch(0.627 0.12 164.9)",
+    icon: AiBrain01Icon,
   },
   {
     id: "gpt-sol",
     label: "GPT-5.6 Sol",
     tier: "Medium",
     color: "oklch(0.627 0.12 164.9)",
+    icon: CpuIcon,
   },
   {
     id: "sonnet",
     label: "Sonnet 5",
     tier: "High",
     color: "oklch(0.673 0.131 41)",
+    icon: SparklesIcon,
   },
   {
     id: "opus",
     label: "Opus 4.8",
     tier: "High",
     color: "oklch(0.673 0.131 41)",
+    icon: AiMagicIcon,
   },
   {
     id: "fable",
     label: "Fable 5",
     tier: "High",
     color: "oklch(0.673 0.131 41)",
+    icon: Atom01Icon,
   },
 ];
 
@@ -952,8 +964,20 @@ export default function AIChat({
                     "flex w-full items-center gap-2.5 rounded-[8px] px-3 py-2 text-start transition-[background-color,transform] select-none hover:bg-background/5 active:scale-[0.96]"
                   }
                   collapsed={
-                    <span className="inline-block max-w-[8rem] truncate align-middle max-[440px]:max-w-[4.5rem]">
-                      {selectedModel.label}
+                    <span className="inline-flex items-center gap-1.5 align-middle">
+                      {selectedModel.icon && (
+                        <HugeiconsIcon
+                          icon={selectedModel.icon}
+                          size={14}
+                          strokeWidth={1.5}
+                          color="currentColor"
+                          aria-hidden={true}
+                          className="flex-shrink-0"
+                        />
+                      )}
+                      <span className="inline-block max-w-[8rem] truncate max-[440px]:max-w-[4.5rem]">
+                        {selectedModel.label}
+                      </span>
                     </span>
                   }
                   renderItem={(model, active) => (
@@ -963,7 +987,16 @@ export default function AIChat({
                         style={{ background: model.color }}
                         aria-hidden={true}
                       >
-                        {model.label[0]}
+                        {model.icon ? (
+                          <HugeiconsIcon
+                            icon={model.icon}
+                            size={14}
+                            strokeWidth={2}
+                            color="currentColor"
+                          />
+                        ) : (
+                          model.label[0]
+                        )}
                       </span>
                       <span className="flex-1 text-sm text-background">
                         {model.label}{" "}

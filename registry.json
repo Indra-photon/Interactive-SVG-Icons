@@ -2164,6 +2164,29 @@
       ]
     },
     {
+      "name": "checkout-button-default",
+      "type": "registry:block",
+      "title": "Check out Button - Check out Button",
+      "description": "A compact trigger button that morphs into a checkout card with tabbed payment methods (QR, card, Apple Pay, Amazon Pay) and a connect-wallet screen, all sharing one layout shell.",
+      "dependencies": [
+        "motion",
+        "react-use-measure",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/checkout-button/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/checkout-button/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "category-ticker-vertical-marquee",
       "type": "registry:block",
       "title": "Vertical Marquee - Vertical Marquee",
