@@ -7,6 +7,7 @@ import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
 // import { PatternSection } from "@/components/PatternSection";
 import { HeroLinksList } from "@/components/Homepage/HeroLinksList";
+import { ShowcaseSection } from "@/components/Homepage/ShowcaseSection";
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -35,20 +36,6 @@ export default function Home() {
                   Craft Better Interface
                 </motion.span>
               </span>
-              {/* <span className="block overflow-hidden">
-              <motion.span
-                initial={{ y: "100%", filter: "blur(12px)", opacity: 0 }}
-                animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.19, 1, 0.22, 1],
-                  delay: 0.1,
-                }}
-                className="tracking-tighter text-foreground/70"
-              >
-                for modern web.
-              </motion.span>
-            </span> */}
             </Heading>
 
             {/* max-w-2xl keeps the measure near 70 characters; the heading is
@@ -79,6 +66,8 @@ export default function Home() {
           <HeroLinksList />
         </motion.div>
         {/* </PatternSection> */}
+
+        <ShowcaseSection />
       </div>
     </div>
   );

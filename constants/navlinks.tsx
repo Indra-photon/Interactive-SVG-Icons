@@ -35,6 +35,11 @@ export const navlinks: {
     icon: CellsIcon,
   },
   {
+    url: "/sections",
+    label: "Sections",
+    icon: LayoutGridIcon,
+  },
+  {
     url: "/ui-gallery",
     label: "UI Components",
     icon: LayoutGridIcon,

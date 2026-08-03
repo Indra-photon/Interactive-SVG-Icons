@@ -3,7 +3,7 @@ import path from 'path';
 import { glob } from 'glob';
 import type { Icon, IconRegistry, RegistryFile } from '@/types/icon';
 import type { Loader, LoaderRegistry, LoaderRegistryFile } from '@/types/loader';
-import type { Block, BlockRegistry, BlockRegistryFile } from '@/types/block';
+import type { Block, BlockRegistryFile } from '@/types/block';
 import type { UIComponent, UIComponentRegistry, UIComponentRegistryFile } from '@/types/ui-component';
 
 interface BuildConfig {
@@ -260,14 +260,51 @@ async function buildLoadersRegistry(config: BuildConfig): Promise<GithubRegistry
   return githubItems;
 }
 
-async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryItem[]> {
-  console.log('🧱 Building blocks registry...\n');
+/**
+ * Config for one catalog (blocks, sections). Both are built by the identical
+ * folder convention, so they share this builder rather than being two copies
+ * that drift apart.
+ */
+interface CatalogConfig {
+  /** Directory under components/craftui holding the item folders. */
+  dir: string;
+  /** Filename written into public/r, without the extension. */
+  registryName: string;
+  /** Key the item array is stored under inside that file. */
+  itemsKey: string;
+  /** Singular noun for log output. */
+  label: string;
+  logIcon: string;
+}
+
+const CATALOGS: CatalogConfig[] = [
+  {
+    dir: 'blocks',
+    registryName: 'blocks',
+    itemsKey: 'blocks',
+    label: 'block',
+    logIcon: '🧱',
+  },
+  {
+    dir: 'sections',
+    registryName: 'sections',
+    itemsKey: 'sections',
+    label: 'section',
+    logIcon: '📐',
+  },
+];
+
+async function buildCatalogRegistry(
+  config: BuildConfig,
+  catalog: CatalogConfig
+): Promise<GithubRegistryItem[]> {
+  console.log(`${catalog.logIcon} Building ${catalog.registryName} registry...\n`);
 
   const blocks: Block[] = [];
   const githubItems: GithubRegistryItem[] = [];
-  const configFiles = await glob('components/craftui/blocks/*/config.json');
+  const configFiles = await glob(`components/craftui/${catalog.dir}/*/config.json`);
 
-  console.log(`📁 Found ${configFiles.length} block(s)\n`);
+  console.log(`📁 Found ${configFiles.length} ${catalog.label}(s)\n`);
 
   for (const configPath of configFiles) {
     const configData = JSON.parse(await fs.readFile(configPath, 'utf-8'));
@@ -288,7 +325,7 @@ async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryI
 
     for (const variation of configData.variations) {
       const variationSlug = `${blockSlug}-${variation.name}`;
-      const componentPath = `components/craftui/blocks/${blockSlug}/${variation.name}.tsx`;
+      const componentPath = `components/craftui/${catalog.dir}/${blockSlug}/${variation.name}.tsx`;
 
       try {
         const componentCode = await fs.readFile(componentPath, 'utf-8');
@@ -304,12 +341,17 @@ async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryI
             `${config.baseUrl}/r/craftui-base.json`,
             ...registryDeps.map((d: string) => d.startsWith('http') ? d : d)
           ],
+          // Design tokens and raw CSS travel with the item so `shadcn add`
+          // writes them into the consumer's stylesheet — without these the
+          // component installs unstyled against tokens that don't exist.
+          ...(variation.css && { css: variation.css }),
+          ...(variation.cssVars && { cssVars: variation.cssVars }),
           files: [
             {
               path: componentPath,
               content: componentCode,
               type: 'registry:component',
-              target: `~/components/craftui/blocks/${blockSlug}/${variation.name}.tsx`
+              target: `~/components/craftui/${catalog.dir}/${blockSlug}/${variation.name}.tsx`
             }
           ],
           meta: {
@@ -334,11 +376,13 @@ async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryI
           description: variation.description,
           dependencies: deps,
           registryDependencies: ['craftui-base', ...registryDeps],
+          ...(variation.css && { css: variation.css }),
+          ...(variation.cssVars && { cssVars: variation.cssVars }),
           files: [
             {
               path: componentPath,
               type: 'registry:component',
-              target: `~/components/craftui/blocks/${blockSlug}/${variation.name}.tsx`
+              target: `~/components/craftui/${catalog.dir}/${blockSlug}/${variation.name}.tsx`
             }
           ]
         });
@@ -369,20 +413,24 @@ async function buildBlocksRegistry(config: BuildConfig): Promise<GithubRegistryI
     console.log('');
   }
 
-  const masterRegistry: BlockRegistry = {
-    blocks,
+  // The items key differs per catalog ('blocks' / 'sections') so each file
+  // reads naturally on its own; the shape is otherwise identical.
+  const masterRegistry = {
+    [catalog.itemsKey]: blocks,
     version: '1.0.0',
     lastUpdated: new Date().toISOString()
   };
 
   await fs.mkdir(config.outputDir, { recursive: true });
   await fs.writeFile(
-    path.join(config.outputDir, 'blocks.json'),
+    path.join(config.outputDir, `${catalog.registryName}.json`),
     JSON.stringify(masterRegistry, null, 2)
   );
 
-  console.log(`✅ Blocks registry built successfully!`);
-  console.log(`   Blocks: ${blocks.length}`);
+  const capitalized =
+    catalog.registryName.charAt(0).toUpperCase() + catalog.registryName.slice(1);
+  console.log(`✅ ${capitalized} registry built successfully!`);
+  console.log(`   ${capitalized}: ${blocks.length}`);
   console.log(`   Variations: ${blocks.reduce((sum, b) => sum + b.variations.length, 0)}`);
   console.log(`   Output: ${config.outputDir}\n`);
 
@@ -564,17 +612,117 @@ async function buildGithubRegistry(allItems: GithubRegistryItem[]) {
   console.log(`✅ registry.json generated (${allItems.length + 1} items)\n`);
 }
 
+/**
+ * baseUrl is baked into every registryDependencies entry, so a localhost value
+ * ships JSON that resolves against the *consumer's* machine and fails to
+ * install. The fallback stays for local registry testing, but it must be loud —
+ * this silently shipped once because `build:registry` ran without loading .env.
+ */
+function resolveBaseUrl(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, '');
+  if (fromEnv) return fromEnv;
+
+  console.warn(
+    '\n⚠️  NEXT_PUBLIC_SITE_URL is not set — falling back to http://localhost:3000.\n' +
+      '   Registry files built this way are for LOCAL TESTING ONLY. Do not commit them.\n' +
+      '   Run `npm run build:registry` (loads .env) before publishing.\n'
+  );
+  return 'http://localhost:3000';
+}
+
 const config: BuildConfig = {
   iconsDir: 'components/craftui/icons',
   outputDir: 'public/r',
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  baseUrl: resolveBaseUrl()
 };
 
-Promise.all([
+/**
+ * Every variation is written to public/r/<slug>-<variation>.json in one flat
+ * directory, so two catalogs sharing an item slug would silently overwrite each
+ * other's file. Fail the build instead of shipping the wrong component.
+ */
+function assertNoDuplicateNames(items: GithubRegistryItem[]) {
+  const seen = new Map<string, number>();
+  for (const item of items) {
+    seen.set(item.name, (seen.get(item.name) ?? 0) + 1);
+  }
+
+  const clashes = [...seen.entries()].filter(([, count]) => count > 1);
+  if (clashes.length > 0) {
+    throw new Error(
+      `Duplicate registry entry name(s): ${clashes.map(([name]) => name).join(', ')}.\n` +
+        `Registry files are flat in ${config.outputDir}, so slugs must be unique ` +
+        `across icons, loaders, blocks, sections and UI components.`
+    );
+  }
+}
+
+/**
+ * Written by hand rather than by this script, so pruning must never touch them.
+ * craftui-base.json in particular is the registryDependency of every single
+ * item — deleting it breaks all installs.
+ */
+const UNMANAGED_FILES = new Set(['craftui-base.json']);
+
+/**
+ * Renaming or deleting a component leaves its old JSON behind, and a stale file
+ * keeps serving outdated code from a live URL forever (morphing-button-default
+ * survived a rename this way). Builders only ever overwrite, so the directory
+ * is cleared first and every managed file is written fresh.
+ *
+ * Clearing up front rather than reconciling afterwards is what makes case-only
+ * renames safe: on a case-insensitive filesystem, writing trash-dissolve.json
+ * while trash-Dissolve.json exists reuses the old file *and its old name*, so a
+ * prune pass at the end sees a name it doesn't recognise and deletes the entry
+ * that was just generated. Deleting first means the new name is created clean.
+ *
+ * A crashed build leaves the directory incomplete, which is loud and fixed by
+ * rerunning — unlike stale files, which fail silently and only in production.
+ */
+async function resetOutputDir() {
+  await fs.mkdir(config.outputDir, { recursive: true });
+
+  const present = await fs.readdir(config.outputDir);
+  const stale = present.filter(
+    (file) => file.endsWith('.json') && !UNMANAGED_FILES.has(file)
+  );
+
+  await Promise.all(
+    stale.map((file) => fs.rm(path.join(config.outputDir, file)))
+  );
+
+  console.log(`🧹 Cleared ${stale.length} generated file(s) from ${config.outputDir}\n`);
+}
+
+/**
+ * The builders report success per item, but a name that never reached disk
+ * would only surface as a 404 at install time.
+ */
+async function assertOutputComplete(items: GithubRegistryItem[]) {
+  const present = new Set(await fs.readdir(config.outputDir));
+  const missing = items
+    .map((item) => `${item.name}.json`)
+    .filter((file) => !present.has(file));
+
+  if (missing.length > 0) {
+    throw new Error(
+      `${missing.length} registry item(s) were generated but not written to ` +
+        `${config.outputDir}: ${missing.join(', ')}`
+    );
+  }
+}
+
+resetOutputDir().then(() => Promise.all([
   buildRegistry(config),
   buildLoadersRegistry(config),
-  buildBlocksRegistry(config),
+  ...CATALOGS.map((catalog) => buildCatalogRegistry(config, catalog)),
   buildUIComponentsRegistry(config),
-]).then(([iconItems, loaderItems, blockItems, uiItems]) => {
-  return buildGithubRegistry([...iconItems, ...loaderItems, ...blockItems, ...uiItems]);
-}).catch(console.error);
+])).then(async (results) => {
+  const allItems = results.flat();
+  assertNoDuplicateNames(allItems);
+  await buildGithubRegistry(allItems);
+  await assertOutputComplete(allItems);
+}).catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

@@ -6,8 +6,33 @@
     "motion"
   ],
   "registryDependencies": [
-    "http://localhost:3000/r/craftui-base.json"
+    "https://www.craftui.space/r/craftui-base.json"
   ],
+  "css": {
+    ".pixcard-grid": {
+      "grid-template-columns": "repeat(var(--pixcard-size, 14), 1fr)",
+      "grid-template-rows": "repeat(var(--pixcard-size, 14), 1fr)"
+    },
+    ".pixcard-tile": {
+      "background-size": "calc(var(--pixcard-size, 14) * 100%) calc(var(--pixcard-size, 14) * 100%)",
+      "background-repeat": "no-repeat",
+      "transform": "scale(1.02)",
+      "animation": "pixcard-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards"
+    },
+    "@keyframes pixcard-out": {
+      "from": {
+        "opacity": "1"
+      },
+      "to": {
+        "opacity": "0"
+      }
+    },
+    "@media (prefers-reduced-motion: reduce)": {
+      ".pixcard-tile": {
+        "animation": "none"
+      }
+    }
+  },
   "files": [
     {
       "path": "components/craftui/blocks/pixel-dissolve-card/default.tsx",

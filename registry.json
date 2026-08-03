@@ -7,7 +7,7 @@
       "name": "craftui-base",
       "type": "registry:lib",
       "title": "CraftUI Base",
-      "description": "Core dependencies for CraftUI — framer-motion and motion.",
+      "description": "Core dependencies for CraftUI \u2014 framer-motion and motion.",
       "dependencies": [
         "framer-motion",
         "motion"
@@ -204,7 +204,7 @@
       "name": "msg-glass-wiggle",
       "type": "registry:ui",
       "title": "Messages Icon - Wiggle",
-      "description": "Entire icon rotates gently (±5°) on hover. Great for unread message indicators or clickable chat buttons.",
+      "description": "Entire icon rotates gently (\u00b15\u00b0) on hover. Great for unread message indicators or clickable chat buttons.",
       "dependencies": [
         "motion/react"
       ],
@@ -299,7 +299,7 @@
       "name": "lock-glass-unlock",
       "type": "registry:ui",
       "title": "Lock Icon - Unlock",
-      "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
+      "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90\u00b0 in 3D with right side as hinge, body scales slightly",
       "dependencies": [
         "motion/react"
       ],
@@ -584,7 +584,7 @@
       "name": "square-corners-rotate-default",
       "type": "registry:ui",
       "title": "Square Corners Rotate - Square Corners Rotate",
-      "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360° with bouncy easing",
+      "description": "Four 90-degree arc segments at the corners of a square expand and contract while rotating 360\u00b0 with bouncy easing",
       "dependencies": [
         "framer-motion"
       ],
@@ -641,7 +641,7 @@
       "name": "siri-wave-default",
       "type": "registry:ui",
       "title": "Siri Wave - Siri Wave",
-      "description": "Center bar tallest, outer bars shortest — all oscillate with staggered delays creating a smooth symmetric wave that pulses outward from center",
+      "description": "Center bar tallest, outer bars shortest \u2014 all oscillate with staggered delays creating a smooth symmetric wave that pulses outward from center",
       "dependencies": [
         "framer-motion"
       ],
@@ -660,7 +660,7 @@
       "name": "scan-line-default",
       "type": "registry:ui",
       "title": "Scan Line - Scan Line",
-      "description": "A glowing gradient segment — bright at the leading edge, fading behind — sweeps across a faint track and resets",
+      "description": "A glowing gradient segment \u2014 bright at the leading edge, fading behind \u2014 sweeps across a faint track and resets",
       "dependencies": [
         "framer-motion"
       ],
@@ -698,7 +698,7 @@
       "name": "ios-spinner-trail-default",
       "type": "registry:ui",
       "title": "iOS Spinner Trail - Sharp Trail",
-      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
+      "description": "Exponential opacity decay \u2014 only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
       "dependencies": [
         "framer-motion"
       ],
@@ -717,7 +717,7 @@
       "name": "ios-spinner-thick-default",
       "type": "registry:ui",
       "title": "iOS Spinner Thick - Thick",
-      "description": "8 wide pill-shaped spokes at 45° apart — bold and graphic, great for large-screen or kiosk UIs",
+      "description": "8 wide pill-shaped spokes at 45\u00b0 apart \u2014 bold and graphic, great for large-screen or kiosk UIs",
       "dependencies": [
         "framer-motion"
       ],
@@ -736,7 +736,7 @@
       "name": "ios-spinner-pulse-default",
       "type": "registry:ui",
       "title": "iOS Spinner Pulse - Pulse",
-      "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
+      "description": "Each spoke flashes bright in sequence \u2014 no group rotation, the glow steps discretely around the clock",
       "dependencies": [
         "framer-motion"
       ],
@@ -755,7 +755,7 @@
       "name": "ios-spinner-grow-default",
       "type": "registry:ui",
       "title": "iOS Spinner Grow - Grow",
-      "description": "Each spoke shoots outward radially as it activates — a blooming radial extension effect",
+      "description": "Each spoke shoots outward radially as it activates \u2014 a blooming radial extension effect",
       "dependencies": [
         "framer-motion"
       ],
@@ -774,7 +774,7 @@
       "name": "ios-spinner-dual-default",
       "type": "registry:ui",
       "title": "iOS Spinner Dual - Dual Ring",
-      "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+      "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise \u2014 gyroscope effect",
       "dependencies": [
         "framer-motion"
       ],
@@ -793,7 +793,7 @@
       "name": "ios-spinner-dots-default",
       "type": "registry:ui",
       "title": "iOS Spinner Dots - Dots",
-      "description": "12 circles on an orbit ring with comet-tail opacity — same mechanic as classic, rounder feel",
+      "description": "12 circles on an orbit ring with comet-tail opacity \u2014 same mechanic as classic, rounder feel",
       "dependencies": [
         "framer-motion"
       ],
@@ -812,7 +812,7 @@
       "name": "ios-spinner-default",
       "type": "registry:ui",
       "title": "iOS Spinner - Classic",
-      "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
+      "description": "12 rounded spokes with linear opacity comet tail \u2014 the exact macOS connecting spinner",
       "dependencies": [
         "framer-motion"
       ],
@@ -843,25 +843,6 @@
           "path": "components/craftui/loaders/infinity-loop/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/infinity-loop/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "hexagon-rotate-default",
-      "type": "registry:ui",
-      "title": "Hexagon Rotate - Hexagon Rotate",
-      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/hexagon-rotate/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/hexagon-rotate/default.tsx"
         }
       ]
     },
@@ -907,7 +888,7 @@
       "name": "grid-spiral-default",
       "type": "registry:ui",
       "title": "Grid Spiral - Grid Spiral",
-      "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
+      "description": "Dots activate in a clockwise spiral \u2014 outer ring first (top-left \u2192 top \u2192 right \u2192 bottom \u2192 left), center last",
       "dependencies": [
         "framer-motion"
       ],
@@ -942,10 +923,29 @@
       ]
     },
     {
+      "name": "hexagon-rotate-default",
+      "type": "registry:ui",
+      "title": "Hexagon Rotate - Hexagon Rotate",
+      "description": "A hexagon outline or filled shape rotates 360\u00b0 continuously with smooth linear motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/hexagon-rotate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/hexagon-rotate/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "grid-ripple-default",
       "type": "registry:ui",
       "title": "Grid Ripple - Grid Ripple",
-      "description": "Center dot fires first, then the 4 adjacent edges, then the 4 corners — concentric expansion outward",
+      "description": "Center dot fires first, then the 4 adjacent edges, then the 4 corners \u2014 concentric expansion outward",
       "dependencies": [
         "framer-motion"
       ],
@@ -964,7 +964,7 @@
       "name": "grid-random-default",
       "type": "registry:ui",
       "title": "Grid Random - Grid Random",
-      "description": "Dots activate in a fixed but non-sequential order that reads as random — like a matrix initialising",
+      "description": "Dots activate in a fixed but non-sequential order that reads as random \u2014 like a matrix initialising",
       "dependencies": [
         "framer-motion"
       ],
@@ -983,7 +983,7 @@
       "name": "grid-pulse-default",
       "type": "registry:ui",
       "title": "Grid Pulse - Grid Pulse",
-      "description": "Nine dots arranged in a 3×3 grid light up and fade in a rolling diagonal wave, top-left to bottom-right",
+      "description": "Nine dots arranged in a 3\u00d73 grid light up and fade in a rolling diagonal wave, top-left to bottom-right",
       "dependencies": [
         "framer-motion"
       ],
@@ -1002,7 +1002,7 @@
       "name": "grid-cross-default",
       "type": "registry:ui",
       "title": "Grid Cross - Grid Cross",
-      "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
+      "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow \u2014 two-phase alternation",
       "dependencies": [
         "framer-motion"
       ],
@@ -1021,7 +1021,7 @@
       "name": "grid-corners-in-default",
       "type": "registry:ui",
       "title": "Grid Corners In - Grid Corners In",
-      "description": "The 4 corner dots pulse first, then the 4 edge-center dots, then the center — an inward collapse opposite to ripple",
+      "description": "The 4 corner dots pulse first, then the 4 edge-center dots, then the center \u2014 an inward collapse opposite to ripple",
       "dependencies": [
         "framer-motion"
       ],
@@ -1132,25 +1132,6 @@
       ]
     },
     {
-      "name": "fill-paint-bucket-default",
-      "type": "registry:ui",
-      "title": "Paint Bucket - Paint Bucket",
-      "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "fill-hourglass-default",
       "type": "registry:ui",
       "title": "Hourglass - Hourglass",
@@ -1170,10 +1151,10 @@
       ]
     },
     {
-      "name": "fill-flask-default",
+      "name": "fill-paint-bucket-default",
       "type": "registry:ui",
-      "title": "Flask - Flask",
-      "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
+      "title": "Paint Bucket - Paint Bucket",
+      "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
       "dependencies": [
         "framer-motion"
       ],
@@ -1182,9 +1163,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/fill-flask/default.tsx",
+          "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/fill-flask/default.tsx"
+          "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
         }
       ]
     },
@@ -1204,6 +1185,25 @@
           "path": "components/craftui/loaders/fill-coffee-cup/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/fill-coffee-cup/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-flask-default",
+      "type": "registry:ui",
+      "title": "Flask - Flask",
+      "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-flask/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-flask/default.tsx"
         }
       ]
     },
@@ -1284,25 +1284,6 @@
       ]
     },
     {
-      "name": "dots-compress-default",
-      "type": "registry:ui",
-      "title": "Dots Compress - Dots Compress",
-      "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dots-compress/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dots-compress/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dots-bounce-default",
       "type": "registry:ui",
       "title": "Dots Bounce - Dots Bounce",
@@ -1322,10 +1303,29 @@
       ]
     },
     {
+      "name": "dots-compress-default",
+      "type": "registry:ui",
+      "title": "Dots Compress - Dots Compress",
+      "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-compress/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-compress/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "dot-matrix-vortex-default",
       "type": "registry:ui",
       "title": "Dot Matrix Vortex - Dot Matrix Vortex",
-      "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
+      "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2\u00d7, 4\u00d7, 8\u00d7 the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
       "dependencies": [],
       "registryDependencies": [
         "craftui-base"
@@ -1335,23 +1335,6 @@
           "path": "components/craftui/loaders/dot-matrix-vortex/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-matrix-vortex/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "dot-matrix-rain-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Rain - Dot Matrix Rain",
-      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
         }
       ]
     },
@@ -1369,6 +1352,23 @@
           "path": "components/craftui/loaders/dot-matrix-life/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-matrix-life/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-rain-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Rain - Dot Matrix Rain",
+      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
         }
       ]
     },
@@ -1407,25 +1407,6 @@
       ]
     },
     {
-      "name": "dot-circle-expand-default",
-      "type": "registry:ui",
-      "title": "Dot Circle Expand - Dot Circle Expand",
-      "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dock-bounce-default",
       "type": "registry:ui",
       "title": "Dock Bounce - Dock Bounce",
@@ -1445,10 +1426,29 @@
       ]
     },
     {
+      "name": "dot-circle-expand-default",
+      "type": "registry:ui",
+      "title": "Dot Circle Expand - Dot Circle Expand",
+      "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "cross-expand-default",
       "type": "registry:ui",
       "title": "Cross Expand - Cross Expand",
-      "description": "Static center cross with four corner squares that expand outward, rotate 90°, then retract in a pulsing geometric pattern",
+      "description": "Static center cross with four corner squares that expand outward, rotate 90\u00b0, then retract in a pulsing geometric pattern",
       "dependencies": [
         "framer-motion"
       ],
@@ -1467,7 +1467,7 @@
       "name": "conic-spinner-default",
       "type": "registry:ui",
       "title": "Conic Spinner - Conic Spinner",
-      "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+      "description": "Circular pie-style loader that fills clockwise from 0\u00b0 to 360\u00b0 in 8 equal steps over 2 seconds",
       "dependencies": [
         "framer-motion"
       ],
@@ -1502,44 +1502,6 @@
       ]
     },
     {
-      "name": "circle-spinner-wipe-default",
-      "type": "registry:ui",
-      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
-      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "breath-default",
-      "type": "registry:ui",
-      "title": "Breath - Breath",
-      "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/breath/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/breath/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "bars-wave-default",
       "type": "registry:ui",
       "title": "Bars Wave - Bars Wave",
@@ -1555,6 +1517,25 @@
           "path": "components/craftui/loaders/bars-wave/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/bars-wave/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circle-spinner-wipe-default",
+      "type": "registry:ui",
+      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
+      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
         }
       ]
     },
@@ -1578,10 +1559,10 @@
       ]
     },
     {
-      "name": "bars-scale-bottom-default",
+      "name": "breath-default",
       "type": "registry:ui",
-      "title": "Bars Scale Bottom - Bars Scale Bottom",
-      "description": "Three vertical bars scaling up and down with bottom fixed",
+      "title": "Breath - Breath",
+      "description": "A filled circle inhales and exhales with a trailing outer glow ring \u2014 inspired by the MacBook sleep indicator LED",
       "dependencies": [
         "framer-motion"
       ],
@@ -1590,9 +1571,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
+          "path": "components/craftui/loaders/breath/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
+          "target": "~/components/craftui/loaders/breath/default.tsx"
         }
       ]
     },
@@ -1612,6 +1593,25 @@
           "path": "components/craftui/loaders/bars-scale-01/scale.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/bars-scale-01/scale.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-scale-bottom-default",
+      "type": "registry:ui",
+      "title": "Bars Scale Bottom - Bars Scale Bottom",
+      "description": "Three vertical bars scaling up and down with bottom fixed",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
         }
       ]
     },
@@ -1752,7 +1752,7 @@
       "name": "ball-bounce-box-default",
       "type": "registry:ui",
       "title": "Ball Bounce Box - Ball Bounce Box",
-      "description": "A square box outline rotates 90° in stepped intervals while a ball bounces rapidly inside it",
+      "description": "A square box outline rotates 90\u00b0 in stepped intervals while a ball bounces rapidly inside it",
       "dependencies": [
         "framer-motion"
       ],
@@ -1904,7 +1904,7 @@
       "name": "activity-rings-default",
       "type": "registry:ui",
       "title": "Activity Rings - Activity Rings",
-      "description": "Three nested arcs (75% visible) rotate at different speeds — outer slowest, inner fastest — with decreasing opacity inward",
+      "description": "Three nested arcs (75% visible) rotate at different speeds \u2014 outer slowest, inner fastest \u2014 with decreasing opacity inward",
       "dependencies": [
         "framer-motion"
       ],
@@ -2070,13 +2070,38 @@
       "name": "pixel-dissolve-card-default",
       "type": "registry:block",
       "title": "Pixel Dissolve Card - Pixel Dissolve Card",
-      "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
+      "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size \u00d7 size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
       "dependencies": [
         "motion"
       ],
       "registryDependencies": [
         "craftui-base"
       ],
+      "css": {
+        ".pixcard-grid": {
+          "grid-template-columns": "repeat(var(--pixcard-size, 14), 1fr)",
+          "grid-template-rows": "repeat(var(--pixcard-size, 14), 1fr)"
+        },
+        ".pixcard-tile": {
+          "background-size": "calc(var(--pixcard-size, 14) * 100%) calc(var(--pixcard-size, 14) * 100%)",
+          "background-repeat": "no-repeat",
+          "transform": "scale(1.02)",
+          "animation": "pixcard-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards"
+        },
+        "@keyframes pixcard-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          ".pixcard-tile": {
+            "animation": "none"
+          }
+        }
+      },
       "files": [
         {
           "path": "components/craftui/blocks/pixel-dissolve-card/default.tsx",
@@ -2110,7 +2135,7 @@
       "name": "morphing-image-effect-default",
       "type": "registry:block",
       "title": "Morphing Image Effect - Image Morph",
-      "description": "Three-stage morph: thumbnail pill → landscape card → portrait card. Text scales inversely as the image grows.",
+      "description": "Three-stage morph: thumbnail pill \u2192 landscape card \u2192 portrait card. Text scales inversely as the image grows.",
       "dependencies": [
         "motion"
       ],
@@ -2229,10 +2254,46 @@
       ]
     },
     {
+      "name": "feature-gallery-01-default",
+      "type": "registry:block",
+      "title": "Feature Gallery 01 - Feature Gallery 01",
+      "description": "Cards rise into place on scroll, then the clicked card widens around a stationary image while the rest narrow. Heights never change; the label and scrim fade in last.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "cssVars": {
+        "light": {
+          "gallery-scrim": "oklch(0 0 0 / 0.88)",
+          "gallery-label": "oklch(1 0 0)",
+          "gallery-label-muted": "oklch(1 0 0 / 0.74)",
+          "gallery-frame": "oklch(1 0 0 / 0.55)"
+        },
+        "dark": {
+          "gallery-scrim": "oklch(0 0 0 / 0.9)",
+          "gallery-label": "oklch(1 0 0)",
+          "gallery-label-muted": "oklch(1 0 0 / 0.74)",
+          "gallery-frame": "oklch(1 0 0 / 0.55)"
+        },
+        "theme": {
+          "--gallery-radius": "4px"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-gallery-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-gallery-01/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "otp-input-ripple",
       "type": "registry:ui",
       "title": "OTP Input - Ripple",
-      "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
+      "description": "Each box wears an SVG outline that behaves like a liquid surface \u2014 typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
       "dependencies": [
         "motion/react"
       ],
@@ -2353,7 +2414,7 @@
       "name": "button-confetti",
       "type": "registry:ui",
       "title": "Button - Confetti Burst",
-      "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
+      "description": "On click, a burst of color-varied confetti pieces launches from the button center \u2014 each with its own angle, distance and rotation \u2014 arcing up and falling back down under simulated gravity.",
       "dependencies": [
         "motion/react"
       ],
@@ -2373,7 +2434,7 @@
       "name": "button-scramble",
       "type": "registry:ui",
       "title": "Button - Scramble Text",
-      "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
+      "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right \u2014 a decode-style reveal built entirely from content substitution, no positional or color motion.",
       "dependencies": [
         "motion/react"
       ],
@@ -2519,7 +2580,7 @@
       "name": "accordion-clip",
       "type": "registry:ui",
       "title": "Accordion - Clip",
-      "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
+      "description": "Two-layer card reveal \u2014 the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
       "dependencies": [
         "motion/react",
         "radix-ui"
@@ -2561,7 +2622,7 @@
       "name": "accordion-ease",
       "type": "registry:ui",
       "title": "Accordion - Ease",
-      "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
+      "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve \u2014 ease-out, ease-in-out, or a custom bezier.",
       "dependencies": [
         "motion/react",
         "radix-ui"

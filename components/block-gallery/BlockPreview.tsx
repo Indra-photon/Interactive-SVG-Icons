@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface BlockPreviewProps {
   blockSlug: string;
@@ -8,6 +9,10 @@ interface BlockPreviewProps {
   animationType?: string;
   /** Render at real width (reflow) instead of the 1280px scale-to-fit canvas. */
   responsive?: boolean;
+  /** Directory under components/craftui to import the preview from. */
+  catalogDir?: string;
+  /** 'responsive' forces real-width rendering for every item in the catalog. */
+  previewMode?: "auto" | "responsive";
 }
 
 export function BlockPreview({
@@ -15,6 +20,8 @@ export function BlockPreview({
   variationName,
   animationType,
   responsive,
+  catalogDir = "blocks",
+  previewMode = "auto",
 }: BlockPreviewProps) {
   const [PreviewComponent, setPreviewComponent] =
     useState<React.ComponentType | null>(null);
@@ -29,11 +36,21 @@ export function BlockPreview({
   // animations work correctly. Blocks marked `responsive` also render directly
   // so their own breakpoints reflow at the container's real width.
   const isInteractive = animationType === "click";
-  const renderDirect = isInteractive || Boolean(responsive);
+  // Sections are page-width layouts, so they always render at the container's
+  // real width — scaling a 1280px canvas down would defeat the breakpoints the
+  // section is written against.
+  const alwaysResponsive = previewMode === "responsive";
+  const renderDirect = alwaysResponsive || isInteractive || Boolean(responsive);
 
   useEffect(() => {
+    // One template literal rather than a branch per catalog: a literal
+    // `sections/` path fails to resolve while that directory is still empty,
+    // because the bundler cannot build an import context with no matches. The
+    // wider glob also matches components/craftui/ui/**, which is harmless —
+    // context modules are code-split per file, so the extra entries grow the
+    // module map, not the chunk that loads here.
     import(
-      `@/components/craftui/blocks/${blockSlug}/examples/${variationName}-preview.tsx`
+      `@/components/craftui/${catalogDir}/${blockSlug}/examples/${variationName}-preview.tsx`
     )
       .then((mod) => {
         const exported = mod.default ?? mod[Object.keys(mod)[0]];
@@ -42,7 +59,7 @@ export function BlockPreview({
       .catch((err) => {
         console.error("Failed to load block preview:", err);
       });
-  }, [blockSlug, variationName]);
+  }, [catalogDir, blockSlug, variationName]);
 
   useEffect(() => {
     if (renderDirect) return;
@@ -56,14 +73,23 @@ export function BlockPreview({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [isInteractive]);
+  }, [renderDirect]);
 
   const innerHeight = scale > 0 ? containerHeight / scale : 640;
 
   return (
     <div
       ref={outerRef}
-      className="relative w-full h-[460px] sm:h-[560px] md:h-[660px] overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)] bg-muted"
+      className={cn(
+        "relative w-full overflow-hidden corner-squircle rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06)] bg-muted",
+        // The scale-to-fit canvas needs a known height to compute its ratio
+        // against. Sections size themselves from their own content instead —
+        // a footer shouldn't be padded out to 660px, and a tall feature
+        // section shouldn't be clipped by it.
+        alwaysResponsive
+          ? "min-h-[240px]"
+          : "h-[460px] sm:h-[560px] md:h-[660px]",
+      )}
     >
       {!PreviewComponent ? (
         <div className="flex h-full items-center justify-center text-sm text-muted-foreground">

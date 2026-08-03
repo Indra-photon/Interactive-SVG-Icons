@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:registry": "tsx scripts/build-registry.ts",
+    "build:registry": "node --env-file=.env --import tsx scripts/build-registry.ts",
+    "build:showcase": "node --env-file=.env --import tsx scripts/build-showcase.ts",
     "lint": "eslint"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "dialkit": "^1.2.0",
     "framer-motion": "^12.23.27",
     "glob": "^13.0.1",
+    "interface-kit": "^0.1.3",
     "lenis": "^1.3.25",
     "lucide-react": "^0.562.0",
     "mongoose": "^9.1.2",
@@ -48,6 +50,7 @@
     "@types/node": "^20.19.31",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "aws4fetch": "^1.0.20",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
