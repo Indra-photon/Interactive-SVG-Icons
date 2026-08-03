@@ -14,6 +14,7 @@ import { InstallCommand } from "@/components/InstallCommand";
 import { PropsTable } from "@/components/PropsTable";
 import { Paragraph } from "@/components/Paragraph";
 import type { Block } from "@/types/block";
+import { BLOCKS_CATALOG, type CatalogUIConfig } from "@/lib/catalog-config";
 
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -22,10 +23,12 @@ const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 function VariationThumbCard({
   block,
   variation,
+  catalog,
   onSelect,
 }: {
   block: Block;
   variation: Block["variations"][number];
+  catalog: CatalogUIConfig;
   onSelect: () => void;
 }) {
   return (
@@ -39,6 +42,8 @@ function VariationThumbCard({
           variationName={variation.name}
           animationType={variation.animationType}
           responsive={variation.responsive}
+          catalogDir={catalog.catalogDir}
+          previewMode={catalog.previewMode}
         />
       </div>
       <div className="p-4 flex items-start justify-between gap-2">
@@ -65,9 +70,11 @@ function VariationThumbCard({
 
 function BlockOverview({
   block,
+  catalog,
   onVariationSelect,
 }: {
   block: Block;
+  catalog: CatalogUIConfig;
   onVariationSelect: (variation: string) => void;
 }) {
   return (
@@ -99,12 +106,13 @@ function BlockOverview({
         <h2 className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-4">
           Variations
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className={`grid gap-6 ${catalog.overviewGridClass}`}>
           {block.variations.map((v) => (
             <VariationThumbCard
               key={v.name}
               block={block}
               variation={v}
+              catalog={catalog}
               onSelect={() => onVariationSelect(v.name)}
             />
           ))}
@@ -118,11 +126,13 @@ function BlockOverview({
 
 function VariationDetail({
   block,
+  catalog,
   variation,
   panelKey,
   baseUrl,
 }: {
   block: Block;
+  catalog: CatalogUIConfig;
   variation: Block["variations"][number];
   panelKey: string;
   baseUrl: string;
@@ -130,7 +140,9 @@ function VariationDetail({
   const installCommand = `npx shadcn@latest add ${baseUrl}/r/${block.slug}-${variation.name}.json`;
 
   return (
-    <div className="w-full max-w-5xl overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16">
+    <div
+      className={`w-full ${catalog.detailWidthClass} overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16`}
+    >
       <motion.div
         key={panelKey}
         initial={{ opacity: 0 }}
@@ -139,7 +151,7 @@ function VariationDetail({
       >
         {/* Breadcrumb + description */}
         <Paragraph variant="overview-Title" className="font-mono">
-          <span className="text-muted-foreground">blocks</span>
+          <span className="text-muted-foreground">{catalog.breadcrumbRoot}</span>
           <span className="text-muted-foreground">{" / "}</span>
           <span className="text-muted-foreground">{block.category}</span>
           <span className="text-muted-foreground">{" / "}</span>
@@ -155,6 +167,8 @@ function VariationDetail({
           variationName={variation.name}
           animationType={variation.animationType}
           responsive={variation.responsive}
+          catalogDir={catalog.catalogDir}
+          previewMode={catalog.previewMode}
         />
 
         {/* Preview hint */}
@@ -255,6 +269,8 @@ interface BlockContentPanelProps {
   activeSlug?: string;
   activeVariation?: string;
   onVariationSelect: (slug: string, variation: string) => void;
+  /** Which catalog is being rendered. Defaults to blocks. */
+  catalog?: CatalogUIConfig;
 }
 
 export function BlockContentPanel({
@@ -262,6 +278,7 @@ export function BlockContentPanel({
   activeSlug,
   activeVariation,
   onVariationSelect,
+  catalog = BLOCKS_CATALOG,
 }: BlockContentPanelProps) {
   const activeBlock = blocks.find((b) => b.slug === activeSlug);
   const activeVariationData = activeBlock?.variations.find(
@@ -274,6 +291,25 @@ export function BlockContentPanel({
     typeof window !== "undefined"
       ? window.location.origin
       : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
+
+  // A catalog with nothing in it yet: the sidebar is empty and no slug can
+  // resolve, so the panel would otherwise render a blank pane with no
+  // explanation of what belongs here.
+  if (blocks.length === 0) {
+    return (
+      <div className="relative flex flex-1 items-center justify-center overflow-hidden px-8">
+        <div className="max-w-sm text-center">
+          <Paragraph variant="overview-Title">{catalog.empty.title}</Paragraph>
+          <Paragraph
+            variant="overview-Description"
+            className="mt-2 text-center line-clamp-none"
+          >
+            {catalog.empty.body}
+          </Paragraph>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative flex-1 overflow-hidden">
@@ -294,12 +330,14 @@ export function BlockContentPanel({
             <VariationDetail
               block={activeBlock}
               variation={activeVariationData}
+              catalog={catalog}
               panelKey={panelKey}
               baseUrl={baseUrl}
             />
           ) : (
             <BlockOverview
               block={activeBlock}
+              catalog={catalog}
               onVariationSelect={(variation) =>
                 onVariationSelect(activeBlock.slug, variation)
               }

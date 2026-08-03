@@ -1,0 +1,125 @@
+{
+  "slug": "feature-gallery-01",
+  "name": "Feature Gallery 01",
+  "category": "feature-section",
+  "tags": [
+    "feature",
+    "section",
+    "gallery",
+    "expand",
+    "click",
+    "interior"
+  ],
+  "description": "A centered feature section \u2014 eyebrow, heading, subheading and a two-button CTA row \u2014 above a strip of image cards that expand on click. Written for a studio or portfolio site where the work needs to carry the section.",
+  "createdAt": "2026-08-02T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Feature Gallery 01",
+      "componentName": "FeatureGallery01",
+      "previewHint": "Click any card to expand it; click it again to collapse. Arrow keys move across the strip",
+      "tier": "free",
+      "description": "Cards rise into place on scroll, then the clicked card widens around a stationary image while the rest narrow. Heights never change; the label and scrim fade in last.",
+      "animationType": "click",
+      "responsive": true,
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "cssVars": {
+        "light": {
+          "gallery-scrim": "oklch(0 0 0 / 0.88)",
+          "gallery-label": "oklch(1 0 0)",
+          "gallery-label-muted": "oklch(1 0 0 / 0.74)"
+        },
+        "dark": {
+          "gallery-scrim": "oklch(0 0 0 / 0.9)",
+          "gallery-label": "oklch(1 0 0)",
+          "gallery-label-muted": "oklch(1 0 0 / 0.74)"
+        },
+        "theme": {
+          "--gallery-radius": "4px"
+        }
+      },
+      "props": [
+        {
+          "name": "images",
+          "type": "GalleryImage[]",
+          "required": false,
+          "description": "Cards in the strip. Each is { label, description?, src, tint } \u2014 description is an optional line rendered under the label on the expanded card, and tint is the solid colour shown behind the photo while it loads and in the collapsed sliver."
+        },
+        {
+          "name": "eyebrow",
+          "type": "string",
+          "required": false,
+          "description": "Small label above the heading, uppercased and letterspaced in CSS \u2014 pass it in natural case. Defaults to \"What we do\"."
+        },
+        {
+          "name": "heading",
+          "type": "React.ReactNode",
+          "required": false,
+          "description": "Section heading, rendered as an h2. Accepts JSX, so individual words can be wrapped in a span to colour or style them — e.g. heading={<>Spaces designed <span className=\"text-primary\">around how you live</span></>}."
+        },
+        {
+          "name": "subheading",
+          "type": "React.ReactNode",
+          "required": false,
+          "description": "Supporting paragraph below the heading. Accepts JSX, so parts of the sentence can be emphasised with a span or a link."
+        },
+        {
+          "name": "ctaLabel",
+          "type": "string",
+          "required": false,
+          "description": "Primary button label. Defaults to \"Book a consultation\"."
+        },
+        {
+          "name": "ctaHref",
+          "type": "string",
+          "required": false,
+          "description": "Primary button destination."
+        },
+        {
+          "name": "secondaryLabel",
+          "type": "string",
+          "required": false,
+          "description": "Secondary outline button label. Defaults to \"View all projects\"."
+        },
+        {
+          "name": "secondaryHref",
+          "type": "string",
+          "required": false,
+          "description": "Secondary button destination."
+        },
+        {
+          "name": "defaultOpenIndex",
+          "type": "number | null",
+          "required": false,
+          "description": "Zero-based index of the card expanded when the section mounts. Defaults to 4 (the fifth card). Pass null for none; an index past the end of `images` is treated as null."
+        },
+        {
+          "name": "countNoun",
+          "type": "string",
+          "required": false,
+          "description": "Noun used in the \"Showing 5 of 10 projects\" line, which appears only if a breakpoint renders fewer cards than were passed. Defaults to \"projects\"."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the section element."
+        }
+      ],
+      "features": [
+        "Entrance is staged, not one fade: the strip fades in at 120ms and cards rise from 10px, staggered 30ms apart",
+        "Opening a card animates width only \u2014 the photo is fixed at the expanded size and centred, so the card widens around a stationary image instead of rescaling it",
+        "Card heights are constant, so clicking never disturbs the strip's baseline or the surrounding layout",
+        "Collapsing runs in reverse order: the label clears first, then geometry resets 60ms later, so text never smears across a moving card",
+        "Card geometry switches across four breakpoints (34/40/48/54px collapsed). Below 768px the strip scrolls horizontally instead of dropping cards, so every image stays reachable on a phone",
+        "Arrow keys, Home and End move across the strip and open each card as they go; the opened card scrolls itself into view once it has finished widening. Each card reports aria-expanded rather than posing as a tab",
+        "Respects prefers-reduced-motion \u2014 the entrance and expand sequences resolve instantly to their end state",
+        "Scrim and label ship as --gallery-scrim and --gallery-label tokens. They stay white-on-dark in both themes by design: the label sits on a photograph, not on the page surface, so following the page theme would make it vanish in light mode."
+      ],
+      "inspiration": []
+    }
+  ]
+}

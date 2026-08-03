@@ -1,0 +1,109 @@
+{
+  "sections": [
+    {
+      "slug": "feature-gallery-01",
+      "name": "Feature Gallery 01",
+      "category": "feature-section",
+      "tags": [
+        "feature",
+        "section",
+        "gallery",
+        "expand",
+        "click",
+        "interior"
+      ],
+      "description": "A centered feature section — eyebrow, heading, subheading and a two-button CTA row — above a strip of image cards that expand on click. Written for a studio or portfolio site where the work needs to carry the section.",
+      "createdAt": "2026-08-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Feature Gallery 01",
+          "tier": "free",
+          "description": "Cards rise into place on scroll, then the clicked card widens around a stationary image while the rest narrow. Heights never change; the label and scrim fade in last.",
+          "animationType": "click",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "images",
+              "type": "GalleryImage[]",
+              "required": false,
+              "description": "Cards in the strip. Each is { label, src, tint } — tint is the solid colour shown behind the photo while it loads and in the collapsed sliver."
+            },
+            {
+              "name": "eyebrow",
+              "type": "string",
+              "required": false,
+              "description": "Small uppercase label above the heading. Defaults to \"Selected work\"."
+            },
+            {
+              "name": "heading",
+              "type": "string",
+              "required": false,
+              "description": "Section heading, rendered as an h2."
+            },
+            {
+              "name": "subheading",
+              "type": "string",
+              "required": false,
+              "description": "Supporting paragraph below the heading."
+            },
+            {
+              "name": "ctaLabel",
+              "type": "string",
+              "required": false,
+              "description": "Primary button label. Defaults to \"Book a consultation\"."
+            },
+            {
+              "name": "ctaHref",
+              "type": "string",
+              "required": false,
+              "description": "Primary button destination."
+            },
+            {
+              "name": "secondaryLabel",
+              "type": "string",
+              "required": false,
+              "description": "Secondary outline button label. Defaults to \"View all projects\"."
+            },
+            {
+              "name": "secondaryHref",
+              "type": "string",
+              "required": false,
+              "description": "Secondary button destination."
+            },
+            {
+              "name": "defaultOpenIndex",
+              "type": "number | null",
+              "required": false,
+              "description": "Zero-based index of the card expanded when the section mounts. Defaults to 4 (the fifth card). Pass null for none; an index past the end of `images` is treated as null."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the section element."
+            }
+          ],
+          "componentName": "FeatureGallery01",
+          "previewHint": "Click any card to expand it; click it again to collapse. Arrow keys move across the strip",
+          "features": [
+            "Entrance is staged, not one fade: the strip fades in at 120ms and cards rise from 10px, staggered 30ms apart",
+            "Opening a card animates width only — the photo is fixed at the expanded size and centred, so the card widens around a stationary image instead of rescaling it",
+            "Card heights are constant, so clicking never disturbs the strip's baseline or the surrounding layout",
+            "Collapsing runs in reverse order: the label clears first, then geometry resets 60ms later, so text never smears across a moving card",
+            "Card geometry switches across four breakpoints (24/40/48/54px collapsed) and drops to 6 cards on mobile, so the strip fits a 375px viewport",
+            "Arrow keys, Home and End move focus across the strip; each card reports aria-expanded rather than posing as a tab",
+            "Respects prefers-reduced-motion — the entrance and expand sequences resolve instantly to their end state",
+            "Scrim and label ship as --gallery-scrim and --gallery-label tokens. They stay white-on-dark in both themes by design: the label sits on a photograph, not on the page surface, so following the page theme would make it vanish in light mode."
+          ],
+          "responsive": true
+        }
+      ]
+    }
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2026-08-02T20:27:28.915Z"
+}

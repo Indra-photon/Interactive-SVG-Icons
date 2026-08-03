@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
+import { InterfaceKit } from "interface-kit/react";
 
 const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" });
 
@@ -212,6 +213,7 @@ export default function RootLayout({
             />
           </MotionProvider>
           <Analytics />
+          {process.env.NODE_ENV === "development" && <InterfaceKit />}
           <Script
             src="https://cloud.umami.is/script.js"
             data-website-id="12be97c1-8b62-4f75-9793-a78ef4aa27e4"

@@ -847,25 +847,6 @@
       ]
     },
     {
-      "name": "hexagon-rotate-default",
-      "type": "registry:ui",
-      "title": "Hexagon Rotate - Hexagon Rotate",
-      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/hexagon-rotate/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/hexagon-rotate/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "heart-fill-default",
       "type": "registry:ui",
       "title": "Heart Fill - Heart Fill",
@@ -938,6 +919,25 @@
           "path": "components/craftui/loaders/grid-snake/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/grid-snake/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hexagon-rotate-default",
+      "type": "registry:ui",
+      "title": "Hexagon Rotate - Hexagon Rotate",
+      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/hexagon-rotate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/hexagon-rotate/default.tsx"
         }
       ]
     },
@@ -1132,25 +1132,6 @@
       ]
     },
     {
-      "name": "fill-paint-bucket-default",
-      "type": "registry:ui",
-      "title": "Paint Bucket - Paint Bucket",
-      "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "fill-hourglass-default",
       "type": "registry:ui",
       "title": "Hourglass - Hourglass",
@@ -1170,10 +1151,10 @@
       ]
     },
     {
-      "name": "fill-flask-default",
+      "name": "fill-paint-bucket-default",
       "type": "registry:ui",
-      "title": "Flask - Flask",
-      "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
+      "title": "Paint Bucket - Paint Bucket",
+      "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
       "dependencies": [
         "framer-motion"
       ],
@@ -1182,9 +1163,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/fill-flask/default.tsx",
+          "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/fill-flask/default.tsx"
+          "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
         }
       ]
     },
@@ -1204,6 +1185,25 @@
           "path": "components/craftui/loaders/fill-coffee-cup/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/fill-coffee-cup/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-flask-default",
+      "type": "registry:ui",
+      "title": "Flask - Flask",
+      "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-flask/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-flask/default.tsx"
         }
       ]
     },
@@ -1284,25 +1284,6 @@
       ]
     },
     {
-      "name": "dots-compress-default",
-      "type": "registry:ui",
-      "title": "Dots Compress - Dots Compress",
-      "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dots-compress/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dots-compress/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dots-bounce-default",
       "type": "registry:ui",
       "title": "Dots Bounce - Dots Bounce",
@@ -1318,6 +1299,25 @@
           "path": "components/craftui/loaders/dots-bounce/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dots-bounce/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dots-compress-default",
+      "type": "registry:ui",
+      "title": "Dots Compress - Dots Compress",
+      "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-compress/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-compress/default.tsx"
         }
       ]
     },
@@ -1339,23 +1339,6 @@
       ]
     },
     {
-      "name": "dot-matrix-rain-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Rain - Dot Matrix Rain",
-      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dot-matrix-life-default",
       "type": "registry:ui",
       "title": "Dot Matrix Life - Dot Matrix Life",
@@ -1369,6 +1352,23 @@
           "path": "components/craftui/loaders/dot-matrix-life/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-matrix-life/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-rain-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Rain - Dot Matrix Rain",
+      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
         }
       ]
     },
@@ -1407,25 +1407,6 @@
       ]
     },
     {
-      "name": "dot-circle-expand-default",
-      "type": "registry:ui",
-      "title": "Dot Circle Expand - Dot Circle Expand",
-      "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dock-bounce-default",
       "type": "registry:ui",
       "title": "Dock Bounce - Dock Bounce",
@@ -1441,6 +1422,25 @@
           "path": "components/craftui/loaders/dock-bounce/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dock-bounce/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-circle-expand-default",
+      "type": "registry:ui",
+      "title": "Dot Circle Expand - Dot Circle Expand",
+      "description": "Static center dot with four corner dots that pulse outward and return, creating a dynamic radial expansion effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
         }
       ]
     },
@@ -1502,44 +1502,6 @@
       ]
     },
     {
-      "name": "circle-spinner-wipe-default",
-      "type": "registry:ui",
-      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
-      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "breath-default",
-      "type": "registry:ui",
-      "title": "Breath - Breath",
-      "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/breath/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/breath/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "bars-wave-default",
       "type": "registry:ui",
       "title": "Bars Wave - Bars Wave",
@@ -1555,6 +1517,25 @@
           "path": "components/craftui/loaders/bars-wave/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/bars-wave/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circle-spinner-wipe-default",
+      "type": "registry:ui",
+      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
+      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
         }
       ]
     },
@@ -1578,10 +1559,10 @@
       ]
     },
     {
-      "name": "bars-scale-bottom-default",
+      "name": "breath-default",
       "type": "registry:ui",
-      "title": "Bars Scale Bottom - Bars Scale Bottom",
-      "description": "Three vertical bars scaling up and down with bottom fixed",
+      "title": "Breath - Breath",
+      "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
       "dependencies": [
         "framer-motion"
       ],
@@ -1590,9 +1571,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
+          "path": "components/craftui/loaders/breath/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
+          "target": "~/components/craftui/loaders/breath/default.tsx"
         }
       ]
     },
@@ -1612,6 +1593,25 @@
           "path": "components/craftui/loaders/bars-scale-01/scale.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/bars-scale-01/scale.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-scale-bottom-default",
+      "type": "registry:ui",
+      "title": "Bars Scale Bottom - Bars Scale Bottom",
+      "description": "Three vertical bars scaling up and down with bottom fixed",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
         }
       ]
     },
@@ -2077,6 +2077,31 @@
       "registryDependencies": [
         "craftui-base"
       ],
+      "css": {
+        ".pixcard-grid": {
+          "grid-template-columns": "repeat(var(--pixcard-size, 14), 1fr)",
+          "grid-template-rows": "repeat(var(--pixcard-size, 14), 1fr)"
+        },
+        ".pixcard-tile": {
+          "background-size": "calc(var(--pixcard-size, 14) * 100%) calc(var(--pixcard-size, 14) * 100%)",
+          "background-repeat": "no-repeat",
+          "transform": "scale(1.02)",
+          "animation": "pixcard-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards"
+        },
+        "@keyframes pixcard-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          ".pixcard-tile": {
+            "animation": "none"
+          }
+        }
+      },
       "files": [
         {
           "path": "components/craftui/blocks/pixel-dissolve-card/default.tsx",
@@ -2225,6 +2250,38 @@
           "path": "components/craftui/blocks/ai-chat/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/ai-chat/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-gallery-01-default",
+      "type": "registry:block",
+      "title": "Feature Gallery 01 - Feature Gallery 01",
+      "description": "Cards rise into place on scroll, then the clicked card widens around a stationary image while the rest narrow. Heights never change; the label and scrim fade in last.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "cssVars": {
+        "light": {
+          "gallery-scrim": "oklch(0 0 0 / 0.72)",
+          "gallery-label": "oklch(1 0 0)"
+        },
+        "dark": {
+          "gallery-scrim": "oklch(0 0 0 / 0.78)",
+          "gallery-label": "oklch(1 0 0)"
+        },
+        "theme": {
+          "--gallery-radius": "14px"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-gallery-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-gallery-01/default.tsx"
         }
       ]
     },

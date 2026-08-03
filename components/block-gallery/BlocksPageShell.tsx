@@ -14,12 +14,15 @@ import {
 import { BlockContentPanel } from "./BlockContentPanel";
 // import { PatternSection } from "@/components/PatternSection";
 import type { Block } from "@/types/block";
+import { BLOCKS_CATALOG, type CatalogUIConfig } from "@/lib/catalog-config";
 
 interface BlocksPageShellProps {
   blocks: Block[];
   sidebarSections: SidebarSectionConfig[];
   firstSlug: string;
   firstVariation: string;
+  /** Which catalog is being rendered. Defaults to blocks. */
+  catalog?: CatalogUIConfig;
 }
 
 export function BlocksPageShell({
@@ -27,6 +30,7 @@ export function BlocksPageShell({
   sidebarSections,
   firstSlug,
   firstVariation,
+  catalog = BLOCKS_CATALOG,
 }: BlocksPageShellProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -42,7 +46,7 @@ export function BlocksPageShell({
       const params = new URLSearchParams();
       params.set("slug", firstSlug);
       if (firstVariation) params.set("variation", firstVariation);
-      router.replace(`/blocks?${params.toString()}`, { scroll: false });
+      router.replace(`${catalog.basePath}?${params.toString()}`, { scroll: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -51,7 +55,7 @@ export function BlocksPageShell({
     const params = new URLSearchParams();
     params.set("slug", slug);
     if (variation) params.set("variation", variation);
-    router.replace(`/blocks?${params.toString()}`, { scroll: false });
+    router.replace(`${catalog.basePath}?${params.toString()}`, { scroll: false });
   };
 
   return (
@@ -79,6 +83,7 @@ export function BlocksPageShell({
             activeSlug={activeSlug}
             activeVariation={activeVariation}
             onVariationSelect={handleSelect}
+            catalog={catalog}
           />
         </SidebarInset>
       </SidebarProvider>
