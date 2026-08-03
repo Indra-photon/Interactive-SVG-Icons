@@ -24,17 +24,45 @@ export interface FeatureGallery01Props {
   className?: string;
 }
 
+/* ─────────────────────────────────────────────────────────
+ * CAPTION STORYBOARD — opening a card
+ *
+ *    0ms   card widens ................. 300ms  easeOutQuart
+ *  165ms   scrim fades in .............. 200ms  easeOutQuad
+ *  225ms   label fades + rises ......... 200ms  easeOutQuad
+ *  275ms   description fades + rises ... 200ms  easeOutQuad
+ *  300ms   card settled
+ *  310ms   corner frame fades in ....... 200ms  easeOutQuad
+ *  510ms   frame settled
+ *
+ * The frame lands last, on stationary geometry: its bottom-right bracket is
+ * anchored to the edge that animates, so fading it in earlier would drag it
+ * across the card instead of placing it.
+ *
+ * Closing compresses and reverses: scrim and caption leave together in
+ * 140ms on an ease-in, then geometry waits 150ms so the text is fully
+ * gone before a moving card edge can clip it.
+ * ───────────────────────────────────────────────────────── */
 const TIMING = {
-  expandLabel: 180,
-  collapseReset: 60,
+  scrimIn: 165,
+  labelIn: 225,
+  descriptionIn: 275,
+  frameIn: 310,
+  collapseReset: 150,
 };
 
 const MOTION = {
   width: 300,
-  label: 240,
+  fadeIn: 200,
+  fadeOut: 140,
 };
 
+/** Geometry: front-loaded, so the card feels instant then settles. */
 const EASE = [0.165, 0.84, 0.44, 1] as const;
+/** Opacity: closer to linear — a fade should read as a fade, not a pop. */
+const EASE_FADE = [0.25, 0.46, 0.45, 0.94] as const;
+/** Exits: accelerate away, because the decision is already made. */
+const EASE_EXIT = [0.55, 0.085, 0.68, 0.53] as const;
 
 /**
  * `scroll: false` fills the container — items share the width proportionally
@@ -83,7 +111,38 @@ const BREAKPOINTS = [
 
 const SSR_PRESET = BREAKPOINTS[1];
 
-const RADIUS = "var(--gallery-radius, 4px)";
+const CORNER_RADIUS = 4;
+const RADIUS = `var(--gallery-radius, ${CORNER_RADIUS}px)`;
+
+/** Arm length and viewBox of one corner bracket, in px. */
+const FRAME_SIZE = 24;
+
+/**
+ * An L-shaped crop mark whose elbow is arced to `CORNER_RADIUS`, so it sits
+ * concentric with the card's own rounded corner. Inset by 1px inside the
+ * viewBox so the stroke is never clipped at the edges.
+ */
+function CornerFrame({ className }: { className?: string }) {
+  const r = CORNER_RADIUS;
+  const end = FRAME_SIZE - 1;
+
+  return (
+    <svg
+      viewBox={`0 0 ${FRAME_SIZE} ${FRAME_SIZE}`}
+      fill="none"
+      aria-hidden
+      className={className}
+      style={{ width: FRAME_SIZE, height: FRAME_SIZE }}
+    >
+      <path
+        d={`M1 ${end} L1 ${1 + r} A${r} ${r} 0 0 1 ${1 + r} 1 L${end} 1`}
+        stroke="var(--gallery-frame, oklch(1 0 0 / 0.55))"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 const photo = (id: number) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&h=1200&fit=crop`;
@@ -214,7 +273,6 @@ export default function FeatureGallery01({
 
   const [selected, setSelected] = useState<number | null>(initialOpen);
   const [geomSelected, setGeomSelected] = useState<number | null>(initialOpen);
-  const [labelOn, setLabelOn] = useState(initialOpen !== null);
 
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const interacted = useRef(false);
@@ -232,15 +290,12 @@ export default function FeatureGallery01({
     return () => ro.disconnect();
   }, []);
 
+  // Hold the collapsed geometry back until the caption has fully cleared, so a
+  // moving card edge never clips text that is still on screen.
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion || selected !== null) return;
 
-    if (selected === null) {
-      const t = setTimeout(() => setGeomSelected(null), TIMING.collapseReset);
-      return () => clearTimeout(t);
-    }
-
-    const t = setTimeout(() => setLabelOn(true), TIMING.expandLabel);
+    const t = setTimeout(() => setGeomSelected(null), TIMING.collapseReset);
     return () => clearTimeout(t);
   }, [selected, reduceMotion]);
 
@@ -266,7 +321,6 @@ export default function FeatureGallery01({
   const select = (i: number) => {
     interacted.current = true;
     setSelected(i);
-    setLabelOn(false);
     setGeomSelected(i);
   };
 
@@ -274,14 +328,12 @@ export default function FeatureGallery01({
     if (selected === i) {
       interacted.current = true;
       setSelected(null);
-      setLabelOn(false);
       return;
     }
     select(i);
   };
 
   const activeGeom = reduceMotion ? selected : geomSelected;
-  const activeLabelOn = reduceMotion ? selected !== null : labelOn;
 
   const onKeyDown = (e: React.KeyboardEvent, i: number) => {
     const last = visible.length - 1;
@@ -301,8 +353,22 @@ export default function FeatureGallery01({
 
   const T = {
     width: tx({ duration: MOTION.width / 1000, ease: EASE }),
-    label: tx({ duration: MOTION.label / 1000, ease: EASE }),
   };
+
+  /**
+   * Entering is staged and unhurried; leaving is one fast, undelayed beat.
+   * `delayMs` is what separates scrim, label and description on the way in.
+   */
+  const fade = (on: boolean, delayMs: number) =>
+    tx(
+      reduceMotion
+        ? { duration: 0 }
+        : {
+            duration: (on ? MOTION.fadeIn : MOTION.fadeOut) / 1000,
+            ease: on ? EASE_FADE : EASE_EXIT,
+            delay: on ? delayMs / 1000 : 0,
+          },
+    );
 
   /**
    * `collapsedWidth` and `expandedWidth` are a *ratio* in fill mode, not pixels:
@@ -397,7 +463,7 @@ export default function FeatureGallery01({
           >
             {visible.map((item, i) => {
               const isWide = activeGeom === i;
-              const isLabelled = selected === i && activeLabelOn;
+              const isLabelled = selected === i;
 
               return (
                 <motion.button
@@ -414,7 +480,10 @@ export default function FeatureGallery01({
                   }
                   onClick={() => toggle(i)}
                   onKeyDown={(e) => onKeyDown(e, i)}
-                  className="relative min-w-0 cursor-pointer overflow-hidden select-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:outline-none"
+                  // Dual inset ring: white band 0–2px, dark band 2–4px. Drawn
+                  // inside so neighbouring cards are never overlapped, and
+                  // paired so it survives on both dark and pale photography.
+                  className="relative min-w-0 cursor-pointer overflow-hidden select-none focus-visible:shadow-[inset_0_0_0_2px_rgba(255,255,255,0.95),inset_0_0_0_4px_rgba(0,0,0,0.55)] focus-visible:outline-none"
                   style={{
                     borderRadius: RADIUS,
                     backgroundColor: item.tint,
@@ -458,36 +527,57 @@ export default function FeatureGallery01({
                     }}
                     initial={false}
                     animate={{ opacity: isLabelled ? 1 : 0 }}
-                    transition={T.label}
+                    transition={fade(isLabelled, TIMING.scrimIn)}
                   />
+
+                  {/* Mirrored as a whole in RTL, so the pair becomes
+                      top-right + bottom-left and stays clear of the caption. */}
                   <motion.div
+                    className="pointer-events-none absolute inset-0 rtl:-scale-x-100"
+                    initial={false}
+                    animate={{ opacity: isLabelled ? 1 : 0 }}
+                    transition={fade(isLabelled, TIMING.frameIn)}
+                  >
+                    <CornerFrame className="absolute top-3 left-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]" />
+                    {/* Narrow cards wrap the description onto a second line
+                        that reaches the bottom-right corner, so below md the
+                        pair sits across the top instead of on the diagonal. */}
+                    <CornerFrame className="absolute top-3 right-3 rotate-90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)] md:top-auto md:bottom-3 md:rotate-180" />
+                  </motion.div>
+                  <div
                     className="pointer-events-none absolute bottom-3 start-4 text-start"
                     style={{ width: openWidth - 32 }}
-                    initial={false}
-                    animate={{
-                      opacity: isLabelled ? 1 : 0,
-                      y: isLabelled ? 0 : 10,
-                    }}
-                    transition={T.label}
                   >
-                    <p
-                      className="text-lg font-semibold tracking-tight whitespace-nowrap sm:text-xl"
+                    <motion.p
+                      className="text-sm font-medium tracking-normal whitespace-nowrap sm:text-xl"
                       style={{ color: "var(--gallery-label, oklch(1 0 0))" }}
+                      initial={false}
+                      animate={{
+                        opacity: isLabelled ? 1 : 0,
+                        y: isLabelled ? 0 : 10,
+                      }}
+                      transition={fade(isLabelled, TIMING.labelIn)}
                     >
                       {item.label}
-                    </p>
+                    </motion.p>
                     {item.description && (
-                      <p
-                        className="line-clamp-2 text-xs leading-snug text-pretty sm:text-sm"
+                      <motion.p
+                        className="line-clamp-1 sm:line-clamp-2 text-xs leading-snug text-pretty sm:text-sm"
                         style={{
                           color:
                             "var(--gallery-label-muted, oklch(1 0 0 / 0.74))",
                         }}
+                        initial={false}
+                        animate={{
+                          opacity: isLabelled ? 1 : 0,
+                          y: isLabelled ? 0 : 10,
+                        }}
+                        transition={fade(isLabelled, TIMING.descriptionIn)}
                       >
                         {item.description}
-                      </p>
+                      </motion.p>
                     )}
-                  </motion.div>
+                  </div>
                 </motion.button>
               );
             })}

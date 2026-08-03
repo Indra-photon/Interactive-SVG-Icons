@@ -30,12 +30,14 @@
         "light": {
           "gallery-scrim": "oklch(0 0 0 / 0.88)",
           "gallery-label": "oklch(1 0 0)",
-          "gallery-label-muted": "oklch(1 0 0 / 0.74)"
+          "gallery-label-muted": "oklch(1 0 0 / 0.74)",
+          "gallery-frame": "oklch(1 0 0 / 0.55)"
         },
         "dark": {
           "gallery-scrim": "oklch(0 0 0 / 0.9)",
           "gallery-label": "oklch(1 0 0)",
-          "gallery-label-muted": "oklch(1 0 0 / 0.74)"
+          "gallery-label-muted": "oklch(1 0 0 / 0.74)",
+          "gallery-frame": "oklch(1 0 0 / 0.55)"
         },
         "theme": {
           "--gallery-radius": "4px"
@@ -58,7 +60,7 @@
           "name": "heading",
           "type": "React.ReactNode",
           "required": false,
-          "description": "Section heading, rendered as an h2. Accepts JSX, so individual words can be wrapped in a span to colour or style them — e.g. heading={<>Spaces designed <span className=\"text-primary\">around how you live</span></>}."
+          "description": "Section heading, rendered as an h2. Accepts JSX, so individual words can be wrapped in a span to colour or style them \u2014 e.g. heading={<>Spaces designed <span className=\"text-primary\">around how you live</span></>}."
         },
         {
           "name": "subheading",
@@ -113,10 +115,13 @@
         "Entrance is staged, not one fade: the strip fades in at 120ms and cards rise from 10px, staggered 30ms apart",
         "Opening a card animates width only \u2014 the photo is fixed at the expanded size and centred, so the card widens around a stationary image instead of rescaling it",
         "Card heights are constant, so clicking never disturbs the strip's baseline or the surrounding layout",
-        "Collapsing runs in reverse order: the label clears first, then geometry resets 60ms later, so text never smears across a moving card",
+        "Collapsing runs in reverse order: scrim and caption leave together in 140ms on an ease-in, then geometry waits 150ms, so text is fully gone before a moving card edge can clip it",
+        "Opening stages four beats rather than one fade — scrim at 165ms, label at 225ms, description at 275ms, then a pair of corner crop marks at 310ms once the card has settled. Geometry, fades and exits each use their own easing curve",
+        "Corner brackets frame the open card, arced to the same radius as the card and shipped as the --gallery-frame token. They sit on the diagonal from 768px up, move to both top corners below that where the description wraps into the bottom-right, and mirror in RTL so they always stay clear of the caption",
         "Card geometry switches across four breakpoints (34/40/48/54px collapsed). Below 768px the strip scrolls horizontally instead of dropping cards, so every image stays reachable on a phone",
         "Arrow keys, Home and End move across the strip and open each card as they go; the opened card scrolls itself into view once it has finished widening. Each card reports aria-expanded rather than posing as a tab",
         "Respects prefers-reduced-motion \u2014 the entrance and expand sequences resolve instantly to their end state",
+        "Card focus is a paired inset ring \u2014 a white band with a dark band outside it \u2014 drawn inside the card so it never overlaps a neighbour. The pairing is deliberate: a single white ring disappears on pale photography, which a gallery cannot predict",
         "Scrim and label ship as --gallery-scrim and --gallery-label tokens. They stay white-on-dark in both themes by design: the label sits on a photograph, not on the page surface, so following the page theme would make it vanish in light mode."
       ],
       "inspiration": []

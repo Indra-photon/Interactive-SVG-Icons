@@ -151,7 +151,9 @@ function VariationDetail({
       >
         {/* Breadcrumb + description */}
         <Paragraph variant="overview-Title" className="font-mono">
-          <span className="text-muted-foreground">{catalog.breadcrumbRoot}</span>
+          <span className="text-muted-foreground">
+            {catalog.breadcrumbRoot}
+          </span>
           <span className="text-muted-foreground">{" / "}</span>
           <span className="text-muted-foreground">{block.category}</span>
           <span className="text-muted-foreground">{" / "}</span>
@@ -229,34 +231,36 @@ function VariationDetail({
           </div>
         )}
 
-        {/* Features */}
-        {variation.features && variation.features.length > 0 && (
-          <div className="mt-10">
-            <Paragraph variant="Instruction-Heading" className="mb-3">
-              Design decisions taken here
-            </Paragraph>
-            <ul className="flex flex-col gap-2">
-              {variation.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2">
-                  <span className="corner-squircle shrink-0 mt-1 flex items-center justify-center rounded-[4px] size-3.5 bg-foreground">
-                    <HugeiconsIcon
-                      icon={Tick01Icon}
-                      size={12}
-                      strokeWidth={2.5}
-                      className="text-background"
-                    />
-                  </span>
-                  <Paragraph
-                    variant="panel-Description"
-                    className="text-foreground/70"
-                  >
-                    {feature}
-                  </Paragraph>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {/* Features — blocks only, see CatalogUIConfig.showFeatures */}
+        {catalog.showFeatures &&
+          variation.features &&
+          variation.features.length > 0 && (
+            <div className="mt-10">
+              <Paragraph variant="Instruction-Heading" className="mb-3">
+                Design decisions taken here
+              </Paragraph>
+              <ul className="flex flex-col gap-2">
+                {variation.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
+                    <span className="corner-squircle shrink-0 mt-1 flex items-center justify-center rounded-[4px] size-3.5 bg-foreground">
+                      <HugeiconsIcon
+                        icon={Tick01Icon}
+                        size={12}
+                        strokeWidth={2.5}
+                        className="text-background"
+                      />
+                    </span>
+                    <Paragraph
+                      variant="panel-Description"
+                      className="text-foreground/70"
+                    >
+                      {feature}
+                    </Paragraph>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
       </motion.div>
     </div>
   );

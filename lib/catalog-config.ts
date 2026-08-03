@@ -24,7 +24,7 @@ export interface CatalogUIConfig {
    *                own sm/md/xl breakpoints do the reflowing, and let its own
    *                content set the height. Right for page-width sections.
    */
-  previewMode: 'auto' | 'responsive';
+  previewMode: "auto" | "responsive";
   /**
    * Width cap on the detail pane. Component-scale items read better in a
    * measure-limited column; page-width sections need the full pane or they
@@ -33,6 +33,13 @@ export interface CatalogUIConfig {
   detailWidthClass: string;
   /** Column count for the variations grid on the overview screen. */
   overviewGridClass: string;
+  /**
+   * Whether the detail screen renders the variation's `features` list under
+   * "Design decisions taken here". Blocks are small enough that the rationale
+   * is the interesting part; sections are read as finished page furniture, so
+   * the list is noise there. `features` stays in the data either way.
+   */
+  showFeatures: boolean;
   /** Shown when the catalog has no published items yet. */
   empty: {
     title: string;
@@ -41,34 +48,36 @@ export interface CatalogUIConfig {
 }
 
 export const BLOCKS_CATALOG: CatalogUIConfig = {
-  basePath: '/blocks',
-  catalogDir: 'blocks',
-  registryName: 'blocks',
-  sidebarLabel: 'Blocks',
-  breadcrumbRoot: 'blocks',
-  previewMode: 'auto',
-  detailWidthClass: 'max-w-5xl',
-  overviewGridClass: 'grid-cols-1 md:grid-cols-2',
+  basePath: "/blocks",
+  catalogDir: "blocks",
+  registryName: "blocks",
+  sidebarLabel: "Blocks",
+  breadcrumbRoot: "blocks",
+  previewMode: "auto",
+  detailWidthClass: "max-w-5xl",
+  overviewGridClass: "grid-cols-1 md:grid-cols-2",
+  showFeatures: true,
   empty: {
-    title: 'No blocks yet',
-    body: 'Blocks are composable UI pieces — cards, navbars, forms. Add one under components/craftui/blocks and run the registry build.',
+    title: "No blocks yet",
+    body: "Blocks are composable UI pieces — cards, navbars, forms. Add one under components/craftui/blocks and run the registry build.",
   },
 };
 
 export const SECTIONS_CATALOG: CatalogUIConfig = {
-  basePath: '/sections',
-  catalogDir: 'sections',
-  registryName: 'sections',
-  sidebarLabel: 'Sections',
-  breadcrumbRoot: 'sections',
-  previewMode: 'responsive',
+  basePath: "/sections",
+  catalogDir: "sections",
+  registryName: "sections",
+  sidebarLabel: "Sections",
+  breadcrumbRoot: "sections",
+  previewMode: "responsive",
   // Sections are page-width by definition, so both screens give them the whole
   // pane — a section previewed in a half-width column is a section previewed at
   // a size it will never be used at.
-  detailWidthClass: 'max-w-none',
-  overviewGridClass: 'grid-cols-1',
+  detailWidthClass: "max-w-none",
+  overviewGridClass: "grid-cols-1",
+  showFeatures: false,
   empty: {
-    title: 'No sections yet',
-    body: 'Sections are page-width layouts — feature, footer, pricing. Add one under components/craftui/sections and run the registry build.',
+    title: "No sections yet",
+    body: "Sections are page-width layouts — feature, footer, pricing. Add one under components/craftui/sections and run the registry build.",
   },
 };
