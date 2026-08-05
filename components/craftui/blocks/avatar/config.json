@@ -1,0 +1,114 @@
+{
+  "slug": "avatar",
+  "name": "Avatar Grid",
+  "category": "avatar",
+  "tags": ["avatar", "team", "grid", "roles", "hover", "animation"],
+  "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
+  "createdAt": "2026-08-05T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Avatar Grid",
+      "componentName": "AvatarGrid",
+      "previewHint": "The cluster enters outward from the mark — hover any avatar to lift it and turn it to colour",
+      "tier": "free",
+      "description": "Members are placed by 1-indexed [row, column] on a 5×5 grid; every unoccupied cell is generated as a dashed placeholder tile, so resizing the grid refills the backdrop with no extra data. Each photo fills its tile behind an inset outline while the centre brand tile carries a conic-gradient edge that catches light on alternating corners, depth comes from a layered transparent box-shadow, and hover lifts the tile with a bounce-free spring while dropping its grayscale filter.",
+      "animationType": "hover",
+      "responsive": true,
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "members",
+          "type": "AvatarMember[]",
+          "required": false,
+          "description": "Avatars and their grid slots. Defaults to a six-person team clustered around the centre."
+        },
+        {
+          "name": "members[].id",
+          "type": "string",
+          "required": true,
+          "description": "Unique identifier, also used by `defaultActive`."
+        },
+        {
+          "name": "members[].name",
+          "type": "string",
+          "required": true,
+          "description": "Member name, used for the accessible label."
+        },
+        {
+          "name": "members[].role",
+          "type": "string",
+          "required": true,
+          "description": "Role, read out as part of the tile's accessible name."
+        },
+        {
+          "name": "members[].src",
+          "type": "string",
+          "required": true,
+          "description": "Avatar image URL."
+        },
+        {
+          "name": "members[].cell",
+          "type": "[number, number]",
+          "required": true,
+          "description": "1-indexed [row, column] slot in the grid."
+        },
+        {
+          "name": "logo",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Node rendered in the centre tile. Defaults to a built-in brand mark."
+        },
+        {
+          "name": "logoCell",
+          "type": "[number, number]",
+          "required": false,
+          "description": "1-indexed [row, column] of the centre tile. Defaults to [3, 3]."
+        },
+        {
+          "name": "rows",
+          "type": "number",
+          "required": false,
+          "description": "Grid row count. Defaults to 5."
+        },
+        {
+          "name": "columns",
+          "type": "number",
+          "required": false,
+          "description": "Grid column count. Defaults to 5."
+        },
+        {
+          "name": "mask",
+          "type": "string | false",
+          "required": false,
+          "description": "CSS mask applied to the placeholder layer. Defaults to a circular radial fade that drops the shells to nothing before the grid's corners; pass false to keep every shell at full strength."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the root wrapper."
+        }
+      ],
+      "features": [
+        "The cluster enters as a wave outward from the brand mark — tiles are grouped into rings by their distance from the centre so equidistant members arrive together, which reads as one expanding gesture rather than six unrelated fades",
+        "Entrance and interaction live on two nested layers: the outer owns a delayed tween, the inner owns an interruptible spring, so the entrance delay never leaks into a hover",
+        "Colour and lift share timing — the grayscale transition was retuned from Tailwind's default 300ms curve to 200ms ease-out-quad so the two halves of one hover land together",
+        "Reduced motion keeps the fade and the colour change but drops every scale: the entrance still explains the layout, it just stops moving to say so",
+        "Hover is gated on a real pointer in both CSS and JS — touch fires hover on tap with nothing to un-fire it, which would strand a tapped tile lifted and in colour",
+        "Empty tiles are derived from rows × columns minus the occupied cells, so the placeholder backdrop refills itself when the grid or the member list changes",
+        "The placeholder shells sit on their own masked layer that mirrors the parent's tracks and gap, so the circular fade can dissolve the outer hatching without dimming the avatars stacked above it",
+        "Placeholder tiles carry their own grid placement rather than sitting in a wrapper — a wrapper stretches to the track while the tile inside keeps auto height and collapses to a single dashed line",
+        "Tile depth is a three-layer transparent box-shadow rather than a border — a 1px ring layer plus two soft lift layers — so the tiles hold up over any background the block is dropped onto; dark mode collapses to a single white ring since soft black depth is invisible there",
+        "Photo edges use an inset `outline` rather than a border or ring: it follows the border-radius, adds nothing to layout, and is pure black/white at 10% — a tinted neutral would pick up the surface underneath and read as dirt on the edge",
+        "The brand tile — the only one with no photo to define its own edge — gets a conic gradient masked down to a 1px band instead, two masks (border box and content box) composited with `exclude` erasing the middle",
+        "That conic starts at 45deg so its stops land exactly on the four corners, alternating light and dark; the inks are theme variables, and in dark mode both go white so the alternation comes from alpha rather than hue, since a black ink is invisible on the dark tile",
+        "The brand mark's optical centring is corrected in the SVG path itself, not with a nudge in the component, so the icon stays centred wherever it is reused",
+        "The hovered tile raises its z-index for the whole spring, so the lifted avatar never slides under a neighbouring tile mid-animation",
+        "Grayscale-to-colour runs as a CSS filter transition while the lift runs on a spring, so the two read as one gesture without animating a filter on the main thread every frame"
+      ],
+      "inspiration": []
+    }
+  ]
+}
