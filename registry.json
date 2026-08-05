@@ -2201,7 +2201,8 @@
       ],
       "registryDependencies": [
         "craftui-base",
-        "utils"
+        "utils",
+        "input"
       ],
       "files": [
         {

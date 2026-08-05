@@ -45,6 +45,10 @@
   --input-shadow-hover: var(--shadow-border-hover);
   --input-shadow-focus:
     0px 0px 0px 1px rgba(0, 0, 0, 0.16), 0px 0px 0px 4px rgba(0, 0, 0, 0.06);
+  /* Colors only. Consumed by elements whose box-shadow must stay a literal
+     value so Motion can scale-correct it through a layout animation. */
+  --card-ring: rgba(0, 0, 0, 0.06);
+  --card-ring-ambient: rgba(0, 0, 0, 0.04);
 }
 
 @layer base {
@@ -448,6 +452,8 @@
   --input-shadow-hover: 0 0 0 1px rgba(255, 255, 255, 0.13);
   --input-shadow-focus:
     0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 0 4px rgba(255, 255, 255, 0.1);
+  --card-ring: rgba(255, 255, 255, 0.08);
+  --card-ring-ambient: rgba(0, 0, 0, 0.32);
 }
 
 @layer base {

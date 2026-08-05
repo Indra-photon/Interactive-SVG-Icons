@@ -143,10 +143,10 @@ function HeroLinkCardItem({
           <Button
             variant="secondary"
             size="xs"
-            className="corner-squircle rounded-[10px] tracking-normal px-5 whitespace-nowrap"
+            className="corner-squircle rounded-[10px] tracking-normal whitespace-nowrap"
           >
             {cta}
-            <span className="ml-2 inline-flex items-center justify-center rounded-[6px] p-1 text-white">
+            <span className="inline-flex items-center justify-center rounded-[6px] text-white">
               <MorphArrow isHovered={isHovered} size={14} />
             </span>
           </Button>
