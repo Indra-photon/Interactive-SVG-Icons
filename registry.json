@@ -1464,25 +1464,6 @@
       ]
     },
     {
-      "name": "conic-spinner-default",
-      "type": "registry:ui",
-      "title": "Conic Spinner - Conic Spinner",
-      "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/conic-spinner/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/conic-spinner/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "circular-wave-fill-default",
       "type": "registry:ui",
       "title": "Circular Wave Fill - Circular Wave Fill",
@@ -1498,6 +1479,25 @@
           "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "conic-spinner-default",
+      "type": "registry:ui",
+      "title": "Conic Spinner - Conic Spinner",
+      "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/conic-spinner/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/conic-spinner/default.tsx"
         }
       ]
     },
@@ -1844,25 +1844,6 @@
       ]
     },
     {
-      "name": "audio-bars-horizontal-default",
-      "type": "registry:ui",
-      "title": "Audio Bars Sync - Audio Bars Sync",
-      "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/audio-bars-horizontal/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-bars-horizontal/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "audio-bars-glow-default",
       "type": "registry:ui",
       "title": "Audio Bars Glow - Audio Bars Glow",
@@ -1878,6 +1859,25 @@
           "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-horizontal-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Sync - Audio Bars Sync",
+      "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-horizontal/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-horizontal/default.tsx"
         }
       ]
     },
