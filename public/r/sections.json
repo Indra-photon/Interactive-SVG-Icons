@@ -105,6 +105,53 @@
       ]
     },
     {
+      "slug": "feature-gallery-02",
+      "name": "Feature Gallery 02",
+      "category": "feature-section",
+      "tags": [
+        "feature",
+        "section",
+        "gallery",
+        "scroll",
+        "parallax",
+        "image",
+        "lenis",
+        "travel",
+        "showcase"
+      ],
+      "description": "A sticky scroll-driven gallery with a parallax image strip on the right and animated destination info on the left, connected by a flight-path arc divider.",
+      "createdAt": "2026-07-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Feature Gallery 02",
+          "tier": "free",
+          "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+          "animationType": "scroll-driven",
+          "dependencies": [
+            "motion",
+            "lenis",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons",
+            "next"
+          ],
+          "registryDependencies": [],
+          "props": [],
+          "componentName": "FeatureGallery02",
+          "previewHint": "Scroll down to navigate through destinations",
+          "features": [
+            "Lenis smooth scroll drives the entire layout via a single useScroll hook",
+            "Image strip uses scale + Y + rotate transforms so each image slots into a weighted parallax stack",
+            "Arc SVG divider renders a dashed flight path; a plane icon follows via offset-path and flips direction based on scroll velocity",
+            "Left panel text slots use AnimatePresence mode='wait' spring transitions — no layout shift",
+            "Stat values animate with useSpring so numbers count up smoothly on each destination change"
+          ],
+          "responsive": true
+        }
+      ],
+      "published": false
+    },
+    {
       "slug": "feature-gallery-01",
       "name": "Feature Gallery 01",
       "category": "feature-section",
@@ -219,5 +266,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-06T10:26:44.880Z"
+  "lastUpdated": "2026-08-06T15:01:40.540Z"
 }

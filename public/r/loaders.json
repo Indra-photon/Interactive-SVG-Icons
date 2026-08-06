@@ -4032,6 +4032,77 @@
       ]
     },
     {
+      "slug": "conic-spinner",
+      "name": "Conic Spinner",
+      "category": "loaders",
+      "tags": [
+        "spinner",
+        "rotate",
+        "circle",
+        "fill",
+        "conic",
+        "simple",
+        "smooth",
+        "progress"
+      ],
+      "description": "A circular spinner that fills like a pie chart, revealing color clockwise in 8 stepped increments",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Conic Spinner",
+          "componentName": "ConicSpinner",
+          "tier": "free",
+          "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the spinner"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "circular-wave-fill",
       "name": "Circular Wave Fill",
       "category": "loaders",
@@ -4082,77 +4153,6 @@
               "type": "string",
               "default": "#cccccc",
               "description": "Background color of the circle"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 2,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "conic-spinner",
-      "name": "Conic Spinner",
-      "category": "loaders",
-      "tags": [
-        "spinner",
-        "rotate",
-        "circle",
-        "fill",
-        "conic",
-        "simple",
-        "smooth",
-        "progress"
-      ],
-      "description": "A circular spinner that fills like a pie chart, revealing color clockwise in 8 stepped increments",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Conic Spinner",
-          "componentName": "ConicSpinner",
-          "tier": "free",
-          "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Fill color of the spinner"
             },
             {
               "name": "isAnimating",
@@ -5683,88 +5683,6 @@
       ]
     },
     {
-      "slug": "audio-bars-glow",
-      "name": "Audio Bars Glow",
-      "category": "loaders",
-      "tags": [
-        "audio",
-        "music",
-        "sound",
-        "glow",
-        "gradient",
-        "vertical",
-        "bars"
-      ],
-      "description": "Six synchronized vertical bars with gradient and glow effect",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Audio Bars Glow",
-          "componentName": "AudioBarsGlow",
-          "tier": "free",
-          "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "#3b82f6",
-              "description": "Base color for the gradient (hex, rgb, or color name)"
-            },
-            {
-              "name": "barWidth",
-              "type": "number",
-              "default": 4,
-              "description": "Width of each individual bar in pixels"
-            },
-            {
-              "name": "gap",
-              "type": "number",
-              "default": 3,
-              "description": "Gap between bars in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 0.8,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "easeInOut",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "audio-bars-horizontal",
       "name": "Audio Bars Sync",
       "category": "loaders",
@@ -5808,6 +5726,88 @@
               "type": "string",
               "default": "currentColor",
               "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 4,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 3,
+              "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.8,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "audio-bars-glow",
+      "name": "Audio Bars Glow",
+      "category": "loaders",
+      "tags": [
+        "audio",
+        "music",
+        "sound",
+        "glow",
+        "gradient",
+        "vertical",
+        "bars"
+      ],
+      "description": "Six synchronized vertical bars with gradient and glow effect",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Audio Bars Glow",
+          "componentName": "AudioBarsGlow",
+          "tier": "free",
+          "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#3b82f6",
+              "description": "Base color for the gradient (hex, rgb, or color name)"
             },
             {
               "name": "barWidth",
@@ -6041,5 +6041,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-06T10:26:44.942Z"
+  "lastUpdated": "2026-08-06T15:01:40.586Z"
 }

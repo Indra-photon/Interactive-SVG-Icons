@@ -78,7 +78,7 @@ export default function HeroSocialLinks() {
     // Static flow, not absolute — the caller decides where this sits.
     <div className="flex flex-col items-start gap-2">
       <Paragraph
-        variant="default"
+        variant="body"
         className="uppercase text-xs tracking-widest"
       >
         Meet the creator

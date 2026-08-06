@@ -1464,25 +1464,6 @@
       ]
     },
     {
-      "name": "circular-wave-fill-default",
-      "type": "registry:ui",
-      "title": "Circular Wave Fill - Circular Wave Fill",
-      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "conic-spinner-default",
       "type": "registry:ui",
       "title": "Conic Spinner - Conic Spinner",
@@ -1498,6 +1479,25 @@
           "path": "components/craftui/loaders/conic-spinner/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/conic-spinner/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circular-wave-fill-default",
+      "type": "registry:ui",
+      "title": "Circular Wave Fill - Circular Wave Fill",
+      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
         }
       ]
     },
@@ -1844,25 +1844,6 @@
       ]
     },
     {
-      "name": "audio-bars-glow-default",
-      "type": "registry:ui",
-      "title": "Audio Bars Glow - Audio Bars Glow",
-      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "audio-bars-horizontal-default",
       "type": "registry:ui",
       "title": "Audio Bars Sync - Audio Bars Sync",
@@ -1878,6 +1859,25 @@
           "path": "components/craftui/loaders/audio-bars-horizontal/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/audio-bars-horizontal/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-glow-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Glow - Audio Bars Glow",
+      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
         }
       ]
     },
@@ -1997,29 +1997,6 @@
           "path": "components/craftui/blocks/subitem-navbar/subitem-navbar.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/subitem-navbar/subitem-navbar.tsx"
-        }
-      ]
-    },
-    {
-      "name": "scroll-gallery-parallax-strip",
-      "type": "registry:block",
-      "title": "Scroll Gallery - Parallax Strip",
-      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
-      "dependencies": [
-        "motion",
-        "lenis",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons",
-        "next"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/scroll-gallery/parallax-strip.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/scroll-gallery/parallax-strip.tsx"
         }
       ]
     },
@@ -2323,6 +2300,29 @@
           "path": "components/craftui/sections/team-cluster-01/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/team-cluster-01/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-gallery-02-default",
+      "type": "registry:block",
+      "title": "Feature Gallery 02 - Feature Gallery 02",
+      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+      "dependencies": [
+        "motion",
+        "lenis",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "next"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-gallery-02/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
         }
       ]
     },

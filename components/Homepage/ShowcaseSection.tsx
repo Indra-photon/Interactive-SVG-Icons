@@ -36,7 +36,7 @@ export function ShowcaseSection() {
         Components to make your UI shine
       </Heading>
 
-      <Paragraph variant="default" className="mt-4 max-w-2xl">
+      <Paragraph variant="body" className="mt-4 max-w-2xl">
         Each icon, loaders and illustrations are designed to be interactive,
         engaging, and visually appealing. Explore the showcase below to see how
         these elements come to life in real-world applications.

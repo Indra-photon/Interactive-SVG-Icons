@@ -10,7 +10,7 @@ export function InstallCommand({
 }) {
   return (
     <div className={className}>
-      <Paragraph variant="Instruction-Heading" className="mb-3">
+      <Paragraph variant="display" className="mb-3">
         Installation
       </Paragraph>
       <CopyButton text={command} />

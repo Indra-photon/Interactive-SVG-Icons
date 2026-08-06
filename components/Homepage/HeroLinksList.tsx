@@ -123,12 +123,12 @@ function HeroLinkCardItem({
 
       <CardContent className="mt-(--text-gap) flex flex-col pt-10">
         <CardTitle>
-          <Paragraph variant="card-Heading" className="uppercase">
+          <Paragraph variant="title" className="uppercase">
             {label}
           </Paragraph>
         </CardTitle>
         <CardDescription>
-          <Paragraph variant="card-Description" className="">
+          <Paragraph variant="body" className="">
             {subheading}
           </Paragraph>
         </CardDescription>

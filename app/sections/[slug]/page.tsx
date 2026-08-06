@@ -3,6 +3,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import type { SectionRegistry } from '@/types/section';
 import { BlockPageClient } from '@/components/block-gallery/BlockPageClient';
+import { SECTIONS_CATALOG } from '@/lib/catalog-config';
 
 async function getSection(slug: string) {
   try {
@@ -27,5 +28,11 @@ export default async function SectionDetailPage({
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
-  return <BlockPageClient block={section} baseUrl={baseUrl} />;
+  return (
+    <BlockPageClient
+      block={section}
+      baseUrl={baseUrl}
+      catalog={SECTIONS_CATALOG}
+    />
+  );
 }

@@ -73,8 +73,8 @@ export function IntegrationSection() {
                     {label}
                   </span>
                   <Paragraph
-                    variant="muted"
-                    className="text-foreground/50 text-sm"
+                    variant="body"
+                    className="font-medium text-foreground/50 text-sm"
                   >
                     {detail}
                   </Paragraph>

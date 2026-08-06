@@ -44,7 +44,7 @@ export default function HeroRepoStats() {
   return (
     <div className="flex flex-col items-start gap-2">
       <Paragraph
-        variant="default"
+        variant="body"
         className="uppercase text-xs tracking-widest"
       >
         Star the repo
@@ -79,7 +79,7 @@ export default function HeroRepoStats() {
 
         {stats?.views != null && (
           <Paragraph
-            variant="card-Description"
+            variant="body"
             className="text-xs tabular-nums"
           >
             {formatCount(stats.views)} views this month

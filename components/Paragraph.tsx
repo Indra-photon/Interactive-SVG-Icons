@@ -35,56 +35,105 @@ type ParagraphProps<T extends React.ElementType = "p"> = {
   className?: string;
   children: React.ReactNode;
   as?: T;
-  variant?:
-    | "default"
-    | "muted"
-    | "small"
-    | "card-Heading"
-    | "card-Description"
-    | "panel-Eyebrow"
-    | "panel-Title"
-    | "panel-Description"
-    | "Instruction-Heading"
-    | "overview-Title"
-    | "overview-Description";
+  variant?: "crumb" | "caption" | "body" | "lead" | "title" | "display";
 };
 
 export const Paragraph = <T extends React.ElementType = "p">({
   className,
   children,
   as,
-  variant = "default",
+  variant = "body",
 }: ParagraphProps<T>) => {
   const Tag = as || "p";
 
+  // ── One type scale, named by role in the reading hierarchy ──────────────────
+  //
+  //   crumb 11→12 · caption 11→14 · body 13→15 · lead 18→20 · title 16→18 ·
+  //   display 24→26                                    (base → lg, in px)
+  //
+  // Variants are named for the JOB the text does, never for the screen it sits
+  // on. The set this replaced was named by surface — card-Heading, panel-Title,
+  // overview-Title — which grew a Title/Description pair per new screen and
+  // reached twelve variants, of which `card-Heading`/`panel-Title` and
+  // `card-Description`/`panel-Description` were byte-identical, `small` and
+  // `panel-Eyebrow` had zero call sites, and `overview-Title` had silently
+  // drifted 2px away from its twin because an edit landed on only one of them.
+  // A card title and a panel title are the same thing: `title`. Reach for an
+  // existing step before adding a seventh.
+  //
+  // Two rules keep it from re-growing:
+  //
+  //  1. Type only. line-clamp, max-width, margin, text-align and one-off colour
+  //     go on the call site — they are layout, and baking them in is what made
+  //     the old overview-Description clamp to 3 lines on one card and 2 on its
+  //     neighbour depending on who remembered to override it.
+  //  2. Don't override the size from a call site. twMerge is modifier-aware, so
+  //     a bare `text-[18px]` strips only the base step and loses to the
+  //     variant's own sm:/md:/lg: rules above 640px. Overriding properly means
+  //     restating all four steps — which is exactly the duplication that got
+  //     `lead` promoted out of the old panel-Description. If a size is wrong
+  //     here, fix it here.
   const variants = {
-    default:
-      " tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] text-secondary-foreground text-pretty",
-    "card-Heading":
-      "tracking-wide font-medium text-base sm:text-[18px] md:text-[19px] lg:text-[20px] leading-tight text-foreground text-balance",
-    "card-Description":
-      "tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground text-pretty",
-    // ── Detail-panel scale (the middle column of the icon/loader panels) ──
-    // Eyebrow → Title → Description, meant to be used together in that order.
-    "panel-Eyebrow":
-      "font-mono text-[11px] sm:text-xs uppercase tracking-widest text-muted-foreground",
-    "panel-Title":
-      "tracking-wide font-medium text-base sm:text-[18px] md:text-[19px] lg:text-[20px] leading-tight text-foreground text-balance",
-    "panel-Description":
-      "tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground text-pretty",
-    // ── Body copy for features / design decisions / installation / props ──
-    // A step larger than panel-Description, relaxed leading for multi-line
-    // reading, foreground color to match body text.
-    "Instruction-Heading":
+    // Breadcrumb segments — `sections / Know My Team / …` on every gallery
+    // panel, always via <Paragraph as="span" variant="crumb">. Mono and grey to
+    // read as a path, and small enough that the trailing crumb (left on
+    // `title`) is unambiguously the heading. 24 spans across the four panels.
+    crumb:
+      "font-mono tracking-wide text-[11px] sm:text-[11px] md:text-[11px] lg:text-[12px] text-muted-foreground",
+    // Secondary text under a `title`. Three sites: the loader and icon grid
+    // cards on the overview screens, and the catalog empty state. Dimmed to /80
+    // so a wall of cards reads as titles first. In a grid, always pair it with
+    // an explicit line-clamp-N — one unclamped cell stretches the whole row.
+    caption:
+      "tracking-tighter text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] leading-normal text-secondary-foreground/80 text-pretty",
+    // The default, and the workhorse — 18 live call sites (plus two parked in
+    // commented-out blocks, BlockContentPanel:278 and IconSection:307) and
+    // every <Paragraph> that names no variant at all. previewHints, the
+    // "Copy the code snippet…" line in all three configurators, the icon design
+    // note, UI feature bullets, homepage prose. If the text is a sentence and
+    // it isn't introducing the screen, it's `body`.
+    body: "tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground text-pretty",
+    // The single summary line under a panel breadcrumb — one per screen, on all
+    // seven gallery overview and detail views. A clear step above body so the
+    // eye lands somewhere after the crumbs. Not for prose: a second `lead` on
+    // a screen means neither is the entry point.
+    lead: "tracking-tighter text-[18px] sm:text-[18px] md:text-[18px] lg:text-[20px] leading-normal text-secondary-foreground text-pretty",
+    // Two jobs, 13 call sites:
+    //
+    //  · The breadcrumb line itself (7) — this goes on the wrapping <p>, and
+    //    the trailing crumb is a bare <span className="text-foreground"> that
+    //    inherits the size from here. Only the leading crumbs get `crumb`, so
+    //    the active one ends up larger and darker without saying so twice.
+    //  · Card titles (4) — the loader and icon grid cards, ShowcaseCard,
+    //    HeroLinksList — plus the catalog empty state and ButtonCodeDisplay's
+    //    "Example Component".
+    //
+    // Not for section headings inside a panel: "Props" and "Design decisions
+    // taken here" are `display`, which is larger. `title` shares its
+    // text-foreground with `display`; what separates the two is that `title`
+    // names a thing and `display` opens a section.
+    //
+    // NB the steps are non-monotonic: 16px base, 14px at sm, back to 16/18, so
+    // a phone renders this 2px larger than a small tablet. Left as-is because
+    // it is load-bearing for the breadcrumb — check both widths before tuning.
+    title:
+      "tracking-wide font-medium text-base sm:text-[14px] md:text-[16px] lg:text-[18px] leading-tight text-foreground text-balance",
+    // Section headings *inside* a panel — the only variant whose every use is a
+    // hardcoded string, never data. Six live sites, three distinct headings:
+    //
+    //   "Props"                        BlockContentPanel:207, LoaderContentPanel:177,
+    //                                  IconContentPanel:210, UIContentPanel:108
+    //   "Design decisions taken here"  UIContentPanel:120
+    //   "Installation"                 InstallCommand:13
+    //
+    // A seventh sits inside the commented-out features block at
+    // BlockContentPanel:263 — restore that and "Design decisions taken here"
+    // is back on blocks and sections too.
+    //
+    // Larger than `lead` on purpose: these break up a long scroll, so they
+    // outrank the one summary line that opened the screen.
+    display:
       "tracking-normal font-normal text-[24px] sm:text-[24px] md:text-[24px] lg:text-[26px] leading-relaxed text-foreground text-pretty",
-    "overview-Title":
-      "tracking-wide font-medium text-base sm:text-[18px] md:text-[19px] lg:text-[20px] leading-tight text-foreground text-balance",
-    "overview-Description":
-      "tracking-tighter text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] text-left line-clamp-3 leading-normal text-secondary-foreground text-pretty",
-    muted:
-      "font-sans font-medium tracking-tighter text-[14px] md:text-[16px] text-pretty",
-    small:
-      "text-xs sm:text-sm leading-relaxed text-gray-600 dark:text-gray-300 text-pretty",
   };
 
   return (

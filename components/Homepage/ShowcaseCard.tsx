@@ -96,9 +96,9 @@ export function ShowcaseCard({
       </CardContent>
 
       <CardContent className="mt-4 flex flex-col">
-        <Paragraph variant="card-Heading">{title}</Paragraph>
+        <Paragraph variant="title">{title}</Paragraph>
         {description && (
-          <Paragraph variant="card-Description" className="mt-1">
+          <Paragraph variant="body" className="mt-1">
             {description}
           </Paragraph>
         )}

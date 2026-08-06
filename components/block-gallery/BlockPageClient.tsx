@@ -6,32 +6,41 @@ import { X, ChevronRight } from "lucide-react";
 import { PropsTable } from "@/components/PropsTable";
 import { InstallCommand } from "@/components/InstallCommand";
 import type { Block } from "@/types/block";
+import { BLOCKS_CATALOG, type CatalogUIConfig } from "@/lib/catalog-config";
 
 interface BlockPageClientProps {
   block: Block;
   baseUrl: string;
+  /** Which catalog is being rendered. Defaults to blocks. */
+  catalog?: CatalogUIConfig;
 }
 
 function BlockFullPreview({
   blockSlug,
   variationName,
+  catalogDir,
 }: {
   blockSlug: string;
   variationName: string;
+  /** Directory under components/craftui to import the preview from. */
+  catalogDir: string;
 }) {
   const [PreviewComponent, setPreviewComponent] =
     useState<React.ComponentType | null>(null);
 
   useEffect(() => {
+    // Kept as one template literal for the same reason as BlockPreview: a
+    // literal per-catalog path can't resolve while a catalog directory is
+    // empty, because the bundler has no matches to build a context from.
     import(
-      `@/components/craftui/blocks/${blockSlug}/examples/${variationName}-preview.tsx`
+      `@/components/craftui/${catalogDir}/${blockSlug}/examples/${variationName}-preview.tsx`
     )
       .then((mod) => {
         const exported = mod.default ?? mod[Object.keys(mod)[0]];
         setPreviewComponent(() => exported);
       })
       .catch(console.error);
-  }, [blockSlug, variationName]);
+  }, [catalogDir, blockSlug, variationName]);
 
   if (!PreviewComponent) {
     return (
@@ -44,7 +53,11 @@ function BlockFullPreview({
   return <PreviewComponent />;
 }
 
-export function BlockPageClient({ block, baseUrl }: BlockPageClientProps) {
+export function BlockPageClient({
+  block,
+  baseUrl,
+  catalog = BLOCKS_CATALOG,
+}: BlockPageClientProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeVariation, setActiveVariation] = useState(0);
 
@@ -58,6 +71,7 @@ export function BlockPageClient({ block, baseUrl }: BlockPageClientProps) {
         <BlockFullPreview
           blockSlug={block.slug}
           variationName={variation.name}
+          catalogDir={catalog.catalogDir}
         />
       </div>
 

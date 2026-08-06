@@ -82,15 +82,25 @@ function BlockOverview({
   return (
     <div className="overflow-y-auto py-10 px-8">
       <div className="max-w-3xl">
-        <p className="text-xs font-mono text-stone-400 uppercase tracking-widest mb-2">
-          {block.category}
-        </p>
-        <h1 className="text-3xl font-semibold text-stone-900 dark:text-stone-100 mb-2 text-wrap-balance">
-          {block.name}
-        </h1>
-        <p className="text-stone-500 dark:text-stone-400 mb-8 text-wrap-pretty">
+        <Paragraph variant="title" className="font-mono">
+          <Paragraph as="span" variant="crumb">
+            {catalog.breadcrumbRoot}
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {" / "}
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {block.category}
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {" / "}
+          </Paragraph>
+          <span className="text-foreground">{block.name}</span>
+        </Paragraph>
+
+        <Paragraph as="p" variant="lead" className="mb-8 mt-1">
           {block.description}
-        </p>
+        </Paragraph>
 
         {block.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-10">
@@ -152,16 +162,22 @@ function VariationDetail({
         transition={{ duration: 0.2, ease: EASE_OUT }}
       >
         {/* Breadcrumb + description */}
-        <Paragraph variant="overview-Title" className="font-mono">
-          <span className="text-muted-foreground">
+        <Paragraph variant="title" className="font-mono">
+          <Paragraph as="span" variant="crumb">
             {catalog.breadcrumbRoot}
-          </span>
-          <span className="text-muted-foreground">{" / "}</span>
-          <span className="text-muted-foreground">{block.category}</span>
-          <span className="text-muted-foreground">{" / "}</span>
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {" / "}
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {block.category}
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {" / "}
+          </Paragraph>
           <span className="text-foreground">{variation.displayName}</span>
         </Paragraph>
-        <Paragraph variant="panel-Description" className="mb-8">
+        <Paragraph variant="lead" className="mb-8 mt-1">
           {variation.description}
         </Paragraph>
 
@@ -188,7 +204,7 @@ function VariationDetail({
         {/* Props table */}
         {variation.props?.length > 0 && (
           <div className="mt-10">
-            <Paragraph variant="Instruction-Heading" className="mb-3">
+            <Paragraph variant="display" className="mb-3">
               Props
             </Paragraph>
             <PropsTable props={variation.props} showRequired />
@@ -244,7 +260,7 @@ function VariationDetail({
           variation.features &&
           variation.features.length > 0 && (
             <div className="mt-10">
-              <Paragraph variant="Instruction-Heading" className="mb-3">
+              <Paragraph variant="display" className="mb-3">
                 Design decisions taken here
               </Paragraph>
               <ul className="flex flex-col gap-2">
@@ -259,7 +275,7 @@ function VariationDetail({
                       />
                     </span>
                     <Paragraph
-                      variant="panel-Description"
+                      variant="body"
                       className="text-foreground/70"
                     >
                       {feature}
@@ -312,11 +328,8 @@ export function BlockContentPanel({
     return (
       <div className="relative flex flex-1 items-center justify-center overflow-hidden px-8">
         <div className="max-w-sm text-center">
-          <Paragraph variant="overview-Title">{catalog.empty.title}</Paragraph>
-          <Paragraph
-            variant="overview-Description"
-            className="mt-2 text-center line-clamp-none"
-          >
+          <Paragraph variant="title">{catalog.empty.title}</Paragraph>
+          <Paragraph variant="caption" className="mt-2 text-center">
             {catalog.empty.body}
           </Paragraph>
         </div>

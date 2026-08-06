@@ -304,8 +304,8 @@ export function IconSection() {
                 className="py-5 first:pt-0"
               >
                 <Paragraph
-                  variant="muted"
-                  className="text-foreground/70 max-w-2xl"
+                  variant="body"
+                  className="font-medium text-foreground/70 max-w-2xl"
                 >
                   {description}
                 </Paragraph>

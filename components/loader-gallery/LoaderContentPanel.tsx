@@ -47,10 +47,10 @@ function LoaderPreviewCard({
       </div>
       <div className="flex items-start justify-between gap-1.5">
         <div className="min-w-0">
-          <Paragraph variant="overview-Title" className="truncate">
+          <Paragraph variant="title" className="truncate">
             {loader.name}
           </Paragraph>
-          <Paragraph variant="overview-Description" className="mt-0.5 ">
+          <Paragraph variant="caption" className="mt-0.5 line-clamp-2">
             {loader.description}
           </Paragraph>
         </div>
@@ -77,13 +77,17 @@ function LoaderGroupOverview({
   return (
     <div className="overflow-y-auto py-12 px-4 sm:py-14 sm:px-6 md:py-16 md:px-8">
       <div className="w-full">
-        <Paragraph as="h1" variant="overview-Title" className="font-mono">
-          <span className="text-muted-foreground">loaders</span>
-          <span className="text-muted-foreground">{" / "}</span>
+        <Paragraph variant="title" className="font-mono">
+          <Paragraph as="span" variant="crumb">
+            loaders
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {" / "}
+          </Paragraph>
           <span className="text-foreground">{label}</span>
         </Paragraph>
 
-        <Paragraph as="h2" variant="overview-Description" className="mb-8">
+        <Paragraph as="p" variant="lead" className="mb-8 mt-1">
           Check out all the loaders in this group below.
         </Paragraph>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full gap-3">
@@ -129,14 +133,22 @@ function LoaderDetail({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <Paragraph variant="overview-Title" className="font-mono">
-            <span className="text-muted-foreground">loaders</span>
-            <span className="text-muted-foreground">{" / "}</span>
-            <span className="text-muted-foreground">{loader.category}</span>
-            <span className="text-muted-foreground">{" / "}</span>
+          <Paragraph variant="title" className="font-mono">
+            <Paragraph as="span" variant="crumb">
+              loaders
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {" / "}
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {loader.category}
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {" / "}
+            </Paragraph>
             <span className="text-foreground">{loader.name}</span>
           </Paragraph>
-          <Paragraph variant="panel-Description" className="mb-6">
+          <Paragraph variant="lead" className="mb-6 mt-1">
             {loader.description}
           </Paragraph>
 
@@ -162,7 +174,7 @@ function LoaderDetail({
 
           {variation.props?.length > 0 && (
             <div>
-              <Paragraph variant="Instruction-Heading" className="mb-3">
+              <Paragraph variant="display" className="mb-3">
                 Props
               </Paragraph>
               <PropsTable
