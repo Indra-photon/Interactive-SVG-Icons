@@ -182,10 +182,10 @@ export default function TeamCluster01({
           }
           @media (min-width: 1280px) {
             .team-${scopeId} {
-              grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+              grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
               grid-template-areas: "copy cluster" "detail cluster";
-              align-items: center;
-              column-gap: 4rem;
+              align-items: end;
+              column-gap: 1rem;
               row-gap: 2rem;
             }
             /*
@@ -204,7 +204,12 @@ export default function TeamCluster01({
         `}
       </style>
 
-      <div className={`team-${scopeId} mx-auto max-w-6xl px-5 sm:px-8`}>
+      {/* Widened only at xl: the cluster's desktop size is what needs the extra
+          content width, and below 1280 the layout is stacked, where a 7xl
+          measure would just stretch centred copy. */}
+      <div
+        className={`team-${scopeId} mx-auto max-w-6xl px-5 sm:px-8 xl:max-w-6xl`}
+      >
         {/* ── Copy ── */}
         <div
           style={{ gridArea: "copy" }}
@@ -239,13 +244,18 @@ export default function TeamCluster01({
         </div>
 
         {/* ── Cluster (all widths) ── */}
-        <div style={{ gridArea: "cluster" }}>
+        <div style={{ gridArea: "cluster" }} className="xl:-ml-[94px]">
           {/*
             One grid at every width — same 5×5, same cells, same arrangement.
-            Only the tile size changes: the grid is fluid up to 460px, so a
-            360px phone lands at ~64px tiles against ~85px on desktop. The
-            block's own gap steps down on small screens to buy those tiles a
-            few pixels back.
+            Only the tile size changes: the grid is fluid up to 460px, lifted
+            to 600px at xl, so a 360px phone lands at ~64px tiles against
+            ~110px on desktop. The block's own gap steps down on small screens
+            to buy those tiles a few pixels back.
+
+            The -122px pull is one tile plus one gap at the desktop size —
+            (600 - 4×12) / 5 + 12 — so the cluster's empty first column hangs
+            into the gutter and the first face lands on the track's own left
+            edge. It has to be re-derived whenever the 600px above changes.
           */}
           <AvatarGrid
             members={members}
@@ -266,7 +276,17 @@ export default function TeamCluster01({
                 </span>
               </span>
             )}
-            className="!p-0"
+            // Three overrides, all layout:
+            //   `justify-start` replaces the block's own centring, which spent
+            //     the track's slack as padding directly between the role list
+            //     and the first face.
+            //   `max-w` on the child raises the block's 460px cap to 600px at
+            //     xl only — the cap lives on the inner grid, not the root the
+            //     className lands on, so it has to be reached through `& > div`.
+            //     The descendant selector outranks the block's own utility, so
+            //     no important modifier is needed here.
+            // Below xl nothing applies and the block keeps its own 460px.
+            className="!p-0 !justify-start xl:[&>div]:max-w-[600px]"
           />
         </div>
 
