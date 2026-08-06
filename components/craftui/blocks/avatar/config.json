@@ -2,7 +2,14 @@
   "slug": "avatar",
   "name": "Avatar Grid",
   "category": "avatar",
-  "tags": ["avatar", "team", "grid", "roles", "hover", "animation"],
+  "tags": [
+    "avatar",
+    "team",
+    "grid",
+    "roles",
+    "hover",
+    "animation"
+  ],
   "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
   "createdAt": "2026-08-05T00:00:00Z",
   "variations": [
@@ -12,10 +19,12 @@
       "componentName": "AvatarGrid",
       "previewHint": "The cluster enters outward from the mark — hover any avatar to lift it and turn it to colour",
       "tier": "free",
-      "description": "Members are placed by 1-indexed [row, column] on a 5×5 grid; every unoccupied cell is generated as a dashed placeholder tile, so resizing the grid refills the backdrop with no extra data. Each photo fills its tile behind an inset outline while the centre brand tile carries a conic-gradient edge that catches light on alternating corners, depth comes from a layered transparent box-shadow, and hover lifts the tile with a bounce-free spring while dropping its grayscale filter.",
+      "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
       "animationType": "hover",
       "responsive": true,
-      "dependencies": ["motion"],
+      "dependencies": [
+        "motion"
+      ],
       "registryDependencies": [],
       "props": [
         {
@@ -85,6 +94,48 @@
           "description": "CSS mask applied to the placeholder layer. Defaults to a circular radial fade that drops the shells to nothing before the grid's corners; pass false to keep every shell at full strength."
         },
         {
+          "name": "extraTiles",
+          "type": "{ cell: [number, number]; content: ReactNode }[]",
+          "required": false,
+          "description": "Arbitrary tiles dropped into named cells — a \"we're hiring\" slot, say. They occupy their cell, so no placeholder shell is drawn underneath."
+        },
+        {
+          "name": "roleBadges",
+          "type": "boolean",
+          "required": false,
+          "description": "Renders the active member's role as a pointer badge beside their tile. Off by default — standalone, the cluster is a picture of a team and the roles live in each tile's accessible name."
+        },
+        {
+          "name": "renderBadge",
+          "type": "(member: AvatarMember) => ReactNode",
+          "required": false,
+          "description": "Custom badge contents. Defaults to the member's role; pass this to put a name, a bio, anything the caller wants inside the same pill."
+        },
+        {
+          "name": "defaultSelectedId",
+          "type": "string | null",
+          "required": false,
+          "description": "Member selected before anyone interacts. Defaults to null, which leaves the cluster at rest with every avatar in grayscale."
+        },
+        {
+          "name": "selectedId",
+          "type": "string | null",
+          "required": false,
+          "description": "Controlled selection. Pass it and the caller owns which member is picked — the grid stops keeping its own copy, so a list rendered outside the grid can't drift out of step with it. Hover still previews on top of it."
+        },
+        {
+          "name": "onSelect",
+          "type": "(id: string) => void",
+          "required": false,
+          "description": "Fires when a tile is clicked. Required to make `selectedId` do anything."
+        },
+        {
+          "name": "onActiveChange",
+          "type": "(id: string | null) => void",
+          "required": false,
+          "description": "Fires whenever the active member changes — hover preview or committed click. Lets a caller render name, role and bio outside the grid."
+        },
+        {
           "name": "className",
           "type": "string",
           "required": false,
@@ -92,6 +143,16 @@
         }
       ],
       "features": [
+        "Ships its own namespaced colour tokens, each defined as the theme token with a literal fallback — the cluster inherits a host theme where one exists and still renders correctly in a project with no token layer, without ever overwriting the consumer's own `--background` or `--foreground`",
+        "Colour comes from the theme's semantic tokens (background, foreground, muted, border, ring) rather than hardcoded neutrals, so the cluster themes with whatever app installs it instead of imposing its own greys",
+        "Once a member is active the rest of the faces step back to 50% opacity, so the selected person reads across the whole layout rather than only inside the grid; at rest nothing is dimmed, which keeps the cluster a group portrait instead of a permanently deselected list",
+        "Every literal ink — hatch, shadows, conic edge, radial mask — is written in OKLCH, matching the project's token layer",
+        "Opt-in role badges sit outside the hover layer, so the pill never inherits the tile's 1.08 lift and scale its text; they are also pointer-events-none, since a badge that intercepts the hover that summoned it flickers forever",
+        "Badge side is derived from the tile's column relative to the centre, so a badge on a left-hand tile points inward rather than off the edge of the grid",
+        "Badge side points inward on the outermost columns and away from the centre elsewhere, so a badge never leaves the grid — which is what a compact 3-wide layout, where every tile is an edge tile, would otherwise do",
+        "The caller's `renderBadge` is invoked inside the badge component, not in the grid: calling opaque code with a member in the grid's scope makes the React Compiler treat `members` as possibly mutated and drop every memo derived from it",
+        "Selection is controllable: pass `selectedId` and `onSelect` and the grid stops holding its own copy, so a role list rendered beside it and the grid itself write to one piece of state instead of two that drift",
+        "Hover previews and click commits, split the way contact-reveal-card does it, so a touch user can select a member at all; `onActiveChange` reports the result outward and lets a section render the details without the grid knowing how they are laid out",
         "The cluster enters as a wave outward from the brand mark — tiles are grouped into rings by their distance from the centre so equidistant members arrive together, which reads as one expanding gesture rather than six unrelated fades",
         "Entrance and interaction live on two nested layers: the outer owns a delayed tween, the inner owns an interruptible spring, so the entrance delay never leaks into a hover",
         "Colour and lift share timing — the grayscale transition was retuned from Tailwind's default 300ms curve to 200ms ease-out-quad so the two halves of one hover land together",
@@ -108,7 +169,23 @@
         "The hovered tile raises its z-index for the whole spring, so the lifted avatar never slides under a neighbouring tile mid-animation",
         "Grayscale-to-colour runs as a CSS filter transition while the lift runs on a spring, so the two read as one gesture without animating a filter on the main thread every frame"
       ],
-      "inspiration": []
+      "inspiration": [],
+      "cssVars": {
+        "light": {
+          "avatar-surface": "var(--background, oklch(1 0 0))",
+          "avatar-fg": "var(--foreground, oklch(0.145 0 0))",
+          "avatar-muted": "var(--muted, oklch(0.97 0 0))",
+          "avatar-border": "var(--border, oklch(0.922 0 0))",
+          "avatar-ring": "var(--ring, oklch(0.708 0 0))"
+        },
+        "dark": {
+          "avatar-surface": "var(--background, oklch(0.145 0 0))",
+          "avatar-fg": "var(--foreground, oklch(0.985 0 0))",
+          "avatar-muted": "var(--muted, oklch(0.269 0 0))",
+          "avatar-border": "var(--border, oklch(1 0 0 / 10%))",
+          "avatar-ring": "var(--ring, oklch(0.556 0 0))"
+        }
+      }
     }
   ]
 }

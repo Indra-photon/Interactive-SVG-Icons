@@ -2236,13 +2236,29 @@
       "name": "avatar-default",
       "type": "registry:block",
       "title": "Avatar Grid - Avatar Grid",
-      "description": "Members are placed by 1-indexed [row, column] on a 5×5 grid; every unoccupied cell is generated as a dashed placeholder tile, so resizing the grid refills the backdrop with no extra data. Each photo fills its tile behind an inset outline while the centre brand tile carries a conic-gradient edge that catches light on alternating corners, depth comes from a layered transparent box-shadow, and hover lifts the tile with a bounce-free spring while dropping its grayscale filter.",
+      "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
       "dependencies": [
         "motion"
       ],
       "registryDependencies": [
         "craftui-base"
       ],
+      "cssVars": {
+        "light": {
+          "avatar-surface": "var(--background, oklch(1 0 0))",
+          "avatar-fg": "var(--foreground, oklch(0.145 0 0))",
+          "avatar-muted": "var(--muted, oklch(0.97 0 0))",
+          "avatar-border": "var(--border, oklch(0.922 0 0))",
+          "avatar-ring": "var(--ring, oklch(0.708 0 0))"
+        },
+        "dark": {
+          "avatar-surface": "var(--background, oklch(0.145 0 0))",
+          "avatar-fg": "var(--foreground, oklch(0.985 0 0))",
+          "avatar-muted": "var(--muted, oklch(0.269 0 0))",
+          "avatar-border": "var(--border, oklch(1 0 0 / 10%))",
+          "avatar-ring": "var(--ring, oklch(0.556 0 0))"
+        }
+      },
       "files": [
         {
           "path": "components/craftui/blocks/avatar/default.tsx",
@@ -2269,6 +2285,44 @@
           "path": "components/craftui/blocks/ai-chat/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/ai-chat/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "team-cluster-01-default",
+      "type": "registry:block",
+      "title": "Team Cluster 01 - Team Cluster 01",
+      "description": "A team section built around the avatar cluster. Perfet to use to showcase your team details in a website.  ",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "https://www.craftui.space/r/avatar-default.json"
+      ],
+      "cssVars": {
+        "light": {
+          "team-surface": "var(--background, oklch(1 0 0))",
+          "team-fg": "var(--foreground, oklch(0.145 0 0))",
+          "team-fg-soft": "color-mix(in oklab, var(--foreground, oklch(0.145 0 0)) 70%, transparent)",
+          "team-fg-muted": "var(--muted-foreground, oklch(0.556 0 0))",
+          "team-ring": "var(--ring, oklch(0.708 0 0))"
+        },
+        "dark": {
+          "team-surface": "var(--background, oklch(0.145 0 0))",
+          "team-fg": "var(--foreground, oklch(0.985 0 0))",
+          "team-fg-soft": "color-mix(in oklab, var(--foreground, oklch(0.985 0 0)) 70%, transparent)",
+          "team-fg-muted": "var(--muted-foreground, oklch(0.708 0 0))",
+          "team-ring": "var(--ring, oklch(0.556 0 0))"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/sections/team-cluster-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/team-cluster-01/default.tsx"
         }
       ]
     },

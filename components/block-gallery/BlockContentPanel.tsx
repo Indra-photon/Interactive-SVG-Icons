@@ -7,6 +7,8 @@ import {
   DribbbleIcon,
   PinterestIcon,
   GlobeIcon,
+  // Kept for the commented-out "Design decisions taken here" list below.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Tick01Icon,
 } from "@hugeicons/core-free-icons";
 import { BlockPreview } from "./BlockPreview";
@@ -231,7 +233,13 @@ function VariationDetail({
           </div>
         )}
 
-        {/* Features — blocks only, see CatalogUIConfig.showFeatures */}
+        {/*
+          Features — "Design decisions taken here" — hidden for now on both
+          blocks and sections. Commented out rather than deleted: the data is
+          still built into the registry (CatalogUIConfig.showFeatures still
+          governs it), so restoring this is uncommenting, nothing else.
+        */}
+        {/*
         {catalog.showFeatures &&
           variation.features &&
           variation.features.length > 0 && (
@@ -261,6 +269,7 @@ function VariationDetail({
               </ul>
             </div>
           )}
+        */}
       </motion.div>
     </div>
   );
