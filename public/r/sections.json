@@ -1,6 +1,110 @@
 {
   "sections": [
     {
+      "slug": "team-cluster-01",
+      "name": "Team Cluster 01",
+      "category": "Know My Team",
+      "tags": [
+        "team",
+        "section",
+        "about",
+        "people",
+        "grid",
+        "hover"
+      ],
+      "description": "A team section built around the avatar cluster — copy and a live detail panel on one side, a hatched grid of faces on the other. Hovering or selecting a face pops a role badge beside it and rewrites the panel; phones drop the cluster for a real list.",
+      "createdAt": "2026-08-05T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Team Cluster 01",
+          "tier": "free",
+          "description": "A team section built around the avatar cluster. Perfet to use to showcase your team details in a website.  ",
+          "animationType": "hover",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [
+            "https://www.craftui.space/r/avatar-default.json"
+          ],
+          "props": [
+            {
+              "name": "members",
+              "type": "TeamMember[]",
+              "required": false,
+              "description": "The team. Extends the avatar block's AvatarMember with optional `bio` and `links`. Defaults to a six-person studio."
+            },
+            {
+              "name": "members[].icon",
+              "type": "HugeIcon",
+              "required": false,
+              "description": "HugeIcons icon shown at the leading edge of that person's row. Optional and unset by default for custom members — six copies of one generic user glyph is decoration, so a row with nothing specific to show renders without one."
+            },
+            {
+              "name": "members[].bio",
+              "type": "string",
+              "required": false,
+              "description": "One short phrase shown under the name in the role row, ~40 characters. It is clamped to a single line so the list stays about as tall as the square cluster beside it."
+            },
+            {
+              "name": "members[].links",
+              "type": "{ label: string; href: string }[]",
+              "required": false,
+              "description": "Links rendered under the bio for the active member."
+            },
+            {
+              "name": "eyebrow",
+              "type": "string",
+              "required": false,
+              "description": "Small label above the heading, uppercased and letterspaced in CSS — pass it in natural case. Defaults to \"Know my team\"."
+            },
+            {
+              "name": "heading",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Section heading. Defaults to \"The people behind the work\"."
+            },
+            {
+              "name": "body",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Paragraph under the heading."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the section element."
+            }
+          ],
+          "componentName": "TeamCluster01",
+          "previewHint": "Pick a row under the copy or a face on the right — either one drives the other",
+          "features": [
+            "Ships its own namespaced colour tokens, each defined as the theme token with a literal fallback, so the section inherits a host theme where one exists and stands alone where none does — and never overwrites the consumer's base tokens",
+            "Colour comes from the theme's semantic tokens rather than hardcoded neutrals, so the section themes with the app it is installed into",
+            "Each row leads with an icon chosen for that specific role — a compass, a paint board, a source-code mark — rather than one generic glyph repeated six times, which would be decoration; it also gives the row the affordance plain text never had",
+            "Row icons are `currentColor` at 1.5px stroke, so they inherit the row's active colour with no second asset and carry the same optical weight as the 14px label beside them",
+            "Row name and description sit on `foreground/70` and `muted-foreground` rather than neutral-400/600, which measured ~2.6:1 on white and ~2.3:1 on near-black — under WCAG AA for text that small",
+            "The cluster stays a presentation block and reports its active member outward through `onActiveChange`, so the section owns layout and copy while the block keeps owning the grid — no fork, one implementation",
+            "One cluster at every width — same 5×5, same cells, same arrangement, only the tile size changing — so the phone and the desktop show the same picture rather than two layouts that have to be learned separately",
+            "The grid's gutter steps down on small screens, which is the one place a phone can win pixels per tile back without altering the layout",
+            "Below 1280 the badge is the only detail surface, so `renderBadge` puts name and role in the pill; at 1280 and up the badge is hidden and the copy list takes over",
+            "The role pills and the cluster are two views of one state, not two components kept in sync — the grid runs controlled, so picking a role and clicking a face are literally the same write",
+            "Each row runs role left, name right, justified apart and divided by the same 45° hatch at the same 6px pitch as the placeholder shells — a heavier ink, because a 4px band needs it to read — which ties the two halves together without repeating the dashed outline",
+            "Row descriptions are clamped to one line: at two lines every row grows ~14px, and six of those made the copy column visibly taller than the square cluster it sits beside",
+            "Hover previews and click commits, so a touch user can select a member at all; the committed selection is what the panel falls back to when the pointer leaves",
+            "The detail panel is a single DOM node moved between grid areas by `grid-template-areas`, not two copies shown and hidden — it is aria-live, and a duplicate would announce every change twice",
+            "At ≥1280px the role badge moves off the photo and into the panel under the copy: the panel is already in the reading path there, so a badge over the tile would repeat it and cover the face it names. Below 1280 the layout stacks and the panel falls well under the cluster, so the on-tile badge earns its place again",
+            "That breakpoint swap is one CSS rule against a `data-role-badge` hook on the block, not a resize listener — no breakpoint state to hydrate, no re-render on resize",
+            "Section entrance borrows the cluster's own easing and ring stagger instead of introducing a second timing vocabulary, so heading, faces and panel read as one piece"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "feature-gallery-01",
       "name": "Feature Gallery 01",
       "category": "feature-section",
@@ -30,25 +134,25 @@
               "name": "images",
               "type": "GalleryImage[]",
               "required": false,
-              "description": "Cards in the strip. Each is { label, src, tint } — tint is the solid colour shown behind the photo while it loads and in the collapsed sliver."
+              "description": "Cards in the strip. Each is { label, description?, src, tint } — description is an optional line rendered under the label on the expanded card, and tint is the solid colour shown behind the photo while it loads and in the collapsed sliver."
             },
             {
               "name": "eyebrow",
               "type": "string",
               "required": false,
-              "description": "Small uppercase label above the heading. Defaults to \"Selected work\"."
+              "description": "Small label above the heading, uppercased and letterspaced in CSS — pass it in natural case. Defaults to \"What we do\"."
             },
             {
               "name": "heading",
-              "type": "string",
+              "type": "React.ReactNode",
               "required": false,
-              "description": "Section heading, rendered as an h2."
+              "description": "Section heading, rendered as an h2. Accepts JSX, so individual words can be wrapped in a span to colour or style them — e.g. heading={<>Spaces designed <span className=\"text-primary\">around how you live</span></>}."
             },
             {
               "name": "subheading",
-              "type": "string",
+              "type": "React.ReactNode",
               "required": false,
-              "description": "Supporting paragraph below the heading."
+              "description": "Supporting paragraph below the heading. Accepts JSX, so parts of the sentence can be emphasised with a span or a link."
             },
             {
               "name": "ctaLabel",
@@ -81,6 +185,12 @@
               "description": "Zero-based index of the card expanded when the section mounts. Defaults to 4 (the fifth card). Pass null for none; an index past the end of `images` is treated as null."
             },
             {
+              "name": "countNoun",
+              "type": "string",
+              "required": false,
+              "description": "Noun used in the \"Showing 5 of 10 projects\" line, which appears only if a breakpoint renders fewer cards than were passed. Defaults to \"projects\"."
+            },
+            {
               "name": "className",
               "type": "string",
               "required": false,
@@ -90,13 +200,17 @@
           "componentName": "FeatureGallery01",
           "previewHint": "Click any card to expand it; click it again to collapse. Arrow keys move across the strip",
           "features": [
+            "Each card carries an inset 1px hairline — pure black at 10% on light, pure white at 10% on dark — drawn as a top-most overlay rather than an inset box-shadow (which paints below the image) or an outline (which the card already spends on focus-visible), so a pale photo never bleeds into the page background",
             "Entrance is staged, not one fade: the strip fades in at 120ms and cards rise from 10px, staggered 30ms apart",
             "Opening a card animates width only — the photo is fixed at the expanded size and centred, so the card widens around a stationary image instead of rescaling it",
             "Card heights are constant, so clicking never disturbs the strip's baseline or the surrounding layout",
-            "Collapsing runs in reverse order: the label clears first, then geometry resets 60ms later, so text never smears across a moving card",
-            "Card geometry switches across four breakpoints (24/40/48/54px collapsed) and drops to 6 cards on mobile, so the strip fits a 375px viewport",
-            "Arrow keys, Home and End move focus across the strip; each card reports aria-expanded rather than posing as a tab",
+            "Collapsing runs in reverse order: scrim and caption leave together in 140ms on an ease-in, then geometry waits 150ms, so text is fully gone before a moving card edge can clip it",
+            "Opening stages four beats rather than one fade — scrim at 165ms, label at 225ms, description at 275ms, then a pair of corner crop marks at 310ms once the card has settled. Geometry, fades and exits each use their own easing curve",
+            "Corner brackets frame the open card, arced to the same radius as the card and shipped as the --gallery-frame token. They sit on the diagonal from 768px up, move to both top corners below that where the description wraps into the bottom-right, and mirror in RTL so they always stay clear of the caption",
+            "Card geometry switches across four breakpoints (34/40/48/54px collapsed). Below 768px the strip scrolls horizontally instead of dropping cards, so every image stays reachable on a phone",
+            "Arrow keys, Home and End move across the strip and open each card as they go; the opened card scrolls itself into view once it has finished widening. Each card reports aria-expanded rather than posing as a tab",
             "Respects prefers-reduced-motion — the entrance and expand sequences resolve instantly to their end state",
+            "Card focus is a paired inset ring — a white band with a dark band outside it — drawn inside the card so it never overlaps a neighbour. The pairing is deliberate: a single white ring disappears on pale photography, which a gallery cannot predict",
             "Scrim and label ship as --gallery-scrim and --gallery-label tokens. They stay white-on-dark in both themes by design: the label sits on a photograph, not on the page surface, so following the page theme would make it vanish in light mode."
           ],
           "responsive": true
@@ -105,5 +219,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-02T20:27:28.915Z"
+  "lastUpdated": "2026-08-06T09:10:57.622Z"
 }

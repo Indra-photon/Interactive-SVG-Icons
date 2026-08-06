@@ -578,6 +578,27 @@ export default function FeatureGallery01({
                       </motion.p>
                     )}
                   </div>
+
+                  {/*
+                    Inset hairline separating the photo from the page. Last in
+                    the DOM so it sits over the image, the scrim and the frame,
+                    and drawn as an overlay rather than an inset box-shadow on
+                    the button itself — an inset shadow paints below child
+                    content, so the image would cover it.
+
+                    Not an `outline` either: the card already spends its
+                    outline on `focus-visible:outline-none`, and a decorative
+                    outline would disappear exactly when the card is focused.
+
+                    Pure black at 10% on light, pure white at 10% on dark. A
+                    tinted neutral picks up the surface behind it and reads as
+                    dirt along the photo edge.
+                  */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.10)] dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.10)]"
+                    style={{ borderRadius: RADIUS }}
+                  />
                 </motion.button>
               );
             })}

@@ -1061,7 +1061,7 @@ function CheckoutButton({
             aria-haspopup="dialog"
             onClick={() => setIsOpen(true)}
             transition={shellTransition}
-            style={{ borderRadius: 10, boxShadow: SHELL_SHADOW }}
+            style={{ borderRadius: 10 }}
             className={cn(
               "flex h-9 touch-manipulation items-center gap-2 overflow-hidden bg-card px-3 text-sm font-medium text-foreground select-none",
               FOCUS_RING,
@@ -1099,7 +1099,7 @@ function CheckoutButton({
             tabIndex={-1}
             transition={shellTransition}
             onLayoutAnimationComplete={() => setOpened(true)}
-            style={{ borderRadius: 20, boxShadow: SHELL_SHADOW }}
+            style={{ borderRadius: 20 }}
             // A fixed length, not a percentage: `w-full` made the width a
             // percentage of the flex parent, which Motion re-measures during
             // the layout animation and ends up animating. min() keeps it a
