@@ -61,10 +61,10 @@ export function ButtonCodeDisplay({
     <div ref={wrapperRef}>
       <div className="flex items-start justify-between gap-4 mb-2">
         <div className="flex-1">
-          <Paragraph variant="panel-Title" className="mb-1">
+          <Paragraph variant="title" className="mb-1">
             Example Component
           </Paragraph>
-          <Paragraph variant="panel-Description" className="">
+          <Paragraph variant="body" className="">
             Ready-to-use button component with the icon
           </Paragraph>
         </div>

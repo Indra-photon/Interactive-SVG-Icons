@@ -97,7 +97,7 @@ export function IconCard({ icon, isMatched = true }: IconCardProps) {
         >
           <Paragraph
             as="span"
-            variant="card-Description"
+            variant="body"
             className="block text-background"
           >
             See in action

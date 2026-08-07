@@ -57,14 +57,22 @@ function UIVariationDetail({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <Paragraph variant="panel-Title" className="font-mono">
-            <span className="text-muted-foreground">ui</span>
-            <span className="text-muted-foreground">{" / "}</span>
-            <span className="text-muted-foreground">{component.name}</span>
-            <span className="text-muted-foreground">{" / "}</span>
+          <Paragraph variant="title" className="font-mono">
+            <Paragraph as="span" variant="crumb">
+              ui
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {" / "}
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {component.name}
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {" / "}
+            </Paragraph>
             <span className="text-foreground">{variation.displayName}</span>
           </Paragraph>
-          <Paragraph variant="panel-Description" className="mb-8">
+          <Paragraph variant="lead" className="mb-8 mt-1">
             {variation.description}
           </Paragraph>
 
@@ -77,10 +85,7 @@ function UIVariationDetail({
           {/* Usage code */}
           <div className="corner-squircle mt-6 rounded-[10px] border border-border p-5 flex flex-col gap-3">
             <div className="flex items-center justify-between gap-3">
-              <Paragraph
-                variant="panel-Description"
-                className="max-w-xl leading-tight"
-              >
+              <Paragraph variant="body" className="max-w-xl leading-tight">
                 Copy the code snippet and use directly with new configured
                 values after installation.
               </Paragraph>
@@ -100,7 +105,7 @@ function UIVariationDetail({
           {/* Props table */}
           {variation.props?.length > 0 && (
             <div className="mt-10">
-              <Paragraph variant="Instruction-Heading" className="mb-3">
+              <Paragraph variant="display" className="mb-3">
                 Props
               </Paragraph>
               <PropsTable props={variation.props} />
@@ -112,7 +117,7 @@ function UIVariationDetail({
             {/* Features */}
             {variation.features && variation.features.length > 0 && (
               <div>
-                <Paragraph variant="Instruction-Heading" className="mb-3 ">
+                <Paragraph variant="display" className="mb-3 ">
                   Design decisions taken here
                 </Paragraph>
                 <ul className="flex flex-col gap-2">
@@ -126,10 +131,7 @@ function UIVariationDetail({
                           className="text-background"
                         />
                       </span>
-                      <Paragraph
-                        variant="panel-Description"
-                        className="text-foreground/70"
-                      >
+                      <Paragraph variant="body" className="text-foreground/70">
                         {feature}
                       </Paragraph>
                     </li>

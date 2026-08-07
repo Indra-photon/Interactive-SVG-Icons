@@ -157,7 +157,7 @@ function IconConfiguratorInner({
         <div className="p-5 flex flex-col gap-3 border-t border-border">
           <div className="flex items-center justify-between gap-3">
             <Paragraph
-              variant="panel-Description"
+              variant="body"
               className="max-w-xl leading-tight"
             >
               Copy the code snippet and use directly with new configured values

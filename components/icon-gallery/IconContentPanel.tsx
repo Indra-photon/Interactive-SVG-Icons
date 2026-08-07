@@ -57,10 +57,10 @@ function VariationPreviewCard({
       </div>
       <div className="flex items-start justify-between gap-1.5">
         <div className="min-w-0">
-          <Paragraph variant="overview-Title" className="truncate">
+          <Paragraph variant="title" className="truncate">
             {variation.displayName}
           </Paragraph>
-          <Paragraph variant="overview-Description" className="mt-0.5 ">
+          <Paragraph variant="caption" className="mt-0.5 line-clamp-3">
             {variation.description}
           </Paragraph>
         </div>
@@ -85,15 +85,19 @@ function IconOverview({
   return (
     <div className="overflow-y-auto py-12 px-4 sm:py-14 sm:px-6 md:py-16 md:px-8">
       <div className="w-full">
-        <Paragraph as="h1" variant="overview-Title" className="font-mono">
-          <span className="text-muted-foreground">icons</span>
-          <span className="text-muted-foreground">{" / "}</span>
+        <Paragraph variant="title" className="font-mono">
+          <Paragraph as="span" variant="crumb">
+            icons
+          </Paragraph>
+          <Paragraph as="span" variant="crumb">
+            {" / "}
+          </Paragraph>
           <span className="text-foreground">
             {icon.name.replace(/ Icon$/i, "")}
           </span>
         </Paragraph>
 
-        <Paragraph as="h2" variant="overview-Description" className="mb-8">
+        <Paragraph as="p" variant="lead" className="mb-8 mt-1">
           Check out all the interactions for this icon below.
         </Paragraph>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full gap-3">
@@ -142,25 +146,28 @@ function VariationDetail({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <Paragraph variant="overview-Title" className="font-mono">
-            <span className="text-muted-foreground">icons</span>
-            <span className="text-muted-foreground">{" / "}</span>
-            <span className="text-muted-foreground">
+          <Paragraph variant="title" className="font-mono">
+            <Paragraph as="span" variant="crumb">
+              icons
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {" / "}
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
               {icon.name.replace(/ Icon$/i, "")}
-            </span>
-            <span className="text-muted-foreground">{" / "}</span>
+            </Paragraph>
+            <Paragraph as="span" variant="crumb">
+              {" / "}
+            </Paragraph>
             <span className="text-foreground">{variation.displayName}</span>
           </Paragraph>
-          <Paragraph variant="panel-Description" className="mb-8">
+          <Paragraph variant="lead" className="mb-8 mt-1">
             {variation.description}
           </Paragraph>
 
           {variation.designNote && (
             <div className="mb-8 bg-card text-card-foreground border border-border corner-squircle rounded-[10px] p-4">
-              <Paragraph
-                variant="panel-Description"
-                className="text-foreground"
-              >
+              <Paragraph variant="body" className="text-foreground">
                 <strong className="font-medium">Design Note:</strong>{" "}
                 {variation.designNote}
               </Paragraph>
@@ -200,7 +207,7 @@ function VariationDetail({
 
           {variation.props && variation.props.length > 0 && (
             <div>
-              <Paragraph variant="Instruction-Heading" className="mb-3">
+              <Paragraph variant="display" className="mb-3">
                 Props
               </Paragraph>
               <PropsTable

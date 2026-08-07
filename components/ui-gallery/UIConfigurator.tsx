@@ -143,7 +143,7 @@ function UIConfiguratorInner({
       {/* Hint + action bar */}
       <div className="flex items-center justify-between gap-2 px-5 py-3 bg-background">
         {variation.previewHint ? (
-          <Paragraph variant="panel-Description" className="">
+          <Paragraph variant="body" className="">
             {variation.previewHint}
           </Paragraph>
         ) : (

@@ -230,7 +230,7 @@ function LeftPanelContent({
         </div>
         <SlideText id={`tag-${activeIndex}`}>
           <p className="text-sm leading-relaxed text-stone-500 italic">
-            "{slide.tagline}"
+            &ldquo;{slide.tagline}&rdquo;
           </p>
         </SlideText>
       </div>
@@ -398,7 +398,7 @@ function ImageItem({
   );
 }
 
-export default function ScrollGallery() {
+export default function FeatureGallery02() {
   const container = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 

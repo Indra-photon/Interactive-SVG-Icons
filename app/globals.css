@@ -71,11 +71,6 @@
     @apply bg-blue-200 text-blue-900;
   }
 
-  /* Focus visible styles for accessibility */
-  *:focus-visible {
-    @apply outline-none ring-2 ring-blue-500/50 ring-offset-2;
-  }
-
   /* Custom scrollbar styles */
   ::-webkit-scrollbar {
     width: 8px;
@@ -212,6 +207,17 @@
     transition: none !important;
   }
 
+  /* Enter/exit keyframes from tw-animate-css (Radix overlays: select, popover,
+     dropdown, sheet, tooltip) are untouched by transition-duration alone, so
+     they were still zooming and sliding under reduced motion. Scoped to these
+     two utilities on purpose — a blanket `*` rule would also flatten the
+     loaders, and spinners are meant to keep running here. 0.01ms rather than
+     `none` so animationend still fires and Radix's exit teardown completes. */
+  .animate-in,
+  .animate-out {
+    animation-duration: 0.01ms !important;
+  }
+
   * {
     transition-duration: 0.01ms !important;
   }
@@ -330,6 +336,33 @@
   );
   --team-fg-muted: var(--muted-foreground, oklch(0.556 0 0));
   --team-ring: var(--ring, oklch(0.708 0 0));
+  /* Onboarding form (blocks/onboarding-form). Shipped to consumers via that
+     item's cssVars; duplicated here so our own preview renders correctly.
+     --onb-fg-muted and --onb-border are literals rather than var(--muted-
+     foreground) / var(--border): both of those fail APCA against the card in
+     dark mode (muted-foreground measures Lc -48.8, well under the Lc 75 body
+     threshold), so this block carries its own measured values. */
+  --onb-surface: var(--muted, oklch(0.97 0 0));
+  --onb-card: var(--background, oklch(1 0 0));
+  --onb-rail: oklch(0.925 0.004 70);
+  --onb-fg: var(--foreground, oklch(0.145 0 0));
+  --onb-fg-muted: oklch(0.45 0 0);
+  --onb-border: oklch(0.8 0 0);
+  --onb-accent: oklch(0.145 0 0);
+  --onb-accent-fg: oklch(1 0 0);
+  /* Selected option fill. Deliberately not --onb-accent: a solid accent card
+     matched the Next button's weight, so the answer competed with the action.
+     14% of accent over the card — measured, not eyeballed: --onb-fg on it is
+     Lc 82.5, and it clears the card by Lc 21 so it still reads as a fill. */
+  --onb-selected: oklch(0.88 0 0);
+  /* Hairline card edge. The shadow carries the edge in light, so this stays
+     near-invisible there and does the whole job in dark. */
+  --onb-card-edge: oklch(0 0 0 / 6%);
+  /* Error state. Not an alias of --destructive: that measures Lc 70.1 here
+     against the card, under the 75 body threshold, and only -46.5 in dark.
+     This is Lc 82.8 on the card. Never the only cue — an alert icon always
+     accompanies it. */
+  --onb-danger: oklch(0.48 0.19 27.3);
   /* Gradient CTA button (secondary variant) — light theme */
   --gradient-button: linear-gradient(180deg, #4ab0f0 0%, #24a0ed 100%);
   --gradient-button-shadow:
@@ -437,6 +470,28 @@
   );
   --team-fg-muted: var(--muted-foreground, oklch(0.708 0 0));
   --team-ring: var(--ring, oklch(0.556 0 0));
+  /* Onboarding form — dark. Not a mechanical inversion of the light block:
+     fg-muted lifts to L 0.85 and border to L 0.6 because the light values
+     mirrored onto the dark card measure Lc -52 and -12 respectively. */
+  --onb-surface: var(--background, oklch(0.145 0 0));
+  --onb-card: oklch(0.205 0 0);
+  --onb-rail: oklch(0.262 0.003 70);
+  --onb-fg: var(--foreground, oklch(0.985 0 0));
+  --onb-fg-muted: oklch(0.85 0 0);
+  --onb-border: oklch(0.6 0 0);
+  --onb-accent: oklch(0.985 0 0);
+  --onb-accent-fg: oklch(0.205 0 0);
+  /* 34%, not the light theme's 14%: on a dark card a light tint has to travel
+     much further before it separates at all. At 14% it measured Lc 0 against
+     the card — invisible. Here --onb-fg is Lc -85.1 and it clears the card by
+     Lc 17.5. */
+  --onb-selected: oklch(0.47 0 0);
+  --onb-card-edge: oklch(1 0 0 / 10%);
+  /* Lc -64.5 on the dark card. Red caps out fast against a dark surface:
+     reaching the Lc 75 body threshold forces chroma down to ~0.067, which
+     reads as pale pink rather than an error. Held at the non-body minimum
+     (60) so it still looks like a warning. */
+  --onb-danger: oklch(0.8 0.1 27.3);
   /* Gradient CTA button (secondary variant) — dark theme */
   --gradient-button: linear-gradient(180deg, #41a4ff 0%, #0082fb 100%);
   --gradient-button-shadow:

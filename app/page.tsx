@@ -50,12 +50,12 @@ export default function Home() {
               }}
               className="mt-6 flex max-w-2xl flex-col gap-4"
             >
-              <Paragraph variant="default">
+              <Paragraph variant="body">
                 A growing library of animated loaders, interactive icons, and
                 composable blocks — built with React, Tailwind, and Framer
                 Motion.
               </Paragraph>
-              <Paragraph variant="default">
+              <Paragraph variant="body">
                 Every component ships as readable source you can copy straight
                 into your project. No package to install, no design system to
                 adopt. Take what you need and make it yours.

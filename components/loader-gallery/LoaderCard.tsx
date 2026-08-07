@@ -99,7 +99,7 @@ export function LoaderCard({ loader, isMatched = true }: LoaderCardProps) {
         >
           <Paragraph
             as="span"
-            variant="card-Description"
+            variant="body"
             className="block text-background"
           >
             See in action

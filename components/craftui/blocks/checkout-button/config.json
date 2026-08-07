@@ -15,7 +15,7 @@
       "description": "A compact trigger button that morphs into a checkout card with tabbed payment methods (QR, card, Apple Pay, Amazon Pay) and a connect-wallet screen, all sharing one layout shell.",
       "animationType": "click",
       "dependencies": ["motion", "react-use-measure", "@hugeicons/react", "@hugeicons/core-free-icons"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["input", "utils"],
       "props": [
         {
           "name": "amount",

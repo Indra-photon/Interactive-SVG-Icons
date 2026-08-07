@@ -10,6 +10,7 @@
   ],
   "registryDependencies": [
     "https://www.craftui.space/r/craftui-base.json",
+    "input",
     "utils"
   ],
   "files": [
