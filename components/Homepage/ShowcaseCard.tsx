@@ -3,9 +3,12 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { IconPlayerPlayFilled } from "@tabler/icons-react";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { StackedArrow } from "@/components/ui/stacked-arrow";
 import { Paragraph } from "@/components/Paragraph";
 import { useShowcaseVideo } from "@/hooks/use-showcase-video";
+import { showcaseKind } from "@/lib/showcase-kind";
 import type { ShowcaseItem } from "@/constants/showcase";
 import { cn } from "@/lib/utils";
 
@@ -34,6 +37,8 @@ export function ShowcaseCard({
 }: ShowcaseCardProps) {
   const { cardRef, videoRef, mounted, playing, deferred, onPlaying } =
     useShowcaseVideo({ eager });
+  // Read off the href, not a field of its own — see lib/showcase-kind.ts.
+  const kind = showcaseKind(href);
 
   const card = (
     // Same knob pattern as HeroLinksList so the two sections share one system:
@@ -96,7 +101,27 @@ export function ShowcaseCard({
       </CardContent>
 
       <CardContent className="mt-4 flex flex-col">
-        <Paragraph variant="title">{title}</Paragraph>
+        <div className="flex items-center justify-between gap-3">
+          <Paragraph variant="title" className="">
+            {title}
+          </Paragraph>
+          {/* Badge then arrow, both only on linkable cards — an arrow on a card
+              that goes nowhere promises navigation the click won't deliver, and
+              a catalog badge on one implies a destination it doesn't have. */}
+          {href && (
+            <div className="flex shrink-0 items-center gap-2">
+              {kind && (
+                <Badge
+                  variant="outline"
+                  className="text-white py-1 bg-[image:var(--gradient-button)]"
+                >
+                  {kind}
+                </Badge>
+              )}
+              <StackedArrow size={26} className="text-[#24a0ed] " />
+            </div>
+          )}
+        </div>
         {description && (
           <Paragraph variant="body" className="mt-1">
             {description}

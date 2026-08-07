@@ -97,7 +97,7 @@ export const Paragraph = <T extends React.ElementType = "p">({
     // seven gallery overview and detail views. A clear step above body so the
     // eye lands somewhere after the crumbs. Not for prose: a second `lead` on
     // a screen means neither is the entry point.
-    lead: "tracking-tighter text-[18px] sm:text-[18px] md:text-[18px] lg:text-[20px] leading-normal text-secondary-foreground text-pretty",
+    lead: "tracking-tighter text-[16px] sm:text-[16px] md:text-[17px] lg:text-[18px] leading-normal text-secondary-foreground text-pretty",
     // Two jobs, 13 call sites:
     //
     //  · The breadcrumb line itself (7) — this goes on the wrapping <p>, and
