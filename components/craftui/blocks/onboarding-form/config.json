@@ -2,42 +2,92 @@
   "slug": "onboarding-form",
   "name": "Onboarding Form",
   "category": "multi-step-form",
-  "tags": ["form", "onboarding", "multi-step", "ticker", "animation", "click"],
-  "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
+  "tags": [
+    "form",
+    "onboarding",
+    "multi-step",
+    "ticker",
+    "animation",
+    "click"
+  ],
+  "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated question panel on the right, covering five field types: radio, dropdown, multi-select, short text and long text.",
   "createdAt": "2026-06-23T00:00:00Z",
   "variations": [
     {
       "name": "default",
       "displayName": "Onboarding Form",
       "componentName": "OnboardingForm",
-      "previewHint": "Select an answer, then click the arrow to advance through each step",
+      "previewHint": "Answer each step — radio, dropdown, multi-select, then text — and click the arrow to advance",
       "tier": "free",
-      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated MCQ question panel on the right.",
+      "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated question panel on the right, covering five field types: radio, dropdown, multi-select, short text and long text.",
       "animationType": "click",
-      "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
-      "registryDependencies": [],
+      "dependencies": [
+        "motion/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "radio-group",
+        "select",
+        "checkbox",
+        "input",
+        "textarea",
+        "button"
+      ],
+      "cssVars": {
+        "light": {
+          "onb-surface": "var(--muted, oklch(0.97 0 0))",
+          "onb-card": "var(--background, oklch(1 0 0))",
+          "onb-rail": "oklch(0.925 0.004 70)",
+          "onb-fg": "var(--foreground, oklch(0.145 0 0))",
+          "onb-fg-muted": "oklch(0.45 0 0)",
+          "onb-border": "oklch(0.8 0 0)",
+          "onb-accent": "oklch(0.145 0 0)",
+          "onb-accent-fg": "oklch(1 0 0)",
+          "onb-selected": "oklch(0.88 0 0)",
+          "onb-card-edge": "oklch(0 0 0 / 6%)",
+          "onb-danger": "oklch(0.48 0.19 27.3)"
+        },
+        "dark": {
+          "onb-surface": "var(--background, oklch(0.145 0 0))",
+          "onb-card": "oklch(0.205 0 0)",
+          "onb-rail": "oklch(0.262 0.003 70)",
+          "onb-fg": "var(--foreground, oklch(0.985 0 0))",
+          "onb-fg-muted": "oklch(0.85 0 0)",
+          "onb-border": "oklch(0.6 0 0)",
+          "onb-accent": "oklch(0.985 0 0)",
+          "onb-accent-fg": "oklch(0.205 0 0)",
+          "onb-selected": "oklch(0.47 0 0)",
+          "onb-card-edge": "oklch(1 0 0 / 10%)",
+          "onb-danger": "oklch(0.8 0.1 27.3)"
+        }
+      },
       "props": [
         {
           "name": "steps",
           "type": "Step[]",
           "default": "DEFAULT_STEPS",
           "required": false,
-          "description": "Array of { label, question, options[] } objects defining each step"
+          "description": "Array of { label, question, type?, options?, placeholder?, optional? } objects defining each step. type is one of \"radio\" | \"select\" | \"multi\" | \"text\" | \"textarea\" and defaults to \"radio\"; options is required for radio, select and multi; optional lets the user skip the step and shows a Skip button"
         },
         {
           "name": "onComplete",
           "type": "function",
           "required": false,
-          "description": "Callback fired when the user submits the final step, receives answers keyed by step index"
+          "description": "Callback fired when the user submits the final step, receives Record<number, string | string[]> keyed by step index — \"multi\" steps answer with string[], every other type with string"
         }
       ],
       "features": [
-        "Vertical ticker syncs with the active step — same scroll mechanic as the Vertical Marquee variation",
+        "Five field types in one form — radio, dropdown, multi-select, short text and long text — each chosen by the shape of its question, so swapping them into your own steps is a data change",
+        "Vertical ticker syncs with the active step, and completed steps compress and tick off so the remaining path visibly shortens",
+        "Progress bar across the card gives progress one owner, with a real progressbar role for assistive tech",
         "Question panel slides in/out with direction-aware animation (forward vs back)",
-        "Next button is disabled until an option is selected — no accidental skips",
-        "Arrow icon swaps to a checkmark on the final step with a spring micro-animation",
-        "Completion screen fades in after the last step is submitted",
-        "Fully driven by the steps prop — swap questions without touching source",
+        "Steps can be marked optional — a Skip button appears and validation is bypassed",
+        "Every field takes its accessible name from the visible question heading — no placeholder is ever the label",
+        "Next stays enabled: submitting without an answer surfaces a type-specific error, with icon and colour, and moves focus to the field",
+        "Long-text steps submit with ⌘/Ctrl + Enter, since Enter inserts a newline",
+        "Completion screen reflects every answer back, and takes focus so the result is announced",
+        "Light and dark themes via --onb-* tokens, every foreground/background pair measured with APCA",
         "Respects prefers-reduced-motion — all transitions collapse to duration 0"
       ],
       "inspiration": []
