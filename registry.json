@@ -2001,6 +2001,68 @@
       ]
     },
     {
+      "name": "question-builder-modal-default",
+      "type": "registry:block",
+      "title": "Question Builder Modal - Question Builder Modal",
+      "description": "A two-level modal built on shadcn's Dialog inspired by Luma modal transition.",
+      "dependencies": [
+        "motion",
+        "react-use-measure",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "dialog",
+        "button",
+        "input",
+        "textarea",
+        "label",
+        "switch"
+      ],
+      "cssVars": {
+        "light": {
+          "qd-surface": "var(--card, oklch(1 0 0))",
+          "qd-fg": "var(--foreground, oklch(0.145 0 0))",
+          "qd-fg-muted": "var(--muted-foreground, oklch(0.556 0 0))",
+          "qd-subtle": "var(--muted, oklch(0.97 0 0))",
+          "qd-subtle-hover": "var(--accent, oklch(0.95 0 0))",
+          "qd-border": "var(--border, oklch(0.922 0 0))",
+          "qd-field": "var(--background, oklch(1 0 0))",
+          "qd-raised": "var(--background, oklch(1 0 0))",
+          "qd-accent": "oklch(0.345 0 0)",
+          "qd-accent-fg": "oklch(1 0 0)",
+          "qd-accent-hover": "oklch(0.289 0 0)",
+          "qd-ring": "var(--ring, oklch(0.708 0 0))",
+          "qd-shadow": "0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06), 0 24px 60px -12px rgba(0, 0, 0, 0.28)",
+          "qd-pill-shadow": "var(--shadow-border, 0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(0, 0, 0, 0.04))"
+        },
+        "dark": {
+          "qd-surface": "var(--card, oklch(0.205 0 0))",
+          "qd-fg": "var(--foreground, oklch(0.985 0 0))",
+          "qd-fg-muted": "var(--muted-foreground, oklch(0.708 0 0))",
+          "qd-subtle": "var(--muted, oklch(0.269 0 0))",
+          "qd-subtle-hover": "var(--accent, oklch(0.32 0 0))",
+          "qd-border": "var(--border, oklch(1 0 0 / 12%))",
+          "qd-field": "var(--background, oklch(0.145 0 0))",
+          "qd-raised": "color-mix(in oklab, var(--foreground, oklch(0.985 0 0)) 12%, var(--muted, oklch(0.269 0 0)))",
+          "qd-accent": "oklch(0.922 0 0)",
+          "qd-accent-fg": "oklch(0.205 0 0)",
+          "qd-accent-hover": "oklch(1 0 0)",
+          "qd-ring": "var(--ring, oklch(0.556 0 0))",
+          "qd-shadow": "0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 60px -12px rgba(0, 0, 0, 0.6)",
+          "qd-pill-shadow": "0 0 0 1px rgba(255, 255, 255, 0.08)"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/blocks/question-builder-modal/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/question-builder-modal/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "profile-card-navbar",
       "type": "registry:block",
       "title": "Profile Card - Navbar",

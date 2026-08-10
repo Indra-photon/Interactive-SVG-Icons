@@ -1,0 +1,181 @@
+{
+  "slug": "question-builder-modal",
+  "name": "Question Builder Modal",
+  "category": "Modal",
+  "tags": [
+    "modal",
+    "dialog",
+    "form",
+    "picker",
+    "drill-down",
+    "layoutId",
+    "height-animation",
+    "segmented-control",
+    "shadcn",
+    "click"
+  ],
+  "description": "A two-level modal: a grid of eight question types drills into a per-type settings form, and the panel springs to the height of whatever screen is showing. The corner element morphs from a rounded badge into a back button through a shared layoutId rather than crossfading, so the chrome reads as one object changing role.",
+  "createdAt": "2026-08-10T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Question Builder Modal",
+      "componentName": "QuestionBuilderModal",
+      "tier": "free",
+      "previewHint": "Open it, pick a type, then use the corner button to go back — watch the panel height and the corner badge morph together",
+      "description": "A two-level modal built on shadcn's Dialog inspired by Luma modal transition.",
+      "animationType": "click",
+      "responsive": true,
+      "dependencies": [
+        "motion",
+        "react-use-measure",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "dialog",
+        "button",
+        "input",
+        "textarea",
+        "label",
+        "switch"
+      ],
+      "cssVars": {
+        "light": {
+          "qd-surface": "var(--card, oklch(1 0 0))",
+          "qd-fg": "var(--foreground, oklch(0.145 0 0))",
+          "qd-fg-muted": "var(--muted-foreground, oklch(0.556 0 0))",
+          "qd-subtle": "var(--muted, oklch(0.97 0 0))",
+          "qd-subtle-hover": "var(--accent, oklch(0.95 0 0))",
+          "qd-border": "var(--border, oklch(0.922 0 0))",
+          "qd-field": "var(--background, oklch(1 0 0))",
+          "qd-raised": "var(--background, oklch(1 0 0))",
+          "qd-accent": "oklch(0.345 0 0)",
+          "qd-accent-fg": "oklch(1 0 0)",
+          "qd-accent-hover": "oklch(0.289 0 0)",
+          "qd-ring": "var(--ring, oklch(0.708 0 0))",
+          "qd-shadow": "0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06), 0 24px 60px -12px rgba(0, 0, 0, 0.28)",
+          "qd-pill-shadow": "var(--shadow-border, 0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(0, 0, 0, 0.04))"
+        },
+        "dark": {
+          "qd-surface": "var(--card, oklch(0.205 0 0))",
+          "qd-fg": "var(--foreground, oklch(0.985 0 0))",
+          "qd-fg-muted": "var(--muted-foreground, oklch(0.708 0 0))",
+          "qd-subtle": "var(--muted, oklch(0.269 0 0))",
+          "qd-subtle-hover": "var(--accent, oklch(0.32 0 0))",
+          "qd-border": "var(--border, oklch(1 0 0 / 12%))",
+          "qd-field": "var(--background, oklch(0.145 0 0))",
+          "qd-raised": "color-mix(in oklab, var(--foreground, oklch(0.985 0 0)) 12%, var(--muted, oklch(0.269 0 0)))",
+          "qd-accent": "oklch(0.922 0 0)",
+          "qd-accent-fg": "oklch(0.205 0 0)",
+          "qd-accent-hover": "oklch(1 0 0)",
+          "qd-ring": "var(--ring, oklch(0.556 0 0))",
+          "qd-shadow": "0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 60px -12px rgba(0, 0, 0, 0.6)",
+          "qd-pill-shadow": "0 0 0 1px rgba(255, 255, 255, 0.08)"
+        }
+      },
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Rendered as the trigger via DialogTrigger asChild. Omit it and drive the modal with `open` / `onOpenChange` instead."
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false,
+          "description": "Controlled open state. When set, the modal stops tracking its own state — pair with onOpenChange."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "required": false,
+          "description": "Fires whenever the modal opens or closes, including on submit and on Escape."
+        },
+        {
+          "name": "onAddQuestion",
+          "type": "(draft: QuestionDraft) => void",
+          "required": false,
+          "description": "Fires on submit with { type, question, required, settings }. `settings` is per-type — e.g. { length } for text, { allowMultiple, options } for options, { contentType, showBeforeAccept, collectSignature } for terms."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "\"Add Question\"",
+          "required": false,
+          "description": "Picker headline, the step screens' centered title, and the dialog's accessible name."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "default": "\"Ask guests custom questions when they register.\"",
+          "required": false,
+          "description": "Sub-headline under the picker title, and the dialog's accessible description."
+        },
+        {
+          "name": "types",
+          "type": "QuestionType[]",
+          "default": "QUESTION_TYPES",
+          "required": false,
+          "description": "Replaces or reorders the type grid. Each: { id, label, description, icon, defaultQuestion }. `id` must stay within QuestionTypeId, since it selects which form the step screen renders."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Merged onto the dialog panel through cn, so panel width, radius and padding can be overridden at the call site."
+        }
+      ],
+      "features": [
+        "Two screens in one panel: an eight-tile type grid drills into that type's settings form, with direction derived from depth so back and forward are never confused — one `navigate` call writes both the view and the direction, which is what makes them impossible to desync",
+        "The panel animates to the measured height of whatever screen is showing, measured on an element *inside* the animated one so the reading is always the natural height and never chases its own animation",
+        "The base `zoom-in-95` entrance is overridden to `zoom-in-100` at the call site, because a bounding-rect measurement is transform-aware — under the stock zoom the first height reading lands mid-animation at 95% and sticks",
+        "The corner badge and the back button are a single element sharing a layoutId, so the box, its corner radius and its size morph as one object; the radius is set in `style` rather than a class, since a CSS-set radius is invisible to Motion's layout projection and gets stretched with the box",
+        "The glyph inside carries its own `layout` prop, which counter-scales it so it stays optically correct while the box around it is mid-morph",
+        "Header title and body screens share one variant set and one duration, so the two titles travel with identical physics rather than being tuned twice",
+        "Every shadcn primitive is used exactly as installed — Dialog, Button, Input, Textarea, Label, Switch — and restyled only through className at the call site, so `npx shadcn add` never has to overwrite a base component and later shadcn updates do not conflict",
+        "The ghost close button explicitly clears this style's gradient background-image and shadow with arbitrary properties, because those sit in different tailwind-merge groups to the flat token background and would otherwise render on top of each other",
+        "Every colour is a namespaced --qd-* token defined as `var(--theme-token, literal)`, so the modal inherits a host app's palette where one exists and still renders standalone where none does — and it never writes to the consumer's base tokens",
+        "Light and dark ship different shadow and raised-surface values rather than one black-alpha shadow that vanishes against a dark panel",
+        "Focus rings run on --ring rather than a 15%-alpha foreground, which falls under the 3:1 contrast minimum for non-text UI and reads as decoration instead of focus",
+        "The picker's corner badge is `disabled` rather than aria-hidden — a hidden-but-focusable control is an accessibility failure, and on the picker the element genuinely has no action",
+        "MotionConfig reducedMotion=\"user\" wraps the whole surface, so every transform animation collapses for anyone who asked for less motion"
+      ],
+      "featureSections": [
+        {
+          "title": "Drill-Down Navigation",
+          "summary": "Two depths in one panel, with direction owned by the transition rather than by either screen.",
+          "points": [
+            "Derives direction from `Math.sign(depthOf(next) - depthOf(current))`, so a deeper move sends both screens up and a return sends both down",
+            "Passes direction through AnimatePresence's `custom` prop, which is what lets the *exiting* screen animate with the current direction instead of the one it rendered with",
+            "Runs in `popLayout` so the outgoing screen leaves flow immediately and the incoming one is not pushed down by it",
+            "Resets to the picker 180ms after close, so the last screen does not flash back on the way out"
+          ]
+        },
+        {
+          "title": "Height & Corner Morph",
+          "summary": "The shell springs to each screen's height while the corner element changes role in place.",
+          "points": [
+            "Measures with react-use-measure on a child of the animated element, so the height read is the content's natural height",
+            "Shares one 0.27s beat between the height tween, the body crossfade and the spring's `visualDuration`, so the bounce resolves after arrival rather than being squeezed into it",
+            "Morphs the corner between a 64px badge and a 32px back button on a shared layoutId, animating border-radius from `style` so layout projection can scale-correct it per corner",
+            "Crossfades only the glyph inside — 12ms on the same ease-out curve — while the box itself morphs"
+          ]
+        },
+        {
+          "title": "Eight Question Types",
+          "summary": "One lookup maps a type id to its settings form, so adding a type is a data change plus one component.",
+          "points": [
+            "Text and Social use a segmented control whose sliding pill is a layoutId namespaced per control, so two segmented controls never morph into one another",
+            "Options grows and shrinks its list with a layout animation, and the last remaining row cannot be removed",
+            "Company reveals a job-title field on toggle, which grows the panel because the shell is measuring content",
+            "Terms swaps between a textarea and a URL input, changing the panel height mid-screen",
+            "Every form reports one shape outward — { type, question, required, settings } — with the per-type detail in `settings`"
+          ]
+        }
+      ],
+      "inspiration": []
+    }
+  ]
+}
