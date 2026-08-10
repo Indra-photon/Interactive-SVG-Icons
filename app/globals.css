@@ -363,6 +363,41 @@
      This is Lc 82.8 on the card. Never the only cue — an alert icon always
      accompanies it. */
   --onb-danger: oklch(0.48 0.19 27.3);
+  /* Question builder modal (blocks/question-builder-modal). Shipped to
+     consumers via that item's cssVars; duplicated here so our own preview
+     renders correctly. */
+  --qd-surface: var(--card, oklch(1 0 0));
+  --qd-fg: var(--foreground, oklch(0.145 0 0));
+  --qd-fg-muted: var(--muted-foreground, oklch(0.556 0 0));
+  --qd-subtle: var(--muted, oklch(0.97 0 0));
+  --qd-subtle-hover: var(--accent, oklch(0.95 0 0));
+  --qd-border: var(--border, oklch(0.922 0 0));
+  --qd-field: var(--background, oklch(1 0 0));
+  /* Segmented-control pill. Sits *on* --qd-subtle, so it has to be the lighter
+     of the two in light mode and the lighter of the two in dark as well. */
+  --qd-raised: var(--background, oklch(1 0 0));
+  /* Submit button. A literal, not var(--primary), for the same reason
+     --onb-accent is: this project's --primary is a blue (oklch 39.1% 0.09
+     240.876), and aliasing it turns a neutral graphite CTA into a blue one.
+     These are the design's own values — #3A3A3A / #2B2B2B — in oklch. */
+  --qd-accent: oklch(0.345 0 0);
+  --qd-accent-fg: oklch(1 0 0);
+  --qd-accent-hover: oklch(0.289 0 0);
+  --qd-ring: var(--ring, oklch(0.708 0 0));
+  /* Elevation as one layered stack rather than a solid ring plus a shadow:
+     the 1px layer is the edge, then lift, then the modal's ambient drop. A
+     transparent stack sits correctly on any backdrop; a solid ring doesn't. */
+  --qd-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0 24px 60px -12px rgba(0, 0, 0, 0.28);
+  /* The segmented pill is the project's standard raised edge — aliased so it
+     tracks --shadow-border, with the literal for consumers who lack it. */
+  --qd-pill-shadow: var(
+    --shadow-border,
+    0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.04)
+  );
   /* Gradient CTA button (secondary variant) — light theme */
   --gradient-button: linear-gradient(180deg, #4ab0f0 0%, #24a0ed 100%);
   --gradient-button-shadow:
@@ -492,6 +527,34 @@
      reads as pale pink rather than an error. Held at the non-body minimum
      (60) so it still looks like a warning. */
   --onb-danger: oklch(0.8 0.1 27.3);
+  /* Question builder modal — dark. Shadow and pill-shadow are not the light
+     values reused: a black-alpha shadow disappears against a dark panel, so
+     the drop shadow deepens and the pill picks up a light hairline instead. */
+  --qd-surface: var(--card, oklch(0.205 0 0));
+  --qd-fg: var(--foreground, oklch(0.985 0 0));
+  --qd-fg-muted: var(--muted-foreground, oklch(0.708 0 0));
+  --qd-subtle: var(--muted, oklch(0.269 0 0));
+  --qd-subtle-hover: var(--accent, oklch(0.32 0 0));
+  --qd-border: var(--border, oklch(1 0 0 / 12%));
+  --qd-field: var(--background, oklch(0.145 0 0));
+  /* Lifts whatever the host's --muted is toward the foreground, rather than a
+     literal: the pill has to stay lighter than the track it slides in. */
+  --qd-raised: color-mix(
+    in oklab,
+    var(--foreground, oklch(0.985 0 0)) 12%,
+    var(--muted, oklch(0.269 0 0))
+  );
+  /* neutral-200 on neutral-900, hovering to white — the design's dark values. */
+  --qd-accent: oklch(0.922 0 0);
+  --qd-accent-fg: oklch(0.205 0 0);
+  --qd-accent-hover: oklch(1 0 0);
+  --qd-ring: var(--ring, oklch(0.556 0 0));
+  /* Dark drops the layered lift and keeps a single white ring — black-alpha
+     depth layers are invisible on a dark panel, so only the edge and the
+     ambient drop do any work. */
+  --qd-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 60px -12px rgba(0, 0, 0, 0.6);
+  --qd-pill-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
   /* Gradient CTA button (secondary variant) — dark theme */
   --gradient-button: linear-gradient(180deg, #41a4ff 0%, #0082fb 100%);
   --gradient-button-shadow:

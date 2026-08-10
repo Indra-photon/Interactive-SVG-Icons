@@ -373,6 +373,119 @@
       ]
     },
     {
+      "slug": "question-builder-modal",
+      "name": "Question Builder Modal",
+      "category": "Modal",
+      "tags": [
+        "modal",
+        "dialog",
+        "form",
+        "picker",
+        "drill-down",
+        "layoutId",
+        "height-animation",
+        "segmented-control",
+        "shadcn",
+        "click"
+      ],
+      "description": "A two-level modal: a grid of eight question types drills into a per-type settings form, and the panel springs to the height of whatever screen is showing. The corner element morphs from a rounded badge into a back button through a shared layoutId rather than crossfading, so the chrome reads as one object changing role.",
+      "createdAt": "2026-08-10T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Question Builder Modal",
+          "tier": "free",
+          "description": "A two-level modal built on shadcn's Dialog inspired by Luma modal transition.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "react-use-measure",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [
+            "dialog",
+            "button",
+            "input",
+            "textarea",
+            "label",
+            "switch"
+          ],
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Rendered as the trigger via DialogTrigger asChild. Omit it and drive the modal with `open` / `onOpenChange` instead."
+            },
+            {
+              "name": "open",
+              "type": "boolean",
+              "required": false,
+              "description": "Controlled open state. When set, the modal stops tracking its own state — pair with onOpenChange."
+            },
+            {
+              "name": "onOpenChange",
+              "type": "(open: boolean) => void",
+              "required": false,
+              "description": "Fires whenever the modal opens or closes, including on submit and on Escape."
+            },
+            {
+              "name": "onAddQuestion",
+              "type": "(draft: QuestionDraft) => void",
+              "required": false,
+              "description": "Fires on submit with { type, question, required, settings }. `settings` is per-type — e.g. { length } for text, { allowMultiple, options } for options, { contentType, showBeforeAccept, collectSignature } for terms."
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "default": "\"Add Question\"",
+              "required": false,
+              "description": "Picker headline, the step screens' centered title, and the dialog's accessible name."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "default": "\"Ask guests custom questions when they register.\"",
+              "required": false,
+              "description": "Sub-headline under the picker title, and the dialog's accessible description."
+            },
+            {
+              "name": "types",
+              "type": "QuestionType[]",
+              "default": "QUESTION_TYPES",
+              "required": false,
+              "description": "Replaces or reorders the type grid. Each: { id, label, description, icon, defaultQuestion }. `id` must stay within QuestionTypeId, since it selects which form the step screen renders."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Merged onto the dialog panel through cn, so panel width, radius and padding can be overridden at the call site."
+            }
+          ],
+          "componentName": "QuestionBuilderModal",
+          "previewHint": "Open it, pick a type, then use the corner button to go back — watch the panel height and the corner badge morph together",
+          "features": [
+            "Two screens in one panel: an eight-tile type grid drills into that type's settings form, with direction derived from depth so back and forward are never confused — one `navigate` call writes both the view and the direction, which is what makes them impossible to desync",
+            "The panel animates to the measured height of whatever screen is showing, measured on an element *inside* the animated one so the reading is always the natural height and never chases its own animation",
+            "The base `zoom-in-95` entrance is overridden to `zoom-in-100` at the call site, because a bounding-rect measurement is transform-aware — under the stock zoom the first height reading lands mid-animation at 95% and sticks",
+            "The corner badge and the back button are a single element sharing a layoutId, so the box, its corner radius and its size morph as one object; the radius is set in `style` rather than a class, since a CSS-set radius is invisible to Motion's layout projection and gets stretched with the box",
+            "The glyph inside carries its own `layout` prop, which counter-scales it so it stays optically correct while the box around it is mid-morph",
+            "Header title and body screens share one variant set and one duration, so the two titles travel with identical physics rather than being tuned twice",
+            "Every shadcn primitive is used exactly as installed — Dialog, Button, Input, Textarea, Label, Switch — and restyled only through className at the call site, so `npx shadcn add` never has to overwrite a base component and later shadcn updates do not conflict",
+            "The ghost close button explicitly clears this style's gradient background-image and shadow with arbitrary properties, because those sit in different tailwind-merge groups to the flat token background and would otherwise render on top of each other",
+            "Every colour is a namespaced --qd-* token defined as `var(--theme-token, literal)`, so the modal inherits a host app's palette where one exists and still renders standalone where none does — and it never writes to the consumer's base tokens",
+            "Light and dark ship different shadow and raised-surface values rather than one black-alpha shadow that vanishes against a dark panel",
+            "Focus rings run on --ring rather than a 15%-alpha foreground, which falls under the 3:1 contrast minimum for non-text UI and reads as decoration instead of focus",
+            "The picker's corner badge is `disabled` rather than aria-hidden — a hidden-but-focusable control is an accessibility failure, and on the picker the element genuinely has no action",
+            "MotionConfig reducedMotion=\"user\" wraps the whole surface, so every transform animation collapses for anyone who asked for less motion"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "profile-card",
       "name": "Profile Card",
       "category": "navbar",
@@ -1557,5 +1670,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-07T17:10:32.590Z"
+  "lastUpdated": "2026-08-10T17:48:53.535Z"
 }
