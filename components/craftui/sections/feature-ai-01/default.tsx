@@ -9,6 +9,12 @@ import {
   useReducedMotion,
 } from "motion/react";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -398,16 +404,6 @@ function OpCanvas({
     const start = performance.now();
     const interval = fps ? 1000 / fps : 0;
 
-    const resize = () => {
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
-      const rect = canvas.getBoundingClientRect();
-      size = Math.max(1, Math.min(rect.width, rect.height));
-      canvas.width = Math.round(size * dpr);
-      canvas.height = Math.round(size * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      last = -Infinity;
-    };
-
     const render = (now: number) => {
       raf = window.requestAnimationFrame(render);
       if (now - last < interval) return;
@@ -419,13 +415,34 @@ function OpCanvas({
       ctx.restore();
     };
 
+    const stop = () => {
+      if (raf !== 0) window.cancelAnimationFrame(raf);
+      raf = 0;
+    };
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const box = Math.min(rect.width, rect.height);
+      if (box === 0) {
+        size = 0;
+        stop();
+        return;
+      }
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      size = box;
+      canvas.width = Math.round(size * dpr);
+      canvas.height = Math.round(size * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      last = -Infinity;
+      if (raf === 0) raf = window.requestAnimationFrame(render);
+    };
+
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
     resize();
-    raf = window.requestAnimationFrame(render);
 
     return () => {
-      window.cancelAnimationFrame(raf);
+      stop();
       observer.disconnect();
     };
   }, [draw, period, fps, reducedMotion]);
@@ -848,8 +865,37 @@ export default function FeatureAi01({
           </header>
 
           <div className="grid lg:grid-cols-2 lg:divide-x lg:divide-neutral-900/[0.08]">
+            <Accordion
+              type="multiple"
+              defaultValue={["0"]}
+              className="px-6 py-8 sm:px-10 lg:hidden"
+            >
+              {items.map((c, i) => (
+                <AccordionItem
+                  key={c.word}
+                  value={String(i)}
+                  className="not-last:border-b not-last:border-neutral-900/[0.08]"
+                >
+                  <AccordionTrigger
+                    className={cn(
+                      "items-center gap-4 py-4 font-light text-[#6f6f6b] hover:no-underline",
+                      "text-[clamp(1.5rem,5.2vw,2rem)] leading-[1.32] tracking-[-0.02em]",
+                      "data-[state=open]:font-normal data-[state=open]:text-[#111111]",
+                      "focus-visible:border-transparent focus-visible:ring-2 focus-visible:ring-neutral-900/20",
+                      "**:data-[slot=accordion-trigger-icon]:size-5 **:data-[slot=accordion-trigger-icon]:self-center **:data-[slot=accordion-trigger-icon]:text-neutral-900/40",
+                    )}
+                  >
+                    {c.word}.
+                  </AccordionTrigger>
+                  <AccordionContent className="max-w-[54ch] pb-5 text-[14px] leading-[1.55] text-neutral-700">
+                    {c.copy}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
             <ul
-              className="flex flex-col gap-1 px-6 py-12 sm:px-10 lg:gap-2 lg:py-16"
+              className="hidden flex-col gap-1 px-6 py-12 sm:px-10 lg:flex lg:gap-2 lg:py-16"
               onMouseLeave={() => {
                 clearRest();
                 setHovered(null);
@@ -898,7 +944,7 @@ export default function FeatureAi01({
               ))}
             </ul>
 
-            <div className="border-t border-neutral-900/[0.08] px-6 py-12 sm:px-10 lg:border-t-0 lg:py-16">
+            <div className="hidden px-6 sm:px-10 lg:block lg:py-16">
               <Card
                 className={cn(
                   "relative flex aspect-[16/11] w-full flex-col justify-end gap-0 overflow-hidden rounded-[12px] border-0 bg-transparent p-6 text-inherit ring-0",
