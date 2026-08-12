@@ -1,0 +1,72 @@
+{
+  "slug": "feature-ai-01",
+  "name": "Feature AI 01",
+  "published": true,
+  "category": "feature-section",
+  "tags": [
+    "feature",
+    "section",
+    "ai",
+    "infrastructure",
+    "canvas",
+    "generative",
+    "isometric",
+    "autoplay",
+    "hover"
+  ],
+  "description": "A split feature section for AI, GPU and developer-infrastructure marketing pages: an isometric compute-stack diagram anchors the header, a list of capability words sits on the left, and an olive card on the right answers each one with body copy and a generative canvas loop. The card walks itself through all six capabilities on autoplay so a scroller sees the whole story, then hands control over permanently the moment someone hovers, focuses or taps a row. Useful anywhere a platform has more claims than a hero can hold and each claim needs its own sentence without stacking six cards down the page.",
+  "createdAt": "2026-08-12T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Feature AI 01",
+      "componentName": "FeatureAi01",
+      "tier": "free",
+      "previewHint": "Wait and the card cycles on its own; hover or tap any capability to take over",
+      "description": "A split feature section for AI, GPU and developer-infrastructure marketing pages: an isometric compute-stack diagram anchors the header, a list of capability words sits on the left, and an olive card on the right answers each one with body copy and a generative canvas loop. The card walks itself through all six capabilities on autoplay so a scroller sees the whole story, then hands control over permanently the moment someone hovers, focuses or taps a row. Useful anywhere a platform has more claims than a hero can hold and each claim needs its own sentence without stacking six cards down the page.",
+      "animationType": "hover",
+      "responsive": true,
+      "dependencies": ["motion"],
+      "registryDependencies": [
+        "https://www.craftui.space/r/badge-default.json",
+        "https://www.craftui.space/r/button-default.json",
+        "https://www.craftui.space/r/card-default.json",
+        "https://www.craftui.space/r/separator-default.json"
+      ],
+      "props": [
+        {
+          "name": "capabilities",
+          "type": "Capability[]",
+          "required": false,
+          "description": "The rows in the list and the content of the card. Each is { word, art, copy } — word is the list label, copy is the card paragraph, and art is a loop from the exported FEATURE_AI_ART bundle (flow, pulse, columns, lorenzOrbit, dipole, lorenzSlice) or any custom { id, name, period, fps?, draw } of your own. Defaults to the exported DEFAULT_CAPABILITIES; an empty array falls back to it."
+        },
+        {
+          "name": "autoplayMs",
+          "type": "number",
+          "required": false,
+          "description": "Milliseconds each capability holds while the section is autoplaying. Defaults to 4000 — long enough to read the copy, short enough that a skimmer sees two or three before scrolling past."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the section element."
+        }
+      ],
+      "features": [
+        "Autoplays only while at least 35% of the section is in view and only until the first interaction, so the five capabilities nobody would have hovered still get read — and touch users, who have no hover at all, see the whole set",
+        "Hover previews the row while the pointer rests on it and a click commits it; the preview waits 100ms so sweeping the cursor down six rows fires one crossfade instead of six that cannot finish",
+        "Every card visual is a canvas loop drawn from a closed-form period — flow fields, gaussian pulse fronts, dipole fields and a numerically-found Lorenz periodic orbit whose residual drift is spread across the period so the seam is invisible",
+        "The canvas is inverted and composited with mix-blend-screen under a radial mask, so the olive gradient tints the marks and the art has no edge where the patch ends",
+        "Swaps are staggered art → label → copy, and exits run their own faster ease-in curve so a leaving element is gone before the next one arrives",
+        "The active-row marker is a shared layoutId dot, so it travels between rows instead of disappearing and reappearing",
+        "Card grain is a generated feTurbulence tile rather than a downloaded texture — no image request, and fractalNoise keeps it even instead of clumping",
+        "Inactive row ink is #6f6f6b rather than a pale grey, clearing the 3:1 large-text contrast floor on all six interactive rows",
+        "MotionConfig reducedMotion='user' collapses every spring and crossfade in the section, and the canvas loops freeze on their opening frame under prefers-reduced-motion",
+        "The isometric header diagram is computed entirely in world space through one projection function — no coordinate is placed by eye — and every solid is painted back to front so the stack occludes itself without z-index",
+        "shadcn Button, Card, Badge and Separator are restyled entirely at the call site through cn(), so the section drops into a project without touching the primitives"
+      ],
+      "inspiration": []
+    }
+  ]
+}
