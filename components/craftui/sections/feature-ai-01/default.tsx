@@ -1019,31 +1019,31 @@ export default function FeatureAi01({
                     </div>
                     <div className="overflow-hidden">
                       <AnimatePresence mode="popLayout" initial={false}>
-                        <Badge
+                        <motion.span
                           key={shown}
-                          asChild
-                          variant="ghost"
-                          className={cn(
-                            "h-auto rounded-none border-0 bg-transparent px-0 py-0 font-mono text-[10px] font-normal tracking-[0.18em] text-[#eef1e7]/65 uppercase",
-                            "hover:bg-transparent hover:text-[#eef1e7]/65",
-                          )}
+                          initial={{ y: "100%", opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          exit={{
+                            y: "-100%",
+                            opacity: 0,
+                            transition: { duration: 0.2, ease: EASE_IN },
+                          }}
+                          transition={{
+                            y: { ...ROLL, delay: STAGGER.label },
+                            opacity: { duration: 0.22, delay: STAGGER.label },
+                          }}
+                          className="block"
                         >
-                          <motion.span
-                            initial={{ y: "110%", opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{
-                              y: "-110%",
-                              opacity: 0,
-                              transition: { duration: 0.2, ease: EASE_IN },
-                            }}
-                            transition={{
-                              y: { ...ROLL, delay: STAGGER.label },
-                              opacity: { duration: 0.2, delay: STAGGER.label },
-                            }}
+                          <Badge
+                            variant="ghost"
+                            className={cn(
+                              "h-auto rounded-none border-0 bg-transparent px-0 py-0 font-mono text-[10px] font-normal tracking-[0.18em] text-[#eef1e7]/65 uppercase",
+                              "hover:bg-transparent hover:text-[#eef1e7]/65",
+                            )}
                           >
                             {current.word}
-                          </motion.span>
-                        </Badge>
+                          </Badge>
+                        </motion.span>
                       </AnimatePresence>
                     </div>
                   </div>
