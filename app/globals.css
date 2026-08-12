@@ -288,6 +288,32 @@
   --font-heading: var(--font-heading);
   --card-shadow: var(--shadow-border);
   --card-shadow-hover: var(--shadow-border-hover);
+  --animate-accordion-down: accordion-down 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-accordion-up: accordion-up 0.22s cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* ─── Accordion open/close ───────────────────────────────────────────────── */
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
 }
 
 :root {

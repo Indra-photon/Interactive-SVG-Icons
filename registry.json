@@ -2460,6 +2460,29 @@
       ]
     },
     {
+      "name": "feature-ai-01-default",
+      "type": "registry:block",
+      "title": "Feature AI 01 - Feature AI 01",
+      "description": "A split feature section for AI, GPU and developer-infrastructure marketing pages: an isometric compute-stack diagram anchors the header, a list of capability words sits on the left, and an olive card on the right answers each one with body copy and a generative canvas loop. The card walks itself through all six capabilities on autoplay so a scroller sees the whole story, then hands control over permanently the moment someone hovers, focuses or taps a row. Useful anywhere a platform has more claims than a hero can hold and each claim needs its own sentence without stacking six cards down the page.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "https://www.craftui.space/r/badge-default.json",
+        "https://www.craftui.space/r/button-default.json",
+        "https://www.craftui.space/r/card-default.json",
+        "https://www.craftui.space/r/separator-default.json"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-ai-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-ai-01/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "otp-input-ripple",
       "type": "registry:ui",
       "title": "OTP Input - Ripple",
