@@ -10,8 +10,8 @@ import {
   Sun01Icon,
   Moon02Icon,
   Settings01Icon,
-  Archive02Icon,
 } from "@hugeicons/core-free-icons";
+import { LogoMark } from "@/components/Logo";
 import { navlinks } from "@/constants/navlinks";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
@@ -158,7 +158,7 @@ export function NavBar() {
                   transition={{ type: "spring", duration: 0.15, bounce: 0.1 }}
                   className="flex w-full items-center justify-between gap-2"
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
                     <motion.div
                       layoutId="nav-active-icon"
                       transition={{
@@ -166,14 +166,9 @@ export function NavBar() {
                         duration: 0.25,
                         bounce: 0.2,
                       }}
-                      className="flex-shrink-0 text-nav-foreground bg-nav-surface"
+                      className="flex-shrink-0 text-nav-foreground pb-1"
                     >
-                      <HugeiconsIcon
-                        icon={Archive02Icon}
-                        size={18}
-                        className="text-nav-foreground"
-                        strokeWidth={2}
-                      />
+                      <LogoMark className="size-[30px]" />
                     </motion.div>
                     <motion.span
                       layoutId="nav-active-label"
@@ -182,9 +177,9 @@ export function NavBar() {
                         duration: 0.25,
                         bounce: 0.2,
                       }}
-                      className="text-sm font-regular  tracking-tighter text-nav-foreground antialiased"
+                      className="text-sm font-medium tracking-tight text-nav-foreground antialiased"
                     >
-                      Explore Craft UI
+                      What's Inside
                     </motion.span>
                   </div>
 
@@ -256,14 +251,9 @@ export function NavBar() {
                         duration: 0.25,
                         bounce: 0.2,
                       }}
-                      className="flex-shrink-0 text-nav-foreground"
+                      className="flex-shrink-0 text-nav-foreground pb-1"
                     >
-                      <HugeiconsIcon
-                        icon={Archive02Icon}
-                        size={18}
-                        color="currentColor"
-                        strokeWidth={2}
-                      />
+                      <LogoMark className="size-[30px] " />
                     </motion.div>
                     <motion.span
                       layoutId="nav-active-label"
@@ -272,9 +262,9 @@ export function NavBar() {
                         duration: 0.25,
                         bounce: 0.2,
                       }}
-                      className="text-sm font-sans font-regular tracking-tighter text-nav-foreground antialiased"
+                      className="text-sm font-sans font-medium tracking-tight text-nav-foreground antialiased"
                     >
-                      Explore Craft UI
+                      What's Inside
                     </motion.span>
 
                     <div className="flex-1" />
