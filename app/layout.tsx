@@ -9,6 +9,7 @@ import { NavBar } from "@/components/NavBar";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 import { MotionProvider } from "@/components/providers/MotionProvider";
+import { CommandPalette } from "@/components/providers/CommandPalette";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { InterfaceKit } from "interface-kit/react";
@@ -201,6 +202,7 @@ export default function RootLayout({
         >
           <MotionProvider>
             <NavBar />
+            <CommandPalette />
             {/* <UserSync /> */}
             {children}
             <GoogleTagManager gtmId="Your GTM ID" />

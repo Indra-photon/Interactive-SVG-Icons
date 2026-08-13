@@ -17,6 +17,7 @@ import { PropsTable } from "@/components/PropsTable";
 import { Paragraph } from "@/components/Paragraph";
 import type { Block } from "@/types/block";
 import { BLOCKS_CATALOG, type CatalogUIConfig } from "@/lib/catalog-config";
+import { installCommand, registryItemName } from "@/lib/registry";
 
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -149,7 +150,10 @@ function VariationDetail({
   panelKey: string;
   baseUrl: string;
 }) {
-  const installCommand = `npx shadcn@latest add ${baseUrl}/r/${block.slug}-${variation.name}.json`;
+  const installCmd = installCommand(
+    registryItemName(block.slug, variation.name),
+    baseUrl
+  );
 
   return (
     <div
@@ -199,7 +203,7 @@ function VariationDetail({
         )}
 
         {/* Installation */}
-        <InstallCommand command={installCommand} />
+        <InstallCommand command={installCmd} />
 
         {/* Props table */}
         {variation.props?.length > 0 && (

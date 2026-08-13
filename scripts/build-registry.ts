@@ -591,6 +591,29 @@ async function buildUIComponentsRegistry(config: BuildConfig): Promise<GithubReg
   return githubItems;
 }
 
+/**
+ * The shadcn registry directory requires that the aggregate registry.json carry
+ * no file `content` — that belongs only in the per-item files served from
+ * public/r. allItems already satisfies this, but a future refactor could quietly
+ * start passing content through, and the failure mode is a rejected PR rather
+ * than a broken build. Fail loudly instead.
+ * https://ui.shadcn.com/docs/registry/registry-index
+ */
+function assertNoInlinedContent(items: GithubRegistryItem[]) {
+  const offenders = items
+    .filter((item) => item.files?.some((file) => 'content' in file))
+    .map((item) => item.name);
+
+  if (offenders.length > 0) {
+    throw new Error(
+      `registry.json must not inline file content, but ${offenders.length} ` +
+        `item(s) do: ${offenders.slice(0, 5).join(', ')}` +
+        `${offenders.length > 5 ? ', …' : ''}.\n` +
+        `Content belongs in the per-item files under public/r only.`
+    );
+  }
+}
+
 async function buildGithubRegistry(allItems: GithubRegistryItem[]) {
   const craftUIBase = {
     name: 'craftui-base',
@@ -603,13 +626,29 @@ async function buildGithubRegistry(allItems: GithubRegistryItem[]) {
 
   const registry = {
     $schema: 'https://ui.shadcn.com/schema/registry.json',
+    // No leading "@" — that form belongs in the directory index entry, not here.
     name: 'craftui',
-    homepage: 'https://github.com/Indra-photon/Interactive-SVG-Icons',
+    homepage: 'https://www.craftui.space',
+    author: 'Indranil Maiti <indranilmaiti16@gmail.com>',
     items: [craftUIBase, ...allItems]
   };
 
-  await fs.writeFile('registry.json', JSON.stringify(registry, null, 2));
-  console.log(`✅ registry.json generated (${allItems.length + 1} items)\n`);
+  assertNoInlinedContent(registry.items as GithubRegistryItem[]);
+
+  const json = JSON.stringify(registry, null, 2);
+
+  // Repo root copy is the source of truth read by tooling and review.
+  await fs.writeFile('registry.json', json);
+
+  // The directory requires registry.json at the *registry* root — for us that
+  // is /r, alongside the item files, not the site root. Every listed registry
+  // serves it this way (smoothui, skiper-ui, chanhdai, shadcn-ui-blocks).
+  await fs.writeFile(path.join(config.outputDir, REGISTRY_INDEX_FILE), json);
+
+  console.log(
+    `✅ registry.json generated (${allItems.length + 1} items) → ` +
+      `repo root + ${config.outputDir}/${REGISTRY_INDEX_FILE}\n`
+  );
 }
 
 /**
@@ -635,6 +674,25 @@ const config: BuildConfig = {
   outputDir: 'public/r',
   baseUrl: resolveBaseUrl()
 };
+
+/**
+ * The aggregate index is written into the same flat directory as the items, so
+ * an item named "registry" would overwrite it — a clash assertNoDuplicateNames
+ * cannot see, because the name appears only once.
+ */
+const REGISTRY_INDEX_FILE = 'registry.json';
+
+function assertNoReservedNames(items: GithubRegistryItem[]) {
+  const reserved = REGISTRY_INDEX_FILE.replace(/\.json$/, '');
+  const offenders = items.filter((item) => item.name === reserved);
+
+  if (offenders.length > 0) {
+    throw new Error(
+      `"${reserved}" is a reserved registry entry name — it would overwrite ` +
+        `${config.outputDir}/${REGISTRY_INDEX_FILE}, the registry index itself.`
+    );
+  }
+}
 
 /**
  * Every variation is written to public/r/<slug>-<variation>.json in one flat
@@ -720,6 +778,7 @@ resetOutputDir().then(() => Promise.all([
 ])).then(async (results) => {
   const allItems = results.flat();
   assertNoDuplicateNames(allItems);
+  assertNoReservedNames(allItems);
   await buildGithubRegistry(allItems);
   await assertOutputComplete(allItems);
 }).catch((err) => {

@@ -17,6 +17,7 @@ import { PropsTable } from "@/components/PropsTable";
 import { MorphArrow } from "@/components/ui/morph-arrow";
 import { Paragraph } from "@/components/Paragraph";
 import type { Icon, InspirationLink } from "@/types/icon";
+import { installCommand, registryItemName } from "@/lib/registry";
 
 // ── Variation preview card (overview grid) ────────────────────────────────────
 
@@ -128,13 +129,9 @@ function VariationDetail({
   buttonCode?: string;
   panelKey: string;
 }) {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (typeof window !== "undefined"
-      ? window.location.origin
-      : "http://localhost:3000");
-  const registryUrl = `${baseUrl}/r/${icon.slug}-${variation.name}.json`;
-  const installCommand = `npx shadcn@latest add ${registryUrl}`;
+  const installCmd = installCommand(
+    registryItemName(icon.slug, variation.name)
+  );
 
   return (
     <>
@@ -203,7 +200,7 @@ function VariationDetail({
 
         {/* ── Installation + props + inspiration (below the example) ── */}
         <div className="mt-10 space-y-8">
-          <InstallCommand command={installCommand} className="" />
+          <InstallCommand command={installCmd} className="" />
 
           {variation.props && variation.props.length > 0 && (
             <div>

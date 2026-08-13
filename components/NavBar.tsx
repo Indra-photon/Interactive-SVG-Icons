@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
@@ -15,12 +15,20 @@ import {
 import { navlinks } from "@/constants/navlinks";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useModKey } from "@/hooks/use-mod-key";
+
+/** Shortcut hint chip. Nav tokens, not the muted palette the global Kbd uses. */
+function NavKbd({ children }: { children: React.ReactNode }) {
+  return (
+    <kbd className="pointer-events-none inline-flex h-5 min-w-5 items-center justify-center rounded-[6px] border border-nav-border px-1.5 font-sans text-[10px] leading-none font-medium tracking-tight text-nav-foreground-muted select-none">
+      {children}
+    </kbd>
+  );
+}
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const { modKey, mounted } = useModKey();
 
   if (!mounted) return <div className="w-8 h-8" />;
 
@@ -32,6 +40,8 @@ function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="relative flex items-center justify-center w-8 h-8 rounded-md text-nav-foreground-muted hover:text-nav-foreground transition-colors"
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      aria-keyshortcuts="Meta+D Control+D"
+      title={`${isDark ? "Switch to light theme" : "Switch to dark theme"} (${modKey}D)`}
       whileTap={{ scale: 0.96 }}
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -84,6 +94,8 @@ function ThemeToggle() {
 export function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const pathname = usePathname();
+  const { modKey } = useModKey();
+  const navRef = useRef<HTMLDivElement>(null);
 
   const activeItem = navlinks.find((l) => l.url === pathname) ?? navlinks[0];
 
@@ -91,11 +103,34 @@ export function NavBar() {
     setIsExpanded(false);
   }, [pathname]);
 
+  // Collapse on outside click / Escape. pointerdown rather than click so the
+  // nav closes on press, and so a click that starts outside still counts.
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    function onPointerDown(event: PointerEvent) {
+      if (!navRef.current?.contains(event.target as Node)) {
+        setIsExpanded(false);
+      }
+    }
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsExpanded(false);
+    }
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isExpanded]);
+
   return (
     <>
       <nav className="sticky top-0 z-50 bg-nav-surface w-full overflow-visible">
         {/* h-10 = the visible black strip height. Pill and card hang below via top-full */}
-        <div className="relative h-6 w-full">
+        <div ref={navRef} className="relative h-6 w-full">
           {/* Collapsed pill — always in DOM, exact same pattern as BottomFilterBar */}
           <motion.div
             layoutId="nav-pill"
@@ -153,15 +188,24 @@ export function NavBar() {
                     </motion.span>
                   </div>
 
-                  {/* stopPropagation: the pill itself expands the nav on click */}
-                  <motion.div
-                    layoutId="nav-theme-toggle"
-                    transition={{ type: "spring", duration: 0.25, bounce: 0.2 }}
-                    className="flex-shrink-0"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <ThemeToggle />
-                  </motion.div>
+                  <div className="flex flex-shrink-0 items-center gap-1.5">
+                    {/* Hint only — the palette listens on window, not on this chip */}
+                    <NavKbd>{modKey}K</NavKbd>
+
+                    {/* stopPropagation: the pill itself expands the nav on click */}
+                    <motion.div
+                      layoutId="nav-theme-toggle"
+                      transition={{
+                        type: "spring",
+                        duration: 0.25,
+                        bounce: 0.2,
+                      }}
+                      className="flex-shrink-0"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ThemeToggle />
+                    </motion.div>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -291,6 +335,17 @@ export function NavBar() {
                       );
                     })}
                   </motion.div>
+
+                  {/* Shortcut hints */}
+                  <div className="mx-4 h-px bg-nav-border" />
+                  <div className="flex items-center justify-between gap-2 px-4 py-2.5">
+                    <span className="flex items-center gap-1.5 text-[11px] tracking-tight text-nav-foreground-muted">
+                      <NavKbd>{modKey}K</NavKbd> Search
+                    </span>
+                    <span className="flex items-center gap-1.5 text-[11px] tracking-tight text-nav-foreground-muted">
+                      <NavKbd>{modKey}D</NavKbd> Theme
+                    </span>
+                  </div>
                 </motion.div>
               </motion.div>
             )}
