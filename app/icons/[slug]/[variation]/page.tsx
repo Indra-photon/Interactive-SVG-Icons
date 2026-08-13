@@ -8,6 +8,7 @@ import { IconConfigurator } from '@/components/icon-gallery/IconConfigurator';
 import { Container } from '@/components/Container';
 import { PropsTable } from '@/components/PropsTable';
 import { InstallCommand } from '@/components/InstallCommand';
+import { installCommand, registryItemName } from '@/lib/registry';
 
 // async function getVariation(slug: string, variationName: string) {
 //   try {
@@ -73,9 +74,9 @@ export default async function VariationDetailPage({
   }
   
   const { icon, variation, buttonCode } = data;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const registryUrl = `${baseUrl}/r/${icon.slug}-${variation.name}.json`;
-  const installCommand = `npx shadcn@latest add ${registryUrl}`;
+  const installCmd = installCommand(
+    registryItemName(icon.slug, variation.name)
+  );
   
   return (
     <Container className=" px-4 py-16">
@@ -135,7 +136,7 @@ export default async function VariationDetailPage({
 
         {/* Installation Section */}
         <div className="space-y-6">
-          <InstallCommand command={installCommand} className="" />
+          <InstallCommand command={installCmd} className="" />
 
           {/* <div>
             <h3 className="text-xl font-sans mb-4">Usage</h3>

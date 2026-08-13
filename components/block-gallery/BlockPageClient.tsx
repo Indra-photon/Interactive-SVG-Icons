@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/PropsTable";
 import { InstallCommand } from "@/components/InstallCommand";
 import type { Block } from "@/types/block";
 import { BLOCKS_CATALOG, type CatalogUIConfig } from "@/lib/catalog-config";
+import { installCommand, registryItemName } from "@/lib/registry";
 
 interface BlockPageClientProps {
   block: Block;
@@ -62,7 +63,10 @@ export function BlockPageClient({
   const [activeVariation, setActiveVariation] = useState(0);
 
   const variation = block.variations[activeVariation];
-  const cliCommand = `npx shadcn@latest add ${baseUrl}/r/${block.slug}-${variation.name}.json`;
+  const cliCommand = installCommand(
+    registryItemName(block.slug, variation.name),
+    baseUrl
+  );
 
   return (
     <>

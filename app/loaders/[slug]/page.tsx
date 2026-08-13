@@ -7,6 +7,7 @@ import { LoaderConfigurator } from '@/components/loader-gallery/LoaderConfigurat
 import { Container } from '@/components/Container';
 import { PropsTable } from '@/components/PropsTable';
 import { InstallCommand } from '@/components/InstallCommand';
+import { installCommand, registryItemName } from '@/lib/registry';
 
 async function getLoader(slug: string) {
   try {
@@ -28,8 +29,6 @@ export default async function LoaderDetailPage({
   const loader = await getLoader(slug);
 
   if (!loader) notFound();
-
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
   return (
     <Container className="px-4 py-16">
@@ -62,7 +61,9 @@ export default async function LoaderDetailPage({
         {/* Variations */}
         <div className="space-y-16">
           {loader.variations.map((variation: any) => {
-            const cliCommand = `npx shadcn@latest add ${baseUrl}/r/${loader.slug}-${variation.name}.json`;
+            const cliCommand = installCommand(
+              registryItemName(loader.slug, variation.name)
+            );
 
             return (
               <div key={variation.name} className="border-t pt-12 first:border-t-0 first:pt-0">

@@ -17,6 +17,7 @@ import { MorphArrow } from "@/components/ui/morph-arrow";
 import { Paragraph } from "@/components/Paragraph";
 import { resolveLoaderGroup } from "@/lib/sidebar-data";
 import type { Loader } from "@/types/loader";
+import { installCommand, registryItemName } from "@/lib/registry";
 
 // ── Loader preview card (group overview grid) ─────────────────────────────────
 
@@ -113,15 +114,11 @@ function LoaderDetail({
   loader: Loader;
   panelKey: string;
 }) {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (typeof window !== "undefined"
-      ? window.location.origin
-      : "http://localhost:3000");
-
   // All loaders currently have one variation; the layout handles multiples naturally.
   const variation = loader.variations[0];
-  const installCommand = `npx shadcn@latest add ${baseUrl}/r/${loader.slug}-${variation.name}.json`;
+  const installCmd = installCommand(
+    registryItemName(loader.slug, variation.name)
+  );
 
   return (
     <>
@@ -170,7 +167,7 @@ function LoaderDetail({
 
         {/* ── Installation + props + inspiration (below the example) ── */}
         <div className="mt-10 space-y-8">
-          <InstallCommand command={installCommand} className="" />
+          <InstallCommand command={installCmd} className="" />
 
           {variation.props?.length > 0 && (
             <div>

@@ -16,6 +16,7 @@ import { InstallCommand } from "@/components/InstallCommand";
 import { PropsTable } from "@/components/PropsTable";
 import { Paragraph } from "@/components/Paragraph";
 import type { UIComponent } from "@/types/ui-component";
+import { installCommand, registryItemName } from "@/lib/registry";
 import { Heading } from "../Heading";
 
 function defaultSnippet(
@@ -40,7 +41,10 @@ function UIVariationDetail({
   panelKey: string;
   baseUrl: string;
 }) {
-  const installCommand = `npx shadcn@latest add ${baseUrl}/r/${component.slug}-${variation.name}.json`;
+  const installCmd = installCommand(
+    registryItemName(component.slug, variation.name),
+    baseUrl
+  );
   const fallback = useMemo(
     () => defaultSnippet(variation.componentName, variation.props),
     [variation.componentName, variation.props],
@@ -100,7 +104,7 @@ function UIVariationDetail({
           </div>
 
           {/* Installation */}
-          <InstallCommand command={installCommand} />
+          <InstallCommand command={installCmd} />
 
           {/* Props table */}
           {variation.props?.length > 0 && (
