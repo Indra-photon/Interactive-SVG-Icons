@@ -26,7 +26,7 @@
           "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
           "animationType": "ripple",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "registryDependencies": [],
           "props": [
@@ -266,7 +266,7 @@
           "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
           "animationType": "keyframes",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "registryDependencies": [
             "craftui-base"
@@ -318,7 +318,7 @@
           "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
           "animationType": "keyframes",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "registryDependencies": [
             "craftui-base"
@@ -380,7 +380,7 @@
           "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
           "animationType": "keyframes",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "registryDependencies": [
             "craftui-base"
@@ -901,7 +901,7 @@
           "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
           "animationType": "ease",
           "dependencies": [
-            "motion/react",
+            "motion",
             "radix-ui"
           ],
           "registryDependencies": [
@@ -957,7 +957,7 @@
           "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
           "animationType": "spring",
           "dependencies": [
-            "motion/react",
+            "motion",
             "radix-ui"
           ],
           "registryDependencies": [
@@ -1002,7 +1002,7 @@
           "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
           "animationType": "ease",
           "dependencies": [
-            "motion/react",
+            "motion",
             "radix-ui"
           ],
           "registryDependencies": [
@@ -1044,5 +1044,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-13T08:44:49.989Z"
+  "lastUpdated": "2026-08-13T09:46:22.812Z"
 }

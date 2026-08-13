@@ -20,7 +20,7 @@
       "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
       "animationType": "hover",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

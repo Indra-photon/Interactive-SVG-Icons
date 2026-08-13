@@ -21,7 +21,7 @@
       "title": "Trash Icon - Default",
       "description": "Shake animation during delete operation",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -40,7 +40,7 @@
       "title": "Trash Icon - Lid Lift",
       "description": "Lid lifts and bounces during delete operation",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -59,7 +59,7 @@
       "title": "Trash Icon - Fill & Crush",
       "description": "Lines fill up and trash compresses during delete operation",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -78,7 +78,7 @@
       "title": "Trash Icon - Dissolve Up",
       "description": "Paths dissolve upward sequentially like smoke during delete operation",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -97,7 +97,7 @@
       "title": "Tab Open Icon - Default",
       "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -116,7 +116,7 @@
       "title": "Shopping Cart Icon - Default",
       "description": "Item falls into cart from above and cart shakes when adding to cart",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -135,7 +135,7 @@
       "title": "Refresh Icon - Default",
       "description": "Click the button to see the refresh icon in action.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -188,7 +188,7 @@
       "title": "Messages Icon - Typing Indicator",
       "description": "Front bubble bounces gently up and down to indicate someone is typing. Perfect for real-time chat applications.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -207,7 +207,7 @@
       "title": "Messages Icon - Wiggle",
       "description": "Entire icon rotates gently (±5°) on hover. Great for unread message indicators or clickable chat buttons.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -226,7 +226,7 @@
       "title": "Messages Icon - Slide In",
       "description": "Bubbles slide in from opposite sides with spring bounce. Perfect for chat interface loading or conversation opening.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -245,7 +245,7 @@
       "title": "Mail Icon - Default",
       "description": "Envelope flap opens on hover to reveal mail inside",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -264,7 +264,7 @@
       "title": "Mail Icon - Notification Badge",
       "description": "Icon bounces and shows glowing ping indicator when new mail arrives",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -283,7 +283,7 @@
       "title": "Lock Icon - Show Password",
       "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -302,7 +302,7 @@
       "title": "Lock Icon - Unlock",
       "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -321,7 +321,7 @@
       "title": "Layout Dashboard Icon - Default",
       "description": "On hover, the two filled panels swap to the opposite two panels",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -340,7 +340,7 @@
       "title": "Layout Dashboard Icon - Swap",
       "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -359,7 +359,7 @@
       "title": "Home Icon - Default",
       "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -378,7 +378,7 @@
       "title": "Home Icon - Sketch Reveal",
       "description": "Stroke animation draws the house from foundation to roof during loading",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -397,7 +397,7 @@
       "title": "External Link Icon - Default",
       "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -416,7 +416,7 @@
       "title": "Download Icon - Bounce",
       "description": "Arrow translates down into the tray and snaps back on click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -435,7 +435,7 @@
       "title": "Calendar Icon - Page Flip",
       "description": "Calendar body rotates in 3D along the top edge like flipping a physical calendar page. Header with binding rings stays fixed. Perfect for month navigation.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -454,7 +454,7 @@
       "title": "Calendar Icon - Picker Open",
       "description": "Calendar body splits and opens like a book on hover. Left half slides left, right half slides right. Perfect for date picker buttons that open calendars.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -473,7 +473,7 @@
       "title": "Calendar Icon - Slide Month Change",
       "description": "Date dots slide out to the left and new dots slide in from the right when month changes. Calendar body and header stay fixed.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -492,7 +492,7 @@
       "title": "Bulb Icon - Default",
       "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -511,7 +511,7 @@
       "title": "Alarm Icon - Ring",
       "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -530,7 +530,7 @@
       "title": "Alarm Icon - Tick",
       "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -1323,23 +1323,6 @@
       ]
     },
     {
-      "name": "dot-matrix-vortex-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Vortex - Dot Matrix Vortex",
-      "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-vortex/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-vortex/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dot-matrix-rain-default",
       "type": "registry:ui",
       "title": "Dot Matrix Rain - Dot Matrix Rain",
@@ -1353,6 +1336,23 @@
           "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-vortex-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Vortex - Dot Matrix Vortex",
+      "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-vortex/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-vortex/default.tsx"
         }
       ]
     },
@@ -2069,7 +2069,7 @@
       "title": "Profile Card - Navbar",
       "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
       "dependencies": [
-        "motion/react",
+        "motion",
         "@hugeicons/react",
         "@hugeicons/core-free-icons"
       ],
@@ -2081,28 +2081,6 @@
           "path": "components/craftui/blocks/profile-card/navbar.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/profile-card/navbar.tsx"
-        }
-      ]
-    },
-    {
-      "name": "product-card-default",
-      "type": "registry:block",
-      "title": "Product Card - Product Card",
-      "description": "Three photos morph from an overlapping stacked deck into an evenly spaced fan, while the CTA morphs from a small gallery icon into a full-width action button and the price/description/tags fade in.",
-      "dependencies": [
-        "motion",
-        "react-use-measure",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/product-card/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/product-card/default.tsx"
         }
       ]
     },
@@ -2151,12 +2129,34 @@
       ]
     },
     {
+      "name": "product-card-default",
+      "type": "registry:block",
+      "title": "Product Card - Product Card",
+      "description": "Three photos morph from an overlapping stacked deck into an evenly spaced fan, while the CTA morphs from a small gallery icon into a full-width action button and the price/description/tags fade in.",
+      "dependencies": [
+        "motion",
+        "react-use-measure",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/product-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/product-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "onboarding-form-default",
       "type": "registry:block",
       "title": "Onboarding Form - Onboarding Form",
       "description": "Multi-step onboarding form with a vertical ticker step indicator on the left and an animated question panel on the right, covering five field types: radio, dropdown, multi-select, short text and long text.",
       "dependencies": [
-        "motion/react",
+        "motion",
         "@hugeicons/react",
         "@hugeicons/core-free-icons"
       ],
@@ -2292,7 +2292,7 @@
       "title": "Vertical Marquee - Vertical Marquee",
       "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
       "dependencies": [
-        "motion/react",
+        "motion",
         "@hugeicons/react",
         "@hugeicons/core-free-icons"
       ],
@@ -2470,10 +2470,10 @@
       ],
       "registryDependencies": [
         "craftui-base",
-        "https://www.craftui.space/r/badge-default.json",
-        "https://www.craftui.space/r/button-default.json",
-        "https://www.craftui.space/r/card-default.json",
-        "https://www.craftui.space/r/separator-default.json"
+        "badge",
+        "button",
+        "card",
+        "separator"
       ],
       "files": [
         {
@@ -2489,7 +2489,7 @@
       "title": "OTP Input - Ripple",
       "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base"
@@ -2590,7 +2590,7 @@
       "title": "Button - Whimsical",
       "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base",
@@ -2610,7 +2610,7 @@
       "title": "Button - Confetti Burst",
       "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base",
@@ -2630,7 +2630,7 @@
       "title": "Button - Scramble Text",
       "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "registryDependencies": [
         "craftui-base",
@@ -2776,7 +2776,7 @@
       "title": "Accordion - Clip",
       "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
       "dependencies": [
-        "motion/react",
+        "motion",
         "radix-ui"
       ],
       "registryDependencies": [
@@ -2797,7 +2797,7 @@
       "title": "Accordion - Drawer",
       "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
       "dependencies": [
-        "motion/react",
+        "motion",
         "radix-ui"
       ],
       "registryDependencies": [
@@ -2818,7 +2818,7 @@
       "title": "Accordion - Ease",
       "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
       "dependencies": [
-        "motion/react",
+        "motion",
         "radix-ui"
       ],
       "registryDependencies": [

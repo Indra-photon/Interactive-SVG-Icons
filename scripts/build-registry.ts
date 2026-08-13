@@ -682,6 +682,83 @@ const config: BuildConfig = {
  */
 const REGISTRY_INDEX_FILE = 'registry.json';
 
+/**
+ * `dependencies` are passed straight to `npm install`, where a bare name
+ * containing a slash is GitHub shorthand for owner/repo — not a package. Every
+ * item declaring "motion/react" (the *import path*; the package is "motion")
+ * therefore failed at install with an SSH clone error against a repo that does
+ * not exist. 36 items shipped this way, and nothing in the pipeline noticed:
+ * the string is valid JSON, the schema has no opinion, and the item URL still
+ * returns 200. Only an actual `shadcn add` surfaced it.
+ *
+ * Scoped packages (@scope/name) legitimately contain one slash and are allowed;
+ * anything else with a slash is rejected.
+ */
+function assertValidDependencies(items: GithubRegistryItem[]) {
+  const offenders: string[] = [];
+
+  for (const item of items) {
+    for (const dep of item.dependencies ?? []) {
+      const versionless = dep.replace(/@[^@/]*$/, '');
+      const isScoped = versionless.startsWith('@');
+      const slashes = (versionless.match(/\//g) ?? []).length;
+
+      if ((isScoped && slashes > 1) || (!isScoped && slashes > 0)) {
+        offenders.push(`${item.name} → "${dep}"`);
+      }
+    }
+  }
+
+  if (offenders.length > 0) {
+    throw new Error(
+      `${offenders.length} item(s) declare a dependency that npm will treat as ` +
+        `a git repo rather than a package:\n  ${offenders.join('\n  ')}\n` +
+        `Use the package name ("motion"), not the import path ("motion/react").`
+    );
+  }
+}
+
+/**
+ * A registryDependency pointing at our own domain must name an item this build
+ * actually produced. feature-ai-01 shipped pointing at badge-default.json,
+ * button-default.json, card-default.json and separator-default.json — none of
+ * which exist, because those are shadcn base primitives and belong here as bare
+ * names ("badge"), which resolve against the @shadcn registry.
+ *
+ * The install fails at *dependency resolution*, so the item itself looks
+ * perfectly healthy when fetched directly.
+ */
+function assertRegistryDepsResolve(items: GithubRegistryItem[]) {
+  // Hand-written files live in public/r without being generated items, and
+  // craftui-base is the registryDependency of literally everything.
+  const built = new Set([
+    ...items.map((item) => item.name),
+    ...[...UNMANAGED_FILES].map((file) => file.replace(/\.json$/, ''))
+  ]);
+  const selfRef = new RegExp(
+    `^${config.baseUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/r/(.+)\\.json$`
+  );
+
+  const offenders: string[] = [];
+
+  for (const item of items) {
+    for (const dep of item.registryDependencies ?? []) {
+      const match = selfRef.exec(dep);
+      if (match && !built.has(match[1])) {
+        offenders.push(`${item.name} → ${dep}`);
+      }
+    }
+  }
+
+  if (offenders.length > 0) {
+    throw new Error(
+      `${offenders.length} registryDependenc(ies) point at CraftUI items that ` +
+        `do not exist:\n  ${offenders.join('\n  ')}\n` +
+        `If the dependency is a shadcn primitive, use its bare name instead.`
+    );
+  }
+}
+
 function assertNoReservedNames(items: GithubRegistryItem[]) {
   const reserved = REGISTRY_INDEX_FILE.replace(/\.json$/, '');
   const offenders = items.filter((item) => item.name === reserved);
@@ -779,6 +856,8 @@ resetOutputDir().then(() => Promise.all([
   const allItems = results.flat();
   assertNoDuplicateNames(allItems);
   assertNoReservedNames(allItems);
+  assertValidDependencies(allItems);
+  assertRegistryDepsResolve(allItems);
   await buildGithubRegistry(allItems);
   await assertOutputComplete(allItems);
 }).catch((err) => {

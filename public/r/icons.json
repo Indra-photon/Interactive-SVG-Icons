@@ -21,7 +21,7 @@
           "description": "Shake animation during delete operation",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -78,7 +78,7 @@
           "description": "Lid lifts and bounces during delete operation",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -138,7 +138,7 @@
           "description": "Lines fill up and trash compresses during delete operation",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -222,7 +222,7 @@
           "description": "Paths dissolve upward sequentially like smoke during delete operation",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -296,7 +296,7 @@
           "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -367,7 +367,7 @@
           "description": "Item falls into cart from above and cart shakes when adding to cart",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -444,7 +444,7 @@
           "description": "Click the button to see the refresh icon in action.",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -589,7 +589,7 @@
           "description": "Front bubble bounces gently up and down to indicate someone is typing. Perfect for real-time chat applications.",
           "animationType": "loop",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -643,7 +643,7 @@
           "description": "Entire icon rotates gently (±5°) on hover. Great for unread message indicators or clickable chat buttons.",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -707,7 +707,7 @@
           "description": "Bubbles slide in from opposite sides with spring bounce. Perfect for chat interface loading or conversation opening.",
           "animationType": "mount",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -782,7 +782,7 @@
           "description": "Envelope flap opens on hover to reveal mail inside",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -842,7 +842,7 @@
           "description": "Icon bounces and shows glowing ping indicator when new mail arrives",
           "animationType": "notification",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -917,7 +917,7 @@
           "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -981,7 +981,7 @@
           "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90° in 3D with right side as hinge, body scales slightly",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1056,7 +1056,7 @@
           "description": "On hover, the two filled panels swap to the opposite two panels",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1117,7 +1117,7 @@
           "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1193,7 +1193,7 @@
           "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
           "animationType": "select",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1250,7 +1250,7 @@
           "description": "Stroke animation draws the house from foundation to roof during loading",
           "animationType": "loading",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1324,7 +1324,7 @@
           "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1411,7 +1411,7 @@
           "description": "Arrow translates down into the tray and snaps back on click",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1500,7 +1500,7 @@
           "description": "Calendar body rotates in 3D along the top edge like flipping a physical calendar page. Header with binding rings stays fixed. Perfect for month navigation.",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1559,7 +1559,7 @@
           "description": "Calendar body splits and opens like a book on hover. Left half slides left, right half slides right. Perfect for date picker buttons that open calendars.",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1613,7 +1613,7 @@
           "description": "Date dots slide out to the left and new dots slide in from the right when month changes. Calendar body and header stay fixed.",
           "animationType": "transition",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1684,7 +1684,7 @@
           "description": "Bulb fills and rays appear on hover to indicate ideas/tips",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1758,7 +1758,7 @@
           "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
           "animationType": "hover",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1819,7 +1819,7 @@
           "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
           "animationType": "click",
           "dependencies": [
-            "motion/react"
+            "motion"
           ],
           "props": [
             {
@@ -1888,5 +1888,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-13T08:44:49.995Z"
+  "lastUpdated": "2026-08-13T09:46:22.816Z"
 }

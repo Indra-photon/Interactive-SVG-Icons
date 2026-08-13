@@ -18,7 +18,7 @@
       "description": "Shake animation during delete operation",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -75,7 +75,7 @@
       "description": "Lid lifts and bounces during delete operation",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -135,7 +135,7 @@
       "description": "Lines fill up and trash compresses during delete operation",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -219,7 +219,7 @@
       "description": "Paths dissolve upward sequentially like smoke during delete operation",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

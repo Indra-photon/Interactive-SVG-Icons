@@ -14,7 +14,7 @@
       "tier": "free",
       "description": "Auto-scrolling vertical word ticker with kinetic typography. A fixed arrow pointer highlights the active item as the list cycles on a timed interval.",
       "animationType": "loop",
-      "dependencies": ["motion/react", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons"],
       "registryDependencies": [],
       "props": [
         {

@@ -18,7 +18,7 @@
       "description": "Arrow translates down into the tray and snaps back on click",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

@@ -20,7 +20,7 @@
       "description": "Item falls into cart from above and cart shakes when adding to cart",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

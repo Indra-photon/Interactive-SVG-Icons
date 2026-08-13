@@ -20,7 +20,7 @@
       "description": "On hover, the dark tab slides up, the base slides down, and the triangle arrow pops up between them creating an opening effect",
       "animationType": "hover",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

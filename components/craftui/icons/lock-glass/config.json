@@ -21,7 +21,7 @@
       "description": "For password visibility toggles - shackle slides up-right and body slides down-left when password is visible (unlocked state)",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -85,7 +85,7 @@
       "description": "For premium content unlock or access granted states - shackle lifts upward and rotates 90\u00b0 in 3D with right side as hinge, body scales slightly",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

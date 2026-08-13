@@ -20,7 +20,7 @@
       "description": "On hover, the box fills with color and the arrow bounces diagonally up-right along its direction, then returns",
       "animationType": "hover",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

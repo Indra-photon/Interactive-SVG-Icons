@@ -3,7 +3,7 @@
   "type": "registry:ui",
   "tier": "free",
   "dependencies": [
-    "motion/react"
+    "motion"
   ],
   "registryDependencies": [
     "https://www.craftui.space/r/craftui-base.json"

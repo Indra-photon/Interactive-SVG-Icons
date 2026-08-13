@@ -23,7 +23,7 @@
       "tier": "free",
       "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
       "animationType": "ripple",
-      "dependencies": ["motion/react"],
+      "dependencies": ["motion"],
       "registryDependencies": [],
       "extraFiles": ["ripple-border.tsx"],
       "previewHint": "Type or paste the code 123456 to see the success wave — anything else triggers the red double-pulse and shake. Use the DialKit panel to reshape the ripple, swap the caret to block or underscore, and recolor it.",

@@ -7,10 +7,10 @@
   ],
   "registryDependencies": [
     "https://www.craftui.space/r/craftui-base.json",
-    "https://www.craftui.space/r/badge-default.json",
-    "https://www.craftui.space/r/button-default.json",
-    "https://www.craftui.space/r/card-default.json",
-    "https://www.craftui.space/r/separator-default.json"
+    "badge",
+    "button",
+    "card",
+    "separator"
   ],
   "files": [
     {

@@ -18,7 +18,7 @@
       "description": "Click the icon to toggle the selected state. The icon will animate to indicate selection.",
       "animationType": "select",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -75,7 +75,7 @@
       "description": "Stroke animation draws the house from foundation to roof during loading",
       "animationType": "loading",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

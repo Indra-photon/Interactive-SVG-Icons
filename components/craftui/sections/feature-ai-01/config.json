@@ -27,12 +27,7 @@
       "animationType": "hover",
       "responsive": true,
       "dependencies": ["motion"],
-      "registryDependencies": [
-        "https://www.craftui.space/r/badge-default.json",
-        "https://www.craftui.space/r/button-default.json",
-        "https://www.craftui.space/r/card-default.json",
-        "https://www.craftui.space/r/separator-default.json"
-      ],
+      "registryDependencies": ["badge", "button", "card", "separator"],
       "props": [
         {
           "name": "capabilities",

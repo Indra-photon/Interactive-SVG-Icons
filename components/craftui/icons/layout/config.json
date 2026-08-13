@@ -19,7 +19,7 @@
       "description": "On hover, the two filled panels swap to the opposite two panels",
       "animationType": "hover",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -80,7 +80,7 @@
       "description": "On hover, the filled boxes physically morph and travel to take the position and shape of the empty boxes",
       "animationType": "hover",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

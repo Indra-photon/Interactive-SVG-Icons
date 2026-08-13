@@ -24,7 +24,7 @@
       "tier": "free",
       "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
       "animationType": "ease",
-      "dependencies": ["motion/react", "radix-ui"],
+      "dependencies": ["motion", "radix-ui"],
       "registryDependencies": ["accordion"],
       "previewHint": "Click a question to see it clip away and reveal the answer. Click the answer to return. Toggle between horizontal and vertical with the direction prop.",
       "features": [
@@ -67,7 +67,7 @@
       "tier": "free",
       "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
       "animationType": "spring",
-      "dependencies": ["motion/react", "radix-ui"],
+      "dependencies": ["motion", "radix-ui"],
       "registryDependencies": ["accordion"],
       "previewHint": "To adjust the spring feel, use the DialKit panel to change stiffness (snappier vs. looser) and damping (bouncy vs. settled).",
       "features": [
@@ -107,7 +107,7 @@
       "tier": "free",
       "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
       "animationType": "ease",
-      "dependencies": ["motion/react", "radix-ui"],
+      "dependencies": ["motion", "radix-ui"],
       "registryDependencies": ["accordion"],
       "previewHint": "To change the easing curve, open the DialKit easing editor and drag the handles to shape the cubic-bezier curve.",
       "features": [

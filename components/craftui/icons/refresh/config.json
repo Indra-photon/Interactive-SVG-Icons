@@ -18,7 +18,7 @@
       "description": "Click the button to see the refresh icon in action.",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "componentName": "IconRefresh",
       "props": [

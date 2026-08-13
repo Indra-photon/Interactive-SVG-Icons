@@ -292,10 +292,10 @@
             "motion"
           ],
           "registryDependencies": [
-            "https://www.craftui.space/r/badge-default.json",
-            "https://www.craftui.space/r/button-default.json",
-            "https://www.craftui.space/r/card-default.json",
-            "https://www.craftui.space/r/separator-default.json"
+            "badge",
+            "button",
+            "card",
+            "separator"
           ],
           "props": [
             {
@@ -338,5 +338,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-13T08:44:49.984Z"
+  "lastUpdated": "2026-08-13T09:46:22.808Z"
 }

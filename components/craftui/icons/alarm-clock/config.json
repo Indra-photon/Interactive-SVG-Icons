@@ -21,7 +21,7 @@
       "description": "The alarm rocks left and right like a ringing bell, with ears counter-rotating to sell the physics",
       "animationType": "hover",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -82,7 +82,7 @@
       "description": "The clock hand sweeps a full clockwise rotation on click, like dialing an alarm to confirm it's set",
       "animationType": "click",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

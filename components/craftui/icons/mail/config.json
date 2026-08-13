@@ -19,7 +19,7 @@
       "description": "Envelope flap opens on hover to reveal mail inside",
       "animationType": "hover",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {
@@ -79,7 +79,7 @@
       "description": "Icon bounces and shows glowing ping indicator when new mail arrives",
       "animationType": "notification",
       "dependencies": [
-        "motion/react"
+        "motion"
       ],
       "props": [
         {

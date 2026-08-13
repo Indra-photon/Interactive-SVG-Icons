@@ -3,7 +3,7 @@
   "type": "registry:block",
   "tier": "free",
   "dependencies": [
-    "motion/react",
+    "motion",
     "@hugeicons/react",
     "@hugeicons/core-free-icons"
   ],

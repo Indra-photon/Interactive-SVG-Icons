@@ -3377,87 +3377,6 @@
       ]
     },
     {
-      "slug": "dot-matrix-vortex",
-      "name": "Dot Matrix Vortex",
-      "category": "loaders",
-      "tags": [
-        "dots",
-        "matrix",
-        "vortex",
-        "rings",
-        "rotation",
-        "gyroscope",
-        "orbit",
-        "concentric"
-      ],
-      "description": "Concentric rings of dots each spin at double the speed of the ring outside them — a gyroscopic vortex where the centre spins fastest",
-      "createdAt": "2026-05-31",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dot Matrix Vortex",
-          "componentName": "DotMatrixVortex",
-          "tier": "free",
-          "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
-          "animationType": "loop",
-          "dependencies": [],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Fill color of the dots"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 12,
-              "description": "Diameter of each dot in pixels",
-              "min": 4,
-              "max": 24,
-              "step": 1
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 2,
-              "min": 0.5,
-              "max": 8,
-              "step": 0.1,
-              "description": "Time for the outer ring to complete one full revolution in seconds"
-            },
-            {
-              "name": "gridSize",
-              "type": "number",
-              "default": 5,
-              "min": 3,
-              "max": 6,
-              "step": 1,
-              "description": "Number of dots per row and column (n × n grid)"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "dot-matrix-rain",
       "name": "Dot Matrix Rain",
       "category": "loaders",
@@ -3524,6 +3443,87 @@
               "max": 6,
               "step": 0.1,
               "description": "Time for one complete drop cycle per column in seconds"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 3,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dot-matrix-vortex",
+      "name": "Dot Matrix Vortex",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "vortex",
+        "rings",
+        "rotation",
+        "gyroscope",
+        "orbit",
+        "concentric"
+      ],
+      "description": "Concentric rings of dots each spin at double the speed of the ring outside them — a gyroscopic vortex where the centre spins fastest",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Vortex",
+          "componentName": "DotMatrixVortex",
+          "tier": "free",
+          "description": "Each concentric ring has one bright active dot that travels its perimeter. Inner rings spin at 2×, 4×, 8× the speed of the outer ring, creating a constantly-changing phase relationship between rings.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "min": 0.5,
+              "max": 8,
+              "step": 0.1,
+              "description": "Time for the outer ring to complete one full revolution in seconds"
             },
             {
               "name": "gridSize",
@@ -6041,5 +6041,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-13T08:44:50.013Z"
+  "lastUpdated": "2026-08-13T09:46:22.825Z"
 }

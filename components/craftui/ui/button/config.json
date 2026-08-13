@@ -25,7 +25,7 @@
       "tier": "free",
       "description": "On hover or focus, five color-shifted sparkle particles launch along the button's border via CSS offset-path, each with its own speed, scale and landing spot.",
       "animationType": "keyframes",
-      "dependencies": ["motion/react"],
+      "dependencies": ["motion"],
       "registryDependencies": ["craftui-base"],
       "previewHint": "Hover (or tab to focus) the button to see the five sparkle particles launch along the border.",
       "features": [
@@ -73,7 +73,7 @@
       "tier": "free",
       "description": "On click, a burst of color-varied confetti pieces launches from the button center — each with its own angle, distance and rotation — arcing up and falling back down under simulated gravity.",
       "animationType": "keyframes",
-      "dependencies": ["motion/react"],
+      "dependencies": ["motion"],
       "registryDependencies": ["craftui-base"],
       "previewHint": "Click the button to fire a confetti burst. Click repeatedly — each click stacks its own independent burst.",
       "features": [
@@ -131,7 +131,7 @@
       "tier": "free",
       "description": "On hover or focus, the label's characters cycle rapidly through random glyphs before locking in to the real text one character at a time, left to right — a decode-style reveal built entirely from content substitution, no positional or color motion.",
       "animationType": "keyframes",
-      "dependencies": ["motion/react"],
+      "dependencies": ["motion"],
       "registryDependencies": ["craftui-base"],
       "previewHint": "Hover (or tab to focus) the button to watch the label scramble and resolve left to right.",
       "features": [
