@@ -429,6 +429,9 @@
   --gradient-button-shadow:
     inset 0 0 1px 1px #ffffff4d, 0 0 0 1px #00000014, 0 2px 2px #0000000a,
     0 0 0 1px #24a0ed;
+  /* Brand mark — the CTA gradient's solid stop, so the logo and the primary
+     button read as one colour. Kept beside the gradient it derives from. */
+  --brand-mark: #24a0ed;
   /* Muted gradient button (ghost variant) — light theme */
   --gradient-button-muted: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
   --gradient-button-muted-shadow:
@@ -586,6 +589,9 @@
   --gradient-button-shadow:
     inset 0 0 1px 1px #ffffff2e, 0 0 0 1px #00000014, 0 2px 2px #0000000a,
     0 0 0 1px #1e93fd;
+  /* The gradient's *top* stop here, not the bottom one: --nav-surface is pure
+     black in dark mode and #0082fb is too dark against it to read. */
+  --brand-mark: #41a4ff;
   /* Muted gradient button (ghost variant) — dark theme */
   --gradient-button-muted: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
   --gradient-button-muted-shadow:
