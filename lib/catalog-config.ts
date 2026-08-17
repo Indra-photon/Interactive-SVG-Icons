@@ -81,3 +81,58 @@ export const SECTIONS_CATALOG: CatalogUIConfig = {
     body: "Sections are page-width layouts — feature, footer, pricing. Add one under components/craftui/sections and run the registry build.",
   },
 };
+
+/**
+ * Per-catalog UI configuration for the *artwork* galleries — illustrations and
+ * designs.
+ *
+ * Deliberately not CatalogUIConfig. Two thirds of that interface (sidebarLabel,
+ * breadcrumbRoot, previewMode, detailWidthClass, overviewGridClass,
+ * showFeatures) describes the sidebar-and-detail gallery, and artwork has none
+ * of those things: one masonry page, no sidebar, no detail route, no props
+ * table. Sharing the interface would mean six permanently dead fields, which is
+ * worse than a second, smaller one.
+ */
+export interface ArtworkCatalogConfig {
+  /** Route the gallery lives at. */
+  basePath: string;
+  /** Directory under components/craftui the artwork is imported from. */
+  catalogDir: string;
+  /** Registry file under public/r, without the extension. */
+  registryName: string;
+  /** Page <h2>. */
+  heading: string;
+  /** Standfirst under the heading. */
+  intro: string;
+  /** Shown when the catalog has no published items yet. */
+  empty: {
+    title: string;
+    body: string;
+  };
+}
+
+export const ILLUSTRATIONS_CATALOG: ArtworkCatalogConfig = {
+  basePath: "/illustrations",
+  catalogDir: "illustrations",
+  registryName: "illustrations",
+  heading: "Illustrations that move",
+  intro:
+    "Self-contained SVG artwork with hand-crafted motion. Each one is a single component with no configuration to do — copy the install command under it and it lands in your project ready to render.",
+  empty: {
+    title: "No illustrations yet",
+    body: "Illustrations are self-contained SVG artwork. Add one under components/craftui/illustrations and run the registry build.",
+  },
+};
+
+export const DESIGNS_CATALOG: ArtworkCatalogConfig = {
+  basePath: "/designs",
+  catalogDir: "designs",
+  registryName: "designs",
+  heading: "Designs that hold still",
+  intro:
+    "Static artwork — mockups, empty states, spot illustrations. One installable .tsx, no animation and no runtime, so they render on the server and ship no JavaScript at all.",
+  empty: {
+    title: "No designs yet",
+    body: "Designs are static artwork — one .tsx, no animation. Add one under components/craftui/designs and run the registry build.",
+  },
+};

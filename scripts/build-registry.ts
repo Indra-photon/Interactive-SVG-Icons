@@ -261,9 +261,9 @@ async function buildLoadersRegistry(config: BuildConfig): Promise<GithubRegistry
 }
 
 /**
- * Config for one catalog (blocks, sections). Both are built by the identical
- * folder convention, so they share this builder rather than being two copies
- * that drift apart.
+ * Config for one catalog (blocks, sections, illustrations, designs). All are
+ * built by the identical folder convention, so they share this builder rather
+ * than being four copies that drift apart.
  */
 interface CatalogConfig {
   /** Directory under components/craftui holding the item folders. */
@@ -291,6 +291,20 @@ const CATALOGS: CatalogConfig[] = [
     itemsKey: 'sections',
     label: 'section',
     logIcon: '📐',
+  },
+  {
+    dir: 'illustrations',
+    registryName: 'illustrations',
+    itemsKey: 'illustrations',
+    label: 'illustration',
+    logIcon: '🎨',
+  },
+  {
+    dir: 'designs',
+    registryName: 'designs',
+    itemsKey: 'designs',
+    label: 'design',
+    logIcon: '🖼️',
   },
 ];
 
@@ -401,6 +415,15 @@ async function buildCatalogRegistry(
           ...(variation.features?.length && { features: variation.features }),
           ...(variation.inspiration?.length && { inspiration: variation.inspiration }),
           ...(variation.responsive && { responsive: variation.responsive }),
+          // Artwork catalogs only — the masonry card reserves the well at this
+          // ratio before the component's chunk lands, so a column of cards
+          // never reflows underneath itself. Both must be present to be useful,
+          // hence the single guard.
+          ...(variation.width &&
+            variation.height && {
+              width: variation.width,
+              height: variation.height,
+            }),
         });
 
         console.log(`    ✓ ${variation.displayName} (${variation.tier})`);

@@ -6,6 +6,8 @@ import {
   InformationCircleIcon,
   BirdhouseIcon,
   LayoutGridIcon,
+  BookImageIcon,
+  ShapeCollectionIcon,
 } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
 
@@ -43,6 +45,16 @@ export const navlinks: {
     url: "/ui-gallery",
     label: "UI Components",
     icon: LayoutGridIcon,
+  },
+  {
+    url: "/illustrations",
+    label: "Illustrations",
+    icon: BookImageIcon,
+  },
+  {
+    url: "/designs",
+    label: "Designs",
+    icon: ShapeCollectionIcon,
   },
   {
     url: "/about",

@@ -1,0 +1,40 @@
+{
+  "slug": "gpu-infrastructure",
+  "name": "GPU Infrastructure",
+  "published": true,
+  "category": "infrastructure",
+  "tags": [
+    "illustration",
+    "isometric",
+    "infrastructure",
+    "gpu",
+    "compute",
+    "diagram",
+    "svg",
+    "static"
+  ],
+  "description": "An isometric compute stack — three GPU units racked on a plinth inside a dashed footprint, vents and ports drawn on the front and flank, an olive status strip fading down the stack. For AI, GPU and developer-infrastructure pages that need a picture of the machine.",
+  "createdAt": "2026-08-17T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "GPU Infrastructure",
+      "componentName": "GpuInfrastructure",
+      "tier": "free",
+      "description": "An isometric compute stack — three GPU units racked on a plinth inside a dashed footprint. For AI, GPU and developer-infrastructure pages that need a picture of the machine.",
+      "animationType": "none",
+      "width": 420,
+      "height": 450,
+      "dependencies": [],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the <svg> root. The artwork is viewBox-driven with no width/height attributes, so it fills its container by default."
+        }
+      ]
+    }
+  ]
+}

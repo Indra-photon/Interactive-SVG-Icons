@@ -1,0 +1,80 @@
+{
+  "slug": "flight-card",
+  "name": "Flight Card",
+  "published": true,
+  "category": "card",
+  "tags": [
+    "design",
+    "static",
+    "card",
+    "travel",
+    "flight",
+    "poster",
+    "photo",
+    "glass",
+    "backdrop-blur"
+  ],
+  "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, times and cities either side of an airplane mark, over a segment control naming the destination. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width, blur radius and icon included, so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+  "createdAt": "2026-08-17T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Flight Card",
+      "componentName": "FlightCard",
+      "tier": "free",
+      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, times and cities either side of an airplane mark, over a segment control naming the destination. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width, blur radius and icon included, so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+      "animationType": "none",
+      "width": 560,
+      "height": 747,
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "image",
+          "type": "string",
+          "required": false,
+          "description": "Background photograph. Defaults to a San Francisco bridge from Pexels, served through their CDN transform (287KB rather than the 4.0MB original). Pass your own URL to own the asset, or \"\" to fall through to the painted sky alone."
+        },
+        {
+          "name": "destination",
+          "type": "string",
+          "required": false,
+          "description": "Headline over the artwork — the place being sold, not the airport. Defaults to \"San Francisco\", matching the drawn scene."
+        },
+        {
+          "name": "from",
+          "type": "FlightEndpoint",
+          "required": false,
+          "description": "Origin as { code, time, city }. Defaults to LHR / 10:30 AM / London."
+        },
+        {
+          "name": "to",
+          "type": "FlightEndpoint",
+          "required": false,
+          "description": "Arrival as { code, time, city }. Defaults to SFO / 1:20 PM / San Francisco."
+        },
+        {
+          "name": "options",
+          "type": "[string, string]",
+          "required": false,
+          "description": "The two labels in the segment control. Drawn, not wired — this is a still card, so the control shows a choice rather than offering one."
+        },
+        {
+          "name": "activeOption",
+          "type": "0 | 1",
+          "required": false,
+          "description": "Which of the two reads as chosen. Defaults to 0, so the chosen segment agrees with the artwork and the route."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the card root. The card is aspect-ratio driven at 3:4 and fills its container's width."
+        }
+      ]
+    }
+  ]
+}

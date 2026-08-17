@@ -185,7 +185,7 @@ export function NavBar() {
 
                   <div className="flex flex-shrink-0 items-center gap-1.5">
                     {/* Hint only — the palette listens on window, not on this chip */}
-                    <NavKbd>{modKey}K</NavKbd>
+                    {/* <NavKbd>{modKey}K</NavKbd> */}
 
                     {/* stopPropagation: the pill itself expands the nav on click */}
                     <motion.div
