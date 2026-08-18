@@ -220,6 +220,72 @@
       ]
     },
     {
+      "slug": "teletype-clock",
+      "name": "Teletype Clock",
+      "category": "number-animation",
+      "tags": [
+        "clock",
+        "flip",
+        "split-flap",
+        "time",
+        "3d",
+        "loop",
+        "retro"
+      ],
+      "description": "A classic split-flap airport-board clock. Each digit lives on a dark card split by a center seam — when the time changes, the top flap falls with gravity, reveals the next digit, and the bottom flap lands with a mechanical bounce.",
+      "createdAt": "2026-07-08T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Split-Flap Clock",
+          "tier": "free",
+          "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
+          "animationType": "loop",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "demo",
+              "type": "boolean",
+              "default": "false",
+              "description": "Advance the clock by one minute on an interval so flips happen constantly (for showcases)"
+            },
+            {
+              "name": "demoIntervalMs",
+              "type": "number",
+              "default": "3000",
+              "description": "Milliseconds between flips in demo mode"
+            },
+            {
+              "name": "hour12",
+              "type": "boolean",
+              "default": "false",
+              "description": "Use 12-hour format instead of 24-hour"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "\"\"",
+              "description": "Extra classes for the outer wrapper"
+            }
+          ],
+          "componentName": "TeletypeClock",
+          "previewHint": "Digits flip every few seconds in demo mode",
+          "features": [
+            "Two-phase flip: rotateX 0 → -90° fall with ease-in-cubic gravity, then 90 → 0° landing with overshoot bounce",
+            "Only transform and opacity are animated — flaps run on the compositor with backface-visibility hidden",
+            "Digit halves are full-height numerals clipped by overflow-hidden windows, so the seam cuts each digit cleanly",
+            "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
+            "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
+            "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "subitem-navbar",
       "name": "SubItem Navbar",
       "category": "navbar",
@@ -522,72 +588,6 @@
             "A menuReady gate holds the rows pointer-events-none for 400ms (the fade's 0.18s delay plus 0.2s duration) after open, so a fast press or the opening click's mouse-up can't activate a row while it is still invisible",
             "splitIntoSegments derives dividers from a flat menuItems array: a per-row dividerAfter flag starts a new group, keeping badge, active-row highlight, and onClick as composable per-item slots without a nested array shape",
             "Dismiss is an AnimatePresence overlay pinned absolute inset-0 to the component's own box (fades 0.15s) with the collapsed trigger switched to pointerEvents none while open; rows give a whileTap scale-0.98 press and focus as native motion.buttons, though the menu ships pointer-first with no role=\"menu\" contract or prefers-reduced-motion fallback yet"
-          ],
-          "responsive": true
-        }
-      ]
-    },
-    {
-      "slug": "teletype-clock",
-      "name": "Teletype Clock",
-      "category": "number-animation",
-      "tags": [
-        "clock",
-        "flip",
-        "split-flap",
-        "time",
-        "3d",
-        "loop",
-        "retro"
-      ],
-      "description": "A classic split-flap airport-board clock. Each digit lives on a dark card split by a center seam — when the time changes, the top flap falls with gravity, reveals the next digit, and the bottom flap lands with a mechanical bounce.",
-      "createdAt": "2026-07-08T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Split-Flap Clock",
-          "tier": "free",
-          "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
-          "animationType": "loop",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "demo",
-              "type": "boolean",
-              "default": "false",
-              "description": "Advance the clock by one minute on an interval so flips happen constantly (for showcases)"
-            },
-            {
-              "name": "demoIntervalMs",
-              "type": "number",
-              "default": "3000",
-              "description": "Milliseconds between flips in demo mode"
-            },
-            {
-              "name": "hour12",
-              "type": "boolean",
-              "default": "false",
-              "description": "Use 12-hour format instead of 24-hour"
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "default": "\"\"",
-              "description": "Extra classes for the outer wrapper"
-            }
-          ],
-          "componentName": "TeletypeClock",
-          "previewHint": "Digits flip every few seconds in demo mode",
-          "features": [
-            "Two-phase flip: rotateX 0 → -90° fall with ease-in-cubic gravity, then 90 → 0° landing with overshoot bounce",
-            "Only transform and opacity are animated — flaps run on the compositor with backface-visibility hidden",
-            "Digit halves are full-height numerals clipped by overflow-hidden windows, so the seam cuts each digit cleanly",
-            "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
-            "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
-            "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
           ],
           "responsive": true
         }
@@ -1670,5 +1670,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-17T20:27:35.015Z"
+  "lastUpdated": "2026-08-18T09:56:05.820Z"
 }

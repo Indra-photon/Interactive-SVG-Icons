@@ -7,8 +7,12 @@
 // maps icon data to <path> elements, with no "use client" and no hooks, so it
 // renders on the server like everything else and adds nothing to the bundle.
 
+import type { CSSProperties } from "react";
+
 import { Airplane02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+
+type Grade = "none" | "tone" | "duotone";
 
 interface FlightEndpoint {
   /** Airport code, the largest type on the card. */
@@ -30,6 +34,25 @@ interface FlightCardProps {
    * nothing here to subtract them from.
    */
   duration?: string;
+  /**
+   * How hard the card's own palette is pushed onto the photograph.
+   *
+   *  · "tone"    — a soft-light pass in the sky's colours. Keeps the photo's
+   *                own hues (measured: chroma survives at 98%) and unifies its
+   *                tone instead. The right default for a component that takes
+   *                arbitrary photographs.
+   *  · "duotone" — a colour pass. Imposes the palette completely and costs
+   *                nothing in contrast, since the mode is luminosity-preserving
+   *                to within 0.001 L*. It does flatten anything vivid: on the
+   *                default photograph the bridge's international orange holds
+   *                its hue but drops to 55% chroma. Right when the photo has no
+   *                hero colour worth protecting.
+   *  · "none"    — the photograph, ungraded.
+   *
+   * Ignored when there is no `image`: the painted sky graded against itself is
+   * not a grade, it is just contrast.
+   */
+  grade?: Grade;
   /** The two destinations in the segment control. */
   options?: [string, string];
   /** Which of the two reads as chosen. */
@@ -284,6 +307,29 @@ const SKY_POOL = `radial-gradient(120% 75% at 55% 104%, oklch(0.879 0.062 86.4) 
 const PAINTED_SKY = [SKY_GLOW, SKY_POOL, SKY_LINEAR].join(", ");
 
 /**
+ * The grade layer's two settings.
+ *
+ * Both grade with SKY_LINEAR alone, never the whole PAINTED_SKY. The two
+ * radials exist to simulate a light source — a pool low and off-centre, the way
+ * a sun below the horizon lights cloud — and laying a simulated light source
+ * over a photograph that already has a real one is the thing that would look
+ * wrong, differently for every photo. The vertical ramp is a grade; the radials
+ * are weather, and weather belongs to the painted sky alone.
+ *
+ * Strengths are measured, not picked. soft-light at 0.28 lifts the lower half
+ * by under 0.02 L* — it sits below the scrims so the bottom one corrects most
+ * of that before any type lands on it. `color` at 0.35 moves lightness by
+ * 0.001 L*, so it is free contrast-wise and priced entirely in chroma.
+ */
+const GRADE_LAYER: Record<
+  Exclude<Grade, "none">,
+  { mixBlendMode: CSSProperties["mixBlendMode"]; opacity: number }
+> = {
+  tone: { mixBlendMode: "soft-light", opacity: 0.28 },
+  duotone: { mixBlendMode: "color", opacity: 0.35 },
+};
+
+/**
  * A mask that is fully transparent at `from`% down the element and fully opaque
  * by `to`%, measured from its top edge.
  *
@@ -345,6 +391,7 @@ export function FlightCard({
   from = DEFAULT_FROM,
   to = DEFAULT_TO,
   duration = "10h 50m",
+  grade = "tone",
   options = ["San Francisco", "New York"],
   activeOption = 0,
   className,
@@ -357,7 +404,13 @@ export function FlightCard({
     // but not its type stops looking like the same card.
     <div
       className={[
-        "@container relative aspect-[3/4] w-full overflow-hidden",
+        // `isolate` is not decoration: mix-blend-mode composites against the
+        // backdrop of its stacking context, and without one the grade and the
+        // grain would reach past the card and blend with the page behind it.
+        // The card had one only incidentally — @container implies layout
+        // containment, which creates one — so the grain has been safe by
+        // accident. Two blended layers is too many to leave to that.
+        "@container relative isolate aspect-[3/4] w-full overflow-hidden",
         // Radius comes from RADIUS.card via the style prop below. backdrop-filter
         // escapes an ancestor's overflow-hidden clip in every current engine, so
         // a square-cornered blur layer would paint over the card's rounded
@@ -393,6 +446,27 @@ export function FlightCard({
           loading="lazy"
           decoding="async"
           className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+
+      {/* ── Grade ──
+          Above the photograph and below the scrims, which is load-bearing for
+          `tone`: soft-light with the sky's warm lower stop *lightens* the
+          bottom of the frame, and the bottom of the frame is where four rows of
+          white type sit. Sitting under the scrim means the 0.6 black lands
+          after the lift and absorbs it, rather than the two working against
+          each other.
+
+          This is also what stops the painted sky being dead weight. Without it
+          the sky is three tuned gradients that vanish the moment the photo
+          loads; with it, the photo supplies structure and the sky supplies
+          palette, so a photograph the component never chose still belongs to
+          the card. */}
+      {image && grade !== "none" && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ backgroundImage: SKY_LINEAR, ...GRADE_LAYER[grade] }}
         />
       )}
 

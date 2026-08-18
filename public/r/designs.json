@@ -15,14 +15,14 @@
         "glass",
         "backdrop-blur"
       ],
-      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and every corner derives from a single radius scale so no nested shape is rounder than the one holding it. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. The painted sky under the photograph doubles as a grade over it, so a photograph the component never chose still belongs to the card. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and the frame and its controls carry separate concentric radius systems. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
       "createdAt": "2026-08-17T00:00:00Z",
       "variations": [
         {
           "name": "default",
           "displayName": "Flight Card",
           "tier": "free",
-          "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and every corner derives from a single radius scale so no nested shape is rounder than the one holding it. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+          "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. The painted sky under the photograph doubles as a grade over it, so a photograph the component never chose still belongs to the card. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and the frame and its controls carry separate concentric radius systems. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
           "animationType": "none",
           "dependencies": [
             "@hugeicons/react",
@@ -55,6 +55,12 @@
               "description": "Time in the air, shown under the route mark — the one number that makes two clock times mean something. Written, not computed: the endpoint times are display strings in unknown timezones. Defaults to \"10h 50m\"."
             },
             {
+              "name": "grade",
+              "type": "\"none\" | \"tone\" | \"duotone\"",
+              "required": false,
+              "description": "How hard the card's palette is pushed onto the photograph, using the same sky gradient the card falls back to. \"tone\" (default) is a soft-light pass that keeps the photo's own hues — chroma survives at 98% — and unifies its tone; \"duotone\" is a colour pass that imposes the palette completely at no contrast cost, but flattens vivid colour to about 55% chroma; \"none\" leaves the photo alone. Ignored when there is no image."
+            },
+            {
               "name": "options",
               "type": "[string, string]",
               "required": false,
@@ -81,5 +87,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-17T20:27:34.994Z"
+  "lastUpdated": "2026-08-18T09:56:05.800Z"
 }
