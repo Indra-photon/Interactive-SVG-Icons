@@ -41,7 +41,7 @@ const poly = (pts: Pt[], close = true) =>
  * all three faces — the faces are foreshortened differently, so a radius
  * applied before projection would come out uneven.
  */
-const roundPoly = (pts: Pt[], r = 4) => {
+const roundPoly = (pts: Pt[], r = 2) => {
   const n = pts.length;
   const lerp = (a: Pt, b: Pt, t: number): Pt => [
     a[0] + (b[0] - a[0]) * t,
@@ -106,39 +106,43 @@ const range = (n: number) => Array.from({ length: n }, (_, i) => i);
 
 // ─── Ink ──────────────────────────────────────────────────────────────────────
 //
-// Three greys for the three faces, lightest on top: the shading is doing the
-// work a light source would, so the solid never needs a gradient to read as
-// solid. One olive accent, used sparingly enough to stay a highlight.
+// Neutral greys, no hue at all: white in light, black in dark, three steps of
+// it for the three faces, lightest on top. The shading is doing the work a light
+// source would, so the solid never needs a gradient to read as solid, and the
+// accent is a mid grey that separates from every face in both themes.
+//
+// Every colour is a class pair rather than a fill/stroke attribute, because an
+// attribute cannot answer to the theme. In dark the faces darken and the ink
+// lifts, but the light keeps coming from the same place — the top face is still
+// the lightest of the three, so the solid reads the same way in both themes.
+//
+// Classes rather than cssVars on purpose: cssVars are written into a consumer's
+// stylesheet at install time, so they do nothing for the copy rendering from
+// source in this repo's own gallery. This travels with the file. CSS beats a
+// presentation attribute, so the fill="none" left on the <svg> root does not
+// fight them.
 
-const ISO_INK = "#243027";
-const ACCENT = "#6f7a62";
-const TOP = "#ffffff";
-const FRONT = "#f3f4f0";
-const FLANK = "#e3e5de";
+const INK = "stroke-[#1A1A1A] dark:stroke-[#A8A8A8] dark:stroke-opacity-[0.9]";
+const ACCENT = "fill-[#6B6B6B] dark:fill-[#B4B4B4]";
+const TOP = "fill-[#FFFFFF] dark:fill-[#3A3A3A]";
+const FRONT = "fill-[#EFEFEF] dark:fill-[#2A2A2A]";
+const FLANK = "fill-[#DADADA] dark:fill-[#1C1C1C]";
 
 const LINE = {
-  stroke: ISO_INK,
   fill: "none",
   strokeLinejoin: "round",
 } as const;
 
 /**
- * The dashed footprint and rack posts are the only marks drawn straight onto
- * the page instead of onto a light face, so they are the only ones that have to
- * survive a dark background. In ISO_INK at 30% they measure near-zero contrast
- * on a dark surface and simply vanish — the solid is legible in both themes
- * because its faces carry their own white, but its scaffolding is not.
- *
- * Flipping to the flank grey rather than to white keeps the guides subordinate
- * to the outlines in both themes; the opacity lifts a little in dark because a
- * light ink on a dark ground reads fainter than the reverse at equal alpha.
- *
- * A class rather than cssVars on purpose: cssVars are written into a consumer's
- * stylesheet at install time, so they do nothing for the copy rendering from
- * source in this repo's own gallery. This travels with the file.
+ * The dashed footprint and rack posts are drawn straight onto the page rather
+ * than onto a face, so they are the only marks that meet the background
+ * directly. They flip like the rest of the ink, but land short of it — a step
+ * in from the full lift — which keeps the guides subordinate to the outlines in
+ * both themes. The opacity rises a little in dark because a light ink on a dark
+ * ground reads fainter than the reverse at equal alpha.
  */
 const GUIDE_INK =
-  "stroke-[#243027] opacity-[0.3] dark:stroke-[#E3E5DE] dark:opacity-[0.45]";
+  "stroke-[#1A1A1A] opacity-[0.3] dark:stroke-[#A8A8A8] dark:opacity-[0.45]";
 
 /** One compute unit in the stack. `index` fades the accent bar with depth. */
 function DataBox({ z, index }: { z: number; index: number }) {
@@ -154,39 +158,30 @@ function DataBox({ z, index }: { z: number; index: number }) {
     <g>
       {/* Fills first, then detail, then the heavy outline on top — the outline
           has to overdraw the vent hatching where they meet. */}
-      <path d={roundPoly(f.flank)} fill={FLANK} />
-      <path d={roundPoly(f.front)} fill={FRONT} />
-      <path d={roundPoly(f.top)} fill={TOP} />
+      <path d={roundPoly(f.flank)} className={FLANK} />
+      <path d={roundPoly(f.front)} className={FRONT} />
+      <path d={roundPoly(f.top)} className={TOP} />
 
-      <g {...LINE} strokeWidth={0.75} opacity={0.45}>
-        {range(16).map((i) => {
-          const gx = 0.7 + i * 0.42;
+      <g {...LINE} className={INK} strokeWidth={0.75} opacity={0.45}>
+        {range(10).map((i) => {
+          const gx = 0.7 + i * 0.7;
           return (
             <path
               key={i}
-              d={poly(onFront(yf, gx, gx + 0.2, z + 0.5, z + 1.8))}
+              d={poly(onFront(yf, gx, gx + 0.4, z + 0.5, z + 1.8))}
             />
           );
         })}
-        <path d={roundPoly(onFront(yf, 7.9, 9.1, z + 0.5, z + 1.8), 2)} />
-        <path d={roundPoly(onFront(yf, 9.4, 10.4, z + 0.5, z + 1.8), 2)} />
         <path
           d={roundPoly(
             onFlank(x + w, y + 1.1, y + d - 1.1, z + 0.6, z + 1.7),
             2,
           )}
         />
-        <path d={roundPoly(quad(x + 0.5, y + 0.5, z + h, w - 1, d - 1), 3)} />
+        <path d={roundPoly(quad(x + 0.5, y + 0.5, z + h, w - 1, d - 1), 2)} />
       </g>
 
-      {/* Status strip — the top unit is brightest, so the stack reads top-down */}
-      <path
-        d={poly(onFront(yf, 0.7, 7.1, z + 2.0, z + 2.15))}
-        fill={ACCENT}
-        opacity={0.85 - index * 0.25}
-      />
-
-      <g {...LINE} strokeWidth={1.3}>
+      <g {...LINE} className={INK} strokeWidth={1.3}>
         <path d={roundPoly(f.flank)} />
         <path d={roundPoly(f.front)} />
         <path d={roundPoly(f.top)} />
@@ -215,26 +210,16 @@ export function GpuInfrastructure({ className }: GpuInfrastructureProps) {
       viewBox="0 0 420 450"
       className={className}
       fill="none"
-      stroke={ISO_INK}
       strokeLinecap="round"
       role="img"
       aria-label="Isometric diagram: three stacked GPU compute units on a plinth"
     >
-      {/* Ground plane — a dashed footprint wider than the plinth, so the stack
-          sits somewhere rather than floating. */}
-      {/* <path
-        d={roundPoly(quad(-4, -4, 0, w + 8, d + 8), 14)}
-        strokeWidth={1}
-        strokeDasharray="6 7"
-        className={GUIDE_INK}
-      /> */}
-
       {/* Plinth */}
       <g>
-        <path d={roundPoly(plinth.flank)} fill={FLANK} />
-        <path d={roundPoly(plinth.front)} fill={FRONT} />
-        <path d={roundPoly(plinth.top)} fill={TOP} />
-        <g {...LINE} strokeWidth={1.3}>
+        <path d={roundPoly(plinth.flank)} className={FLANK} />
+        <path d={roundPoly(plinth.front)} className={FRONT} />
+        <path d={roundPoly(plinth.top)} className={TOP} />
+        <g {...LINE} className={INK} strokeWidth={0.8}>
           <path d={roundPoly(plinth.flank)} />
           <path d={roundPoly(plinth.front)} />
           <path d={roundPoly(plinth.top)} />
@@ -242,13 +227,13 @@ export function GpuInfrastructure({ className }: GpuInfrastructureProps) {
       </g>
 
       {/* Rack posts, drawn before the units so each one occludes them */}
-      <g strokeWidth={1} strokeDasharray="4 6" className={GUIDE_INK}>
+      {/* <g strokeWidth={1} strokeDasharray="4 6" className={GUIDE_INK}>
         {edges.map(([ex, ey], i) => {
           const a = p(ex, ey, 0);
           const b = p(ex, ey, levels[2] + 2.3);
           return <path key={i} d={`M${a[0]} ${a[1]}V${b[1]}`} />;
         })}
-      </g>
+      </g> */}
 
       {/* Painter's algorithm: lowest z first, so upper units overlap correctly */}
       {levels.map((z, i) => (
@@ -256,12 +241,12 @@ export function GpuInfrastructure({ className }: GpuInfrastructureProps) {
       ))}
 
       {/* Cable terminations on the front-left corner post */}
-      <g fill={ACCENT} stroke="none" opacity={0.6}>
+      {/* <g className={ACCENT} stroke="none" opacity={0.6}>
         {[4.4, 10.4].map((z) => {
           const a = p(0, d, z);
           return <circle key={z} cx={a[0]} cy={a[1]} r={2.6} />;
         })}
-      </g>
+      </g> */}
     </svg>
   );
 }

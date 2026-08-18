@@ -1,0 +1,40 @@
+{
+  "slug": "modular-block",
+  "name": "Modular Block",
+  "published": true,
+  "category": "abstract",
+  "tags": [
+    "illustration",
+    "isometric",
+    "cube",
+    "modular",
+    "abstract",
+    "diagram",
+    "svg",
+    "static"
+  ],
+  "description": "An isometric cube with one corner block cut out and set down beside it. Hard-mitred edges, three flat greys for the three face orientations and nothing else on the page — for modularity, composability and missing-piece stories.",
+  "createdAt": "2026-08-18T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Modular Block",
+      "componentName": "ModularBlock",
+      "tier": "free",
+      "description": "An isometric cube with one corner block cut out and set down beside it — sharp corners, flat shading, nothing else on the page.",
+      "animationType": "none",
+      "width": 420,
+      "height": 450,
+      "dependencies": [],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the <svg> root. The artwork is viewBox-driven with no width/height attributes, so it fills its container by default."
+        }
+      ]
+    }
+  ]
+}
