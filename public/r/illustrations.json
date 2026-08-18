@@ -33,6 +33,45 @@
       ]
     },
     {
+      "slug": "modular-block",
+      "name": "Modular Block",
+      "category": "abstract",
+      "tags": [
+        "illustration",
+        "isometric",
+        "cube",
+        "modular",
+        "abstract",
+        "diagram",
+        "svg",
+        "static"
+      ],
+      "description": "An isometric cube with one corner block cut out and set down beside it. Hard-mitred edges, three flat greys for the three face orientations and nothing else on the page — for modularity, composability and missing-piece stories.",
+      "createdAt": "2026-08-18T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Modular Block",
+          "tier": "free",
+          "description": "An isometric cube with one corner block cut out and set down beside it — sharp corners, flat shading, nothing else on the page.",
+          "animationType": "none",
+          "dependencies": [],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the <svg> root. The artwork is viewBox-driven with no width/height attributes, so it fills its container by default."
+            }
+          ],
+          "componentName": "ModularBlock",
+          "width": 420,
+          "height": 450
+        }
+      ]
+    },
+    {
       "slug": "gpu-infrastructure",
       "name": "GPU Infrastructure",
       "category": "infrastructure",
@@ -73,5 +112,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-18T09:56:05.804Z"
+  "lastUpdated": "2026-08-18T12:44:03.755Z"
 }

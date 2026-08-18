@@ -2503,6 +2503,23 @@
       ]
     },
     {
+      "name": "modular-block-default",
+      "type": "registry:block",
+      "title": "Modular Block - Modular Block",
+      "description": "An isometric cube with one corner block cut out and set down beside it — sharp corners, flat shading, nothing else on the page.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/illustrations/modular-block/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/illustrations/modular-block/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "gpu-infrastructure-default",
       "type": "registry:block",
       "title": "GPU Infrastructure - GPU Infrastructure",
