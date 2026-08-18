@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
 import { Button } from "@/components/ui/button";
-import { ToolConnectorSVG } from "@/components/Homepage/ToolConnectorSVG";
+import { ToolConnectorSVG } from "@/components/craftui/illustrations/tool-connector/default";
 import { NetworkDiagramSVG } from "@/components/Homepage/NetworkDiagramSVG";
 import { FolderSVG } from "@/components/Homepage/FolderSVG";
 

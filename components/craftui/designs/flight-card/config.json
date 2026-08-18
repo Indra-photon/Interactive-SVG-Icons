@@ -1,0 +1,86 @@
+{
+  "slug": "flight-card",
+  "name": "Flight Card",
+  "published": true,
+  "category": "card",
+  "tags": [
+    "design",
+    "static",
+    "card",
+    "travel",
+    "flight",
+    "poster",
+    "photo",
+    "glass",
+    "backdrop-blur"
+  ],
+  "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. The painted sky under the photograph doubles as a grade over it, so a photograph the component never chose still belongs to the card. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and the frame and its controls carry separate concentric radius systems. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+  "createdAt": "2026-08-17T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Flight Card",
+      "componentName": "FlightCard",
+      "tier": "free",
+      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. The painted sky under the photograph doubles as a grade over it, so a photograph the component never chose still belongs to the card. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and the frame and its controls carry separate concentric radius systems. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+      "animationType": "none",
+      "width": 560,
+      "height": 747,
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "image",
+          "type": "string",
+          "required": false,
+          "description": "Background photograph. Defaults to a San Francisco bridge from Pexels, served through their CDN transform (287KB rather than the 4.0MB original). Pass your own URL to own the asset, or \"\" to fall through to the painted sky alone — every text pair on the card is measured to pass APCA Lc 60 against either."
+        },
+        {
+          "name": "from",
+          "type": "FlightEndpoint",
+          "required": false,
+          "description": "Origin as { code, time, city }. Defaults to LHR / 10:30 AM / London."
+        },
+        {
+          "name": "to",
+          "type": "FlightEndpoint",
+          "required": false,
+          "description": "Arrival as { code, time, city }. Defaults to SFO / 1:20 PM / San Francisco."
+        },
+        {
+          "name": "duration",
+          "type": "string",
+          "required": false,
+          "description": "Time in the air, shown under the route mark — the one number that makes two clock times mean something. Written, not computed: the endpoint times are display strings in unknown timezones. Defaults to \"10h 50m\"."
+        },
+        {
+          "name": "grade",
+          "type": "\"none\" | \"tone\" | \"duotone\"",
+          "required": false,
+          "description": "How hard the card's palette is pushed onto the photograph, using the same sky gradient the card falls back to. \"tone\" (default) is a soft-light pass that keeps the photo's own hues — chroma survives at 98% — and unifies its tone; \"duotone\" is a colour pass that imposes the palette completely at no contrast cost, but flattens vivid colour to about 55% chroma; \"none\" leaves the photo alone. Ignored when there is no image."
+        },
+        {
+          "name": "options",
+          "type": "[string, string]",
+          "required": false,
+          "description": "The two labels in the segment control. Drawn, not wired — this is a still card, so the control shows a choice rather than offering one."
+        },
+        {
+          "name": "activeOption",
+          "type": "0 | 1",
+          "required": false,
+          "description": "Which of the two reads as chosen. Defaults to 0, so the chosen segment agrees with the artwork and the route."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the card root. The card is aspect-ratio driven at 3:4 and fills its container's width."
+        }
+      ]
+    }
+  ]
+}

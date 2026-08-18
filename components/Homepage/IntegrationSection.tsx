@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
-import { ToolConnectorSVG } from "@/components/Homepage/ToolConnectorSVG";
+import { ToolConnectorSVG } from "@/components/craftui/illustrations/tool-connector/default";
 
 const INTEGRATION_POINTS = [
   {

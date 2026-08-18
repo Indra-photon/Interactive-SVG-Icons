@@ -594,92 +594,6 @@
       ]
     },
     {
-      "slug": "pixel-dissolve-card",
-      "name": "Pixel Dissolve Card",
-      "category": "card",
-      "tags": [
-        "card",
-        "image",
-        "pixel",
-        "dissolve",
-        "click",
-        "animation"
-      ],
-      "description": "An editorial card whose cover photo dissolves into a grid of pixels to reveal the next slide, with the heading fading up beneath it.",
-      "createdAt": "2026-07-22T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Pixel Dissolve Card",
-          "tier": "free",
-          "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
-          "animationType": "click",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "slides",
-              "type": "PixelDissolveSlide[]",
-              "required": false,
-              "description": "Ordered list of slides cycled through on click. Defaults to three built-in editorial slides."
-            },
-            {
-              "name": "slides[].image",
-              "type": "string",
-              "required": true,
-              "description": "Cover photo URL for the slide."
-            },
-            {
-              "name": "slides[].imageAlt",
-              "type": "string",
-              "required": false,
-              "description": "Alt text for the cover photo. Defaults to an empty string (decorative)."
-            },
-            {
-              "name": "slides[].heading",
-              "type": "string",
-              "required": true,
-              "description": "Headline shown in the card body under the photo."
-            },
-            {
-              "name": "size",
-              "type": "number",
-              "default": "14",
-              "required": false,
-              "description": "Grid resolution of the dissolve — renders size × size tiles."
-            },
-            {
-              "name": "revealStep",
-              "type": "number",
-              "default": "0.045",
-              "required": false,
-              "description": "Seconds between each tile group vanishing. Total dissolve length is roughly size × revealStep."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the card root."
-            }
-          ],
-          "componentName": "PixelDissolveCard",
-          "previewHint": "Click the card to advance — the current photo dissolves pixel by pixel into the next one",
-          "features": [
-            "The incoming image is rendered underneath from the first frame, so the dissolve reveals the next slide rather than a blank gap",
-            "Every tile is the same image positioned by background-position on a size×size background — one network request, no canvas, no image slicing",
-            "Cells are bucketed into `size` random groups of `size` cells each, and the groups are given randomized delays, so tiles disappear in scattered clusters instead of a predictable sweep",
-            "Tiles are overscaled by 1.02 to hide the hairline seams that subpixel grid rounding otherwise leaves between them",
-            "Clicks are ignored while a dissolve is in flight, and the cleanup timeout is cleared on unmount",
-            "Rendered as a real <button> with an aria-label, and the tile grid is aria-hidden so screen readers only ever see the current slide",
-            "The heading crossfades rather than swapping: the old copy lifts and fades out over 180ms while the new one reveals word by word from behind a clipping mask, 20ms apart via motion/react variants, so the text resolves alongside the image",
-            "Respects prefers-reduced-motion — the dissolve is skipped entirely and the slide swaps instantly"
-          ]
-        }
-      ]
-    },
-    {
       "slug": "product-card",
       "name": "Product Card",
       "category": "card",
@@ -787,6 +701,92 @@
             "Three photos animate independently between a stacked deck and an evenly spaced fan on a single click",
             "CTA morphs between an icon-only button and a full-width labeled button, driven by the same stage state as the photos",
             "Respects prefers-reduced-motion — all springs and detail transitions collapse to instant transitions"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "pixel-dissolve-card",
+      "name": "Pixel Dissolve Card",
+      "category": "card",
+      "tags": [
+        "card",
+        "image",
+        "pixel",
+        "dissolve",
+        "click",
+        "animation"
+      ],
+      "description": "An editorial card whose cover photo dissolves into a grid of pixels to reveal the next slide, with the heading fading up beneath it.",
+      "createdAt": "2026-07-22T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Pixel Dissolve Card",
+          "tier": "free",
+          "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
+          "animationType": "click",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "slides",
+              "type": "PixelDissolveSlide[]",
+              "required": false,
+              "description": "Ordered list of slides cycled through on click. Defaults to three built-in editorial slides."
+            },
+            {
+              "name": "slides[].image",
+              "type": "string",
+              "required": true,
+              "description": "Cover photo URL for the slide."
+            },
+            {
+              "name": "slides[].imageAlt",
+              "type": "string",
+              "required": false,
+              "description": "Alt text for the cover photo. Defaults to an empty string (decorative)."
+            },
+            {
+              "name": "slides[].heading",
+              "type": "string",
+              "required": true,
+              "description": "Headline shown in the card body under the photo."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "default": "14",
+              "required": false,
+              "description": "Grid resolution of the dissolve — renders size × size tiles."
+            },
+            {
+              "name": "revealStep",
+              "type": "number",
+              "default": "0.045",
+              "required": false,
+              "description": "Seconds between each tile group vanishing. Total dissolve length is roughly size × revealStep."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the card root."
+            }
+          ],
+          "componentName": "PixelDissolveCard",
+          "previewHint": "Click the card to advance — the current photo dissolves pixel by pixel into the next one",
+          "features": [
+            "The incoming image is rendered underneath from the first frame, so the dissolve reveals the next slide rather than a blank gap",
+            "Every tile is the same image positioned by background-position on a size×size background — one network request, no canvas, no image slicing",
+            "Cells are bucketed into `size` random groups of `size` cells each, and the groups are given randomized delays, so tiles disappear in scattered clusters instead of a predictable sweep",
+            "Tiles are overscaled by 1.02 to hide the hairline seams that subpixel grid rounding otherwise leaves between them",
+            "Clicks are ignored while a dissolve is in flight, and the cleanup timeout is cleared on unmount",
+            "Rendered as a real <button> with an aria-label, and the tile grid is aria-hidden so screen readers only ever see the current slide",
+            "The heading crossfades rather than swapping: the old copy lifts and fades out over 180ms while the new one reveals word by word from behind a clipping mask, 20ms apart via motion/react variants, so the text resolves alongside the image",
+            "Respects prefers-reduced-motion — the dissolve is skipped entirely and the slide swaps instantly"
           ]
         }
       ]
@@ -1670,5 +1670,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-13T09:46:22.814Z"
+  "lastUpdated": "2026-08-18T09:56:05.820Z"
 }

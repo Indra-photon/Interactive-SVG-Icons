@@ -88,6 +88,28 @@ Once you have the repo cloned, you can begin working on your issue:
     git switch main
     git pull
 
+### Adding an Illustration or a Design
+
+Illustrations (`/illustrations`) are self-contained SVG artwork, usually animated. Designs (`/designs`) are the same thing holding still — one `.tsx`, no animation, no runtime. Both are built by the same convention as blocks and sections:
+
+```
+components/craftui/illustrations/<slug>/
+  config.json
+  default.tsx
+```
+
+Then run `npm run build:registry`, which writes `public/r/<slug>-default.json` (what the install command points at) and `public/r/illustrations.json` (what the gallery reads).
+
+Three rules specific to these two catalogs:
+
+1. **The artwork must be `viewBox`-driven and width-fluid.** Give the `<svg>` a `viewBox` and no fixed `width`/`height` attributes in pixels (`width="100%" height="100%"` is fine). The gallery is a CSS multi-column masonry — a column is roughly 380px wide at the widest breakpoint, so anything authored at a hardcoded pixel width will overflow its card instead of scaling down.
+
+2. **Declare `width` and `height` on the variation**, matching the `viewBox`. The card reserves its well at exactly that ratio before the component's chunk is fetched, which is what stops every card below it in the column from jumping when the import resolves. Omit them and the card falls back to 3:2.
+
+3. **Static designs must declare `"dependencies": []` explicitly.** The builder defaults a missing `dependencies` field to `["framer-motion"]`, so leaving it out ships a dependency the design never imports.
+
+`props` belongs in `config.json` if the component takes any — it is carried into the registry JSON and is there for later. The masonry gallery does not render a props table; each card shows the artwork, its name, its description and the install command, and there is no detail route behind it.
+
 ### Opening a Pull Request
 
 1. After pushing your changes, go to the repo on GitHub and click the "Compare & pull request" button. If you have multiples of this button, be sure you click the one for the correct branch.

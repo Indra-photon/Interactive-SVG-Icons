@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolConnectorSVG } from "@/components/Homepage/ToolConnectorSVG";
+import { ToolConnectorSVG } from "@/components/craftui/illustrations/tool-connector/default";
 
 export function HeroToolConnector() {
   return (

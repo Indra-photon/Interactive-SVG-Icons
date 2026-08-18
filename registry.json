@@ -1323,23 +1323,6 @@
       ]
     },
     {
-      "name": "dot-matrix-rain-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Rain - Dot Matrix Rain",
-      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dot-matrix-vortex-default",
       "type": "registry:ui",
       "title": "Dot Matrix Vortex - Dot Matrix Vortex",
@@ -1353,6 +1336,23 @@
           "path": "components/craftui/loaders/dot-matrix-vortex/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-matrix-vortex/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-rain-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Rain - Dot Matrix Rain",
+      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
         }
       ]
     },
@@ -2085,6 +2085,28 @@
       ]
     },
     {
+      "name": "product-card-default",
+      "type": "registry:block",
+      "title": "Product Card - Product Card",
+      "description": "Three photos morph from an overlapping stacked deck into an evenly spaced fan, while the CTA morphs from a small gallery icon into a full-width action button and the price/description/tags fade in.",
+      "dependencies": [
+        "motion",
+        "react-use-measure",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/product-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/product-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "pixel-dissolve-card-default",
       "type": "registry:block",
       "title": "Pixel Dissolve Card - Pixel Dissolve Card",
@@ -2125,28 +2147,6 @@
           "path": "components/craftui/blocks/pixel-dissolve-card/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/pixel-dissolve-card/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "product-card-default",
-      "type": "registry:block",
-      "title": "Product Card - Product Card",
-      "description": "Three photos morph from an overlapping stacked deck into an evenly spaced fan, while the CTA morphs from a small gallery icon into a full-width action button and the price/description/tags fade in.",
-      "dependencies": [
-        "motion",
-        "react-use-measure",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/product-card/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/product-card/default.tsx"
         }
       ]
     },
@@ -2480,6 +2480,62 @@
           "path": "components/craftui/sections/feature-ai-01/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/feature-ai-01/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tool-connector-default",
+      "type": "registry:block",
+      "title": "Tool Connector - Tool Connector",
+      "description": "Seven marketing and data tools wired into a single stack. Dashed rails run from each logo into a central card, light pulses travel the rails on a 7.5s loop, and three stacked slabs fade up in turn as their pulses land — a picture of many sources collapsing into one destination.",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/illustrations/tool-connector/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/illustrations/tool-connector/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "gpu-infrastructure-default",
+      "type": "registry:block",
+      "title": "GPU Infrastructure - GPU Infrastructure",
+      "description": "An isometric compute stack — three GPU units racked on a plinth inside a dashed footprint. For AI, GPU and developer-infrastructure pages that need a picture of the machine.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/illustrations/gpu-infrastructure/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/illustrations/gpu-infrastructure/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "flight-card-default",
+      "type": "registry:block",
+      "title": "Flight Card - Flight Card",
+      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. The painted sky under the photograph doubles as a grade over it, so a photograph the component never chose still belongs to the card. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and the frame and its controls carry separate concentric radius systems. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/flight-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/flight-card/default.tsx"
         }
       ]
     },

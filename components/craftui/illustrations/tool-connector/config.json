@@ -1,0 +1,31 @@
+{
+  "slug": "tool-connector",
+  "name": "Tool Connector",
+  "published": true,
+  "category": "integration",
+  "tags": [
+    "illustration",
+    "integration",
+    "svg",
+    "connector",
+    "pipeline",
+    "loop"
+  ],
+  "description": "Seven marketing and data tools wired into a single stack. Dashed rails run from each logo into a central card, light pulses travel the rails on a 7.5s loop, and three stacked slabs fade up in turn as their pulses land — a picture of many sources collapsing into one destination.",
+  "createdAt": "2026-08-17T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Tool Connector",
+      "componentName": "ToolConnectorSVG",
+      "tier": "free",
+      "description": "Seven marketing and data tools wired into a single stack. Dashed rails run from each logo into a central card, light pulses travel the rails on a 7.5s loop, and three stacked slabs fade up in turn as their pulses land — a picture of many sources collapsing into one destination.",
+      "animationType": "loop",
+      "width": 310,
+      "height": 236,
+      "dependencies": ["framer-motion"],
+      "registryDependencies": [],
+      "props": []
+    }
+  ]
+}

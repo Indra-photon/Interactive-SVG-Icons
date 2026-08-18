@@ -92,7 +92,7 @@ export const Paragraph = <T extends React.ElementType = "p">({
     // "Copy the code snippet…" line in all three configurators, the icon design
     // note, UI feature bullets, homepage prose. If the text is a sentence and
     // it isn't introducing the screen, it's `body`.
-    body: "tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground text-pretty",
+    body: "tracking-tighter text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground/80 text-pretty",
     // The single summary line under a panel breadcrumb — one per screen, on all
     // seven gallery overview and detail views. A clear step above body so the
     // eye lands somewhere after the crumbs. Not for prose: a second `lead` on
