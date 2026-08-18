@@ -105,7 +105,7 @@ export function ArtworkCard({
             // offset draws it just inside the edge so it hugs the corner radius.
             // Pure black/white only — a tinted neutral picks up the surface
             // underneath and reads as dirt on the artwork's edge.
-            className="relative w-full overflow-hidden rounded-[8px] bg-muted outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10"
+            className="relative w-full overflow-hidden "
           >
             <div
               // Inset so the artwork breathes instead of bleeding to the well's
@@ -113,23 +113,23 @@ export function ArtworkCard({
               // SVG's own preserveAspectRatio absorbs by letterboxing — the
               // reason the child is sized rather than the svg being asked to
               // stretch.
-              className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 [&>svg]:h-full [&>svg]:w-full"
+              className="absolute inset-0 flex items-center justify-center "
             >
               {Artwork && <Artwork />}
             </div>
           </div>
         </CardContent>
 
-        <CardContent className="mt-4 flex flex-col">
-          <Paragraph variant="title">{item.name}</Paragraph>
+        <CardContent className="mt-1 flex flex-col">
+          {/* <Paragraph variant="title">{item.name}</Paragraph> */}
           {/* Unclamped on purpose: there is no detail route behind these cards,
               so a truncated description is information with nowhere to go. The
               masonry is built for uneven card heights anyway. */}
-          {variation.description && (
+          {/* {variation.description && (
             <Paragraph variant="body" className="mt-1 line-clamp-3 ">
               {variation.description}
             </Paragraph>
-          )}
+          )} */}
 
           {/* The whole configurator, replaced by one line. size="lg" (the
               default) is the full-width variant that masks the overflowing URL

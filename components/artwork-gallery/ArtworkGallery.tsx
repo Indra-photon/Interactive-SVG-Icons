@@ -40,12 +40,6 @@ export function ArtworkGallery({
         show: { transition: { staggerChildren: 0.07 } },
       }}
     >
-      {/* Negative margin lets the rule outgrow the rail, echoing the divider
-          above the hero cards. */}
-      <div className="-mx-4 mb-10 md:-mx-10">
-        <HeroRippleLine orientation="horizontal" className="w-full" />
-      </div>
-
       {/* <Heading as="h1" className="sm:text-left">
         {catalog.heading}
       </Heading>

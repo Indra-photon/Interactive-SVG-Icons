@@ -15,14 +15,14 @@
         "glass",
         "backdrop-blur"
       ],
-      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, times and cities either side of an airplane mark, over a segment control naming the destination. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width, blur radius and icon included, so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and every corner derives from a single radius scale so no nested shape is rounder than the one holding it. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
       "createdAt": "2026-08-17T00:00:00Z",
       "variations": [
         {
           "name": "default",
           "displayName": "Flight Card",
           "tier": "free",
-          "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, times and cities either side of an airplane mark, over a segment control naming the destination. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width, blur radius and icon included, so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+          "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and every corner derives from a single radius scale so no nested shape is rounder than the one holding it. A painted gradient sky sits under the photograph, so the card is never a grey box while the image loads and still reads as finished if it never arrives. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
           "animationType": "none",
           "dependencies": [
             "@hugeicons/react",
@@ -34,13 +34,7 @@
               "name": "image",
               "type": "string",
               "required": false,
-              "description": "Background photograph. Defaults to a San Francisco bridge from Pexels, served through their CDN transform (287KB rather than the 4.0MB original). Pass your own URL to own the asset, or \"\" to fall through to the painted sky alone."
-            },
-            {
-              "name": "destination",
-              "type": "string",
-              "required": false,
-              "description": "Headline over the artwork — the place being sold, not the airport. Defaults to \"San Francisco\", matching the drawn scene."
+              "description": "Background photograph. Defaults to a San Francisco bridge from Pexels, served through their CDN transform (287KB rather than the 4.0MB original). Pass your own URL to own the asset, or \"\" to fall through to the painted sky alone — every text pair on the card is measured to pass APCA Lc 60 against either."
             },
             {
               "name": "from",
@@ -53,6 +47,12 @@
               "type": "FlightEndpoint",
               "required": false,
               "description": "Arrival as { code, time, city }. Defaults to SFO / 1:20 PM / San Francisco."
+            },
+            {
+              "name": "duration",
+              "type": "string",
+              "required": false,
+              "description": "Time in the air, shown under the route mark — the one number that makes two clock times mean something. Written, not computed: the endpoint times are display strings in unknown timezones. Defaults to \"10h 50m\"."
             },
             {
               "name": "options",
@@ -81,5 +81,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-17T14:57:29.867Z"
+  "lastUpdated": "2026-08-17T20:27:34.994Z"
 }
