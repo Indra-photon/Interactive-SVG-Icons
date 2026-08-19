@@ -2537,6 +2537,46 @@
       ]
     },
     {
+      "name": "workflow-pipeline-default",
+      "type": "registry:block",
+      "title": "Workflow Pipeline - Workflow Pipeline",
+      "description": "A three-lane automation diagram: web, maps and AI sources on the left, a settings card in the middle, and the agents and booked confirmation they produce on the right. Elbow connectors are generated from the same coordinate table the nodes are placed from, and every measurement is a fraction of the panel's own width, so type, icons and toggles keep their proportions at any size. Static — no hooks, no motion, zero JavaScript.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/workflow-pipeline/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/workflow-pipeline/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "insight-card-default",
+      "type": "registry:block",
+      "title": "Insight Card - Insight Card",
+      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/insight-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/insight-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "flight-card-default",
       "type": "registry:block",
       "title": "Flight Card - Flight Card",

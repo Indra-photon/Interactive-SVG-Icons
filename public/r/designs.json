@@ -1,6 +1,128 @@
 {
   "designs": [
     {
+      "slug": "workflow-pipeline",
+      "name": "Workflow Pipeline",
+      "category": "diagram",
+      "tags": [
+        "design",
+        "static",
+        "diagram",
+        "pipeline",
+        "workflow",
+        "automation",
+        "connector",
+        "settings",
+        "toggle"
+      ],
+      "description": "A three-lane automation diagram: web, maps and AI sources on the left, a settings card in the middle, and the agents and booked confirmation they produce on the right. The elbow connectors are generated from the same coordinate table the nodes are positioned from, so every line terminates exactly on the edge it points at rather than near it. One design pixel is a fraction of the panel's own width — type, icons and toggles included — so the composition holds from a narrow masonry column to a full-width hero with no breakpoints. The toggles are drawn in a fixed state rather than wired to a handler: a still picture of a configured workflow, not a working control panel. Renders entirely on the server.",
+      "createdAt": "2026-08-19T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Workflow Pipeline",
+          "tier": "free",
+          "description": "A three-lane automation diagram: web, maps and AI sources on the left, a settings card in the middle, and the agents and booked confirmation they produce on the right. Elbow connectors are generated from the same coordinate table the nodes are placed from, and every measurement is a fraction of the panel's own width, so type, icons and toggles keep their proportions at any size. Static — no hooks, no motion, zero JavaScript.",
+          "animationType": "none",
+          "dependencies": [
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "agents",
+              "type": "[string, string]",
+              "required": false,
+              "description": "The two avatar photographs in the output column, top and bottom. Each carries a sound-wave badge marking it as an agent on a call. Defaults to two Unsplash portraits served through their CDN transform at 120px."
+            },
+            {
+              "name": "status",
+              "type": "string",
+              "required": false,
+              "description": "Label on the middle output pill — the one result the pipeline is drawn to produce. Defaults to \"Booked\"; the green tick badge is part of the mark, not conditional on the text."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the panel root. The panel is aspect-ratio driven at 624/252 and fills its container's width — it is also the container-query root, so overriding its width rescales everything inside it."
+            }
+          ],
+          "componentName": "WorkflowPipeline",
+          "width": 624,
+          "height": 252
+        }
+      ]
+    },
+    {
+      "slug": "insight-card",
+      "name": "Insight Card",
+      "category": "card",
+      "tags": [
+        "design",
+        "static",
+        "card",
+        "marketing",
+        "halftone",
+        "dots",
+        "generative",
+        "oklch",
+        "sphere"
+      ],
+      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots rather than a shape drawn over them, so the sphere at its head reads as having cleared its own path. One signed-distance function decides both which dots get removed and which get thinned at the edge, so the silhouette can never drift from the wake. Dots are bucketed into three OKLCH shades by their distance from that wake, which is what gives the flat grid depth. The whole field is generated at module scope from a deterministic value hash rather than Math.random, so the server and the client draw the identical card and hydration stays quiet. The sphere is a radial gradient with its focal point pushed toward a named light azimuth, and the CTA gradient is the dot ramp dropped 0.14 in lightness so its label clears AA at both ends. Renders entirely on the server.",
+      "createdAt": "2026-08-19T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Insight Card",
+          "tier": "free",
+          "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
+          "animationType": "none",
+          "dependencies": [
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "brand",
+              "type": "string",
+              "required": false,
+              "description": "Wordmark beside the flower glyph, set in wide tracking. Defaults to \"NORTHBEAM\"."
+            },
+            {
+              "name": "heading",
+              "type": "ReactNode",
+              "required": false,
+              "description": "The headline. A node rather than a string on purpose — the default wraps two words in font-semibold against the medium weight around them, which is the emphasis the card is composed for."
+            },
+            {
+              "name": "ctaLabel",
+              "type": "string",
+              "required": false,
+              "description": "Label on the gradient pill. Defaults to \"Learn More\"; the arrow badge is part of the mark, not conditional on the text."
+            },
+            {
+              "name": "href",
+              "type": "string",
+              "required": false,
+              "description": "Destination for the CTA anchor. Defaults to \"#\"."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the card root. The card is capped at 362px wide and lays out in fixed pixels, which is the width the halftone field, the type scale and the two-line headline break were composed against."
+            }
+          ],
+          "componentName": "InsightCard",
+          "width": 362,
+          "height": 628
+        }
+      ]
+    },
+    {
       "slug": "flight-card",
       "name": "Flight Card",
       "category": "card",
@@ -87,5 +209,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-18T12:44:03.752Z"
+  "lastUpdated": "2026-08-19T12:54:06.366Z"
 }
