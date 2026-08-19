@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
+import { RAIL } from "@/components/Rail";
+import { cn } from "@/lib/utils";
 import { HeroRippleLine } from "@/components/Homepage/HeroRippleLine";
 import { ShowcaseCard } from "@/components/Homepage/ShowcaseCard";
 import { SHOWCASE_ITEMS } from "@/constants/showcase";
@@ -14,10 +16,8 @@ export function ShowcaseSection() {
   if (SHOWCASE_ITEMS.length === 0) return null;
 
   return (
-    // Matches HeroLinksList's rail exactly, so the grid's outer edges land on
-    // the same vertical as the hero cards above it.
     <motion.section
-      className="mx-auto w-full max-w-6xl px-8 sm:px-4 pb-24 pt-8"
+      className={cn(RAIL, "pb-24 pt-8")}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}

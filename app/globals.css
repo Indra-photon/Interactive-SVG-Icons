@@ -790,6 +790,16 @@
     var(--pixel-delay, 0s) infinite alternate;
 }
 
+/* The `none` motion kind. Needed as a real rule rather than just omitting the
+   timing variables: the keyframe's `to` falls back to `opacity: 1`, so a cell
+   with no --pixel-o-active would animate to fully opaque — the opposite of
+   holding still. Used by the designs card, whose whole point is that it does
+   not move. */
+.group:hover .hero-pixel--still {
+  will-change: auto;
+  animation: none;
+}
+
 @keyframes hero-pixel-blink {
   from {
     opacity: var(--pixel-o, 1);

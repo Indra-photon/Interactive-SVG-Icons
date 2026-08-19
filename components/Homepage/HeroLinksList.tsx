@@ -13,6 +13,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { MorphArrow } from "@/components/ui/morph-arrow";
+import { RAIL } from "@/components/Rail";
+import { cardEntrance } from "@/lib/motion";
+import { cn } from "@/lib/utils";
 import { HeroRippleLine } from "@/components/Homepage/HeroRippleLine";
 import { HeroCreatorCard } from "@/components/Homepage/HeroCreatorCard";
 import {
@@ -115,16 +118,6 @@ const ROW_BREAK = 4;
 const CARD_SLOT =
   "h-full w-[78%] shrink-0 snap-start sm:w-[62%] md:w-auto md:shrink md:snap-align-none";
 
-const cardVariants = {
-  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-  show: {
-    y: 0,
-    opacity: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] as const },
-  },
-};
-
 /**
  * Vertical divider between cards in the md+ grid. Negative margins let the line
  * outgrow the card, including crossing the rule above it.
@@ -213,7 +206,7 @@ function HeroLinkCardItem({
       // `group` so the pixel mosaic blinks on this card too — it has no Link
       // wrapper to carry the class.
       <motion.div
-        variants={cardVariants}
+        variants={cardEntrance}
         aria-disabled
         className={`group ${CARD_SLOT}`}
       >
@@ -223,7 +216,7 @@ function HeroLinkCardItem({
   }
 
   return (
-    <motion.div variants={cardVariants} className={CARD_SLOT}>
+    <motion.div variants={cardEntrance} className={CARD_SLOT}>
       {/* Link wraps the whole card, so the Button inside is a span, not a
           nested anchor. */}
       <Link
@@ -260,7 +253,7 @@ function buildHeroCards() {
     {
       key: "github",
       node: (
-        <motion.div variants={cardVariants} className={CARD_SLOT}>
+        <motion.div variants={cardEntrance} className={CARD_SLOT}>
           <HeroCreatorCard />
         </motion.div>
       ),
@@ -271,7 +264,7 @@ function buildHeroCards() {
 export function HeroLinksList() {
   return (
     <motion.div
-      className="mx-auto w-full max-w-6xl px-8 sm:px-4 pt-4"
+      className={cn(RAIL, "pt-4")}
       variants={{
         hidden: {},
         show: {

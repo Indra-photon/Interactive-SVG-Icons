@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
+import { Rail } from "@/components/Rail";
 // import { PatternSection } from "@/components/PatternSection";
 import { HeroLinksList } from "@/components/Homepage/HeroLinksList";
 import { HeroTermBadge } from "@/components/Homepage/HeroTermBadge";
@@ -24,7 +25,7 @@ export default function Home() {
           {/* Same width and padding as HeroLinksList's own wrapper, so the
               heading's left edge lands on the first card's left edge rather
               than on the wider max-w-7xl shell. */}
-          <div className="mx-auto w-full max-w-6xl px-8 sm:px-4">
+          <Rail>
             {/* sm:text-left overrides Heading's built-in sm:text-center. */}
             <Heading className="sm:text-left">
               <span className="block overflow-hidden">
@@ -84,7 +85,7 @@ export default function Home() {
                 adopt. Take what you need and make it yours.
               </Paragraph>
             </motion.div>
-          </div>
+          </Rail>
 
           <HeroLinksList />
         </motion.div>

@@ -6,6 +6,11 @@ import { useMemo } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { IconExternalLink } from "@tabler/icons-react";
 import { Paragraph } from "@/components/Paragraph";
+import {
+  hoverOrchestrator,
+  sliderVariants,
+  reducedSliderVariants,
+} from "@/lib/motion";
 interface IconCardProps {
   icon: {
     slug: string;
@@ -14,33 +19,6 @@ interface IconCardProps {
   };
   isMatched?: boolean;
 }
-
-const cardVariants = {
-  initial: {},
-  hover: {},
-};
-
-const PANEL_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
-const sliderVariants = {
-  initial: {
-    y: "100%",
-    opacity: 0,
-    filter: "blur(2px)",
-    transition: { duration: 0.35, ease: PANEL_EASE },
-  },
-  hover: {
-    y: 0,
-    opacity: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.4, ease: PANEL_EASE },
-  },
-};
-
-const reducedSliderVariants = {
-  initial: { y: "100%", opacity: 0, filter: "blur(0px)", transition: { duration: 0 } },
-  hover: { y: 0, opacity: 1, filter: "blur(0px)", transition: { duration: 0 } },
-};
 
 export function IconCard({ icon, isMatched = true }: IconCardProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -68,7 +46,7 @@ export function IconCard({ icon, isMatched = true }: IconCardProps) {
 
   return (
     <motion.div
-      variants={cardVariants}
+      variants={hoverOrchestrator}
       initial="initial"
       whileHover={isMatched ? "hover" : undefined}
       className="w-full h-28"

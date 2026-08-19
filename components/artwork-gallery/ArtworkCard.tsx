@@ -5,20 +5,9 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Paragraph } from "@/components/Paragraph";
 import { CopyButton } from "@/components/loader-gallery/CopyButton";
+import { cardEntrance } from "@/lib/motion";
 import { installCommand, registryItemName } from "@/lib/registry";
 import type { CatalogItem, CatalogVariation } from "@/types/catalog";
-
-// Lifted from ShowcaseCard so the two grids enter identically — this gallery is
-// the same masonry with artwork where the videos are.
-const cardVariants = {
-  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-  show: {
-    y: 0,
-    opacity: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] as const },
-  },
-};
 
 /** Used when a variation declares no intrinsic size. Landscape, like most art. */
 const FALLBACK_ASPECT = "3 / 2";
@@ -86,7 +75,7 @@ export function ArtworkCard({
     // rhythm has to live on the item. break-inside-avoid stops a card being
     // split across a column boundary.
     <motion.div
-      variants={cardVariants}
+      variants={cardEntrance}
       className="mb-4 break-inside-avoid sm:mb-5"
     >
       {/* Same knob pattern as ShowcaseCard: the well sits --card-pad (12px)
