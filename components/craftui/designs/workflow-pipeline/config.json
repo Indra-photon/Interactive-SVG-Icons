@@ -1,0 +1,53 @@
+{
+  "slug": "workflow-pipeline",
+  "name": "Workflow Pipeline",
+  "published": true,
+  "category": "diagram",
+  "tags": [
+    "design",
+    "static",
+    "diagram",
+    "pipeline",
+    "workflow",
+    "automation",
+    "connector",
+    "settings",
+    "toggle"
+  ],
+  "description": "A three-lane automation diagram: web, maps and AI sources on the left, a settings card in the middle, and the agents and booked confirmation they produce on the right. The elbow connectors are generated from the same coordinate table the nodes are positioned from, so every line terminates exactly on the edge it points at rather than near it. One design pixel is a fraction of the panel's own width — type, icons and toggles included — so the composition holds from a narrow masonry column to a full-width hero with no breakpoints. The toggles are drawn in a fixed state rather than wired to a handler: a still picture of a configured workflow, not a working control panel. Renders entirely on the server.",
+  "createdAt": "2026-08-19T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Workflow Pipeline",
+      "componentName": "WorkflowPipeline",
+      "tier": "free",
+      "description": "A three-lane automation diagram: web, maps and AI sources on the left, a settings card in the middle, and the agents and booked confirmation they produce on the right. Elbow connectors are generated from the same coordinate table the nodes are placed from, and every measurement is a fraction of the panel's own width, so type, icons and toggles keep their proportions at any size. Static — no hooks, no motion, zero JavaScript.",
+      "animationType": "none",
+      "width": 624,
+      "height": 252,
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "agents",
+          "type": "[string, string]",
+          "required": false,
+          "description": "The two avatar photographs in the output column, top and bottom. Each carries a sound-wave badge marking it as an agent on a call. Defaults to two Unsplash portraits served through their CDN transform at 120px."
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "description": "Label on the middle output pill — the one result the pipeline is drawn to produce. Defaults to \"Booked\"; the green tick badge is part of the mark, not conditional on the text."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the panel root. The panel is aspect-ratio driven at 624/252 and fills its container's width — it is also the container-query root, so overriding its width rescales everything inside it."
+        }
+      ]
+    }
+  ]
+}
