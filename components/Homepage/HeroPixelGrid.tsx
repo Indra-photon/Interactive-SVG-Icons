@@ -4,18 +4,46 @@
  * identical markup — Math.random() here would trip hydration.
  */
 
-export type HeroPixelTheme = "sky" | "green" | "black" | "yellow";
+export type HeroPixelTheme =
+  | "sky"
+  | "green"
+  | "black"
+  | "yellow"
+  | "violet"
+  | "rose"
+  | "orange";
 
 /**
- * --pixel is the body colour, --pixel-hi the occasional bright cell. The black
- * theme inverts in dark mode, where near-black pixels would vanish.
+ * --pixel is the body colour, --pixel-hi the occasional bright cell.
+ *
+ * The six hues point at Tailwind's own palette rather than literal hexes, so a
+ * card and the HeroTermBadge naming it resolve to one definition instead of two
+ * that drift. That matters here: these were hand-written v3 hexes, and v4
+ * re-derived the palette in oklch — its sky-400 is #00bcfe, not #38bdf8. The
+ * 400 level is the band that survives both themes without a `dark:` override.
+ *
+ * `black` keeps literals: it has no hue to match, and it's the one theme that
+ * must inverts in dark mode, where near-black pixels would vanish.
+ *
+ * COUPLING: --color-*-400 only reaches the stylesheet because HeroTermBadge
+ * generates `bg-*-400/12` and `ring-*-400/30` for these same six hues; Tailwind
+ * emits theme variables only for palette entries some utility actually uses.
+ * Drop a badge colour and this grid loses it too, so the fallbacks below are
+ * the v4 values, not decoration.
+ *
+ * Key ORDER is load-bearing: the seed below is derived from a key's index, so
+ * new themes go on the end. Inserting one earlier reshuffles the mosaic on
+ * every card after it.
  */
 const THEME_VARS: Record<HeroPixelTheme, string> = {
-  sky: "[--pixel:#38bdf8] [--pixel-hi:#ffffff]",
-  green: "[--pixel:#4ade80] [--pixel-hi:#ffffff]",
+  sky: "[--pixel:var(--color-sky-400,#00bcfe)] [--pixel-hi:#ffffff]",
+  green: "[--pixel:var(--color-green-400,#05df72)] [--pixel-hi:#ffffff]",
   black:
     "[--pixel:#171717] [--pixel-hi:#000000] dark:[--pixel:#e5e5e5] dark:[--pixel-hi:#ffffff]",
-  yellow: "[--pixel:#facc15] [--pixel-hi:#ffffff]",
+  yellow: "[--pixel:var(--color-yellow-400,#fac800)] [--pixel-hi:#ffffff]",
+  violet: "[--pixel:var(--color-violet-400,#a685ff)] [--pixel-hi:#ffffff]",
+  rose: "[--pixel:var(--color-rose-400,#ff667f)] [--pixel-hi:#ffffff]",
+  orange: "[--pixel:var(--color-orange-400,#ff8b1a)] [--pixel-hi:#ffffff]",
 };
 
 const COLS = 18;
@@ -33,7 +61,7 @@ function seededRandom(seed: number): number {
 }
 
 export function HeroPixelGrid({ theme }: { theme: HeroPixelTheme }) {
-  // Offsetting the seed per theme keeps the four cards from sharing a pattern.
+  // Offsetting the seed per theme keeps the cards from sharing a pattern.
   const seedBase = Object.keys(THEME_VARS).indexOf(theme) * 7919;
 
   return (

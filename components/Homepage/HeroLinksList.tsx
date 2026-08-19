@@ -14,8 +14,7 @@ import {
 } from "@/components/ui/card";
 import { MorphArrow } from "@/components/ui/morph-arrow";
 import { HeroRippleLine } from "@/components/Homepage/HeroRippleLine";
-import HeroSocialLinks from "@/components/Homepage/HeroSocialLinks";
-import HeroRepoStats from "@/components/Homepage/HeroRepoStats";
+import { HeroCreatorCard } from "@/components/Homepage/HeroCreatorCard";
 import {
   HeroPixelGrid,
   type HeroPixelTheme,
@@ -31,6 +30,12 @@ interface HeroLinkCard {
   comingSoon?: boolean;
 }
 
+/**
+ * One flat list, not two rows. Mobile renders every card in a single
+ * uninterrupted scroll strip, which a pair of row containers can't produce —
+ * so the desktop row break is expressed as an index into this list
+ * (ROW_BREAK) rather than as a second array.
+ */
 const HERO_LINKS: HeroLinkCard[] = [
   {
     label: "Loaders",
@@ -61,7 +66,54 @@ const HERO_LINKS: HeroLinkCard[] = [
     theme: "yellow",
     comingSoon: true,
   },
+  {
+    label: "Sections",
+    href: "/sections",
+    subheading: "4 page-width layouts.",
+    cta: "Browse sections",
+    theme: "violet",
+  },
+  {
+    label: "UI Components",
+    href: "/ui-gallery",
+    subheading: "4 interactive components.",
+    cta: "Browse components",
+    theme: "rose",
+  },
+  {
+    label: "Designs",
+    href: "/designs",
+    subheading: "3 static artworks.",
+    cta: "Browse designs",
+    theme: "orange",
+  },
 ];
+
+/**
+ * 4 cards on the `1fr` tracks, 3 separators on the `auto` ones — seven items,
+ * which is exactly one grid row. The item stream below is built to land on that
+ * multiple so both rows fill without any explicit placement.
+ */
+const ROW_COLUMNS = "md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]";
+
+/**
+ * Card index the md+ grid breaks to a second row at. The card here gets the
+ * full-width rule before it instead of a vertical separator — that rule spans
+ * all seven columns, which is what pushes it and everything after onto a fresh
+ * row. Below md it's hidden and the strip just keeps scrolling.
+ */
+const ROW_BREAK = 4;
+
+/**
+ * Every card's outer wrapper.
+ *
+ * Below md the row is a flex scroller, so each card needs an explicit width and
+ * must refuse to shrink — 78% leaves the next card peeking, which is what tells
+ * the reader the strip scrolls at all. From md up the row is a grid and the
+ * track sets the width, so all three are reset.
+ */
+const CARD_SLOT =
+  "h-full w-[78%] shrink-0 snap-start sm:w-[62%] md:w-auto md:shrink md:snap-align-none";
 
 const cardVariants = {
   hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
@@ -74,19 +126,20 @@ const cardVariants = {
 };
 
 /**
- * Divider between cards. Orientation is a JS prop rather than a media query,
- * so both axes are rendered and CSS picks one — vertical in the desktop row,
- * horizontal once the grid collapses to a single column. Negative margins let
- * the line outgrow the card, including crossing the rule above it.
+ * Vertical divider between cards in the md+ grid. Negative margins let the line
+ * outgrow the card, including crossing the rule above it.
+ *
+ * Hidden below md: the mobile row is a horizontal scroller, where a rule
+ * between every card would be four extra flex items competing with the cards
+ * for a narrow viewport. The gap carries the separation there instead.
  */
 function HeroCardSeparator() {
   return (
     <div
       aria-hidden
-      className="flex items-stretch justify-center md:-my-8 md:h-auto"
+      className="hidden items-stretch justify-center md:-my-8 md:flex md:h-auto"
     >
-      <HeroRippleLine orientation="vertical" className="hidden md:block" />
-      <HeroRippleLine orientation="horizontal" className="w-full md:hidden" />
+      <HeroRippleLine orientation="vertical" />
     </div>
   );
 }
@@ -162,7 +215,7 @@ function HeroLinkCardItem({
       <motion.div
         variants={cardVariants}
         aria-disabled
-        className="group h-full"
+        className={`group ${CARD_SLOT}`}
       >
         {card}
       </motion.div>
@@ -170,7 +223,7 @@ function HeroLinkCardItem({
   }
 
   return (
-    <motion.div variants={cardVariants} className="h-full">
+    <motion.div variants={cardVariants} className={CARD_SLOT}>
       {/* Link wraps the whole card, so the Button inside is a span, not a
           nested anchor. */}
       <Link
@@ -183,6 +236,36 @@ function HeroLinkCardItem({
       </Link>
     </motion.div>
   );
+}
+
+/** Full-bleed rule. Outdented so it overshoots the cards on both sides. */
+function HeroRowRule({ className = "" }: { className?: string }) {
+  return (
+    <div className={`-mx-4 md:-mx-10 ${className}`}>
+      <HeroRippleLine orientation="horizontal" className="w-full" />
+    </div>
+  );
+}
+
+/**
+ * The eight cards in display order — seven catalogs plus the creator card,
+ * which is a different component but occupies the same slot as the rest.
+ */
+function buildHeroCards() {
+  return [
+    ...HERO_LINKS.map((link) => ({
+      key: link.label,
+      node: <HeroLinkCardItem {...link} />,
+    })),
+    {
+      key: "github",
+      node: (
+        <motion.div variants={cardVariants} className={CARD_SLOT}>
+          <HeroCreatorCard />
+        </motion.div>
+      ),
+    },
+  ];
 }
 
 export function HeroLinksList() {
@@ -198,28 +281,41 @@ export function HeroLinksList() {
       initial="hidden"
       animate="show"
     >
-      {/* 4 cards + 3 separators share one row on md+; on mobile the single
-          column stacks all seven in source order, so the horizontal
-          separators land between cards without any reordering. */}
-      <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] md:gap-0">
-        <div className="col-span-full -mx-4 mb-2 md:-mx-10">
-          <HeroRippleLine orientation="horizontal" className="w-full" />
-        </div>
+      <HeroRowRule className="mb-2" />
 
-        {HERO_LINKS.map((link, i) => (
-          <Fragment key={link.label}>
-            {i > 0 && <HeroCardSeparator />}
-            <HeroLinkCardItem {...link} />
+      {/*
+        One container, two layouts.
+
+        Below md: a horizontal snap scroller holding all eight cards in a single
+        uninterrupted strip. Full-bleed via negative margins that cancel the
+        parent's padding, with that padding re-applied inside so the first card
+        still starts on the heading's left edge and the last one gets breathing
+        room. Scrollbar hidden in both engines — same idiom as
+        feature-gallery-01.
+
+        From md up: a 7-track grid, two rows of four. The item stream is built
+        so each row is exactly 7 items (4 cards + 3 separators) and the
+        full-width rule at ROW_BREAK consumes a row of its own between them, so
+        the rows fill by flow alone with no explicit placement.
+
+        The wrappers between here and the cards don't break the stagger: Framer
+        Motion propagates variants through React context, so all eight cards
+        animate in source order off the one parent above.
+      */}
+      <div
+        className={`-mx-8 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain px-8 [scrollbar-width:none] sm:-mx-4 sm:px-4 md:mx-0 md:grid md:gap-0 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden ${ROW_COLUMNS}`}
+      >
+        {buildHeroCards().map(({ key, node }, i) => (
+          <Fragment key={key}>
+            {i === ROW_BREAK && (
+              // col-span-full is what forces the row break; hidden below md
+              // because the strip has no second row to introduce.
+              <HeroRowRule className="hidden md:col-span-full md:my-8 md:block" />
+            )}
+            {i > 0 && i !== ROW_BREAK && <HeroCardSeparator />}
+            {node}
           </Fragment>
         ))}
-
-        {/* Sits in the same grid as the cards so the two blocks line up with
-            the outer cards' edges rather than the viewport. items-end puts
-            both bottom rows on one baseline despite the differing labels. */}
-        <div className="col-span-full mt-18 flex flex-col items-start gap-8 sm:flex-row sm:items-end sm:justify-between">
-          <HeroRepoStats />
-          <HeroSocialLinks />
-        </div>
       </div>
     </motion.div>
   );

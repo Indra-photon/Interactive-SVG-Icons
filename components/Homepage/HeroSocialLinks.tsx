@@ -11,7 +11,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Paragraph } from "../Paragraph";
 
-const SOCIAL_LINKS = [
+export const SOCIAL_LINKS = [
   { icon: NewTwitterIcon, href: "https://x.com/Nil_phy_dreamer", label: "X" },
   {
     icon: PinterestIcon,
@@ -30,7 +30,7 @@ const SOCIAL_LINKS = [
   },
 ];
 
-function MagneticIcon({
+export function MagneticIcon({
   icon,
   href,
   label,
