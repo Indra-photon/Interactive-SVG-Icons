@@ -10,17 +10,8 @@ import { Paragraph } from "@/components/Paragraph";
 import { useShowcaseVideo } from "@/hooks/use-showcase-video";
 import { showcaseKind } from "@/lib/showcase-kind";
 import type { ShowcaseItem } from "@/constants/showcase";
+import { cardEntrance } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-
-const cardVariants = {
-  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
-  show: {
-    y: 0,
-    opacity: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] as const },
-  },
-};
 
 interface ShowcaseCardProps extends ShowcaseItem {
   /** First row skips the intersection gate and starts loading immediately. */
@@ -137,7 +128,7 @@ export function ShowcaseCard({
     // split across a column boundary.
     <motion.div
       ref={cardRef}
-      variants={cardVariants}
+      variants={cardEntrance}
       className="mb-4 break-inside-avoid sm:mb-5"
     >
       {href ? (
