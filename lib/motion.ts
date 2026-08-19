@@ -35,6 +35,36 @@ export const cardEntrance = {
 };
 
 /**
+ * Entrance for a grid whose ROWS arrive as units, rather than card by card.
+ *
+ * The hero grid is eight cards in two rows of four. Staggering all eight makes
+ * the last one land most of a second after the first, which reads as the page
+ * still loading. Staggering by row is two beats instead of eight: each row
+ * arrives whole, and the grid reads as structure rather than as a queue.
+ *
+ * `custom` carries the row index. The delay is baked in rather than left to a
+ * parent's `delayChildren`, because a child transition that sets its own
+ * `delay` overrides the parent's rather than adding to it — so orchestrating
+ * from both ends would silently drop one.
+ *
+ * Masonry grids keep `cardEntrance`: they have no rows to speak of, and
+ * per-card stagger is the right read for a column that fills as you scroll.
+ */
+export const rowEntrance = {
+  hidden: { y: 18, opacity: 0, filter: "blur(8px)" },
+  show: (row = 0) => ({
+    y: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      ease: ENTRANCE_EASE,
+      delay: 0.3 + row * 0.14,
+    },
+  }),
+};
+
+/**
  * Empty parent variants whose only job is to open a `hover` context for
  * children to inherit. Motion needs the named states to exist on the parent
  * before a child can respond to them; there is deliberately nothing in them.

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { MorphArrow } from "@/components/ui/morph-arrow";
 import { RAIL } from "@/components/Rail";
-import { cardEntrance } from "@/lib/motion";
+import { rowEntrance } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { HeroRippleLine } from "@/components/Homepage/HeroRippleLine";
 import { HeroCreatorCard } from "@/components/Homepage/HeroCreatorCard";
@@ -38,43 +38,27 @@ interface HeroLinkCard {
  * uninterrupted scroll strip, which a pair of row containers can't produce —
  * so the desktop row break is expressed as an index into this list
  * (ROW_BREAK) rather than as a second array.
+ *
+ * ORDER MATCHES THE INTRO. app/page.tsx names the catalogs in prose — Blocks,
+ * Illustrations, UI components, Designs, Loaders, Interactive icons — and the
+ * grid repeats that sequence, so a reader who scans the sentence then drops to
+ * the cards finds them where the sentence left them. Reorder one and reorder
+ * the other.
  */
 const HERO_LINKS: HeroLinkCard[] = [
   {
-    label: "Loaders",
-    href: "/loaders",
-    subheading: "66 animated loaders.",
-    cta: "Browse loaders",
-    theme: "sky",
-  },
-  {
-    label: "Icons",
-    href: "/icons",
-    subheading: "14 interactive SVG icons.",
-    cta: "Browse icons",
-    theme: "green",
-  },
-  {
     label: "Blocks",
     href: "/blocks",
-    subheading: "6 composable UI blocks.",
+    subheading: "16 composable UI blocks.",
     cta: "Browse blocks",
     theme: "black",
   },
   {
     label: "Illustrations",
     href: "/illustrations",
-    subheading: "Hand-drawn scenes.",
+    subheading: "3 hand-drawn scenes.",
     cta: "Browse illustrations",
     theme: "yellow",
-    comingSoon: true,
-  },
-  {
-    label: "Sections",
-    href: "/sections",
-    subheading: "4 page-width layouts.",
-    cta: "Browse sections",
-    theme: "violet",
   },
   {
     label: "UI Components",
@@ -89,6 +73,29 @@ const HERO_LINKS: HeroLinkCard[] = [
     subheading: "3 static artworks.",
     cta: "Browse designs",
     theme: "orange",
+  },
+  {
+    label: "Loaders",
+    href: "/loaders",
+    subheading: "73 animated loaders.",
+    cta: "Browse loaders",
+    theme: "sky",
+  },
+  {
+    label: "Icons",
+    href: "/icons",
+    subheading: "14 interactive SVG icons.",
+    cta: "Browse icons",
+    theme: "green",
+  },
+  // Sections is the one catalog the intro doesn't name, so it has no place in
+  // that sequence — it trails the six that do.
+  {
+    label: "Sections",
+    href: "/sections",
+    subheading: "4 page-width layouts.",
+    cta: "Browse sections",
+    theme: "violet",
   },
 ];
 
@@ -144,7 +151,8 @@ function HeroLinkCardItem({
   cta,
   theme,
   comingSoon,
-}: HeroLinkCard) {
+  row,
+}: HeroLinkCard & { row: number }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const card = (
@@ -206,7 +214,8 @@ function HeroLinkCardItem({
       // `group` so the pixel mosaic blinks on this card too — it has no Link
       // wrapper to carry the class.
       <motion.div
-        variants={cardEntrance}
+        variants={rowEntrance}
+        custom={row}
         aria-disabled
         className={`group ${CARD_SLOT}`}
       >
@@ -216,7 +225,7 @@ function HeroLinkCardItem({
   }
 
   return (
-    <motion.div variants={cardEntrance} className={CARD_SLOT}>
+    <motion.div variants={rowEntrance} custom={row} className={CARD_SLOT}>
       {/* Link wraps the whole card, so the Button inside is a span, not a
           nested anchor. */}
       <Link
@@ -246,14 +255,15 @@ function HeroRowRule({ className = "" }: { className?: string }) {
  */
 function buildHeroCards() {
   return [
-    ...HERO_LINKS.map((link) => ({
+    ...HERO_LINKS.map((link, i) => ({
       key: link.label,
-      node: <HeroLinkCardItem {...link} />,
+      node: <HeroLinkCardItem {...link} row={i < ROW_BREAK ? 0 : 1} />,
     })),
     {
       key: "github",
+      // Last card of the second row, so it arrives with its neighbours.
       node: (
-        <motion.div variants={cardEntrance} className={CARD_SLOT}>
+        <motion.div variants={rowEntrance} custom={1} className={CARD_SLOT}>
           <HeroCreatorCard />
         </motion.div>
       ),
@@ -265,12 +275,10 @@ export function HeroLinksList() {
   return (
     <motion.div
       className={cn(RAIL, "pt-4")}
-      variants={{
-        hidden: {},
-        show: {
-          transition: { staggerChildren: 0.09, delayChildren: 0.3 },
-        },
-      }}
+      // Timing lives in rowEntrance, keyed off each card's row. The parent
+      // only propagates the hidden/show state — no staggerChildren, or the
+      // eight cards would queue up again underneath the row grouping.
+      variants={{ hidden: {}, show: {} }}
       initial="hidden"
       animate="show"
     >

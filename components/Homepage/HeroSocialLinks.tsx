@@ -9,8 +9,14 @@ import {
   GlobeIcon,
   YoutubeIcon,
 } from "@hugeicons/core-free-icons";
-import { Paragraph } from "../Paragraph";
 
+/**
+ * The creator's links and the magnetic icon that renders one.
+ *
+ * No default export any more: the "Meet the creator" block that used to live
+ * here moved into HeroCreatorCard when the hero grid absorbed it, so this file
+ * is now the data plus the one shared control, both consumed from there.
+ */
 export const SOCIAL_LINKS = [
   { icon: NewTwitterIcon, href: "https://x.com/Nil_phy_dreamer", label: "X" },
   {
@@ -70,24 +76,5 @@ export function MagneticIcon({
         className="text-primary"
       />
     </motion.a>
-  );
-}
-
-export default function HeroSocialLinks() {
-  return (
-    // Static flow, not absolute — the caller decides where this sits.
-    <div className="flex flex-col items-start gap-2">
-      <Paragraph
-        variant="body"
-        className="uppercase text-xs tracking-widest"
-      >
-        Meet the creator
-      </Paragraph>
-      <div className="flex flex-row gap-4">
-        {SOCIAL_LINKS.map(({ icon, href, label }) => (
-          <MagneticIcon key={label} icon={icon} href={href} label={label} />
-        ))}
-      </div>
-    </div>
   );
 }
