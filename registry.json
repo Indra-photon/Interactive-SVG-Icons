@@ -2402,6 +2402,25 @@
       ]
     },
     {
+      "name": "navbar-01-default",
+      "type": "registry:block",
+      "title": "Navbar 01 - Navbar 01",
+      "description": "One strip, three states: hidden when idle, a thin bar on the active route, a full fill on hover. Width never changes, so the fill reads as the underline rising rather than a box appearing. Below md the items unroll inside the bar as rows and push the page down.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/navbar-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/navbar-01/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "feature-gallery-02-default",
       "type": "registry:block",
       "title": "Feature Gallery 02 - Feature Gallery 02",
