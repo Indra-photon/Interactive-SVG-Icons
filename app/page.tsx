@@ -56,25 +56,29 @@ export default function Home() {
                   the grid below it agree on what colour a catalog is. */}
               <Paragraph variant="body">
                 A growing library of{" "}
-                <HeroTermBadge theme="black" mark="blocks">
-                  Blocks
-                </HeroTermBadge>{" "}
-                <HeroTermBadge theme="yellow" mark="illustrations">
-                  Illustrations
-                </HeroTermBadge>{" "}
-                <HeroTermBadge theme="rose" mark="ui">
-                  UI components
-                </HeroTermBadge>{" "}
-                <HeroTermBadge theme="orange" mark="designs">
-                  Designs
-                </HeroTermBadge>{" "}
-                <HeroTermBadge theme="sky" mark="loaders">
-                  Loaders
-                </HeroTermBadge>{" "}
-                <HeroTermBadge theme="green" mark="icons">
-                  Interactive icons
-                </HeroTermBadge>{" "}
-                — built with{" "}
+                <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[16px] text-secondary-foreground">
+                  Blocks, Illustrations, UI components, Designs, Loaders, and
+                  Interactive icons{" "}
+                </span>
+                {/* <HeroTermBadge theme="black" mark="blocks">
+                      Blocks
+                    </HeroTermBadge>{" "}
+                    <HeroTermBadge theme="yellow" mark="illustrations">
+                      Illustrations
+                    </HeroTermBadge>{" "}
+                    <HeroTermBadge theme="rose" mark="ui">
+                      UI components
+                    </HeroTermBadge>{" "}
+                    <HeroTermBadge theme="orange" mark="designs">
+                      Designs
+                    </HeroTermBadge>{" "}
+                    <HeroTermBadge theme="sky" mark="loaders">
+                      Loaders
+                    </HeroTermBadge>{" "}
+                    <HeroTermBadge theme="green" mark="icons">
+                      Interactive icons
+                    </HeroTermBadge>{" "} */}
+                built with{" "}
                 <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[16px] text-secondary-foreground">
                   React , Tailwind, and Framer Motion.
                 </span>
