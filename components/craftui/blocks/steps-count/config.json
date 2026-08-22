@@ -1,0 +1,159 @@
+{
+  "slug": "steps-count",
+  "name": "Steps Count Block",
+  "category": "Modal",
+  "tags": [
+    "drawer",
+    "sheet",
+    "vaul",
+    "chart",
+    "bar-chart",
+    "slider",
+    "steps",
+    "health",
+    "oklch",
+    "number-flow",
+    "base-ui",
+    "calendar",
+    "drag"
+  ],
+  "description": "A month of daily step counts in a bottom sheet. Tap a bar and it becomes a vertical slider you drag to set the count, with the fill colour interpolated in OKLCH along a red → amber → green ramp and a dashed rule at the 10,000 goal. A calendar popover adds days, a month select moves the window, and the whole chart re-scales on a spring when a drag lands.",
+  "createdAt": "2026-08-22T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Steps Count Block",
+      "componentName": "StepsCountBlock",
+      "tier": "free",
+      "animationType": "drag",
+      "responsive": true,
+      "previewHint": "Tap the Steps button on the phone screen — the sheet rises inside the frame. Tap a bar to select it and drag its cap up and down to watch the fill travel the ramp; tap outside the sheet or drag the handle down to close.",
+      "description": "A vaul bottom sheet wrapping a step-count chart. Each bar is a Base UI vertical slider whose fill is coloured by interpolating in OKLCH rather than sRGB, so the amber-to-green midpoint stays chromatic instead of collapsing to olive. The chart freezes its own scale for the duration of a drag so the bar tracks the finger exactly, then springs to the new ceiling on release. Days are added from a weekday-aligned calendar popover and removed from the header; the month select walks back twelve months. Every measurement is derived — the well's radius from the bars, the bar gap from how many days are on record, the sheet's radius from the card's.",
+      "dependencies": [
+        "vaul",
+        "motion",
+        "@number-flow/react",
+        "@base-ui-components/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Rendered as the trigger via `Drawer.Trigger asChild`. Omit it and drive the drawer with `open` / `onOpenChange` instead."
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false,
+          "description": "Controlled open state. When set, the drawer stops tracking its own — pair with onOpenChange."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "required": false,
+          "description": "Fires whenever the sheet opens or closes, including on a drag-dismiss from the handle and on Escape."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Merged onto the card through cn, so its width, radius and padding can be overridden at the call site. The card defaults to `w-[420px] max-w-full`."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "\"Steps\"",
+          "required": false,
+          "description": "The sheet's accessible name. Visually hidden — the card's own header already says it on screen."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "default": "\"A month of daily step counts. Tap a bar to select it, then drag to change the count.\"",
+          "required": false,
+          "description": "The sheet's accessible description, announced on open. Visually hidden."
+        },
+        {
+          "name": "container",
+          "type": "HTMLElement | null",
+          "required": false,
+          "description": "Portal target, defaulting to document.body. Pass an element and the sheet is portalled into it *and* switched from `fixed` to `absolute`, so it fills that element instead of the viewport — both halves are required, since a `fixed` child of a container is still laid out against the viewport. The container needs `position: relative` and `overflow: hidden`."
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "default": "true",
+          "required": false,
+          "description": "`false` drops the scroll lock and the focus trap. Worth turning off when the sheet is demoed inside a page rather than owning the screen."
+        }
+      ],
+      "features": [
+        "`handleOnly` on the drawer is load-bearing rather than stylistic: vaul dismisses on a downward drag anywhere in its content, and the selected bar *is* a vertical drag target — without it, pulling a bar down to lower a count closes the sheet instead, and the one gesture the block exists for is the one gesture it cannot receive",
+        "The ramp is interpolated in OKLCH, not sRGB — a per-channel sRGB lerp between amber and green drives through the middle of the gamut where chroma collapses, and the midpoint came out #AA9D5F, a dull olive at *lower* chroma than either endpoint; in OKLCH the same midpoint is a chartreuse at 0.150, which is what actually sits between the two",
+        "Hue mixing takes the shortest way round the wheel, so 350° to 10° is 20° rather than 340°",
+        "The lit top of each bar's gradient is +0.09 lightness in OKLCH with chroma eased back, not a lerp toward white — mixing with white in sRGB desaturates and cools at once, which turned the terracotta end dusty pink",
+        "The scale freezes for the duration of a drag and springs to its new ceiling on release, so the bar under the finger tracks it exactly instead of rescaling out from under it",
+        "That release transition is gated on a 350ms `rescaling` window rather than left open on the element, because Base UI sizes the indicator from `max` — a blanket transition would also catch value changes and make every arrow-key press lag 350ms behind the keyboard",
+        "`bounce: 0` on every bar spring, in both the column's scaleY and the resting bar's height: an underdamped spring overshoots the value, and a bar that springs past its own height is drawing a step count nobody walked",
+        "The press state squeezes a bar narrower, never shorter — width carries no meaning on this chart, so it is the one axis free to move",
+        "Every radius is derived rather than picked: the bars set `--sc-r-bar`, the well clears them by `PLOT.inset`, and the sheet's top corners are the card's radius plus the gap between them, so changing one number moves the whole chain",
+        "Bar gap is a pure function of how many days are on record — six entries breathe at 10px, a fully logged month packs to 2px — and bar *width* is never set at all, since the columns are `flex-1`",
+        "One dashed rule, at the goal. There were four evenly spaced at quarters of a moving ceiling, so they marked nothing; meanwhile the card was colouring every bar against a threshold it never drew",
+        "One popover for the whole chart, re-anchored to whichever bar is selected, rather than 31 popovers that are all closed — and the resolved anchor element is held in state, because Base UI resolves `anchor` once on open and an inline getter would go stale the moment the selection moved",
+        "The bar ref's cleanup checks element identity, because a column swapping between resting bar and slider mounts the incoming ref before running the outgoing one's cleanup — an unguarded cleanup clears the fresh element",
+        "The add-day calendar is weekday-aligned with leading pad cells, so the 14th sits in its real column instead of wherever arithmetic put it",
+        "Every colour is a namespaced `--sc-*` custom property consumed from Tailwind arbitrary values, so the palette has one definition and the markup stays classes rather than a `style` prop on every second element; the namespace is what keeps it from writing to a host app's `--ink` or `--hover`",
+        "MotionConfig reducedMotion=\"user\" covers the Motion half and `motion-reduce:transition-none` covers the CSS half — including the inline rescale transition, which is guarded in its ternary because only an `!important` class could outrank an inline style",
+        "Closes on an outside press or a drag on the handle, and the sheet's gutter is one number on all four sides so the radius chain actually holds — the sheet's corner is the card's corner plus that gap. The handle is centred *inside* the top gutter rather than stacked above the card, because in flow it added its own height and margin to the top padding and made the one edge nobody had measured the one that looked deliberate",
+        "Every portalled root republishes the `--sc-*` palette, without exception — custom properties inherit down the DOM and a portal leaves the card's subtree entirely, so a class like `bg-[var(--sc-ink)] text-white` inside one fails to a transparent box with white text rather than to a visible fallback",
+        "Overrides vaul's 500ms open/close down to 260ms in and 200ms out, keeping vaul's own `cubic-bezier(0.32, 0.72, 0, 1)` — the steep iOS-sheet start is what lets the duration come down that far without the motion reading as a cut, and the asymmetry is there because a sheet on its way out has already been dismissed",
+        "Every override out-specifies the vaul rule it replaces by one attribute rather than relying on stylesheet order, since vaul injects its CSS at module load; the stylesheet is hoisted and de-duplicated by React on `href`, so two mounted sheets yield one <style>",
+        "Reduced motion swaps the sheet's `animation-name` to a fade rather than disabling it — gentler, not zero. `MotionConfig reducedMotion=\"user\"` covers Motion only, and vaul's open/close is CSS keyframes that ran a full-height slide regardless"
+      ],
+      "featureSections": [
+        {
+          "title": "Drag-to-Set Bars",
+          "summary": "A selected day stops being a bar and becomes a vertical slider, without moving.",
+          "points": [
+            "The track is invisible and the visible fill *is* `Slider.Indicator`, so the thumb rides the fill's top edge and dragging up grows the bar under the finger",
+            "The thumb takes its width from the column and its radius from `--sc-r-bar`, so it reads as the bar's lid at six days per month and at thirty-one; it thickens on drag rather than scaling uniformly, which would push it out over the gaps",
+            "The fill is nested inside the indicator rather than being it, because Base UI's `render` rebuilds the element's style every render and Motion never gets to drive it",
+            "The track only tints while a drag is in flight — sitting there statically it read as a second, taller bar",
+            "`data-vaul-no-drag` on the control states the conflict locally rather than depending on the shell's `handleOnly` staying set"
+          ]
+        },
+        {
+          "title": "Derived Scale & Density",
+          "summary": "Nothing about the chart's geometry is a literal; it all falls out of the data.",
+          "points": [
+            "The ceiling is `max(goal × 1.15, best × 1.18)` rounded up to 500, so the goal line always has air above it and the number never twitches",
+            "That 1.15 floor replaced a 1.6 that reserved the top 37% of the plot for nothing at a 10,000 goal, and the bars paid for it",
+            "Labels thin to at most ~11 per month, but today is always labelled whatever the stride says — the point of a marker is that you do not have to count to find it",
+            "Every column stays clickable regardless of whether its label rendered"
+          ]
+        },
+        {
+          "title": "Bottom Sheet",
+          "summary": "A vaul drawer sized and coloured to the card rather than to the library's defaults.",
+          "points": [
+            "Concentric with the card: a 9px gutter on all four sides puts the sheet's radius at 27 against the card's 18, close enough that the two curves read as one nested pair rather than as a soft shape wrapped around a hard one",
+            "Only the top corners round — the sides are flush to the viewport, and the bottom padding adds `env(safe-area-inset-bottom)` so the sheet keeps painting past the home indicator",
+            "The handle is restyled into the card's warm neutral family rather than left at vaul's grey",
+            "Title and description are `sr-only`, since the card's own header already says \"Steps\" on screen and a second copy in the sheet chrome is one heading too many",
+            "The card is exported separately as `StepsCard`, so it can be used outside the drawer — it carries its own token block for exactly that case",
+            "Takes a `container` and switches its own positioning to match, so the sheet can be demoed inside a phone frame without the CSS-variable pinning that a hardcoded `fixed` portal would force on every call site",
+            "The modal path keeps vaul's own overlay for the scroll lock and the drag-linked fade; the non-modal path swaps in a plain `Drawer.Close` button wearing the same colour, so click-outside works identically in both",
+            "The modal path keeps vaul's own overlay for the scroll lock and the drag-linked fade; the non-modal path swaps in a labelled `Drawer.Close` wearing the same colour, because `Drawer.Overlay` returns null when `modal` is false and vaul cancels outside-press in the same branch — without it a non-modal sheet has no scrim and no exit but the drag",
+            "That scrim is labelled and focusable rather than aria-hidden, since with no button in the chrome it *is* the close affordance, and a dialog whose only exit is an unlabelled surface plus Escape has no exit in the accessibility tree at all",
+            "The non-modal scrim carries a hand-written `data-state`, because Radix only hands one to its own Overlay and Content — and Presence unmounts anything it cannot see animating, so without it the scrim vanished on the first frame of the sheet's slide"
+          ]
+        }
+      ],
+      "inspiration": []
+    }
+  ]
+}
