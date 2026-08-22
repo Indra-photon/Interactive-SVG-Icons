@@ -56,73 +56,6 @@
       ]
     },
     {
-      "slug": "insight-card",
-      "name": "Insight Card",
-      "category": "card",
-      "tags": [
-        "design",
-        "static",
-        "card",
-        "marketing",
-        "halftone",
-        "dots",
-        "generative",
-        "oklch",
-        "sphere"
-      ],
-      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots rather than a shape drawn over them, so the sphere at its head reads as having cleared its own path. One signed-distance function decides both which dots get removed and which get thinned at the edge, so the silhouette can never drift from the wake. Dots are bucketed into three OKLCH shades by their distance from that wake, which is what gives the flat grid depth. The whole field is generated at module scope from a deterministic value hash rather than Math.random, so the server and the client draw the identical card and hydration stays quiet. The sphere is a radial gradient with its focal point pushed toward a named light azimuth, and the CTA gradient is the dot ramp dropped 0.14 in lightness so its label clears AA at both ends. Renders entirely on the server.",
-      "createdAt": "2026-08-19T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Insight Card",
-          "tier": "free",
-          "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
-          "animationType": "none",
-          "dependencies": [
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "brand",
-              "type": "string",
-              "required": false,
-              "description": "Wordmark beside the flower glyph, set in wide tracking. Defaults to \"NORTHBEAM\"."
-            },
-            {
-              "name": "heading",
-              "type": "ReactNode",
-              "required": false,
-              "description": "The headline. A node rather than a string on purpose — the default wraps two words in font-semibold against the medium weight around them, which is the emphasis the card is composed for."
-            },
-            {
-              "name": "ctaLabel",
-              "type": "string",
-              "required": false,
-              "description": "Label on the gradient pill. Defaults to \"Learn More\"; the arrow badge is part of the mark, not conditional on the text."
-            },
-            {
-              "name": "href",
-              "type": "string",
-              "required": false,
-              "description": "Destination for the CTA anchor. Defaults to \"#\"."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the card root. The card is capped at 362px wide and lays out in fixed pixels, which is the width the halftone field, the type scale and the two-line headline break were composed against."
-            }
-          ],
-          "componentName": "InsightCard",
-          "width": 362,
-          "height": 628
-        }
-      ]
-    },
-    {
       "slug": "flight-card",
       "name": "Flight Card",
       "category": "card",
@@ -206,8 +139,75 @@
           "height": 747
         }
       ]
+    },
+    {
+      "slug": "insight-card",
+      "name": "Insight Card",
+      "category": "card",
+      "tags": [
+        "design",
+        "static",
+        "card",
+        "marketing",
+        "halftone",
+        "dots",
+        "generative",
+        "oklch",
+        "sphere"
+      ],
+      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots rather than a shape drawn over them, so the sphere at its head reads as having cleared its own path. One signed-distance function decides both which dots get removed and which get thinned at the edge, so the silhouette can never drift from the wake. Dots are bucketed into three OKLCH shades by their distance from that wake, which is what gives the flat grid depth. The whole field is generated at module scope from a deterministic value hash rather than Math.random, so the server and the client draw the identical card and hydration stays quiet. The sphere is a radial gradient with its focal point pushed toward a named light azimuth, and the CTA gradient is the dot ramp dropped 0.14 in lightness so its label clears AA at both ends. Renders entirely on the server.",
+      "createdAt": "2026-08-19T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Insight Card",
+          "tier": "free",
+          "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
+          "animationType": "none",
+          "dependencies": [
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "brand",
+              "type": "string",
+              "required": false,
+              "description": "Wordmark beside the flower glyph, set in wide tracking. Defaults to \"NORTHBEAM\"."
+            },
+            {
+              "name": "heading",
+              "type": "ReactNode",
+              "required": false,
+              "description": "The headline. A node rather than a string on purpose — the default wraps two words in font-semibold against the medium weight around them, which is the emphasis the card is composed for."
+            },
+            {
+              "name": "ctaLabel",
+              "type": "string",
+              "required": false,
+              "description": "Label on the gradient pill. Defaults to \"Learn More\"; the arrow badge is part of the mark, not conditional on the text."
+            },
+            {
+              "name": "href",
+              "type": "string",
+              "required": false,
+              "description": "Destination for the CTA anchor. Defaults to \"#\"."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the card root. The card is capped at 362px wide and lays out in fixed pixels, which is the width the halftone field, the type scale and the two-line headline break were composed against."
+            }
+          ],
+          "componentName": "InsightCard",
+          "width": 362,
+          "height": 628
+        }
+      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-20T10:16:09.361Z"
+  "lastUpdated": "2026-08-22T10:59:19.881Z"
 }

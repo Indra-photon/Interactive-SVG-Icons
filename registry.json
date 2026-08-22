@@ -734,25 +734,6 @@
       ]
     },
     {
-      "name": "ios-spinner-pulse-default",
-      "type": "registry:ui",
-      "title": "iOS Spinner Pulse - Pulse",
-      "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/ios-spinner-pulse/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/ios-spinner-pulse/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "ios-spinner-grow-default",
       "type": "registry:ui",
       "title": "iOS Spinner Grow - Grow",
@@ -829,6 +810,25 @@
       ]
     },
     {
+      "name": "hexagon-rotate-default",
+      "type": "registry:ui",
+      "title": "Hexagon Rotate - Hexagon Rotate",
+      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/hexagon-rotate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/hexagon-rotate/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "infinity-loop-default",
       "type": "registry:ui",
       "title": "Infinity Loop - Infinity Loop",
@@ -848,10 +848,10 @@
       ]
     },
     {
-      "name": "hexagon-rotate-default",
+      "name": "ios-spinner-pulse-default",
       "type": "registry:ui",
-      "title": "Hexagon Rotate - Hexagon Rotate",
-      "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
+      "title": "iOS Spinner Pulse - Pulse",
+      "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
       "dependencies": [
         "framer-motion"
       ],
@@ -860,9 +860,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/hexagon-rotate/default.tsx",
+          "path": "components/craftui/loaders/ios-spinner-pulse/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/hexagon-rotate/default.tsx"
+          "target": "~/components/craftui/loaders/ios-spinner-pulse/default.tsx"
         }
       ]
     },
@@ -901,25 +901,6 @@
           "path": "components/craftui/loaders/grid-wave-row/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/grid-wave-row/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "grid-spiral-default",
-      "type": "registry:ui",
-      "title": "Grid Spiral - Grid Spiral",
-      "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/grid-spiral/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/grid-spiral/default.tsx"
         }
       ]
     },
@@ -1000,25 +981,6 @@
       ]
     },
     {
-      "name": "grid-cross-default",
-      "type": "registry:ui",
-      "title": "Grid Cross - Grid Cross",
-      "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/grid-cross/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/grid-cross/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "grid-corners-in-default",
       "type": "registry:ui",
       "title": "Grid Corners In - Grid Corners In",
@@ -1034,6 +996,25 @@
           "path": "components/craftui/loaders/grid-corners-in/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/grid-corners-in/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-cross-default",
+      "type": "registry:ui",
+      "title": "Grid Cross - Grid Cross",
+      "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-cross/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-cross/default.tsx"
         }
       ]
     },
@@ -1057,6 +1038,25 @@
       ]
     },
     {
+      "name": "grid-checker-default",
+      "type": "registry:ui",
+      "title": "Grid Checker - Grid Checker",
+      "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/grid-checker/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/grid-checker/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "grid-clock-default",
       "type": "registry:ui",
       "title": "Grid Clock - Grid Clock",
@@ -1076,10 +1076,10 @@
       ]
     },
     {
-      "name": "grid-checker-default",
+      "name": "grid-spiral-default",
       "type": "registry:ui",
-      "title": "Grid Checker - Grid Checker",
-      "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
+      "title": "Grid Spiral - Grid Spiral",
+      "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
       "dependencies": [
         "framer-motion"
       ],
@@ -1088,9 +1088,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/grid-checker/default.tsx",
+          "path": "components/craftui/loaders/grid-spiral/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/grid-checker/default.tsx"
+          "target": "~/components/craftui/loaders/grid-spiral/default.tsx"
         }
       ]
     },
@@ -1133,25 +1133,6 @@
       ]
     },
     {
-      "name": "fill-paint-bucket-default",
-      "type": "registry:ui",
-      "title": "Paint Bucket - Paint Bucket",
-      "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "fill-hourglass-default",
       "type": "registry:ui",
       "title": "Hourglass - Hourglass",
@@ -1167,6 +1148,25 @@
           "path": "components/craftui/loaders/fill-hourglass/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/fill-hourglass/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-paint-bucket-default",
+      "type": "registry:ui",
+      "title": "Paint Bucket - Paint Bucket",
+      "description": "A stream of paint pours into an outlined bucket while the level inside rises, then fades and repeats",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-paint-bucket/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-paint-bucket/default.tsx"
         }
       ]
     },
@@ -1357,6 +1357,23 @@
       ]
     },
     {
+      "name": "dot-matrix-bits-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Bits - Dot Matrix Bits",
+      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "dot-matrix-life-default",
       "type": "registry:ui",
       "title": "Dot Matrix Life - Dot Matrix Life",
@@ -1391,23 +1408,6 @@
       ]
     },
     {
-      "name": "dot-matrix-bits-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Bits - Dot Matrix Bits",
-      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dot-circle-expand-default",
       "type": "registry:ui",
       "title": "Dot Circle Expand - Dot Circle Expand",
@@ -1423,25 +1423,6 @@
           "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "dock-bounce-default",
-      "type": "registry:ui",
-      "title": "Dock Bounce - Dock Bounce",
-      "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dock-bounce/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dock-bounce/default.tsx"
         }
       ]
     },
@@ -1465,6 +1446,25 @@
       ]
     },
     {
+      "name": "dock-bounce-default",
+      "type": "registry:ui",
+      "title": "Dock Bounce - Dock Bounce",
+      "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dock-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dock-bounce/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "conic-spinner-default",
       "type": "registry:ui",
       "title": "Conic Spinner - Conic Spinner",
@@ -1480,25 +1480,6 @@
           "path": "components/craftui/loaders/conic-spinner/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/conic-spinner/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "circular-wave-fill-default",
-      "type": "registry:ui",
-      "title": "Circular Wave Fill - Circular Wave Fill",
-      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
         }
       ]
     },
@@ -1522,10 +1503,10 @@
       ]
     },
     {
-      "name": "breath-default",
+      "name": "circular-wave-fill-default",
       "type": "registry:ui",
-      "title": "Breath - Breath",
-      "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
+      "title": "Circular Wave Fill - Circular Wave Fill",
+      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
       "dependencies": [
         "framer-motion"
       ],
@@ -1534,9 +1515,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/breath/default.tsx",
+          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/breath/default.tsx"
+          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
         }
       ]
     },
@@ -1579,10 +1560,10 @@
       ]
     },
     {
-      "name": "bars-scale-bottom-default",
+      "name": "breath-default",
       "type": "registry:ui",
-      "title": "Bars Scale Bottom - Bars Scale Bottom",
-      "description": "Three vertical bars scaling up and down with bottom fixed",
+      "title": "Breath - Breath",
+      "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
       "dependencies": [
         "framer-motion"
       ],
@@ -1591,9 +1572,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
+          "path": "components/craftui/loaders/breath/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
+          "target": "~/components/craftui/loaders/breath/default.tsx"
         }
       ]
     },
@@ -1636,10 +1617,10 @@
       ]
     },
     {
-      "name": "bars-fill-sequential-default",
+      "name": "bars-scale-bottom-default",
       "type": "registry:ui",
-      "title": "Bars Fill Sequential - Bars Fill Sequential",
-      "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
+      "title": "Bars Scale Bottom - Bars Scale Bottom",
+      "description": "Three vertical bars scaling up and down with bottom fixed",
       "dependencies": [
         "framer-motion"
       ],
@@ -1648,9 +1629,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/bars-fill-sequential/default.tsx",
+          "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-fill-sequential/default.tsx"
+          "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
         }
       ]
     },
@@ -1693,10 +1674,10 @@
       ]
     },
     {
-      "name": "bars-bounce-default",
+      "name": "bars-fill-sequential-default",
       "type": "registry:ui",
-      "title": "Bars Bounce - Bars Bounce",
-      "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
+      "title": "Bars Fill Sequential - Bars Fill Sequential",
+      "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
       "dependencies": [
         "framer-motion"
       ],
@@ -1705,9 +1686,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/bars-bounce/default.tsx",
+          "path": "components/craftui/loaders/bars-fill-sequential/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-bounce/default.tsx"
+          "target": "~/components/craftui/loaders/bars-fill-sequential/default.tsx"
         }
       ]
     },
@@ -1727,6 +1708,25 @@
           "path": "components/craftui/loaders/ball-bounce-slide/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/ball-bounce-slide/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-bounce-default",
+      "type": "registry:ui",
+      "title": "Bars Bounce - Bars Bounce",
+      "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-bounce/default.tsx"
         }
       ]
     },
@@ -1864,25 +1864,6 @@
       ]
     },
     {
-      "name": "audio-bars-glow-default",
-      "type": "registry:ui",
-      "title": "Audio Bars Glow - Audio Bars Glow",
-      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "app-download-default",
       "type": "registry:ui",
       "title": "App Download - App Download",
@@ -1917,6 +1898,25 @@
           "path": "components/craftui/loaders/activity-rings/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/activity-rings/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-glow-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Glow - Audio Bars Glow",
+      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
         }
       ]
     },
@@ -1998,6 +1998,30 @@
           "path": "components/craftui/blocks/subitem-navbar/subitem-navbar.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/subitem-navbar/subitem-navbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "steps-count-default",
+      "type": "registry:block",
+      "title": "Steps Count Block - Steps Count Block",
+      "description": "A vaul bottom sheet wrapping a step-count chart. Each bar is a Base UI vertical slider whose fill is coloured by interpolating in OKLCH rather than sRGB, so the amber-to-green midpoint stays chromatic instead of collapsing to olive. The chart freezes its own scale for the duration of a drag so the bar tracks the finger exactly, then springs to the new ceiling on release. Days are added from a weekday-aligned calendar popover and removed from the header; the month select walks back twelve months. Every measurement is derived — the well's radius from the bars, the bar gap from how many days are on record, the sheet's radius from the card's.",
+      "dependencies": [
+        "vaul",
+        "motion",
+        "@number-flow/react",
+        "@base-ui-components/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/steps-count/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/steps-count/default.tsx"
         }
       ]
     },
@@ -2107,50 +2131,6 @@
       ]
     },
     {
-      "name": "pixel-dissolve-card-default",
-      "type": "registry:block",
-      "title": "Pixel Dissolve Card - Pixel Dissolve Card",
-      "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "css": {
-        ".pixcard-grid": {
-          "grid-template-columns": "repeat(var(--pixcard-size, 14), 1fr)",
-          "grid-template-rows": "repeat(var(--pixcard-size, 14), 1fr)"
-        },
-        ".pixcard-tile": {
-          "background-size": "calc(var(--pixcard-size, 14) * 100%) calc(var(--pixcard-size, 14) * 100%)",
-          "background-repeat": "no-repeat",
-          "transform": "scale(1.02)",
-          "animation": "pixcard-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards"
-        },
-        "@keyframes pixcard-out": {
-          "from": {
-            "opacity": "1"
-          },
-          "to": {
-            "opacity": "0"
-          }
-        },
-        "@media (prefers-reduced-motion: reduce)": {
-          ".pixcard-tile": {
-            "animation": "none"
-          }
-        }
-      },
-      "files": [
-        {
-          "path": "components/craftui/blocks/pixel-dissolve-card/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/pixel-dissolve-card/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "onboarding-form-default",
       "type": "registry:block",
       "title": "Onboarding Form - Onboarding Form",
@@ -2206,6 +2186,67 @@
       ]
     },
     {
+      "name": "frosted-navbar-frosted-navbar",
+      "type": "registry:block",
+      "title": "Frosted Navbar - Frosted Navbar",
+      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pixel-dissolve-card-default",
+      "type": "registry:block",
+      "title": "Pixel Dissolve Card - Pixel Dissolve Card",
+      "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "css": {
+        ".pixcard-grid": {
+          "grid-template-columns": "repeat(var(--pixcard-size, 14), 1fr)",
+          "grid-template-rows": "repeat(var(--pixcard-size, 14), 1fr)"
+        },
+        ".pixcard-tile": {
+          "background-size": "calc(var(--pixcard-size, 14) * 100%) calc(var(--pixcard-size, 14) * 100%)",
+          "background-repeat": "no-repeat",
+          "transform": "scale(1.02)",
+          "animation": "pixcard-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards"
+        },
+        "@keyframes pixcard-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          ".pixcard-tile": {
+            "animation": "none"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/blocks/pixel-dissolve-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/pixel-dissolve-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "morphing-image-effect-default",
       "type": "registry:block",
       "title": "Morphing Image Effect - Image Morph",
@@ -2221,23 +2262,6 @@
           "path": "components/craftui/blocks/morphing-image-effect/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/morphing-image-effect/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "frosted-navbar-frosted-navbar",
-      "type": "registry:block",
-      "title": "Frosted Navbar - Frosted Navbar",
-      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
         }
       ]
     },
@@ -2259,6 +2283,41 @@
           "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar-default",
+      "type": "registry:block",
+      "title": "Avatar Grid - Avatar Grid",
+      "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "cssVars": {
+        "light": {
+          "avatar-surface": "var(--background, oklch(1 0 0))",
+          "avatar-fg": "var(--foreground, oklch(0.145 0 0))",
+          "avatar-muted": "var(--muted, oklch(0.97 0 0))",
+          "avatar-border": "var(--border, oklch(0.922 0 0))",
+          "avatar-ring": "var(--ring, oklch(0.708 0 0))"
+        },
+        "dark": {
+          "avatar-surface": "var(--background, oklch(0.145 0 0))",
+          "avatar-fg": "var(--foreground, oklch(0.985 0 0))",
+          "avatar-muted": "var(--muted, oklch(0.269 0 0))",
+          "avatar-border": "var(--border, oklch(1 0 0 / 10%))",
+          "avatar-ring": "var(--ring, oklch(0.556 0 0))"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/blocks/avatar/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/avatar/default.tsx"
         }
       ]
     },
@@ -2308,41 +2367,6 @@
       ]
     },
     {
-      "name": "avatar-default",
-      "type": "registry:block",
-      "title": "Avatar Grid - Avatar Grid",
-      "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "cssVars": {
-        "light": {
-          "avatar-surface": "var(--background, oklch(1 0 0))",
-          "avatar-fg": "var(--foreground, oklch(0.145 0 0))",
-          "avatar-muted": "var(--muted, oklch(0.97 0 0))",
-          "avatar-border": "var(--border, oklch(0.922 0 0))",
-          "avatar-ring": "var(--ring, oklch(0.708 0 0))"
-        },
-        "dark": {
-          "avatar-surface": "var(--background, oklch(0.145 0 0))",
-          "avatar-fg": "var(--foreground, oklch(0.985 0 0))",
-          "avatar-muted": "var(--muted, oklch(0.269 0 0))",
-          "avatar-border": "var(--border, oklch(1 0 0 / 10%))",
-          "avatar-ring": "var(--ring, oklch(0.556 0 0))"
-        }
-      },
-      "files": [
-        {
-          "path": "components/craftui/blocks/avatar/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/avatar/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "ai-chat-default",
       "type": "registry:block",
       "title": "AI Chat - AI Chat",
@@ -2360,6 +2384,48 @@
           "path": "components/craftui/blocks/ai-chat/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/ai-chat/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-gallery-02-default",
+      "type": "registry:block",
+      "title": "Feature Gallery 02 - Feature Gallery 02",
+      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+      "dependencies": [
+        "motion",
+        "lenis",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "next"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-gallery-02/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navbar-01-default",
+      "type": "registry:block",
+      "title": "Navbar 01 - Navbar 01",
+      "description": "One strip, three states: hidden when idle, a thin bar on the active route, a full fill on hover. Width never changes, so the fill reads as the underline rising rather than a box appearing. Below md the items unroll inside the bar as rows and push the page down.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/navbar-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/navbar-01/default.tsx"
         }
       ]
     },
@@ -2398,48 +2464,6 @@
           "path": "components/craftui/sections/team-cluster-01/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/team-cluster-01/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "navbar-01-default",
-      "type": "registry:block",
-      "title": "Navbar 01 - Navbar 01",
-      "description": "One strip, three states: hidden when idle, a thin bar on the active route, a full fill on hover. Width never changes, so the fill reads as the underline rising rather than a box appearing. Below md the items unroll inside the bar as rows and push the page down.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/sections/navbar-01/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/sections/navbar-01/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "feature-gallery-02-default",
-      "type": "registry:block",
-      "title": "Feature Gallery 02 - Feature Gallery 02",
-      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
-      "dependencies": [
-        "motion",
-        "lenis",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons",
-        "next"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/sections/feature-gallery-02/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
         }
       ]
     },
@@ -2576,26 +2600,6 @@
       ]
     },
     {
-      "name": "insight-card-default",
-      "type": "registry:block",
-      "title": "Insight Card - Insight Card",
-      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
-      "dependencies": [
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/designs/insight-card/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/designs/insight-card/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "flight-card-default",
       "type": "registry:block",
       "title": "Flight Card - Flight Card",
@@ -2612,6 +2616,26 @@
           "path": "components/craftui/designs/flight-card/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/designs/flight-card/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "insight-card-default",
+      "type": "registry:block",
+      "title": "Insight Card - Insight Card",
+      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/insight-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/insight-card/default.tsx"
         }
       ]
     },
@@ -2777,6 +2801,69 @@
       ]
     },
     {
+      "name": "accordion-clip",
+      "type": "registry:ui",
+      "title": "Accordion - Clip",
+      "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
+      "dependencies": [
+        "motion",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/clip.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/clip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-drawer",
+      "type": "registry:ui",
+      "title": "Accordion - Drawer",
+      "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
+      "dependencies": [
+        "motion",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/drawer.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-ease",
+      "type": "registry:ui",
+      "title": "Accordion - Ease",
+      "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
+      "dependencies": [
+        "motion",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/accordion/ease.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/accordion/ease.tsx"
+        }
+      ]
+    },
+    {
       "name": "alert-dialog-scale",
       "type": "registry:ui",
       "title": "Alert Dialog - Scale",
@@ -2899,69 +2986,6 @@
           "path": "components/craftui/ui/alert-dialog/reactive.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/ui/alert-dialog/reactive.tsx"
-        }
-      ]
-    },
-    {
-      "name": "accordion-clip",
-      "type": "registry:ui",
-      "title": "Accordion - Clip",
-      "description": "Two-layer card reveal — the question clips away via clip-path in the chosen direction, exposing the answer beneath. Click the answer to return.",
-      "dependencies": [
-        "motion",
-        "radix-ui"
-      ],
-      "registryDependencies": [
-        "craftui-base",
-        "accordion"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/ui/accordion/clip.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/accordion/clip.tsx"
-        }
-      ]
-    },
-    {
-      "name": "accordion-drawer",
-      "type": "registry:ui",
-      "title": "Accordion - Drawer",
-      "description": "Each trigger lifts with a 3D spring when open, and the content slides up from behind it. Spring stiffness and damping are fully configurable via the DialKit panel.",
-      "dependencies": [
-        "motion",
-        "radix-ui"
-      ],
-      "registryDependencies": [
-        "craftui-base",
-        "accordion"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/ui/accordion/drawer.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/accordion/drawer.tsx"
-        }
-      ]
-    },
-    {
-      "name": "accordion-ease",
-      "type": "registry:ui",
-      "title": "Accordion - Ease",
-      "description": "Content panel opens and closes with a cubic-bezier easing curve. Use the DialKit easing editor to draw any curve — ease-out, ease-in-out, or a custom bezier.",
-      "dependencies": [
-        "motion",
-        "radix-ui"
-      ],
-      "registryDependencies": [
-        "craftui-base",
-        "accordion"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/ui/accordion/ease.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/accordion/ease.tsx"
         }
       ]
     }
