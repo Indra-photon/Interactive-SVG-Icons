@@ -196,9 +196,44 @@ const CHIP =
  * saturated fill — a rim and a shadow under the top edge, in the tile's
  * own hue two Tailwind steps down. Those two steps are already in the
  * palette: each chip's serif colour is that darker sibling, so the
- * shadow introduces no new value, it reuses the word's ink. */
+ * shadow introduces no new value, it reuses the word's ink.
+ *
+ * 0.08em, AND NO SQUIRCLE. Both of those are corrections.
+ *
+ * THE RADIUS. The concentric rule this file uses on the frame and the
+ * cards — inner radius = outer radius − padding — needs ONE padding
+ * value, and the chip does not have one: `px-[0.22em]` against
+ * `py-[0.14em]`, because the horizontal padding is breathing room for
+ * a word and the vertical is descender clearance for Playfair's y.
+ * Two paddings give two answers, 0 across and 0.08 down.
+ *
+ * At the 0.18em this carried, the arcs were not merely mismatched,
+ * they were unrelated: the chip's corner is struck from a centre
+ * 0.22em in on both axes, the tile's from 0.40em across and 0.32em
+ * down — 0.206em apart, which is further than either radius is long.
+ * There was no sense in which those two curves were parallel, and the
+ * tile read as rounder than the box holding it.
+ *
+ * 0.08 is the vertical answer, and vertical is the axis that shows.
+ * The tile's top edge sits 0.14em under the chip's; its left edge sits
+ * 0.22em in. The eye compares the two corners across the shorter gap,
+ * so that is the one worth being right. A tile at 10% of its own size
+ * reads squarer than a chip at 21% of its height, which is not a
+ * mistake — an inner shape in a concentric pair is ALWAYS relatively
+ * squarer. That is what concentric looks like.
+ *
+ * THE SQUIRCLE. `corner-squircle` is `corner-shape: squircle`, and it
+ * was the only squircle in this headline: the chip around it is a
+ * plain round rect. Nesting two different corner families 2–3px apart
+ * is the worst place to put that mismatch — the same argument the
+ * outcome card makes at its own radius, in reverse. It was also
+ * Chrome-only. `corner-shape` has no Safari or Firefox support, so
+ * most people were already seeing the round rect this now specifies
+ * everywhere, and the tile changed shape by browser for no stated
+ * reason. The diagram's tiles keep theirs; they sit on a photograph
+ * next to other squircles, not inside a round rect. */
 const CHIP_TILE =
-  "corner-squircle mr-[0.28em] inline-flex h-[0.78em] w-[0.78em] items-center justify-center rounded-[0.18em] align-middle";
+  "mr-[0.28em] inline-flex h-[0.78em] w-[0.78em] items-center justify-center rounded-[0.08em] align-middle";
 
 const NAV_LINKS = ["Features", "Use cases", "Pricing", "Integrations"];
 
@@ -612,7 +647,7 @@ export default function OrchidAi01({
                   <HugeiconsIcon
                     icon={Message01Icon}
                     className={cn("size-[0.56em]")}
-                    strokeWidth={2}
+                    strokeWidth={1.8}
                     color="#FFFFFF"
                   />
                 </span>
@@ -648,7 +683,7 @@ export default function OrchidAi01({
                   <HugeiconsIcon
                     icon={CalendarAnalysisIcon}
                     className={cn("size-[0.56em]")}
-                    strokeWidth={2}
+                    strokeWidth={1.8}
                     color="#FFFFFF"
                   />
                 </span>
