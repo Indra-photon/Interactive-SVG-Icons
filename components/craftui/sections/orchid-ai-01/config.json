@@ -15,7 +15,7 @@
     "responsive",
     "dark-mode"
   ],
-  "description": "A split hero: a greige panel on a dot grid with the navbar stamped into its top-left corner as a notch, and a photographic panel beside it carrying a hub-and-spoke diagram. Three context tiles fan into the Orchid mark, three result cards fan out of it, and pulses travel the outbound connectors only.",
+  "description": "A split hero: a plain greige panel with the navbar stamped into its top-left corner as a notch and the type stack bottom-anchored, beside a photographic panel carrying a hub-and-spoke diagram. Three context tiles fan into the Orchid mark, three result cards fan out of it, and pulses travel the outbound connectors only.",
   "createdAt": "2026-08-25T00:00:00Z",
   "variations": [
     {
@@ -66,14 +66,14 @@
           "name": "imageSrc",
           "type": "string",
           "required": false,
-          "default": "/paper-image/OrchidAI_Hero.png",
-          "description": "Photograph behind the right panel, passed to next/image with `fill`. Defaults to `/paper-image/OrchidAI_Hero.png`, the lavender-meadow image the hero was composed against — a PNG cannot travel through the registry, so copy that file into your own public/ folder to get it. Until you do, the failed load is caught and the panel paints a sky-to-meadow gradient with a masked blossom dot field instead, so a fresh install never shows a broken image. Passing an empty string selects that painted ground outright."
+          "default": "/paper-image/image01.png",
+          "description": "Photograph behind the right panel, passed to next/image with `fill`. THE ASSET DOES NOT TRAVEL WITH THIS ITEM: a registry item carries its files as text inside JSON, so a PNG has no way in, and the default path points at a file that only exists in the CraftUI repo. Supply your own image here, or copy a file to `public/paper-image/image01.png`, before shipping — the panel has no painted fallback, so an unresolved path renders next/image's broken state over an otherwise empty panel. Pass a real path rather than an empty string; next/image requires a non-empty src."
         },
         {
           "name": "imageAlt",
           "type": "string",
           "required": false,
-          "description": "Alt text for that photograph. Defaults to a description of the lavender-meadow image the hero was composed against. Ignored when `imageSrc` is omitted, since the fallback ground is decorative and marked aria-hidden."
+          "description": "Alt text for that photograph. Defaults to a description of the lavender-meadow image the hero was composed against, so it must be replaced whenever `imageSrc` is."
         }
       ],
       "features": [
@@ -82,10 +82,12 @@
         "Connector radius is clamped against both the horizontal and vertical span, so a narrow column degrades to a gentler curve rather than a self-intersecting one",
         "Below md the row stacks: the tiles become a horizontal strip, the cards go full-width, and the connectors are dropped, since there is no useful diagonal to draw in a 340px column",
         "The navbar is a notch stamped into the panel's corner, not a pill on top of it — one convex round plus two radial-gradient flares make the junctions tangent-continuous",
-        "Headline chips are inline-flex runs on the headline's own baseline, sized entirely in em, so tile and glyph track the clamp() without needing breakpoints of their own",
+        "Headline chips are inline-block runs on the headline's own baseline — inline-block, not inline-flex, because a flex box borrows its baseline from its first item and that item is an icon tile with no baseline of its own, which would align the sentence to the bottom of the icon. Sized entirely in em, so tile and glyph track the clamp() without needing breakpoints of their own",
+        "The chip's icon tile takes the concentric-corner rule the frame and cards use: its radius is the chip's radius minus the chip's vertical padding, and it is a plain round rect rather than a squircle, since a squircle nested a few pixels inside a round rect reads as a different corner family",
         "The CTAs are the project's shadcn Button with every bevel class passed at the call site; the background shorthand is marked important so the base component's `bg-clip-padding` cannot collapse the padding-box fill onto the border-box rim",
         "Travelling pulses use pathLength={1}, so one dash length and one offset animation work on all three connectors no matter how far each runs, and keep working when the column resizes",
-        "Dark theme covers the frame, panel, dot grid, notch flares, chips and buttons; the photographic panel and the diagram over it stay as drawn, since the cards are opaque enough to hold their own contrast in either theme",
+        "Dark theme covers the frame, panel, notch flares, chips and buttons; the photographic panel and the diagram over it stay as drawn, since the cards are opaque enough to hold their own contrast in either theme",
+        "Chip serif words read `var(--font-playfair, ui-serif, Georgia, serif)`. That variable is defined by the CraftUI app's own layout, so an installed copy resolves the fallback and sets the chips in Georgia — correct, just not the display face. Expose a Playfair Display (or any italic-bearing serif) as `--font-playfair` on <html> to get the intended setting",
         "Every entrance, the spinning hub rim and the pulses drop out under prefers-reduced-motion"
       ],
       "inspiration": []

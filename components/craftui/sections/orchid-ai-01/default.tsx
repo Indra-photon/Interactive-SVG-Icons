@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import useMeasure from "react-use-measure";
 import { motion, useReducedMotion } from "motion/react";
@@ -403,28 +402,37 @@ export interface OrchidAi01Props {
   /** Appended to the outer <section>. */
   className?: string;
   /**
-   * Photograph behind the right panel. Pass an empty string to force the
-   * painted meadow-under-sky ground instead. If the file is simply
-   * missing the panel falls back to that ground on its own — see
-   * `imageBroken` below.
+   * Photograph behind the right panel, passed to next/image with `fill`.
+   *
+   * REQUIRED IN PRACTICE, despite the default. The default names a file
+   * that only exists in this repo (see HERO_IMAGE), so an installed copy
+   * has to pass its own path or put a file at that one. There is no
+   * painted fallback and no empty-string mode: next/image needs a
+   * non-empty src, and an unresolved path renders its broken state.
    */
   imageSrc?: string;
+  /** Alt text for that photograph. Replace it whenever `imageSrc` is. */
   imageAlt?: string;
 }
 
 /* The asset this hero was composed against. It lives in this repo's
  * public/ folder and CANNOT travel through the registry: a registry item
- * carries its files as text inside JSON, so a PNG has no way in.
+ * carries its files as text inside JSON, so a PNG has no way in. An
+ * installed copy therefore points at a path its project does not have
+ * until someone supplies one, which is what the prop is for.
  *
- * That used to mean an installed copy pointed at a path its project did
- * not have and rendered a broken image — and the painted fallback never
- * ran, because a default this component ships is a truthy imageSrc and
- * the fallback only triggered on an empty one.
+ * THIS USED TO BE CAUGHT. An `onError` flipped a piece of state and the
+ * panel painted a sky-to-meadow gradient instead, so a fresh install
+ * never showed a broken image. That ground was removed when the panel
+ * was reworked; the state it fed was not, and for a while this file
+ * carried a handler that set a flag nothing read.
  *
- * So the default stays (this site gets the photograph, and so does
- * anyone who copies the file across) but a failed load is now treated as
- * no image at all. The gap between "you have the asset" and "you do not"
- * closes itself instead of needing a prop. */
+ * The flag is gone rather than the ground restored, because a fallback
+ * has to be maintained as a second design — it was already drifting out
+ * of step with the panel around it, and a hero silently substituting a
+ * gradient for the image the section was composed against is a worse
+ * failure than an obvious one. A missing asset now looks missing, which
+ * is a bug report instead of a mystery. */
 const HERO_IMAGE = "/paper-image/image01.png";
 
 export default function OrchidAi01({
@@ -433,8 +441,6 @@ export default function OrchidAi01({
   imageAlt = "A lavender meadow in bloom under a wide teal sky",
 }: OrchidAi01Props) {
   const reduced = useReducedMotion();
-  const [imageBroken, setImageBroken] = useState(false);
-  const showPhoto = Boolean(imageSrc) && !imageBroken;
 
   return (
     <section
@@ -806,7 +812,6 @@ export default function OrchidAi01({
             priority
             sizes="(min-width: 1024px) 50vw, 100vw"
             className={cn("object-cover")}
-            onError={() => setImageBroken(true)}
           />
 
           <div
