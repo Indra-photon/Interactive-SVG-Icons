@@ -66,7 +66,7 @@
           "name": "imageSrc",
           "type": "string",
           "required": false,
-          "default": "/paper-image/image01.png",
+          "default": "/paper-image/image.png",
           "description": "Photograph behind the right panel, passed to next/image with `fill`. OPTIONAL IN TYPE, REQUIRED IN PRACTICE: a registry item carries its files as text inside JSON, so a PNG has no way through, and the default names a file that exists only in the CraftUI repo. Pass your own path, or put a file at `public/paper-image/image01.png`, before shipping. The panel paints no fallback ground, so an unresolved path renders next/image's broken state; pass a real path rather than an empty string, which next/image rejects outright."
         },
         {
