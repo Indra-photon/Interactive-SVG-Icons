@@ -130,59 +130,6 @@
       ]
     },
     {
-      "name": "refresh-default",
-      "type": "registry:ui",
-      "title": "Refresh Icon - Default",
-      "description": "Click the button to see the refresh icon in action.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/refresh/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/refresh/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "refresh-stroke",
-      "type": "registry:ui",
-      "title": "Refresh Icon - Stroke Drawing",
-      "description": "Circular stroke drawing effect",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/refresh/stroke.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/refresh/stroke.tsx"
-        }
-      ]
-    },
-    {
-      "name": "refresh-dash",
-      "type": "registry:ui",
-      "title": "Refresh Icon - Traveling Dash",
-      "description": "Dashed segments travel along the path",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/refresh/dash.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/refresh/dash.tsx"
-        }
-      ]
-    },
-    {
       "name": "msg-glass-typing",
       "type": "registry:ui",
       "title": "Messages Icon - Typing Indicator",
@@ -236,6 +183,59 @@
           "path": "components/craftui/icons/msg-glass/slideIn.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/icons/msg-glass/slideIn.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-default",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Default",
+      "description": "Click the button to see the refresh icon in action.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-stroke",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Stroke Drawing",
+      "description": "Circular stroke drawing effect",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/stroke.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/stroke.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-dash",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Traveling Dash",
+      "description": "Dashed segments travel along the path",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/dash.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/dash.tsx"
         }
       ]
     },
@@ -1484,25 +1484,6 @@
       ]
     },
     {
-      "name": "circular-wave-fill-default",
-      "type": "registry:ui",
-      "title": "Circular Wave Fill - Circular Wave Fill",
-      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "circle-spinner-wipe-default",
       "type": "registry:ui",
       "title": "Circle Spinner Wipe - Circle Spinner Wipe",
@@ -1518,6 +1499,25 @@
           "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circular-wave-fill-default",
+      "type": "registry:ui",
+      "title": "Circular Wave Fill - Circular Wave Fill",
+      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
         }
       ]
     },
@@ -1864,25 +1864,6 @@
       ]
     },
     {
-      "name": "audio-bars-glow-default",
-      "type": "registry:ui",
-      "title": "Audio Bars Glow - Audio Bars Glow",
-      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "app-download-default",
       "type": "registry:ui",
       "title": "App Download - App Download",
@@ -1898,6 +1879,25 @@
           "path": "components/craftui/loaders/app-download/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/app-download/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-glow-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Glow - Audio Bars Glow",
+      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
         }
       ]
     },
@@ -2026,6 +2026,27 @@
       ]
     },
     {
+      "name": "profile-card-navbar",
+      "type": "registry:block",
+      "title": "Profile Card - Navbar",
+      "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/profile-card/navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/profile-card/navbar.tsx"
+        }
+      ]
+    },
+    {
       "name": "question-builder-modal-default",
       "type": "registry:block",
       "title": "Question Builder Modal - Question Builder Modal",
@@ -2084,27 +2105,6 @@
           "path": "components/craftui/blocks/question-builder-modal/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/question-builder-modal/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "profile-card-navbar",
-      "type": "registry:block",
-      "title": "Profile Card - Navbar",
-      "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
-      "dependencies": [
-        "motion",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/profile-card/navbar.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/profile-card/navbar.tsx"
         }
       ]
     },

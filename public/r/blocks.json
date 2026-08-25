@@ -492,6 +492,114 @@
       ]
     },
     {
+      "slug": "profile-card",
+      "name": "Profile Card",
+      "category": "navbar",
+      "tags": [
+        "navbar",
+        "profile",
+        "menu",
+        "avatar",
+        "animation",
+        "shared-layout"
+      ],
+      "description": "An avatar that morphs into a full profile card using shared layout animation. Click the avatar to expand; click anywhere to dismiss.",
+      "createdAt": "2026-06-23T00:00:00Z",
+      "variations": [
+        {
+          "name": "navbar",
+          "displayName": "Navbar",
+          "tier": "free",
+          "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "name",
+              "type": "string",
+              "required": false,
+              "description": "Display name shown in the expanded card header."
+            },
+            {
+              "name": "email",
+              "type": "string",
+              "required": false,
+              "description": "Email shown below the name in the expanded card header."
+            },
+            {
+              "name": "avatar",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Avatar slot rendered both collapsed (36px) and expanded (42px). Defaults to DefaultAvatar. Pass an <img>, next/image, or any node."
+            },
+            {
+              "name": "menuItems",
+              "type": "MenuItem[]",
+              "required": false,
+              "description": "Flat list of menu rows. Defaults to the built-in Profile/Community/Subscription/Settings/Help/Sign out set."
+            },
+            {
+              "name": "menuItems[].label",
+              "type": "string",
+              "required": true,
+              "description": "Row label text."
+            },
+            {
+              "name": "menuItems[].icon",
+              "type": "HugeIcon",
+              "required": true,
+              "description": "HugeIcons icon component rendered in the row."
+            },
+            {
+              "name": "menuItems[].badge",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Trailing slot — pass a count pill, a PRO badge, or any node."
+            },
+            {
+              "name": "menuItems[].active",
+              "type": "boolean",
+              "required": false,
+              "description": "Highlights the row background."
+            },
+            {
+              "name": "menuItems[].onClick",
+              "type": "() => void",
+              "required": false,
+              "description": "Click handler for the row."
+            },
+            {
+              "name": "menuItems[].dividerAfter",
+              "type": "boolean",
+              "required": false,
+              "description": "Renders a full-width divider below this row — used to group rows without needing a nested array."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the root wrapper."
+            }
+          ],
+          "componentName": "ProfileCard",
+          "previewHint": "Tap the avatar in the top-right to expand the profile card",
+          "features": [
+            "Two shared layout transitions run in parallel on one duration spring (duration 0.5, bounce 0.25): layoutId \"profile-card\" projects the box from 40px to 310px while layoutId \"profile-avatar\" carries the avatar as its own child, so the avatar interpolates 36px to 42px as a circle instead of stretching with the widening container — one continuous morph, no clone or swap",
+            "Header text and menu rows live in a fade wrapper decoupled from the morph: opacity and a blur(4px) to blur(0px) filter animate on an ease-out tween delayed 0.18s, so content resolves into a card that has already settled rather than smearing during the layout projection",
+            "A menuReady gate holds the rows pointer-events-none for 400ms (the fade's 0.18s delay plus 0.2s duration) after open, so a fast press or the opening click's mouse-up can't activate a row while it is still invisible",
+            "splitIntoSegments derives dividers from a flat menuItems array: a per-row dividerAfter flag starts a new group, keeping badge, active-row highlight, and onClick as composable per-item slots without a nested array shape",
+            "Dismiss is an AnimatePresence overlay pinned absolute inset-0 to the component's own box (fades 0.15s) with the collapsed trigger switched to pointerEvents none while open; rows give a whileTap scale-0.98 press and focus as native motion.buttons, though the menu ships pointer-first with no role=\"menu\" contract or prefers-reduced-motion fallback yet"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "question-builder-modal",
       "name": "Question Builder Modal",
       "category": "Modal",
@@ -599,114 +707,6 @@
             "Focus rings run on --ring rather than a 15%-alpha foreground, which falls under the 3:1 contrast minimum for non-text UI and reads as decoration instead of focus",
             "The picker's corner badge is `disabled` rather than aria-hidden — a hidden-but-focusable control is an accessibility failure, and on the picker the element genuinely has no action",
             "MotionConfig reducedMotion=\"user\" wraps the whole surface, so every transform animation collapses for anyone who asked for less motion"
-          ],
-          "responsive": true
-        }
-      ]
-    },
-    {
-      "slug": "profile-card",
-      "name": "Profile Card",
-      "category": "navbar",
-      "tags": [
-        "navbar",
-        "profile",
-        "menu",
-        "avatar",
-        "animation",
-        "shared-layout"
-      ],
-      "description": "An avatar that morphs into a full profile card using shared layout animation. Click the avatar to expand; click anywhere to dismiss.",
-      "createdAt": "2026-06-23T00:00:00Z",
-      "variations": [
-        {
-          "name": "navbar",
-          "displayName": "Navbar",
-          "tier": "free",
-          "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
-          "animationType": "click",
-          "dependencies": [
-            "motion",
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "name",
-              "type": "string",
-              "required": false,
-              "description": "Display name shown in the expanded card header."
-            },
-            {
-              "name": "email",
-              "type": "string",
-              "required": false,
-              "description": "Email shown below the name in the expanded card header."
-            },
-            {
-              "name": "avatar",
-              "type": "ReactNode",
-              "required": false,
-              "description": "Avatar slot rendered both collapsed (36px) and expanded (42px). Defaults to DefaultAvatar. Pass an <img>, next/image, or any node."
-            },
-            {
-              "name": "menuItems",
-              "type": "MenuItem[]",
-              "required": false,
-              "description": "Flat list of menu rows. Defaults to the built-in Profile/Community/Subscription/Settings/Help/Sign out set."
-            },
-            {
-              "name": "menuItems[].label",
-              "type": "string",
-              "required": true,
-              "description": "Row label text."
-            },
-            {
-              "name": "menuItems[].icon",
-              "type": "HugeIcon",
-              "required": true,
-              "description": "HugeIcons icon component rendered in the row."
-            },
-            {
-              "name": "menuItems[].badge",
-              "type": "ReactNode",
-              "required": false,
-              "description": "Trailing slot — pass a count pill, a PRO badge, or any node."
-            },
-            {
-              "name": "menuItems[].active",
-              "type": "boolean",
-              "required": false,
-              "description": "Highlights the row background."
-            },
-            {
-              "name": "menuItems[].onClick",
-              "type": "() => void",
-              "required": false,
-              "description": "Click handler for the row."
-            },
-            {
-              "name": "menuItems[].dividerAfter",
-              "type": "boolean",
-              "required": false,
-              "description": "Renders a full-width divider below this row — used to group rows without needing a nested array."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the root wrapper."
-            }
-          ],
-          "componentName": "ProfileCard",
-          "previewHint": "Tap the avatar in the top-right to expand the profile card",
-          "features": [
-            "Two shared layout transitions run in parallel on one duration spring (duration 0.5, bounce 0.25): layoutId \"profile-card\" projects the box from 40px to 310px while layoutId \"profile-avatar\" carries the avatar as its own child, so the avatar interpolates 36px to 42px as a circle instead of stretching with the widening container — one continuous morph, no clone or swap",
-            "Header text and menu rows live in a fade wrapper decoupled from the morph: opacity and a blur(4px) to blur(0px) filter animate on an ease-out tween delayed 0.18s, so content resolves into a card that has already settled rather than smearing during the layout projection",
-            "A menuReady gate holds the rows pointer-events-none for 400ms (the fade's 0.18s delay plus 0.2s duration) after open, so a fast press or the opening click's mouse-up can't activate a row while it is still invisible",
-            "splitIntoSegments derives dividers from a flat menuItems array: a per-row dividerAfter flag starts a new group, keeping badge, active-row highlight, and onClick as composable per-item slots without a nested array shape",
-            "Dismiss is an AnimatePresence overlay pinned absolute inset-0 to the component's own box (fades 0.15s) with the collapsed trigger switched to pointerEvents none while open; rows give a whileTap scale-0.98 press and focus as native motion.buttons, though the menu ships pointer-first with no role=\"menu\" contract or prefers-reduced-motion fallback yet"
           ],
           "responsive": true
         }
@@ -1789,5 +1789,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-25T02:40:37.074Z"
+  "lastUpdated": "2026-08-25T16:24:17.513Z"
 }
