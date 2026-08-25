@@ -291,12 +291,7 @@ function Connectors({
           fill="none"
         >
           {paths.map((d, i) => (
-            <path
-              key={i}
-              d={d}
-              stroke="rgba(255,255,255,0.42)"
-              strokeWidth={1.5}
-            />
+            <path key={i} d={d} stroke="#DCD8CB" strokeWidth={1.5} />
           ))}
 
           {/* Travelling pulses. pathLength={1} normalises every path to
@@ -395,7 +390,7 @@ export interface OrchidAi01Props {
  * anyone who copies the file across) but a failed load is now treated as
  * no image at all. The gap between "you have the asset" and "you do not"
  * closes itself instead of needing a prop. */
-const HERO_IMAGE = "/paper-image/OrchidAI_Hero.png";
+const HERO_IMAGE = "/paper-image/image01.png";
 
 export default function OrchidAi01({
   className,
@@ -586,20 +581,6 @@ export default function OrchidAi01({
           <div className={cn("min-h-10 flex-1")} />
 
           <div>
-            {/* Brand line. "Orchid" is otherwise carried only by the nav
-             * wordmark and the CTA, so the name never lands in the
-             * reading path. It sits at the foot of the empty band rather
-             * than floating in it: an eyebrow belongs to the type block
-             * it introduces. */}
-            <p
-              className={cn(
-                TYPE.eyebrow,
-                "mb-5 text-[#0D1A32] dark:text-[#E8EBF0]",
-              )}
-            >
-              Orchid, your personal assistant
-            </p>
-
             {/* Two lines, and they have to stay two lines — the chips are
              * the composition, and a headline that wraps to four turns
              * them into scattered stickers.
@@ -617,15 +598,15 @@ export default function OrchidAi01({
               <span
                 className={cn(
                   CHIP,
-                  "bg-[#E7E0FB] dark:bg-[#2A2148]",
-                  "[box-shadow:inset_0_0_0_1px_#C9BBF3] dark:[box-shadow:inset_0_0_0_1px_#3E3170]",
+                  "bg-[#DDF6E4] dark:bg-[#10301D]",
+                  "[box-shadow:inset_0_0_0_1px_#A7E4BC] dark:[box-shadow:inset_0_0_0_1px_#1D5233]",
                 )}
               >
                 <span
                   className={cn(
                     CHIP_TILE,
-                    "bg-[#7A4DE8]",
-                    "[box-shadow:inset_0_0_0_1px_#5B34C4,inset_0_1px_2px_0_rgba(91,52,196,0.75)]",
+                    "bg-[#34C759]",
+                    "[box-shadow:inset_0_0_0_1px_#15803D,inset_0_1px_2px_0_rgba(21,128,61,0.75)]",
                   )}
                 >
                   <HugeiconsIcon
@@ -638,7 +619,7 @@ export default function OrchidAi01({
                 <span
                   className={cn(
                     CHIP_SERIF,
-                    "text-[#5B34C4] dark:text-[#C4AEFF]",
+                    "text-[#15803D] dark:text-[#86E8A5]",
                   )}
                 >
                   text
@@ -648,9 +629,8 @@ export default function OrchidAi01({
                * the words either side, but a full stop is not a word — it
                * has to sit tight. This cancels exactly that much, so the
                * period tracks the chip at any size. */}
-              <span className={cn("-ml-[0.12em]")}>.</span>
               <br />
-              Get your{" "}
+              Orchid gets it{" "}
               <span
                 className={cn(
                   CHIP,
@@ -678,10 +658,9 @@ export default function OrchidAi01({
                     "text-[#D2521A] dark:text-[#F6A76A]",
                   )}
                 >
-                  day
+                  done
                 </span>
-              </span>{" "}
-              back.
+              </span>
             </h1>
 
             {/* max-w is in em, so the measure holds at ~60 characters
@@ -698,8 +677,8 @@ export default function OrchidAi01({
                 "mt-7 max-w-[30em] text-[#5A6478] dark:text-[#9AA4B6]",
               )}
             >
-              Orchid lives in your messages. Ask for a table at eight and it
-              comes back with a confirmation, not a list of links.
+              Orchid is a personal assistant that helps you stay organized, find
+              information, and get things done. All through messages.
             </p>
 
             {/* ── CTA pair ────────────────────────────────────────────
@@ -785,53 +764,14 @@ export default function OrchidAi01({
             "relative min-h-[520px] overflow-hidden rounded-[25px] lg:h-full lg:w-1/2",
           )}
         >
-          {showPhoto ? (
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className={cn("object-cover")}
-              onError={() => setImageBroken(true)}
-            />
-          ) : (
-            /* Fallback ground. Two paints, no request and no asset to
-             * copy when the section is installed: a sky-to-field ramp,
-             * and a dot field masked to the lower half that reads as
-             * blossom at a glance without pretending to be a photo. */
-            <div
-              aria-hidden
-              className={cn(
-                "absolute inset-0",
-                "bg-[linear-gradient(180deg,#BFE3E8_0%,#D9E7E1_44%,#C9C4E9_62%,#A78CD2_80%,#7C61B3_100%)]",
-              )}
-            >
-              <div
-                className={cn(
-                  "absolute inset-0",
-                  "[background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.38)_1px,transparent_0)] [background-size:13px_13px]",
-                  "[mask-image:linear-gradient(to_top,black_0%,transparent_48%)]",
-                )}
-              />
-            </div>
-          )}
-
-          {/* Left scrim — carries the type side */}
-          <div
-            aria-hidden
-            className={cn(
-              "pointer-events-none absolute inset-0 mix-blend-multiply",
-              "bg-[linear-gradient(100deg,color-mix(in_srgb,#2e5cb2_72%,white)_0%,white_48%)]",
-            )}
-          />
-          {/* Bottom-right corner — carries the diagram */}
-          <div
-            aria-hidden
-            className={cn(
-              "pointer-events-none absolute inset-0 mix-blend-multiply",
-              "bg-[radial-gradient(circle_at_100%_100%,color-mix(in_srgb,#2e5cb2_45%,white)_0%,white_70%)]",
-            )}
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            priority
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className={cn("object-cover")}
+            onError={() => setImageBroken(true)}
           />
 
           <div
@@ -866,6 +806,7 @@ export default function OrchidAi01({
                 "flex w-full max-w-[400px] flex-col items-center gap-5",
                 "md:h-[340px] md:max-w-[560px] md:flex-row md:items-stretch md:gap-0",
                 "lg:h-[360px]",
+                " p-4 rounded-[12px]",
               )}
             >
               {/* ── Left: context it reads ── */}
@@ -882,7 +823,7 @@ export default function OrchidAi01({
                   >
                     <motion.div
                       className={cn(
-                        "corner-squircle flex size-[44px] items-center justify-center rounded-[14px] bg-white/92",
+                        " flex size-[44px] items-center justify-center rounded-[10px] bg-[#DCD8CB]/42",
                         "[box-shadow:inset_0_0_0_1px_rgba(255,255,255,0.8),0_2px_8px_-2px_rgba(13,26,50,0.18)]",
                       )}
                       initial={reduced ? undefined : { opacity: 0, scale: 0.9 }}
@@ -999,7 +940,7 @@ export default function OrchidAi01({
                      * card. */}
                     <motion.div
                       className={cn(
-                        "corner-squircle flex h-[56px] w-full items-center rounded-[12px] bg-white/92 px-[14px] backdrop-blur-[14px]",
+                        " flex h-[56px] w-full items-center rounded-[12px] bg-[#DCD8CB]/42 px-[14px] backdrop-blur-[14px]",
                         "[box-shadow:inset_0_0_0_1px_rgba(255,255,255,0.8),0_1px_2px_rgba(13,26,50,0.06),0_10px_24px_-10px_rgba(13,26,50,0.24)]",
                       )}
                       initial={reduced ? undefined : { opacity: 0, x: -10 }}
