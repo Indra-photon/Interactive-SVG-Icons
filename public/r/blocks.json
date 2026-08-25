@@ -825,6 +825,92 @@
       ]
     },
     {
+      "slug": "pixel-dissolve-card",
+      "name": "Pixel Dissolve Card",
+      "category": "card",
+      "tags": [
+        "card",
+        "image",
+        "pixel",
+        "dissolve",
+        "click",
+        "animation"
+      ],
+      "description": "An editorial card whose cover photo dissolves into a grid of pixels to reveal the next slide, with the heading fading up beneath it.",
+      "createdAt": "2026-07-22T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Pixel Dissolve Card",
+          "tier": "free",
+          "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
+          "animationType": "click",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "slides",
+              "type": "PixelDissolveSlide[]",
+              "required": false,
+              "description": "Ordered list of slides cycled through on click. Defaults to three built-in editorial slides."
+            },
+            {
+              "name": "slides[].image",
+              "type": "string",
+              "required": true,
+              "description": "Cover photo URL for the slide."
+            },
+            {
+              "name": "slides[].imageAlt",
+              "type": "string",
+              "required": false,
+              "description": "Alt text for the cover photo. Defaults to an empty string (decorative)."
+            },
+            {
+              "name": "slides[].heading",
+              "type": "string",
+              "required": true,
+              "description": "Headline shown in the card body under the photo."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "default": "14",
+              "required": false,
+              "description": "Grid resolution of the dissolve — renders size × size tiles."
+            },
+            {
+              "name": "revealStep",
+              "type": "number",
+              "default": "0.045",
+              "required": false,
+              "description": "Seconds between each tile group vanishing. Total dissolve length is roughly size × revealStep."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the card root."
+            }
+          ],
+          "componentName": "PixelDissolveCard",
+          "previewHint": "Click the card to advance — the current photo dissolves pixel by pixel into the next one",
+          "features": [
+            "The incoming image is rendered underneath from the first frame, so the dissolve reveals the next slide rather than a blank gap",
+            "Every tile is the same image positioned by background-position on a size×size background — one network request, no canvas, no image slicing",
+            "Cells are bucketed into `size` random groups of `size` cells each, and the groups are given randomized delays, so tiles disappear in scattered clusters instead of a predictable sweep",
+            "Tiles are overscaled by 1.02 to hide the hairline seams that subpixel grid rounding otherwise leaves between them",
+            "Clicks are ignored while a dissolve is in flight, and the cleanup timeout is cleared on unmount",
+            "Rendered as a real <button> with an aria-label, and the tile grid is aria-hidden so screen readers only ever see the current slide",
+            "The heading crossfades rather than swapping: the old copy lifts and fades out over 180ms while the new one reveals word by word from behind a clipping mask, 20ms apart via motion/react variants, so the text resolves alongside the image",
+            "Respects prefers-reduced-motion — the dissolve is skipped entirely and the slide swaps instantly"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "onboarding-form",
       "name": "Onboarding Form",
       "category": "multi-step-form",
@@ -887,6 +973,52 @@
             "Completion screen reflects every answer back, and takes focus so the result is announced",
             "Light and dark themes via --onb-* tokens, every foreground/background pair measured with APCA",
             "Respects prefers-reduced-motion — all transitions collapse to duration 0"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "morphing-image-effect",
+      "name": "Morphing Image Effect",
+      "category": "creative",
+      "tags": [
+        "morph",
+        "image",
+        "typography",
+        "interactive",
+        "click",
+        "animation",
+        "layout"
+      ],
+      "description": "A click-driven 3-stage animation where a typographic split ('P' | image | 'ST') morphs between states — the image pill reshapes and the text scales on each click.",
+      "createdAt": "2026-07-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Image Morph",
+          "tier": "free",
+          "description": "Three-stage morph: thumbnail pill → landscape card → portrait card. Text scales inversely as the image grows.",
+          "animationType": "click-driven",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [],
+          "componentName": "MorphingImageEffect",
+          "previewHint": "Click anywhere to advance through the 3 stages",
+          "features": [
+            "CSS t-resize class owns width/height transitions so layout reflow stays on the compositor thread",
+            "Framer Motion animate handles borderRadius and rotate — no layout thrashing",
+            "Stage label uses AnimatePresence mode='wait' with blur cross-fade",
+            "prefers-reduced-motion: t-resize transition is disabled via media query",
+            "Single Image element reused across all stages — no clone, no re-mount"
+          ],
+          "inspiration": [
+            {
+              "label": "Pinterest",
+              "url": "https://pin.it/6u9g0OGHu",
+              "type": "website"
+            }
           ]
         }
       ]
@@ -999,138 +1131,6 @@
       "published": false
     },
     {
-      "slug": "pixel-dissolve-card",
-      "name": "Pixel Dissolve Card",
-      "category": "card",
-      "tags": [
-        "card",
-        "image",
-        "pixel",
-        "dissolve",
-        "click",
-        "animation"
-      ],
-      "description": "An editorial card whose cover photo dissolves into a grid of pixels to reveal the next slide, with the heading fading up beneath it.",
-      "createdAt": "2026-07-22T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Pixel Dissolve Card",
-          "tier": "free",
-          "description": "Clicking the card swaps the image underneath instantly, then dissolves the outgoing photo away as a size × size grid of tiles. Each tile is a background-position slice of the same image, and tiles are assigned to random groups so they vanish in scattered clusters instead of sweeping row by row.",
-          "animationType": "click",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "slides",
-              "type": "PixelDissolveSlide[]",
-              "required": false,
-              "description": "Ordered list of slides cycled through on click. Defaults to three built-in editorial slides."
-            },
-            {
-              "name": "slides[].image",
-              "type": "string",
-              "required": true,
-              "description": "Cover photo URL for the slide."
-            },
-            {
-              "name": "slides[].imageAlt",
-              "type": "string",
-              "required": false,
-              "description": "Alt text for the cover photo. Defaults to an empty string (decorative)."
-            },
-            {
-              "name": "slides[].heading",
-              "type": "string",
-              "required": true,
-              "description": "Headline shown in the card body under the photo."
-            },
-            {
-              "name": "size",
-              "type": "number",
-              "default": "14",
-              "required": false,
-              "description": "Grid resolution of the dissolve — renders size × size tiles."
-            },
-            {
-              "name": "revealStep",
-              "type": "number",
-              "default": "0.045",
-              "required": false,
-              "description": "Seconds between each tile group vanishing. Total dissolve length is roughly size × revealStep."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the card root."
-            }
-          ],
-          "componentName": "PixelDissolveCard",
-          "previewHint": "Click the card to advance — the current photo dissolves pixel by pixel into the next one",
-          "features": [
-            "The incoming image is rendered underneath from the first frame, so the dissolve reveals the next slide rather than a blank gap",
-            "Every tile is the same image positioned by background-position on a size×size background — one network request, no canvas, no image slicing",
-            "Cells are bucketed into `size` random groups of `size` cells each, and the groups are given randomized delays, so tiles disappear in scattered clusters instead of a predictable sweep",
-            "Tiles are overscaled by 1.02 to hide the hairline seams that subpixel grid rounding otherwise leaves between them",
-            "Clicks are ignored while a dissolve is in flight, and the cleanup timeout is cleared on unmount",
-            "Rendered as a real <button> with an aria-label, and the tile grid is aria-hidden so screen readers only ever see the current slide",
-            "The heading crossfades rather than swapping: the old copy lifts and fades out over 180ms while the new one reveals word by word from behind a clipping mask, 20ms apart via motion/react variants, so the text resolves alongside the image",
-            "Respects prefers-reduced-motion — the dissolve is skipped entirely and the slide swaps instantly"
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "morphing-image-effect",
-      "name": "Morphing Image Effect",
-      "category": "creative",
-      "tags": [
-        "morph",
-        "image",
-        "typography",
-        "interactive",
-        "click",
-        "animation",
-        "layout"
-      ],
-      "description": "A click-driven 3-stage animation where a typographic split ('P' | image | 'ST') morphs between states — the image pill reshapes and the text scales on each click.",
-      "createdAt": "2026-07-02T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Image Morph",
-          "tier": "free",
-          "description": "Three-stage morph: thumbnail pill → landscape card → portrait card. Text scales inversely as the image grows.",
-          "animationType": "click-driven",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [],
-          "componentName": "MorphingImageEffect",
-          "previewHint": "Click anywhere to advance through the 3 stages",
-          "features": [
-            "CSS t-resize class owns width/height transitions so layout reflow stays on the compositor thread",
-            "Framer Motion animate handles borderRadius and rotate — no layout thrashing",
-            "Stage label uses AnimatePresence mode='wait' with blur cross-fade",
-            "prefers-reduced-motion: t-resize transition is disabled via media query",
-            "Single Image element reused across all stages — no clone, no re-mount"
-          ],
-          "inspiration": [
-            {
-              "label": "Pinterest",
-              "url": "https://pin.it/6u9g0OGHu",
-              "type": "website"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "contact-reveal-card",
       "name": "Contact Reveal Card",
       "category": "creative",
@@ -1209,180 +1209,6 @@
             "Caption crossfades on change with a short fade + slide, keyed by the active field",
             "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
             "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
-          ],
-          "responsive": true
-        }
-      ]
-    },
-    {
-      "slug": "avatar",
-      "name": "Avatar Grid",
-      "category": "avatar",
-      "tags": [
-        "avatar",
-        "team",
-        "grid",
-        "roles",
-        "hover",
-        "animation"
-      ],
-      "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
-      "createdAt": "2026-08-05T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Avatar Grid",
-          "tier": "free",
-          "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
-          "animationType": "hover",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "members",
-              "type": "AvatarMember[]",
-              "required": false,
-              "description": "Avatars and their grid slots. Defaults to a six-person team clustered around the centre."
-            },
-            {
-              "name": "members[].id",
-              "type": "string",
-              "required": true,
-              "description": "Unique identifier, also used by `defaultActive`."
-            },
-            {
-              "name": "members[].name",
-              "type": "string",
-              "required": true,
-              "description": "Member name, used for the accessible label."
-            },
-            {
-              "name": "members[].role",
-              "type": "string",
-              "required": true,
-              "description": "Role, read out as part of the tile's accessible name."
-            },
-            {
-              "name": "members[].src",
-              "type": "string",
-              "required": true,
-              "description": "Avatar image URL."
-            },
-            {
-              "name": "members[].cell",
-              "type": "[number, number]",
-              "required": true,
-              "description": "1-indexed [row, column] slot in the grid."
-            },
-            {
-              "name": "logo",
-              "type": "ReactNode",
-              "required": false,
-              "description": "Node rendered in the centre tile. Defaults to a built-in brand mark."
-            },
-            {
-              "name": "logoCell",
-              "type": "[number, number]",
-              "required": false,
-              "description": "1-indexed [row, column] of the centre tile. Defaults to [3, 3]."
-            },
-            {
-              "name": "rows",
-              "type": "number",
-              "required": false,
-              "description": "Grid row count. Defaults to 5."
-            },
-            {
-              "name": "columns",
-              "type": "number",
-              "required": false,
-              "description": "Grid column count. Defaults to 5."
-            },
-            {
-              "name": "mask",
-              "type": "string | false",
-              "required": false,
-              "description": "CSS mask applied to the placeholder layer. Defaults to a circular radial fade that drops the shells to nothing before the grid's corners; pass false to keep every shell at full strength."
-            },
-            {
-              "name": "extraTiles",
-              "type": "{ cell: [number, number]; content: ReactNode }[]",
-              "required": false,
-              "description": "Arbitrary tiles dropped into named cells — a \"we're hiring\" slot, say. They occupy their cell, so no placeholder shell is drawn underneath."
-            },
-            {
-              "name": "roleBadges",
-              "type": "boolean",
-              "required": false,
-              "description": "Renders the active member's role as a pointer badge beside their tile. Off by default — standalone, the cluster is a picture of a team and the roles live in each tile's accessible name."
-            },
-            {
-              "name": "renderBadge",
-              "type": "(member: AvatarMember) => ReactNode",
-              "required": false,
-              "description": "Custom badge contents. Defaults to the member's role; pass this to put a name, a bio, anything the caller wants inside the same pill."
-            },
-            {
-              "name": "defaultSelectedId",
-              "type": "string | null",
-              "required": false,
-              "description": "Member selected before anyone interacts. Defaults to null, which leaves the cluster at rest with every avatar in grayscale."
-            },
-            {
-              "name": "selectedId",
-              "type": "string | null",
-              "required": false,
-              "description": "Controlled selection. Pass it and the caller owns which member is picked — the grid stops keeping its own copy, so a list rendered outside the grid can't drift out of step with it. Hover still previews on top of it."
-            },
-            {
-              "name": "onSelect",
-              "type": "(id: string) => void",
-              "required": false,
-              "description": "Fires when a tile is clicked. Required to make `selectedId` do anything."
-            },
-            {
-              "name": "onActiveChange",
-              "type": "(id: string | null) => void",
-              "required": false,
-              "description": "Fires whenever the active member changes — hover preview or committed click. Lets a caller render name, role and bio outside the grid."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the root wrapper."
-            }
-          ],
-          "componentName": "AvatarGrid",
-          "previewHint": "The cluster enters outward from the mark — hover any avatar to lift it and turn it to colour",
-          "features": [
-            "Ships its own namespaced colour tokens, each defined as the theme token with a literal fallback — the cluster inherits a host theme where one exists and still renders correctly in a project with no token layer, without ever overwriting the consumer's own `--background` or `--foreground`",
-            "Colour comes from the theme's semantic tokens (background, foreground, muted, border, ring) rather than hardcoded neutrals, so the cluster themes with whatever app installs it instead of imposing its own greys",
-            "Once a member is active the rest of the faces step back to 50% opacity, so the selected person reads across the whole layout rather than only inside the grid; at rest nothing is dimmed, which keeps the cluster a group portrait instead of a permanently deselected list",
-            "Every literal ink — hatch, shadows, conic edge, radial mask — is written in OKLCH, matching the project's token layer",
-            "Opt-in role badges sit outside the hover layer, so the pill never inherits the tile's 1.08 lift and scale its text; they are also pointer-events-none, since a badge that intercepts the hover that summoned it flickers forever",
-            "Badge side is derived from the tile's column relative to the centre, so a badge on a left-hand tile points inward rather than off the edge of the grid",
-            "Badge side points inward on the outermost columns and away from the centre elsewhere, so a badge never leaves the grid — which is what a compact 3-wide layout, where every tile is an edge tile, would otherwise do",
-            "The caller's `renderBadge` is invoked inside the badge component, not in the grid: calling opaque code with a member in the grid's scope makes the React Compiler treat `members` as possibly mutated and drop every memo derived from it",
-            "Selection is controllable: pass `selectedId` and `onSelect` and the grid stops holding its own copy, so a role list rendered beside it and the grid itself write to one piece of state instead of two that drift",
-            "Hover previews and click commits, split the way contact-reveal-card does it, so a touch user can select a member at all; `onActiveChange` reports the result outward and lets a section render the details without the grid knowing how they are laid out",
-            "The cluster enters as a wave outward from the brand mark — tiles are grouped into rings by their distance from the centre so equidistant members arrive together, which reads as one expanding gesture rather than six unrelated fades",
-            "Entrance and interaction live on two nested layers: the outer owns a delayed tween, the inner owns an interruptible spring, so the entrance delay never leaks into a hover",
-            "Colour and lift share timing — the grayscale transition was retuned from Tailwind's default 300ms curve to 200ms ease-out-quad so the two halves of one hover land together",
-            "Reduced motion keeps the fade and the colour change but drops every scale: the entrance still explains the layout, it just stops moving to say so",
-            "Hover is gated on a real pointer in both CSS and JS — touch fires hover on tap with nothing to un-fire it, which would strand a tapped tile lifted and in colour",
-            "Empty tiles are derived from rows × columns minus the occupied cells, so the placeholder backdrop refills itself when the grid or the member list changes",
-            "The placeholder shells sit on their own masked layer that mirrors the parent's tracks and gap, so the circular fade can dissolve the outer hatching without dimming the avatars stacked above it",
-            "Placeholder tiles carry their own grid placement rather than sitting in a wrapper — a wrapper stretches to the track while the tile inside keeps auto height and collapses to a single dashed line",
-            "Tile depth is a three-layer transparent box-shadow rather than a border — a 1px ring layer plus two soft lift layers — so the tiles hold up over any background the block is dropped onto; dark mode collapses to a single white ring since soft black depth is invisible there",
-            "Photo edges use an inset `outline` rather than a border or ring: it follows the border-radius, adds nothing to layout, and is pure black/white at 10% — a tinted neutral would pick up the surface underneath and read as dirt on the edge",
-            "The brand tile — the only one with no photo to define its own edge — gets a conic gradient masked down to a 1px band instead, two masks (border box and content box) composited with `exclude` erasing the middle",
-            "That conic starts at 45deg so its stops land exactly on the four corners, alternating light and dark; the inks are theme variables, and in dark mode both go white so the alternation comes from alpha rather than hue, since a black ink is invisible on the dark tile",
-            "The brand mark's optical centring is corrected in the SVG path itself, not with a nudge in the component, so the icon stays centred wherever it is reused",
-            "The hovered tile raises its z-index for the whole spring, so the lifted avatar never slides under a neighbouring tile mid-animation",
-            "Grayscale-to-colour runs as a CSS filter transition while the lift runs on a spring, so the two read as one gesture without animating a filter on the main thread every frame"
           ],
           "responsive": true
         }
@@ -1623,6 +1449,180 @@
       ]
     },
     {
+      "slug": "avatar",
+      "name": "Avatar Grid",
+      "category": "avatar",
+      "tags": [
+        "avatar",
+        "team",
+        "grid",
+        "roles",
+        "hover",
+        "animation"
+      ],
+      "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
+      "createdAt": "2026-08-05T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Avatar Grid",
+          "tier": "free",
+          "description": "A team cluster laid out on a hatched placeholder grid — avatars sit in fixed cells around a centre brand mark under a circular fade, and hovering one lifts it out of the grid and restores its colour.",
+          "animationType": "hover",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "members",
+              "type": "AvatarMember[]",
+              "required": false,
+              "description": "Avatars and their grid slots. Defaults to a six-person team clustered around the centre."
+            },
+            {
+              "name": "members[].id",
+              "type": "string",
+              "required": true,
+              "description": "Unique identifier, also used by `defaultActive`."
+            },
+            {
+              "name": "members[].name",
+              "type": "string",
+              "required": true,
+              "description": "Member name, used for the accessible label."
+            },
+            {
+              "name": "members[].role",
+              "type": "string",
+              "required": true,
+              "description": "Role, read out as part of the tile's accessible name."
+            },
+            {
+              "name": "members[].src",
+              "type": "string",
+              "required": true,
+              "description": "Avatar image URL."
+            },
+            {
+              "name": "members[].cell",
+              "type": "[number, number]",
+              "required": true,
+              "description": "1-indexed [row, column] slot in the grid."
+            },
+            {
+              "name": "logo",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Node rendered in the centre tile. Defaults to a built-in brand mark."
+            },
+            {
+              "name": "logoCell",
+              "type": "[number, number]",
+              "required": false,
+              "description": "1-indexed [row, column] of the centre tile. Defaults to [3, 3]."
+            },
+            {
+              "name": "rows",
+              "type": "number",
+              "required": false,
+              "description": "Grid row count. Defaults to 5."
+            },
+            {
+              "name": "columns",
+              "type": "number",
+              "required": false,
+              "description": "Grid column count. Defaults to 5."
+            },
+            {
+              "name": "mask",
+              "type": "string | false",
+              "required": false,
+              "description": "CSS mask applied to the placeholder layer. Defaults to a circular radial fade that drops the shells to nothing before the grid's corners; pass false to keep every shell at full strength."
+            },
+            {
+              "name": "extraTiles",
+              "type": "{ cell: [number, number]; content: ReactNode }[]",
+              "required": false,
+              "description": "Arbitrary tiles dropped into named cells — a \"we're hiring\" slot, say. They occupy their cell, so no placeholder shell is drawn underneath."
+            },
+            {
+              "name": "roleBadges",
+              "type": "boolean",
+              "required": false,
+              "description": "Renders the active member's role as a pointer badge beside their tile. Off by default — standalone, the cluster is a picture of a team and the roles live in each tile's accessible name."
+            },
+            {
+              "name": "renderBadge",
+              "type": "(member: AvatarMember) => ReactNode",
+              "required": false,
+              "description": "Custom badge contents. Defaults to the member's role; pass this to put a name, a bio, anything the caller wants inside the same pill."
+            },
+            {
+              "name": "defaultSelectedId",
+              "type": "string | null",
+              "required": false,
+              "description": "Member selected before anyone interacts. Defaults to null, which leaves the cluster at rest with every avatar in grayscale."
+            },
+            {
+              "name": "selectedId",
+              "type": "string | null",
+              "required": false,
+              "description": "Controlled selection. Pass it and the caller owns which member is picked — the grid stops keeping its own copy, so a list rendered outside the grid can't drift out of step with it. Hover still previews on top of it."
+            },
+            {
+              "name": "onSelect",
+              "type": "(id: string) => void",
+              "required": false,
+              "description": "Fires when a tile is clicked. Required to make `selectedId` do anything."
+            },
+            {
+              "name": "onActiveChange",
+              "type": "(id: string | null) => void",
+              "required": false,
+              "description": "Fires whenever the active member changes — hover preview or committed click. Lets a caller render name, role and bio outside the grid."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the root wrapper."
+            }
+          ],
+          "componentName": "AvatarGrid",
+          "previewHint": "The cluster enters outward from the mark — hover any avatar to lift it and turn it to colour",
+          "features": [
+            "Ships its own namespaced colour tokens, each defined as the theme token with a literal fallback — the cluster inherits a host theme where one exists and still renders correctly in a project with no token layer, without ever overwriting the consumer's own `--background` or `--foreground`",
+            "Colour comes from the theme's semantic tokens (background, foreground, muted, border, ring) rather than hardcoded neutrals, so the cluster themes with whatever app installs it instead of imposing its own greys",
+            "Once a member is active the rest of the faces step back to 50% opacity, so the selected person reads across the whole layout rather than only inside the grid; at rest nothing is dimmed, which keeps the cluster a group portrait instead of a permanently deselected list",
+            "Every literal ink — hatch, shadows, conic edge, radial mask — is written in OKLCH, matching the project's token layer",
+            "Opt-in role badges sit outside the hover layer, so the pill never inherits the tile's 1.08 lift and scale its text; they are also pointer-events-none, since a badge that intercepts the hover that summoned it flickers forever",
+            "Badge side is derived from the tile's column relative to the centre, so a badge on a left-hand tile points inward rather than off the edge of the grid",
+            "Badge side points inward on the outermost columns and away from the centre elsewhere, so a badge never leaves the grid — which is what a compact 3-wide layout, where every tile is an edge tile, would otherwise do",
+            "The caller's `renderBadge` is invoked inside the badge component, not in the grid: calling opaque code with a member in the grid's scope makes the React Compiler treat `members` as possibly mutated and drop every memo derived from it",
+            "Selection is controllable: pass `selectedId` and `onSelect` and the grid stops holding its own copy, so a role list rendered beside it and the grid itself write to one piece of state instead of two that drift",
+            "Hover previews and click commits, split the way contact-reveal-card does it, so a touch user can select a member at all; `onActiveChange` reports the result outward and lets a section render the details without the grid knowing how they are laid out",
+            "The cluster enters as a wave outward from the brand mark — tiles are grouped into rings by their distance from the centre so equidistant members arrive together, which reads as one expanding gesture rather than six unrelated fades",
+            "Entrance and interaction live on two nested layers: the outer owns a delayed tween, the inner owns an interruptible spring, so the entrance delay never leaks into a hover",
+            "Colour and lift share timing — the grayscale transition was retuned from Tailwind's default 300ms curve to 200ms ease-out-quad so the two halves of one hover land together",
+            "Reduced motion keeps the fade and the colour change but drops every scale: the entrance still explains the layout, it just stops moving to say so",
+            "Hover is gated on a real pointer in both CSS and JS — touch fires hover on tap with nothing to un-fire it, which would strand a tapped tile lifted and in colour",
+            "Empty tiles are derived from rows × columns minus the occupied cells, so the placeholder backdrop refills itself when the grid or the member list changes",
+            "The placeholder shells sit on their own masked layer that mirrors the parent's tracks and gap, so the circular fade can dissolve the outer hatching without dimming the avatars stacked above it",
+            "Placeholder tiles carry their own grid placement rather than sitting in a wrapper — a wrapper stretches to the track while the tile inside keeps auto height and collapses to a single dashed line",
+            "Tile depth is a three-layer transparent box-shadow rather than a border — a 1px ring layer plus two soft lift layers — so the tiles hold up over any background the block is dropped onto; dark mode collapses to a single white ring since soft black depth is invisible there",
+            "Photo edges use an inset `outline` rather than a border or ring: it follows the border-radius, adds nothing to layout, and is pure black/white at 10% — a tinted neutral would pick up the surface underneath and read as dirt on the edge",
+            "The brand tile — the only one with no photo to define its own edge — gets a conic gradient masked down to a 1px band instead, two masks (border box and content box) composited with `exclude` erasing the middle",
+            "That conic starts at 45deg so its stops land exactly on the four corners, alternating light and dark; the inks are theme variables, and in dark mode both go white so the alternation comes from alpha rather than hue, since a black ink is invisible on the dark tile",
+            "The brand mark's optical centring is corrected in the SVG path itself, not with a nudge in the component, so the icon stays centred wherever it is reused",
+            "The hovered tile raises its z-index for the whole spring, so the lifted avatar never slides under a neighbouring tile mid-animation",
+            "Grayscale-to-colour runs as a CSS filter transition while the lift runs on a spring, so the two read as one gesture without animating a filter on the main thread every frame"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "ai-chat",
       "name": "AI Chat",
       "category": "Chat UI",
@@ -1789,5 +1789,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-22T10:59:19.893Z"
+  "lastUpdated": "2026-08-25T02:40:37.074Z"
 }

@@ -1,0 +1,94 @@
+{
+  "slug": "orchid-ai-01",
+  "name": "Orchid AI 01",
+  "category": "hero-section",
+  "tags": [
+    "hero",
+    "section",
+    "split",
+    "ai",
+    "assistant",
+    "navbar",
+    "notch",
+    "diagram",
+    "svg",
+    "responsive",
+    "dark-mode"
+  ],
+  "description": "A split hero: a greige panel on a dot grid with the navbar stamped into its top-left corner as a notch, and a photographic panel beside it carrying a hub-and-spoke diagram. Three context tiles fan into the Orchid mark, three result cards fan out of it, and pulses travel the outbound connectors only.",
+  "createdAt": "2026-08-25T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Orchid AI 01",
+      "componentName": "OrchidAi01",
+      "tier": "free",
+      "previewHint": "Watch the pulses run outward from the mark — narrow the window past md to see the diagram stack",
+      "description": "A hero section made for OrchidAI.",
+      "animationType": "loop",
+      "responsive": true,
+      "dependencies": [
+        "motion",
+        "react-use-measure",
+        "next",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": ["button"],
+      "css": {
+        ".corner-squircle": {
+          "corner-shape": "squircle"
+        },
+        "@property --bevel-angle": {
+          "syntax": "\"<angle>\"",
+          "initial-value": "180deg",
+          "inherits": "false"
+        },
+        "@keyframes bevel-button-spin": {
+          "to": {
+            "--bevel-angle": "540deg"
+          }
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          "[class*=\"bevel-button-spin\"]": {
+            "animation": "none !important"
+          }
+        }
+      },
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Appended to the outer <section> — where a different page background or vertical rhythm goes, since the section ships its own full-bleed padding and min-height."
+        },
+        {
+          "name": "imageSrc",
+          "type": "string",
+          "required": false,
+          "default": "/paper-image/OrchidAI_Hero.png",
+          "description": "Photograph behind the right panel, passed to next/image with `fill`. Defaults to `/paper-image/OrchidAI_Hero.png`, the lavender-meadow image the hero was composed against — a PNG cannot travel through the registry, so copy that file into your own public/ folder to get it. Until you do, the failed load is caught and the panel paints a sky-to-meadow gradient with a masked blossom dot field instead, so a fresh install never shows a broken image. Passing an empty string selects that painted ground outright."
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "required": false,
+          "description": "Alt text for that photograph. Defaults to a description of the lavender-meadow image the hero was composed against. Ignored when `imageSrc` is omitted, since the fallback ground is decorative and marked aria-hidden."
+        }
+      ],
+      "features": [
+        "The diagram is a flex row — tiles, connectors, hub, connectors, cards — instead of a fixed 560×360 design box scaled by a transform, so every size in it is a Tailwind class that can take a `md:` variant",
+        "Connector columns measure their own width and height and solve their elbow paths at runtime; lane centres are 1/6, 3/6 and 5/6 of the measured height, which is exactly where a `grid-rows-3` sibling puts each row's centre, so the paths cannot drift out of alignment with what they connect",
+        "Connector radius is clamped against both the horizontal and vertical span, so a narrow column degrades to a gentler curve rather than a self-intersecting one",
+        "Below md the row stacks: the tiles become a horizontal strip, the cards go full-width, and the connectors are dropped, since there is no useful diagonal to draw in a 340px column",
+        "The navbar is a notch stamped into the panel's corner, not a pill on top of it — one convex round plus two radial-gradient flares make the junctions tangent-continuous",
+        "Headline chips are inline-flex runs on the headline's own baseline, sized entirely in em, so tile and glyph track the clamp() without needing breakpoints of their own",
+        "The CTAs are the project's shadcn Button with every bevel class passed at the call site; the background shorthand is marked important so the base component's `bg-clip-padding` cannot collapse the padding-box fill onto the border-box rim",
+        "Travelling pulses use pathLength={1}, so one dash length and one offset animation work on all three connectors no matter how far each runs, and keep working when the column resizes",
+        "Dark theme covers the frame, panel, dot grid, notch flares, chips and buttons; the photographic panel and the diagram over it stay as drawn, since the cards are opaque enough to hold their own contrast in either theme",
+        "Every entrance, the spinning hub rim and the pulses drop out under prefers-reduced-motion"
+      ],
+      "inspiration": []
+    }
+  ]
+}

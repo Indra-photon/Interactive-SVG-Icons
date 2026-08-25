@@ -814,3 +814,34 @@
     animation: none;
   }
 }
+
+/* ── Bevelled button rim ──────────────────────────────────────────────
+ *
+ * Used by the CTA pair in components/craftui/sections/orchid-ai-01. The
+ * buttons paint a fill to padding-box and a gradient rim to border-box,
+ * and spin the rim's angle so a highlight sweeps around the edge.
+ *
+ * This has to be declared here rather than in the component: an
+ * @property registered after a stylesheet is parsed does not make an
+ * already-parsed var() animatable, so a runtime-injected rule would be
+ * a frame late at best and inert at worst. Without it the buttons still
+ * render correctly on the 180deg initial value — the rim just holds
+ * still instead of sweeping. */
+@property --bevel-angle {
+  syntax: "<angle>";
+  initial-value: 180deg;
+  inherits: false;
+}
+
+@keyframes bevel-button-spin {
+  to {
+    --bevel-angle: 540deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="bevel-button-spin"],
+  [class*="bevel-button-spin"] {
+    animation: none !important;
+  }
+}
