@@ -802,6 +802,76 @@
       ]
     },
     {
+      "slug": "ios-spinner-pulse",
+      "name": "iOS Spinner Pulse",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "pulse",
+        "flash",
+        "radial"
+      ],
+      "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Pulse",
+          "componentName": "IosSpinnerPulse",
+          "tier": "free",
+          "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "ios-spinner-grow",
       "name": "iOS Spinner Grow",
       "category": "loaders",
@@ -1083,94 +1153,6 @@
       ]
     },
     {
-      "slug": "hexagon-rotate",
-      "name": "Hexagon Rotate",
-      "category": "loaders",
-      "tags": [
-        "hexagon",
-        "rotate",
-        "geometric",
-        "spinner",
-        "simple",
-        "smooth",
-        "polygon",
-        "minimal"
-      ],
-      "description": "A regular hexagon spins continuously for a clean geometric loading animation",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Hexagon Rotate",
-          "componentName": "HexagonRotate",
-          "tier": "free",
-          "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 50,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 50,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the hexagon"
-            },
-            {
-              "name": "thickness",
-              "type": "number",
-              "default": 3,
-              "description": "Stroke width when not filled, in pixels"
-            },
-            {
-              "name": "filled",
-              "type": "boolean",
-              "default": false,
-              "description": "Whether to render the hexagon as filled or outline only"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 2,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": [
-                0.4,
-                0,
-                0.6,
-                1
-              ],
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "infinity-loop",
       "name": "Infinity Loop",
       "category": "loaders",
@@ -1280,27 +1262,28 @@
       ]
     },
     {
-      "slug": "ios-spinner-pulse",
-      "name": "iOS Spinner Pulse",
+      "slug": "hexagon-rotate",
+      "name": "Hexagon Rotate",
       "category": "loaders",
       "tags": [
-        "apple",
-        "ios",
-        "macos",
+        "hexagon",
+        "rotate",
+        "geometric",
         "spinner",
-        "pulse",
-        "flash",
-        "radial"
+        "simple",
+        "smooth",
+        "polygon",
+        "minimal"
       ],
-      "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
-      "createdAt": "2026-05-14",
+      "description": "A regular hexagon spins continuously for a clean geometric loading animation",
+      "createdAt": "2026-02-26",
       "variations": [
         {
           "name": "default",
-          "displayName": "Pulse",
-          "componentName": "IosSpinnerPulse",
+          "displayName": "Hexagon Rotate",
+          "componentName": "HexagonRotate",
           "tier": "free",
-          "description": "Each spoke flashes bright in sequence — no group rotation, the glow steps discretely around the clock",
+          "description": "A hexagon outline or filled shape rotates 360° continuously with smooth linear motion",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -1309,31 +1292,43 @@
             {
               "name": "width",
               "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
+              "default": 50,
+              "description": "Width of the loader container in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
+              "default": 50,
+              "description": "Height of the loader container in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of the spokes"
+              "description": "Color of the hexagon"
+            },
+            {
+              "name": "thickness",
+              "type": "number",
+              "default": 3,
+              "description": "Stroke width when not filled, in pixels"
+            },
+            {
+              "name": "filled",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to render the hexagon as filled or outline only"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
               "default": true,
-              "description": "Controls whether the animation runs"
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             },
             {
               "name": "duration",
               "type": "number",
-              "default": 1,
+              "default": 2,
               "description": "Animation cycle duration in seconds",
               "min": 0.1,
               "max": 8,
@@ -1342,7 +1337,12 @@
             {
               "name": "ease",
               "type": "ease",
-              "default": "easeOut",
+              "default": [
+                0.4,
+                0,
+                0.6,
+                1
+              ],
               "description": "Easing function"
             }
           ]
@@ -1505,6 +1505,107 @@
               "max": 6,
               "step": 1,
               "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "grid-spiral",
+      "name": "Grid Spiral",
+      "category": "loaders",
+      "tags": [
+        "grid",
+        "spiral",
+        "dots",
+        "matrix",
+        "clockwise",
+        "sequential"
+      ],
+      "description": "3×3 grid lights up in a clockwise spiral from top-left corner to the center",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Grid Spiral",
+          "componentName": "GridSpiral",
+          "tier": "free",
+          "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 16,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ],
+          "inspiration": [
+            {
+              "label": "Basement Studio — loading states",
+              "url": "https://basement.studio",
+              "type": "website"
+            },
+            {
+              "label": "@rauno on X",
+              "url": "https://x.com/raunofreiberg",
+              "type": "twitter"
+            },
+            {
+              "label": "Loading animations on Dribbble",
+              "url": "https://dribbble.com/tags/loading-animation",
+              "type": "dribbble"
             }
           ]
         }
@@ -1847,26 +1948,26 @@
       ]
     },
     {
-      "slug": "grid-corners-in",
-      "name": "Grid Corners In",
+      "slug": "grid-cross",
+      "name": "Grid Cross",
       "category": "loaders",
       "tags": [
         "grid",
-        "corners",
+        "cross",
+        "plus",
         "dots",
         "matrix",
-        "inward",
-        "collapse"
+        "alternate"
       ],
-      "description": "3×3 grid collapses inward — corners fire first, then edges, then center",
+      "description": "3×3 grid alternates between the cross shape (+ pattern) and the 4 corner dots",
       "createdAt": "2026-05-14",
       "variations": [
         {
           "name": "default",
-          "displayName": "Grid Corners In",
-          "componentName": "GridCornersIn",
+          "displayName": "Grid Cross",
+          "componentName": "GridCross",
           "tier": "free",
-          "description": "The 4 corner dots pulse first, then the 4 edge-center dots, then the center — an inward collapse opposite to ripple",
+          "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -1931,26 +2032,26 @@
       ]
     },
     {
-      "slug": "grid-cross",
-      "name": "Grid Cross",
+      "slug": "grid-corners-in",
+      "name": "Grid Corners In",
       "category": "loaders",
       "tags": [
         "grid",
-        "cross",
-        "plus",
+        "corners",
         "dots",
         "matrix",
-        "alternate"
+        "inward",
+        "collapse"
       ],
-      "description": "3×3 grid alternates between the cross shape (+ pattern) and the 4 corner dots",
+      "description": "3×3 grid collapses inward — corners fire first, then edges, then center",
       "createdAt": "2026-05-14",
       "variations": [
         {
           "name": "default",
-          "displayName": "Grid Cross",
-          "componentName": "GridCross",
+          "displayName": "Grid Corners In",
+          "componentName": "GridCornersIn",
           "tier": "free",
-          "description": "The 5 cross-shaped dots (center row + center column) pulse first, then the 4 corner dots follow — two-phase alternation",
+          "description": "The 4 corner dots pulse first, then the 4 edge-center dots, then the center — an inward collapse opposite to ripple",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -2099,90 +2200,6 @@
       ]
     },
     {
-      "slug": "grid-checker",
-      "name": "Grid Checker",
-      "category": "loaders",
-      "tags": [
-        "grid",
-        "checker",
-        "checkerboard",
-        "dots",
-        "matrix",
-        "alternate"
-      ],
-      "description": "3×3 grid alternates in a checkerboard pattern — odd and even positions pulse out of phase",
-      "createdAt": "2026-05-14",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Grid Checker",
-          "componentName": "GridChecker",
-          "tier": "free",
-          "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Fill color of the dots"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 16,
-              "description": "Diameter of each dot in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1.4,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "easeInOut",
-              "description": "Easing function"
-            },
-            {
-              "name": "gridSize",
-              "type": "number",
-              "default": 3,
-              "min": 2,
-              "max": 6,
-              "step": 1,
-              "description": "Number of dots per row and column (n × n grid)"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "grid-clock",
       "name": "Grid Clock",
       "category": "loaders",
@@ -2267,26 +2284,26 @@
       ]
     },
     {
-      "slug": "grid-spiral",
-      "name": "Grid Spiral",
+      "slug": "grid-checker",
+      "name": "Grid Checker",
       "category": "loaders",
       "tags": [
         "grid",
-        "spiral",
+        "checker",
+        "checkerboard",
         "dots",
         "matrix",
-        "clockwise",
-        "sequential"
+        "alternate"
       ],
-      "description": "3×3 grid lights up in a clockwise spiral from top-left corner to the center",
+      "description": "3×3 grid alternates in a checkerboard pattern — odd and even positions pulse out of phase",
       "createdAt": "2026-05-14",
       "variations": [
         {
           "name": "default",
-          "displayName": "Grid Spiral",
-          "componentName": "GridSpiral",
+          "displayName": "Grid Checker",
+          "componentName": "GridChecker",
           "tier": "free",
-          "description": "Dots activate in a clockwise spiral — outer ring first (top-left → top → right → bottom → left), center last",
+          "description": "5 dots on even positions and 4 dots on odd positions pulse half a cycle apart, creating a flickering checkerboard",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -2345,23 +2362,6 @@
               "max": 6,
               "step": 1,
               "description": "Number of dots per row and column (n × n grid)"
-            }
-          ],
-          "inspiration": [
-            {
-              "label": "Basement Studio — loading states",
-              "url": "https://basement.studio",
-              "type": "website"
-            },
-            {
-              "label": "@rauno on X",
-              "url": "https://x.com/raunofreiberg",
-              "type": "twitter"
-            },
-            {
-              "label": "Loading animations on Dribbble",
-              "url": "https://dribbble.com/tags/loading-animation",
-              "type": "dribbble"
             }
           ]
         }
@@ -2534,88 +2534,6 @@
       ]
     },
     {
-      "slug": "fill-hourglass",
-      "name": "Hourglass",
-      "category": "loaders",
-      "tags": [
-        "hourglass",
-        "sand",
-        "timer",
-        "time",
-        "fill",
-        "flip",
-        "waiting"
-      ],
-      "description": "An hourglass where sand drains from top to bottom, then the glass flips to restart",
-      "createdAt": "2026-07-08",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Hourglass",
-          "componentName": "FillHourglass",
-          "tier": "free",
-          "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "#e8a33d",
-              "description": "Color of the sand"
-            },
-            {
-              "name": "strokeColor",
-              "type": "string",
-              "default": "#1f1f1f",
-              "description": "Color of the glass outline and frame bars"
-            },
-            {
-              "name": "backgroundColor",
-              "type": "string",
-              "default": "#ffffff",
-              "description": "Fill color of the glass interior"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 4,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "fill-paint-bucket",
       "name": "Paint Bucket",
       "category": "loaders",
@@ -2683,6 +2601,88 @@
               "name": "duration",
               "type": "number",
               "default": 3,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-hourglass",
+      "name": "Hourglass",
+      "category": "loaders",
+      "tags": [
+        "hourglass",
+        "sand",
+        "timer",
+        "time",
+        "fill",
+        "flip",
+        "waiting"
+      ],
+      "description": "An hourglass where sand drains from top to bottom, then the glass flips to restart",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Hourglass",
+          "componentName": "FillHourglass",
+          "tier": "free",
+          "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#e8a33d",
+              "description": "Color of the sand"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the glass outline and frame bars"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the glass interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 4,
               "description": "Animation cycle duration in seconds",
               "min": 0.1,
               "max": 8,
@@ -3539,87 +3539,6 @@
       ]
     },
     {
-      "slug": "dot-matrix-bits",
-      "name": "Dot Matrix Bits",
-      "category": "loaders",
-      "tags": [
-        "dots",
-        "matrix",
-        "binary",
-        "bits",
-        "counter",
-        "data",
-        "digital",
-        "computational"
-      ],
-      "description": "The grid is a bank of binary counters — each row counts at half the speed of the row below, producing a cascading binary waterfall",
-      "createdAt": "2026-05-31",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dot Matrix Bits",
-          "componentName": "DotMatrixBits",
-          "tier": "free",
-          "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
-          "animationType": "loop",
-          "dependencies": [],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Fill color of the dots"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 12,
-              "description": "Diameter of each dot in pixels",
-              "min": 4,
-              "max": 24,
-              "step": 1
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 3,
-              "min": 0.5,
-              "max": 10,
-              "step": 0.5,
-              "description": "Time for the bottom (fastest) row to complete one full binary count cycle in seconds"
-            },
-            {
-              "name": "gridSize",
-              "type": "number",
-              "default": 5,
-              "min": 2,
-              "max": 6,
-              "step": 1,
-              "description": "Number of dots per row and column (n × n grid)"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "dot-matrix-life",
       "name": "Dot Matrix Life",
       "category": "loaders",
@@ -3782,6 +3701,87 @@
       ]
     },
     {
+      "slug": "dot-matrix-bits",
+      "name": "Dot Matrix Bits",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "binary",
+        "bits",
+        "counter",
+        "data",
+        "digital",
+        "computational"
+      ],
+      "description": "The grid is a bank of binary counters — each row counts at half the speed of the row below, producing a cascading binary waterfall",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Bits",
+          "componentName": "DotMatrixBits",
+          "tier": "free",
+          "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 3,
+              "min": 0.5,
+              "max": 10,
+              "step": 0.5,
+              "description": "Time for the bottom (fastest) row to complete one full binary count cycle in seconds"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "dot-circle-expand",
       "name": "Dot Circle Expand",
       "category": "loaders",
@@ -3864,6 +3864,85 @@
                 1
               ],
               "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dock-bounce",
+      "name": "Dock Bounce",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "macos",
+        "dock",
+        "bounce",
+        "squash",
+        "stretch",
+        "icon"
+      ],
+      "description": "A rounded square app icon bounces with macOS dock physics — squash on landing, decaying secondary bounces",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dock Bounce",
+          "componentName": "DockBounce",
+          "tier": "free",
+          "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the icon"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeOut",
+              "description": "Easing function"
+            },
+            {
+              "name": "repeatDelay",
+              "type": "number",
+              "default": 1,
+              "description": "Pause between animation cycles in seconds",
+              "min": 0,
+              "max": 5,
+              "step": 0.1
             }
           ]
         }
@@ -3953,85 +4032,6 @@
       ]
     },
     {
-      "slug": "dock-bounce",
-      "name": "Dock Bounce",
-      "category": "loaders",
-      "tags": [
-        "apple",
-        "macos",
-        "dock",
-        "bounce",
-        "squash",
-        "stretch",
-        "icon"
-      ],
-      "description": "A rounded square app icon bounces with macOS dock physics — squash on landing, decaying secondary bounces",
-      "createdAt": "2026-05-14",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dock Bounce",
-          "componentName": "DockBounce",
-          "tier": "free",
-          "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Fill color of the icon"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1.4,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "easeOut",
-              "description": "Easing function"
-            },
-            {
-              "name": "repeatDelay",
-              "type": "number",
-              "default": 1,
-              "description": "Pause between animation cycles in seconds",
-              "min": 0,
-              "max": 5,
-              "step": 0.1
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "conic-spinner",
       "name": "Conic Spinner",
       "category": "loaders",
@@ -4076,6 +4076,83 @@
               "type": "string",
               "default": "currentColor",
               "description": "Fill color of the spinner"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "circular-wave-fill",
+      "name": "Circular Wave Fill",
+      "category": "loaders",
+      "tags": [
+        "wave",
+        "fill",
+        "circle",
+        "gradient",
+        "radial",
+        "complex",
+        "smooth",
+        "water"
+      ],
+      "description": "A circular container fills up with an animated wave pattern from bottom to top",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Circular Wave Fill",
+          "componentName": "CircularWaveFill",
+          "tier": "free",
+          "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#269af2",
+              "description": "Color of the wave fill"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#cccccc",
+              "description": "Background color of the circle"
             },
             {
               "name": "isAnimating",
@@ -4197,28 +4274,27 @@
       ]
     },
     {
-      "slug": "circular-wave-fill",
-      "name": "Circular Wave Fill",
+      "slug": "breath",
+      "name": "Breath",
       "category": "loaders",
       "tags": [
-        "wave",
-        "fill",
-        "circle",
-        "gradient",
-        "radial",
-        "complex",
-        "smooth",
-        "water"
+        "apple",
+        "breath",
+        "pulse",
+        "glow",
+        "ambient",
+        "macbook",
+        "minimal"
       ],
-      "description": "A circular container fills up with an animated wave pattern from bottom to top",
-      "createdAt": "2026-02-26",
+      "description": "A soft glowing circle that expands and contracts on a slow 4-second breathing rhythm",
+      "createdAt": "2026-05-14",
       "variations": [
         {
           "name": "default",
-          "displayName": "Circular Wave Fill",
-          "componentName": "CircularWaveFill",
+          "displayName": "Breath",
+          "componentName": "Breath",
           "tier": "free",
-          "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+          "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -4227,46 +4303,40 @@
             {
               "name": "width",
               "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
+              "default": 100,
+              "description": "Width of the loader in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
+              "default": 100,
+              "description": "Height of the loader in pixels"
             },
             {
               "name": "color",
               "type": "string",
-              "default": "#269af2",
-              "description": "Color of the wave fill"
-            },
-            {
-              "name": "backgroundColor",
-              "type": "string",
-              "default": "#cccccc",
-              "description": "Background color of the circle"
+              "default": "currentColor",
+              "description": "Color of the breathing circle"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
               "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
+              "description": "Controls whether the animation runs"
             },
             {
               "name": "duration",
               "type": "number",
-              "default": 2,
+              "default": 4,
               "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
+              "min": 0.5,
+              "max": 10,
+              "step": 0.5
             },
             {
               "name": "ease",
               "type": "ease",
-              "default": "linear",
+              "default": "easeInOut",
               "description": "Easing function"
             }
           ]
@@ -4440,27 +4510,25 @@
       ]
     },
     {
-      "slug": "breath",
-      "name": "Breath",
+      "slug": "bars-scale-bottom",
+      "name": "Bars Scale Bottom",
       "category": "loaders",
       "tags": [
-        "apple",
-        "breath",
-        "pulse",
-        "glow",
-        "ambient",
-        "macbook",
-        "minimal"
+        "bars",
+        "loading",
+        "scale",
+        "vertical",
+        "bottom-fixed"
       ],
-      "description": "A soft glowing circle that expands and contracts on a slow 4-second breathing rhythm",
-      "createdAt": "2026-05-14",
+      "description": "Three vertical bars scaling from bottom anchor point",
+      "createdAt": "2026-02-20",
       "variations": [
         {
           "name": "default",
-          "displayName": "Breath",
-          "componentName": "Breath",
+          "displayName": "Bars Scale Bottom",
+          "componentName": "BarsScaleBottom",
           "tier": "free",
-          "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
+          "description": "Three vertical bars scaling up and down with bottom fixed",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -4469,41 +4537,56 @@
             {
               "name": "width",
               "type": "number",
-              "default": 100,
+              "default": 40,
               "description": "Width of the loader in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 100,
+              "default": 40,
               "description": "Height of the loader in pixels"
             },
             {
               "name": "color",
               "type": "string",
               "default": "currentColor",
-              "description": "Color of the breathing circle"
+              "description": "Color of the bars"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 4,
+              "description": "Gap between bars in pixels"
             },
             {
               "name": "isAnimating",
               "type": "boolean",
               "default": true,
-              "description": "Controls whether the animation runs"
+              "description": "Controls whether the animation runs. Set to false to pause animation."
             },
             {
               "name": "duration",
               "type": "number",
-              "default": 4,
+              "default": 1,
               "description": "Animation cycle duration in seconds",
-              "min": 0.5,
-              "max": 10,
-              "step": 0.5
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
             },
             {
               "name": "ease",
               "type": "ease",
               "default": "easeInOut",
               "description": "Easing function"
+            },
+            {
+              "name": "staggerDelay",
+              "type": "number",
+              "default": 0.15,
+              "description": "Delay offset per bar in seconds",
+              "min": 0,
+              "max": 0.5,
+              "step": 0.01
             }
           ]
         }
@@ -4673,25 +4756,26 @@
       ]
     },
     {
-      "slug": "bars-scale-bottom",
-      "name": "Bars Scale Bottom",
+      "slug": "bars-fill-sequential",
+      "name": "Bars Fill Sequential",
       "category": "loaders",
       "tags": [
         "bars",
         "loading",
-        "scale",
+        "fill",
+        "sequential",
         "vertical",
-        "bottom-fixed"
+        "rise"
       ],
-      "description": "Three vertical bars scaling from bottom anchor point",
+      "description": "Three vertical bars filling up sequentially from bottom to top",
       "createdAt": "2026-02-20",
       "variations": [
         {
           "name": "default",
-          "displayName": "Bars Scale Bottom",
-          "componentName": "BarsScaleBottom",
+          "displayName": "Bars Fill Sequential",
+          "componentName": "BarsFillSequential",
           "tier": "free",
-          "description": "Three vertical bars scaling up and down with bottom fixed",
+          "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -4700,14 +4784,14 @@
             {
               "name": "width",
               "type": "number",
-              "default": 40,
-              "description": "Width of the loader in pixels"
+              "default": 45,
+              "description": "Width of the loader container in pixels"
             },
             {
               "name": "height",
               "type": "number",
-              "default": 40,
-              "description": "Height of the loader in pixels"
+              "default": 45,
+              "description": "Height of the loader container in pixels"
             },
             {
               "name": "color",
@@ -4716,9 +4800,15 @@
               "description": "Color of the bars"
             },
             {
+              "name": "barWidth",
+              "type": "number",
+              "default": 9,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
               "name": "gap",
               "type": "number",
-              "default": 4,
+              "default": 9,
               "description": "Gap between bars in pixels"
             },
             {
@@ -4730,7 +4820,7 @@
             {
               "name": "duration",
               "type": "number",
-              "default": 1,
+              "default": 0.5,
               "description": "Animation cycle duration in seconds",
               "min": 0.1,
               "max": 8,
@@ -4739,17 +4829,22 @@
             {
               "name": "ease",
               "type": "ease",
-              "default": "easeInOut",
+              "default": [
+                0.215,
+                0.61,
+                0.355,
+                1
+              ],
               "description": "Easing function"
             },
             {
-              "name": "staggerDelay",
+              "name": "repeatDelay",
               "type": "number",
-              "default": 0.15,
-              "description": "Delay offset per bar in seconds",
+              "default": 0.5,
+              "description": "Pause between cycles in seconds",
               "min": 0,
-              "max": 0.5,
-              "step": 0.01
+              "max": 5,
+              "step": 0.1
             }
           ]
         }
@@ -4907,26 +5002,25 @@
       ]
     },
     {
-      "slug": "bars-fill-sequential",
-      "name": "Bars Fill Sequential",
+      "slug": "bars-bounce",
+      "name": "Bars Bounce",
       "category": "loaders",
       "tags": [
         "bars",
         "loading",
-        "fill",
-        "sequential",
+        "bounce",
         "vertical",
-        "rise"
+        "synchronized"
       ],
-      "description": "Three vertical bars filling up sequentially from bottom to top",
+      "description": "Three vertical bars bouncing in synchronized wave pattern",
       "createdAt": "2026-02-20",
       "variations": [
         {
           "name": "default",
-          "displayName": "Bars Fill Sequential",
-          "componentName": "BarsFillSequential",
+          "displayName": "Bars Bounce",
+          "componentName": "BarsBounce",
           "tier": "free",
-          "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
+          "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
           "animationType": "loop",
           "dependencies": [
             "framer-motion"
@@ -4971,7 +5065,7 @@
             {
               "name": "duration",
               "type": "number",
-              "default": 0.5,
+              "default": 1,
               "description": "Animation cycle duration in seconds",
               "min": 0.1,
               "max": 8,
@@ -4980,22 +5074,8 @@
             {
               "name": "ease",
               "type": "ease",
-              "default": [
-                0.215,
-                0.61,
-                0.355,
-                1
-              ],
+              "default": "easeInOut",
               "description": "Easing function"
-            },
-            {
-              "name": "repeatDelay",
-              "type": "number",
-              "default": 0.5,
-              "description": "Pause between cycles in seconds",
-              "min": 0,
-              "max": 5,
-              "step": 0.1
             }
           ]
         }
@@ -5081,86 +5161,6 @@
               "min": 1,
               "max": 10,
               "step": 0.5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "bars-bounce",
-      "name": "Bars Bounce",
-      "category": "loaders",
-      "tags": [
-        "bars",
-        "loading",
-        "bounce",
-        "vertical",
-        "synchronized"
-      ],
-      "description": "Three vertical bars bouncing in synchronized wave pattern",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Bars Bounce",
-          "componentName": "BarsBounce",
-          "tier": "free",
-          "description": "Three bars that synchronously change height while bouncing between top and bottom positions",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 45,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 45,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the bars"
-            },
-            {
-              "name": "barWidth",
-              "type": "number",
-              "default": 9,
-              "description": "Width of each individual bar in pixels"
-            },
-            {
-              "name": "gap",
-              "type": "number",
-              "default": 9,
-              "description": "Gap between bars in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "easeInOut",
-              "description": "Easing function"
             }
           ]
         }
@@ -5765,6 +5765,88 @@
       ]
     },
     {
+      "slug": "audio-bars-glow",
+      "name": "Audio Bars Glow",
+      "category": "loaders",
+      "tags": [
+        "audio",
+        "music",
+        "sound",
+        "glow",
+        "gradient",
+        "vertical",
+        "bars"
+      ],
+      "description": "Six synchronized vertical bars with gradient and glow effect",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Audio Bars Glow",
+          "componentName": "AudioBarsGlow",
+          "tier": "free",
+          "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#3b82f6",
+              "description": "Base color for the gradient (hex, rgb, or color name)"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 4,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "default": 3,
+              "description": "Gap between bars in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.8,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "app-download",
       "name": "App Download",
       "category": "loaders",
@@ -5956,90 +6038,8 @@
           ]
         }
       ]
-    },
-    {
-      "slug": "audio-bars-glow",
-      "name": "Audio Bars Glow",
-      "category": "loaders",
-      "tags": [
-        "audio",
-        "music",
-        "sound",
-        "glow",
-        "gradient",
-        "vertical",
-        "bars"
-      ],
-      "description": "Six synchronized vertical bars with gradient and glow effect",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Audio Bars Glow",
-          "componentName": "AudioBarsGlow",
-          "tier": "free",
-          "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "#3b82f6",
-              "description": "Base color for the gradient (hex, rgb, or color name)"
-            },
-            {
-              "name": "barWidth",
-              "type": "number",
-              "default": 4,
-              "description": "Width of each individual bar in pixels"
-            },
-            {
-              "name": "gap",
-              "type": "number",
-              "default": 3,
-              "description": "Gap between bars in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 0.8,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "easeInOut",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-22T10:59:19.908Z"
+  "lastUpdated": "2026-08-25T02:40:37.100Z"
 }
