@@ -29,7 +29,9 @@ export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
-  const { modKey, mounted } = useModKey();
+  // modKey is no longer displayed here — the theme shortcut is a bare "D" —
+  // but `mounted` still gates the sun/moon label against hydration mismatch.
+  const { mounted } = useModKey();
 
   // resolvedTheme, not theme — under "system" this must follow the OS choice
   const isDark = resolvedTheme === "dark";
@@ -40,7 +42,10 @@ export function CommandPalette() {
 
   useHotkeys([
     { key: "k", mod: true, handler: () => setOpen((prev) => !prev) },
-    { key: "d", mod: true, handler: toggleTheme },
+    // Bare "d", no modifier. useHotkeys already skips bare keys while the
+    // user is typing, so this can't fire from inside the palette's own search
+    // box or any other input.
+    { key: "d", handler: toggleTheme },
   ]);
 
   function runCommand(action: () => void) {
@@ -98,7 +103,6 @@ export function CommandPalette() {
               {mounted && isDark ? "Switch to light theme" : "Switch to dark theme"}
             </span>
             <CommandShortcut>
-              <Kbd>{modKey}</Kbd>
               <Kbd>D</Kbd>
             </CommandShortcut>
           </CommandItem>

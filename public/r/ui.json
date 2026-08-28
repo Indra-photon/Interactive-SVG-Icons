@@ -1,244 +1,6 @@
 {
   "components": [
     {
-      "slug": "otp-input",
-      "name": "OTP Input",
-      "category": "input",
-      "tags": [
-        "otp",
-        "input",
-        "verification",
-        "2fa",
-        "one-time-code",
-        "ripple",
-        "svg",
-        "caret",
-        "form"
-      ],
-      "description": "One-time password input with a living SVG ripple border. Every keystroke nudges the outline, correct codes send a green wave across the boxes, wrong codes bounce red and shake. Validation, carets and all motion parameters are prop-driven.",
-      "createdAt": "2026-07-07T00:00:00Z",
-      "variations": [
-        {
-          "name": "ripple",
-          "displayName": "Ripple",
-          "componentName": "RippleOtp",
-          "tier": "free",
-          "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
-          "animationType": "ripple",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "length",
-              "type": "number",
-              "default": 6,
-              "min": 4,
-              "max": 8,
-              "step": 1,
-              "description": "Number of character boxes"
-            },
-            {
-              "name": "mode",
-              "type": "select",
-              "options": [
-                "numeric",
-                "alphanumeric"
-              ],
-              "default": "numeric",
-              "description": "Which characters the boxes accept — alphanumeric uppercases as you type"
-            },
-            {
-              "name": "masked",
-              "type": "boolean",
-              "default": false,
-              "description": "Render entered characters as dots"
-            },
-            {
-              "name": "rippleOnType",
-              "type": "boolean",
-              "default": false,
-              "description": "Animate the border on every keystroke — off by default, so the ripple only plays for pending / success / failure"
-            },
-            {
-              "name": "pendingRing",
-              "type": "boolean",
-              "default": false,
-              "description": "Oscillating ring while an async validate is pending — off by default, pending shows as border color only"
-            },
-            {
-              "name": "caretColor",
-              "type": "string",
-              "default": "#3B82F6",
-              "description": "Caret color — drives the native bar caret and the fake block / underscore carets"
-            },
-            {
-              "name": "caretShape",
-              "type": "select",
-              "options": [
-                "bar",
-                "block",
-                "underscore"
-              ],
-              "default": "bar",
-              "description": "Caret style — bar is the native caret; block and underscore are rendered carets with a native-feeling blink"
-            },
-            {
-              "name": "staggerMs",
-              "type": "number",
-              "default": 70,
-              "min": 30,
-              "max": 200,
-              "step": 5,
-              "description": "Delay between each box's green pulse in the success wave, in ms"
-            },
-            {
-              "name": "maxAmplitude",
-              "type": "number",
-              "default": 5,
-              "min": 3,
-              "max": 12,
-              "step": 0.5,
-              "description": "Ripple height ceiling in px"
-            },
-            {
-              "name": "bumpWidth",
-              "type": "number",
-              "default": 0.1,
-              "min": 0.05,
-              "max": 0.25,
-              "step": 0.01,
-              "description": "How localized the ripple bulge is, as a fraction of the box perimeter"
-            },
-            {
-              "name": "decay",
-              "type": "number",
-              "default": 0.06,
-              "min": 0.02,
-              "max": 0.2,
-              "step": 0.005,
-              "description": "How fast ripples settle — higher is snappier"
-            },
-            {
-              "name": "radius",
-              "type": "number",
-              "default": 14,
-              "min": 4,
-              "max": 22,
-              "step": 1,
-              "description": "Corner radius in px, shared by the box and its ripple outline"
-            },
-            {
-              "name": "strokeWidth",
-              "type": "number",
-              "default": 1.5,
-              "min": 1,
-              "max": 3,
-              "step": 0.25,
-              "description": "Ripple outline stroke width in px"
-            },
-            {
-              "name": "shakeDistance",
-              "type": "number",
-              "default": 6,
-              "min": 2,
-              "max": 14,
-              "step": 1,
-              "description": "Failure shake travel in px"
-            },
-            {
-              "name": "validate",
-              "type": "function",
-              "default": "undefined",
-              "required": false,
-              "description": "(code: string) => boolean | Promise<boolean> — called when all boxes are filled. Return or resolve true for success, false for failure; the component shows the pending border color while a promise is in flight, then plays the result animation"
-            },
-            {
-              "name": "onSuccess",
-              "type": "function",
-              "default": "undefined",
-              "required": false,
-              "description": "(code: string) => void — fired after the green success wave finishes. Put your post-verification action here (navigate, submit, close modal)"
-            },
-            {
-              "name": "onFailure",
-              "type": "function",
-              "default": "undefined",
-              "required": false,
-              "description": "(code: string) => void — fired after the red pulse and shake finish. By default the boxes have already been cleared and refocused (see autoClearOnFailure)"
-            },
-            {
-              "name": "onComplete",
-              "type": "function",
-              "default": "undefined",
-              "required": false,
-              "description": "(code: string) => void — fired once every time all boxes become filled, before validate runs"
-            },
-            {
-              "name": "onChange",
-              "type": "function",
-              "default": "undefined",
-              "required": false,
-              "description": "(value: string) => void — fired on every edit with the current joined value. Pair with value for controlled usage"
-            },
-            {
-              "name": "value",
-              "type": "string",
-              "default": "undefined",
-              "required": false,
-              "description": "Controlled value — pair with onChange. Omit to let the component manage its own state"
-            },
-            {
-              "name": "defaultValue",
-              "type": "string",
-              "default": "",
-              "required": false,
-              "description": "Initial value for uncontrolled usage"
-            },
-            {
-              "name": "autoClearOnFailure",
-              "type": "boolean",
-              "default": true,
-              "description": "Clear the boxes and refocus the first one after the failure animation"
-            },
-            {
-              "name": "disabled",
-              "type": "boolean",
-              "default": false,
-              "required": false,
-              "description": "Disable all boxes. Inputs are also locked automatically while validate is pending"
-            },
-            {
-              "name": "autoFocus",
-              "type": "boolean",
-              "default": false,
-              "required": false,
-              "description": "Focus the first box on mount"
-            },
-            {
-              "name": "label",
-              "type": "string",
-              "default": "One-time password",
-              "required": false,
-              "description": "Accessible name announced for the group of boxes"
-            }
-          ],
-          "previewHint": "Type or paste the code 123456 to see the success wave — anything else triggers the red double-pulse and shake. Use the DialKit panel to reshape the ripple, swap the caret to block or underscore, and recolor it.",
-          "features": [
-            "Declarative validation: pass validate(code) returning boolean or Promise<boolean> — the component shows a pending ring while the promise is in flight, then runs the success or failure choreography and fires onSuccess / onFailure",
-            "Paste and SMS autofill aware: pasting a full code fills every box from the first, and autocomplete=\"one-time-code\" lets mobile keyboards inject the code from a text message",
-            "Configurable caret: bar uses the native caret with your color; block and underscore render a fake blinking caret that restarts solid on every keystroke, exactly like a native one",
-            "Controlled or uncontrolled — pass value + onChange, or nothing at all and the component manages its own state",
-            "Failure shake ships as plain CSS that the shadcn CLI merges into your globals.css on install, with shake distance exposed as a prop via a CSS custom property",
-            "Accessible: role=group with per-box labels, aria-live announcements for checking / accepted / incorrect, and aria-invalid during failure",
-            "Respects prefers-reduced-motion — ripples become instant color states, the shake and caret blink are disabled",
-            "The ripple engine (RippleBorder) installs as a sibling file, ready to reuse for text inputs and search fields"
-          ]
-        }
-      ]
-    },
-    {
       "slug": "button",
       "name": "Button",
       "category": "button",
@@ -875,6 +637,244 @@
       ]
     },
     {
+      "slug": "otp-input",
+      "name": "OTP Input",
+      "category": "input",
+      "tags": [
+        "otp",
+        "input",
+        "verification",
+        "2fa",
+        "one-time-code",
+        "ripple",
+        "svg",
+        "caret",
+        "form"
+      ],
+      "description": "One-time password input with a living SVG ripple border. Every keystroke nudges the outline, correct codes send a green wave across the boxes, wrong codes bounce red and shake. Validation, carets and all motion parameters are prop-driven.",
+      "createdAt": "2026-07-07T00:00:00Z",
+      "variations": [
+        {
+          "name": "ripple",
+          "displayName": "Ripple",
+          "componentName": "RippleOtp",
+          "tier": "free",
+          "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
+          "animationType": "ripple",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "length",
+              "type": "number",
+              "default": 6,
+              "min": 4,
+              "max": 8,
+              "step": 1,
+              "description": "Number of character boxes"
+            },
+            {
+              "name": "mode",
+              "type": "select",
+              "options": [
+                "numeric",
+                "alphanumeric"
+              ],
+              "default": "numeric",
+              "description": "Which characters the boxes accept — alphanumeric uppercases as you type"
+            },
+            {
+              "name": "masked",
+              "type": "boolean",
+              "default": false,
+              "description": "Render entered characters as dots"
+            },
+            {
+              "name": "rippleOnType",
+              "type": "boolean",
+              "default": false,
+              "description": "Animate the border on every keystroke — off by default, so the ripple only plays for pending / success / failure"
+            },
+            {
+              "name": "pendingRing",
+              "type": "boolean",
+              "default": false,
+              "description": "Oscillating ring while an async validate is pending — off by default, pending shows as border color only"
+            },
+            {
+              "name": "caretColor",
+              "type": "string",
+              "default": "#3B82F6",
+              "description": "Caret color — drives the native bar caret and the fake block / underscore carets"
+            },
+            {
+              "name": "caretShape",
+              "type": "select",
+              "options": [
+                "bar",
+                "block",
+                "underscore"
+              ],
+              "default": "bar",
+              "description": "Caret style — bar is the native caret; block and underscore are rendered carets with a native-feeling blink"
+            },
+            {
+              "name": "staggerMs",
+              "type": "number",
+              "default": 70,
+              "min": 30,
+              "max": 200,
+              "step": 5,
+              "description": "Delay between each box's green pulse in the success wave, in ms"
+            },
+            {
+              "name": "maxAmplitude",
+              "type": "number",
+              "default": 5,
+              "min": 3,
+              "max": 12,
+              "step": 0.5,
+              "description": "Ripple height ceiling in px"
+            },
+            {
+              "name": "bumpWidth",
+              "type": "number",
+              "default": 0.1,
+              "min": 0.05,
+              "max": 0.25,
+              "step": 0.01,
+              "description": "How localized the ripple bulge is, as a fraction of the box perimeter"
+            },
+            {
+              "name": "decay",
+              "type": "number",
+              "default": 0.06,
+              "min": 0.02,
+              "max": 0.2,
+              "step": 0.005,
+              "description": "How fast ripples settle — higher is snappier"
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "default": 14,
+              "min": 4,
+              "max": 22,
+              "step": 1,
+              "description": "Corner radius in px, shared by the box and its ripple outline"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 1.5,
+              "min": 1,
+              "max": 3,
+              "step": 0.25,
+              "description": "Ripple outline stroke width in px"
+            },
+            {
+              "name": "shakeDistance",
+              "type": "number",
+              "default": 6,
+              "min": 2,
+              "max": 14,
+              "step": 1,
+              "description": "Failure shake travel in px"
+            },
+            {
+              "name": "validate",
+              "type": "function",
+              "default": "undefined",
+              "required": false,
+              "description": "(code: string) => boolean | Promise<boolean> — called when all boxes are filled. Return or resolve true for success, false for failure; the component shows the pending border color while a promise is in flight, then plays the result animation"
+            },
+            {
+              "name": "onSuccess",
+              "type": "function",
+              "default": "undefined",
+              "required": false,
+              "description": "(code: string) => void — fired after the green success wave finishes. Put your post-verification action here (navigate, submit, close modal)"
+            },
+            {
+              "name": "onFailure",
+              "type": "function",
+              "default": "undefined",
+              "required": false,
+              "description": "(code: string) => void — fired after the red pulse and shake finish. By default the boxes have already been cleared and refocused (see autoClearOnFailure)"
+            },
+            {
+              "name": "onComplete",
+              "type": "function",
+              "default": "undefined",
+              "required": false,
+              "description": "(code: string) => void — fired once every time all boxes become filled, before validate runs"
+            },
+            {
+              "name": "onChange",
+              "type": "function",
+              "default": "undefined",
+              "required": false,
+              "description": "(value: string) => void — fired on every edit with the current joined value. Pair with value for controlled usage"
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "default": "undefined",
+              "required": false,
+              "description": "Controlled value — pair with onChange. Omit to let the component manage its own state"
+            },
+            {
+              "name": "defaultValue",
+              "type": "string",
+              "default": "",
+              "required": false,
+              "description": "Initial value for uncontrolled usage"
+            },
+            {
+              "name": "autoClearOnFailure",
+              "type": "boolean",
+              "default": true,
+              "description": "Clear the boxes and refocus the first one after the failure animation"
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Disable all boxes. Inputs are also locked automatically while validate is pending"
+            },
+            {
+              "name": "autoFocus",
+              "type": "boolean",
+              "default": false,
+              "required": false,
+              "description": "Focus the first box on mount"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "default": "One-time password",
+              "required": false,
+              "description": "Accessible name announced for the group of boxes"
+            }
+          ],
+          "previewHint": "Type or paste the code 123456 to see the success wave — anything else triggers the red double-pulse and shake. Use the DialKit panel to reshape the ripple, swap the caret to block or underscore, and recolor it.",
+          "features": [
+            "Declarative validation: pass validate(code) returning boolean or Promise<boolean> — the component shows a pending ring while the promise is in flight, then runs the success or failure choreography and fires onSuccess / onFailure",
+            "Paste and SMS autofill aware: pasting a full code fills every box from the first, and autocomplete=\"one-time-code\" lets mobile keyboards inject the code from a text message",
+            "Configurable caret: bar uses the native caret with your color; block and underscore render a fake blinking caret that restarts solid on every keystroke, exactly like a native one",
+            "Controlled or uncontrolled — pass value + onChange, or nothing at all and the component manages its own state",
+            "Failure shake ships as plain CSS that the shadcn CLI merges into your globals.css on install, with shake distance exposed as a prop via a CSS custom property",
+            "Accessible: role=group with per-box labels, aria-live announcements for checking / accepted / incorrect, and aria-invalid during failure",
+            "Respects prefers-reduced-motion — ripples become instant color states, the shake and caret blink are disabled",
+            "The ripple engine (RippleBorder) installs as a sibling file, ready to reuse for text inputs and search fields"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "accordion",
       "name": "Accordion",
       "category": "disclosure",
@@ -1044,5 +1044,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-08-25T16:24:17.508Z"
+  "lastUpdated": "2026-08-27T19:28:28.675Z"
 }

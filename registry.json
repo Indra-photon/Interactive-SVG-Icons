@@ -130,6 +130,59 @@
       ]
     },
     {
+      "name": "refresh-default",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Default",
+      "description": "Click the button to see the refresh icon in action.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-stroke",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Stroke Drawing",
+      "description": "Circular stroke drawing effect",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/stroke.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/stroke.tsx"
+        }
+      ]
+    },
+    {
+      "name": "refresh-dash",
+      "type": "registry:ui",
+      "title": "Refresh Icon - Traveling Dash",
+      "description": "Dashed segments travel along the path",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/refresh/dash.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/refresh/dash.tsx"
+        }
+      ]
+    },
+    {
       "name": "msg-glass-typing",
       "type": "registry:ui",
       "title": "Messages Icon - Typing Indicator",
@@ -183,59 +236,6 @@
           "path": "components/craftui/icons/msg-glass/slideIn.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/icons/msg-glass/slideIn.tsx"
-        }
-      ]
-    },
-    {
-      "name": "refresh-default",
-      "type": "registry:ui",
-      "title": "Refresh Icon - Default",
-      "description": "Click the button to see the refresh icon in action.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/refresh/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/refresh/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "refresh-stroke",
-      "type": "registry:ui",
-      "title": "Refresh Icon - Stroke Drawing",
-      "description": "Circular stroke drawing effect",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/refresh/stroke.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/refresh/stroke.tsx"
-        }
-      ]
-    },
-    {
-      "name": "refresh-dash",
-      "type": "registry:ui",
-      "title": "Refresh Icon - Traveling Dash",
-      "description": "Dashed segments travel along the path",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/refresh/dash.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/refresh/dash.tsx"
         }
       ]
     },
@@ -1266,25 +1266,6 @@
       ]
     },
     {
-      "name": "dots-rotate-default",
-      "type": "registry:ui",
-      "title": "Dots Rotate - Dots Rotate",
-      "description": "Three circular dots that continuously rotate 120 degrees around a center point",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dots-rotate/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dots-rotate/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dots-compress-default",
       "type": "registry:ui",
       "title": "Dots Compress - Dots Compress",
@@ -1300,6 +1281,25 @@
           "path": "components/craftui/loaders/dots-compress/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dots-compress/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dots-rotate-default",
+      "type": "registry:ui",
+      "title": "Dots Rotate - Dots Rotate",
+      "description": "Three circular dots that continuously rotate 120 degrees around a center point",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dots-rotate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dots-rotate/default.tsx"
         }
       ]
     },
@@ -1340,23 +1340,6 @@
       ]
     },
     {
-      "name": "dot-matrix-rain-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Rain - Dot Matrix Rain",
-      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dot-matrix-life-default",
       "type": "registry:ui",
       "title": "Dot Matrix Life - Dot Matrix Life",
@@ -1387,6 +1370,23 @@
           "path": "components/craftui/loaders/dot-matrix-chase/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-matrix-chase/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-rain-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Rain - Dot Matrix Rain",
+      "description": "Each column runs an independent drop cycle. A bright head falls from top to bottom with a trailing glow, then pauses before the next drop begins.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-rain/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-rain/default.tsx"
         }
       ]
     },
@@ -1427,25 +1427,6 @@
       ]
     },
     {
-      "name": "dock-bounce-default",
-      "type": "registry:ui",
-      "title": "Dock Bounce - Dock Bounce",
-      "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dock-bounce/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dock-bounce/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "cross-expand-default",
       "type": "registry:ui",
       "title": "Cross Expand - Cross Expand",
@@ -1461,6 +1442,25 @@
           "path": "components/craftui/loaders/cross-expand/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/cross-expand/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dock-bounce-default",
+      "type": "registry:ui",
+      "title": "Dock Bounce - Dock Bounce",
+      "description": "App icon shoots up, squashes on landing with scaleX/scaleY, decays through two secondary bounces, then pauses before repeating",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dock-bounce/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dock-bounce/default.tsx"
         }
       ]
     },
@@ -1484,25 +1484,6 @@
       ]
     },
     {
-      "name": "circle-spinner-wipe-default",
-      "type": "registry:ui",
-      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
-      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "circular-wave-fill-default",
       "type": "registry:ui",
       "title": "Circular Wave Fill - Circular Wave Fill",
@@ -1518,6 +1499,25 @@
           "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circle-spinner-wipe-default",
+      "type": "registry:ui",
+      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
+      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
         }
       ]
     },
@@ -1560,25 +1560,6 @@
       ]
     },
     {
-      "name": "bars-scale-wave-default",
-      "type": "registry:ui",
-      "title": "Bars Scale Wave - Bars Scale Wave",
-      "description": "Vertical bars grow and shrink in a wave pattern with staggered delays, resembling an audio equalizer",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/bars-scale-wave/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-scale-wave/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "bars-scale-bottom-default",
       "type": "registry:ui",
       "title": "Bars Scale Bottom - Bars Scale Bottom",
@@ -1594,6 +1575,25 @@
           "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-scale-wave-default",
+      "type": "registry:ui",
+      "title": "Bars Scale Wave - Bars Scale Wave",
+      "description": "Vertical bars grow and shrink in a wave pattern with staggered delays, resembling an audio equalizer",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-scale-wave/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-scale-wave/default.tsx"
         }
       ]
     },
@@ -1636,25 +1636,6 @@
       ]
     },
     {
-      "name": "bars-fill-sequential-default",
-      "type": "registry:ui",
-      "title": "Bars Fill Sequential - Bars Fill Sequential",
-      "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/bars-fill-sequential/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-fill-sequential/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "bars-fade-01-fade",
       "type": "registry:ui",
       "title": "Bars Fade - Bars Fade",
@@ -1670,6 +1651,25 @@
           "path": "components/craftui/loaders/bars-fade-01/fade.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/bars-fade-01/fade.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-fill-sequential-default",
+      "type": "registry:ui",
+      "title": "Bars Fill Sequential - Bars Fill Sequential",
+      "description": "Three bars that rise from bottom to top in sequence, creating a wave effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-fill-sequential/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-fill-sequential/default.tsx"
         }
       ]
     },
@@ -1845,10 +1845,10 @@
       ]
     },
     {
-      "name": "audio-bars-horizontal-default",
+      "name": "audio-bars-glow-default",
       "type": "registry:ui",
-      "title": "Audio Bars Sync - Audio Bars Sync",
-      "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
+      "title": "Audio Bars Glow - Audio Bars Glow",
+      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
       "dependencies": [
         "framer-motion"
       ],
@@ -1857,9 +1857,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/audio-bars-horizontal/default.tsx",
+          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-bars-horizontal/default.tsx"
+          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
         }
       ]
     },
@@ -1883,25 +1883,6 @@
       ]
     },
     {
-      "name": "audio-bars-glow-default",
-      "type": "registry:ui",
-      "title": "Audio Bars Glow - Audio Bars Glow",
-      "description": "Six vertical bars with gradient fill, glow effect, and synchronized alternating animation",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/audio-bars-glow/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-bars-glow/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "activity-rings-default",
       "type": "registry:ui",
       "title": "Activity Rings - Activity Rings",
@@ -1917,6 +1898,25 @@
           "path": "components/craftui/loaders/activity-rings/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/activity-rings/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-bars-horizontal-default",
+      "type": "registry:ui",
+      "title": "Audio Bars Sync - Audio Bars Sync",
+      "description": "Six vertical bars with perfectly synchronized alternating heights creating a rhythmic wave",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-bars-horizontal/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-bars-horizontal/default.tsx"
         }
       ]
     },
@@ -1942,25 +1942,6 @@
       ]
     },
     {
-      "name": "theme-button-default",
-      "type": "registry:block",
-      "title": "Theme Button - Theme Button",
-      "description": "Collapsed status pill morphs into an expanded font or theme list via a shared layoutId spring, with a blur cross-fade on the inner content. Themes/fonts, selection, and change callbacks are all props. Includes an inlined iOS pulse spinner so the block ships self-contained.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/theme-button/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/theme-button/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "teletype-clock-default",
       "type": "registry:block",
       "title": "Teletype Clock - Split-Flap Clock",
@@ -1976,6 +1957,25 @@
           "path": "components/craftui/blocks/teletype-clock/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/teletype-clock/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-button-default",
+      "type": "registry:block",
+      "title": "Theme Button - Theme Button",
+      "description": "Collapsed status pill morphs into an expanded font or theme list via a shared layoutId spring, with a blur cross-fade on the inner content. Themes/fonts, selection, and change callbacks are all props. Includes an inlined iOS pulse spinner so the block ships self-contained.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/theme-button/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/theme-button/default.tsx"
         }
       ]
     },
@@ -2022,27 +2022,6 @@
           "path": "components/craftui/blocks/steps-count/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/steps-count/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "profile-card-navbar",
-      "type": "registry:block",
-      "title": "Profile Card - Navbar",
-      "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
-      "dependencies": [
-        "motion",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/profile-card/navbar.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/profile-card/navbar.tsx"
         }
       ]
     },
@@ -2105,6 +2084,27 @@
           "path": "components/craftui/blocks/question-builder-modal/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/question-builder-modal/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "profile-card-navbar",
+      "type": "registry:block",
+      "title": "Profile Card - Navbar",
+      "description": "Small avatar in a phone frame expands via layoutId into a floating profile card with staggered menu groups.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/profile-card/navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/profile-card/navbar.tsx"
         }
       ]
     },
@@ -2266,6 +2266,25 @@
       ]
     },
     {
+      "name": "curve-heading-default",
+      "type": "registry:block",
+      "title": "Curve Heading - Curve Heading",
+      "description": "The headline is not a straight line of text: every glyph is positioned by a Gaussian curve equation, distributed along it by arc length and rotated to its tangent. Perfect for marketing pages.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/curve-heading/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/curve-heading/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "contact-reveal-card-default",
       "type": "registry:block",
       "title": "Contact Reveal Card - Contact Reveal Card",
@@ -2332,6 +2351,27 @@
       ]
     },
     {
+      "name": "ai-chat-default",
+      "type": "registry:block",
+      "title": "AI Chat - AI Chat",
+      "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension. The pickers ship as full APG menus (roving tabindex, arrow-key navigation, focus restore), every control carries an accessible name, closed reveals are inert, the transcript announces through an aria-live region, and all motion honors prefers-reduced-motion.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/ai-chat/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/ai-chat/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "avatar-default",
       "type": "registry:block",
       "title": "Avatar Grid - Avatar Grid",
@@ -2363,27 +2403,6 @@
           "path": "components/craftui/blocks/avatar/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/avatar/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "ai-chat-default",
-      "type": "registry:block",
-      "title": "AI Chat - AI Chat",
-      "description": "A theme-token-driven AI prompt composer. Mode and model pickers morph between a collapsed pill and an expanded panel through a shared layoutId spring with a blur cross-fade; the plus button fans out a radial attachment menu; tool chips reveal with a staggered cross-blur; the mic cross-fades to an animated waveform while a typewriter transcript slides in. Attachments, tools, modes, models, and transcript phrases are all props, with controlled/uncontrolled selection per dimension. The pickers ship as full APG menus (roving tabindex, arrow-key navigation, focus restore), every control carries an accessible name, closed reveals are inert, the transcript announces through an aria-live region, and all motion honors prefers-reduced-motion.",
-      "dependencies": [
-        "motion",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/ai-chat/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/ai-chat/default.tsx"
         }
       ]
     },
@@ -2571,6 +2590,23 @@
       ]
     },
     {
+      "name": "modular-block-default",
+      "type": "registry:block",
+      "title": "Modular Block - Modular Block",
+      "description": "An isometric cube with one corner block cut out and set down beside it — sharp corners, flat shading, nothing else on the page.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/illustrations/modular-block/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/illustrations/modular-block/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "tool-connector-default",
       "type": "registry:block",
       "title": "Tool Connector - Tool Connector",
@@ -2586,23 +2622,6 @@
           "path": "components/craftui/illustrations/tool-connector/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/illustrations/tool-connector/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "modular-block-default",
-      "type": "registry:block",
-      "title": "Modular Block - Modular Block",
-      "description": "An isometric cube with one corner block cut out and set down beside it — sharp corners, flat shading, nothing else on the page.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/illustrations/modular-block/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/illustrations/modular-block/default.tsx"
         }
       ]
     },
@@ -2682,107 +2701,6 @@
           "target": "~/components/craftui/designs/flight-card/default.tsx"
         }
       ]
-    },
-    {
-      "name": "otp-input-ripple",
-      "type": "registry:ui",
-      "title": "OTP Input - Ripple",
-      "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/ui/otp-input/ripple.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/otp-input/ripple.tsx"
-        },
-        {
-          "path": "components/craftui/ui/otp-input/ripple-border.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/ui/otp-input/ripple-border.tsx"
-        }
-      ],
-      "css": {
-        ".ri-field": {
-          "--shake-distance": "6px",
-          "--shake-overshoot": "4px",
-          "--shake-dur-a": "80ms",
-          "--shake-dur-b": "60ms",
-          "--shake-ease": "cubic-bezier(0.22, 1, 0.36, 1)"
-        },
-        ".ri-field.is-shaking": {
-          "animation": "ri-shake calc(var(--shake-dur-a) * 2 + var(--shake-dur-b) * 2) linear"
-        },
-        "@keyframes ri-shake": {
-          "0%": {
-            "transform": "translateX(0)",
-            "animation-timing-function": "var(--shake-ease)"
-          },
-          "28.57%": {
-            "transform": "translateX(var(--shake-distance))",
-            "animation-timing-function": "var(--shake-ease)"
-          },
-          "57.14%": {
-            "transform": "translateX(calc(var(--shake-distance) * -1))",
-            "animation-timing-function": "var(--shake-ease)"
-          },
-          "78.57%": {
-            "transform": "translateX(var(--shake-overshoot))",
-            "animation-timing-function": "var(--shake-ease)"
-          },
-          "100%": {
-            "transform": "translateX(0)"
-          }
-        },
-        ".ri-caret": {
-          "position": "absolute",
-          "pointer-events": "none",
-          "background": "var(--ri-caret-color, #3B82F6)",
-          "animation": "ri-caret-blink 1.1s steps(2, jump-none) infinite"
-        },
-        ".ri-caret-block": {
-          "--ri-caret-max": "0.25",
-          "inset": "4px"
-        },
-        ".ri-caret-underscore": {
-          "--ri-caret-max": "1",
-          "left": "22%",
-          "right": "22%",
-          "bottom": "7px",
-          "height": "2px",
-          "border-radius": "1px"
-        },
-        "@keyframes ri-caret-blink": {
-          "0%, 49%": {
-            "opacity": "var(--ri-caret-max, 1)"
-          },
-          "50%, 100%": {
-            "opacity": "0"
-          }
-        },
-        "@media (prefers-reduced-motion: reduce)": {
-          ".ri-field": {
-            "animation": "none !important",
-            "transform": "none !important"
-          },
-          ".ri-caret": {
-            "animation": "none",
-            "opacity": "var(--ri-caret-max, 1)"
-          }
-        }
-      },
-      "cssVars": {
-        "light": {
-          "success": "oklch(0.723 0.219 149.579)"
-        },
-        "dark": {
-          "success": "oklch(0.696 0.17 162.48)"
-        }
-      }
     },
     {
       "name": "button-whimsical",
@@ -2969,6 +2887,107 @@
           "target": "~/components/craftui/ui/alert-dialog/reactive.tsx"
         }
       ]
+    },
+    {
+      "name": "otp-input-ripple",
+      "type": "registry:ui",
+      "title": "OTP Input - Ripple",
+      "description": "Each box wears an SVG outline that behaves like a liquid surface — typing nudges it, moving to the next box hands the ripple off toward its right edge. Pass a validate function and the component choreographs the pending ring, the staggered success wave and the red shake by itself, then calls your onSuccess / onFailure.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/ui/otp-input/ripple.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/otp-input/ripple.tsx"
+        },
+        {
+          "path": "components/craftui/ui/otp-input/ripple-border.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/ui/otp-input/ripple-border.tsx"
+        }
+      ],
+      "css": {
+        ".ri-field": {
+          "--shake-distance": "6px",
+          "--shake-overshoot": "4px",
+          "--shake-dur-a": "80ms",
+          "--shake-dur-b": "60ms",
+          "--shake-ease": "cubic-bezier(0.22, 1, 0.36, 1)"
+        },
+        ".ri-field.is-shaking": {
+          "animation": "ri-shake calc(var(--shake-dur-a) * 2 + var(--shake-dur-b) * 2) linear"
+        },
+        "@keyframes ri-shake": {
+          "0%": {
+            "transform": "translateX(0)",
+            "animation-timing-function": "var(--shake-ease)"
+          },
+          "28.57%": {
+            "transform": "translateX(var(--shake-distance))",
+            "animation-timing-function": "var(--shake-ease)"
+          },
+          "57.14%": {
+            "transform": "translateX(calc(var(--shake-distance) * -1))",
+            "animation-timing-function": "var(--shake-ease)"
+          },
+          "78.57%": {
+            "transform": "translateX(var(--shake-overshoot))",
+            "animation-timing-function": "var(--shake-ease)"
+          },
+          "100%": {
+            "transform": "translateX(0)"
+          }
+        },
+        ".ri-caret": {
+          "position": "absolute",
+          "pointer-events": "none",
+          "background": "var(--ri-caret-color, #3B82F6)",
+          "animation": "ri-caret-blink 1.1s steps(2, jump-none) infinite"
+        },
+        ".ri-caret-block": {
+          "--ri-caret-max": "0.25",
+          "inset": "4px"
+        },
+        ".ri-caret-underscore": {
+          "--ri-caret-max": "1",
+          "left": "22%",
+          "right": "22%",
+          "bottom": "7px",
+          "height": "2px",
+          "border-radius": "1px"
+        },
+        "@keyframes ri-caret-blink": {
+          "0%, 49%": {
+            "opacity": "var(--ri-caret-max, 1)"
+          },
+          "50%, 100%": {
+            "opacity": "0"
+          }
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          ".ri-field": {
+            "animation": "none !important",
+            "transform": "none !important"
+          },
+          ".ri-caret": {
+            "animation": "none",
+            "opacity": "var(--ri-caret-max, 1)"
+          }
+        }
+      },
+      "cssVars": {
+        "light": {
+          "success": "oklch(0.723 0.219 149.579)"
+        },
+        "dark": {
+          "success": "oklch(0.696 0.17 162.48)"
+        }
+      }
     },
     {
       "name": "accordion-clip",

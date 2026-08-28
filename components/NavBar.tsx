@@ -28,7 +28,9 @@ function NavKbd({ children }: { children: React.ReactNode }) {
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const { modKey, mounted } = useModKey();
+  // The theme shortcut is a bare "D" now, so there's no mod symbol to render
+  // here — only the hydration gate is still needed.
+  const { mounted } = useModKey();
 
   if (!mounted) return <div className="w-8 h-8" />;
 
@@ -40,8 +42,8 @@ function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="relative flex items-center justify-center w-8 h-8 rounded-md text-nav-foreground-muted hover:text-nav-foreground transition-colors"
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      aria-keyshortcuts="Meta+D Control+D"
-      title={`${isDark ? "Switch to light theme" : "Switch to dark theme"} (${modKey}D)`}
+      aria-keyshortcuts="D"
+      title={`${isDark ? "Switch to light theme" : "Switch to dark theme"} (D)`}
       whileTap={{ scale: 0.96 }}
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -333,7 +335,7 @@ export function NavBar() {
                       <NavKbd>{modKey}K</NavKbd> Search
                     </span>
                     <span className="flex items-center gap-1.5 text-[11px] tracking-tight text-nav-foreground-muted">
-                      <NavKbd>{modKey}D</NavKbd> Theme
+                      <NavKbd>D</NavKbd> Theme
                     </span>
                   </div>
                 </motion.div>
