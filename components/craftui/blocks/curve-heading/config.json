@@ -1,0 +1,77 @@
+{
+  "slug": "curve-heading",
+  "name": "Curve Heading",
+  "category": "creative",
+  "tags": [
+    "creative",
+    "heading",
+    "text",
+    "curve",
+    "scroll",
+    "card",
+    "animation"
+  ],
+  "description": "A card whose headline is laid out along a bell curve and flattens onto its own baseline as the card scrolls into view, then bends again with scroll velocity.",
+  "createdAt": "2026-08-27T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Curve Heading",
+      "componentName": "CurveHeading",
+      "previewHint": "Scroll the card in and out of view — the drooping headline flattens on entry, re-bows on exit, and bends with how hard you scroll",
+      "tier": "free",
+      "responsive": true,
+      "description": "The headline is not a straight line of text: every glyph is positioned by a Gaussian curve equation, distributed along it by arc length and rotated to its tangent. Perfect for marketing pages.",
+      "animationType": "scroll",
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "headline",
+          "type": "string",
+          "default": "\"Design Engineer\"",
+          "required": false,
+          "description": "The line laid along the curve. Split per glyph, so keep it to a short phrase that fits on one line."
+        },
+        {
+          "name": "copy",
+          "type": "string",
+          "required": false,
+          "description": "Body copy under the headline. Defaults to the built-in editorial paragraph."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the card itself."
+        },
+        {
+          "name": "scrollRoot",
+          "type": "React.RefObject<HTMLElement | null>",
+          "required": false,
+          "description": "Scrolling ancestor to measure against. Left undefined the block reads the window and the viewport, which is what a real page wants. Point it at an overflow-y container and both the entrance trigger and the velocity bend follow that container instead."
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "required": false,
+          "description": "Optional nudge centred in the top runway, e.g. \"Scroll me\", with a pair of dots drifting downward beside it. The runway is a blank field of scene colour, so on first paint nothing tells you the card is below it. Left undefined the runway stays empty, which is what a real page wants."
+        }
+      ],
+      "features": [
+        "The baseline is a Gaussian, y(x) = A·(1 − e^(−x²∕2σ²)), pinned so the middle of the word holds level while both ends droop away — flat tails, one smooth hump, unlike a circular arc",
+        "Glyphs are distributed along the curve by arc length, not by horizontal position, so the word bends without stretching — which is what makes the bowed line look elastically narrowed",
+        "Amplitude is the single degree of freedom: as it springs to 0 the curve, its tangent rotation and its arc length all collapse to the flat case, so the text realigns onto the browser's own centred layout with no per-glyph target positions anywhere in the file",
+        "Arc length is tabulated over 128 samples and inverted by binary search, memoised in a bounded cache keyed to a tenth of a pixel, so all fifteen glyphs sharing an amplitude solve the curve once",
+        "The entrance pose and the scroll-velocity bend are the same quantity and simply add, so one curve carries both",
+        "Scroll velocity is mapped through tanh rather than clamped, so ordinary scrolling actually bends the word instead of sitting far below a ceiling only a fling ever reaches",
+        "Both amplitudes tick every frame, so paints are coalesced onto motion's render step instead of writing each glyph's style twice per frame",
+        "`will-change` is written from JS only while the curve is bent — at rest the line is plain static text holding no compositor layer",
+        "A hand-rolled IntersectionObserver reports which edge the card is parked on, so the whole pose mirrors when you scroll back up: card from above, line falling, hump inverted",
+        "Respects prefers-reduced-motion — one multiplier collapses every travelling value at once, leaving the fade",
+        "Outer span holds each glyph's untransformed slot in normal text flow and the inner span carries the transform, so measuring and painting never fight; a ResizeObserver and document.fonts.ready re-measure after a webfont swap or resize"
+      ],
+      "inspiration": []
+    }
+  ]
+}
