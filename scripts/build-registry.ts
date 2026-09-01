@@ -346,6 +346,21 @@ async function buildCatalogRegistry(
         const deps = variation.dependencies || ['framer-motion'];
         const registryDeps = variation.registryDependencies || [];
 
+        // Sibling files (design notes, sub-components) shipped alongside the
+        // variation file. Paths are relative to the block directory.
+        const extraFiles: string[] = variation.extraFiles || [];
+        const extraFileEntries = await Promise.all(
+          extraFiles.map(async (rel: string) => {
+            const filePath = `components/craftui/${catalog.dir}/${blockSlug}/${rel}`;
+            return {
+              path: filePath,
+              content: await fs.readFile(filePath, 'utf-8'),
+              type: 'registry:file',
+              target: `~/components/craftui/${catalog.dir}/${blockSlug}/${rel}`,
+            };
+          }),
+        );
+
         const registryEntry: BlockRegistryFile = {
           name: variationSlug,
           type: 'registry:block',
@@ -366,7 +381,8 @@ async function buildCatalogRegistry(
               content: componentCode,
               type: 'registry:component',
               target: `~/components/craftui/${catalog.dir}/${blockSlug}/${variation.name}.tsx`
-            }
+            },
+            ...extraFileEntries,
           ],
           meta: {
             displayName: `${configData.name} - ${variation.displayName}`,
@@ -397,7 +413,12 @@ async function buildCatalogRegistry(
               path: componentPath,
               type: 'registry:component',
               target: `~/components/craftui/${catalog.dir}/${blockSlug}/${variation.name}.tsx`
-            }
+            },
+            ...extraFileEntries.map(({ path: p, type, target }) => ({
+              path: p,
+              type,
+              target,
+            })),
           ]
         });
 
