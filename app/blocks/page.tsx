@@ -4,6 +4,8 @@ import { Suspense } from 'react';
 import type { BlockRegistry } from '@/types/block';
 import { buildBlockSidebarNodes } from '@/lib/sidebar-data';
 import { BlocksPageShell } from '@/components/block-gallery/BlocksPageShell';
+import { BLOCKS_CATALOG } from '@/lib/catalog-config';
+import { loadDesignDocs } from '@/lib/design-docs';
 
 function loadBlockData() {
   const registryPath = path.join(process.cwd(), 'public/r/blocks.json');
@@ -23,6 +25,10 @@ export default function BlocksPage() {
 
   const firstSlug = blocks[0]?.slug ?? '';
   const firstVariation = blocks[0]?.variations[0]?.name ?? '';
+  const designDocs = loadDesignDocs(
+    BLOCKS_CATALOG.catalogDir,
+    blocks.map((b) => b.slug),
+  );
 
   return (
     <Suspense>
@@ -31,6 +37,7 @@ export default function BlocksPage() {
         sidebarSections={sidebarSections}
         firstSlug={firstSlug}
         firstVariation={firstVariation}
+        designDocs={designDocs}
       />
     </Suspense>
   );

@@ -5,6 +5,7 @@ import type { SectionRegistry } from '@/types/section';
 import { buildBlockSidebarNodes } from '@/lib/sidebar-data';
 import { BlocksPageShell } from '@/components/block-gallery/BlocksPageShell';
 import { SECTIONS_CATALOG } from '@/lib/catalog-config';
+import { loadDesignDocs } from '@/lib/design-docs';
 
 function loadSectionData() {
   const registryPath = path.join(process.cwd(), 'public/r/sections.json');
@@ -30,6 +31,10 @@ export default function SectionsPage() {
 
   const firstSlug = sections[0]?.slug ?? '';
   const firstVariation = sections[0]?.variations[0]?.name ?? '';
+  const designDocs = loadDesignDocs(
+    SECTIONS_CATALOG.catalogDir,
+    sections.map((s) => s.slug),
+  );
 
   return (
     <Suspense>
@@ -39,6 +44,7 @@ export default function SectionsPage() {
         firstSlug={firstSlug}
         firstVariation={firstVariation}
         catalog={SECTIONS_CATALOG}
+        designDocs={designDocs}
       />
     </Suspense>
   );
