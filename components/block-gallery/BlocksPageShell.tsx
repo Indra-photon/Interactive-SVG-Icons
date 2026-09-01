@@ -12,6 +12,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { BlockContentPanel } from "./BlockContentPanel";
+import { FullscreenPreview } from "./FullscreenPreview";
 // import { PatternSection } from "@/components/PatternSection";
 import type { Block } from "@/types/block";
 import { BLOCKS_CATALOG, type CatalogUIConfig } from "@/lib/catalog-config";
@@ -57,6 +58,28 @@ export function BlocksPageShell({
     if (variation) params.set("variation", variation);
     router.replace(`${catalog.basePath}?${params.toString()}`, { scroll: false });
   };
+
+  /* Full-screen view is a query param on this same route rather than a route of
+   * its own: the URL stays deep-linkable, back and forward work without extra
+   * wiring, and `/sections/[slug]` keeps its dynamic segment — a static
+   * `/sections/preview` would shadow any item whose slug happened to be
+   * "preview". */
+  const isFullscreen = searchParams.get("view") === "full";
+
+  if (isFullscreen && activeSlug) {
+    const params = new URLSearchParams();
+    params.set("slug", activeSlug);
+    if (activeVariation) params.set("variation", activeVariation);
+
+    return (
+      <FullscreenPreview
+        blockSlug={activeSlug}
+        variationName={activeVariation}
+        catalogDir={catalog.catalogDir}
+        exitHref={`${catalog.basePath}?${params.toString()}`}
+      />
+    );
+  }
 
   return (
     <div className="h-[calc(100dvh-1.5rem)] w-full">

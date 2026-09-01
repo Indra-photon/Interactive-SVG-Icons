@@ -1,0 +1,259 @@
+{
+  "slug": "akta-hero-01",
+  "name": "Akta Hero 01",
+  "category": "hero-section",
+  "tags": [
+    "hero",
+    "saas",
+    "api",
+    "data",
+    "technical",
+    "monospace",
+    "logo-wall",
+    "navbar",
+    "design-system"
+  ],
+  "description": "A hero for data and API products drawn as a technical document rather than a marketing page: square planes separated by hairline rules, L-shaped corner crop marks as the only ornament, and an all-monospace UI voice. The panel at its centre demonstrates the product instead of describing it \u2014 a field of 168 ticks starts raw and denoises to the 197 signals that survive filtering, once, when it scrolls into view. Ships the full akta design language as prefixed tokens, so the same scale, devices and rules build every following section.",
+  "createdAt": "2026-09-01T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Akta Hero 01",
+      "componentName": "AktaHero01",
+      "previewHint": "Hover either CTA \u2014 the corner brackets pull flush and the label re-states itself. Scroll the panel into view to watch the noise field resolve into signal.",
+      "tier": "free",
+      "responsive": true,
+      "description": "A hero for data and API products drawn as a technical document: square planes, hairline rules, corner crop marks, and an uppercase monospace UI voice against one blue accent. The centre panel denoises a 168-tick noise field down to its retained signals on scroll, the logo wall cycles customer wordmarks on a spring, and every token ships akta- prefixed so the design language is reusable across a whole site.",
+      "animationType": "scroll",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "@tabler/icons-react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "extraFiles": [
+        "design.md"
+      ],
+      "props": [
+        {
+          "name": "plateImage",
+          "type": "string | null",
+          "default": "\"/paper-image/AIHero01.png\"",
+          "required": false,
+          "description": "Decorative photographic plate behind the panel cluster. Painted as a CSS background layer rather than an <img>, so a missing file degrades to the hatch beneath it instead of a broken image. Pass null to force the hatch."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the section element."
+        }
+      ],
+      "features": [
+        "Borders are shadows: depth is a layered box-shadow and every separator is a single-edge inset shadow, so surfaces cost no layout space and stay transparent enough to survive on top of a photographic plate",
+        "The corner notch is one pseudo-element drawing a full border under a four-layer mask that keeps only the corners \u2014 no wrapper markup, no four spans, and the brackets track the element's real size at every breakpoint",
+        "Notch reveal animates `inset` rather than a transform, because pushing four corners outward needs a scale, and scale is proportional: on a 200x48 button that reads as ~8px sideways against ~2px vertically",
+        "The signal field rests filtered, not raw, so a no-JS or reduced-motion visitor meets the truthful end state rather than a field that never resolves; the raw state is only armed once motion is confirmed allowed",
+        "Tick heights come from a deterministic hash rather than Math.random(), so server and client render byte-identical markup instead of hydrating with a mismatch and a visible repaint",
+        "Rolling labels clip on the label wrapper, never the button \u2014 the button is a notch, and its brackets live outside the box, so overflow-hidden on it would shear them off",
+        "The logo wall gates its interval on in-view and stagger both the starting mark and the period by cell index, so six cells never flip in lockstep and nothing ticks off-screen",
+        "Full-bleed bands are siblings of the grid container, so their rules cross the whole viewport while the content stays on the 1440 rail; flush corner notches mark every junction where a rail meets a band",
+        "Every custom property, class and keyframe is akta- prefixed, so the block cannot collide with or be re-skinned by the host's own tokens",
+        "The palette is 22 literal oklch values rather than references to Tailwind's stops, so the block looks identical on Tailwind v3, v4, and in projects that customised their own blue",
+        "Respects prefers-reduced-motion throughout, and every resting state outside the motion guard is the meaningful one"
+      ],
+      "inspiration": [],
+      "css": {
+        "@property --akta-notch-arm": {
+          "syntax": "\"<length>\"",
+          "inherits": "true",
+          "initial-value": "12px"
+        },
+        "@property --akta-notch-inset": {
+          "syntax": "\"<length>\"",
+          "inherits": "true",
+          "initial-value": "6px"
+        },
+        "@layer components": {
+          ".akta-notch": {
+            "position": "relative",
+            "--akta-notch-color": "oklch(0.488 0.243 264.376)",
+            "--akta-notch-weight": "1.5px",
+            "--akta-notch-rest": "6px"
+          },
+          ".akta-notch::before": {
+            "content": "\"\"",
+            "position": "absolute",
+            "inset": "calc(var(--akta-notch-inset) * -1)",
+            "border": "var(--akta-notch-weight, 1.5px) solid var(--akta-notch-color, currentColor)",
+            "pointer-events": "none",
+            "--akta-notch-window": "linear-gradient(#000 0 0) no-repeat",
+            "-webkit-mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)",
+            "mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)"
+          },
+          ".akta-notch-top::before": {
+            "-webkit-mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm)",
+            "mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm)"
+          },
+          ".akta-notch-bottom::before": {
+            "-webkit-mask": "var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)",
+            "mask": "var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)"
+          },
+          ".akta-notch-diagonal::before": {
+            "-webkit-mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)",
+            "mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)"
+          },
+          ".akta-notch-reveal": {
+            "--akta-notch-inset": "var(--akta-notch-rest, 6px)"
+          },
+          ".akta-notch-reveal:hover, .akta-notch-reveal:focus-visible": {
+            "--akta-notch-inset": "0px"
+          },
+          ".akta-hatch": {
+            "background-image": "repeating-linear-gradient(var(--akta-hatch-angle, 45deg), transparent 0, transparent var(--akta-hatch-gap, 7px), var(--akta-hatch-color, color-mix(in oklab, currentColor 12%, transparent)) var(--akta-hatch-gap, 7px), var(--akta-hatch-color, color-mix(in oklab, currentColor 12%, transparent)) calc(var(--akta-hatch-gap, 7px) + var(--akta-hatch-weight, 1px)))"
+          },
+          ".akta-hatch-reverse": {
+            "--akta-hatch-angle": "-45deg"
+          },
+          ".akta-hatch-dense": {
+            "--akta-hatch-gap": "4px"
+          },
+          ".akta-plate": {
+            "max-width": "90rem",
+            "background-color": "oklch(0.985 0.002 247.839)",
+            "background-image": "var(--akta-plate-image, none), repeating-linear-gradient(45deg, transparent 0, transparent 7px, oklch(0.928 0.006 264.531) 7px, oklch(0.928 0.006 264.531) 8px)",
+            "background-size": "cover, auto",
+            "background-position": "center center, 0 0",
+            "background-repeat": "no-repeat, repeat"
+          },
+          ".akta-roll": {
+            "position": "relative",
+            "display": "inline-flex",
+            "overflow": "hidden"
+          },
+          ".akta-roll-face": {
+            "display": "inline-flex",
+            "align-items": "center",
+            "gap": "0.625rem"
+          },
+          ".akta-roll-face-next": {
+            "position": "absolute",
+            "inset": "0",
+            "transform": "translateY(100%)"
+          },
+          ".akta-roll-host:hover .akta-roll-face, .akta-roll-host:focus-visible .akta-roll-face": {
+            "transform": "translateY(-100%)"
+          },
+          ".akta-roll-host:hover .akta-roll-face-next, .akta-roll-host:focus-visible .akta-roll-face-next": {
+            "transform": "translateY(0)"
+          },
+          ".akta-roll-diagonal .akta-roll-face": {
+            "position": "absolute",
+            "inset": "0",
+            "justify-content": "center"
+          },
+          ".akta-roll-diagonal .akta-roll-face-next": {
+            "transform": "translate(-100%, 100%)"
+          },
+          ".akta-roll-host:hover .akta-roll-diagonal .akta-roll-face, .akta-roll-host:focus-visible .akta-roll-diagonal .akta-roll-face": {
+            "transform": "translate(100%, -100%)"
+          },
+          ".akta-roll-host:hover .akta-roll-diagonal .akta-roll-face-next, .akta-roll-host:focus-visible .akta-roll-diagonal .akta-roll-face-next": {
+            "transform": "translate(0, 0)"
+          },
+          ".akta-tick": {
+            "flex": "none"
+          },
+          ".akta-tick-noise": {
+            "opacity": "0.16"
+          },
+          "[data-akta-signal=\"armed\"] .akta-tick-noise": {
+            "opacity": "1"
+          },
+          "@media (max-width: 639px)": {
+            ".akta-notch-reveal": {
+              "--akta-notch-arm": "8px",
+              "--akta-notch-weight": "1px",
+              "--akta-notch-rest": "4px"
+            },
+            ".akta-roll-face": {
+              "gap": "0.375rem"
+            }
+          },
+          "@media (prefers-reduced-motion: no-preference)": {
+            ".akta-notch-reveal::before": {
+              "transition": "inset 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
+            },
+            ".akta-roll-face": {
+              "transition": "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
+            },
+            "[data-akta-signal=\"run\"] .akta-tick-noise": {
+              "animation": "akta-denoise 0.45s ease-out both",
+              "animation-delay": "calc(var(--akta-i) * 3ms)"
+            },
+            "[data-akta-enter]": {
+              "animation": "akta-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards"
+            },
+            "[data-akta-enter=\"1\"]": {
+              "animation-delay": "0.05s"
+            },
+            "[data-akta-enter=\"2\"]": {
+              "animation-delay": "0.12s"
+            },
+            "[data-akta-enter=\"3\"]": {
+              "animation-delay": "0.19s"
+            },
+            "[data-akta-enter=\"4\"]": {
+              "animation-delay": "0.26s"
+            },
+            "[data-akta-enter=\"5\"]": {
+              "animation-delay": "0.34s"
+            },
+            "[data-akta-enter=\"6\"]": {
+              "animation-delay": "0.41s"
+            }
+          },
+          "@supports (animation-timeline: view())": {
+            "@media (prefers-reduced-motion: no-preference)": {
+              "[data-akta-reveal]": {
+                "animation": "akta-enter 1s linear both",
+                "animation-timeline": "view()",
+                "animation-range": "entry 10% cover 28%"
+              }
+            }
+          },
+          ".dark .akta-notch": {
+            "--akta-notch-color": "oklch(0.546 0.245 262.881)"
+          },
+          ".dark .akta-plate": {
+            "background-color": "oklch(0.13 0.028 261.692)",
+            "background-image": "var(--akta-plate-image, none), repeating-linear-gradient(45deg, transparent 0, transparent 7px, oklch(0.278 0.033 256.848) 7px, oklch(0.278 0.033 256.848) 8px)"
+          }
+        },
+        "@keyframes akta-denoise": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0.16"
+          }
+        },
+        "@keyframes akta-enter": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(12px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      }
+    }
+  ]
+}

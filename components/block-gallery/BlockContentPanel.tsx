@@ -11,6 +11,8 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Tick01Icon,
 } from "@hugeicons/core-free-icons";
+import Link from "next/link";
+import { IconArrowsMaximize } from "@tabler/icons-react";
 import { BlockPreview } from "./BlockPreview";
 import { InstallCommand } from "@/components/InstallCommand";
 import { PropsTable } from "@/components/PropsTable";
@@ -184,6 +186,18 @@ function VariationDetail({
         <Paragraph variant="lead" className="mb-8 mt-1">
           {variation.description}
         </Paragraph>
+
+        {/* Open the item on its own, with no gallery chrome — the only way to
+            read a page-width section at the width it actually ships at. */}
+        <div className="mb-3 flex justify-end">
+          <Link
+            href={`${catalog.basePath}?slug=${block.slug}&variation=${variation.name}&view=full`}
+            className="flex items-center gap-2 rounded-md border border-border bg-card px-3 py-1.5 text-xs font-mono tracking-tight text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            <IconArrowsMaximize className="size-3.5" aria-hidden="true" />
+            Full screen
+          </Link>
+        </div>
 
         {/* Preview */}
         <BlockPreview
