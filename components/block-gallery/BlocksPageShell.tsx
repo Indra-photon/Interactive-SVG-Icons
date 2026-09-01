@@ -24,6 +24,8 @@ interface BlocksPageShellProps {
   firstVariation: string;
   /** Which catalog is being rendered. Defaults to blocks. */
   catalog?: CatalogUIConfig;
+  /** Raw `design.md` per item slug, for items that ship one. */
+  designDocs?: Record<string, string>;
 }
 
 export function BlocksPageShell({
@@ -32,6 +34,7 @@ export function BlocksPageShell({
   firstSlug,
   firstVariation,
   catalog = BLOCKS_CATALOG,
+  designDocs,
 }: BlocksPageShellProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -107,6 +110,7 @@ export function BlocksPageShell({
             activeVariation={activeVariation}
             onVariationSelect={handleSelect}
             catalog={catalog}
+            designDocs={designDocs}
           />
         </SidebarInset>
       </SidebarProvider>

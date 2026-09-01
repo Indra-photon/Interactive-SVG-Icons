@@ -14,12 +14,19 @@ import {
 import Link from "next/link";
 import { IconArrowsMaximize } from "@tabler/icons-react";
 import { BlockPreview } from "./BlockPreview";
+import { DesignDocDrawer } from "./DesignDocDrawer";
+import {
+  DetailRail,
+  type RailRelatedItem,
+} from "@/components/gallery/DetailRail";
+import { ShareButton } from "@/components/gallery/ShareButton";
 import { InstallCommand } from "@/components/InstallCommand";
 import { PropsTable } from "@/components/PropsTable";
 import { Paragraph } from "@/components/Paragraph";
 import type { Block } from "@/types/block";
 import { BLOCKS_CATALOG, type CatalogUIConfig } from "@/lib/catalog-config";
 import { installCommand, registryItemName } from "@/lib/registry";
+import { pickRelated } from "@/lib/gallery-related";
 
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -145,21 +152,42 @@ function VariationDetail({
   variation,
   panelKey,
   baseUrl,
+  designDoc,
+  related,
 }: {
   block: Block;
   catalog: CatalogUIConfig;
   variation: Block["variations"][number];
   panelKey: string;
   baseUrl: string;
+  /** Raw `design.md`, when this item ships one. */
+  designDoc?: string;
+  /** Siblings in the same category, for the rail. */
+  related: RailRelatedItem[];
 }) {
-  const installCmd = installCommand(
-    registryItemName(block.slug, variation.name),
-    baseUrl
-  );
+  const registryItem = registryItemName(block.slug, variation.name);
+  const installCmd = installCommand(registryItem, baseUrl);
+  const showRail = catalog.showDetailRail;
+
+  const railMeta = [
+    { label: "Tier", value: variation.tier },
+    { label: "Category", value: block.category },
+    { label: "Motion", value: variation.animationType },
+    ...(variation.dependencies?.length
+      ? [{ label: "Deps", value: variation.dependencies.join(", ") }]
+      : []),
+  ];
 
   return (
+    <div className="flex h-full min-h-0 overflow-hidden">
+    {/* With the rail alongside, this column takes all the width the rail
+        doesn't rather than stopping at its own cap — otherwise the leftover
+        opens as a dead gutter between the two. `min-w-0` so the props table
+        can scroll inside it instead of forcing the column wider. */}
     <div
-      className={`w-full ${catalog.detailWidthClass} overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16`}
+      className={`overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16 ${
+        showRail ? "min-w-0 flex-1" : `w-full ${catalog.detailWidthClass}`
+      }`}
     >
       <motion.div
         key={panelKey}
@@ -189,7 +217,19 @@ function VariationDetail({
 
         {/* Open the item on its own, with no gallery chrome — the only way to
             read a page-width section at the width it actually ships at. */}
-        <div className="mb-3 flex justify-end">
+        <div className="mb-3 flex justify-end gap-2">
+          {/* Only for items that ship a design.md alongside them. */}
+          {designDoc && (
+            <DesignDocDrawer
+              content={designDoc}
+              title={`${block.name} — ${variation.displayName}`}
+            />
+          )}
+          {/* The rail carries share above xl; this is the copy for narrower
+              screens, matching how the install command is handled. */}
+          <div className={showRail ? "xl:hidden" : undefined}>
+            <ShareButton title={`${block.name} — ${variation.displayName}`} />
+          </div>
           <Link
             href={`${catalog.basePath}?slug=${block.slug}&variation=${variation.name}&view=full`}
             className="flex items-center gap-2 rounded-md border border-border bg-card px-3 py-1.5 text-xs font-mono tracking-tight text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
@@ -216,7 +256,7 @@ function VariationDetail({
           </p>
         )}
 
-        {/* Installation */}
+        {/* Installation — directly above the props table, at every width. */}
         <InstallCommand command={installCmd} />
 
         {/* Props table */}
@@ -306,6 +346,19 @@ function VariationDetail({
         */}
       </motion.div>
     </div>
+
+      {showRail && (
+        <DetailRail
+          registryName={registryItem}
+          sourcePath={`components/craftui/${catalog.catalogDir}/${block.slug}/${variation.name}.tsx`}
+          itemLabel={`${block.name} — ${variation.displayName}`}
+          description={variation.description}
+          meta={railMeta}
+          related={related}
+          relatedLabel={`More in ${block.category}`}
+        />
+      )}
+    </div>
   );
 }
 
@@ -318,6 +371,8 @@ interface BlockContentPanelProps {
   onVariationSelect: (slug: string, variation: string) => void;
   /** Which catalog is being rendered. Defaults to blocks. */
   catalog?: CatalogUIConfig;
+  /** Raw `design.md` per item slug, for items that ship one. */
+  designDocs?: Record<string, string>;
 }
 
 export function BlockContentPanel({
@@ -326,6 +381,7 @@ export function BlockContentPanel({
   activeVariation,
   onVariationSelect,
   catalog = BLOCKS_CATALOG,
+  designDocs,
 }: BlockContentPanelProps) {
   const activeBlock = blocks.find((b) => b.slug === activeSlug);
   const activeVariationData = activeBlock?.variations.find(
@@ -338,6 +394,17 @@ export function BlockContentPanel({
     typeof window !== "undefined"
       ? window.location.origin
       : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
+
+  // No thumbnails here: a block preview is a full component tree, and four of
+  // them dynamically imported beside the one being previewed is real cost for
+  // decoration. Loaders and icons are small enough to earn theirs.
+  const related: RailRelatedItem[] = pickRelated(
+    blocks,
+    activeSlug ?? "",
+  ).map((item) => ({
+    label: item.name,
+    href: `${catalog.basePath}?slug=${item.slug}&variation=${item.variations[0]?.name ?? ""}`,
+  }));
 
   // A catalog with nothing in it yet: the sidebar is empty and no slug can
   // resolve, so the panel would otherwise render a blank pane with no
@@ -377,6 +444,8 @@ export function BlockContentPanel({
               catalog={catalog}
               panelKey={panelKey}
               baseUrl={baseUrl}
+              designDoc={designDocs?.[activeBlock.slug]}
+              related={related}
             />
           ) : (
             <BlockOverview

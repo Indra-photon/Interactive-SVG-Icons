@@ -18,6 +18,13 @@ import { MorphArrow } from "@/components/ui/morph-arrow";
 import { Paragraph } from "@/components/Paragraph";
 import type { Icon, InspirationLink } from "@/types/icon";
 import { installCommand, registryItemName } from "@/lib/registry";
+import { pickRelated } from "@/lib/gallery-related";
+import {
+  DetailRail,
+  type RailRelatedItem,
+} from "@/components/gallery/DetailRail";
+import { RailMiniPreview } from "@/components/gallery/RailMiniPreview";
+import { ShareButton } from "@/components/gallery/ShareButton";
 
 // ── Variation preview card (overview grid) ────────────────────────────────────
 
@@ -123,20 +130,33 @@ function VariationDetail({
   variation,
   buttonCode,
   panelKey,
+  related,
 }: {
   icon: Icon;
   variation: Icon["variations"][number];
   buttonCode?: string;
   panelKey: string;
+  /** Siblings in the same category, for the rail. */
+  related: RailRelatedItem[];
 }) {
-  const installCmd = installCommand(
-    registryItemName(icon.slug, variation.name)
-  );
+  const registryItem = registryItemName(icon.slug, variation.name);
+  const installCmd = installCommand(registryItem);
+
+  const railMeta = [
+    { label: "Tier", value: variation.tier },
+    { label: "Category", value: icon.category },
+    { label: "Motion", value: variation.animationType },
+    ...(variation.dependencies?.length
+      ? [{ label: "Deps", value: variation.dependencies.join(", ") }]
+      : []),
+  ];
 
   return (
-    <>
-      {/* ── Middle: header + configurator + example component ── */}
-      <div className="w-full max-w-5xl overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16">
+    <div className="flex h-full min-h-0 overflow-hidden">
+      {/* ── Middle: header + configurator + example component ──
+          Takes all the width the rail doesn't, so the two columns sit flush
+          rather than with a dead gutter between them. */}
+      <div className="min-w-0 flex-1 overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16">
         <motion.div
           key={panelKey}
           initial={{ opacity: 0 }}
@@ -172,6 +192,12 @@ function VariationDetail({
           )}
         </motion.div>
 
+        {/* The rail carries share above xl; this is the copy for narrower
+            screens, matching how the install command is handled. */}
+        <div className="mb-3 flex justify-end xl:hidden">
+          <ShareButton title={`${icon.name} — ${variation.displayName}`} />
+        </div>
+
         {variation.props && variation.props.length > 0 && (
           <IconConfigurator
             iconSlug={icon.slug}
@@ -200,6 +226,7 @@ function VariationDetail({
 
         {/* ── Installation + props + inspiration (below the example) ── */}
         <div className="mt-10 space-y-8">
+          {/* Installation — directly above the props table, at every width. */}
           <InstallCommand command={installCmd} className="" />
 
           {variation.props && variation.props.length > 0 && (
@@ -254,7 +281,17 @@ function VariationDetail({
           )}
         </div>
       </div>
-    </>
+
+      <DetailRail
+        registryName={registryItem}
+        sourcePath={`components/craftui/icons/${icon.slug}/${variation.name}.tsx`}
+        itemLabel={`${icon.name} — ${variation.displayName}`}
+        description={variation.description}
+        meta={railMeta}
+        related={related}
+        relatedLabel={`More ${icon.category}`}
+      />
+    </div>
   );
 }
 
@@ -282,6 +319,26 @@ export function IconContentPanel({
   const panelKey = `${activeSlug ?? ""}--${activeVariation ?? ""}`;
   const modeKey = activeVariationData ? "detail" : "overview";
 
+  // Icons are small SVGs, so each related row carries a live thumbnail — the
+  // point of the list is recognising the shape, not reading the name. The
+  // thumbnail shows the icon's first variation; the link opens it there too.
+  const related: RailRelatedItem[] = pickRelated(icons, activeSlug ?? "").map(
+    (item) => {
+      const first = item.variations[0]?.name ?? "default";
+      return {
+        label: item.name.replace(/ Icon$/i, ""),
+        href: `/icons?slug=${item.slug}&variation=${first}`,
+        preview: (
+          <RailMiniPreview
+            catalogDir="icons"
+            slug={item.slug}
+            variation={first}
+          />
+        ),
+      };
+    },
+  );
+
   return (
     <div className="flex-1 overflow-hidden">
       <AnimatePresence mode="wait" initial={false}>
@@ -300,6 +357,7 @@ export function IconContentPanel({
               variation={activeVariationData}
               buttonCode={buttonCodes[`${activeSlug}-${activeVariation}`]}
               panelKey={panelKey}
+              related={related}
             />
           ) : (
             <IconOverview

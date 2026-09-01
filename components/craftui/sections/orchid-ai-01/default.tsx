@@ -1716,7 +1716,7 @@ export default function OrchidAi01({
                   "h-11 rounded-[12px] border border-solid border-transparent px-8 font-medium text-white",
                   "[background:linear-gradient(#2d2d2d,#2d2d2d)_padding-box,linear-gradient(var(--bevel-angle,180deg),rgba(255,255,255,0.65)_0%,rgba(255,255,255,0.08)_38%,rgba(0,0,0,1)_100%)_border-box]!",
                   "[box-shadow:inset_0px_-2px_2.6px_0px_rgba(0,0,0,0.57),inset_0px_1px_1.7px_0px_rgba(255,255,255,0.25)]",
-                  "[animation:bevel-button-spin_3000ms_linear_infinite]",
+                  "",
                 )}
               >
                 Text Orchid
@@ -1731,7 +1731,7 @@ export default function OrchidAi01({
                   "dark:[background:linear-gradient(#1B1E24,#1B1E24)_padding-box,linear-gradient(var(--bevel-angle,180deg),rgba(255,255,255,0.40)_0%,rgba(255,255,255,0.10)_38%,rgba(255,255,255,0.03)_100%)_border-box]!",
                   "[box-shadow:inset_0px_-2px_2.6px_0px_rgba(13,26,50,0.10),inset_0px_1px_1.7px_0px_rgba(255,255,255,0.90)]",
                   "dark:[box-shadow:inset_0px_-2px_2.6px_0px_rgba(0,0,0,0.45),inset_0px_1px_1.7px_0px_rgba(255,255,255,0.12)]",
-                  "[animation:bevel-button-spin_3000ms_linear_infinite]",
+                  "",
                 )}
               >
                 See how it works

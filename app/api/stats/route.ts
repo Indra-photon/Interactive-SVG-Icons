@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
+import { GITHUB_REPO } from "@/constants/repo";
 
-const GITHUB_REPO = "Indra-photon/Interactive-SVG-Icons";
 const VERCEL_ANALYTICS_API =
   "https://api.vercel.com/v1/query/web-analytics/visits/aggregate";
 const WINDOW_DAYS = 30;

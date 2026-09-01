@@ -40,6 +40,14 @@ export interface CatalogUIConfig {
    * the list is noise there. `features` stays in the data either way.
    */
   showFeatures: boolean;
+  /**
+   * Whether the detail screen renders the sticky right rail (install, meta,
+   * copy actions, related). Only worth it for catalogs whose detail column is
+   * width-capped and therefore leaves the right of a wide screen empty —
+   * sections already use the whole pane, and a rail there would narrow the one
+   * thing that has to be page-width.
+   */
+  showDetailRail: boolean;
   /** Shown when the catalog has no published items yet. */
   empty: {
     title: string;
@@ -57,6 +65,7 @@ export const BLOCKS_CATALOG: CatalogUIConfig = {
   detailWidthClass: "max-w-5xl",
   overviewGridClass: "grid-cols-1 md:grid-cols-2",
   showFeatures: true,
+  showDetailRail: true,
   empty: {
     title: "No blocks yet",
     body: "Blocks are composable UI pieces — cards, navbars, forms. Add one under components/craftui/blocks and run the registry build.",
@@ -76,6 +85,7 @@ export const SECTIONS_CATALOG: CatalogUIConfig = {
   detailWidthClass: "max-w-none",
   overviewGridClass: "grid-cols-1",
   showFeatures: false,
+  showDetailRail: false,
   empty: {
     title: "No sections yet",
     body: "Sections are page-width layouts — feature, footer, pricing. Add one under components/craftui/sections and run the registry build.",

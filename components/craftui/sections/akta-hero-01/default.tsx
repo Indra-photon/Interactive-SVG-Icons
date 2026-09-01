@@ -487,7 +487,7 @@ function AktaHero01({
 
       <div className={cn(GRID, "relative", RULE_X_LG)}>
         {/* hero */}
-        <div className="flex flex-col items-center gap-12 px-4 py-12 text-center sm:gap-16 sm:px-6 sm:py-16 md:py-20 lg:gap-20 lg:px-10 lg:py-24 xl:gap-24 xl:py-28">
+        <div className="flex flex-col items-center gap-12 px-4 py-6 text-center sm:gap-16 sm:px-6 sm:py-16 md:py-6 lg:gap-20 lg:px-10 lg:py-8 xl:gap-24 xl:py-10">
           <div className="w-full">
             <h1
               data-akta-enter="1"

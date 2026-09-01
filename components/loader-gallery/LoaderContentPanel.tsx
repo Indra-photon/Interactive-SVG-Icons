@@ -18,6 +18,13 @@ import { Paragraph } from "@/components/Paragraph";
 import { resolveLoaderGroup } from "@/lib/sidebar-data";
 import type { Loader } from "@/types/loader";
 import { installCommand, registryItemName } from "@/lib/registry";
+import { pickRelated } from "@/lib/gallery-related";
+import {
+  DetailRail,
+  type RailRelatedItem,
+} from "@/components/gallery/DetailRail";
+import { RailMiniPreview } from "@/components/gallery/RailMiniPreview";
+import { ShareButton } from "@/components/gallery/ShareButton";
 
 // ── Loader preview card (group overview grid) ─────────────────────────────────
 
@@ -110,20 +117,33 @@ function LoaderGroupOverview({
 function LoaderDetail({
   loader,
   panelKey,
+  related,
 }: {
   loader: Loader;
   panelKey: string;
+  /** Siblings in the same category, for the rail. */
+  related: RailRelatedItem[];
 }) {
   // All loaders currently have one variation; the layout handles multiples naturally.
   const variation = loader.variations[0];
-  const installCmd = installCommand(
-    registryItemName(loader.slug, variation.name)
-  );
+  const registryItem = registryItemName(loader.slug, variation.name);
+  const installCmd = installCommand(registryItem);
+
+  const railMeta = [
+    { label: "Tier", value: variation.tier },
+    { label: "Category", value: loader.category },
+    { label: "Motion", value: variation.animationType },
+    ...(variation.dependencies?.length
+      ? [{ label: "Deps", value: variation.dependencies.join(", ") }]
+      : []),
+  ];
 
   return (
-    <>
-      {/* ── Middle: name + tags + configurator ── */}
-      <div className="w-full max-w-5xl overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16">
+    <div className="flex h-full min-h-0 overflow-hidden">
+      {/* ── Middle: name + tags + configurator ──
+          Takes all the width the rail doesn't, so the two columns sit flush
+          rather than with a dead gutter between them. */}
+      <div className="min-w-0 flex-1 overflow-y-auto py-12 px-4 sm:py-14 sm:px-10 md:py-16 md:px-16">
         <motion.div
           key={panelKey}
           initial={{ opacity: 0 }}
@@ -163,10 +183,17 @@ function LoaderDetail({
           )}
         </motion.div>
 
+        {/* The rail carries share above xl; this is the copy for narrower
+            screens, matching how the install command is handled. */}
+        <div className="mb-3 flex justify-end xl:hidden">
+          <ShareButton title={loader.name} />
+        </div>
+
         <LoaderConfigurator loaderSlug={loader.slug} variation={variation} />
 
         {/* ── Installation + props + inspiration (below the example) ── */}
         <div className="mt-10 space-y-8">
+          {/* Installation — directly above the props table, at every width. */}
           <InstallCommand command={installCmd} className="" />
 
           {variation.props?.length > 0 && (
@@ -221,7 +248,17 @@ function LoaderDetail({
           )}
         </div>
       </div>
-    </>
+
+      <DetailRail
+        registryName={registryItem}
+        sourcePath={`components/craftui/loaders/${loader.slug}/${variation.name}.tsx`}
+        itemLabel={loader.name}
+        description={loader.description}
+        meta={railMeta}
+        related={related}
+        relatedLabel={`More ${loader.category}`}
+      />
+    </div>
   );
 }
 
@@ -245,6 +282,22 @@ export function LoaderContentPanel({
   const panelKey = activeSlug ?? "";
   const modeKey = activeGroup ? `group--${activeGroup.id}` : "detail";
 
+  // Loaders are small SVGs, so each related row carries a live thumbnail —
+  // comparing two spinners by name alone is close to useless.
+  const related: RailRelatedItem[] = pickRelated(loaders, activeSlug ?? "").map(
+    (item) => ({
+      label: item.name,
+      href: `/loaders?slug=${item.slug}`,
+      preview: (
+        <RailMiniPreview
+          catalogDir="loaders"
+          slug={item.slug}
+          variation={item.variations[0]?.name ?? "default"}
+        />
+      ),
+    }),
+  );
+
   return (
     <div className="flex-1 overflow-hidden">
       <AnimatePresence mode="wait" initial={false}>
@@ -265,7 +318,11 @@ export function LoaderContentPanel({
             />
           ) : (
             activeLoader && (
-              <LoaderDetail loader={activeLoader} panelKey={panelKey} />
+              <LoaderDetail
+                loader={activeLoader}
+                panelKey={panelKey}
+                related={related}
+              />
             )
           )}
         </motion.div>
