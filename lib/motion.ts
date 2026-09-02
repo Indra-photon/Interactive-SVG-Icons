@@ -65,6 +65,62 @@ export const rowEntrance = {
 };
 
 /**
+ * The card→dialog morph, and the fade of everything that travels with it.
+ *
+ * Springs rather than eased tweens, because the panel can be dismissed at any
+ * moment — including halfway through opening. A tween interrupted mid-flight
+ * restarts from zero velocity and reads as a snap; a spring keeps the velocity
+ * it already had. `bounce: 0` because the two boxes share an aspect ratio, so
+ * there is no overshoot worth selling: this is a box being carried, not thrown.
+ *
+ * Note this is *movement*, not an entrance. The box is already on screen as a
+ * card and travels to a new size and place, which is why it does not take
+ * ENTRANCE_EASE — an ease-out starts at near-full speed and reads as the card
+ * being flung across the page rather than picked up off it.
+ */
+export const MORPH_IN = { type: "spring", duration: 0.3, bounce: 0 } as const;
+
+/**
+ * The way back. Exits run about 20% faster than entrances — the user has
+ * already decided, and holding them at the same pace reads as the interface
+ * being reluctant.
+ *
+ * Which of the two applies is decided by *which element is animating*, not by a
+ * direction flag: opening is timed by the dialog panel's transition, closing by
+ * the card's, since shared layout promotes whichever element survives. Setting
+ * only one of them leaves the other direction on a default.
+ */
+export const MORPH_OUT = { type: "spring", duration: 0.24, bounce: 0 } as const;
+
+/** Reduced motion: state changes still happen, they just don't travel. */
+export const MORPH_INSTANT = { duration: 0 } as const;
+
+/**
+ * The chrome around a morphing panel — overlay, caption, close button.
+ *
+ * Same durations as the box on both directions, because paired elements that
+ * finish at different times stop reading as one thing: an overlay that clears
+ * before the artwork lands leaves it flying back across an undimmed page. The
+ * chrome cuts rather than travels, though — two things moving along different
+ * paths at once reads as two animations.
+ */
+export const morphChrome = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: MORPH_IN },
+  exit: { opacity: 0, transition: MORPH_OUT },
+};
+
+/**
+ * The same chrome for users who asked for less motion. Opacity is included in
+ * "less motion" — a fade is still something moving in the corner of the eye.
+ */
+export const morphChromeInstant = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: MORPH_INSTANT },
+  exit: { opacity: 0, transition: MORPH_INSTANT },
+};
+
+/**
  * Empty parent variants whose only job is to open a `hover` context for
  * children to inherit. Motion needs the named states to exist on the parent
  * before a child can respond to them; there is deliberately nothing in them.

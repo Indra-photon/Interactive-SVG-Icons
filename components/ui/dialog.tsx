@@ -85,6 +85,21 @@ function DialogContent({
   )
 }
 
+/**
+ * Bare Content — no portal, no overlay, no close button, no enter/exit classes.
+ *
+ * For dialogs that own their own presence. DialogContent mounts its own portal,
+ * which Radix unmounts the instant `open` flips false, so a panel inside it can
+ * never play an exit animation. Pair this with <DialogPortal forceMount> under
+ * an AnimatePresence and the exit survives; everything else — focus trap,
+ * escape, scroll lock, focus restore — is still Radix's.
+ */
+function DialogContentPanel({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Content>) {
+  return <DialogPrimitive.Content data-slot="dialog-content" {...props} />
+}
+
 function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -155,6 +170,7 @@ export {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogContentPanel,
   DialogDescription,
   DialogFooter,
   DialogHeader,
