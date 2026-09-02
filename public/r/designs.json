@@ -56,6 +56,137 @@
       ]
     },
     {
+      "slug": "stacked-tower",
+      "name": "Stacked Tower",
+      "category": "illustration",
+      "tags": [
+        "design",
+        "static",
+        "illustration",
+        "svg",
+        "3d",
+        "cylinder",
+        "oklch",
+        "annotation",
+        "marketing"
+      ],
+      "description": "Four cylindrical units stacked into a deliberately unsteady tower, drawn entirely from ellipses that all obey one ratio — ry = ryRatio × rx — so height is only ever vertical offset between two identical shapes, with no perspective transform, rotation or skew anywhere in the file. Each unit derives every surface it has from a single OKLCH base walked down a ramp that adds chroma and rotates hue as it darkens, which is what keeps the shadows reading as coloured light rather than as grey. Ribs are spaced evenly in angle and then projected, so they bunch toward the silhouette and start on the curve of the top ellipse the way real corrugation does. Curved leader lines are derived from the shapes themselves rather than authored beside them, so they track the geometry when it is retuned. The whole drawing is one SVG with no hooks and no runtime — it renders on the server and ships no JavaScript.",
+      "createdAt": "2026-09-02T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Stacked Tower",
+          "tier": "free",
+          "description": "Four cylindrical units stacked into a deliberately unsteady tower. Every ellipse obeys one camera ratio, so height reads as vertical offset rather than as tilt; every surface on a unit is derived from one OKLCH base walked down a ramp that gains chroma as it darkens; ribs are spaced in angle and projected, so they bunch toward the silhouette. The base drum runs off the bottom of the card, which is what makes the tower feel taller than its frame. Static — no hooks, no motion, zero JavaScript.",
+          "animationType": "none",
+          "dependencies": [],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "geometry",
+              "type": "Geometry",
+              "required": false,
+              "description": "Every measurement, colour and label in the drawing: the camera (ryRatio and stroke width), the shading palette (ramp, edge and contact opacities, rib step and blend), the annotation type scale and curve, the lid overhang, and the ordered list of units. Defaults to DEFAULT_GEOMETRY, which the file also exports. The one rule with no tolerance is camera.ryRatio — it applies to every ellipse at once, so changing it re-poses the whole tower, while overriding a single shape's ry would read as a tilted unit rather than a higher one."
+            },
+            {
+              "name": "brand",
+              "type": "string",
+              "required": false,
+              "description": "Wordmark beside the bird glyph in the masthead. Defaults to \"Cardinal\"."
+            },
+            {
+              "name": "headline",
+              "type": "string",
+              "required": false,
+              "description": "Centred line under the masthead, which is also the SVG's accessible title. Defaults to \"Your sales motion, built by you\"."
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "required": false,
+              "description": "Prefix for every generated SVG id — the card clip, each cylinder's rib clip and edge gradient, and the title and description. SVG ids are document-global, so two instances on one page need two prefixes or the second silently steals the first's clip paths. Defaults to \"stacked-tower\"."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Classes on the root <svg>. The drawing is viewBox-driven at 1230×738 with preserveAspectRatio, so it fills whatever width it is given and keeps its proportions — there are no pixel dimensions on the element."
+            }
+          ],
+          "componentName": "StackedTower",
+          "width": 1230,
+          "height": 738
+        }
+      ]
+    },
+    {
+      "slug": "insight-card",
+      "name": "Insight Card",
+      "category": "card",
+      "tags": [
+        "design",
+        "static",
+        "card",
+        "marketing",
+        "halftone",
+        "dots",
+        "generative",
+        "oklch",
+        "sphere"
+      ],
+      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots rather than a shape drawn over them, so the sphere at its head reads as having cleared its own path. One signed-distance function decides both which dots get removed and which get thinned at the edge, so the silhouette can never drift from the wake. Dots are bucketed into three OKLCH shades by their distance from that wake, which is what gives the flat grid depth. The whole field is generated at module scope from a deterministic value hash rather than Math.random, so the server and the client draw the identical card and hydration stays quiet. The sphere is a radial gradient with its focal point pushed toward a named light azimuth, and the CTA gradient is the dot ramp dropped 0.14 in lightness so its label clears AA at both ends. Renders entirely on the server.",
+      "createdAt": "2026-08-19T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Insight Card",
+          "tier": "free",
+          "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
+          "animationType": "none",
+          "dependencies": [
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "brand",
+              "type": "string",
+              "required": false,
+              "description": "Wordmark beside the flower glyph, set in wide tracking. Defaults to \"NORTHBEAM\"."
+            },
+            {
+              "name": "heading",
+              "type": "ReactNode",
+              "required": false,
+              "description": "The headline. A node rather than a string on purpose — the default wraps two words in font-semibold against the medium weight around them, which is the emphasis the card is composed for."
+            },
+            {
+              "name": "ctaLabel",
+              "type": "string",
+              "required": false,
+              "description": "Label on the gradient pill. Defaults to \"Learn More\"; the arrow badge is part of the mark, not conditional on the text."
+            },
+            {
+              "name": "href",
+              "type": "string",
+              "required": false,
+              "description": "Destination for the CTA anchor. Defaults to \"#\"."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the card root. The card is capped at 362px wide and lays out in fixed pixels, which is the width the halftone field, the type scale and the two-line headline break were composed against."
+            }
+          ],
+          "componentName": "InsightCard",
+          "width": 362,
+          "height": 628
+        }
+      ]
+    },
+    {
       "slug": "flight-card",
       "name": "Flight Card",
       "category": "card",
@@ -139,75 +270,8 @@
           "height": 747
         }
       ]
-    },
-    {
-      "slug": "insight-card",
-      "name": "Insight Card",
-      "category": "card",
-      "tags": [
-        "design",
-        "static",
-        "card",
-        "marketing",
-        "halftone",
-        "dots",
-        "generative",
-        "oklch",
-        "sphere"
-      ],
-      "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots rather than a shape drawn over them, so the sphere at its head reads as having cleared its own path. One signed-distance function decides both which dots get removed and which get thinned at the edge, so the silhouette can never drift from the wake. Dots are bucketed into three OKLCH shades by their distance from that wake, which is what gives the flat grid depth. The whole field is generated at module scope from a deterministic value hash rather than Math.random, so the server and the client draw the identical card and hydration stays quiet. The sphere is a radial gradient with its focal point pushed toward a named light azimuth, and the CTA gradient is the dot ramp dropped 0.14 in lightness so its label clears AA at both ends. Renders entirely on the server.",
-      "createdAt": "2026-08-19T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Insight Card",
-          "tier": "free",
-          "description": "A marketing card whose lower half is a halftone field with a comet swept through it — the cone is a void carved out of the dots, not a shape drawn over them. One signed-distance function decides both which dots are removed and which are feathered at the edge, and three OKLCH shades bucketed by distance from the wake give the flat grid depth. Generated deterministically at module scope, so server and client draw the identical card.",
-          "animationType": "none",
-          "dependencies": [
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "brand",
-              "type": "string",
-              "required": false,
-              "description": "Wordmark beside the flower glyph, set in wide tracking. Defaults to \"NORTHBEAM\"."
-            },
-            {
-              "name": "heading",
-              "type": "ReactNode",
-              "required": false,
-              "description": "The headline. A node rather than a string on purpose — the default wraps two words in font-semibold against the medium weight around them, which is the emphasis the card is composed for."
-            },
-            {
-              "name": "ctaLabel",
-              "type": "string",
-              "required": false,
-              "description": "Label on the gradient pill. Defaults to \"Learn More\"; the arrow badge is part of the mark, not conditional on the text."
-            },
-            {
-              "name": "href",
-              "type": "string",
-              "required": false,
-              "description": "Destination for the CTA anchor. Defaults to \"#\"."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the card root. The card is capped at 362px wide and lays out in fixed pixels, which is the width the halftone field, the type scale and the two-line headline break were composed against."
-            }
-          ],
-          "componentName": "InsightCard",
-          "width": 362,
-          "height": 628
-        }
-      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-01T15:18:00.167Z"
+  "lastUpdated": "2026-09-02T12:24:11.844Z"
 }

@@ -3132,6 +3132,159 @@
       ]
     },
     {
+      "slug": "dots-rotate",
+      "name": "Dots Rotate",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "loading",
+        "rotate",
+        "spin",
+        "circular",
+        "triangle"
+      ],
+      "description": "Three dots rotating in a triangular pattern",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dots Rotate",
+          "componentName": "DotsRotate",
+          "tier": "free",
+          "description": "Three circular dots that continuously rotate 120 degrees around a center point",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 40,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 46,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 14,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.645,
+                0.045,
+                0.355,
+                1
+              ],
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dots-compress",
+      "name": "Dots Compress",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "loading",
+        "compress",
+        "squeeze",
+        "morph"
+      ],
+      "description": "Three dots that compress from horizontal line to vertical stack",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dots Compress",
+          "componentName": "DotsCompress",
+          "tier": "free",
+          "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Initial width of the loader in horizontal state (pixels)"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.455,
+                0.03,
+                0.515,
+                0.955
+              ],
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "dots-bounce",
       "name": "Dots Bounce",
       "category": "loaders",
@@ -3218,159 +3371,6 @@
               "min": 0,
               "max": 0.5,
               "step": 0.01
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "dots-compress",
-      "name": "Dots Compress",
-      "category": "loaders",
-      "tags": [
-        "dots",
-        "loading",
-        "compress",
-        "squeeze",
-        "morph"
-      ],
-      "description": "Three dots that compress from horizontal line to vertical stack",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dots Compress",
-          "componentName": "DotsCompress",
-          "tier": "free",
-          "description": "Three dots alternating between horizontal spread and vertical stack with container morphing",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Initial width of the loader in horizontal state (pixels)"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the dots"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 12,
-              "description": "Diameter of each dot in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": [
-                0.455,
-                0.03,
-                0.515,
-                0.955
-              ],
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "dots-rotate",
-      "name": "Dots Rotate",
-      "category": "loaders",
-      "tags": [
-        "dots",
-        "loading",
-        "rotate",
-        "spin",
-        "circular",
-        "triangle"
-      ],
-      "description": "Three dots rotating in a triangular pattern",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dots Rotate",
-          "componentName": "DotsRotate",
-          "tier": "free",
-          "description": "Three circular dots that continuously rotate 120 degrees around a center point",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 40,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 46,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the dots"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 14,
-              "description": "Diameter of each dot in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": [
-                0.645,
-                0.045,
-                0.355,
-                1
-              ],
-              "description": "Easing function"
             }
           ]
         }
@@ -3701,6 +3701,87 @@
       ]
     },
     {
+      "slug": "dot-matrix-bits",
+      "name": "Dot Matrix Bits",
+      "category": "loaders",
+      "tags": [
+        "dots",
+        "matrix",
+        "binary",
+        "bits",
+        "counter",
+        "data",
+        "digital",
+        "computational"
+      ],
+      "description": "The grid is a bank of binary counters — each row counts at half the speed of the row below, producing a cascading binary waterfall",
+      "createdAt": "2026-05-31",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dot Matrix Bits",
+          "componentName": "DotMatrixBits",
+          "tier": "free",
+          "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the dots"
+            },
+            {
+              "name": "dotSize",
+              "type": "number",
+              "default": 12,
+              "description": "Diameter of each dot in pixels",
+              "min": 4,
+              "max": 24,
+              "step": 1
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 3,
+              "min": 0.5,
+              "max": 10,
+              "step": 0.5,
+              "description": "Time for the bottom (fastest) row to complete one full binary count cycle in seconds"
+            },
+            {
+              "name": "gridSize",
+              "type": "number",
+              "default": 5,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of dots per row and column (n × n grid)"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "dot-circle-expand",
       "name": "Dot Circle Expand",
       "category": "loaders",
@@ -3868,87 +3949,6 @@
       ]
     },
     {
-      "slug": "dot-matrix-bits",
-      "name": "Dot Matrix Bits",
-      "category": "loaders",
-      "tags": [
-        "dots",
-        "matrix",
-        "binary",
-        "bits",
-        "counter",
-        "data",
-        "digital",
-        "computational"
-      ],
-      "description": "The grid is a bank of binary counters — each row counts at half the speed of the row below, producing a cascading binary waterfall",
-      "createdAt": "2026-05-31",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dot Matrix Bits",
-          "componentName": "DotMatrixBits",
-          "tier": "free",
-          "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
-          "animationType": "loop",
-          "dependencies": [],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Fill color of the dots"
-            },
-            {
-              "name": "dotSize",
-              "type": "number",
-              "default": 12,
-              "description": "Diameter of each dot in pixels",
-              "min": 4,
-              "max": 24,
-              "step": 1
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 3,
-              "min": 0.5,
-              "max": 10,
-              "step": 0.5,
-              "description": "Time for the bottom (fastest) row to complete one full binary count cycle in seconds"
-            },
-            {
-              "name": "gridSize",
-              "type": "number",
-              "default": 5,
-              "min": 2,
-              "max": 6,
-              "step": 1,
-              "description": "Number of dots per row and column (n × n grid)"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "cross-expand",
       "name": "Cross Expand",
       "category": "loaders",
@@ -4025,6 +4025,154 @@
               "name": "ease",
               "type": "ease",
               "default": "easeInOut",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "conic-spinner",
+      "name": "Conic Spinner",
+      "category": "loaders",
+      "tags": [
+        "spinner",
+        "rotate",
+        "circle",
+        "fill",
+        "conic",
+        "simple",
+        "smooth",
+        "progress"
+      ],
+      "description": "A circular spinner that fills like a pie chart, revealing color clockwise in 8 stepped increments",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Conic Spinner",
+          "componentName": "ConicSpinner",
+          "tier": "free",
+          "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Fill color of the spinner"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "circular-wave-fill",
+      "name": "Circular Wave Fill",
+      "category": "loaders",
+      "tags": [
+        "wave",
+        "fill",
+        "circle",
+        "gradient",
+        "radial",
+        "complex",
+        "smooth",
+        "water"
+      ],
+      "description": "A circular container fills up with an animated wave pattern from bottom to top",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Circular Wave Fill",
+          "componentName": "CircularWaveFill",
+          "tier": "free",
+          "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#269af2",
+              "description": "Color of the wave fill"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#cccccc",
+              "description": "Background color of the circle"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
               "description": "Easing function"
             }
           ]
@@ -4126,154 +4274,6 @@
       ]
     },
     {
-      "slug": "circular-wave-fill",
-      "name": "Circular Wave Fill",
-      "category": "loaders",
-      "tags": [
-        "wave",
-        "fill",
-        "circle",
-        "gradient",
-        "radial",
-        "complex",
-        "smooth",
-        "water"
-      ],
-      "description": "A circular container fills up with an animated wave pattern from bottom to top",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Circular Wave Fill",
-          "componentName": "CircularWaveFill",
-          "tier": "free",
-          "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "#269af2",
-              "description": "Color of the wave fill"
-            },
-            {
-              "name": "backgroundColor",
-              "type": "string",
-              "default": "#cccccc",
-              "description": "Background color of the circle"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 2,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "conic-spinner",
-      "name": "Conic Spinner",
-      "category": "loaders",
-      "tags": [
-        "spinner",
-        "rotate",
-        "circle",
-        "fill",
-        "conic",
-        "simple",
-        "smooth",
-        "progress"
-      ],
-      "description": "A circular spinner that fills like a pie chart, revealing color clockwise in 8 stepped increments",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Conic Spinner",
-          "componentName": "ConicSpinner",
-          "tier": "free",
-          "description": "Circular pie-style loader that fills clockwise from 0° to 360° in 8 equal steps over 2 seconds",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Fill color of the spinner"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 2,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "breath",
       "name": "Breath",
       "category": "loaders",
@@ -4332,6 +4332,80 @@
               "min": 0.5,
               "max": 10,
               "step": 0.5
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bars-wave",
+      "name": "Bars Wave",
+      "category": "loaders",
+      "tags": [
+        "bars",
+        "loading",
+        "wave",
+        "vertical",
+        "five-bars"
+      ],
+      "description": "Five vertical bars creating a wave animation pattern",
+      "createdAt": "2026-02-20",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Bars Wave",
+          "componentName": "BarsWave",
+          "tier": "free",
+          "description": "Five vertical bars with staggered height animation creating a wave effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the bars"
+            },
+            {
+              "name": "barWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of each individual bar in pixels"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
             },
             {
               "name": "ease",
@@ -4513,80 +4587,6 @@
               "min": 0,
               "max": 0.5,
               "step": 0.01
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "bars-wave",
-      "name": "Bars Wave",
-      "category": "loaders",
-      "tags": [
-        "bars",
-        "loading",
-        "wave",
-        "vertical",
-        "five-bars"
-      ],
-      "description": "Five vertical bars creating a wave animation pattern",
-      "createdAt": "2026-02-20",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Bars Wave",
-          "componentName": "BarsWave",
-          "tier": "free",
-          "description": "Five vertical bars with staggered height animation creating a wave effect",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the bars"
-            },
-            {
-              "name": "barWidth",
-              "type": "number",
-              "default": 3,
-              "description": "Width of each individual bar in pixels"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "easeInOut",
-              "description": "Easing function"
             }
           ]
         }
@@ -5337,6 +5337,91 @@
       ]
     },
     {
+      "slug": "ball-bounce-alternate",
+      "name": "Ball Bounce Alternate",
+      "category": "loaders",
+      "tags": [
+        "bounce",
+        "slide",
+        "ball",
+        "simple",
+        "alternating",
+        "linear",
+        "horizontal"
+      ],
+      "description": "A ball bounces along the ground while sliding back and forth in alternating directions",
+      "createdAt": "2026-02-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Ball Bounce Alternate",
+          "componentName": "BallBounceAlternate",
+          "tier": "free",
+          "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 90,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 45,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ball"
+            },
+            {
+              "name": "lineColor",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the ground line"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            },
+            {
+              "name": "strokeWidth",
+              "type": "number",
+              "default": 3,
+              "description": "Width of the bounce line stroke",
+              "min": 1,
+              "max": 10,
+              "step": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "audio-wave-vertical",
       "name": "Audio Wave Vertical",
       "category": "loaders",
@@ -5428,91 +5513,6 @@
               "min": 0,
               "max": 0.5,
               "step": 0.01
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "ball-bounce-alternate",
-      "name": "Ball Bounce Alternate",
-      "category": "loaders",
-      "tags": [
-        "bounce",
-        "slide",
-        "ball",
-        "simple",
-        "alternating",
-        "linear",
-        "horizontal"
-      ],
-      "description": "A ball bounces along the ground while sliding back and forth in alternating directions",
-      "createdAt": "2026-02-26",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Ball Bounce Alternate",
-          "componentName": "BallBounceAlternate",
-          "tier": "free",
-          "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 90,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 45,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the ball"
-            },
-            {
-              "name": "lineColor",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the ground line"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 2,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            },
-            {
-              "name": "strokeWidth",
-              "type": "number",
-              "default": 3,
-              "description": "Width of the bounce line stroke",
-              "min": 1,
-              "max": 10,
-              "step": 0.5
             }
           ]
         }
@@ -6041,5 +6041,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-01T15:18:00.212Z"
+  "lastUpdated": "2026-09-02T12:24:11.865Z"
 }

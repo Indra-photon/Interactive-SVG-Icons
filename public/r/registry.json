@@ -1266,10 +1266,10 @@
       ]
     },
     {
-      "name": "dots-bounce-default",
+      "name": "dots-rotate-default",
       "type": "registry:ui",
-      "title": "Dots Bounce - Dots Bounce",
-      "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
+      "title": "Dots Rotate - Dots Rotate",
+      "description": "Three circular dots that continuously rotate 120 degrees around a center point",
       "dependencies": [
         "framer-motion"
       ],
@@ -1278,9 +1278,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/dots-bounce/default.tsx",
+          "path": "components/craftui/loaders/dots-rotate/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dots-bounce/default.tsx"
+          "target": "~/components/craftui/loaders/dots-rotate/default.tsx"
         }
       ]
     },
@@ -1304,10 +1304,10 @@
       ]
     },
     {
-      "name": "dots-rotate-default",
+      "name": "dots-bounce-default",
       "type": "registry:ui",
-      "title": "Dots Rotate - Dots Rotate",
-      "description": "Three circular dots that continuously rotate 120 degrees around a center point",
+      "title": "Dots Bounce - Dots Bounce",
+      "description": "Dots in a horizontal row bounce upward sequentially with staggered delays creating a wave-like typing indicator",
       "dependencies": [
         "framer-motion"
       ],
@@ -1316,9 +1316,9 @@
       ],
       "files": [
         {
-          "path": "components/craftui/loaders/dots-rotate/default.tsx",
+          "path": "components/craftui/loaders/dots-bounce/default.tsx",
           "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dots-rotate/default.tsx"
+          "target": "~/components/craftui/loaders/dots-bounce/default.tsx"
         }
       ]
     },
@@ -1391,6 +1391,23 @@
       ]
     },
     {
+      "name": "dot-matrix-bits-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Bits - Dot Matrix Bits",
+      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "dot-circle-expand-default",
       "type": "registry:ui",
       "title": "Dot Circle Expand - Dot Circle Expand",
@@ -1429,23 +1446,6 @@
       ]
     },
     {
-      "name": "dot-matrix-bits-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Bits - Dot Matrix Bits",
-      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "cross-expand-default",
       "type": "registry:ui",
       "title": "Cross Expand - Cross Expand",
@@ -1461,44 +1461,6 @@
           "path": "components/craftui/loaders/cross-expand/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/cross-expand/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "circle-spinner-wipe-default",
-      "type": "registry:ui",
-      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
-      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "circular-wave-fill-default",
-      "type": "registry:ui",
-      "title": "Circular Wave Fill - Circular Wave Fill",
-      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
         }
       ]
     },
@@ -1522,6 +1484,44 @@
       ]
     },
     {
+      "name": "circular-wave-fill-default",
+      "type": "registry:ui",
+      "title": "Circular Wave Fill - Circular Wave Fill",
+      "description": "A circle fills with a flowing wave animation, the color rises from bottom to top with undulating motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circular-wave-fill/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circular-wave-fill/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "circle-spinner-wipe-default",
+      "type": "registry:ui",
+      "title": "Circle Spinner Wipe - Circle Spinner Wipe",
+      "description": "Two concentric rings where the foreground ring wipes clockwise from 0% to 100% over the background track",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/circle-spinner-wipe/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/circle-spinner-wipe/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "breath-default",
       "type": "registry:ui",
       "title": "Breath - Breath",
@@ -1537,6 +1537,25 @@
           "path": "components/craftui/loaders/breath/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/breath/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bars-wave-default",
+      "type": "registry:ui",
+      "title": "Bars Wave - Bars Wave",
+      "description": "Five vertical bars with staggered height animation creating a wave effect",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/bars-wave/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/bars-wave/default.tsx"
         }
       ]
     },
@@ -1575,25 +1594,6 @@
           "path": "components/craftui/loaders/bars-scale-bottom/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/bars-scale-bottom/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "bars-wave-default",
-      "type": "registry:ui",
-      "title": "Bars Wave - Bars Wave",
-      "description": "Five vertical bars with staggered height animation creating a wave effect",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/bars-wave/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/bars-wave/default.tsx"
         }
       ]
     },
@@ -1769,25 +1769,6 @@
       ]
     },
     {
-      "name": "audio-wave-vertical-default",
-      "type": "registry:ui",
-      "title": "Audio Wave Vertical - Audio Wave Vertical",
-      "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/audio-wave-vertical/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-wave-vertical/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "ball-bounce-alternate-default",
       "type": "registry:ui",
       "title": "Ball Bounce Alternate - Ball Bounce Alternate",
@@ -1803,6 +1784,25 @@
           "path": "components/craftui/loaders/ball-bounce-alternate/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/ball-bounce-alternate/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-wave-vertical-default",
+      "type": "registry:ui",
+      "title": "Audio Wave Vertical - Audio Wave Vertical",
+      "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-wave-vertical/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-wave-vertical/default.tsx"
         }
       ]
     },
@@ -1921,6 +1921,27 @@
       ]
     },
     {
+      "name": "travel-card-default",
+      "type": "registry:block",
+      "title": "Travel Card - Travel Card",
+      "description": "The image, background color, CTA button, and a badge icon all animate between a cover-photo stage and a detail stage with price and tags, connected by an icon that flies along a curved path between the two.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/travel-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/travel-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "theme-button-default",
       "type": "registry:block",
       "title": "Theme Button - Theme Button",
@@ -1955,27 +1976,6 @@
           "path": "components/craftui/blocks/teletype-clock/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/teletype-clock/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "travel-card-default",
-      "type": "registry:block",
-      "title": "Travel Card - Travel Card",
-      "description": "The image, background color, CTA button, and a badge icon all animate between a cover-photo stage and a detail stage with price and tags, connected by an icon that flies along a curved path between the two.",
-      "dependencies": [
-        "motion",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/travel-card/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/travel-card/default.tsx"
         }
       ]
     },
@@ -2489,25 +2489,21 @@
       ]
     },
     {
-      "name": "feature-ai-01-default",
+      "name": "navbar-01-default",
       "type": "registry:block",
-      "title": "Feature AI 01 - Feature AI 01",
-      "description": "A split feature section for AI, GPU and developer-infrastructure marketing pages: an isometric compute-stack diagram anchors the header, a list of capability words sits on the left, and an olive card on the right answers each one with body copy and a generative canvas loop. The card walks itself through all six capabilities on autoplay so a scroller sees the whole story, then hands control over permanently the moment someone hovers, focuses or taps a row. Useful anywhere a platform has more claims than a hero can hold and each claim needs its own sentence without stacking six cards down the page.",
+      "title": "Navbar 01 - Navbar 01",
+      "description": "One strip, three states: hidden when idle, a thin bar on the active route, a full fill on hover. Width never changes, so the fill reads as the underline rising rather than a box appearing. Below md the items unroll inside the bar as rows and push the page down.",
       "dependencies": [
         "motion"
       ],
       "registryDependencies": [
-        "craftui-base",
-        "badge",
-        "button",
-        "card",
-        "separator"
+        "craftui-base"
       ],
       "files": [
         {
-          "path": "components/craftui/sections/feature-ai-01/default.tsx",
+          "path": "components/craftui/sections/navbar-01/default.tsx",
           "type": "registry:component",
-          "target": "~/components/craftui/sections/feature-ai-01/default.tsx"
+          "target": "~/components/craftui/sections/navbar-01/default.tsx"
         }
       ]
     },
@@ -2531,25 +2527,6 @@
           "path": "components/craftui/sections/feature-gallery-02/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "navbar-01-default",
-      "type": "registry:block",
-      "title": "Navbar 01 - Navbar 01",
-      "description": "One strip, three states: hidden when idle, a thin bar on the active route, a full fill on hover. Width never changes, so the fill reads as the underline rising rather than a box appearing. Below md the items unroll inside the bar as rows and push the page down.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/sections/navbar-01/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/sections/navbar-01/default.tsx"
         }
       ]
     },
@@ -2586,6 +2563,29 @@
           "path": "components/craftui/sections/feature-gallery-01/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/feature-gallery-01/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-ai-01-default",
+      "type": "registry:block",
+      "title": "Feature AI 01 - Feature AI 01",
+      "description": "A split feature section for AI, GPU and developer-infrastructure marketing pages: an isometric compute-stack diagram anchors the header, a list of capability words sits on the left, and an olive card on the right answers each one with body copy and a generative canvas loop. The card walks itself through all six capabilities on autoplay so a scroller sees the whole story, then hands control over permanently the moment someone hovers, focuses or taps a row. Useful anywhere a platform has more claims than a hero can hold and each claim needs its own sentence without stacking six cards down the page.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "badge",
+        "button",
+        "card",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-ai-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-ai-01/default.tsx"
         }
       ]
     },
@@ -2879,22 +2879,19 @@
       ]
     },
     {
-      "name": "flight-card-default",
+      "name": "stacked-tower-default",
       "type": "registry:block",
-      "title": "Flight Card - Flight Card",
-      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. The painted sky under the photograph doubles as a grade over it, so a photograph the component never chose still belongs to the card. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and the frame and its controls carry separate concentric radius systems. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
-      "dependencies": [
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
+      "title": "Stacked Tower - Stacked Tower",
+      "description": "Four cylindrical units stacked into a deliberately unsteady tower. Every ellipse obeys one camera ratio, so height reads as vertical offset rather than as tilt; every surface on a unit is derived from one OKLCH base walked down a ramp that gains chroma as it darkens; ribs are spaced in angle and projected, so they bunch toward the silhouette. The base drum runs off the bottom of the card, which is what makes the tower feel taller than its frame. Static — no hooks, no motion, zero JavaScript.",
+      "dependencies": [],
       "registryDependencies": [
         "craftui-base"
       ],
       "files": [
         {
-          "path": "components/craftui/designs/flight-card/default.tsx",
+          "path": "components/craftui/designs/stacked-tower/default.tsx",
           "type": "registry:component",
-          "target": "~/components/craftui/designs/flight-card/default.tsx"
+          "target": "~/components/craftui/designs/stacked-tower/default.tsx"
         }
       ]
     },
@@ -2915,6 +2912,26 @@
           "path": "components/craftui/designs/insight-card/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/designs/insight-card/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "flight-card-default",
+      "type": "registry:block",
+      "title": "Flight Card - Flight Card",
+      "description": "A full-bleed travel poster with the flight held behind a progressive blur that fades away at the card's midline — airport codes, cities and times either side of an airplane on a dashed route track, with the duration beneath it. The painted sky under the photograph doubles as a grade over it, so a photograph the component never chose still belongs to the card. Colour is OKLCH throughout, every fade is an eased gradient rather than a linear one, and the frame and its controls carry separate concentric radius systems. Every measurement is a fraction of the card's own width — blur radius, dash rhythm and icon included — so it holds its composition from a narrow column to a full-width hero with no breakpoints. Renders entirely on the server.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/flight-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/flight-card/default.tsx"
         }
       ]
     },
