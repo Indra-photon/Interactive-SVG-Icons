@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   Add01Icon,
   Attachment01Icon,
@@ -13,6 +12,8 @@ import {
   FullSignalIcon,
   InboxIcon,
   Message01Icon,
+  PencilEdit02Icon,
+  Tick02Icon,
   UserIcon,
   WifiFullSignalIcon,
 } from "@hugeicons/core-free-icons";
@@ -59,7 +60,6 @@ const t = {
 
   well: "bg-[var(--row)] [--row:oklch(97%_0.003_264)]",
   wellHover: "hover:[--row:oklch(95%_0.004_264)]",
-  ringRow: "ring-[var(--row,oklch(100%_0_0))]",
 
   hairline: "shadow-[0_1px_0_0_oklch(93%_0.004_264)]",
 
@@ -92,12 +92,6 @@ const tone = {
 
 type Tone = keyof typeof tone;
 
-const avatar = [
-  "bg-[oklch(88%_0.035_250)] text-[oklch(42%_0.070_250)]",
-  "bg-[oklch(88%_0.035_150)] text-[oklch(42%_0.070_150)]",
-  "bg-[oklch(88%_0.035_20)] text-[oklch(42%_0.070_20)]",
-];
-
 /* -------------------------------------------------------------------- data */
 
 type Task = {
@@ -108,20 +102,8 @@ type Task = {
   progress?: [number, number];
   comments?: number;
   files?: number;
-  collaborators: string[];
   done?: boolean;
   swiped?: boolean;
-};
-
-/** Pexels crop, square at 2x and served at the size the avatar is drawn. */
-const PHOTO = (id: number) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop&dpr=2`;
-
-const PEOPLE: Record<string, string> = {
-  Miguel: PHOTO(2379004),
-  Angel: PHOTO(774909),
-  Hane: PHOTO(415829),
-  John: PHOTO(936119),
 };
 
 const GROUPS: { label: string; tasks: Task[] }[] = [
@@ -136,7 +118,6 @@ const GROUPS: { label: string; tasks: Task[] }[] = [
         progress: [4, 7],
         comments: 3,
         files: 2,
-        collaborators: ["Miguel", "Angel", "Hane"],
       },
       {
         title: "User Interface",
@@ -146,7 +127,6 @@ const GROUPS: { label: string; tasks: Task[] }[] = [
         progress: [1, 5],
         comments: 1,
         files: 4,
-        collaborators: ["Miguel", "John", "Sara"],
       },
       {
         title: "Motion Guidelines",
@@ -156,7 +136,6 @@ const GROUPS: { label: string; tasks: Task[] }[] = [
         progress: [2, 4],
         comments: 5,
         files: 1,
-        collaborators: ["Angel", "Hane"],
       },
     ],
   },
@@ -166,7 +145,6 @@ const GROUPS: { label: string; tasks: Task[] }[] = [
       {
         title: "Typography Styles",
         status: { label: "Done", tone: "grey" },
-        collaborators: ["John", "Hane"],
         done: true,
         swiped: true,
       },
@@ -292,35 +270,61 @@ function Count({
   );
 }
 
-/** Overlapping faces, ringed in the row's own fill so each bites the one behind it. */
-function Collaborators({ names }: { names: string[] }) {
+/**
+ * The row's three actions, each on its own surface. Every box is the card's
+ * white raised on the row's recessed fill — the same figure the segmented
+ * control's selected pill draws, which is what says "control" here rather than
+ * "content" — and the tightest radius, because these are the smallest surfaces
+ * on the screen.
+ *
+ * Colour only on hover, and only on the one being pointed at: ink for edit,
+ * the green already carrying the done mark, the red already in `tone.red`.
+ * Three coloured boxes at rest would outweigh the status pill above them.
+ */
+const ACTIONS = [
+  {
+    label: "Edit",
+    icon: PencilEdit02Icon,
+    hover: "hover:text-[oklch(17%_0.018_264)]",
+  },
+  {
+    label: "Complete",
+    icon: Tick02Icon,
+    hover: "hover:text-[oklch(52%_0.115_155)]",
+  },
+  {
+    label: "Delete",
+    icon: Delete02Icon,
+    hover: "hover:text-[oklch(55%_0.150_25)]",
+  },
+];
+
+function Actions() {
   return (
-    <div className="flex -space-x-2">
-      {names.map((name, i) => {
-        const photo = PEOPLE[name];
-        return (
-          <span
-            key={name}
-            className={cn(
-              photo ? "" : avatar[i % avatar.length],
-              t.ringRow,
-              "flex size-6 shrink-0 items-center justify-center overflow-hidden rounded-full text-[13px] font-normal ring-2",
-            )}
-          >
-            {photo ? (
-              <Image
-                src={photo}
-                alt={name}
-                width={48}
-                height={48}
-                className="size-full object-cover outline-1 -outline-offset-1 outline-black/10"
-              />
-            ) : (
-              name[0]
-            )}
-          </span>
-        );
-      })}
+    // 20 + 6 + 20 + 6 + 20 = 72. Three separate surfaces still have to spend
+    // the rail exactly, so the gap is paid for out of the boxes: at 24 each
+    // they filled the width edge to edge and there was nothing left to gap
+    // with. 20px boxes carry the 14px icon the counts on the same line already
+    // use, which is the size this row is set at anyway.
+    <div className={cn(t.rail, "flex items-center gap-1.5")}>
+      {ACTIONS.map(({ label, icon, hover }) => (
+        <button
+          key={label}
+          type="button"
+          aria-label={label}
+          className={cn(
+            t.radiusTight,
+            t.card,
+            t.shadowBorder,
+            t.shadowBorderHover,
+            t.shadowMove,
+            hover,
+            "flex size-5 items-center justify-center text-[oklch(57%_0.014_264)]",
+          )}
+        >
+          <Icon icon={icon} size={14} />
+        </button>
+      ))}
     </div>
   );
 }
@@ -363,12 +367,15 @@ function ProgressMark({ done, total }: { done: number; total: number }) {
   );
 }
 
-/** One task: mark, title and status, description, then details left and faces right. */
+/** One task: mark, title and status, description, then counts left and actions right. */
 function TaskRow({ task }: { task: Task }) {
   return (
     <div className="flex items-stretch gap-2">
-      <button
-        type="button"
+      {/* A div, not a button. The row was one pressable surface until it grew
+          three of its own — and a button inside a button is invalid markup, so
+          the actions are the interactive things now and the row is what holds
+          them. It keeps the hover, which is what the group class is for. */}
+      <div
         className={cn(
           t.radiusInner,
           t.well,
@@ -438,12 +445,12 @@ function TaskRow({ task }: { task: Task }) {
             )}
             {task.due && <Count icon={Clock01Icon} value={task.due} />}
 
-            <div className={cn(t.rail, "ml-auto flex justify-center")}>
-              <Collaborators names={task.collaborators} />
+            <div className="ml-auto shrink-0">
+              <Actions />
             </div>
           </div>
         </div>
-      </button>
+      </div>
 
       {task.swiped && (
         <div
