@@ -2896,6 +2896,26 @@
       ]
     },
     {
+      "name": "notes-card-default",
+      "type": "registry:block",
+      "title": "Notes Card - Notes Card",
+      "description": "A task list screen inside a phone shell — status bar, home indicator, and a card that fills the display between them. Header with a primary action, a segmented filter, and date-grouped rows carrying completion, status, counts and collaborator faces. Two type sizes, two weights, three concentric radii, and one 16px column every left edge resolves to. The progress mark is a wedge drawn on the icon set's own grid, the last row sits mid-swipe with its delete action revealed, and the whole thing is OKLCH at a single hue. Static — no hooks, no motion, zero JavaScript.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/notes-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/notes-card/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "insight-card-default",
       "type": "registry:block",
       "title": "Insight Card - Insight Card",
