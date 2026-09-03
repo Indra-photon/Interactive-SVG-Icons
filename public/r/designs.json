@@ -120,6 +120,55 @@
       ]
     },
     {
+      "slug": "notes-card",
+      "name": "Notes Card",
+      "category": "card",
+      "tags": [
+        "design",
+        "static",
+        "card",
+        "tasks",
+        "todo",
+        "list",
+        "mobile",
+        "oklch",
+        "avatars"
+      ],
+      "description": "A task list app screen, drawn inside a phone: a card that fills the display and carries its own tab bar, so the navigation belongs to the thing it navigates rather than floating beside it. Built on a design system stated once: two type sizes, two weights, and three concentric radii where a child's corner is its parent's minus the padding between them. Rows are wells recessed into the card with a 1px inset ring rather than a border, so they read as cut into the surface instead of drawn on it. The leading mark is a ring filled as a wedge in proportion to subtasks done — drawn on the icon set's own 24 grid at the same stroke weight, so it shares a column with every other glyph. Status pills use `text-box: trim-both cap alphabetic` to centre on their cap height rather than their line box, avatars ring themselves in the row's fill through a custom property so the bite stays clean on hover, and every left edge is a sum of paddings that lands on one 16px column. Colour is OKLCH throughout at hue 264, with the ink value spent in exactly two places — the primary action and the selected tab. Renders entirely on the server.",
+      "createdAt": "2026-09-03T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Notes Card",
+          "tier": "free",
+          "description": "A task list screen inside a phone shell — status bar, home indicator, and a card that fills the display between them. Header with a primary action, a segmented filter, and date-grouped rows carrying completion, status, counts and collaborator faces. Two type sizes, two weights, three concentric radii, and one 16px column every left edge resolves to. The progress mark is a wedge drawn on the icon set's own grid, the last row sits mid-swipe with its delete action revealed, and the whole thing is OKLCH at a single hue. Static — no hooks, no motion, zero JavaScript.",
+          "animationType": "none",
+          "dependencies": [
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "time",
+              "type": "string",
+              "required": false,
+              "description": "Clock in the status bar. Defaults to \"9:41\". Set in tabular figures so a different time cannot shift the radios beside it."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the scaling root. The device is fixed at a 390 × 844 screen inside a 12px bezel and is scaled to the caller's width by a viewBox, so it shrinks to fit a narrow column and stops at its natural 414px — set a `max-w-*` here to cap it smaller."
+            }
+          ],
+          "componentName": "NotesCard",
+          "width": 414,
+          "height": 868
+        }
+      ]
+    },
+    {
       "slug": "insight-card",
       "name": "Insight Card",
       "category": "card",
@@ -273,5 +322,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-02T12:24:11.844Z"
+  "lastUpdated": "2026-09-03T12:28:22.034Z"
 }
