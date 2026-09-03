@@ -132,16 +132,16 @@
         "list",
         "mobile",
         "oklch",
-        "avatars"
+        "actions"
       ],
-      "description": "A task list app screen, drawn inside a phone: a card that fills the display and carries its own tab bar, so the navigation belongs to the thing it navigates rather than floating beside it. Built on a design system stated once: two type sizes, two weights, and three concentric radii where a child's corner is its parent's minus the padding between them. Rows are wells recessed into the card with a 1px inset ring rather than a border, so they read as cut into the surface instead of drawn on it. The leading mark is a ring filled as a wedge in proportion to subtasks done — drawn on the icon set's own 24 grid at the same stroke weight, so it shares a column with every other glyph. Status pills use `text-box: trim-both cap alphabetic` to centre on their cap height rather than their line box, avatars ring themselves in the row's fill through a custom property so the bite stays clean on hover, and every left edge is a sum of paddings that lands on one 16px column. Colour is OKLCH throughout at hue 264, with the ink value spent in exactly two places — the primary action and the selected tab. Renders entirely on the server.",
+      "description": "A task list app screen, drawn inside a phone: a card that fills the display and carries its own tab bar, so the navigation belongs to the thing it navigates rather than floating beside it. Built on a design system stated once: two type pairs — 16px with medium, 14px with normal — where selection is signalled by surface and colour rather than by a third size, and letter-spacing rides on the type token so the same size is never set two ways in two components. Radii are concentric and the arithmetic is checkable: 16 on the card, 8 one padding step in, 4 two steps in. Rows are wells recessed with a 1px inset ring rather than a border, and each row ends in a rail of three action buttons whose boxes and gaps divide that rail exactly. The leading mark is a ring filled as a wedge in proportion to subtasks done, drawn on the icon set's own 24 grid at the shared stroke weight. Status pills use `text-box: trim-both cap alphabetic` to centre on their cap height rather than their line box, every control carries a 40px hit area as a pseudo-element that never overlaps its neighbour's, and transitions name the exact properties that change. Colour is OKLCH throughout at hue 264, with the ink value spent in exactly two places — the primary action and the selected tab. Renders entirely on the server.",
       "createdAt": "2026-09-03T00:00:00Z",
       "variations": [
         {
           "name": "default",
           "displayName": "Notes Card",
           "tier": "free",
-          "description": "A task list screen inside a phone shell — status bar, home indicator, and a card that fills the display between them. Header with a primary action, a segmented filter, and date-grouped rows carrying completion, status, counts and collaborator faces. Two type sizes, two weights, three concentric radii, and one 16px column every left edge resolves to. The progress mark is a wedge drawn on the icon set's own grid, the last row sits mid-swipe with its delete action revealed, and the whole thing is OKLCH at a single hue. Static — no hooks, no motion, zero JavaScript.",
+          "description": "A task list screen inside a phone shell — status bar, home indicator, and a card that fills the display between them. Header with a primary action, a segmented filter, and date-grouped rows carrying completion, status, counts and a rail of edit/complete/delete actions. Two type pairs, concentric 16/8/4 radii, 40px hit areas on every control, press feedback at 0.96, and transitions that name only the properties that move. The progress mark is a wedge drawn on the icon set's own grid, and the last row sits mid-swipe with its delete action revealed. Static — no hooks, no motion library, zero JavaScript.",
           "animationType": "none",
           "dependencies": [
             "@hugeicons/react",
@@ -322,5 +322,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-03T12:28:22.034Z"
+  "lastUpdated": "2026-09-03T13:04:05.476Z"
 }

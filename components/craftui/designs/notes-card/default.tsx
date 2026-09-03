@@ -45,13 +45,44 @@ function Icon({
   );
 }
 
+/**
+ * TWO PAIRS, AND ONLY TWO. 16px rides with medium; 14px rides with normal.
+ * Selection is signalled by surface and colour — the white pill, the ink fill
+ * — never by a third size or a heavier weight, which is how a scale grows a
+ * 15 and a 13 nobody decided on.
+ *
+ * Tracking is Inter's own optical ramp, and it loosens as the size falls:
+ * roughly -0.011em at 16 and neutral at 14. It is stated on the type tokens
+ * rather than on call sites, because tracking that lives at call sites ends up
+ * on two of the seven places the same size is used.
+ *
+ * `*Type` is the size, weight and tracking with no colour, for text that sits
+ * on a coloured surface and brings its own ink — the solid button, the tinted
+ * status pill. The full token is the same three plus the neutral it defaults
+ * to.
+ */
 const t = {
-  name: "text-[16px] font-medium text-[oklch(17%_0.018_264)]",
-  body: "text-[13px] font-normal text-[oklch(57%_0.014_264)]",
-  bodyInk: "text-[13px] font-normal text-[oklch(17%_0.018_264)]",
-  rail: "w-[72px]",
+  nameType: "text-[16px] font-medium tracking-[-0.02em]",
+  name: "text-[16px] font-medium tracking-[-0.02em] text-[oklch(17%_0.018_264)]",
+  bodyType: "text-[14px] font-normal tracking-[-0.01em]",
+  body: "text-[14px] font-normal tracking-[-0.01em] text-[oklch(57%_0.014_264)]",
 
-  radius: "rounded-[12px]",
+  /**
+   * The right rail. 80, not 72: the status pill has to hold "Incoming" at the
+   * body size, and the action row has to divide into three boxes and two gaps
+   * — 24 + 4 + 24 + 4 + 24. Both land on 80, which is what lets the pill and
+   * the cluster under it share a left edge, a right edge and a centre line.
+   */
+  rail: "w-[80px]",
+
+  /**
+   * Concentric, and the arithmetic is checkable: inner = outer − the padding
+   * between them. 16 on the card, whose content sits at `p-2` (8), so rows,
+   * the segmented track and the tab pill are 8. The track's own `p-1` (4)
+   * makes its selected pill 4, which is also what the action boxes take as the
+   * smallest surfaces on the screen.
+   */
+  radius: "rounded-[16px]",
   radiusInner: "rounded-[8px]",
   radiusTight: "rounded-[4px]",
 
@@ -71,7 +102,30 @@ const t = {
   insetRing: "shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]",
   insetRingHover: "hover:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)]",
 
-  shadowMove: "transition-[background-color,box-shadow] duration-150 ease-out",
+  /**
+   * Every property that actually changes, and nothing else — never `all`, and
+   * never `transition-colors`, which watches six properties to catch one.
+   * `color` is in the list because the action icons tint on hover: without it
+   * the shadow eased over 150ms while the icon snapped in the same gesture.
+   */
+  move: "transition-[background-color,box-shadow,color,scale] duration-150 ease-out",
+  /** 0.96 exactly. Below 0.95 the press reads as a flinch. */
+  press: "active:scale-[0.96]",
+
+  /**
+   * A 40px-tall hit area on a control that is drawn shorter, as a pseudo
+   * element so nothing in layout moves. Full-width, so two controls sitting
+   * side by side meet at their shared edge and never overlap.
+   */
+  hit: "relative after:absolute after:inset-x-0 after:top-1/2 after:h-10 after:-translate-y-1/2",
+  /**
+   * The same, for the 24px action boxes. 28 wide is the pitch — box plus gap —
+   * so three of them tile the rail exactly and stop where the neighbour's
+   * begins. It is the largest they can be without colliding, which the height
+   * has to make up for.
+   */
+  hitTight:
+    "relative after:absolute after:top-1/2 after:left-1/2 after:h-10 after:w-7 after:-translate-x-1/2 after:-translate-y-1/2",
 
   markTrack: "stroke-[oklch(72%_0.012_264)]",
   markFill: "fill-[oklch(17%_0.018_264)]",
@@ -161,7 +215,7 @@ const BEZEL = 12;
 const FRAME_W = SCREEN_W + BEZEL * 2;
 const FRAME_H = SCREEN_H + BEZEL * 2;
 
-/** The iOS status bar — time left, radios right, at the body size. */
+/** The iOS status bar — time left, radios right. */
 function StatusBar({ time }: { time: string }) {
   return (
     <div className="flex h-[54px] shrink-0 items-center justify-between px-7 pt-1">
@@ -244,7 +298,8 @@ function Tag({ label, tone: k }: { label: string; tone: Tone }) {
       className={cn(
         tone[k],
         t.rail,
-        "flex h-5 items-center justify-center overflow-hidden rounded-full px-2 pb-[1px] text-[13px] leading-4 font-normal",
+        t.bodyType,
+        "flex h-5 items-center justify-center overflow-hidden rounded-full px-2 pb-[1px] leading-4",
       )}
     >
       <span className="whitespace-nowrap [text-box:trim-both_cap_alphabetic]">
@@ -301,12 +356,8 @@ const ACTIONS = [
 
 function Actions() {
   return (
-    // 20 + 6 + 20 + 6 + 20 = 72. Three separate surfaces still have to spend
-    // the rail exactly, so the gap is paid for out of the boxes: at 24 each
-    // they filled the width edge to edge and there was nothing left to gap
-    // with. 20px boxes carry the 14px icon the counts on the same line already
-    // use, which is the size this row is set at anyway.
-    <div className={cn(t.rail, "flex items-center gap-1.5")}>
+    // 24 + 4 + 24 + 4 + 24 = 80, the rail exactly.
+    <div className={cn(t.rail, "flex items-center gap-1")}>
       {ACTIONS.map(({ label, icon, hover }) => (
         <button
           key={label}
@@ -317,12 +368,14 @@ function Actions() {
             t.card,
             t.shadowBorder,
             t.shadowBorderHover,
-            t.shadowMove,
+            t.move,
+            t.press,
+            t.hitTight,
             hover,
-            "flex size-5 items-center justify-center text-[oklch(57%_0.014_264)]",
+            "flex size-6 items-center justify-center text-[oklch(57%_0.014_264)]",
           )}
         >
-          <Icon icon={icon} size={14} />
+          <Icon icon={icon} size={16} />
         </button>
       ))}
     </div>
@@ -372,18 +425,24 @@ function TaskRow({ task }: { task: Task }) {
   return (
     <div className="flex items-stretch gap-2">
       {/* A div, not a button. The row was one pressable surface until it grew
-          three of its own — and a button inside a button is invalid markup, so
+          three of its own, and a button inside a button is invalid markup — so
           the actions are the interactive things now and the row is what holds
-          them. It keeps the hover, which is what the group class is for. */}
+          them. */}
       <div
+        // `pt-[15px] pb-4` — 15 and 16, not 16 and 16. The row's topmost ink is
+        // the status mark and its bottommost is an action box, and the two do
+        // not sit in their boxes the same way: the mark is a circle on a 24
+        // grid whose outer edge stops 1.25 short of its own box, while an
+        // action box is filled to its edge. Equal padding therefore renders
+        // 17.25 above the visible mark and 16 below the visible boxes.
         className={cn(
           t.radiusInner,
           t.well,
           t.wellHover,
           t.insetRing,
           t.insetRingHover,
-          t.shadowMove,
-          "group flex min-w-0 flex-1 items-start gap-2 px-2 pt-[15px] pb-4 text-left",
+          t.move,
+          "flex min-w-0 flex-1 items-start gap-2 px-2 pt-[15px] pb-4 text-left",
         )}
       >
         {task.done ? (
@@ -458,11 +517,12 @@ function TaskRow({ task }: { task: Task }) {
             t.radiusInner,
             tone.red,
             t.rail,
+            t.bodyType,
             "flex shrink-0 flex-col items-center justify-center gap-1",
           )}
         >
           <Icon icon={Delete02Icon} size={18} />
-          <span className="text-[13px] font-normal">Delete</span>
+          <span>Delete</span>
         </div>
       )}
     </div>
@@ -486,14 +546,16 @@ function Segmented() {
           type="button"
           className={cn(
             t.radiusTight,
-            "px-3 py-1.5 text-[13px] font-normal transition-colors",
+            t.bodyType,
+            t.move,
+            t.press,
+            t.hit,
+            "px-3 py-1.5",
             i === 0
-              ? cn(
-                  t.card,
-                  t.shadowBorder,
-                  "font-semibold text-[oklch(17%_0.018_264)]",
-                )
-              : "text-[oklch(57%_0.014_264)]",
+              ? cn(t.card, t.shadowBorder, "text-[oklch(17%_0.018_264)]")
+              : // The unselected segments now answer to the pointer. They
+                // carried a transition for a state they did not have.
+                "text-[oklch(57%_0.014_264)] hover:text-[oklch(17%_0.018_264)]",
           )}
         >
           {tab}
@@ -503,24 +565,36 @@ function Segmented() {
   );
 }
 
-/** The card's footer: four named tabs, the selected one filled with the ink value. */
+/**
+ * The card's footer: four named tabs, the selected one filled with the ink
+ * value. Selection is the fill and the white label, not a size or a weight —
+ * every tab is set at the body pair.
+ *
+ * Padding follows the optical rule, `icon-side = text-side − 2`: an icon does
+ * not fill its box the way a letter fills its line, so equal padding reads as
+ * a label pushed off-centre. That is `pl-2.5 pr-3` on the filled tab and
+ * `pl-1 pr-1.5` on the bare ones, which is also what buys the row enough width
+ * to seat four labels inside a 390 screen.
+ */
 function TabBar() {
   return (
-    <nav className="flex shrink-0 items-center justify-between gap-1 px-2 py-2 shadow-[0_-1px_0_0_oklch(93%_0.004_264)]">
+    <nav className="flex shrink-0 items-center justify-between gap-0.5 px-2 py-2 shadow-[0_-1px_0_0_oklch(93%_0.004_264)]">
       {NAV_TABS.map(({ label, icon }, i) => {
         const selected = i === 0;
         return (
           <button
             key={label}
             type="button"
-            aria-label={label}
             className={cn(
-              t.shadowMove,
               t.radiusInner,
+              t.bodyType,
+              t.move,
+              t.press,
+              t.hit,
               "flex items-center justify-center gap-1.5 py-2",
               selected
-                ? cn(t.solid, "px-3 text-[15px] font-semibold")
-                : "px-2 text-[13px] font-normal text-[oklch(57%_0.014_264)] hover:bg-[oklch(97%_0.003_264)]",
+                ? cn(t.solid, "pl-2.5 pr-3")
+                : "pl-1 pr-1.5 text-[oklch(57%_0.014_264)] hover:bg-[oklch(97%_0.003_264)]",
             )}
           >
             <Icon icon={icon} size={20} />
@@ -558,13 +632,19 @@ function Notes({ className }: { className?: string }) {
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
+          {/* `pl-3 pr-3.5` — the same optical rule the tabs follow, with the
+              icon on the left this time. */}
           <button
             type="button"
             className={cn(
               t.radiusInner,
               t.solid,
               t.solidHover,
-              "flex items-center gap-1.5 py-2 pr-3.5 pl-3 text-[15px] font-semibold transition-colors",
+              t.nameType,
+              t.move,
+              t.press,
+              t.hit,
+              "flex items-center gap-1.5 py-2 pr-3.5 pl-3",
             )}
           >
             <Icon icon={Add01Icon} size={18} />
