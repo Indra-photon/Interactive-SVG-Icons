@@ -111,25 +111,6 @@
       ]
     },
     {
-      "name": "shopping-cart-default",
-      "type": "registry:ui",
-      "title": "Shopping Cart Icon - Default",
-      "description": "Item falls into cart from above and cart shakes when adding to cart",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/icons/shopping-cart/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "refresh-default",
       "type": "registry:ui",
       "title": "Refresh Icon - Default",
@@ -179,6 +160,25 @@
           "path": "components/craftui/icons/refresh/dash.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/icons/refresh/dash.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shopping-cart-default",
+      "type": "registry:ui",
+      "title": "Shopping Cart Icon - Default",
+      "description": "Item falls into cart from above and cart shakes when adding to cart",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/icons/shopping-cart/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/icons/shopping-cart/default.tsx"
         }
       ]
     },
@@ -810,25 +810,6 @@
       ]
     },
     {
-      "name": "ios-spinner-default",
-      "type": "registry:ui",
-      "title": "iOS Spinner - Classic",
-      "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/ios-spinner/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/ios-spinner/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "infinity-loop-default",
       "type": "registry:ui",
       "title": "Infinity Loop - Infinity Loop",
@@ -844,6 +825,25 @@
           "path": "components/craftui/loaders/infinity-loop/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/infinity-loop/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner - Classic",
+      "description": "12 rounded spokes with linear opacity comet tail — the exact macOS connecting spinner",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner/default.tsx"
         }
       ]
     },
@@ -2441,6 +2441,36 @@
           "path": "components/craftui/sections/team-cluster-01/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/team-cluster-01/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "wellness-hero-01-default",
+      "type": "registry:block",
+      "title": "Wellness Hero 01 - Wellness Hero 01",
+      "description": "A full-height wellness hero: serif headline, paired yellow CTAs, a mask-faded bloom image on the right, and a product table pinned to the bottom. Entrances are staggered blur-and-rise with motion/react, hover states are spring-free micro-moves, and every animation collapses to a plain fade under reduced motion.",
+      "dependencies": [
+        "next",
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/wellness-hero-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/wellness-hero-01/default.tsx"
+        },
+        {
+          "path": "components/craftui/sections/wellness-hero-01/font.ts",
+          "type": "registry:file",
+          "target": "~/components/craftui/sections/wellness-hero-01/font.ts"
         }
       ]
     },

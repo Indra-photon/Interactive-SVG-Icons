@@ -345,85 +345,6 @@
       ]
     },
     {
-      "slug": "shopping-cart",
-      "name": "Shopping Cart Icon",
-      "category": "ecommerce",
-      "tags": [
-        "cart",
-        "shopping",
-        "ecommerce",
-        "buy",
-        "add",
-        "basket"
-      ],
-      "description": "Icon for shopping cart and add to cart actions",
-      "createdAt": "2026-02-12T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Default",
-          "componentName": "IconShoppingCart",
-          "tier": "free",
-          "description": "Item falls into cart from above and cart shakes when adding to cart",
-          "animationType": "click",
-          "dependencies": [
-            "motion"
-          ],
-          "props": [
-            {
-              "name": "size",
-              "type": "number",
-              "default": 24,
-              "min": 8,
-              "max": 256,
-              "step": 1,
-              "description": "Width and height of the icon in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Stroke color of the icon (CSS color value)"
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "default": "",
-              "description": "Additional CSS classes to apply"
-            },
-            {
-              "name": "isAdding",
-              "type": "boolean",
-              "default": false,
-              "description": "Triggers the add to cart animation. Set to true when item is being added to cart."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 0.6,
-              "required": false,
-              "description": "Duration of the handle drop in seconds; the cart shake scales with it",
-              "min": 0.1,
-              "max": 3,
-              "step": 0.05
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": [
-                0.34,
-                1.56,
-                0.64,
-                1
-              ],
-              "required": false,
-              "description": "Easing of the handle drop. Accepts a named ease or a cubic-bezier array."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "refresh",
       "name": "Refresh Icon",
       "category": "actions",
@@ -560,6 +481,85 @@
               "min": 2,
               "max": 30,
               "step": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "shopping-cart",
+      "name": "Shopping Cart Icon",
+      "category": "ecommerce",
+      "tags": [
+        "cart",
+        "shopping",
+        "ecommerce",
+        "buy",
+        "add",
+        "basket"
+      ],
+      "description": "Icon for shopping cart and add to cart actions",
+      "createdAt": "2026-02-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Default",
+          "componentName": "IconShoppingCart",
+          "tier": "free",
+          "description": "Item falls into cart from above and cart shakes when adding to cart",
+          "animationType": "click",
+          "dependencies": [
+            "motion"
+          ],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 24,
+              "min": 8,
+              "max": 256,
+              "step": 1,
+              "description": "Width and height of the icon in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Stroke color of the icon (CSS color value)"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "",
+              "description": "Additional CSS classes to apply"
+            },
+            {
+              "name": "isAdding",
+              "type": "boolean",
+              "default": false,
+              "description": "Triggers the add to cart animation. Set to true when item is being added to cart."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.6,
+              "required": false,
+              "description": "Duration of the handle drop in seconds; the cart shake scales with it",
+              "min": 0.1,
+              "max": 3,
+              "step": 0.05
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": [
+                0.34,
+                1.56,
+                0.64,
+                1
+              ],
+              "required": false,
+              "description": "Easing of the handle drop. Accepts a named ease or a cubic-bezier array."
             }
           ]
         }
@@ -1888,5 +1888,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-03T13:04:05.492Z"
+  "lastUpdated": "2026-09-04T18:57:02.088Z"
 }

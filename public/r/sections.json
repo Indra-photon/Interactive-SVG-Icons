@@ -105,6 +105,131 @@
       ]
     },
     {
+      "slug": "wellness-hero-01",
+      "name": "Wellness Hero 01",
+      "category": "hero-section",
+      "tags": [
+        "hero",
+        "wellness",
+        "health",
+        "serif",
+        "editorial",
+        "navbar",
+        "product-list",
+        "motion"
+      ],
+      "description": "A full-height wellness hero on a warm paper ground: a serif headline and two soft yellow CTAs on the left, a masked bloom photograph bleeding in from the right, and a three-row product table anchored to the bottom edge. Copy, image and table each rise in on their own blurred entrance, and every row and control answers hover with a small, restrained move.",
+      "createdAt": "2026-09-04T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Wellness Hero 01",
+          "tier": "free",
+          "description": "A full-height wellness hero: serif headline, paired yellow CTAs, a mask-faded bloom image on the right, and a product table pinned to the bottom. Entrances are staggered blur-and-rise with motion/react, hover states are spring-free micro-moves, and every animation collapses to a plain fade under reduced motion.",
+          "animationType": "entrance",
+          "dependencies": [
+            "next",
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons",
+            "clsx",
+            "tailwind-merge"
+          ],
+          "registryDependencies": [
+            "utils"
+          ],
+          "props": [
+            {
+              "name": "brand",
+              "type": "string",
+              "default": "\"The Wellness Company\"",
+              "required": false,
+              "description": "Wordmark in the header, set in the serif face at the same optical weight as the headline."
+            },
+            {
+              "name": "nav",
+              "type": "string[]",
+              "default": "[\"Belief\", \"Products\", \"Team\"]",
+              "required": false,
+              "description": "Desktop nav labels. Hidden below lg, where the menu button takes over."
+            },
+            {
+              "name": "heading",
+              "type": "React.ReactNode",
+              "default": "\"Live better, feel sharper.\"",
+              "required": false,
+              "description": "Hero headline. Sized by a clamp that reads both viewport width and height, so it never outgrows a short laptop screen."
+            },
+            {
+              "name": "body",
+              "type": "React.ReactNode",
+              "required": false,
+              "description": "Supporting paragraph under the headline, capped at a 560px measure."
+            },
+            {
+              "name": "primaryLabel",
+              "type": "string",
+              "default": "\"Text us\"",
+              "required": false,
+              "description": "Label on the header CTA. The hero CTA below always reads \"Text us to begin\" and shares the same href."
+            },
+            {
+              "name": "primaryHref",
+              "type": "string",
+              "default": "\"sms:+16284687855\"",
+              "required": false,
+              "description": "Destination for both yellow CTAs — an sms: link by default."
+            },
+            {
+              "name": "secondaryLabel",
+              "type": "string",
+              "default": "\"How we work\"",
+              "required": false,
+              "description": "Label on the pale secondary CTA."
+            },
+            {
+              "name": "secondaryHref",
+              "type": "string",
+              "default": "\"#how\"",
+              "required": false,
+              "description": "Destination for the secondary CTA."
+            },
+            {
+              "name": "products",
+              "type": "WellnessProduct[]",
+              "required": false,
+              "description": "Rows in the bottom table — each `{ name, category, note }`. Defaults to the three-product set."
+            },
+            {
+              "name": "image",
+              "type": "string",
+              "default": "\"/paper-image/wellnessHero01.png\"",
+              "required": false,
+              "description": "The bloom photograph on the right. Masked on two axes so it dissolves into the paper ground rather than ending on an edge."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the section element."
+            }
+          ],
+          "componentName": "WellnessHero01",
+          "previewHint": "Hover the product rows — the rule warms and the arrow lifts away. Hover either CTA to feel the press.",
+          "features": [
+            "Entrances are motion/react rather than CSS keyframes — headline, body, CTA row, image and table each carry their own delay, blur and travel, so the page resolves in one reading order",
+            "Hover moves ride variant propagation: the CTA and each product row drive their arrow from the parent, so a single hover target moves two things without a group-hover transform",
+            "useReducedMotion swaps every entrance for a plain 0.4s fade and drops hover travel entirely, instead of leaving a half-animated state behind",
+            "The bloom is masked by two intersecting gradients, and both the mask and the object-position mirror under rtl, so the image still fades toward the copy in either direction",
+            "Padding is written against env(safe-area-inset-*) on every band, so the hero survives a notched phone in landscape",
+            "Type and rhythm scale on min(vw, vh) rather than width alone — the headline and product names shrink on a short screen instead of pushing the table off the fold",
+            "The table sits on its own upward gradient wash, so it stays readable where the image bleeds behind it"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
       "slug": "orchid-ai-01",
       "name": "Orchid AI 01",
       "category": "hero-section",
@@ -580,5 +705,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-03T13:04:05.480Z"
+  "lastUpdated": "2026-09-04T18:57:02.077Z"
 }
