@@ -677,25 +677,6 @@
       ]
     },
     {
-      "name": "pulse-ring-default",
-      "type": "registry:ui",
-      "title": "Pulse Ring - Pulse Ring",
-      "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/pulse-ring/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/pulse-ring/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "ios-spinner-trail-default",
       "type": "registry:ui",
       "title": "iOS Spinner Trail - Sharp Trail",
@@ -711,6 +692,25 @@
           "path": "components/craftui/loaders/ios-spinner-trail/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/ios-spinner-trail/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pulse-ring-default",
+      "type": "registry:ui",
+      "title": "Pulse Ring - Pulse Ring",
+      "description": "Staggered rings emanate from the center, scaling up and fading out like ripples on water",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/pulse-ring/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/pulse-ring/default.tsx"
         }
       ]
     },
@@ -1152,25 +1152,6 @@
       ]
     },
     {
-      "name": "fill-hourglass-default",
-      "type": "registry:ui",
-      "title": "Hourglass - Hourglass",
-      "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/fill-hourglass/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/fill-hourglass/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "fill-flask-default",
       "type": "registry:ui",
       "title": "Flask - Flask",
@@ -1186,6 +1167,25 @@
           "path": "components/craftui/loaders/fill-flask/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/fill-flask/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-hourglass-default",
+      "type": "registry:ui",
+      "title": "Hourglass - Hourglass",
+      "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-hourglass/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-hourglass/default.tsx"
         }
       ]
     },
@@ -2249,23 +2249,6 @@
       ]
     },
     {
-      "name": "frosted-navbar-frosted-navbar",
-      "type": "registry:block",
-      "title": "Frosted Navbar - Frosted Navbar",
-      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
-        }
-      ]
-    },
-    {
       "name": "curve-heading-default",
       "type": "registry:block",
       "title": "Curve Heading - Curve Heading",
@@ -2285,23 +2268,19 @@
       ]
     },
     {
-      "name": "contact-reveal-card-default",
+      "name": "frosted-navbar-frosted-navbar",
       "type": "registry:block",
-      "title": "Contact Reveal Card - Contact Reveal Card",
-      "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
-      "dependencies": [
-        "motion",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
+      "title": "Frosted Navbar - Frosted Navbar",
+      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+      "dependencies": [],
       "registryDependencies": [
         "craftui-base"
       ],
       "files": [
         {
-          "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
+          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
           "type": "registry:component",
-          "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
+          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
         }
       ]
     },
@@ -2326,6 +2305,27 @@
           "path": "components/craftui/blocks/checkout-button/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/checkout-button/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "contact-reveal-card-default",
+      "type": "registry:block",
+      "title": "Contact Reveal Card - Contact Reveal Card",
+      "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
         }
       ]
     },
@@ -2403,6 +2403,36 @@
           "path": "components/craftui/blocks/ai-chat/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/ai-chat/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "wellness-hero-01-default",
+      "type": "registry:block",
+      "title": "Wellness Hero 01 - Wellness Hero 01",
+      "description": "A full-height wellness hero: serif headline, a dark primary CTA beside a light secondary, a mask-faded bloom image on the right, and a product table pinned to the bottom. Entrances are staggered blur-and-rise with motion/react, hover states are spring-free micro-moves, and every animation collapses to a plain fade under reduced motion.",
+      "dependencies": [
+        "next",
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/wellness-hero-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/wellness-hero-01/default.tsx"
+        },
+        {
+          "path": "components/craftui/sections/wellness-hero-01/font.ts",
+          "type": "registry:file",
+          "target": "~/components/craftui/sections/wellness-hero-01/font.ts"
         }
       ]
     },

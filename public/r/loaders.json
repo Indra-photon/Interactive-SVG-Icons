@@ -577,6 +577,77 @@
       ]
     },
     {
+      "slug": "ios-spinner-trail",
+      "name": "iOS Spinner Trail",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "trail",
+        "comet",
+        "sharp",
+        "exponential"
+      ],
+      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, creating an intense laser comet",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Sharp Trail",
+          "componentName": "IosSpinnerTrail",
+          "tier": "free",
+          "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.7,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "pulse-ring",
       "name": "Pulse Ring",
       "category": "loaders",
@@ -653,77 +724,6 @@
               "name": "ease",
               "type": "ease",
               "default": "easeOut",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "ios-spinner-trail",
-      "name": "iOS Spinner Trail",
-      "category": "loaders",
-      "tags": [
-        "apple",
-        "ios",
-        "macos",
-        "spinner",
-        "trail",
-        "comet",
-        "sharp",
-        "exponential"
-      ],
-      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, creating an intense laser comet",
-      "createdAt": "2026-05-14",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Sharp Trail",
-          "componentName": "IosSpinnerTrail",
-          "tier": "free",
-          "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the spokes"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 0.7,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
               "description": "Easing function"
             }
           ]
@@ -2617,88 +2617,6 @@
       ]
     },
     {
-      "slug": "fill-hourglass",
-      "name": "Hourglass",
-      "category": "loaders",
-      "tags": [
-        "hourglass",
-        "sand",
-        "timer",
-        "time",
-        "fill",
-        "flip",
-        "waiting"
-      ],
-      "description": "An hourglass where sand drains from top to bottom, then the glass flips to restart",
-      "createdAt": "2026-07-08",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Hourglass",
-          "componentName": "FillHourglass",
-          "tier": "free",
-          "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 60,
-              "description": "Width of the loader container in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 60,
-              "description": "Height of the loader container in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "#e8a33d",
-              "description": "Color of the sand"
-            },
-            {
-              "name": "strokeColor",
-              "type": "string",
-              "default": "#1f1f1f",
-              "description": "Color of the glass outline and frame bars"
-            },
-            {
-              "name": "backgroundColor",
-              "type": "string",
-              "default": "#ffffff",
-              "description": "Fill color of the glass interior"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs. Set to false to pause animation."
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 4,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "fill-flask",
       "name": "Flask",
       "category": "loaders",
@@ -2772,6 +2690,88 @@
               "name": "duration",
               "type": "number",
               "default": 2.5,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fill-hourglass",
+      "name": "Hourglass",
+      "category": "loaders",
+      "tags": [
+        "hourglass",
+        "sand",
+        "timer",
+        "time",
+        "fill",
+        "flip",
+        "waiting"
+      ],
+      "description": "An hourglass where sand drains from top to bottom, then the glass flips to restart",
+      "createdAt": "2026-07-08",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Hourglass",
+          "componentName": "FillHourglass",
+          "tier": "free",
+          "description": "Sand streams from the top bulb into the bottom one, then the hourglass rotates 180 degrees and drains again",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 60,
+              "description": "Width of the loader container in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 60,
+              "description": "Height of the loader container in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "#e8a33d",
+              "description": "Color of the sand"
+            },
+            {
+              "name": "strokeColor",
+              "type": "string",
+              "default": "#1f1f1f",
+              "description": "Color of the glass outline and frame bars"
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "default": "#ffffff",
+              "description": "Fill color of the glass interior"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs. Set to false to pause animation."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 4,
               "description": "Animation cycle duration in seconds",
               "min": 0.1,
               "max": 8,
@@ -6041,5 +6041,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-03T13:04:05.509Z"
+  "lastUpdated": "2026-09-05T07:54:11.798Z"
 }

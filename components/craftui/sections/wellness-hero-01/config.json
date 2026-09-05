@@ -1,0 +1,138 @@
+{
+  "slug": "wellness-hero-01",
+  "name": "Wellness Hero 01",
+  "category": "hero-section",
+  "tags": [
+    "hero",
+    "wellness",
+    "health",
+    "serif",
+    "editorial",
+    "navbar",
+    "product-list",
+    "motion"
+  ],
+  "description": "A full-height wellness hero on a warm paper ground: a serif headline over a dark primary and light secondary CTA on the left, a masked bloom photograph bleeding in from the right, and a three-row product table anchored to the bottom edge. Copy, image and table each rise in on their own blurred entrance, and every row and control answers hover with a small, restrained move.",
+  "createdAt": "2026-09-04T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Wellness Hero 01",
+      "componentName": "WellnessHero01",
+      "previewHint": "Hover a product row — its rule firms up and the arrow steps away. Hover either CTA for the 1px lift, press for the seated shadow.",
+      "tier": "free",
+      "responsive": true,
+      "description": "A full-height wellness hero: serif headline, a dark primary CTA beside a light secondary, a mask-faded bloom image on the right, and a product table pinned to the bottom. Entrances are staggered blur-and-rise with motion/react, hover states are spring-free micro-moves, and every animation collapses to a plain fade under reduced motion.",
+      "animationType": "entrance",
+      "dependencies": [
+        "next",
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "extraFiles": [
+        "font.ts"
+      ],
+      "props": [
+        {
+          "name": "brand",
+          "type": "string",
+          "default": "\"The Wellness Company\"",
+          "required": false,
+          "description": "Wordmark in the header, set in the serif face at the same optical weight as the headline."
+        },
+        {
+          "name": "nav",
+          "type": "string[]",
+          "default": "[\"Belief\", \"Products\", \"Team\"]",
+          "required": false,
+          "description": "Desktop nav labels. Hidden below lg, where the menu button takes over."
+        },
+        {
+          "name": "heading",
+          "type": "React.ReactNode",
+          "default": "\"Live better, feel sharper.\"",
+          "required": false,
+          "description": "Hero headline. Sized by a clamp that reads both viewport width and height, so it never outgrows a short laptop screen."
+        },
+        {
+          "name": "body",
+          "type": "React.ReactNode",
+          "required": false,
+          "description": "Supporting paragraph under the headline, capped at a 560px measure."
+        },
+        {
+          "name": "primaryLabel",
+          "type": "string",
+          "default": "\"Text us\"",
+          "required": false,
+          "description": "Label on the header CTA. The hero CTA below always reads \"Text us to begin\" — it is the page's real action and says what it does, so it is not driven by this prop — and shares primaryHref."
+        },
+        {
+          "name": "primaryHref",
+          "type": "string",
+          "default": "\"sms:+16284687855\"",
+          "required": false,
+          "description": "Destination for both primary CTAs — an sms: link by default."
+        },
+        {
+          "name": "secondaryLabel",
+          "type": "string",
+          "default": "\"How we work\"",
+          "required": false,
+          "description": "Label on the pale secondary CTA."
+        },
+        {
+          "name": "secondaryHref",
+          "type": "string",
+          "default": "\"#how\"",
+          "required": false,
+          "description": "Destination for the secondary CTA."
+        },
+        {
+          "name": "products",
+          "type": "WellnessProduct[]",
+          "required": false,
+          "description": "Rows in the bottom table — each `{ name, category, note }`. Defaults to the three-product set."
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "default": "\"/paper-image/wellnessHero01.png\"",
+          "required": false,
+          "description": "The bloom photograph on the right. Masked on two axes so it dissolves into the paper ground rather than ending on an edge. The registry ships code, not assets, so an install has to supply this file: the img carries an empty alt and is aria-hidden, so a missing path renders as nothing rather than as a broken-image icon, and the section still reads correctly without it."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the section element."
+        },
+        {
+          "name": "--brand-h",
+          "type": "CSS custom property (number)",
+          "default": "60",
+          "required": false,
+          "description": "Hue angle, in OKLCH degrees, for every tinted surface in the block: both button faces, their badges, the four shadow tints and the hairline rules between product rows. Set on the section root and inherited. At 60 with the current near-zero chroma ramp (0.005-0.02) it only warms the neutrals, so the buttons read as ink and white on cream rather than as a colour; raising the chroma values turns the same structure back into a coloured pair. Chroma ceilings are hue-dependent, so a saturated ramp has to be re-tuned per hue, not just rotated."
+        }
+      ],
+      "features": [
+        "Both faces are three-stop gradients pinned to absolute pixel stops, not percentages, so the 40px header pill and the 52px hero pill show the same run of light instead of stretching it; the dark primary lifts from 31% to 22% lightness, the light secondary settles from pure white to warm paper",
+        "Depth is inset shadows rather than borders: a lit top edge and a seated bottom edge on each face, and the badges are a translucent white sheen over a solid colour so hover animates the colour underneath — background-image cannot transition, so a gradient swap on hover would snap",
+        "Type is set in rem-anchored clamps that also read viewport height, so the headline responds to the reader's own browser font size instead of ignoring it, and shrinks on a short screen rather than pushing the table off the fold",
+        "Entrances are motion/react rather than CSS keyframes — headline, body, CTA row, image and table each carry their own delay, blur and travel, so the page resolves in one reading order",
+        "Hover moves ride variant propagation: the CTA and each product row drive their arrow from the parent, so a single hover target moves two things without a group-hover transform",
+        "useReducedMotion swaps every entrance for a plain 0.4s fade and drops hover travel entirely, instead of leaving a half-animated state behind",
+        "The bloom is masked by two intersecting gradients, and both the mask and the object-position mirror under rtl, so the image still fades toward the copy in either direction",
+        "Padding is written against env(safe-area-inset-*) on every band, so the hero survives a notched phone in landscape",
+        "The table sits on its own upward gradient wash, so it stays readable where the image bleeds behind it"
+      ],
+      "inspiration": []
+    }
+  ]
+}
