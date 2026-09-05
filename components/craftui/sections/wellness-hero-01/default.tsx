@@ -79,7 +79,7 @@ function HeroHeader({
         <a
           href="#top"
           className={cn(
-            "inline-flex shrink-0 items-center rounded-full font-[family-name:var(--font-serif,ui-serif,Georgia,serif)] text-[26px] leading-[1.2] font-normal whitespace-nowrap text-stone-950 md:text-[30px]",
+            "inline-flex shrink-0 items-center rounded-full font-[family-name:var(--font-serif,ui-serif,Georgia,serif)] text-[26px] leading-[1.2] font-normal tracking-[-0.01em] whitespace-nowrap text-stone-950 md:text-[30px]",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-950",
           )}
         >
@@ -108,12 +108,12 @@ function HeroHeader({
             whileTap={reduceMotion ? undefined : { scale: 0.97 }}
             transition={{ duration: 0.2, ease: EASE }}
             className={cn(
-              "hidden items-center rounded-[9px] px-5 py-3 text-[16px] leading-5 font-medium text-stone-950 lg:inline-flex",
-              "bg-yellow-500 bg-[linear-gradient(180deg,oklch(94.5%_0.129_101.54)_0px,oklch(90.5%_0.182_98.111)_24px,oklch(79.5%_0.184_86.047)_52px)]",
-              "shadow-[inset_0_1px_0_rgba(255,255,255,0.34),inset_0_-1px_0_oklch(28.6%_0.066_53.813_/_0.2),0_1px_2px_oklch(28.6%_0.066_53.813_/_0.16),0_8px_16px_-10px_oklch(28.6%_0.066_53.813_/_0.55)]",
+              "hidden items-center rounded-[9px] px-5 py-3 text-[16px] leading-5 font-medium text-[oklch(97%_0.01_var(--brand-h))] lg:inline-flex",
+              "bg-[oklch(22%_0.012_var(--brand-h))] bg-[linear-gradient(180deg,oklch(31%_0.014_var(--brand-h))_0px,oklch(27%_0.013_var(--brand-h))_24px,oklch(22%_0.012_var(--brand-h))_52px)]",
+              "shadow-[inset_0_1px_0_rgba(255,255,255,0.20),inset_0_-1px_0_oklch(0%_0_0_/_0.35),0_1px_2px_oklch(28.6%_0.02_var(--brand-h)_/_0.20),0_8px_16px_-10px_oklch(28.6%_0.02_var(--brand-h)_/_0.55)]",
               "transition-[box-shadow] duration-200 ease-[ease]",
-              "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.42),inset_0_-1px_0_oklch(28.6%_0.066_53.813_/_0.2),0_1px_2px_oklch(28.6%_0.066_53.813_/_0.16),0_12px_20px_-10px_oklch(28.6%_0.066_53.813_/_0.6)]",
-              "active:shadow-[inset_0_1px_2px_oklch(28.6%_0.066_53.813_/_0.28),0_1px_1px_oklch(28.6%_0.066_53.813_/_0.14)]",
+              "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_oklch(0%_0_0_/_0.35),0_1px_2px_oklch(28.6%_0.02_var(--brand-h)_/_0.20),0_12px_20px_-10px_oklch(28.6%_0.02_var(--brand-h)_/_0.6)]",
+              "active:shadow-[inset_0_1px_2px_oklch(0%_0_0_/_0.45),0_1px_1px_oklch(28.6%_0.02_var(--brand-h)_/_0.14)]",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-950",
             )}
           >
@@ -182,14 +182,14 @@ function HeroCopy({
         <div className="w-full max-w-[560px]">
           <motion.h1
             {...rise(12, 0)}
-            className="font-[family-name:var(--font-serif,ui-serif,Georgia,serif)] text-[clamp(40px,min(6.2vw,9vh),92px)] leading-[1.08] font-normal text-balance text-stone-950"
+            className="font-[family-name:var(--font-serif,ui-serif,Georgia,serif)] text-[clamp(2.5rem,min(0.75rem_+_5.4vw,9vh),5.75rem)] leading-[1.08] font-normal tracking-[-0.015em] text-balance text-stone-950"
           >
             {heading}
           </motion.h1>
 
           <motion.p
             {...rise(10, 0.12)}
-            className="mt-5 max-w-full text-[18px] leading-7 font-normal tracking-[-0.5px] text-pretty text-stone-800"
+            className="mt-5 max-w-full text-[18px] leading-[1.55] font-normal text-pretty text-stone-800"
           >
             {body}
           </motion.p>
@@ -204,17 +204,17 @@ function HeroCopy({
               whileTap={reduceMotion ? undefined : { scale: 0.97 }}
               transition={{ duration: 0.2, ease: EASE }}
               className={cn(
-                "inline-flex items-center gap-3 rounded-[9px] px-3 py-2 text-[16px] leading-5 font-medium text-stone-950",
-                "bg-yellow-500 bg-[linear-gradient(180deg,oklch(94.5%_0.129_101.54)_0px,oklch(90.5%_0.182_98.111)_24px,oklch(79.5%_0.184_86.047)_52px)]",
-                "shadow-[inset_0_1px_0_rgba(255,255,255,0.34),inset_0_-1px_0_oklch(28.6%_0.066_53.813_/_0.2),0_1px_2px_oklch(28.6%_0.066_53.813_/_0.16),0_8px_16px_-10px_oklch(28.6%_0.066_53.813_/_0.55)]",
+                "inline-flex items-center gap-3 rounded-[9px] px-3 py-2 text-[16px] leading-5 font-medium text-[oklch(97%_0.01_var(--brand-h))]",
+                "bg-[oklch(22%_0.012_var(--brand-h))] bg-[linear-gradient(180deg,oklch(31%_0.014_var(--brand-h))_0px,oklch(27%_0.013_var(--brand-h))_24px,oklch(22%_0.012_var(--brand-h))_52px)]",
+                "shadow-[inset_0_1px_0_rgba(255,255,255,0.20),inset_0_-1px_0_oklch(0%_0_0_/_0.35),0_1px_2px_oklch(28.6%_0.02_var(--brand-h)_/_0.20),0_8px_16px_-10px_oklch(28.6%_0.02_var(--brand-h)_/_0.55)]",
                 "transition-[box-shadow] duration-200 ease-[ease]",
-                "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.42),inset_0_-1px_0_oklch(28.6%_0.066_53.813_/_0.2),0_1px_2px_oklch(28.6%_0.066_53.813_/_0.16),0_12px_20px_-10px_oklch(28.6%_0.066_53.813_/_0.6)]",
-                "active:shadow-[inset_0_1px_2px_oklch(28.6%_0.066_53.813_/_0.28),0_1px_1px_oklch(28.6%_0.066_53.813_/_0.14)]",
+                "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_oklch(0%_0_0_/_0.35),0_1px_2px_oklch(28.6%_0.02_var(--brand-h)_/_0.20),0_12px_20px_-10px_oklch(28.6%_0.02_var(--brand-h)_/_0.6)]",
+                "active:shadow-[inset_0_1px_2px_oklch(0%_0_0_/_0.45),0_1px_1px_oklch(28.6%_0.02_var(--brand-h)_/_0.14)]",
                 "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-950",
               )}
             >
               {primaryLabel}
-              <span className="flex size-8 items-center justify-center rounded-[6px] bg-yellow-950 text-yellow-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+              <span className="flex size-8 items-center justify-center rounded-[6px] bg-[oklch(100%_0_0_/_0.10)] bg-[linear-gradient(180deg,oklch(100%_0_0_/_0.22)_0px,oklch(100%_0_0_/_0.10)_32px)] text-[oklch(97%_0.01_var(--brand-h))] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
                 <HugeiconsIcon
                   icon={Message01Icon}
                   size={16}
@@ -234,22 +234,22 @@ function HeroCopy({
               transition={{ duration: 0.2, ease: EASE }}
               className={cn(
                 "group inline-flex items-center gap-3 rounded-[9px] px-3 py-2 text-[16px] leading-5 font-medium text-stone-950",
-                "bg-yellow-200 bg-[linear-gradient(180deg,oklch(98.7%_0.026_102.212)_0px,oklch(97.3%_0.071_103.193)_26px,oklch(94.5%_0.129_101.54)_52px)]",
-                "shadow-[inset_0_0_0_1px_oklch(85.2%_0.199_91.936_/_0.55),inset_0_1px_0_rgba(255,255,255,0.85),inset_0_-1px_0_oklch(28.6%_0.066_53.813_/_0.12),0_1px_1px_oklch(28.6%_0.066_53.813_/_0.06),0_6px_14px_-12px_oklch(28.6%_0.066_53.813_/_0.3)]",
+                "bg-[oklch(96.5%_0.008_var(--brand-h))] bg-[linear-gradient(180deg,oklch(100%_0_0)_0px,oklch(99%_0.005_var(--brand-h))_26px,oklch(96.5%_0.008_var(--brand-h))_52px)]",
+                "shadow-[inset_0_0_0_1px_oklch(80%_0.015_var(--brand-h)_/_0.6),inset_0_1px_0_rgba(255,255,255,0.85),inset_0_-1px_0_oklch(28.6%_0.02_var(--brand-h)_/_0.12),0_1px_1px_oklch(28.6%_0.02_var(--brand-h)_/_0.06),0_6px_14px_-12px_oklch(28.6%_0.02_var(--brand-h)_/_0.3)]",
                 "transition-[box-shadow] duration-200 ease-[ease]",
-                "hover:shadow-[inset_0_0_0_1px_oklch(68.1%_0.162_75.834_/_0.6),inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_oklch(28.6%_0.066_53.813_/_0.06),0_1px_1px_oklch(28.6%_0.066_53.813_/_0.08),0_10px_18px_-12px_oklch(28.6%_0.066_53.813_/_0.38)]",
-                "active:shadow-[inset_0_0_0_1px_oklch(68.1%_0.162_75.834_/_0.6),inset_0_1px_2px_oklch(28.6%_0.066_53.813_/_0.14),0_1px_1px_oklch(28.6%_0.066_53.813_/_0.06)]",
+                "hover:shadow-[inset_0_0_0_1px_oklch(60%_0.015_var(--brand-h)_/_0.55),inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_oklch(28.6%_0.02_var(--brand-h)_/_0.06),0_1px_1px_oklch(28.6%_0.02_var(--brand-h)_/_0.08),0_10px_18px_-12px_oklch(28.6%_0.02_var(--brand-h)_/_0.38)]",
+                "active:shadow-[inset_0_0_0_1px_oklch(60%_0.015_var(--brand-h)_/_0.55),inset_0_1px_2px_oklch(28.6%_0.02_var(--brand-h)_/_0.14),0_1px_1px_oklch(28.6%_0.02_var(--brand-h)_/_0.06)]",
                 "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-950",
               )}
             >
               {secondaryLabel}
               <span
                 className={cn(
-                  "flex size-8 items-center justify-center rounded-[6px] text-yellow-950",
-                  "bg-yellow-300 bg-[linear-gradient(180deg,oklch(90.5%_0.182_98.111)_0px,oklch(85.2%_0.199_91.936)_32px)]",
-                  "shadow-[inset_0_0_0_1px_oklch(68.1%_0.162_75.834_/_0.6),inset_0_1px_0_rgba(255,255,255,0.45)]",
+                  "flex size-8 items-center justify-center rounded-[6px] text-[oklch(26%_0.012_var(--brand-h))]",
+                  "bg-[oklch(92%_0.014_var(--brand-h))] bg-[linear-gradient(180deg,oklch(100%_0_0_/_0.55)_0px,oklch(100%_0_0_/_0)_32px)]",
+                  "shadow-[inset_0_0_0_1px_oklch(60%_0.015_var(--brand-h)_/_0.55),inset_0_1px_0_rgba(255,255,255,0.45)]",
                   "transition-[box-shadow,background-color,color] duration-200 ease-[ease]",
-                  "group-hover:bg-yellow-400 group-hover:shadow-[inset_0_0_0_1px_oklch(55.4%_0.135_66.442_/_0.55),inset_0_1px_0_rgba(255,255,255,0.45)]",
+                  "group-hover:bg-[oklch(87%_0.018_var(--brand-h))] group-hover:shadow-[inset_0_0_0_1px_oklch(55%_0.015_var(--brand-h)_/_0.5),inset_0_1px_0_rgba(255,255,255,0.45)]",
                 )}
               >
                 <motion.span
@@ -320,15 +320,15 @@ function ProductRow({ product }: { product: WellnessProduct }) {
       whileFocus={reduceMotion ? undefined : "hover"}
       className={cn(
         "group relative grid grid-cols-1 items-start gap-x-8 gap-y-2 py-[clamp(1.1rem,3.2vh,2.2rem)] lg:grid-cols-[minmax(0,0.55fr)_minmax(9rem,max-content)_minmax(0,1.35fr)] lg:items-baseline",
-        "before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-yellow-400/55 before:transition-colors before:duration-200 before:ease-[ease] before:content-['']",
+        "before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-[oklch(80%_0.015_var(--brand-h)_/_0.6)] before:transition-colors before:duration-200 before:ease-[ease] before:content-['']",
         "before:[mask-image:linear-gradient(to_right,#000_0%,#000_58%,transparent_100%)] rtl:before:[mask-image:linear-gradient(to_left,#000_0%,#000_58%,transparent_100%)]",
-        "hover:before:bg-yellow-600/60 focus-visible:before:bg-yellow-600/60",
+        "hover:before:bg-[oklch(60%_0.015_var(--brand-h)_/_0.55)] focus-visible:before:bg-[oklch(60%_0.015_var(--brand-h)_/_0.55)]",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-950",
       )}
     >
       <span
         className={cn(
-          "flex items-center gap-3 font-[family-name:var(--font-serif,ui-serif,Georgia,serif)] text-[clamp(26px,min(3vw,4.4vh),40px)] leading-[1.1] font-normal text-balance text-stone-950",
+          "flex items-center gap-3 font-[family-name:var(--font-serif,ui-serif,Georgia,serif)] text-[clamp(1.625rem,min(0.5rem_+_2.7vw,4.4vh),2.5rem)] leading-[1.1] font-normal tracking-[-0.01em] text-stone-950",
           "underline decoration-transparent decoration-from-font underline-offset-[0.12em] transition-[text-decoration-color] duration-200 ease-[ease]",
           "group-hover:decoration-stone-950/45 group-focus-visible:decoration-stone-950/45",
         )}
@@ -352,7 +352,7 @@ function ProductRow({ product }: { product: WellnessProduct }) {
         {product.category}
       </span>
 
-      <span className="text-[18px] leading-7 font-normal tracking-[-0.5px] text-pretty text-stone-800">
+      <span className="max-w-[62ch] text-[18px] leading-[1.55] font-normal text-pretty text-stone-800">
         {product.note}
       </span>
     </motion.a>
@@ -417,6 +417,8 @@ export default function WellnessHero01({
     <section
       className={cn(
         instrumentSerif.variable,
+        "[--brand-h:60]",
+        "[font-synthesis:none]",
         "[--font-serif:var(--font-instrument-serif,ui-serif,Georgia,serif)]",
         "relative isolate flex! min-h-screen w-full flex-col place-items-stretch! overflow-hidden bg-[#fbfaec]",
         className,
