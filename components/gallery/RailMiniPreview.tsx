@@ -3,10 +3,15 @@
 import { useEffect, useState } from "react";
 
 /**
- * A 40px live thumbnail of a catalog item, for the related list in the detail
+ * A 32px live thumbnail of a catalog item, for the related list in the detail
  * rail. Only worth using where the item is genuinely small — loaders and icons
  * render at this size natively, so four of them cost about what one gallery
  * card does. Blocks and sections don't; they list by name instead.
+ *
+ * 32 rather than 40 so a related row stays on the sidebar's 28px row rhythm
+ * instead of standing a third taller than every row around it, and the well is
+ * `sidebar-accent` because it is drawn on the rail's `bg-sidebar` card — the
+ * old `muted/60` was mixed for the page background and read as a grey hole.
  */
 export function RailMiniPreview({
   catalogDir,
@@ -38,9 +43,9 @@ export function RailMiniPreview({
   }, [catalogDir, slug, variation]);
 
   return (
-    <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-muted/60">
+    <div className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-sidebar-accent">
       {Component && (
-        <div className="flex size-7 items-center justify-center">
+        <div className="flex size-6 items-center justify-center">
           <Component />
         </div>
       )}
