@@ -220,72 +220,6 @@
       ]
     },
     {
-      "slug": "teletype-clock",
-      "name": "Teletype Clock",
-      "category": "number-animation",
-      "tags": [
-        "clock",
-        "flip",
-        "split-flap",
-        "time",
-        "3d",
-        "loop",
-        "retro"
-      ],
-      "description": "A classic split-flap airport-board clock. Each digit lives on a dark card split by a center seam — when the time changes, the top flap falls with gravity, reveals the next digit, and the bottom flap lands with a mechanical bounce.",
-      "createdAt": "2026-07-08T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Split-Flap Clock",
-          "tier": "free",
-          "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
-          "animationType": "loop",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "demo",
-              "type": "boolean",
-              "default": "false",
-              "description": "Advance the clock by one minute on an interval so flips happen constantly (for showcases)"
-            },
-            {
-              "name": "demoIntervalMs",
-              "type": "number",
-              "default": "3000",
-              "description": "Milliseconds between flips in demo mode"
-            },
-            {
-              "name": "hour12",
-              "type": "boolean",
-              "default": "false",
-              "description": "Use 12-hour format instead of 24-hour"
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "default": "\"\"",
-              "description": "Extra classes for the outer wrapper"
-            }
-          ],
-          "componentName": "TeletypeClock",
-          "previewHint": "Digits flip every few seconds in demo mode",
-          "features": [
-            "Two-phase flip: rotateX 0 → -90° fall with ease-in-cubic gravity, then 90 → 0° landing with overshoot bounce",
-            "Only transform and opacity are animated — flaps run on the compositor with backface-visibility hidden",
-            "Digit halves are full-height numerals clipped by overflow-hidden windows, so the seam cuts each digit cleanly",
-            "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
-            "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
-            "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
-          ],
-          "responsive": true
-        }
-      ]
-    },
-    {
       "slug": "subitem-navbar",
       "name": "SubItem Navbar",
       "category": "navbar",
@@ -367,6 +301,72 @@
             "Blur overlay rendered inside the component — just place BottomNavbar inside a relative container",
             "useMeasure drives submenu height so the pill expands to exactly fit any panel",
             "prefers-reduced-motion: all spring and blur transitions collapse to instant"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
+      "slug": "teletype-clock",
+      "name": "Teletype Clock",
+      "category": "number-animation",
+      "tags": [
+        "clock",
+        "flip",
+        "split-flap",
+        "time",
+        "3d",
+        "loop",
+        "retro"
+      ],
+      "description": "A classic split-flap airport-board clock. Each digit lives on a dark card split by a center seam — when the time changes, the top flap falls with gravity, reveals the next digit, and the bottom flap lands with a mechanical bounce.",
+      "createdAt": "2026-07-08T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Split-Flap Clock",
+          "tier": "free",
+          "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
+          "animationType": "loop",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "demo",
+              "type": "boolean",
+              "default": "false",
+              "description": "Advance the clock by one minute on an interval so flips happen constantly (for showcases)"
+            },
+            {
+              "name": "demoIntervalMs",
+              "type": "number",
+              "default": "3000",
+              "description": "Milliseconds between flips in demo mode"
+            },
+            {
+              "name": "hour12",
+              "type": "boolean",
+              "default": "false",
+              "description": "Use 12-hour format instead of 24-hour"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "\"\"",
+              "description": "Extra classes for the outer wrapper"
+            }
+          ],
+          "componentName": "TeletypeClock",
+          "previewHint": "Digits flip every few seconds in demo mode",
+          "features": [
+            "Two-phase flip: rotateX 0 → -90° fall with ease-in-cubic gravity, then 90 → 0° landing with overshoot bounce",
+            "Only transform and opacity are animated — flaps run on the compositor with backface-visibility hidden",
+            "Digit halves are full-height numerals clipped by overflow-hidden windows, so the seam cuts each digit cleanly",
+            "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
+            "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
+            "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
           ],
           "responsive": true
         }
@@ -1024,80 +1024,55 @@
       ]
     },
     {
-      "slug": "curve-heading",
-      "name": "Curve Heading",
-      "category": "creative",
+      "slug": "hero-roster",
+      "name": "Hero Roster",
+      "category": "card",
       "tags": [
-        "creative",
-        "heading",
-        "text",
-        "curve",
-        "scroll",
-        "card",
-        "animation"
+        "gallery",
+        "roster",
+        "dossier",
+        "layoutId",
+        "shared-layout",
+        "morph",
+        "grid",
+        "detail",
+        "click",
+        "spring",
+        "dark-mode",
+        "theming"
       ],
-      "description": "A card whose headline is laid out along a bell curve and flattens onto its own baseline as the card scrolls into view, then bends again with scroll velocity.",
-      "createdAt": "2026-08-27T00:00:00Z",
+      "description": "A five-card cast roster where selecting a card makes it travel and grow into a full dossier pane while the other four shrink into a two-by-two rail. Nothing fades out and back in — the cards that stay are the same elements, just smaller and somewhere else — and picking a thumbnail swaps the two mid-flight. The dossier's name, team, powers and copy ride on top of the morph rather than inside it, staggered in once the card has nearly landed.",
+      "createdAt": "2026-09-07T00:00:00Z",
       "variations": [
         {
           "name": "default",
-          "displayName": "Curve Heading",
+          "displayName": "Hero Roster",
           "tier": "free",
-          "description": "The headline is not a straight line of text: every glyph is positioned by a Gaussian curve equation, distributed along it by arc length and rotated to its tangent. Perfect for marketing pages.",
-          "animationType": "scroll",
+          "description": "A roster-to-dossier gallery built on shared-element transitions: one layoutId per card carries it between the thumbnail rail and the full pane, while the detail copy is staggered in on top of the morph.",
+          "animationType": "click",
           "dependencies": [
-            "motion"
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
           ],
           "registryDependencies": [],
           "props": [
             {
-              "name": "headline",
-              "type": "string",
-              "default": "\"Design Engineer\"",
-              "required": false,
-              "description": "The line laid along the curve. Split per glyph, so keep it to a short phrase that fits on one line."
-            },
-            {
-              "name": "copy",
-              "type": "string",
-              "required": false,
-              "description": "Body copy under the headline. Defaults to the built-in editorial paragraph."
-            },
-            {
               "name": "className",
               "type": "string",
               "required": false,
-              "description": "Additional classes on the card itself."
-            },
-            {
-              "name": "scrollRoot",
-              "type": "React.RefObject<HTMLElement | null>",
-              "required": false,
-              "description": "Scrolling ancestor to measure against. Left undefined the block reads the window and the viewport, which is what a real page wants. Point it at an overflow-y container and both the entrance trigger and the velocity bend follow that container instead."
-            },
-            {
-              "name": "hint",
-              "type": "string",
-              "required": false,
-              "description": "Optional nudge centred in the top runway, e.g. \"Scroll me\", with a pair of dots drifting downward beside it. The runway is a blank field of scene colour, so on first paint nothing tells you the card is below it. Left undefined the runway stays empty, which is what a real page wants."
+              "description": "Appended to the root wrapper's classes for call-site layout overrides."
             }
           ],
-          "componentName": "CurveHeading",
-          "previewHint": "Scroll the card in and out of view — the drooping headline flattens on entry, re-bows on exit, and bends with how hard you scroll",
+          "componentName": "HeroRoster",
+          "previewHint": "Click any card to open its dossier, then pick a thumbnail to swap the two mid-flight",
           "features": [
-            "The baseline is a Gaussian, y(x) = A·(1 − e^(−x²∕2σ²)), pinned so the middle of the word holds level while both ends droop away — flat tails, one smooth hump, unlike a circular arc",
-            "Glyphs are distributed along the curve by arc length, not by horizontal position, so the word bends without stretching — which is what makes the bowed line look elastically narrowed",
-            "Amplitude is the single degree of freedom: as it springs to 0 the curve, its tangent rotation and its arc length all collapse to the flat case, so the text realigns onto the browser's own centred layout with no per-glyph target positions anywhere in the file",
-            "Arc length is tabulated over 128 samples and inverted by binary search, memoised in a bounded cache keyed to a tenth of a pixel, so all fifteen glyphs sharing an amplitude solve the curve once",
-            "The entrance pose and the scroll-velocity bend are the same quantity and simply add, so one curve carries both",
-            "Scroll velocity is mapped through tanh rather than clamped, so ordinary scrolling actually bends the word instead of sitting far below a ceiling only a fling ever reaches",
-            "Both amplitudes tick every frame, so paints are coalesced onto motion's render step instead of writing each glyph's style twice per frame",
-            "`will-change` is written from JS only while the curve is bent — at rest the line is plain static text holding no compositor layer",
-            "A hand-rolled IntersectionObserver reports which edge the card is parked on, so the whole pose mirrors when you scroll back up: card from above, line falling, hump inverted",
-            "Respects prefers-reduced-motion — one multiplier collapses every travelling value at once, leaving the fade",
-            "Outer span holds each glyph's untransformed slot in normal text flow and the inner span carries the transform, so measuring and painting never fight; a ResizeObserver and document.fonts.ready re-measure after a webfont swap or resize"
-          ],
-          "responsive": true
+            "Carries each card between the rail and the dossier pane on its own layoutId, so selecting one is a single element travelling and growing rather than two elements crossfading",
+            "Swaps two cards in one gesture — the new one grows into the pane as the old one shrinks back into the rail, passing each other mid-flight",
+            "Keeps the detail copy out of the morph: a shared layout animation cannot be steered, so name, team, powers and note ride on top and arrive staggered once the card has nearly landed",
+            "Paints every frame with background-size: cover so one URL serves both the pane and the thumbnail without an object-fit correction chasing a scaling box",
+            "Runs asymmetric springs — 0.52s with bounce on select, 0.4s flat on return — and drops content in 0.16s so nothing outlives the box it sits in"
+          ]
         }
       ]
     },
@@ -1207,6 +1182,221 @@
         }
       ],
       "published": false
+    },
+    {
+      "slug": "feedback-button",
+      "name": "Feedback Button",
+      "category": "morphing-buttons",
+      "tags": [
+        "morph",
+        "button",
+        "feedback",
+        "thumbs",
+        "vote",
+        "undo",
+        "confetti",
+        "layout",
+        "click",
+        "spring",
+        "dark-mode",
+        "theming"
+      ],
+      "description": "Two identical thumb pills that morph into a single confirmation bar. Voting keeps the pressed pill mounted and stretches it — the thumb never blinks, it just slides left as the pill grows around it — while the other pill pops out of flow. A 'Feedback Received!' label drops in blurred, an Undo capsule slides in from the right edge, and a thumbs-up fires a deterministic confetti burst. Undo plays the whole thing in reverse.",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Feedback Button",
+          "tier": "free",
+          "description": "A thumbs up/down pair that morphs into a confirmation bar via a single persistent node running `layout`, with an Undo capsule that plays the morph back in reverse on a faster, flat spring.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "@tabler/icons-react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Appended to the root wrapper's classes for call-site layout overrides."
+            }
+          ],
+          "componentName": "FeedbackSwitch",
+          "previewHint": "Click a thumb to vote — thumbs-up throws confetti — then hit Undo to reverse it",
+          "features": [
+            "Morphs with `layout` on one persistent node rather than `layoutId` across two — the voted thumb is never unmounted, so it slides instead of blinking",
+            "Drops the losing pill with AnimatePresence mode=\"popLayout\" so it leaves the flow on frame one and the survivor glides immediately",
+            "Splits the transition per property: physical values (x, y, scale) get a 0.28-bounce spring, opacity and blur ride a flat one so they can't overshoot past opaque",
+            "Asymmetric timing — voting is a deliberate 0.42s spring with bounce, undo snaps back flat in 0.3s, and content exits in 0.16s so no label outlives its pill",
+            "Fires a deterministic, seed-based confetti field on thumbs-up only — Math.random() would break hydration, and applauding a thumbs-down is the wrong feeling",
+            "Ships a themed palette as --fb-* cssVars with light and dark values, so the warm cream pill keeps its character at charcoal luminance instead of swapping to grey — the confetti's ink particle flips with it"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "curve-heading",
+      "name": "Curve Heading",
+      "category": "creative",
+      "tags": [
+        "creative",
+        "heading",
+        "text",
+        "curve",
+        "scroll",
+        "card",
+        "animation"
+      ],
+      "description": "A card whose headline is laid out along a bell curve and flattens onto its own baseline as the card scrolls into view, then bends again with scroll velocity.",
+      "createdAt": "2026-08-27T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Curve Heading",
+          "tier": "free",
+          "description": "The headline is not a straight line of text: every glyph is positioned by a Gaussian curve equation, distributed along it by arc length and rotated to its tangent. Perfect for marketing pages.",
+          "animationType": "scroll",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "headline",
+              "type": "string",
+              "default": "\"Design Engineer\"",
+              "required": false,
+              "description": "The line laid along the curve. Split per glyph, so keep it to a short phrase that fits on one line."
+            },
+            {
+              "name": "copy",
+              "type": "string",
+              "required": false,
+              "description": "Body copy under the headline. Defaults to the built-in editorial paragraph."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the card itself."
+            },
+            {
+              "name": "scrollRoot",
+              "type": "React.RefObject<HTMLElement | null>",
+              "required": false,
+              "description": "Scrolling ancestor to measure against. Left undefined the block reads the window and the viewport, which is what a real page wants. Point it at an overflow-y container and both the entrance trigger and the velocity bend follow that container instead."
+            },
+            {
+              "name": "hint",
+              "type": "string",
+              "required": false,
+              "description": "Optional nudge centred in the top runway, e.g. \"Scroll me\", with a pair of dots drifting downward beside it. The runway is a blank field of scene colour, so on first paint nothing tells you the card is below it. Left undefined the runway stays empty, which is what a real page wants."
+            }
+          ],
+          "componentName": "CurveHeading",
+          "previewHint": "Scroll the card in and out of view — the drooping headline flattens on entry, re-bows on exit, and bends with how hard you scroll",
+          "features": [
+            "The baseline is a Gaussian, y(x) = A·(1 − e^(−x²∕2σ²)), pinned so the middle of the word holds level while both ends droop away — flat tails, one smooth hump, unlike a circular arc",
+            "Glyphs are distributed along the curve by arc length, not by horizontal position, so the word bends without stretching — which is what makes the bowed line look elastically narrowed",
+            "Amplitude is the single degree of freedom: as it springs to 0 the curve, its tangent rotation and its arc length all collapse to the flat case, so the text realigns onto the browser's own centred layout with no per-glyph target positions anywhere in the file",
+            "Arc length is tabulated over 128 samples and inverted by binary search, memoised in a bounded cache keyed to a tenth of a pixel, so all fifteen glyphs sharing an amplitude solve the curve once",
+            "The entrance pose and the scroll-velocity bend are the same quantity and simply add, so one curve carries both",
+            "Scroll velocity is mapped through tanh rather than clamped, so ordinary scrolling actually bends the word instead of sitting far below a ceiling only a fling ever reaches",
+            "Both amplitudes tick every frame, so paints are coalesced onto motion's render step instead of writing each glyph's style twice per frame",
+            "`will-change` is written from JS only while the curve is bent — at rest the line is plain static text holding no compositor layer",
+            "A hand-rolled IntersectionObserver reports which edge the card is parked on, so the whole pose mirrors when you scroll back up: card from above, line falling, hump inverted",
+            "Respects prefers-reduced-motion — one multiplier collapses every travelling value at once, leaving the fade",
+            "Outer span holds each glyph's untransformed slot in normal text flow and the inner span carries the transform, so measuring and painting never fight; a ResizeObserver and document.fonts.ready re-measure after a webfont swap or resize"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
+      "slug": "contact-reveal-card",
+      "name": "Contact Reveal Card",
+      "category": "creative",
+      "tags": [
+        "card",
+        "hover",
+        "text",
+        "icon",
+        "creative",
+        "animation"
+      ],
+      "description": "A single identity string that reveals a different highlighted slice as you hover or select icons below it — profile, website, email, and Instagram each spotlight their own substring with a matching caption.",
+      "createdAt": "2026-07-19T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Contact Reveal Card",
+          "tier": "free",
+          "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
+          "animationType": "hover",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": false,
+              "description": "The full identity string every field highlights a slice of. Defaults to \"kumail@creatifly.co\"."
+            },
+            {
+              "name": "fields",
+              "type": "ContactField[]",
+              "required": false,
+              "description": "Icon + label + highlight range list. Defaults to Profile / Website / Email / Instagram, each mapped to a substring of `text`."
+            },
+            {
+              "name": "fields[].key",
+              "type": "string",
+              "required": true,
+              "description": "Unique identifier for the field."
+            },
+            {
+              "name": "fields[].icon",
+              "type": "HugeIcon",
+              "required": true,
+              "description": "HugeIcons icon component rendered in the icon row."
+            },
+            {
+              "name": "fields[].label",
+              "type": "string",
+              "required": true,
+              "description": "Caption shown under the text when this field is active."
+            },
+            {
+              "name": "fields[].highlight",
+              "type": "[number, number]",
+              "required": true,
+              "description": "Character range [start, end) of `text` this field highlights."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the root wrapper."
+            }
+          ],
+          "componentName": "ContactRevealCard",
+          "previewHint": "Hover an icon to preview, click to select — the highlighted text and caption follow",
+          "features": [
+            "Selection state splits into a hover preview (previewKey) and a committed selection (selectedKey) so touch devices work the same as hover — click always commits",
+            "The three text spans share a layout spring so the dashed-underline highlight resizes and repositions smoothly across differently-sized substrings, no remount",
+            "Caption crossfades on change with a short fade + slide, keyed by the active field",
+            "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
+            "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
+          ],
+          "responsive": true
+        }
+      ]
     },
     {
       "slug": "checkout-button",
@@ -1344,90 +1534,6 @@
           ],
           "componentName": "CheckoutButton",
           "previewHint": "Click the button to expand the checkout card, switch payment tabs, then open Connect Wallet"
-        }
-      ]
-    },
-    {
-      "slug": "contact-reveal-card",
-      "name": "Contact Reveal Card",
-      "category": "creative",
-      "tags": [
-        "card",
-        "hover",
-        "text",
-        "icon",
-        "creative",
-        "animation"
-      ],
-      "description": "A single identity string that reveals a different highlighted slice as you hover or select icons below it — profile, website, email, and Instagram each spotlight their own substring with a matching caption.",
-      "createdAt": "2026-07-19T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Contact Reveal Card",
-          "tier": "free",
-          "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
-          "animationType": "hover",
-          "dependencies": [
-            "motion",
-            "@hugeicons/react",
-            "@hugeicons/core-free-icons"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "text",
-              "type": "string",
-              "required": false,
-              "description": "The full identity string every field highlights a slice of. Defaults to \"kumail@creatifly.co\"."
-            },
-            {
-              "name": "fields",
-              "type": "ContactField[]",
-              "required": false,
-              "description": "Icon + label + highlight range list. Defaults to Profile / Website / Email / Instagram, each mapped to a substring of `text`."
-            },
-            {
-              "name": "fields[].key",
-              "type": "string",
-              "required": true,
-              "description": "Unique identifier for the field."
-            },
-            {
-              "name": "fields[].icon",
-              "type": "HugeIcon",
-              "required": true,
-              "description": "HugeIcons icon component rendered in the icon row."
-            },
-            {
-              "name": "fields[].label",
-              "type": "string",
-              "required": true,
-              "description": "Caption shown under the text when this field is active."
-            },
-            {
-              "name": "fields[].highlight",
-              "type": "[number, number]",
-              "required": true,
-              "description": "Character range [start, end) of `text` this field highlights."
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "required": false,
-              "description": "Additional classes on the root wrapper."
-            }
-          ],
-          "componentName": "ContactRevealCard",
-          "previewHint": "Hover an icon to preview, click to select — the highlighted text and caption follow",
-          "features": [
-            "Selection state splits into a hover preview (previewKey) and a committed selection (selectedKey) so touch devices work the same as hover — click always commits",
-            "The three text spans share a layout spring so the dashed-underline highlight resizes and repositions smoothly across differently-sized substrings, no remount",
-            "Caption crossfades on change with a short fade + slide, keyed by the active field",
-            "Icon row hover-dim (non-hovered icons fade to 45% opacity) is done with zero JS listeners — a scoped inline <style> block using :has/:not/:hover",
-            "Active icon color and the text/caption pairing are the only pieces driven by React state; all idle/hover chrome is plain CSS"
-          ],
-          "responsive": true
         }
       ]
     },
@@ -1701,6 +1807,58 @@
       ]
     },
     {
+      "slug": "approve-switch",
+      "name": "Approve Switch",
+      "category": "morphing-buttons",
+      "tags": [
+        "morph",
+        "button",
+        "approve",
+        "reject",
+        "decision",
+        "undo",
+        "confetti",
+        "layout",
+        "click",
+        "spring",
+        "dark-mode",
+        "theming"
+      ],
+      "description": "Two equal pills — Reject and Approve — where pressing one expands it in place, floods it with its decision colour and completes its own word (\"Reject\" → \"Rejected\"), while the other collapses into an undo circle. One persistent node per slot, so the pill morphs with `layout` rather than being swapped, and the base word glides inside the widening pill instead of cross-fading. Approve throws confetti; reject gets a shake and a single impact ring, because celebrating a rejection is the wrong feeling.",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Approve Switch",
+          "tier": "free",
+          "description": "A two-pill decision control that morphs in place: the pressed slot expands and tints while the other collapses to an undo circle, the word completes itself with a dropped-in suffix, and each verdict gets its own one-shot flourish.",
+          "animationType": "click",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Appended to the root wrapper's classes for call-site layout overrides."
+            }
+          ],
+          "componentName": "ApproveSwitch",
+          "previewHint": "Press Approve for confetti or Reject for a shake and an impact ring, then hit the undo circle",
+          "features": [
+            "Keeps one persistent button per slot so `layout` can replace `layoutId` — state changes the node's size, colour and children, never its identity",
+            "Glides the base word instead of cross-fading it: \"Reject\" is one text node that never unmounts, and only the suffix \"ed\" mounts, dropping in from above",
+            "Recolours the badge in place with animated SVG fill and stroke, so the disc and glyph invert without the icon ever blinking",
+            "Splits the reward layer by verdict — confetti for approve, a shake plus a single impact ring for reject — and mounts neither under reduced motion",
+            "Hangs both flourishes off a non-animating wrapper, because an absolutely-positioned child of a `layout` element gets scaled and smeared by that element's morph",
+            "Paints every colour from a --as-* token through var(), floods the decision tone as an overlay whose opacity Motion springs, and flips the ink on a matching 240ms CSS transition — so the fills stay live against the theme"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "ai-chat",
       "name": "AI Chat",
       "category": "Chat UI",
@@ -1867,5 +2025,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-05T07:54:11.782Z"
+  "lastUpdated": "2026-09-07T07:45:16.287Z"
 }

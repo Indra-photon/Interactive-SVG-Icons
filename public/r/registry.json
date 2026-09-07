@@ -677,25 +677,6 @@
       ]
     },
     {
-      "name": "ios-spinner-trail-default",
-      "type": "registry:ui",
-      "title": "iOS Spinner Trail - Sharp Trail",
-      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/ios-spinner-trail/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/ios-spinner-trail/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "pulse-ring-default",
       "type": "registry:ui",
       "title": "Pulse Ring - Pulse Ring",
@@ -711,6 +692,25 @@
           "path": "components/craftui/loaders/pulse-ring/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/pulse-ring/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ios-spinner-trail-default",
+      "type": "registry:ui",
+      "title": "iOS Spinner Trail - Sharp Trail",
+      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ios-spinner-trail/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ios-spinner-trail/default.tsx"
         }
       ]
     },
@@ -1152,25 +1152,6 @@
       ]
     },
     {
-      "name": "fill-flask-default",
-      "type": "registry:ui",
-      "title": "Flask - Flask",
-      "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/fill-flask/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/fill-flask/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "fill-hourglass-default",
       "type": "registry:ui",
       "title": "Hourglass - Hourglass",
@@ -1186,6 +1167,25 @@
           "path": "components/craftui/loaders/fill-hourglass/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/fill-hourglass/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fill-flask-default",
+      "type": "registry:ui",
+      "title": "Flask - Flask",
+      "description": "An outlined lab flask holds liquid while staggered bubbles rise and pop at the surface",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/fill-flask/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/fill-flask/default.tsx"
         }
       ]
     },
@@ -1391,23 +1391,6 @@
       ]
     },
     {
-      "name": "dot-matrix-bits-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Bits - Dot Matrix Bits",
-      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "dot-circle-expand-default",
       "type": "registry:ui",
       "title": "Dot Circle Expand - Dot Circle Expand",
@@ -1423,6 +1406,23 @@
           "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-bits-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Bits - Dot Matrix Bits",
+      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
         }
       ]
     },
@@ -1769,25 +1769,6 @@
       ]
     },
     {
-      "name": "ball-bounce-alternate-default",
-      "type": "registry:ui",
-      "title": "Ball Bounce Alternate - Ball Bounce Alternate",
-      "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/ball-bounce-alternate/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/ball-bounce-alternate/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "audio-wave-vertical-default",
       "type": "registry:ui",
       "title": "Audio Wave Vertical - Audio Wave Vertical",
@@ -1803,6 +1784,25 @@
           "path": "components/craftui/loaders/audio-wave-vertical/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/audio-wave-vertical/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ball-bounce-alternate-default",
+      "type": "registry:ui",
+      "title": "Ball Bounce Alternate - Ball Bounce Alternate",
+      "description": "A ball slides left to right then reverses direction, bouncing on the ground line creating a pendulum-like motion",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/ball-bounce-alternate/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/ball-bounce-alternate/default.tsx"
         }
       ]
     },
@@ -1961,25 +1961,6 @@
       ]
     },
     {
-      "name": "teletype-clock-default",
-      "type": "registry:block",
-      "title": "Teletype Clock - Split-Flap Clock",
-      "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/teletype-clock/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/teletype-clock/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "subitem-navbar-subitem-navbar",
       "type": "registry:block",
       "title": "SubItem Navbar - SubItem Navbar",
@@ -1998,6 +1979,25 @@
           "path": "components/craftui/blocks/subitem-navbar/subitem-navbar.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/subitem-navbar/subitem-navbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "teletype-clock-default",
+      "type": "registry:block",
+      "title": "Teletype Clock - Split-Flap Clock",
+      "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/teletype-clock/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/teletype-clock/default.tsx"
         }
       ]
     },
@@ -2249,6 +2249,100 @@
       ]
     },
     {
+      "name": "hero-roster-default",
+      "type": "registry:block",
+      "title": "Hero Roster - Hero Roster",
+      "description": "A roster-to-dossier gallery built on shared-element transitions: one layoutId per card carries it between the thumbnail rail and the full pane, while the detail copy is staggered in on top of the morph.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "cssVars": {
+        "light": {
+          "hr-fg": "var(--foreground, oklch(0.145 0 0))",
+          "hr-fg-muted": "oklch(0.55 0 0)",
+          "hr-frame": "#e9e6e0",
+          "hr-frame-edge": "rgba(0, 0, 0, 0.1)"
+        },
+        "dark": {
+          "hr-fg": "var(--foreground, oklch(0.985 0 0))",
+          "hr-fg-muted": "oklch(0.72 0 0)",
+          "hr-frame": "oklch(0.35 0.004 85)",
+          "hr-frame-edge": "rgba(255, 255, 255, 0.12)"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/blocks/hero-roster/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/hero-roster/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "frosted-navbar-frosted-navbar",
+      "type": "registry:block",
+      "title": "Frosted Navbar - Frosted Navbar",
+      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feedback-button-default",
+      "type": "registry:block",
+      "title": "Feedback Button - Feedback Button",
+      "description": "A thumbs up/down pair that morphs into a confirmation bar via a single persistent node running `layout`, with an Undo capsule that plays the morph back in reverse on a faster, flat spring.",
+      "dependencies": [
+        "motion",
+        "@tabler/icons-react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "cssVars": {
+        "light": {
+          "fb-bg": "var(--background, oklch(1 0 0))",
+          "fb-fg": "var(--foreground, oklch(0.145 0 0))",
+          "fb-pill": "#f2f0ea",
+          "fb-pill-hover": "#eae6dd",
+          "fb-undo": "rgba(0, 0, 0, 0.055)",
+          "fb-undo-hover": "rgba(0, 0, 0, 0.1)",
+          "fb-ring": "oklch(0.145 0 0)",
+          "fb-confetti-ink": "#0b0b0b"
+        },
+        "dark": {
+          "fb-bg": "var(--background, oklch(0.145 0 0))",
+          "fb-fg": "var(--foreground, oklch(0.985 0 0))",
+          "fb-pill": "oklch(0.38 0.006 85)",
+          "fb-pill-hover": "oklch(0.43 0.006 85)",
+          "fb-undo": "rgba(255, 255, 255, 0.08)",
+          "fb-undo-hover": "rgba(255, 255, 255, 0.16)",
+          "fb-ring": "oklch(0.985 0 0)",
+          "fb-confetti-ink": "oklch(0.985 0 0)"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/blocks/feedback-button/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/feedback-button/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "curve-heading-default",
       "type": "registry:block",
       "title": "Curve Heading - Curve Heading",
@@ -2268,19 +2362,23 @@
       ]
     },
     {
-      "name": "frosted-navbar-frosted-navbar",
+      "name": "contact-reveal-card-default",
       "type": "registry:block",
-      "title": "Frosted Navbar - Frosted Navbar",
-      "description": "No hardcoded height or width: the bar sizes to its content and its parent's width, so it drops into any layout as a <nav> or <header>. The blur layer extends past the nav's own edge for clean filter sampling, then gets clipped by overflow-hidden so it never bleeds into content below.",
-      "dependencies": [],
+      "title": "Contact Reveal Card - Contact Reveal Card",
+      "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "registryDependencies": [
         "craftui-base"
       ],
       "files": [
         {
-          "path": "components/craftui/blocks/frosted-navbar/frosted-navbar.tsx",
+          "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
           "type": "registry:component",
-          "target": "~/components/craftui/blocks/frosted-navbar/frosted-navbar.tsx"
+          "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
         }
       ]
     },
@@ -2305,27 +2403,6 @@
           "path": "components/craftui/blocks/checkout-button/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/checkout-button/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "contact-reveal-card-default",
-      "type": "registry:block",
-      "title": "Contact Reveal Card - Contact Reveal Card",
-      "description": "Hovering an icon previews which slice of the identity string it maps to; clicking commits the selection so it also works on touch. The highlighted span and its dashed underline animate width/position with a layout spring, the caption crossfades, and the icon row's hover-dim effect is pure CSS via :has/:not/:hover.",
-      "dependencies": [
-        "motion",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/contact-reveal-card/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/contact-reveal-card/default.tsx"
         }
       ]
     },
@@ -2382,6 +2459,45 @@
           "path": "components/craftui/blocks/avatar/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/avatar/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "approve-switch-default",
+      "type": "registry:block",
+      "title": "Approve Switch - Approve Switch",
+      "description": "A two-pill decision control that morphs in place: the pressed slot expands and tints while the other collapses to an undo circle, the word completes itself with a dropped-in suffix, and each verdict gets its own one-shot flourish.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "cssVars": {
+        "light": {
+          "as-bg": "var(--background, oklch(1 0 0))",
+          "as-pill": "#f2f2f2",
+          "as-pill-ink": "#0a0a0a",
+          "as-approve": "#4cc85c",
+          "as-reject": "#f0392b",
+          "as-on": "#ffffff",
+          "as-confetti-ink": "#0b0b0b"
+        },
+        "dark": {
+          "as-bg": "var(--background, oklch(0.145 0 0))",
+          "as-pill": "oklch(0.38 0 0)",
+          "as-pill-ink": "oklch(0.985 0 0)",
+          "as-approve": "#4cc85c",
+          "as-reject": "#f0392b",
+          "as-on": "#ffffff",
+          "as-confetti-ink": "oklch(0.985 0 0)"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/blocks/approve-switch/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/approve-switch/default.tsx"
         }
       ]
     },
@@ -2538,29 +2654,6 @@
       ]
     },
     {
-      "name": "feature-gallery-02-default",
-      "type": "registry:block",
-      "title": "Feature Gallery 02 - Feature Gallery 02",
-      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
-      "dependencies": [
-        "motion",
-        "lenis",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons",
-        "next"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/sections/feature-gallery-02/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "feature-gallery-01-default",
       "type": "registry:block",
       "title": "Feature Gallery 01 - Feature Gallery 01",
@@ -2593,6 +2686,29 @@
           "path": "components/craftui/sections/feature-gallery-01/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/feature-gallery-01/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-gallery-02-default",
+      "type": "registry:block",
+      "title": "Feature Gallery 02 - Feature Gallery 02",
+      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+      "dependencies": [
+        "motion",
+        "lenis",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "next"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-gallery-02/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
         }
       ]
     },

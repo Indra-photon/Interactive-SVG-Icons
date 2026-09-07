@@ -1,0 +1,118 @@
+{
+  "slug": "feedback-button",
+  "name": "Feedback Button",
+  "category": "morphing-buttons",
+  "tags": [
+    "morph",
+    "button",
+    "feedback",
+    "thumbs",
+    "vote",
+    "undo",
+    "confetti",
+    "layout",
+    "click",
+    "spring",
+    "dark-mode",
+    "theming"
+  ],
+  "description": "Two identical thumb pills that morph into a single confirmation bar. Voting keeps the pressed pill mounted and stretches it — the thumb never blinks, it just slides left as the pill grows around it — while the other pill pops out of flow. A 'Feedback Received!' label drops in blurred, an Undo capsule slides in from the right edge, and a thumbs-up fires a deterministic confetti burst. Undo plays the whole thing in reverse.",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Feedback Button",
+      "componentName": "FeedbackSwitch",
+      "tier": "free",
+      "previewHint": "Click a thumb to vote — thumbs-up throws confetti — then hit Undo to reverse it",
+      "description": "A thumbs up/down pair that morphs into a confirmation bar via a single persistent node running `layout`, with an Undo capsule that plays the morph back in reverse on a faster, flat spring.",
+      "animationType": "click",
+      "dependencies": [
+        "motion",
+        "@tabler/icons-react"
+      ],
+      "registryDependencies": [],
+      "cssVars": {
+        "light": {
+          "fb-bg": "var(--background, oklch(1 0 0))",
+          "fb-fg": "var(--foreground, oklch(0.145 0 0))",
+          "fb-pill": "#f2f0ea",
+          "fb-pill-hover": "#eae6dd",
+          "fb-undo": "rgba(0, 0, 0, 0.055)",
+          "fb-undo-hover": "rgba(0, 0, 0, 0.1)",
+          "fb-ring": "oklch(0.145 0 0)",
+          "fb-confetti-ink": "#0b0b0b"
+        },
+        "dark": {
+          "fb-bg": "var(--background, oklch(0.145 0 0))",
+          "fb-fg": "var(--foreground, oklch(0.985 0 0))",
+          "fb-pill": "oklch(0.38 0.006 85)",
+          "fb-pill-hover": "oklch(0.43 0.006 85)",
+          "fb-undo": "rgba(255, 255, 255, 0.08)",
+          "fb-undo-hover": "rgba(255, 255, 255, 0.16)",
+          "fb-ring": "oklch(0.985 0 0)",
+          "fb-confetti-ink": "oklch(0.985 0 0)"
+        }
+      },
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Appended to the root wrapper's classes for call-site layout overrides."
+        }
+      ],
+      "features": [
+        "Morphs with `layout` on one persistent node rather than `layoutId` across two — the voted thumb is never unmounted, so it slides instead of blinking",
+        "Drops the losing pill with AnimatePresence mode=\"popLayout\" so it leaves the flow on frame one and the survivor glides immediately",
+        "Splits the transition per property: physical values (x, y, scale) get a 0.28-bounce spring, opacity and blur ride a flat one so they can't overshoot past opaque",
+        "Asymmetric timing — voting is a deliberate 0.42s spring with bounce, undo snaps back flat in 0.3s, and content exits in 0.16s so no label outlives its pill",
+        "Fires a deterministic, seed-based confetti field on thumbs-up only — Math.random() would break hydration, and applauding a thumbs-down is the wrong feeling",
+        "Ships a themed palette as --fb-* cssVars with light and dark values, so the warm cream pill keeps its character at charcoal luminance instead of swapping to grey — the confetti's ink particle flips with it"
+      ],
+      "featureSections": [
+        {
+          "title": "One-Node Pill Morph",
+          "summary": "The pressed pill is the same DOM node before and after the vote, so the morph is a size change rather than a swap between two elements.",
+          "points": [
+            "Runs `layout` (not `layoutId`) on the pill, with only its *content* mounting and unmounting inside",
+            "Keeps border-radius as an inline pixel value so Motion can undo the corner distortion the layout scale introduces",
+            "Pins the thumb with layout=\"position\" so it holds its true size while the pill's width animates",
+            "Filters the option list instead of hiding the loser, and lets popLayout pull it out of flow on the first frame"
+          ]
+        },
+        {
+          "title": "Arriving Content",
+          "summary": "The label and the Undo capsule land as objects, entering from the edges they belong to rather than fading in place.",
+          "points": [
+            "Drops \"Feedback Received!\" from above through a 4px blur on a 0.2-bounce spring — text wobbles read as glitches sooner than boxes do",
+            "Slides the Undo capsule in from the right edge it is anchored to, x: 16 → 0",
+            "Gives opacity and filter their own bounce-free springs so neither clamps into a visible hitch",
+            "Exits both on a 0.16s flat spring — half the arrival — so nothing is still fading outside a shrinking pill"
+          ]
+        },
+        {
+          "title": "Confetti Burst",
+          "summary": "A hydration-safe particle field thrown from a zero-size origin at the pill's centre, positive votes only.",
+          "points": [
+            "Seeds every particle from a sin-based `frac(index)` so server and client render identical fields",
+            "Fans the throw across the upper half only — particles leaving downward read as debris, not celebration",
+            "Splits x and y onto separate curves so gravity lives on y alone: the throw eases out while the drop eases in",
+            "Hangs off the non-animating wrapper, not the `layout` pill, so the burst isn't scaled and smeared by the morph"
+          ]
+        },
+        {
+          "title": "Accessibility & Reduced Motion",
+          "summary": "The pill changes role with its state, and decorative motion is dropped rather than softened.",
+          "points": [
+            "Idle the pill is role=\"button\" with a label and Enter/Space handling; expanded it becomes role=\"status\", because it then contains the Undo button and a button inside a button is invalid",
+            "Carries visible focus-visible rings on both the pill and the Undo capsule",
+            "Marks the confetti origin aria-hidden and skips mounting it entirely under prefers-reduced-motion",
+            "Wraps everything in MotionConfig reducedMotion=\"user\" so the morph itself respects the OS setting"
+          ]
+        }
+      ],
+      "inspiration": []
+    }
+  ]
+}

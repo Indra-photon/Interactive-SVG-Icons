@@ -1,0 +1,100 @@
+{
+  "slug": "hero-roster",
+  "name": "Hero Roster",
+  "category": "card",
+  "tags": [
+    "gallery",
+    "roster",
+    "dossier",
+    "layoutId",
+    "shared-layout",
+    "morph",
+    "grid",
+    "detail",
+    "click",
+    "spring",
+    "dark-mode",
+    "theming"
+  ],
+  "description": "A five-card cast roster where selecting a card makes it travel and grow into a full dossier pane while the other four shrink into a two-by-two rail. Nothing fades out and back in — the cards that stay are the same elements, just smaller and somewhere else — and picking a thumbnail swaps the two mid-flight. The dossier's name, team, powers and copy ride on top of the morph rather than inside it, staggered in once the card has nearly landed.",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Hero Roster",
+      "componentName": "HeroRoster",
+      "tier": "free",
+      "previewHint": "Click any card to open its dossier, then pick a thumbnail to swap the two mid-flight",
+      "description": "A roster-to-dossier gallery built on shared-element transitions: one layoutId per card carries it between the thumbnail rail and the full pane, while the detail copy is staggered in on top of the morph.",
+      "animationType": "click",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [],
+      "cssVars": {
+        "light": {
+          "hr-fg": "var(--foreground, oklch(0.145 0 0))",
+          "hr-fg-muted": "oklch(0.55 0 0)",
+          "hr-frame": "#e9e6e0",
+          "hr-frame-edge": "rgba(0, 0, 0, 0.1)"
+        },
+        "dark": {
+          "hr-fg": "var(--foreground, oklch(0.985 0 0))",
+          "hr-fg-muted": "oklch(0.72 0 0)",
+          "hr-frame": "oklch(0.35 0.004 85)",
+          "hr-frame-edge": "rgba(255, 255, 255, 0.12)"
+        }
+      },
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Appended to the root wrapper's classes for call-site layout overrides."
+        }
+      ],
+      "features": [
+        "Carries each card between the rail and the dossier pane on its own layoutId, so selecting one is a single element travelling and growing rather than two elements crossfading",
+        "Swaps two cards in one gesture — the new one grows into the pane as the old one shrinks back into the rail, passing each other mid-flight",
+        "Keeps the detail copy out of the morph: a shared layout animation cannot be steered, so name, team, powers and note ride on top and arrive staggered once the card has nearly landed",
+        "Paints every frame with background-size: cover so one URL serves both the pane and the thumbnail without an object-fit correction chasing a scaling box",
+        "Runs asymmetric springs — 0.52s with bounce on select, 0.4s flat on return — and drops content in 0.16s so nothing outlives the box it sits in"
+      ],
+      "featureSections": [
+        {
+          "title": "Shared-Element Roster",
+          "summary": "One layoutId per card is what makes the roster and the dossier the same five objects in two arrangements.",
+          "points": [
+            "Projects each card between grid cell and detail pane with layoutId, so position, size and border-radius interpolate in one spring",
+            "Uses AnimatePresence mode=\"popLayout\" on the dossier so the rail reflows on frame one instead of waiting for the exit",
+            "Reflows the roster from a five-column grid to a two-by-two rail with `layout` on the container, not a remount",
+            "Keeps border-radius as an inline pixel value so Motion can undo the corner distortion the projection introduces"
+          ]
+        },
+        {
+          "title": "Detail Layer",
+          "summary": "Everything readable arrives after the morph, on its own timing, because the morph itself cannot be choreographed.",
+          "points": [
+            "Delays the caption plate to 0.08s and ladders the meta, name, alias and note from 0.1s to 0.17s so the dossier assembles rather than appearing",
+            "Staggers the power chips a further 30ms apart so the row reads left to right instead of landing as one block",
+            "Enters each line from 12px below through a 4px blur, and exits everything on a flat 0.16s spring",
+            "Drops the roster caption when the roster becomes a rail — it belongs to the browsing state, not to the card"
+          ]
+        },
+        {
+          "title": "Photography & Theming",
+          "summary": "One image URL serves both sizes, and only the chrome that touches the theme's ground takes a token.",
+          "points": [
+            "Re-crops with background-size: cover at every size, so the same photograph resolves at pane scale and at thumbnail scale",
+            "Holds a warm --hr-frame behind each photo, so a frame that is still loading reads as paper rather than as a hole",
+            "Inverts the 1px --hr-frame-edge hairline between themes — a black edge is invisible on a dark ground and a white one on a light ground",
+            "Leaves the dossier's caption plate white-on-dark in both themes: it sits on a photograph, and flipping it would put dark text on whatever the photo happens to be"
+          ]
+        }
+      ],
+      "inspiration": []
+    }
+  ]
+}
