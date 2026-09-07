@@ -1,0 +1,117 @@
+{
+  "slug": "approve-switch",
+  "name": "Approve Switch",
+  "category": "morphing-buttons",
+  "tags": [
+    "morph",
+    "button",
+    "approve",
+    "reject",
+    "decision",
+    "undo",
+    "confetti",
+    "layout",
+    "click",
+    "spring",
+    "dark-mode",
+    "theming"
+  ],
+  "description": "Two equal pills — Reject and Approve — where pressing one expands it in place, floods it with its decision colour and completes its own word (\"Reject\" → \"Rejected\"), while the other collapses into an undo circle. One persistent node per slot, so the pill morphs with `layout` rather than being swapped, and the base word glides inside the widening pill instead of cross-fading. Approve throws confetti; reject gets a shake and a single impact ring, because celebrating a rejection is the wrong feeling.",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Approve Switch",
+      "componentName": "ApproveSwitch",
+      "tier": "free",
+      "previewHint": "Press Approve for confetti or Reject for a shake and an impact ring, then hit the undo circle",
+      "description": "A two-pill decision control that morphs in place: the pressed slot expands and tints while the other collapses to an undo circle, the word completes itself with a dropped-in suffix, and each verdict gets its own one-shot flourish.",
+      "animationType": "click",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "cssVars": {
+        "light": {
+          "as-bg": "var(--background, oklch(1 0 0))",
+          "as-pill": "#f2f2f2",
+          "as-pill-ink": "#0a0a0a",
+          "as-approve": "#4cc85c",
+          "as-reject": "#f0392b",
+          "as-on": "#ffffff",
+          "as-confetti-ink": "#0b0b0b"
+        },
+        "dark": {
+          "as-bg": "var(--background, oklch(0.145 0 0))",
+          "as-pill": "oklch(0.38 0 0)",
+          "as-pill-ink": "oklch(0.985 0 0)",
+          "as-approve": "#4cc85c",
+          "as-reject": "#f0392b",
+          "as-on": "#ffffff",
+          "as-confetti-ink": "oklch(0.985 0 0)"
+        }
+      },
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Appended to the root wrapper's classes for call-site layout overrides."
+        }
+      ],
+      "features": [
+        "Keeps one persistent button per slot so `layout` can replace `layoutId` — state changes the node's size, colour and children, never its identity",
+        "Glides the base word instead of cross-fading it: \"Reject\" is one text node that never unmounts, and only the suffix \"ed\" mounts, dropping in from above",
+        "Recolours the badge in place with animated SVG fill and stroke, so the disc and glyph invert without the icon ever blinking",
+        "Splits the reward layer by verdict — confetti for approve, a shake plus a single impact ring for reject — and mounts neither under reduced motion",
+        "Hangs both flourishes off a non-animating wrapper, because an absolutely-positioned child of a `layout` element gets scaled and smeared by that element's morph",
+        "Paints every colour from a --as-* token through var(), floods the decision tone as an overlay whose opacity Motion springs, and flips the ink on a matching 240ms CSS transition — so the fills stay live against the theme"
+      ],
+      "featureSections": [
+        {
+          "title": "One Node Per Slot",
+          "summary": "Both screens are the same two boxes changing shape, not two components fading past each other.",
+          "points": [
+            "Runs `layout` on a button that is never unmounted, so Motion measures before and after and interpolates the difference",
+            "Drives size entirely from class changes — a fixed expanded width, and a collapsed width equal to the shared pill height so it lands as a circle",
+            "Keeps border-radius as an inline pixel value so Motion can undo the corner distortion the layout scale introduces",
+            "Pins the badge with layout=\"position\" so it stays centred rather than being stretched by the parent's morph"
+          ]
+        },
+        {
+          "title": "The Completing Word",
+          "summary": "The label finishes itself rather than being replaced, which is why no per-letter identity is needed.",
+          "points": [
+            "Leaves the base word as a single text node that glides with its wrapper inside the widening pill",
+            "Mounts only the suffix, arriving from -0.55em through a 4px blur and leaving downward, so the past tense reads as dropping into place",
+            "Drops the whole label on the collapsing slot via popLayout, so the pill shrinks around it instead of waiting for the fade",
+            "Exits content on a 0.16s flat spring — half the arrival — so no text is ever visible outside a shrinking pill"
+          ]
+        },
+        {
+          "title": "Reward Layer",
+          "summary": "Two one-shot flourishes, mounted only while a slot is expanded so they replay on every fresh decision.",
+          "points": [
+            "Throws a hydration-safe confetti field seeded from a sin-based frac(index), fanned across the upper half only",
+            "Splits x and y onto separate curves so gravity lives on y alone: the throw eases out while the drop eases in",
+            "Answers a rejection with a 7-step shake on the wrapper and one boxShadow ring scaling to 1.14 and gone — impact, not applause",
+            "Shakes the wrapper rather than the button, leaving the button's own transform free for `layout` to drive"
+          ]
+        },
+        {
+          "title": "Theming & Accessibility",
+          "summary": "Motion drives the shape; CSS drives the colour, so every fill stays a live token and follows a theme flip on its own.",
+          "points": [
+            "Paints the resting pill from --as-pill and never changes it — the decision tone is a separate overlay laid on top, so the pill is visible at rest, before hydration, and behind every state",
+            "Springs the tone in on opacity alone: the one visual channel Motion can animate without parsing a colour, which is what lets the fill stay a var() the theme can move underneath",
+            "Publishes the slot's own tone as --as-tone on the button, so the overlay and the badge disc read it without either being handed a literal",
+            "Flips the ink — color, fill and stroke — on a 240ms CSS transition matched to the tone's spring, rather than in JS where an oklch() token cannot be parsed",
+            "Keeps the approve and reject tones identical in both themes: they are the meaning of the control, not its surface",
+            "Labels the collapsed slot \"Undo decision\", reflects the verdict with aria-pressed, hides both flourishes from the accessibility tree, and drops them entirely under prefers-reduced-motion"
+          ]
+        }
+      ],
+      "inspiration": []
+    }
+  ]
+}
