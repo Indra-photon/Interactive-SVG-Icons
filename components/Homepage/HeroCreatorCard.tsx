@@ -12,7 +12,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { MorphArrow } from "@/components/ui/morph-arrow";
-import { SOCIAL_LINKS, MagneticIcon } from "@/components/Homepage/HeroSocialLinks";
+import {
+  SOCIAL_LINKS,
+  MagneticIcon,
+} from "@/components/Homepage/HeroSocialLinks";
 import { useRepoStats, formatCount } from "@/hooks/use-repo-stats";
 import { Paragraph } from "../Paragraph";
 
@@ -45,14 +48,20 @@ export function HeroCreatorCard() {
         : formatCount(stats.stars);
 
   return (
-    <Card className="[--card-pad:--spacing(3)] [--card-py:--spacing(3)] [--preview-h:--spacing(36)] [--text-gap:--spacing(4)] [--cta-gap:--spacing(2)] [--card-spacing:var(--card-pad)] h-full gap-0 py-(--card-py) text-left transition-shadow duration-200 corner-squircle rounded-[20px]">
-      <CardContent className="flex-1">
+    <Card className="[--card-pad:--spacing(3)] [--card-py:--spacing(3)] [--preview-h:--spacing(36)] [--text-gap:--spacing(4)] [--cta-gap:--spacing(6)] [--card-spacing:var(--card-pad)] h-full gap-0 py-(--card-py) text-left transition-shadow duration-200 corner-squircle rounded-[20px]">
+      {/* Fixed preview height, flex-1 on the text block — same as
+          HeroLinkCardItem, so this card's title sits level with the row. */}
+      <CardContent>
         {/* justify-end anchors the icons to the bottom of the slot, where the
             mosaic sits on the other cards. */}
-        <div className="relative flex h-full min-h-(--preview-h) w-full flex-col justify-end gap-3 overflow-hidden rounded-lg bg-muted p-4">
+        <div className="relative flex h-(--preview-h) w-full flex-col justify-end gap-3 overflow-hidden rounded-lg bg-muted p-4">
+          {/* crumb, not body + text-xs: a bare size override only replaces
+              the base step, so the label was 12px on phones but 14–15px from
+              sm up. crumb is 11→12px at every step. font-sans undoes crumb's
+              mono, since this is an eyebrow rather than a path. */}
           <Paragraph
-            variant="body"
-            className="text-xs tracking-widest uppercase"
+            variant="crumb"
+            className="font-sans tracking-widest uppercase"
           >
             Meet the creator
           </Paragraph>
@@ -64,10 +73,11 @@ export function HeroCreatorCard() {
         </div>
       </CardContent>
 
-      <CardContent className="mt-(--text-gap) flex flex-col pt-10">
+      <CardContent className="mt-(--text-gap) flex flex-1 flex-col">
         <CardTitle>
-          <Paragraph variant="title" className="uppercase">
-            GitHub
+          {/* h2 to match the seven catalog cards — see HeroLinkCardItem. */}
+          <Paragraph as="h2" variant="title" className="">
+            Github (Open Source)
           </Paragraph>
         </CardTitle>
         <CardDescription>

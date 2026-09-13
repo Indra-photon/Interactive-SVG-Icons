@@ -49,42 +49,48 @@ const HERO_LINKS: HeroLinkCard[] = [
   {
     label: "Blocks",
     href: "/blocks",
-    subheading: "16 composable UI blocks.",
+    subheading:
+      "Self-contained pieces of interface with the interaction already designed. Drop one in and it works the way it looks.",
     cta: "Browse blocks",
     theme: "black",
   },
   {
     label: "Illustrations",
     href: "/illustrations",
-    subheading: "3 hand-drawn scenes.",
+    subheading:
+      "Animated SVG artwork for the places a page needs a picture. Drawn by hand and built to move on its own.",
     cta: "Browse illustrations",
     theme: "yellow",
   },
   {
     label: "UI Components",
     href: "/ui-gallery",
-    subheading: "4 interactive components.",
+    subheading:
+      "The everyday building blocks of an interface, rebuilt around motion. Small, focused and considered on every press.",
     cta: "Browse components",
     theme: "rose",
   },
   {
     label: "Designs",
     href: "/designs",
-    subheading: "3 static artworks.",
+    subheading:
+      "Finished compositions to study and reuse. How type, spacing and colour hold together when the whole thing is done.",
     cta: "Browse designs",
     theme: "orange",
   },
   {
     label: "Loaders",
     href: "/loaders",
-    subheading: "73 animated loaders.",
+    subheading:
+      "Waiting states worth watching. Lightweight SVG animations you can recolour, resize and drop wherever something is loading.",
     cta: "Browse loaders",
     theme: "sky",
   },
   {
     label: "Icons",
     href: "/icons",
-    subheading: "14 interactive SVG icons.",
+    subheading:
+      "Icons that respond to what the user does. Each one animates from the state you pass in, not on a timer.",
     cta: "Browse icons",
     theme: "green",
   },
@@ -93,7 +99,8 @@ const HERO_LINKS: HeroLinkCard[] = [
   {
     label: "Sections",
     href: "/sections",
-    subheading: "4 page-width layouts.",
+    subheading:
+      "Full-width page sections ready to stack into a landing page. Bring your copy and images, the layout is done.",
     cta: "Browse sections",
     theme: "violet",
   },
@@ -161,23 +168,30 @@ function HeroLinkCardItem({
     //   --card-py      card's own top and bottom padding
     //   --preview-h    minimum height of the preview box
     //   --text-gap     preview → title
-    //   --cta-gap      description → CTA
+    //   --cta-gap      minimum description → CTA; the text block is flex-1 so
+    //                  the CTA sits at the bottom and this gap only grows
     // gap-0 kills card.tsx's shared gap so each space is set by its own
     // margin below; otherwise every gap moves together.
     // Concentric radii: the preview sits 12px (--card-pad) inside the card, so
     // the card's 20px matches the preview's 8px + that 12px gap.
-    <Card className="[--card-pad:--spacing(3)] [--card-py:--spacing(3)] [--preview-h:--spacing(36)] [--text-gap:--spacing(4)] [--cta-gap:--spacing(2)] [--card-spacing:var(--card-pad)] h-full gap-0 py-(--card-py) text-left transition-shadow duration-200 corner-squircle rounded-[20px] group-hover:ring-foreground/20">
-      {/* flex-1: the preview soaks up any extra height, so the text and CTA
-          stay tight together and the CTAs still align across cards. */}
-      <CardContent className="flex-1">
-        <div className="relative h-full min-h-(--preview-h) w-full overflow-hidden rounded-lg bg-muted">
+    <Card className="[--card-pad:--spacing(3)] [--card-py:--spacing(3)] [--preview-h:--spacing(36)] [--text-gap:--spacing(4)] [--cta-gap:--spacing(6)] [--card-spacing:var(--card-pad)] h-full gap-0 py-(--card-py) text-left transition-shadow duration-200 corner-squircle rounded-[20px] group-hover:ring-foreground/20">
+      {/* Fixed preview height, and the TEXT block below is the flex-1 one. If
+          the preview flexed instead, a 3-line description would hand its spare
+          line to the mosaic and push that card's title lower than its
+          neighbours'. This way every title lands on the same y, and a shorter
+          description just leaves more slack above the CTA. */}
+      <CardContent>
+        <div className="relative h-(--preview-h) w-full overflow-hidden rounded-lg bg-muted">
           <HeroPixelGrid theme={theme} />
         </div>
       </CardContent>
 
-      <CardContent className="mt-(--text-gap) flex flex-col pt-10">
+      <CardContent className="mt-(--text-gap) flex flex-1 flex-col">
         <CardTitle>
-          <Paragraph variant="title" className="uppercase">
+          {/* h2: the page has one h1 and these cards are its section index,
+              so they're the next heading level for screen-reader navigation.
+              Size still comes from the variant. */}
+          <Paragraph as="h2" variant="title" className="">
             {label}
           </Paragraph>
         </CardTitle>

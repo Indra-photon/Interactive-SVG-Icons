@@ -1391,6 +1391,23 @@
       ]
     },
     {
+      "name": "dot-matrix-bits-default",
+      "type": "registry:ui",
+      "title": "Dot Matrix Bits - Dot Matrix Bits",
+      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "dot-circle-expand-default",
       "type": "registry:ui",
       "title": "Dot Circle Expand - Dot Circle Expand",
@@ -1406,23 +1423,6 @@
           "path": "components/craftui/loaders/dot-circle-expand/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/dot-circle-expand/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "dot-matrix-bits-default",
-      "type": "registry:ui",
-      "title": "Dot Matrix Bits - Dot Matrix Bits",
-      "description": "Each row is an independent binary counter at a different speed. The bottom row flips every tick; the top row changes rarely. Every dot can be in a unique state.",
-      "dependencies": [],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/dot-matrix-bits/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/dot-matrix-bits/default.tsx"
         }
       ]
     },
@@ -1769,25 +1769,6 @@
       ]
     },
     {
-      "name": "audio-wave-vertical-default",
-      "type": "registry:ui",
-      "title": "Audio Wave Vertical - Audio Wave Vertical",
-      "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
-      "dependencies": [
-        "framer-motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/loaders/audio-wave-vertical/default.tsx",
-          "type": "registry:ui",
-          "target": "~/components/craftui/loaders/audio-wave-vertical/default.tsx"
-        }
-      ]
-    },
-    {
       "name": "ball-bounce-alternate-default",
       "type": "registry:ui",
       "title": "Ball Bounce Alternate - Ball Bounce Alternate",
@@ -1803,6 +1784,25 @@
           "path": "components/craftui/loaders/ball-bounce-alternate/default.tsx",
           "type": "registry:ui",
           "target": "~/components/craftui/loaders/ball-bounce-alternate/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "audio-wave-vertical-default",
+      "type": "registry:ui",
+      "title": "Audio Wave Vertical - Audio Wave Vertical",
+      "description": "Five vertical bars animating in a symmetric wave pattern like audio visualization",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/loaders/audio-wave-vertical/default.tsx",
+          "type": "registry:ui",
+          "target": "~/components/craftui/loaders/audio-wave-vertical/default.tsx"
         }
       ]
     },
@@ -1961,6 +1961,73 @@
       ]
     },
     {
+      "name": "teletype-clock-default",
+      "type": "registry:block",
+      "title": "Teletype Clock - Split-Flap Clock",
+      "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/teletype-clock/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/teletype-clock/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "subscribe-button-default",
+      "type": "registry:block",
+      "title": "Subscribe Button - Subscribe Button",
+      "description": "A subscribe pill that morphs idle → field → confirmation → idle on one persistent `layout` node, with letter-by-letter label growth during the request and a self-dismissing receipt.",
+      "dependencies": [
+        "motion",
+        "@tabler/icons-react"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "cssVars": {
+        "light": {
+          "sb-bg": "var(--background, oklch(1 0 0))",
+          "sb-fg": "var(--foreground, oklch(0.145 0 0))",
+          "sb-pill": "#f2f0ea",
+          "sb-pill-hover": "#eae6dd",
+          "sb-button": "#0b0b0b",
+          "sb-button-hover": "rgba(11, 11, 11, 0.85)",
+          "sb-on-button": "#ffffff",
+          "sb-placeholder": "rgba(11, 11, 11, 0.3)",
+          "sb-error": "#c0392b",
+          "sb-ring": "oklch(0.145 0 0)",
+          "sb-ink": "#0b0b0b"
+        },
+        "dark": {
+          "sb-bg": "var(--background, oklch(0.145 0 0))",
+          "sb-fg": "var(--foreground, oklch(0.985 0 0))",
+          "sb-pill": "oklch(0.38 0.006 85)",
+          "sb-pill-hover": "oklch(0.43 0.006 85)",
+          "sb-button": "oklch(0.985 0 0)",
+          "sb-button-hover": "oklch(0.9 0 0)",
+          "sb-on-button": "#0b0b0b",
+          "sb-placeholder": "rgba(255, 255, 255, 0.35)",
+          "sb-error": "#ff7b6b",
+          "sb-ring": "oklch(0.985 0 0)",
+          "sb-ink": "oklch(0.985 0 0)"
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/blocks/subscribe-button/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/subscribe-button/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "subitem-navbar-subitem-navbar",
       "type": "registry:block",
       "title": "SubItem Navbar - SubItem Navbar",
@@ -1979,25 +2046,6 @@
           "path": "components/craftui/blocks/subitem-navbar/subitem-navbar.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/subitem-navbar/subitem-navbar.tsx"
-        }
-      ]
-    },
-    {
-      "name": "teletype-clock-default",
-      "type": "registry:block",
-      "title": "Teletype Clock - Split-Flap Clock",
-      "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/blocks/teletype-clock/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/blocks/teletype-clock/default.tsx"
         }
       ]
     },
@@ -2226,6 +2274,27 @@
           "path": "components/craftui/blocks/onboarding-form/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/blocks/onboarding-form/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "netflix-sign-in-default",
+      "type": "registry:block",
+      "title": "Netflix Sign In - Netflix Sign In",
+      "description": "A profile-picker gate where the chosen avatar flies on an `arc()` path between the roster and the centre, a PIN pad grows out of it, and success hands the bottom of the screen over to a tab bar the face lands in.",
+      "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/blocks/netflix-sign-in/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/blocks/netflix-sign-in/default.tsx"
         }
       ]
     },
@@ -2654,6 +2723,29 @@
       ]
     },
     {
+      "name": "feature-gallery-02-default",
+      "type": "registry:block",
+      "title": "Feature Gallery 02 - Feature Gallery 02",
+      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
+      "dependencies": [
+        "motion",
+        "lenis",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "next"
+      ],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/sections/feature-gallery-02/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "feature-gallery-01-default",
       "type": "registry:block",
       "title": "Feature Gallery 01 - Feature Gallery 01",
@@ -2686,29 +2778,6 @@
           "path": "components/craftui/sections/feature-gallery-01/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/sections/feature-gallery-01/default.tsx"
-        }
-      ]
-    },
-    {
-      "name": "feature-gallery-02-default",
-      "type": "registry:block",
-      "title": "Feature Gallery 02 - Feature Gallery 02",
-      "description": "Five travel destinations revealed through a sticky scroll. The right panel stacks images in a weighted parallax strip; the left panel slides in destination info driven by scroll position.",
-      "dependencies": [
-        "motion",
-        "lenis",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons",
-        "next"
-      ],
-      "registryDependencies": [
-        "craftui-base"
-      ],
-      "files": [
-        {
-          "path": "components/craftui/sections/feature-gallery-02/default.tsx",
-          "type": "registry:component",
-          "target": "~/components/craftui/sections/feature-gallery-02/default.tsx"
         }
       ]
     },

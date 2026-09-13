@@ -464,6 +464,24 @@
      either ground; this one is the ink, so it flips or the particle is
      invisible on the stage it lands on. */
   --as-confetti-ink: #0b0b0b;
+  /* Subscribe button (blocks/subscribe-button). Shipped to consumers via that
+     item's cssVars; duplicated here so our own preview renders correctly.
+     Same cream pill as the feedback button — the two sit in one family. The
+     Join button is solid ink and its label is the ground colour, so the pair
+     inverts as a unit between themes and the spinner ring, drawn in
+     currentColor, follows the label for free. */
+  --sb-bg: var(--background, oklch(1 0 0));
+  --sb-fg: var(--foreground, oklch(0.145 0 0));
+  --sb-pill: #f2f0ea;
+  --sb-pill-hover: #eae6dd;
+  --sb-button: #0b0b0b;
+  --sb-button-hover: rgba(11, 11, 11, 0.85);
+  --sb-on-button: #ffffff;
+  --sb-placeholder: rgba(11, 11, 11, 0.3);
+  --sb-error: #c0392b;
+  --sb-ring: oklch(0.145 0 0);
+  /* Sixth ribbon colour — the ink, so it flips with the theme. */
+  --sb-ink: #0b0b0b;
   /* Hero roster (blocks/hero-roster). Shipped to consumers via that item's
      cssVars; duplicated here so our own preview renders correctly. Only the
      four values that touch the theme's ground are tokens — the dossier's
@@ -666,6 +684,22 @@
   --as-reject: #f0392b;
   --as-on: #ffffff;
   --as-confetti-ink: oklch(0.985 0 0);
+  /* Subscribe button (blocks/subscribe-button) — dark theme. Pill matches
+     --fb-pill for the same reason it does there: it has to clear the
+     gallery's --muted (0.269) ground. The Join button flips to light ink so
+     it still reads as the one solid, pressable thing on the charcoal pill;
+     the error warms up a step because #c0392b sinks into dark. */
+  --sb-bg: var(--background, oklch(0.145 0 0));
+  --sb-fg: var(--foreground, oklch(0.985 0 0));
+  --sb-pill: oklch(0.38 0.006 85);
+  --sb-pill-hover: oklch(0.43 0.006 85);
+  --sb-button: oklch(0.985 0 0);
+  --sb-button-hover: oklch(0.9 0 0);
+  --sb-on-button: #0b0b0b;
+  --sb-placeholder: rgba(255, 255, 255, 0.35);
+  --sb-error: #ff7b6b;
+  --sb-ring: oklch(0.985 0 0);
+  --sb-ink: oklch(0.985 0 0);
   /* Hero roster (blocks/hero-roster) — dark theme. */
   --hr-fg: var(--foreground, oklch(0.985 0 0));
   --hr-fg-muted: oklch(0.72 0 0);
