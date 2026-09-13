@@ -1,0 +1,128 @@
+{
+  "slug": "subscribe-button",
+  "name": "Subscribe Button",
+  "category": "morphing-buttons",
+  "tags": [
+    "morph",
+    "button",
+    "subscribe",
+    "newsletter",
+    "email",
+    "form",
+    "input",
+    "spinner",
+    "streamers",
+    "ribbons",
+    "layout",
+    "click",
+    "spring",
+    "dark-mode",
+    "theming"
+  ],
+  "description": "A single 'Subscribe' pill that stretches in place into an email field with a Join button, holds its width while the request runs, then pulls back in around 'You're subscribed!' before returning home on its own. One persistent node morphs three times with `layout` — the mail glyph never blinks, it just holds the left edge as the box grows around it. Submitting grows the word letter by letter ('Join' → 'Joining' → 'Joined') beside a popped-in spinner, and a throw of curled ribbons fires from the button itself — each one flipping between broadside and edge-on as it falls — measured at the moment the request resolves.",
+  "createdAt": "2026-09-12T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Subscribe Button",
+      "componentName": "SubscribeButton",
+      "tier": "free",
+      "previewHint": "Click Subscribe, type an address and press Join — try an invalid one first to see the shake",
+      "description": "A subscribe pill that morphs idle → field → confirmation → idle on one persistent `layout` node, with letter-by-letter label growth during the request and a self-dismissing receipt.",
+      "animationType": "click",
+      "dependencies": [
+        "motion",
+        "@tabler/icons-react"
+      ],
+      "registryDependencies": [],
+      "cssVars": {
+        "light": {
+          "sb-bg": "var(--background, oklch(1 0 0))",
+          "sb-fg": "var(--foreground, oklch(0.145 0 0))",
+          "sb-pill": "#f2f0ea",
+          "sb-pill-hover": "#eae6dd",
+          "sb-button": "#0b0b0b",
+          "sb-button-hover": "rgba(11, 11, 11, 0.85)",
+          "sb-on-button": "#ffffff",
+          "sb-placeholder": "rgba(11, 11, 11, 0.3)",
+          "sb-error": "#c0392b",
+          "sb-ring": "oklch(0.145 0 0)",
+          "sb-ink": "#0b0b0b"
+        },
+        "dark": {
+          "sb-bg": "var(--background, oklch(0.145 0 0))",
+          "sb-fg": "var(--foreground, oklch(0.985 0 0))",
+          "sb-pill": "oklch(0.38 0.006 85)",
+          "sb-pill-hover": "oklch(0.43 0.006 85)",
+          "sb-button": "oklch(0.985 0 0)",
+          "sb-button-hover": "oklch(0.9 0 0)",
+          "sb-on-button": "#0b0b0b",
+          "sb-placeholder": "rgba(255, 255, 255, 0.35)",
+          "sb-error": "#ff7b6b",
+          "sb-ring": "oklch(0.985 0 0)",
+          "sb-ink": "oklch(0.985 0 0)"
+        }
+      },
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Appended to the root wrapper's classes for call-site layout overrides."
+        }
+      ],
+      "features": [
+        "Morphs THREE times on one persistent `layout` node — idle → field → confirmation → idle — so the box is never unmounted and the mail glyph never blinks, it just holds the left edge while the pill grows around it",
+        "Grows the button label letter by letter: 'Join' is a plain span that outlives every phase, and 'i' 'n' 'g' then 'e' 'd' mount onto its end on staggered springs via popLayout, keyed by phase so shared glyphs can't teleport",
+        "Holds the pill perfectly still during the request — the Join button has a fixed min-width so the spinner popping in and the word growing both recentre inside it rather than resizing the row",
+        "Throws streamers instead of confetti squares — 18 curled SVG ribbons on a launch/apex/fall arc, each turning 2–3.5 times about its own axis via rotateX so it flickers wide → edge-on → wide as it drops; the origin is measured off the button's rect the moment the request resolves",
+        "Validates in place with an imperative shake on the wrapper — `useAnimationControls` so a second rejection of the same address still fires — and an absolutely positioned error that can't move the pill it's complaining about",
+        "Dismisses itself: the confirmation is a receipt, not a decision, so after ~1.9s the pill snaps home on a flat undo spring instead of leaving a control to tidy up",
+        "Ships a themed palette as --sb-* cssVars with light and dark values — the warm cream pill keeps its character at charcoal luminance, and the Join button, its ink, the spinner ring and the ink-coloured ribbon all invert together"
+      ],
+      "featureSections": [
+        {
+          "title": "One Node, Three Widths",
+          "summary": "The pill is the same DOM node in every stage, so each transition is a size change rather than a swap between elements.",
+          "points": [
+            "Runs `layout` (not `layoutId`) on the pill and mounts only *content* inside it — the CTA, the form, and the confirmation each enter and leave via AnimatePresence mode=\"popLayout\"",
+            "Keeps border-radius as an inline pixel value so Motion can undo the corner distortion the layout scale introduces",
+            "Pins the glyph in a fixed 34px slot on layout=\"position\" so it keeps its true size while the pill's width animates, and swaps mail → check as a pure crossfade inside it",
+            "Picks the travel spring per leg: opening is a deliberate 0.42s/0.18 spring, submitting lands with 0.22 bounce, and going home snaps back flat in 0.3s"
+          ]
+        },
+        {
+          "title": "The Growing Word",
+          "summary": "'Join' → 'Joining' → 'Joined' without the base word ever remounting.",
+          "points": [
+            "Renders 'Join' as a persistent span and maps the suffix letters from a per-phase lookup, each an inline-block motion span rising in on a 0.06s stagger",
+            "Keys every letter by phase as well as index so 'ing' and 'ed' never share a node and teleport",
+            "Pops the spinner in on a 0.4-bounce scale spring with a flat opacity spring — and spins it on an inner node so the CSS `animate-spin` transform can't overwrite Motion's scale",
+            "Fixes the button's min-width so the pill above it stays perfectly still through the whole request"
+          ]
+        },
+        {
+          "title": "Validation & Streamers",
+          "summary": "Rejection shakes, success throws — both from the wrapper, never from the animating pill.",
+          "points": [
+            "Shakes via `useAnimationControls` on the wrapper: a keyframed x and a layout animation on one node fight over transform, and the pill wins by snapping",
+            "Positions the error absolutely under the pill so a message can't push the layout it's describing",
+            "Measures the throw origin from the Join button's rect the instant the request resolves, then keeps the ribbons mounted through the collapse so the arc is never cut off",
+            "Seeds every ribbon from a sin-based `frac(index)` so server and client render identical fields; one shared S-curve path scaled per ribbon, so the variety is in length, spin and flip phase rather than shape"
+          ]
+        },
+        {
+          "title": "Accessibility & Reduced Motion",
+          "summary": "The pill changes role with its state, focus waits for the morph, and decorative motion is dropped rather than softened.",
+          "points": [
+            "Idle the pill is role=\"button\" with a label and Enter/Space handling; open it drops the role because it contains the real submit button; done it becomes role=\"status\" with an aria-live confirmation",
+            "Focuses the input only in `onLayoutAnimationComplete` — focusing mid-morph makes the browser scroll to a rectangle that is still moving",
+            "Wraps the field group in a real <form> so Enter submits, marks the field aria-invalid on rejection and the message role=\"alert\"",
+            "Skips mounting the streamers entirely under prefers-reduced-motion, stops the spinner's rotation via motion-reduce, and wraps everything in MotionConfig reducedMotion=\"user\""
+          ]
+        }
+      ],
+      "inspiration": []
+    }
+  ]
+}

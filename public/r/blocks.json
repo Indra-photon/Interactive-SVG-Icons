@@ -220,6 +220,129 @@
       ]
     },
     {
+      "slug": "teletype-clock",
+      "name": "Teletype Clock",
+      "category": "number-animation",
+      "tags": [
+        "clock",
+        "flip",
+        "split-flap",
+        "time",
+        "3d",
+        "loop",
+        "retro"
+      ],
+      "description": "A classic split-flap airport-board clock. Each digit lives on a dark card split by a center seam — when the time changes, the top flap falls with gravity, reveals the next digit, and the bottom flap lands with a mechanical bounce.",
+      "createdAt": "2026-07-08T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Split-Flap Clock",
+          "tier": "free",
+          "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
+          "animationType": "loop",
+          "dependencies": [
+            "motion"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "demo",
+              "type": "boolean",
+              "default": "false",
+              "description": "Advance the clock by one minute on an interval so flips happen constantly (for showcases)"
+            },
+            {
+              "name": "demoIntervalMs",
+              "type": "number",
+              "default": "3000",
+              "description": "Milliseconds between flips in demo mode"
+            },
+            {
+              "name": "hour12",
+              "type": "boolean",
+              "default": "false",
+              "description": "Use 12-hour format instead of 24-hour"
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "default": "\"\"",
+              "description": "Extra classes for the outer wrapper"
+            }
+          ],
+          "componentName": "TeletypeClock",
+          "previewHint": "Digits flip every few seconds in demo mode",
+          "features": [
+            "Two-phase flip: rotateX 0 → -90° fall with ease-in-cubic gravity, then 90 → 0° landing with overshoot bounce",
+            "Only transform and opacity are animated — flaps run on the compositor with backface-visibility hidden",
+            "Digit halves are full-height numerals clipped by overflow-hidden windows, so the seam cuts each digit cleanly",
+            "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
+            "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
+            "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
+          ],
+          "responsive": true
+        }
+      ]
+    },
+    {
+      "slug": "subscribe-button",
+      "name": "Subscribe Button",
+      "category": "morphing-buttons",
+      "tags": [
+        "morph",
+        "button",
+        "subscribe",
+        "newsletter",
+        "email",
+        "form",
+        "input",
+        "spinner",
+        "streamers",
+        "ribbons",
+        "layout",
+        "click",
+        "spring",
+        "dark-mode",
+        "theming"
+      ],
+      "description": "A single 'Subscribe' pill that stretches in place into an email field with a Join button, holds its width while the request runs, then pulls back in around 'You're subscribed!' before returning home on its own. One persistent node morphs three times with `layout` — the mail glyph never blinks, it just holds the left edge as the box grows around it. Submitting grows the word letter by letter ('Join' → 'Joining' → 'Joined') beside a popped-in spinner, and a throw of curled ribbons fires from the button itself — each one flipping between broadside and edge-on as it falls — measured at the moment the request resolves.",
+      "createdAt": "2026-09-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Subscribe Button",
+          "tier": "free",
+          "description": "A subscribe pill that morphs idle → field → confirmation → idle on one persistent `layout` node, with letter-by-letter label growth during the request and a self-dismissing receipt.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "@tabler/icons-react"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Appended to the root wrapper's classes for call-site layout overrides."
+            }
+          ],
+          "componentName": "SubscribeButton",
+          "previewHint": "Click Subscribe, type an address and press Join — try an invalid one first to see the shake",
+          "features": [
+            "Morphs THREE times on one persistent `layout` node — idle → field → confirmation → idle — so the box is never unmounted and the mail glyph never blinks, it just holds the left edge while the pill grows around it",
+            "Grows the button label letter by letter: 'Join' is a plain span that outlives every phase, and 'i' 'n' 'g' then 'e' 'd' mount onto its end on staggered springs via popLayout, keyed by phase so shared glyphs can't teleport",
+            "Holds the pill perfectly still during the request — the Join button has a fixed min-width so the spinner popping in and the word growing both recentre inside it rather than resizing the row",
+            "Throws streamers instead of confetti squares — 18 curled SVG ribbons on a launch/apex/fall arc, each turning 2–3.5 times about its own axis via rotateX so it flickers wide → edge-on → wide as it drops; the origin is measured off the button's rect the moment the request resolves",
+            "Validates in place with an imperative shake on the wrapper — `useAnimationControls` so a second rejection of the same address still fires — and an absolutely positioned error that can't move the pill it's complaining about",
+            "Dismisses itself: the confirmation is a receipt, not a decision, so after ~1.9s the pill snaps home on a flat undo spring instead of leaving a control to tidy up",
+            "Ships a themed palette as --sb-* cssVars with light and dark values — the warm cream pill keeps its character at charcoal luminance, and the Join button, its ink, the spinner ring and the ink-coloured ribbon all invert together"
+          ]
+        }
+      ]
+    },
+    {
       "slug": "subitem-navbar",
       "name": "SubItem Navbar",
       "category": "navbar",
@@ -301,72 +424,6 @@
             "Blur overlay rendered inside the component — just place BottomNavbar inside a relative container",
             "useMeasure drives submenu height so the pill expands to exactly fit any panel",
             "prefers-reduced-motion: all spring and blur transitions collapse to instant"
-          ],
-          "responsive": true
-        }
-      ]
-    },
-    {
-      "slug": "teletype-clock",
-      "name": "Teletype Clock",
-      "category": "number-animation",
-      "tags": [
-        "clock",
-        "flip",
-        "split-flap",
-        "time",
-        "3d",
-        "loop",
-        "retro"
-      ],
-      "description": "A classic split-flap airport-board clock. Each digit lives on a dark card split by a center seam — when the time changes, the top flap falls with gravity, reveals the next digit, and the bottom flap lands with a mechanical bounce.",
-      "createdAt": "2026-07-08T00:00:00Z",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Split-Flap Clock",
-          "tier": "free",
-          "description": "Four HH:MM digit cards. On change, the old digit's top half hinges down on the center seam (ease-in free fall), then the new digit's bottom half swings into place with an overshoot-and-settle bounce. Shading overlays darken the falling flap and light up the landing one for a 3D feel.",
-          "animationType": "loop",
-          "dependencies": [
-            "motion"
-          ],
-          "registryDependencies": [],
-          "props": [
-            {
-              "name": "demo",
-              "type": "boolean",
-              "default": "false",
-              "description": "Advance the clock by one minute on an interval so flips happen constantly (for showcases)"
-            },
-            {
-              "name": "demoIntervalMs",
-              "type": "number",
-              "default": "3000",
-              "description": "Milliseconds between flips in demo mode"
-            },
-            {
-              "name": "hour12",
-              "type": "boolean",
-              "default": "false",
-              "description": "Use 12-hour format instead of 24-hour"
-            },
-            {
-              "name": "className",
-              "type": "string",
-              "default": "\"\"",
-              "description": "Extra classes for the outer wrapper"
-            }
-          ],
-          "componentName": "TeletypeClock",
-          "previewHint": "Digits flip every few seconds in demo mode",
-          "features": [
-            "Two-phase flip: rotateX 0 → -90° fall with ease-in-cubic gravity, then 90 → 0° landing with overshoot bounce",
-            "Only transform and opacity are animated — flaps run on the compositor with backface-visibility hidden",
-            "Digit halves are full-height numerals clipped by overflow-hidden windows, so the seam cuts each digit cleanly",
-            "Lighting overlays: the falling flap darkens as it turns away, the landing flap brightens as it catches light",
-            "prefers-reduced-motion: digits swap instantly via useReducedMotion — no flap animation",
-            "Mounts at 00:00 and flips to the real time, doubling as an entrance animation with no hydration mismatch"
           ],
           "responsive": true
         }
@@ -973,6 +1030,63 @@
             "Completion screen reflects every answer back, and takes focus so the result is announced",
             "Light and dark themes via --onb-* tokens, every foreground/background pair measured with APCA",
             "Respects prefers-reduced-motion — all transitions collapse to duration 0"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "netflix-sign-in",
+      "name": "Netflix Sign In",
+      "category": "sign-in",
+      "tags": [
+        "sign-in",
+        "profile",
+        "netflix",
+        "pin",
+        "otp",
+        "avatar",
+        "arc",
+        "flip",
+        "shared-element",
+        "click",
+        "spring",
+        "mobile"
+      ],
+      "description": "A 'Who's watching?' profile gate. Pick a face and it arcs to the centre of the screen and grows — one node the whole way, on Motion's own `arc()` path — while the other four close the gap behind it. A four-box PIN pad unfolds downward out of the face before it has even landed. A wrong PIN shakes and clears; the right one crossfades the roster out, a tab bar in, and flies the face down into the Profile tab, all on one clock. Escape or Back sends it home along a different arc than it left on.",
+      "createdAt": "2026-09-12T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Netflix Sign In",
+          "tier": "free",
+          "description": "A profile-picker gate where the chosen avatar flies on an `arc()` path between the roster and the centre, a PIN pad grows out of it, and success hands the bottom of the screen over to a tab bar the face lands in.",
+          "animationType": "click",
+          "dependencies": [
+            "motion",
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons"
+          ],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Appended to the screen's classes. The block fills its container; the phone frame in the preview is host chrome, not part of the block."
+            }
+          ],
+          "componentName": "NetflixSignIn",
+          "previewHint": "Pick a face, then type its PIN from the margin note — try a wrong one first for the shake",
+          "features": [
+            "Flies the picked face on Motion's `arc()` handed to `transition.path` — x and y get nothing but a destination, the path bends the line, and `rotate: 0.5` makes the lean follow the tangent instead of a hand-kept keyframe",
+            "Keeps it one node the whole way: a hand-measured FLIP against the stage, with the roster slot going invisible but never unmounting so the row has a rectangle to fly back to",
+            "Takes a different road home for free — `direction: \"cw\"` is locked to the direction of travel, so the same setting bulges to the opposite side once the journey reverses; a retraced path reads as a rewind",
+            "Stacks three nested scales that multiply — the journey, an anticipation dip (1 → 0.86 → 1 tween), and a 0.34-bounce growth spring delayed 70ms — so the tap is its own beat under the climb",
+            "Unfolds the PIN pad downward out of the face from a top-edge transform origin, timed as a FRACTION of the flight (enters at 80% of the ascent, gone by 20% of the descent) so retiming one retimes both",
+            "Uses four decorative boxes over ONE real input — paste, backspace, mobile keyboards and screen readers all work — with the caret and digits popping in on a 0.42-bounce spring",
+            "Shakes imperatively via `useAnimationControls` so the same wrong PIN twice in a row still fires, and hands the whole bottom of the screen over on one `barFade` clock when the PIN is right: roster out, tab bar in, face down into the Profile tab",
+            "Mounts the tab bar from frame one at opacity 0 so the Profile tab has a rectangle to aim the descent at in the same commit the fade begins",
+            "Under reduced motion the arc is dropped entirely — the traveller cross-dissolves between its two rectangles and the row fades without moving"
           ]
         }
       ]
@@ -2025,5 +2139,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-07T07:45:16.287Z"
+  "lastUpdated": "2026-09-13T07:54:49.874Z"
 }
