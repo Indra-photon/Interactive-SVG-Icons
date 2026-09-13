@@ -147,7 +147,9 @@ export default function DefaultPreview() {
             className="relative h-full w-full overflow-hidden"
             style={{ borderRadius: BODY_RADIUS - BEZEL }}
           >
-            <NetflixSignIn />
+            {/* showHint leaks the demo PINs into a margin note. Only the
+                preview wants that; an installed block leaves it off. */}
+            <NetflixSignIn showHint />
 
             {/* The island. Above everything, because the face flies under
                 it on its way to the centre. */}

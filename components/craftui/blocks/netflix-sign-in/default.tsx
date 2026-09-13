@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ComponentProps,
+  type ReactNode,
+} from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   AlertCircleIcon,
@@ -96,14 +103,14 @@ import {
 
 /* ── Geometry ─────────────────────────────────────────────
  * The avatar is rendered ONCE at its small size and scaled up, rather than
- * resized: scale is a composited transform, width/height is layout. */
-const AVATAR = 50;
+ * resized: scale is a composited transform, width/height is layout. The size
+ * itself is the `avatarSize` prop; this is only its default. */
+const DEFAULT_AVATAR = 50;
 /* Corner radius as a FRACTION of the box, never a fixed px. The face is one
  * size in the row and another in the air, and a constant radius reads as a
  * different shape at each. Lower this for squarer corners: 0.5 is a circle,
  * ~0.25 is a squircle, 0 is a square. */
 const RADIUS_RATIO = 0.18;
-const RADIUS = AVATAR * RADIUS_RATIO;
 /* Focus rings sit 6px outside the face, so their radius is the face's plus
  * that offset — concentric, not merely similar. */
 const RING_INSET = 6;
@@ -171,11 +178,6 @@ type Flight = {
     bounce: number;
   };
 };
-
-/* Scene 2. Set this false and the face flies out and simply waits at the
- * centre until it is sent home — nothing to type, nothing to dismiss — which
- * is the loop you want while tuning the arc alone. */
-const PIN_ENABLED = true;
 
 /* Tuned live in a DialKit panel, then frozen here. Every value below was a
  * slider; the panel and its route are gone, and putting them back means
@@ -354,21 +356,113 @@ function Bo({ ink }: { ink: string }) {
   );
 }
 
-const FACES = [
-  { name: "Ari", ground: "#e8503a", ink: "#2a0b06", pin: "1234", Face: Ari },
-  { name: "Nova", ground: "#2fa8ff", ink: "#04213b", pin: "2580", Face: Nova },
-  { name: "Pip", ground: "#f0a03c", ink: "#3b2405", pin: "1379", Face: Pip },
-  { name: "Wren", ground: "#4cc85c", ink: "#062c11", pin: "4321", Face: Wren },
-  { name: "Bo", ground: "#8b5cf6", ink: "#1c0a44", pin: "0000", Face: Bo },
+/* The five drawn faces, cycled by index for any profile that brings no
+ * `avatar` of its own. A custom avatar replaces the drawing but keeps the
+ * ground colour unless the profile sets `color`. */
+const DRAWN = [
+  { ground: "#e8503a", ink: "#2a0b06", Face: Ari },
+  { ground: "#2fa8ff", ink: "#04213b", Face: Nova },
+  { ground: "#f0a03c", ink: "#3b2405", Face: Pip },
+  { ground: "#4cc85c", ink: "#062c11", Face: Wren },
+  { ground: "#8b5cf6", ink: "#1c0a44", Face: Bo },
+];
+
+type HugeIcon = ComponentProps<typeof HugeiconsIcon>["icon"];
+
+export interface Profile {
+  /* Label under the face. Also read into "Enter {name}'s PIN" and the
+     Profile tab's accessible name. */
+  name: string;
+  /* The answer the default verifier checks against. A profile with no `pin`
+     is unlocked: pick it and it flies, pauses, and signs in — no pad. Pass
+     `locked` to keep the pad while checking the PIN somewhere else. */
+  pin?: string;
+  /* Whether the gate asks for a PIN at all. Defaults to `pin !== undefined`,
+     so it only needs setting when the answer lives on a server. */
+  locked?: boolean;
+  /* Ground colour of the avatar box, and of the glow it throws on the screen
+     while it is up. Defaults to the drawn face's own colour. */
+  color?: string;
+  /* Replaces the drawn face. An <img> is sized to fill the box; anything
+     else is your own concern. Rendered at `avatarSize` and scaled, never
+     resized, so keep it vector or comfortably above 2× that size. */
+  avatar?: ReactNode;
+}
+
+export interface Tab {
+  name: string;
+  icon: HugeIcon;
+  onClick?: () => void;
+}
+
+export interface NetflixSignInProps {
+  /* The roster. Five fit a 340px-wide host; more need a wider one. */
+  profiles?: Profile[];
+  /* The tabs AFTER Profile. Profile is always first — it is the landing pad
+     the face flies into, so it is not the consumer's to move. */
+  tabs?: Tab[];
+  /* Decides whether a PIN is right. Replace the default comparison against
+     `profile.pin` with a request; the pad stays locked until it resolves.
+     A rejection or a throw counts as wrong. */
+  onVerify?: (
+    pin: string,
+    profile: Profile,
+    index: number,
+  ) => boolean | Promise<boolean>;
+  /* Fires when the face lands in the Profile tab — the flow is over. */
+  onSignIn?: (profile: Profile, index: number) => void;
+  /* Fires when Back or Escape has returned the face to the row. */
+  onDismiss?: () => void;
+  heading?: string;
+  /* A function, not a string, because the name is interpolated. */
+  pinLabel?: (name: string) => string;
+  errorMessage?: string;
+  welcome?: { title: string; subtitle?: string };
+  backLabel?: string;
+  profileTabLabel?: string;
+  /* The margin note that leaks each profile's PIN. Demo scaffolding — the
+     preview turns it on, an installed block should not. */
+  showHint?: boolean;
+  /* Number of PIN boxes. The last one submits by itself. */
+  pinLength?: number;
+  /* Face size in the row, in px. Everything else — radius, ring offset, the
+     grown size — derives from it. */
+  avatarSize?: number;
+  /* Appended to the screen's classes. The block fills its container. */
+  className?: string;
+}
+
+const DEFAULT_PROFILES: Profile[] = [
+  { name: "Ari", pin: "1234" },
+  { name: "Nova", pin: "2580" },
+  { name: "Pip", pin: "1379" },
+  { name: "Wren", pin: "4321" },
+  { name: "Bo", pin: "0000" },
 ];
 
 /* The bar that replaces the roster once you are through the gate. Profile is
  * first because it is the one with a destination in it — the other two are
  * here to make it a bar rather than a button. */
-const TABS = [
+const DEFAULT_TABS: Tab[] = [
   { name: "Search", icon: Search01Icon },
   { name: "Downloads", icon: Download01Icon },
 ];
+
+/* How long the default verifier pretends to think. Only used when no
+ * `onVerify` is passed — a real request sets its own pace. */
+const FAKE_VERIFY_MS = 900;
+
+/* An unlocked profile still pauses at the centre before it is let through,
+ * so the pick reads as a pick and not as a face that bounced off. */
+const UNLOCKED_HOLD_MS = 320;
+
+function isLocked(profile: Profile) {
+  return profile.locked ?? profile.pin !== undefined;
+}
+
+function groundOf(profile: Profile, index: number) {
+  return profile.color ?? DRAWN[index % DRAWN.length].ground;
+}
 
 type Phase =
   "idle" | "rising" | "pin" | "verifying" | "granted" | "falling" | "home";
@@ -378,39 +472,72 @@ type Travel = {
   stage: { w: number; h: number };
 };
 
-/* The avatar itself. Rendered at AVATAR px everywhere and scaled by transform,
- * so the roster slot and the traveller are provably the same object. */
+/* The avatar itself. Rendered at `size` px everywhere and scaled by
+ * transform, so the roster slot and the traveller are provably the same
+ * object. */
 function Avatar({
+  profile,
   index,
-  size = AVATAR,
+  size,
   elementRef,
 }: {
+  profile: Profile;
   index: number;
-  size?: number;
+  size: number;
   elementRef?: React.Ref<HTMLSpanElement>;
 }) {
-  const { ground, ink, Face } = FACES[index];
+  const { ink, Face } = DRAWN[index % DRAWN.length];
 
   return (
     <span
       ref={elementRef}
-      className="block overflow-hidden"
+      className="block overflow-hidden [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
       style={{
         width: size,
         height: size,
-        background: ground,
+        background: groundOf(profile, index),
         borderRadius: size * RADIUS_RATIO,
       }}
     >
-      <svg viewBox="0 0 100 100" className="block h-full w-full">
-        <Face ink={ink} />
-      </svg>
+      {profile.avatar ?? (
+        <svg viewBox="0 0 100 100" className="block h-full w-full">
+          <Face ink={ink} />
+        </svg>
+      )}
     </span>
   );
 }
 
-export default function NetflixSignIn({ className }: { className?: string }) {
+export default function NetflixSignIn({
+  profiles = DEFAULT_PROFILES,
+  tabs = DEFAULT_TABS,
+  onVerify,
+  onSignIn,
+  onDismiss,
+  heading = "Who’s watching?",
+  pinLabel = (name) => `Enter ${name}’s PIN`,
+  errorMessage = "That PIN doesn’t match.",
+  welcome = { title: "Welcome back!", subtitle: "Enjoy your weekend." },
+  backLabel = "← Back",
+  profileTabLabel = "Profile",
+  showHint = false,
+  pinLength = 4,
+  avatarSize = DEFAULT_AVATAR,
+  className,
+}: NetflixSignInProps) {
   const reduced = useReducedMotion();
+  const AVATAR = avatarSize;
+  const RADIUS = AVATAR * RADIUS_RATIO;
+
+  /* Callbacks live in a ref so the flight effect below can call them at
+     landing without listing them as deps — a consumer passing a fresh arrow
+     function every render must not restart a leg in progress. */
+  const callbacks = useRef({ onSignIn, onDismiss });
+  callbacks.current = { onSignIn, onDismiss };
+  /* Bumped whenever a verification is superseded — a dismiss, a new pick —
+     so a slow `onVerify` resolving late cannot act on a gate that has moved
+     on. */
+  const verifyId = useRef(0);
 
   const [phase, setPhase] = useState<Phase>("idle");
   const [chosen, setChosen] = useState<number | null>(null);
@@ -463,8 +590,9 @@ export default function NetflixSignIn({ className }: { className?: string }) {
      phase quietly re-mounted the whole pad the moment the face landed in the
      tab bar — the welcome played once on the way out and then a second time
      after it had already gone. */
+  const needsPin = chosen !== null && isLocked(profiles[chosen]);
   const padOpen =
-    PIN_ENABLED &&
+    needsPin &&
     (phase === "rising" ||
       phase === "pin" ||
       phase === "verifying" ||
@@ -537,7 +665,13 @@ export default function NetflixSignIn({ className }: { className?: string }) {
     return () => window.removeEventListener("resize", onResize);
   }, [chosen]);
 
-  useEffect(() => () => timers.current.forEach(window.clearTimeout), []);
+  useEffect(
+    () => () => {
+      timers.current.forEach(window.clearTimeout);
+      verifyId.current += 1;
+    },
+    [],
+  );
 
   function later(fn: () => void, ms: number) {
     timers.current.push(window.setTimeout(fn, ms));
@@ -547,6 +681,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
     if (gating) return;
     const next = measure(index);
     if (!next) return;
+    verifyId.current += 1;
     setTravel(next);
     setChosen(index);
     setPin("");
@@ -556,51 +691,74 @@ export default function NetflixSignIn({ className }: { className?: string }) {
 
   function dismiss() {
     if (!gating || locked || phase === "home") return;
+    verifyId.current += 1;
     setHomePoint(null);
     setPhase("falling");
   }
 
-  function verify(value: string) {
-    if (chosen === null || !PIN_ENABLED) return;
+  /* Let the face through. `hold` is how long it stays put first: long enough
+     for the boxes to go green and be read as the reason the face is leaving,
+     or — with no pad — just long enough to register as a pause. */
+  function grant(hold: number) {
+    setPhase("granted");
+    later(() => {
+      /* All three in one commit: the bars begin crossfading on exactly the
+         frame the face starts down, and the descent already knows it is
+         aiming at the Profile tab rather than the row it came from. */
+      const profile = centreOf(profileSlot.current);
+      if (profile) setHomePoint(profile);
+      setSignedIn(true);
+      setPhase("falling");
+    }, hold);
+  }
+
+  function refuse() {
+    setPhase("pin");
+    setPin("");
+    /* Focus returns to the field below, which is also what puts this in
+       front of a screen reader: it is wired to the input through
+       aria-describedby rather than shouted as an alert, because it is
+       validation for one field and not a page-level event. */
+    setError(errorMessage);
+    shake.start({
+      x: [0, -8, 7, -4, 0],
+      transition: { duration: 0.3, ease: "easeOut" },
+    });
+    input.current?.focus();
+  }
+
+  async function verify(value: string) {
+    if (chosen === null) return;
+    const id = ++verifyId.current;
     setPhase("verifying");
 
-    later(() => {
-      if (value === FACES[chosen].pin) {
-        setPhase("granted");
-        /* Long enough for the boxes to go green and be read as the reason
-           the face is leaving, rather than a coincidence. */
-        later(() => {
-          /* All three in one commit: the bars begin crossfading on exactly
-             the frame the face starts down, and the descent already knows it
-             is aiming at the Profile tab rather than the row it came from. */
-          const profile = centreOf(profileSlot.current);
-          if (profile) setHomePoint(profile);
-          setSignedIn(true);
-          setPhase("falling");
-        }, 720);
-        return;
-      }
+    let ok = false;
+    try {
+      ok = onVerify
+        ? await onVerify(value, profiles[chosen], chosen)
+        : /* No verifier: compare locally, after a pause that stands in for
+             the round trip a real one would take. */
+          await new Promise<boolean>((resolve) =>
+            later(
+              () => resolve(value === profiles[chosen].pin),
+              FAKE_VERIFY_MS,
+            ),
+          );
+    } catch {
+      ok = false;
+    }
+    /* Superseded while waiting — dismissed, or unmounted. Say nothing. */
+    if (id !== verifyId.current) return;
 
-      setPhase("pin");
-      setPin("");
-      /* Focus returns to the field below, which is also what puts this in
-         front of a screen reader: it is wired to the input through
-         aria-describedby rather than shouted as an alert, because it is
-         validation for one field and not a page-level event. */
-      setError("That PIN doesn't match.");
-      shake.start({
-        x: [0, -8, 7, -4, 0],
-        transition: { duration: 0.3, ease: "easeOut" },
-      });
-      input.current?.focus();
-    }, 900);
+    if (ok) grant(720);
+    else refuse();
   }
 
   function onPin(value: string) {
-    const digits = value.replace(/\D/g, "").slice(0, 4);
+    const digits = value.replace(/\D/g, "").slice(0, pinLength);
     setPin(digits);
     if (error) setError(null);
-    if (digits.length === 4) verify(digits);
+    if (digits.length === pinLength) verify(digits);
   }
 
   /* Focus lands only once the face has finished flying. Focusing mid-flight
@@ -698,6 +856,12 @@ export default function NetflixSignIn({ className }: { className?: string }) {
          a replaced flight from reporting that it landed. */
       if (stale) return;
       if (leg === "up") {
+        /* An unlocked profile has nothing to type: it pauses where it is and
+           goes straight through. */
+        if (!isLocked(profiles[chosen])) {
+          grant(UNLOCKED_HOLD_MS);
+          return;
+        }
         setPhase((current) => (current === "rising" ? "pin" : current));
         return;
       }
@@ -708,6 +872,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
          none. */
       if (signedIn) {
         setPhase("home");
+        callbacks.current.onSignIn?.(profiles[chosen], chosen);
         return;
       }
       setPhase("idle");
@@ -716,6 +881,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
       setHomePoint(null);
       setPin("");
       setError(null);
+      callbacks.current.onDismiss?.();
     });
 
     return () => {
@@ -724,6 +890,8 @@ export default function NetflixSignIn({ className }: { className?: string }) {
     // `phase` is deliberately absent: rising → pin must not restart the leg,
     // and `signedIn` is read at landing time rather than subscribed to: it is
     // set in the same commit that starts the descent and must not restart it.
+    // `profiles` is read at landing too — a consumer rebuilding the array
+    // each render must not replay the flight.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [poses, leg, chosen, fly, travel, x, y]);
 
@@ -795,7 +963,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
               height: 440,
               x: "-50%",
               y: "-50%",
-              background: `radial-gradient(closest-side, ${FACES[chosen].ground}24, transparent 72%)`,
+              background: `radial-gradient(closest-side, ${groundOf(profiles[chosen], chosen)}24, transparent 72%)`,
             }}
             animate={{ opacity: grown ? 1 : 0 }}
             transition={barFade}
@@ -808,7 +976,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
           transition={gating ? LEAVE : { ...PAD, delay: 0.12 }}
           className="absolute inset-x-0 top-[54px] text-center text-[22px] font-bold tracking-tight"
         >
-          Who&rsquo;s watching?
+          {heading}
         </motion.h3>
 
         {/* ── The row ──
@@ -830,7 +998,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
           className="absolute inset-x-0 bottom-10 flex items-start justify-center gap-3"
         >
           <AnimatePresence mode="popLayout" initial={false}>
-            {FACES.map((face, index) => {
+            {profiles.map((face, index) => {
               /* Away means the traveller is carrying it. It is only absent on
                  the way out and while parked — on the way home it is back in
                  the list, invisible, holding its rectangle. */
@@ -861,14 +1029,20 @@ export default function NetflixSignIn({ className }: { className?: string }) {
                     type="button"
                     onClick={() => pick(index)}
                     disabled={gating}
-                    aria-label={`${face.name}. Locked profile, enter a PIN.`}
+                    aria-label={
+                      isLocked(face)
+                        ? `${face.name}. Locked profile, enter a PIN.`
+                        : face.name
+                    }
                     whileHover={gating ? undefined : { scale: 1.06 }}
                     whileTap={gating ? undefined : { scale: 0.97 }}
                     style={{ borderRadius: RADIUS + RING_INSET }}
                     className="group flex cursor-pointer flex-col items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-[#0b0b0b] focus-visible:ring-offset-4 focus-visible:ring-offset-white disabled:pointer-events-none"
                   >
                     <Avatar
+                      profile={face}
                       index={index}
+                      size={AVATAR}
                       elementRef={(node) => {
                         faceSlots.current[index] = node;
                       }}
@@ -905,11 +1079,13 @@ export default function NetflixSignIn({ className }: { className?: string }) {
               transition={barFade}
             >
               <p className="text-[22px] font-bold tracking-tight">
-                Welcome back!
+                {welcome.title}
               </p>
-              <p className="text-[15px] font-medium text-[#0b0b0b]/45">
-                Enjoy your weekend.
-              </p>
+              {welcome.subtitle && (
+                <p className="text-[15px] font-medium text-[#0b0b0b]/45">
+                  {welcome.subtitle}
+                </p>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -937,8 +1113,8 @@ export default function NetflixSignIn({ className }: { className?: string }) {
             aria-current="page"
             aria-label={
               chosen === null
-                ? "Profile"
-                : `Profile, signed in as ${FACES[chosen].name}`
+                ? profileTabLabel
+                : `${profileTabLabel}, signed in as ${profiles[chosen].name}`
             }
             style={{ borderRadius: RADIUS + RING_INSET }}
             className="group flex cursor-pointer flex-col items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-[#0b0b0b] focus-visible:ring-offset-4 focus-visible:ring-offset-white"
@@ -957,18 +1133,25 @@ export default function NetflixSignIn({ className }: { className?: string }) {
                 animate={{ opacity: phase === "home" ? 1 : 0 }}
                 transition={{ duration: 0 }}
               >
-                {chosen !== null && <Avatar index={chosen} />}
+                {chosen !== null && (
+                  <Avatar
+                    profile={profiles[chosen]}
+                    index={chosen}
+                    size={AVATAR}
+                  />
+                )}
               </motion.span>
             </span>
             <span className="text-[12px] font-medium text-[#0b0b0b] transition-colors duration-150 ease-out">
-              Profile
+              {profileTabLabel}
             </span>
           </button>
 
-          {TABS.map(({ name, icon }) => (
+          {tabs.map(({ name, icon, onClick }) => (
             <button
               key={name}
               type="button"
+              onClick={onClick}
               style={{ borderRadius: RADIUS + RING_INSET }}
               className="group flex cursor-pointer flex-col items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-[#0b0b0b] focus-visible:ring-offset-4 focus-visible:ring-offset-white"
             >
@@ -1046,7 +1229,11 @@ export default function NetflixSignIn({ className }: { className?: string }) {
                     delay: grown ? FLIGHT.anticipate.handoff : 0,
                   }}
                 >
-                  <Avatar index={chosen} />
+                  <Avatar
+                    profile={profiles[chosen]}
+                    index={chosen}
+                    size={AVATAR}
+                  />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -1082,7 +1269,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
                   id="gate-pin-label"
                   className="text-[15px] font-medium text-[#0b0b0b]/50"
                 >
-                  Enter {FACES[chosen].name}&rsquo;s PIN
+                  {pinLabel(profiles[chosen].name)}
                 </p>
 
                 {/* FOUR BOXES, ONE INPUT. Four inputs is the usual answer and
@@ -1098,7 +1285,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
                     disabled={locked}
                     inputMode="numeric"
                     autoComplete="one-time-code"
-                    maxLength={4}
+                    maxLength={pinLength}
                     /* The VISIBLE label, not a duplicate of it in an
                        aria-label — the accessible name has to contain the
                        text a sighted user is reading. */
@@ -1119,7 +1306,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
                       rather than as four loose digits. It holds nothing
                       focusable, which is what makes aria-hidden safe here. */}
                   <div aria-hidden="true" className="flex gap-3 p-1">
-                    {[0, 1, 2, 3].map((slot) => {
+                    {Array.from({ length: pinLength }, (_, slot) => {
                       const digit = pin[slot];
                       const active = pin.length === slot && !locked;
 
@@ -1241,56 +1428,58 @@ export default function NetflixSignIn({ className }: { className?: string }) {
                     written ON the mock, which is what it is. It hangs off the
                     pad's own box, so it arrives and leaves with the pad and
                     needs no timing of its own. */}
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 176 112"
-                  /* Inline, not a Tailwind arbitrary value: `calc()` needs
+                {showHint && profiles[chosen].pin !== undefined && (
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 176 112"
+                    /* Inline, not a Tailwind arbitrary value: `calc()` needs
                      whitespace around its operator, and
                      `top-[calc(100%-6px)]` is invalid CSS that is silently
                      dropped. The 56px lifts the box so the arrowhead lands
                      just under the row of boxes rather than 50px adrift below
                      the status line. */
-                  style={{ top: "calc(100% - 56px)", right: -44 }}
-                  className="pointer-events-none absolute h-28 w-44 overflow-visible text-[#0b0b0b]/40"
-                >
-                  <defs>
-                    <marker
-                      id="gate-hint-arrow"
-                      markerHeight="8"
-                      markerWidth="8"
-                      orient="auto"
-                      refX="6"
-                      refY="4"
-                    >
-                      <path
-                        d="M1 1L7 4L1 7"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                    </marker>
-                  </defs>
-                  {/* Runs from the label UP to the boxes — the reverse of the
+                    style={{ top: "calc(100% - 56px)", right: -44 }}
+                    className="pointer-events-none absolute h-28 w-44 overflow-visible text-[#0b0b0b]/40"
+                  >
+                    <defs>
+                      <marker
+                        id="gate-hint-arrow"
+                        markerHeight="8"
+                        markerWidth="8"
+                        orient="auto"
+                        refX="6"
+                        refY="4"
+                      >
+                        <path
+                          d="M1 1L7 4L1 7"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        />
+                      </marker>
+                    </defs>
+                    {/* Runs from the label UP to the boxes — the reverse of the
                       usual leader, because the thing being pointed at is
                       above the note. */}
-                  <path
-                    d="M74 84C48 76 22 58 16 22"
-                    fill="none"
-                    markerEnd="url(#gate-hint-arrow)"
-                    stroke="currentColor"
-                    strokeDasharray="3 4"
-                    strokeLinecap="round"
-                    strokeWidth="1.5"
-                  />
-                  <text
-                    className="font-mono text-[11px]"
-                    fill="currentColor"
-                    x="46"
-                    y="100"
-                  >
-                    PIN · {FACES[chosen].pin}
-                  </text>
-                </svg>
+                    <path
+                      d="M74 84C48 76 22 58 16 22"
+                      fill="none"
+                      markerEnd="url(#gate-hint-arrow)"
+                      stroke="currentColor"
+                      strokeDasharray="3 4"
+                      strokeLinecap="round"
+                      strokeWidth="1.5"
+                    />
+                    <text
+                      className="font-mono text-[11px]"
+                      fill="currentColor"
+                      x="46"
+                      y="100"
+                    >
+                      PIN · {profiles[chosen].pin}
+                    </text>
+                  </svg>
+                )}
               </motion.div>
             </motion.div>
           )}
@@ -1310,7 +1499,7 @@ export default function NetflixSignIn({ className }: { className?: string }) {
               transition={{ ...PAD, delay: 0.24 }}
               className="absolute top-[50px] left-4 cursor-pointer rounded-full px-3 py-1.5 text-[12px] font-medium text-[#0b0b0b]/45 transition-colors duration-150 ease-out hover:text-[#0b0b0b] focus-visible:ring-2 focus-visible:ring-[#0b0b0b] focus-visible:outline-none"
             >
-              &larr; Back
+              {backLabel}
             </motion.button>
           )}
         </AnimatePresence>
