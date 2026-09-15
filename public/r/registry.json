@@ -3094,6 +3094,23 @@
       ]
     },
     {
+      "name": "upgrade-modal-default",
+      "type": "registry:block",
+      "title": "Upgrade Modal - Upgrade Modal",
+      "description": "An upsell dialog in its open state on the shadcn Nova preset (Stone, Blue, radius 0). Gradient hero with a square close mark, a title-and-badge row held apart by space-between, three check-tiled feature rows in a fixed lane, and a full-width primary action with a ghost dismiss. Every value on the card reads from one token object. Static — no hooks, no motion, zero JavaScript.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/upgrade-modal/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/upgrade-modal/default.tsx"
+        }
+      ]
+    },
+    {
       "name": "stacked-tower-default",
       "type": "registry:block",
       "title": "Stacked Tower - Stacked Tower",
@@ -3107,6 +3124,23 @@
           "path": "components/craftui/designs/stacked-tower/default.tsx",
           "type": "registry:component",
           "target": "~/components/craftui/designs/stacked-tower/default.tsx"
+        }
+      ]
+    },
+    {
+      "name": "rewards-card-default",
+      "type": "registry:block",
+      "title": "Rewards Card - Rewards Card",
+      "description": "An onboarding card on the shadcn Nova preset with a layer-blurred blue haze across the top, three inset-bordered tiles carrying hand-drawn ink illustrations — watering can and coin sprouts, gift box, tapped checklist — centred copy and a soft primary action. Every value reads from one token object shared with the Upgrade Modal. Static — no hooks, no motion, zero JavaScript.",
+      "dependencies": [],
+      "registryDependencies": [
+        "craftui-base"
+      ],
+      "files": [
+        {
+          "path": "components/craftui/designs/rewards-card/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/designs/rewards-card/default.tsx"
         }
       ]
     },
