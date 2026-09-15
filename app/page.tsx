@@ -57,8 +57,8 @@ export default function Home() {
               <Paragraph variant="body">
                 A growing library of{" "}
                 <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[16px] text-secondary-foreground">
-                  Blocks, Illustrations, UI components, Designs, Loaders, and
-                  Interactive icons{" "}
+                  Blocks, Sections, Illustrations, UI components, Designs,
+                  Loaders, and Interactive icons{" "}
                 </span>
                 {/* <HeroTermBadge theme="black" mark="blocks">
                       Blocks

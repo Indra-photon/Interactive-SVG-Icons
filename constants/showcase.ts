@@ -54,6 +54,13 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     href: '/blocks?slug=morphing-image-effect&variation=default',
   },
   {
+    id: 'netflix-sign-in',
+    title: 'Netflix Sign In',
+    src: 'https://pub-52b0d9cec7c64f638ba3f33a29718fa6.r2.dev/NetflixSignIn.mp4',
+    aspect: '1468 / 2160',
+    href: '/blocks?slug=netflix-sign-in&variation=default',
+  },
+  {
     id: 'on-boarding-section-indiactor',
     title: 'Onboarding Indicator',
     src: 'https://pub-52b0d9cec7c64f638ba3f33a29718fa6.r2.dev/OnBoardingSectionIndiactor.mp4',
