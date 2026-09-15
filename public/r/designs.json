@@ -56,6 +56,83 @@
       ]
     },
     {
+      "slug": "upgrade-modal",
+      "name": "Upgrade Modal",
+      "category": "card",
+      "tags": [
+        "design",
+        "static",
+        "modal",
+        "dialog",
+        "upsell",
+        "pricing",
+        "gradient",
+        "shadcn",
+        "nova",
+        "tokens"
+      ],
+      "description": "An upsell dialog drawn in its open state, built on the shadcn \"Nova\" preset — Stone neutrals, Blue primary, radius 0 — stated once as a token object so every colour, gap, size and type value on the card reads from the same source; the Paper and Figma originals bind the identical variables. A 200px hero carries the one non-token surface: the mesh shader from the design flattened to a linear ramp that runs indigo from the bottom-left to violet at the top-right, with a square 28px close mark pinned in its corner. Below it the header is a single row — title and a 20px primary pill held apart by space-between — with the description under both, then three feature rows whose 24px check tiles sit in a fixed lane so the copy column aligns, and a full-width primary action with a ghost dismiss centred beneath. Card edge is a 1px ring at foreground/10 rather than a border. Renders entirely on the server.",
+      "createdAt": "2026-09-15T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Upgrade Modal",
+          "tier": "free",
+          "description": "An upsell dialog in its open state on the shadcn Nova preset (Stone, Blue, radius 0). Gradient hero with a square close mark, a title-and-badge row held apart by space-between, three check-tiled feature rows in a fixed lane, and a full-width primary action with a ghost dismiss. Every value on the card reads from one token object. Static — no hooks, no motion, zero JavaScript.",
+          "animationType": "none",
+          "dependencies": [],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": false,
+              "description": "Dialog heading. Defaults to \"Upgrade to Paper Pro\"."
+            },
+            {
+              "name": "description",
+              "type": "ReactNode",
+              "required": false,
+              "description": "Line under the title, set in muted-foreground. Wraps across the full card width."
+            },
+            {
+              "name": "badge",
+              "type": "string",
+              "required": false,
+              "description": "Primary pill on the right of the title row. Defaults to \"2 months free\"; pass \"\" to remove it and the title keeps the full row."
+            },
+            {
+              "name": "features",
+              "type": "{ title: string; description: string }[]",
+              "required": false,
+              "description": "Feature rows. Each renders a 24px check tile in a fixed lane beside a medium title and a muted description; the list grows the card."
+            },
+            {
+              "name": "ctaLabel",
+              "type": "string",
+              "required": false,
+              "description": "Label on the full-width primary action. Defaults to \"Upgrade now · $12/mo\". Drawn, not wired — the piece is a still."
+            },
+            {
+              "name": "dismissLabel",
+              "type": "string",
+              "required": false,
+              "description": "Ghost action under the primary one. Defaults to \"Maybe later\"."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the dialog root. The card is capped at 496px wide and lays out in fixed pixels, which is the width the hero, the title/badge row and the feature lane were composed against."
+            }
+          ],
+          "componentName": "UpgradeModal",
+          "width": 592,
+          "height": 718
+        }
+      ]
+    },
+    {
       "slug": "stacked-tower",
       "name": "Stacked Tower",
       "category": "illustration",
@@ -116,6 +193,65 @@
           "componentName": "StackedTower",
           "width": 1230,
           "height": 738
+        }
+      ]
+    },
+    {
+      "slug": "rewards-card",
+      "name": "Rewards Card",
+      "category": "card",
+      "tags": [
+        "design",
+        "static",
+        "card",
+        "onboarding",
+        "illustration",
+        "hand-drawn",
+        "blur",
+        "shadcn",
+        "nova",
+        "tokens"
+      ],
+      "description": "An onboarding card on the shadcn \"Nova\" preset — Stone neutrals, Blue primary, radius 0 — sharing its token object with the Upgrade Modal so the two read as one system. The blue haze across the top is the layer-blur trick rather than a gradient: one ellipse in chart-1 pushed 230px above the card and blurred by 90px, clipped by the card edge, so it fades into the white with nothing to tune. Three 96px tiles sit in a row with the middle one lifted 8px, each with a 4px inset white border and carrying a hand-drawn line illustration composed on a 96 grid in the reference style — single-weight ink, one off-white paper shape behind it, exactly one accent per tile. They read as a story: a watering can raising three coin-headed sprouts (grow your earnings), a wrapped gift box with a primary ribbon (the reward), and a cursor tapping a checklist with the first box ticked (the easy action). Centred copy beneath, subtext locked to 250px so it breaks on two lines, and a soft primary action — primary-foreground fill, primary text — spanning the card. Renders entirely on the server.",
+      "createdAt": "2026-09-15T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Rewards Card",
+          "tier": "free",
+          "description": "An onboarding card on the shadcn Nova preset with a layer-blurred blue haze across the top, three inset-bordered tiles carrying hand-drawn ink illustrations — watering can and coin sprouts, gift box, tapped checklist — centred copy and a soft primary action. Every value reads from one token object shared with the Upgrade Modal. Static — no hooks, no motion, zero JavaScript.",
+          "animationType": "none",
+          "dependencies": [],
+          "registryDependencies": [],
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": false,
+              "description": "Centred heading under the tiles. Defaults to \"Get rewarded fast\"."
+            },
+            {
+              "name": "subtext",
+              "type": "string",
+              "required": false,
+              "description": "Muted line under the title, capped at 250px so it breaks on two lines. Defaults to \"Choose and earn fast with these simple offers.\""
+            },
+            {
+              "name": "ctaLabel",
+              "type": "string",
+              "required": false,
+              "description": "Label on the soft primary action. Defaults to \"Show 10 easy offers\". Drawn, not wired."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the card root. Capped at 496px wide; the haze, the tile row and the subtext measure were composed against that width."
+            }
+          ],
+          "componentName": "RewardsCard",
+          "width": 592,
+          "height": 500
         }
       ]
     },
@@ -322,5 +458,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-13T09:55:26.978Z"
+  "lastUpdated": "2026-09-15T08:29:07.717Z"
 }

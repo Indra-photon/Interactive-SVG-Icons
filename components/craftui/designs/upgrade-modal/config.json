@@ -1,0 +1,78 @@
+{
+  "slug": "upgrade-modal",
+  "name": "Upgrade Modal",
+  "published": true,
+  "category": "card",
+  "tags": [
+    "design",
+    "static",
+    "modal",
+    "dialog",
+    "upsell",
+    "pricing",
+    "gradient",
+    "shadcn",
+    "nova",
+    "tokens"
+  ],
+  "description": "An upsell dialog drawn in its open state, built on the shadcn \"Nova\" preset — Stone neutrals, Blue primary, radius 0 — stated once as a token object so every colour, gap, size and type value on the card reads from the same source; the Paper and Figma originals bind the identical variables. A 200px hero carries the one non-token surface: the mesh shader from the design flattened to a linear ramp that runs indigo from the bottom-left to violet at the top-right, with a square 28px close mark pinned in its corner. Below it the header is a single row — title and a 20px primary pill held apart by space-between — with the description under both, then three feature rows whose 24px check tiles sit in a fixed lane so the copy column aligns, and a full-width primary action with a ghost dismiss centred beneath. Card edge is a 1px ring at foreground/10 rather than a border. Renders entirely on the server.",
+  "createdAt": "2026-09-15T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Upgrade Modal",
+      "componentName": "UpgradeModal",
+      "tier": "free",
+      "description": "An upsell dialog in its open state on the shadcn Nova preset (Stone, Blue, radius 0). Gradient hero with a square close mark, a title-and-badge row held apart by space-between, three check-tiled feature rows in a fixed lane, and a full-width primary action with a ghost dismiss. Every value on the card reads from one token object. Static — no hooks, no motion, zero JavaScript.",
+      "animationType": "none",
+      "width": 592,
+      "height": 718,
+      "dependencies": [],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "Dialog heading. Defaults to \"Upgrade to Paper Pro\"."
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Line under the title, set in muted-foreground. Wraps across the full card width."
+        },
+        {
+          "name": "badge",
+          "type": "string",
+          "required": false,
+          "description": "Primary pill on the right of the title row. Defaults to \"2 months free\"; pass \"\" to remove it and the title keeps the full row."
+        },
+        {
+          "name": "features",
+          "type": "{ title: string; description: string }[]",
+          "required": false,
+          "description": "Feature rows. Each renders a 24px check tile in a fixed lane beside a medium title and a muted description; the list grows the card."
+        },
+        {
+          "name": "ctaLabel",
+          "type": "string",
+          "required": false,
+          "description": "Label on the full-width primary action. Defaults to \"Upgrade now · $12/mo\". Drawn, not wired — the piece is a still."
+        },
+        {
+          "name": "dismissLabel",
+          "type": "string",
+          "required": false,
+          "description": "Ghost action under the primary one. Defaults to \"Maybe later\"."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the dialog root. The card is capped at 496px wide and lays out in fixed pixels, which is the width the hero, the title/badge row and the feature lane were composed against."
+        }
+      ]
+    }
+  ]
+}

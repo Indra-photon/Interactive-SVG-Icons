@@ -1,0 +1,60 @@
+{
+  "slug": "rewards-card",
+  "name": "Rewards Card",
+  "published": true,
+  "category": "card",
+  "tags": [
+    "design",
+    "static",
+    "card",
+    "onboarding",
+    "illustration",
+    "hand-drawn",
+    "blur",
+    "shadcn",
+    "nova",
+    "tokens"
+  ],
+  "description": "An onboarding card on the shadcn \"Nova\" preset — Stone neutrals, Blue primary, radius 0 — sharing its token object with the Upgrade Modal so the two read as one system. The blue haze across the top is the layer-blur trick rather than a gradient: one ellipse in chart-1 pushed 230px above the card and blurred by 90px, clipped by the card edge, so it fades into the white with nothing to tune. Three 96px tiles sit in a row with the middle one lifted 8px, each with a 4px inset white border and carrying a hand-drawn line illustration composed on a 96 grid in the reference style — single-weight ink, one off-white paper shape behind it, exactly one accent per tile. They read as a story: a watering can raising three coin-headed sprouts (grow your earnings), a wrapped gift box with a primary ribbon (the reward), and a cursor tapping a checklist with the first box ticked (the easy action). Centred copy beneath, subtext locked to 250px so it breaks on two lines, and a soft primary action — primary-foreground fill, primary text — spanning the card. Renders entirely on the server.",
+  "createdAt": "2026-09-15T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Rewards Card",
+      "componentName": "RewardsCard",
+      "tier": "free",
+      "description": "An onboarding card on the shadcn Nova preset with a layer-blurred blue haze across the top, three inset-bordered tiles carrying hand-drawn ink illustrations — watering can and coin sprouts, gift box, tapped checklist — centred copy and a soft primary action. Every value reads from one token object shared with the Upgrade Modal. Static — no hooks, no motion, zero JavaScript.",
+      "animationType": "none",
+      "width": 592,
+      "height": 500,
+      "dependencies": [],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "Centred heading under the tiles. Defaults to \"Get rewarded fast\"."
+        },
+        {
+          "name": "subtext",
+          "type": "string",
+          "required": false,
+          "description": "Muted line under the title, capped at 250px so it breaks on two lines. Defaults to \"Choose and earn fast with these simple offers.\""
+        },
+        {
+          "name": "ctaLabel",
+          "type": "string",
+          "required": false,
+          "description": "Label on the soft primary action. Defaults to \"Show 10 easy offers\". Drawn, not wired."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the card root. Capped at 496px wide; the haze, the tile row and the subtext measure were composed against that width."
+        }
+      ]
+    }
+  ]
+}
