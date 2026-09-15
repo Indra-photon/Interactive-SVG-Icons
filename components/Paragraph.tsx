@@ -85,14 +85,14 @@ export const Paragraph = <T extends React.ElementType = "p">({
     // so a wall of cards reads as titles first. In a grid, always pair it with
     // an explicit line-clamp-N — one unclamped cell stretches the whole row.
     caption:
-      "tracking-tighter text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] leading-normal text-secondary-foreground/80 text-pretty",
+      "tracking-tight text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] leading-normal text-secondary-foreground/60 text-pretty",
     // The default, and the workhorse — 18 live call sites (plus two parked in
     // commented-out blocks, BlockContentPanel:278 and IconSection:307) and
     // every <Paragraph> that names no variant at all. previewHints, the
     // "Copy the code snippet…" line in all three configurators, the icon design
     // note, UI feature bullets, homepage prose. If the text is a sentence and
     // it isn't introducing the screen, it's `body`.
-    body: "tracking-normal text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground/60 text-pretty",
+    body: "tracking-tight text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] leading-normal text-secondary-foreground/60 text-pretty",
     // The single summary line under a panel breadcrumb — one per screen, on all
     // seven gallery overview and detail views. A clear step above body so the
     // eye lands somewhere after the crumbs. Not for prose: a second `lead` on
@@ -117,7 +117,7 @@ export const Paragraph = <T extends React.ElementType = "p">({
     // a phone renders this 2px larger than a small tablet. Left as-is because
     // it is load-bearing for the breadcrumb — check both widths before tuning.
     title:
-      "tracking-wide font-medium text-base sm:text-[14px] md:text-[16px] lg:text-[18px] leading-tight text-foreground text-balance",
+      "tracking-wide font-normal text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] leading-tight text-foreground text-balance",
     // Section headings *inside* a panel — the only variant whose every use is a
     // hardcoded string, never data. Six live sites, three distinct headings:
     //

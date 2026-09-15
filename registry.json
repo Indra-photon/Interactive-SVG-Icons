@@ -2732,10 +2732,13 @@
         "lenis",
         "@hugeicons/react",
         "@hugeicons/core-free-icons",
-        "next"
+        "next",
+        "clsx",
+        "tailwind-merge"
       ],
       "registryDependencies": [
-        "craftui-base"
+        "craftui-base",
+        "utils"
       ],
       "files": [
         {
@@ -3017,6 +3020,81 @@
           "path": "components/craftui/sections/akta-hero-01/design.md",
           "type": "registry:file",
           "target": "~/components/craftui/sections/akta-hero-01/design.md"
+        }
+      ]
+    },
+    {
+      "name": "akta-benchmarks-01-default",
+      "type": "registry:block",
+      "title": "Akta Benchmarks 01 - Akta Benchmarks 01",
+      "description": "Four benchmark readouts on the 1440 grid, separated by hairline rules and corner notches rather than cards. F1 is an isometric bar city, accuracy a hundred-unit comb, coverage a polar ring plot, and cost a stack of slabs whose thickness is price. Each cell leads with the brand figure in mono display type, and blue is spent only on the one row the section is about.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "craftui-base",
+        "utils"
+      ],
+      "css": {
+        "@property --akta-notch-arm": {
+          "syntax": "\"<length>\"",
+          "inherits": "true",
+          "initial-value": "12px"
+        },
+        "@property --akta-notch-inset": {
+          "syntax": "\"<length>\"",
+          "inherits": "true",
+          "initial-value": "6px"
+        },
+        "@layer components": {
+          ".akta-notch": {
+            "position": "relative",
+            "--akta-notch-color": "oklch(0.488 0.243 264.376)",
+            "--akta-notch-weight": "1.5px",
+            "--akta-notch-rest": "6px"
+          },
+          ".akta-notch::before": {
+            "content": "\"\"",
+            "position": "absolute",
+            "inset": "calc(var(--akta-notch-inset) * -1)",
+            "border": "var(--akta-notch-weight, 1.5px) solid var(--akta-notch-color, currentColor)",
+            "pointer-events": "none",
+            "--akta-notch-window": "linear-gradient(#000 0 0) no-repeat",
+            "-webkit-mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)",
+            "mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)"
+          },
+          ".dark .akta-notch": {
+            "--akta-notch-color": "oklch(0.546 0.245 262.881)"
+          },
+          "@supports (animation-timeline: view())": {
+            "@media (prefers-reduced-motion: no-preference)": {
+              "[data-akta-reveal]": {
+                "animation": "akta-enter 1s linear both",
+                "animation-timeline": "view()",
+                "animation-range": "entry 15% entry 85%"
+              }
+            }
+          }
+        },
+        "@keyframes akta-enter": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(12px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "components/craftui/sections/akta-benchmarks-01/default.tsx",
+          "type": "registry:component",
+          "target": "~/components/craftui/sections/akta-benchmarks-01/default.tsx"
         }
       ]
     },

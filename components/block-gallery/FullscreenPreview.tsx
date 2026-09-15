@@ -54,12 +54,25 @@ export function FullscreenPreview({
     };
   }, [catalogDir, blockSlug, variationName]);
 
+  /* H hides the exit chip so a screenshot of the preview is just the preview.
+   * Toggles back on H; Esc still exits either way, since the listener is on
+   * the window rather than on the chip. */
+  const [chromeHidden, setChromeHidden] = useState(false);
+
   /* Escape leaves, and the page behind is locked while this is open so a scroll
    * gesture that runs past the end of the preview doesn't move the gallery
    * underneath it. */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") router.push(exitHref);
+      /* Not while typing — some previews (sign-in, onboarding) have real
+       * inputs, and an "h" in a password field must not blink the chrome. */
+      if (
+        e.target instanceof HTMLElement &&
+        e.target.closest("input, textarea, select, [contenteditable]")
+      )
+        return;
+      if (e.key === "h" || e.key === "H") setChromeHidden((v) => !v);
     };
     window.addEventListener("keydown", onKey);
     const previous = document.body.style.overflow;
@@ -87,18 +100,26 @@ export function FullscreenPreview({
 
       {/* Floating exit. Centred rather than in a corner: every corner already
           belongs to something — the dev DialRoot bottom-right, and a section's
-          own content top-left. */}
-      <Link
-        href={exitHref}
-        aria-label="Exit full screen preview"
-        className="fixed bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border bg-card/90 px-4 py-2 text-xs font-mono tracking-tight text-foreground shadow-lg backdrop-blur transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-      >
-        <IconArrowsMinimize className="size-4" aria-hidden="true" />
-        Exit full screen
-        <kbd className="ml-1 rounded border border-border px-1 py-0.5 text-[10px] text-muted-foreground">
-          Esc
-        </kbd>
-      </Link>
+          own content top-left. Unmounted, not faded, while hidden so it can't
+          catch a click or a focus ring in a screenshot. */}
+      {!chromeHidden && (
+        <Link
+          href={exitHref}
+          aria-label="Exit full screen preview"
+          className="fixed bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border bg-card/90 px-4 py-2 text-xs font-mono tracking-tight text-foreground shadow-lg backdrop-blur transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
+          <IconArrowsMinimize className="size-4" aria-hidden="true" />
+          Exit full screen
+          <kbd className="ml-1 rounded border border-border px-1 py-0.5 text-[10px] text-muted-foreground">
+            Esc
+          </kbd>
+          <span className="text-muted-foreground/60">·</span>
+          <kbd className="rounded border border-border px-1 py-0.5 text-[10px] text-muted-foreground">
+            H
+          </kbd>
+          <span className="text-[10px] text-muted-foreground">hide</span>
+        </Link>
+      )}
     </div>
   );
 }

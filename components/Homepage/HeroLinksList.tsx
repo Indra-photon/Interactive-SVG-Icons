@@ -40,7 +40,7 @@ interface HeroLinkCard {
  * (ROW_BREAK) rather than as a second array.
  *
  * ORDER MATCHES THE INTRO. app/page.tsx names the catalogs in prose — Blocks,
- * Illustrations, UI components, Designs, Loaders, Interactive icons — and the
+ * Sections, Illustrations, UI components, Designs, Loaders, Interactive icons — and the
  * grid repeats that sequence, so a reader who scans the sentence then drops to
  * the cards finds them where the sentence left them. Reorder one and reorder
  * the other.
@@ -50,9 +50,17 @@ const HERO_LINKS: HeroLinkCard[] = [
     label: "Blocks",
     href: "/blocks",
     subheading:
-      "Self-contained pieces of interface with the interaction already designed. Drop one in and it works the way it looks.",
+      "Self-contained pieces of interface with the interaction already designed. Drop one in your project directly.",
     cta: "Browse blocks",
     theme: "black",
+  },
+  {
+    label: "Sections",
+    href: "/sections",
+    subheading:
+      "Full-width page sections ready to stack into a landing page. Bring your copy and images, the layout is done.",
+    cta: "Browse sections",
+    theme: "violet",
   },
   {
     label: "Illustrations",
@@ -66,7 +74,7 @@ const HERO_LINKS: HeroLinkCard[] = [
     label: "UI Components",
     href: "/ui-gallery",
     subheading:
-      "The everyday building blocks of an interface, rebuilt around motion. Small, focused and considered on every press.",
+      "The everyday building blocks of an interface, rebuilt around motion keeping interactions in mind.",
     cta: "Browse components",
     theme: "rose",
   },
@@ -74,7 +82,7 @@ const HERO_LINKS: HeroLinkCard[] = [
     label: "Designs",
     href: "/designs",
     subheading:
-      "Finished compositions to study and reuse. How type, spacing and colour hold together when the whole thing is done.",
+      "Finished compositions to study and reuse compositing type, spacing and colour held together.",
     cta: "Browse designs",
     theme: "orange",
   },
@@ -82,7 +90,7 @@ const HERO_LINKS: HeroLinkCard[] = [
     label: "Loaders",
     href: "/loaders",
     subheading:
-      "Waiting states worth watching. Lightweight SVG animations you can recolour, resize and drop wherever something is loading.",
+      "Waiting states worth watching. Lightweight SVG animations you can recolour, resize and drop directly.",
     cta: "Browse loaders",
     theme: "sky",
   },
@@ -93,16 +101,6 @@ const HERO_LINKS: HeroLinkCard[] = [
       "Icons that respond to what the user does. Each one animates from the state you pass in, not on a timer.",
     cta: "Browse icons",
     theme: "green",
-  },
-  // Sections is the one catalog the intro doesn't name, so it has no place in
-  // that sequence — it trails the six that do.
-  {
-    label: "Sections",
-    href: "/sections",
-    subheading:
-      "Full-width page sections ready to stack into a landing page. Bring your copy and images, the layout is done.",
-    cta: "Browse sections",
-    theme: "violet",
   },
 ];
 
@@ -191,12 +189,12 @@ function HeroLinkCardItem({
           {/* h2: the page has one h1 and these cards are its section index,
               so they're the next heading level for screen-reader navigation.
               Size still comes from the variant. */}
-          <Paragraph as="h2" variant="title" className="">
+          <Paragraph as="p" variant="title" className="pb-1">
             {label}
           </Paragraph>
         </CardTitle>
         <CardDescription>
-          <Paragraph variant="body" className="">
+          <Paragraph variant="caption" className="">
             {subheading}
           </Paragraph>
         </CardDescription>

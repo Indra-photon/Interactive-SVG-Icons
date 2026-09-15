@@ -424,7 +424,9 @@
         "image",
         "lenis",
         "travel",
-        "showcase"
+        "showcase",
+        "cta",
+        "design-system"
       ],
       "description": "A sticky scroll-driven gallery with a parallax image strip on the right and animated destination info on the left, connected by a flight-path arc divider.",
       "createdAt": "2026-07-02T00:00:00Z",
@@ -440,10 +442,56 @@
             "lenis",
             "@hugeicons/react",
             "@hugeicons/core-free-icons",
-            "next"
+            "next",
+            "clsx",
+            "tailwind-merge"
           ],
-          "registryDependencies": [],
-          "props": [],
+          "registryDependencies": [
+            "utils"
+          ],
+          "props": [
+            {
+              "name": "eyebrow",
+              "type": "string",
+              "default": "\"Destinations\"",
+              "required": false,
+              "description": "Mono eyebrow at the top-left of the panel."
+            },
+            {
+              "name": "ctaLabel",
+              "type": "string",
+              "default": "\"Book this trip\"",
+              "required": false,
+              "description": "Primary action label under the stats — rounded pill, blue gradient with a white inset highlight."
+            },
+            {
+              "name": "ctaHref",
+              "type": "string",
+              "default": "\"#\"",
+              "required": false,
+              "description": "Primary action href."
+            },
+            {
+              "name": "secondaryLabel",
+              "type": "string | null",
+              "default": "\"View itinerary\"",
+              "required": false,
+              "description": "Secondary action label beside the primary. Pass null to render only the primary."
+            },
+            {
+              "name": "secondaryHref",
+              "type": "string",
+              "default": "\"#\"",
+              "required": false,
+              "description": "Secondary action href."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the root element."
+            }
+          ],
           "componentName": "FeatureGallery02",
           "previewHint": "Scroll down to navigate through destinations",
           "features": [
@@ -455,8 +503,7 @@
           ],
           "responsive": true
         }
-      ],
-      "published": false
+      ]
     },
     {
       "slug": "feature-gallery-01",
@@ -711,8 +758,93 @@
           "responsive": true
         }
       ]
+    },
+    {
+      "slug": "akta-benchmarks-01",
+      "name": "Akta Benchmarks 01",
+      "category": "feature-section",
+      "tags": [
+        "benchmarks",
+        "comparison",
+        "data",
+        "chart",
+        "svg",
+        "isometric",
+        "radar",
+        "bento",
+        "technical",
+        "monospace",
+        "design-system"
+      ],
+      "description": "A four-cell benchmark band in the akta design language: each metric gets the graphic form its data actually asks for — an isometric bar city for a blowout, a hundred-unit comb for a tight cluster, a polar ring plot for a near-miss, and a stacked slab tower for a cost ratio — so no shared bar list flattens four different stories into one shape. Every figure is drawn from its own value, every chart ships a screen-reader table, and the whole thing is one file of Tailwind arbitrary values with dark twins.",
+      "createdAt": "2026-09-15T00:00:00Z",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Akta Benchmarks 01",
+          "tier": "free",
+          "description": "Four benchmark readouts on the 1440 grid, separated by hairline rules and corner notches rather than cards. F1 is an isometric bar city, accuracy a hundred-unit comb, coverage a polar ring plot, and cost a stack of slabs whose thickness is price. Each cell leads with the brand figure in mono display type, and blue is spent only on the one row the section is about.",
+          "animationType": "scroll",
+          "dependencies": [
+            "@hugeicons/react",
+            "@hugeicons/core-free-icons",
+            "clsx",
+            "tailwind-merge"
+          ],
+          "registryDependencies": [
+            "utils"
+          ],
+          "props": [
+            {
+              "name": "eyebrow",
+              "type": "string",
+              "default": "\"Benchmarks\"",
+              "required": false,
+              "description": "Mono label inside the notched chip above the headline."
+            },
+            {
+              "name": "heading",
+              "type": "string",
+              "default": "\"We Ranked Top as News Provider\"",
+              "required": false,
+              "description": "Section h2."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "description": "One paragraph of body copy under the heading."
+            },
+            {
+              "name": "metrics",
+              "type": "BenchmarkMetric[]",
+              "required": false,
+              "description": "Replace the four default readouts. Each metric picks its own chart form via `chart`: \"iso\" | \"units\" | \"radar\" | \"slab\" | \"bars\"."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "description": "Additional classes on the section element."
+            }
+          ],
+          "componentName": "AktaBenchmarks01",
+          "previewHint": "Scroll the band into view — header and cells fade up on a view-timeline. Hover any bar, dot or slab for its provider and value.",
+          "features": [
+            "Four graphic forms, one per metric: 2:1 dimetric bars for the F1 blowout, a 100-unit comb for the accuracy cluster, a polar ring plot for the coverage near-miss, and stacked slabs for the cost ratio",
+            "Every chart SVG shares a 330-unit viewBox width and a 330px cap, so SVG text renders at the same 12px as the HTML mono labels in every cell",
+            "Isometric faces recede toward the canvas via color-mix rather than toward a darker step, so the shading survives the brand ramp inverting in dark mode",
+            "Chart fills and strokes are fill-[…] / stroke-[…] utilities with dark twins — no inline var() and nothing written into globals.css beyond the notch and reveal device classes",
+            "The radar starts its radial scale at 40% and draws labelled grid rings, so the truncation is stated on the chart instead of hidden in it",
+            "Every drawn form ships a visually-hidden list of name: value pairs, so the screen reader gets data where sighted readers get a picture",
+            "Cells separate with a right+bottom inset-shadow rule, so the grid keeps dividing correctly at one, two or four columns",
+            "Respects prefers-reduced-motion — the scroll reveal only runs where a view-timeline is supported and motion is allowed"
+          ],
+          "responsive": true
+        }
+      ]
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-15T08:29:07.719Z"
+  "lastUpdated": "2026-09-15T11:59:12.470Z"
 }

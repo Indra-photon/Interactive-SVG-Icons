@@ -1,0 +1,136 @@
+{
+  "slug": "akta-benchmarks-01",
+  "name": "Akta Benchmarks 01",
+  "category": "feature-section",
+  "tags": [
+    "benchmarks",
+    "comparison",
+    "data",
+    "chart",
+    "svg",
+    "isometric",
+    "radar",
+    "bento",
+    "technical",
+    "monospace",
+    "design-system"
+  ],
+  "description": "A four-cell benchmark band in the akta design language: each metric gets the graphic form its data actually asks for — an isometric bar city for a blowout, a hundred-unit comb for a tight cluster, a polar ring plot for a near-miss, and a stacked slab tower for a cost ratio — so no shared bar list flattens four different stories into one shape. Every figure is drawn from its own value, every chart ships a screen-reader table, and the whole thing is one file of Tailwind arbitrary values with dark twins.",
+  "createdAt": "2026-09-15T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Akta Benchmarks 01",
+      "componentName": "AktaBenchmarks01",
+      "previewHint": "Scroll the band into view — header and cells fade up on a view-timeline. Hover any bar, dot or slab for its provider and value.",
+      "tier": "free",
+      "responsive": true,
+      "description": "Four benchmark readouts on the 1440 grid, separated by hairline rules and corner notches rather than cards. F1 is an isometric bar city, accuracy a hundred-unit comb, coverage a polar ring plot, and cost a stack of slabs whose thickness is price. Each cell leads with the brand figure in mono display type, and blue is spent only on the one row the section is about.",
+      "animationType": "scroll",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": ["utils"],
+      "props": [
+        {
+          "name": "eyebrow",
+          "type": "string",
+          "default": "\"Benchmarks\"",
+          "required": false,
+          "description": "Mono label inside the notched chip above the headline."
+        },
+        {
+          "name": "heading",
+          "type": "string",
+          "default": "\"We Ranked Top as News Provider\"",
+          "required": false,
+          "description": "Section h2."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "One paragraph of body copy under the heading."
+        },
+        {
+          "name": "metrics",
+          "type": "BenchmarkMetric[]",
+          "required": false,
+          "description": "Replace the four default readouts. Each metric picks its own chart form via `chart`: \"iso\" | \"units\" | \"radar\" | \"slab\" | \"bars\"."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the section element."
+        }
+      ],
+      "features": [
+        "Four graphic forms, one per metric: 2:1 dimetric bars for the F1 blowout, a 100-unit comb for the accuracy cluster, a polar ring plot for the coverage near-miss, and stacked slabs for the cost ratio",
+        "Every chart SVG shares a 330-unit viewBox width and a 330px cap, so SVG text renders at the same 12px as the HTML mono labels in every cell",
+        "Isometric faces recede toward the canvas via color-mix rather than toward a darker step, so the shading survives the brand ramp inverting in dark mode",
+        "Chart fills and strokes are fill-[…] / stroke-[…] utilities with dark twins — no inline var() and nothing written into globals.css beyond the notch and reveal device classes",
+        "The radar starts its radial scale at 40% and draws labelled grid rings, so the truncation is stated on the chart instead of hidden in it",
+        "Every drawn form ships a visually-hidden list of name: value pairs, so the screen reader gets data where sighted readers get a picture",
+        "Cells separate with a right+bottom inset-shadow rule, so the grid keeps dividing correctly at one, two or four columns",
+        "Respects prefers-reduced-motion — the scroll reveal only runs where a view-timeline is supported and motion is allowed"
+      ],
+      "inspiration": [],
+      "css": {
+        "@property --akta-notch-arm": {
+          "syntax": "\"<length>\"",
+          "inherits": "true",
+          "initial-value": "12px"
+        },
+        "@property --akta-notch-inset": {
+          "syntax": "\"<length>\"",
+          "inherits": "true",
+          "initial-value": "6px"
+        },
+        "@layer components": {
+          ".akta-notch": {
+            "position": "relative",
+            "--akta-notch-color": "oklch(0.488 0.243 264.376)",
+            "--akta-notch-weight": "1.5px",
+            "--akta-notch-rest": "6px"
+          },
+          ".akta-notch::before": {
+            "content": "\"\"",
+            "position": "absolute",
+            "inset": "calc(var(--akta-notch-inset) * -1)",
+            "border": "var(--akta-notch-weight, 1.5px) solid var(--akta-notch-color, currentColor)",
+            "pointer-events": "none",
+            "--akta-notch-window": "linear-gradient(#000 0 0) no-repeat",
+            "-webkit-mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)",
+            "mask": "var(--akta-notch-window) top left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) top right / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom left / var(--akta-notch-arm) var(--akta-notch-arm), var(--akta-notch-window) bottom right / var(--akta-notch-arm) var(--akta-notch-arm)"
+          },
+          ".dark .akta-notch": {
+            "--akta-notch-color": "oklch(0.546 0.245 262.881)"
+          },
+          "@supports (animation-timeline: view())": {
+            "@media (prefers-reduced-motion: no-preference)": {
+              "[data-akta-reveal]": {
+                "animation": "akta-enter 1s linear both",
+                "animation-timeline": "view()",
+                "animation-range": "entry 15% entry 85%"
+              }
+            }
+          }
+        },
+        "@keyframes akta-enter": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(12px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      }
+    }
+  ]
+}
