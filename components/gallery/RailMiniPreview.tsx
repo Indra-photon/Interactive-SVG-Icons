@@ -22,7 +22,11 @@ export function RailMiniPreview({
   slug: string;
   variation: string;
 }) {
-  const [Component, setComponent] = useState<React.ComponentType | null>(null);
+  // Typed with the one optional prop we pass: the solar loaders read it, every
+  // other catalog component ignores it.
+  const [Component, setComponent] = useState<React.ComponentType<{
+    withButton?: boolean;
+  }> | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -46,7 +50,9 @@ export function RailMiniPreview({
     <div className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-sidebar-accent">
       {Component && (
         <div className="flex size-6 items-center justify-center">
-          <Component />
+          {/* Same reason as the gallery card: the solar loaders' button shell
+              cannot fit here, and other catalogs ignore the prop. */}
+          <Component withButton={false} />
         </div>
       )}
     </div>

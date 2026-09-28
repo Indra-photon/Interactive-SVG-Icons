@@ -1,0 +1,116 @@
+{
+  "name": "Solar Atom",
+  "category": "solar planet",
+  "tags": [
+    "solar",
+    "atom",
+    "electron",
+    "shells",
+    "orbit",
+    "3d"
+  ],
+  "description": "Three shells on different axes with an electron on each, every one tilted away from its neighbours",
+  "createdAt": "2026-09-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Solar Atom",
+      "tier": "free",
+      "description": "The shells are separate 3D planes yawed 60\u00b0 apart, so the electrons cross in front of and behind the nucleus at different moments",
+      "animationType": "loop",
+      "dependencies": [],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 48,
+          "min": 24,
+          "max": 160,
+          "step": 1,
+          "description": "Overall size of the 3D scene in pixels"
+        },
+        {
+          "name": "accent",
+          "type": "string",
+          "default": "#f6a53c",
+          "description": "Colour of the star at the centre of the scene"
+        },
+        {
+          "name": "planetColor",
+          "type": "string",
+          "default": "#b57cf7",
+          "description": "Colour of the orbiting bodies"
+        },
+        {
+          "name": "trailColor",
+          "type": "string",
+          "default": "#4fd0e8",
+          "description": "Colour of the trail left behind the bodies"
+        },
+        {
+          "name": "tilt",
+          "type": "number",
+          "default": 74,
+          "min": 0,
+          "max": 90,
+          "step": 1,
+          "description": "Camera tilt of the orbital plane, in degrees"
+        },
+        {
+          "name": "orbitRadius",
+          "type": "number",
+          "default": 44,
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "description": "Orbit radius as a percentage of the scene size"
+        },
+        {
+          "name": "shellCount",
+          "type": "number",
+          "default": 3,
+          "min": 2,
+          "max": 5,
+          "step": 1,
+          "description": "Number of electron shells"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.5,
+          "min": 0.4,
+          "max": 10,
+          "step": 0.1,
+          "description": "Time for one full lap, in seconds"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "withButton",
+          "type": "boolean",
+          "default": true,
+          "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+        },
+        {
+          "name": "label",
+          "type": "select",
+          "default": "Thinking",
+          "options": [
+            "Thinking",
+            "Loading",
+            "Generating",
+            "Analysing",
+            "Reasoning",
+            "Working"
+          ],
+          "description": "Shimmering text shown beside the loader in the button shell"
+        }
+      ],
+      "componentName": "SolarAtom"
+    }
+  ]
+}

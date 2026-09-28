@@ -1,0 +1,101 @@
+{
+  "name": "Solar Nebula Dust",
+  "category": "solar planet",
+  "tags": [
+    "solar",
+    "nebula",
+    "dust",
+    "canvas",
+    "particles",
+    "infall"
+  ],
+  "description": "A soft particle cloud spiralling inward and condensing on a bright core, trailing as it goes \u2014 drawn on canvas",
+  "createdAt": "2026-09-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Solar Nebula Dust",
+      "tier": "free",
+      "description": "Particles fade the previous frame instead of clearing it, so each one leaves a short trail; those that reach the core are reseeded out at the rim",
+      "animationType": "loop",
+      "dependencies": [],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 48,
+          "min": 24,
+          "max": 160,
+          "step": 1,
+          "description": "Overall size of the 3D scene in pixels"
+        },
+        {
+          "name": "accent",
+          "type": "string",
+          "default": "#8ab4ff",
+          "description": "Colour of the star at the centre of the scene"
+        },
+        {
+          "name": "planetColor",
+          "type": "string",
+          "default": "#c9b6ff",
+          "description": "Colour of the orbiting bodies"
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "default": 80,
+          "min": 10,
+          "max": 200,
+          "step": 1,
+          "description": "Number of dust particles"
+        },
+        {
+          "name": "speed",
+          "type": "number",
+          "default": 1,
+          "min": 0.2,
+          "max": 3,
+          "step": 0.1,
+          "description": "Speed multiplier for the infall"
+        },
+        {
+          "name": "trail",
+          "type": "number",
+          "default": 18,
+          "min": 2,
+          "max": 60,
+          "step": 1,
+          "description": "How fast the previous frame fades, as a percentage"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "withButton",
+          "type": "boolean",
+          "default": true,
+          "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+        },
+        {
+          "name": "label",
+          "type": "select",
+          "default": "Thinking",
+          "options": [
+            "Thinking",
+            "Loading",
+            "Generating",
+            "Analysing",
+            "Reasoning",
+            "Working"
+          ],
+          "description": "Shimmering text shown beside the loader in the button shell"
+        }
+      ],
+      "componentName": "SolarNebulaDust"
+    }
+  ]
+}

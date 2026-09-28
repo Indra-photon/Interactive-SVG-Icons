@@ -56,7 +56,10 @@ export function LoaderCard({ loader, isMatched = true }: LoaderCardProps) {
         <div className="flex items-center justify-center">
           {LoaderComponent ? (
             <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
-              <LoaderComponent />
+              {/* withButton is the solar loaders' shell — it carries a text
+                  label, which has no room in a 48px well. Loaders that don't
+                  take the prop ignore it. */}
+              <LoaderComponent withButton={false} />
             </div>
           ) : (
             <div className="text-2xl">⏳</div>

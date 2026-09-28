@@ -422,6 +422,1254 @@
       ]
     },
     {
+      "slug": "solar-system",
+      "name": "Solar System",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "system",
+        "planets",
+        "kepler",
+        "3d",
+        "space"
+      ],
+      "description": "Three coplanar orbits at Kepler periods — the inner planet laps the outer one, each body its own hue",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar System",
+          "componentName": "SolarSystem",
+          "tier": "free",
+          "description": "Periods rise with radius the way real orbits do, so the three planets drift in and out of alignment instead of marching in lockstep",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 66,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 46,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 3.4,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-swarm-belt",
+      "name": "Solar Swarm Belt",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "swarm",
+        "asteroid",
+        "belt",
+        "canvas",
+        "particles"
+      ],
+      "description": "An asteroid belt of glowing particles on a flattened ellipse around a hot core — drawn on canvas",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Swarm Belt",
+          "componentName": "SolarSwarmBelt",
+          "tier": "free",
+          "description": "Seventy-odd particles each carry their own speed, radius and ellipse, so the belt never resolves into a visible pattern",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "count",
+              "type": "number",
+              "default": 70,
+              "min": 10,
+              "max": 160,
+              "step": 1,
+              "description": "Number of particles in the belt"
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "default": 1,
+              "min": 0.2,
+              "max": 3,
+              "step": 0.1,
+              "description": "Speed multiplier for the belt"
+            },
+            {
+              "name": "flatten",
+              "type": "number",
+              "default": 32,
+              "min": 10,
+              "max": 100,
+              "step": 1,
+              "description": "Height of the belt as a percentage of its width"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-orbit",
+      "name": "Solar Orbit",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "orbit",
+        "planet",
+        "3d",
+        "space",
+        "trail"
+      ],
+      "description": "One planet on a tilted plane, trailing light — it passes in front of the sun on the near side and behind it on the far side",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Orbit",
+          "componentName": "SolarOrbit",
+          "tier": "free",
+          "description": "A single Kepler orbit in real 3D: the browser depth-sorts the planet against the sun, so the pass behind is genuine occlusion rather than a z-index trick",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 64,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 42,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "trailLength",
+              "type": "number",
+              "default": 140,
+              "min": 0,
+              "max": 330,
+              "step": 5,
+              "description": "Length of the light trail behind the planet, in degrees of arc"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.7,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-nebula-dust",
+      "name": "Solar Nebula Dust",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "nebula",
+        "dust",
+        "canvas",
+        "particles",
+        "infall"
+      ],
+      "description": "A soft particle cloud spiralling inward and condensing on a bright core, trailing as it goes — drawn on canvas",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Nebula Dust",
+          "componentName": "SolarNebulaDust",
+          "tier": "free",
+          "description": "Particles fade the previous frame instead of clearing it, so each one leaves a short trail; those that reach the core are reseeded out at the rim",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#8ab4ff",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#c9b6ff",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "count",
+              "type": "number",
+              "default": 80,
+              "min": 10,
+              "max": 200,
+              "step": 1,
+              "description": "Number of dust particles"
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "default": 1,
+              "min": 0.2,
+              "max": 3,
+              "step": 0.1,
+              "description": "Speed multiplier for the infall"
+            },
+            {
+              "name": "trail",
+              "type": "number",
+              "default": 18,
+              "min": 2,
+              "max": 60,
+              "step": 1,
+              "description": "How fast the previous frame fades, as a percentage"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-nebula",
+      "name": "Solar Nebula",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "nebula",
+        "rings",
+        "ripple",
+        "breathe",
+        "3d"
+      ],
+      "description": "Gradient rings breathing outward from a pulsing core while the whole cloud slowly turns",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Nebula",
+          "componentName": "SolarNebula",
+          "tier": "free",
+          "description": "Each ring carries two animations at once — a scale-and-fade ripple and a slow spin — so the gradient sweeps as the ring grows",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 62,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 48,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "ringCount",
+              "type": "number",
+              "default": 3,
+              "min": 1,
+              "max": 6,
+              "step": 1,
+              "description": "Number of rings in flight at once"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.4,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-galaxy",
+      "name": "Solar Galaxy",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "galaxy",
+        "spiral",
+        "arms",
+        "infall",
+        "3d"
+      ],
+      "description": "Spiral arms of particles falling inward toward a bright bulge while the whole disc rotates",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Galaxy",
+          "componentName": "SolarGalaxy",
+          "tier": "free",
+          "description": "Arms are rotated copies of one particle chain; each particle also falls inward on its own delay, so the spiral keeps feeding the core",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 62,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 46,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "armCount",
+              "type": "number",
+              "default": 4,
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "description": "Number of spiral arms"
+            },
+            {
+              "name": "armLength",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 5,
+              "step": 1,
+              "description": "Particles per arm"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 3.2,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-ellipse",
+      "name": "Solar Ellipse",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "ellipse",
+        "eccentric",
+        "kepler",
+        "orbit",
+        "3d"
+      ],
+      "description": "An eccentric orbit with the sun at one focus — fast at perihelion, slow out wide, a comet-tail of bodies strung behind",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Ellipse",
+          "componentName": "SolarEllipse",
+          "tier": "free",
+          "description": "Travels an offset-path ellipse with the star at the focus, easing out of perihelion and back into it so the speed change reads as gravity",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 70,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "tailCount",
+              "type": "number",
+              "default": 4,
+              "min": 1,
+              "max": 7,
+              "step": 1,
+              "description": "Number of bodies strung along the path"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 2.2,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-diffuse",
+      "name": "Solar Diffuse",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "diffuse",
+        "particles",
+        "burst",
+        "ripple",
+        "3d"
+      ],
+      "description": "Particles born at the core and thrown out across the plane, with a ripple chasing them to the rim",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Diffuse",
+          "componentName": "SolarDiffuse",
+          "tier": "free",
+          "description": "Every arm runs the same throw on its own delay, so the burst reads as continuous emission rather than a pulse that restarts",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 56,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 46,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "rayCount",
+              "type": "number",
+              "default": 10,
+              "min": 4,
+              "max": 18,
+              "step": 1,
+              "description": "Number of particle arms around the plane"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.7,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-comet",
+      "name": "Solar Comet",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "comet",
+        "trail",
+        "sparks",
+        "orbit",
+        "3d"
+      ],
+      "description": "A hot head on a long light trail, shedding sparks behind it as it swings past the star",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Comet",
+          "componentName": "SolarComet",
+          "tier": "free",
+          "description": "One orbit per spark, each delayed a fraction of a lap and shrunk a little, so the tail bends along the path instead of sticking out straight",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 58,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 40,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "sparkCount",
+              "type": "number",
+              "default": 5,
+              "min": 1,
+              "max": 9,
+              "step": 1,
+              "description": "Number of sparks shed behind the head"
+            },
+            {
+              "name": "trailLength",
+              "type": "number",
+              "default": 200,
+              "min": 0,
+              "max": 330,
+              "step": 5,
+              "description": "Length of the light trail, in degrees of arc"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.8,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-binary",
+      "name": "Solar Binary",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "binary",
+        "stars",
+        "orbit",
+        "3d",
+        "space"
+      ],
+      "description": "Two stars of different colours sharing one orbit around their common centre of mass",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Binary",
+          "componentName": "SolarBinary",
+          "tier": "free",
+          "description": "Half a lap of delay separates the pair, so they swap near and far sides of the plane and each is occluded by the other in turn",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the second star"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 60,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 22,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.9,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "solar-atom",
+      "name": "Solar Atom",
+      "category": "solar planet",
+      "tags": [
+        "solar",
+        "atom",
+        "electron",
+        "shells",
+        "orbit",
+        "3d"
+      ],
+      "description": "Three shells on different axes with an electron on each, every one tilted away from its neighbours",
+      "createdAt": "2026-09-26",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Solar Atom",
+          "componentName": "SolarAtom",
+          "tier": "free",
+          "description": "The shells are separate 3D planes yawed 60° apart, so the electrons cross in front of and behind the nucleus at different moments",
+          "animationType": "loop",
+          "dependencies": [],
+          "props": [
+            {
+              "name": "size",
+              "type": "number",
+              "default": 48,
+              "min": 24,
+              "max": 160,
+              "step": 1,
+              "description": "Overall size of the 3D scene in pixels"
+            },
+            {
+              "name": "accent",
+              "type": "string",
+              "default": "#f6a53c",
+              "description": "Colour of the star at the centre of the scene"
+            },
+            {
+              "name": "planetColor",
+              "type": "string",
+              "default": "#b57cf7",
+              "description": "Colour of the orbiting bodies"
+            },
+            {
+              "name": "trailColor",
+              "type": "string",
+              "default": "#4fd0e8",
+              "description": "Colour of the trail left behind the bodies"
+            },
+            {
+              "name": "tilt",
+              "type": "number",
+              "default": 74,
+              "min": 0,
+              "max": 90,
+              "step": 1,
+              "description": "Camera tilt of the orbital plane, in degrees"
+            },
+            {
+              "name": "orbitRadius",
+              "type": "number",
+              "default": 44,
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "description": "Orbit radius as a percentage of the scene size"
+            },
+            {
+              "name": "shellCount",
+              "type": "number",
+              "default": 3,
+              "min": 2,
+              "max": 5,
+              "step": 1,
+              "description": "Number of electron shells"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.5,
+              "min": 0.4,
+              "max": 10,
+              "step": 0.1,
+              "description": "Time for one full lap, in seconds"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "withButton",
+              "type": "boolean",
+              "default": true,
+              "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+            },
+            {
+              "name": "label",
+              "type": "select",
+              "default": "Thinking",
+              "options": [
+                "Thinking",
+                "Loading",
+                "Generating",
+                "Analysing",
+                "Reasoning",
+                "Working"
+              ],
+              "description": "Shimmering text shown beside the loader in the button shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "siri-wave",
       "name": "Siri Wave",
       "category": "loaders",
@@ -660,77 +1908,6 @@
       ]
     },
     {
-      "slug": "ios-spinner-trail",
-      "name": "iOS Spinner Trail",
-      "category": "loaders",
-      "tags": [
-        "apple",
-        "ios",
-        "macos",
-        "spinner",
-        "trail",
-        "comet",
-        "sharp",
-        "exponential"
-      ],
-      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, creating an intense laser comet",
-      "createdAt": "2026-05-14",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Sharp Trail",
-          "componentName": "IosSpinnerTrail",
-          "tier": "free",
-          "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the spokes"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 0.7,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "ios-spinner-thick",
       "name": "iOS Spinner Thick",
       "category": "loaders",
@@ -786,6 +1963,77 @@
               "name": "duration",
               "type": "number",
               "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner-trail",
+      "name": "iOS Spinner Trail",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "trail",
+        "comet",
+        "sharp",
+        "exponential"
+      ],
+      "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, creating an intense laser comet",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Sharp Trail",
+          "componentName": "IosSpinnerTrail",
+          "tier": "free",
+          "description": "Exponential opacity decay — only 4-5 spokes are visibly bright, the rest vanish sharply, creating an intense laser comet",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 0.7,
               "description": "Animation cycle duration in seconds",
               "min": 0.1,
               "max": 8,
@@ -943,76 +2191,6 @@
       ]
     },
     {
-      "slug": "ios-spinner-dual",
-      "name": "iOS Spinner Dual",
-      "category": "loaders",
-      "tags": [
-        "apple",
-        "ios",
-        "macos",
-        "spinner",
-        "dual",
-        "gyroscope",
-        "counter-rotate"
-      ],
-      "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
-      "createdAt": "2026-05-14",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Dual Ring",
-          "componentName": "IosSpinnerDual",
-          "tier": "free",
-          "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the spokes"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 1.2,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.1,
-              "max": 8,
-              "step": 0.1
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "linear",
-              "description": "Easing function"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "ios-spinner-dots",
       "name": "iOS Spinner Dots",
       "category": "loaders",
@@ -1067,6 +2245,76 @@
               "name": "duration",
               "type": "number",
               "default": 1,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.1,
+              "max": 8,
+              "step": 0.1
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "linear",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ios-spinner-dual",
+      "name": "iOS Spinner Dual",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "ios",
+        "macos",
+        "spinner",
+        "dual",
+        "gyroscope",
+        "counter-rotate"
+      ],
+      "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Dual Ring",
+          "componentName": "IosSpinnerDual",
+          "tier": "free",
+          "description": "Outer ring of 12 spokes clockwise, inner ring of 8 spokes counter-clockwise — gyroscope effect",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the spokes"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 1.2,
               "description": "Animation cycle duration in seconds",
               "min": 0.1,
               "max": 8,
@@ -4180,6 +5428,76 @@
       ]
     },
     {
+      "slug": "breath",
+      "name": "Breath",
+      "category": "loaders",
+      "tags": [
+        "apple",
+        "breath",
+        "pulse",
+        "glow",
+        "ambient",
+        "macbook",
+        "minimal"
+      ],
+      "description": "A soft glowing circle that expands and contracts on a slow 4-second breathing rhythm",
+      "createdAt": "2026-05-14",
+      "variations": [
+        {
+          "name": "default",
+          "displayName": "Breath",
+          "componentName": "Breath",
+          "tier": "free",
+          "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
+          "animationType": "loop",
+          "dependencies": [
+            "framer-motion"
+          ],
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "default": 100,
+              "description": "Width of the loader in pixels"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "default": 100,
+              "description": "Height of the loader in pixels"
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "default": "currentColor",
+              "description": "Color of the breathing circle"
+            },
+            {
+              "name": "isAnimating",
+              "type": "boolean",
+              "default": true,
+              "description": "Controls whether the animation runs"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "default": 4,
+              "description": "Animation cycle duration in seconds",
+              "min": 0.5,
+              "max": 10,
+              "step": 0.5
+            },
+            {
+              "name": "ease",
+              "type": "ease",
+              "default": "easeInOut",
+              "description": "Easing function"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "circle-spinner-wipe",
       "name": "Circle Spinner Wipe",
       "category": "loaders",
@@ -4268,76 +5586,6 @@
                 "square"
               ],
               "description": "Stroke line cap style"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "breath",
-      "name": "Breath",
-      "category": "loaders",
-      "tags": [
-        "apple",
-        "breath",
-        "pulse",
-        "glow",
-        "ambient",
-        "macbook",
-        "minimal"
-      ],
-      "description": "A soft glowing circle that expands and contracts on a slow 4-second breathing rhythm",
-      "createdAt": "2026-05-14",
-      "variations": [
-        {
-          "name": "default",
-          "displayName": "Breath",
-          "componentName": "Breath",
-          "tier": "free",
-          "description": "A filled circle inhales and exhales with a trailing outer glow ring — inspired by the MacBook sleep indicator LED",
-          "animationType": "loop",
-          "dependencies": [
-            "framer-motion"
-          ],
-          "props": [
-            {
-              "name": "width",
-              "type": "number",
-              "default": 100,
-              "description": "Width of the loader in pixels"
-            },
-            {
-              "name": "height",
-              "type": "number",
-              "default": 100,
-              "description": "Height of the loader in pixels"
-            },
-            {
-              "name": "color",
-              "type": "string",
-              "default": "currentColor",
-              "description": "Color of the breathing circle"
-            },
-            {
-              "name": "isAnimating",
-              "type": "boolean",
-              "default": true,
-              "description": "Controls whether the animation runs"
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "default": 4,
-              "description": "Animation cycle duration in seconds",
-              "min": 0.5,
-              "max": 10,
-              "step": 0.5
-            },
-            {
-              "name": "ease",
-              "type": "ease",
-              "default": "easeInOut",
-              "description": "Easing function"
             }
           ]
         }
@@ -6041,5 +7289,5 @@
     }
   ],
   "version": "1.0.0",
-  "lastUpdated": "2026-09-15T11:59:12.502Z"
+  "lastUpdated": "2026-09-28T13:07:42.127Z"
 }

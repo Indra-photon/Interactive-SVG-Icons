@@ -1,0 +1,107 @@
+{
+  "name": "Solar Binary",
+  "category": "solar planet",
+  "tags": [
+    "solar",
+    "binary",
+    "stars",
+    "orbit",
+    "3d",
+    "space"
+  ],
+  "description": "Two stars of different colours sharing one orbit around their common centre of mass",
+  "createdAt": "2026-09-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Solar Binary",
+      "tier": "free",
+      "description": "Half a lap of delay separates the pair, so they swap near and far sides of the plane and each is occluded by the other in turn",
+      "animationType": "loop",
+      "dependencies": [],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 48,
+          "min": 24,
+          "max": 160,
+          "step": 1,
+          "description": "Overall size of the 3D scene in pixels"
+        },
+        {
+          "name": "accent",
+          "type": "string",
+          "default": "#f6a53c",
+          "description": "Colour of the star at the centre of the scene"
+        },
+        {
+          "name": "planetColor",
+          "type": "string",
+          "default": "#b57cf7",
+          "description": "Colour of the second star"
+        },
+        {
+          "name": "trailColor",
+          "type": "string",
+          "default": "#4fd0e8",
+          "description": "Colour of the trail left behind the bodies"
+        },
+        {
+          "name": "tilt",
+          "type": "number",
+          "default": 60,
+          "min": 0,
+          "max": 90,
+          "step": 1,
+          "description": "Camera tilt of the orbital plane, in degrees"
+        },
+        {
+          "name": "orbitRadius",
+          "type": "number",
+          "default": 22,
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "description": "Orbit radius as a percentage of the scene size"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 1.9,
+          "min": 0.4,
+          "max": 10,
+          "step": 0.1,
+          "description": "Time for one full lap, in seconds"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "withButton",
+          "type": "boolean",
+          "default": true,
+          "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+        },
+        {
+          "name": "label",
+          "type": "select",
+          "default": "Thinking",
+          "options": [
+            "Thinking",
+            "Loading",
+            "Generating",
+            "Analysing",
+            "Reasoning",
+            "Working"
+          ],
+          "description": "Shimmering text shown beside the loader in the button shell"
+        }
+      ],
+      "componentName": "SolarBinary"
+    }
+  ]
+}

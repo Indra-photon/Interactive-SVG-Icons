@@ -1,0 +1,107 @@
+{
+  "name": "Solar System",
+  "category": "solar planet",
+  "tags": [
+    "solar",
+    "system",
+    "planets",
+    "kepler",
+    "3d",
+    "space"
+  ],
+  "description": "Three coplanar orbits at Kepler periods \u2014 the inner planet laps the outer one, each body its own hue",
+  "createdAt": "2026-09-26",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Solar System",
+      "tier": "free",
+      "description": "Periods rise with radius the way real orbits do, so the three planets drift in and out of alignment instead of marching in lockstep",
+      "animationType": "loop",
+      "dependencies": [],
+      "props": [
+        {
+          "name": "size",
+          "type": "number",
+          "default": 48,
+          "min": 24,
+          "max": 160,
+          "step": 1,
+          "description": "Overall size of the 3D scene in pixels"
+        },
+        {
+          "name": "accent",
+          "type": "string",
+          "default": "#f6a53c",
+          "description": "Colour of the star at the centre of the scene"
+        },
+        {
+          "name": "planetColor",
+          "type": "string",
+          "default": "#b57cf7",
+          "description": "Colour of the orbiting bodies"
+        },
+        {
+          "name": "trailColor",
+          "type": "string",
+          "default": "#4fd0e8",
+          "description": "Colour of the trail left behind the bodies"
+        },
+        {
+          "name": "tilt",
+          "type": "number",
+          "default": 66,
+          "min": 0,
+          "max": 90,
+          "step": 1,
+          "description": "Camera tilt of the orbital plane, in degrees"
+        },
+        {
+          "name": "orbitRadius",
+          "type": "number",
+          "default": 46,
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "description": "Orbit radius as a percentage of the scene size"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": 3.4,
+          "min": 0.4,
+          "max": 10,
+          "step": 0.1,
+          "description": "Time for one full lap, in seconds"
+        },
+        {
+          "name": "isAnimating",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the animation runs"
+        },
+        {
+          "name": "withButton",
+          "type": "boolean",
+          "default": true,
+          "description": "Wraps the scene in the AI-agent \"Thinking\" button shell"
+        },
+        {
+          "name": "label",
+          "type": "select",
+          "default": "Thinking",
+          "options": [
+            "Thinking",
+            "Loading",
+            "Generating",
+            "Analysing",
+            "Reasoning",
+            "Working"
+          ],
+          "description": "Shimmering text shown beside the loader in the button shell"
+        }
+      ],
+      "componentName": "SolarSystem"
+    }
+  ]
+}

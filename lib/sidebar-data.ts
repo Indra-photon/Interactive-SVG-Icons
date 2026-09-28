@@ -50,6 +50,7 @@ const LOADER_GROUPS: { id: string; label: string; match: (slug: string) => boole
   { id: 'spinner',    label: 'Spinner',     match: s => ['circle-spinner-wipe', 'circular-wave-fill', 'conic-spinner', 'spinner-orbit-dots'].includes(s) },
   { id: 'dots',       label: 'Dots',        match: s => s.startsWith('dots-') },
   { id: 'square',     label: 'Square',      match: s => s.startsWith('square-') },
+  { id: 'solar',      label: 'Solar Planet', match: s => s.startsWith('solar-') },
 ];
 
 export const LOADER_GROUP_SLUG_PREFIX = 'group--';

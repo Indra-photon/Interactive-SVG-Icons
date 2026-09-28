@@ -1,0 +1,42 @@
+{
+  "slug": "nested-core",
+  "name": "Nested Core",
+  "published": true,
+  "category": "abstract",
+  "tags": [
+    "illustration",
+    "isometric",
+    "cube",
+    "nested",
+    "core",
+    "glow",
+    "abstract",
+    "diagram",
+    "svg",
+    "static"
+  ],
+  "description": "A lit cube suspended inside an open isometric shell, inside a larger wireframe frame. The shell is neutral and the core is the only hue on the page — for runtime, kernel, sandbox and containment stories.",
+  "createdAt": "2026-09-26T00:00:00Z",
+  "variations": [
+    {
+      "name": "default",
+      "displayName": "Nested Core",
+      "componentName": "NestedCore",
+      "tier": "free",
+      "description": "An open cube seen from inside — floor and two far walls, a dotted floor grid, vertex marks — holding a glowing emblem-faced core, with a 1.22x construction frame drawn around the whole scene.",
+      "animationType": "none",
+      "width": 420,
+      "height": 450,
+      "dependencies": [],
+      "registryDependencies": [],
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Additional classes on the <svg> root. The artwork is viewBox-driven with no width/height attributes, so it fills its container by default."
+        }
+      ]
+    }
+  ]
+}
